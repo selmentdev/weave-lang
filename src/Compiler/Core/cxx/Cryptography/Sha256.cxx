@@ -59,9 +59,8 @@ namespace Weave::Cryptography::Sha256Private
 
     void Transform(Sha256Context& context)
     {
-        std::array<uint32_t, 64> w{};
-
-        ToBigEndianBuffer(w.data(), context.Buffer.data(), 16);
+        std::array<uint32_t, 64> w;
+        ToBigEndianFromBuffer(w.data(), context.Buffer.data(), 16);
 
         for (size_t i = 16; i < 64; ++i)
         {
@@ -164,13 +163,12 @@ namespace Weave::Cryptography
 
         Sha256Update(context, Sha256Private::Padding, paddingSize);
 
-        ToBigEndianBuffer(context.Buffer.data() + 56, &totalSize, 1);
+        *reinterpret_cast<uint64_t*>(context.Buffer.data() + 56) = ToBigEndian(totalSize);
 
         Sha256Private::Transform(context);
 
-        Sha256Digest digest{};
-
-        ToBigEndianBuffer(digest.data(), context.State.data(), 8);
+        Sha256Digest digest;
+        ToBigEndianToBuffer(digest.data(), context.State.data(), 8);
 
         return digest;
     }    

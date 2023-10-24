@@ -35,55 +35,61 @@ namespace Weave
         }
     }
 
-    constexpr void ToBigEndianBuffer(uint32_t* output, uint8_t const* input, size_t count)
+    template <typename T>
+    constexpr T ToLittleEndian(T value)
+        requires (std::is_integral_v<T>)
     {
-        for (size_t i = 0; i < count; ++i)
+        if constexpr (std::endian::native == std::endian::big)
         {
-            output[i] = (static_cast<uint32_t>(input[i * 4 + 0]) << 24) |
-                (static_cast<uint32_t>(input[i * 4 + 1]) << 16) |
-                (static_cast<uint32_t>(input[i * 4 + 2]) << 8) |
-                (static_cast<uint32_t>(input[i * 4 + 3]) << 0);
+            return std::byteswap(value);
+        }
+        else
+        {
+            return value;
         }
     }
 
-    constexpr void ToBigEndianBuffer(uint8_t* output, uint32_t const* input, size_t count)
+    template <typename T>
+    constexpr void ToBigEndianArray(T* buffer, size_t count)
+        requires(std::is_integral_v<T>)
     {
         for (size_t i = 0; i < count; ++i)
         {
-            output[i * 4 + 0] = static_cast<uint8_t>(input[i] >> 24);
-            output[i * 4 + 1] = static_cast<uint8_t>(input[i] >> 16);
-            output[i * 4 + 2] = static_cast<uint8_t>(input[i] >> 8);
-            output[i * 4 + 3] = static_cast<uint8_t>(input[i] >> 0);
+            buffer[i] = ToBigEndian(buffer[i]);
         }
     }
 
-    constexpr void ToBigEndianBuffer(uint64_t* output, uint8_t const* input, size_t count)
+    template <typename T>
+    constexpr void ToLittleEndianArray(T* buffer, size_t count)
+        requires(std::is_integral_v<T>)
     {
         for (size_t i = 0; i < count; ++i)
         {
-            output[i] = (static_cast<uint64_t>(input[i * 8 + 0]) << 56) |
-                (static_cast<uint64_t>(input[i * 8 + 1]) << 48) |
-                (static_cast<uint64_t>(input[i * 8 + 2]) << 40) |
-                (static_cast<uint64_t>(input[i * 8 + 3]) << 32) |
-                (static_cast<uint64_t>(input[i * 8 + 4]) << 24) |
-                (static_cast<uint64_t>(input[i * 8 + 5]) << 16) |
-                (static_cast<uint64_t>(input[i * 8 + 6]) << 8) |
-                (static_cast<uint64_t>(input[i * 8 + 7]) << 0);
+            buffer[i] = ToLittleEndian(buffer[i]);
         }
     }
 
-    constexpr void ToBigEndianBuffer(uint8_t* output, uint64_t const* input, size_t count)
+    template <typename T>
+    constexpr void ToBigEndianArray(T* output, T const* input, size_t count)
+        requires(std::is_integral_v<T>)
     {
         for (size_t i = 0; i < count; ++i)
         {
-            output[i * 8 + 0] = static_cast<uint8_t>(input[i] >> 56);
-            output[i * 8 + 1] = static_cast<uint8_t>(input[i] >> 48);
-            output[i * 8 + 2] = static_cast<uint8_t>(input[i] >> 40);
-            output[i * 8 + 3] = static_cast<uint8_t>(input[i] >> 32);
-            output[i * 8 + 4] = static_cast<uint8_t>(input[i] >> 24);
-            output[i * 8 + 5] = static_cast<uint8_t>(input[i] >> 16);
-            output[i * 8 + 6] = static_cast<uint8_t>(input[i] >> 8);
-            output[i * 8 + 7] = static_cast<uint8_t>(input[i] >> 0);
+            output[i] = ToBigEndian(input[i]);
         }
+    }
+
+    template <typename T>
+    constexpr void ToBigEndianFromBuffer(T* output, void const* input, size_t count)
+        requires(std::is_integral_v<T>)
+    {
+        ToBigEndianArray(output, static_cast<T const*>(input), count);
+    }
+
+    template <typename T>
+    constexpr void ToBigEndianToBuffer(void* output, T const* input, size_t count)
+        requires(std::is_integral_v<T>)
+    {
+        ToBigEndianArray(static_cast<T*>(output), input, count);
     }
 }
