@@ -1,0 +1,5 @@
+add_subdirectory("Compiler")
+add_subdirectory("Libraries")
+add_subdirectory("Tests")
+add_subdirectory("ThirdParty")
+add_subdirectory("Tools")

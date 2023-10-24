@@ -1,0 +1,14 @@
+// Before entity
+public function TryReadTrivia(
+    self: this mutable Lexer,   // Comment for argument 'self'
+    trivia: out Trivia          // Comment for argument 'trivia'
+)
+{
+    if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
+        trivia = Trivia.Comment(comment)
+    } else {
+        /* before assignment */ trivia = Trivia.None /* after assignment */
+    }
+    // Just plain comment
+}
+// trivia at end of file
