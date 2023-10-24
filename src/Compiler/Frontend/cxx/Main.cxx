@@ -53,7 +53,7 @@ int main()
 
                 for (; current < 8; ++current)
                 {
-                    uint32_t const expected = 0x41414141 + 0x01010101 * static_cast<uint32_t>(current);
+                    [[maybe_unused]] uint32_t const expected = 0x41414141 + 0x01010101 * static_cast<uint32_t>(current);
                     uint32_t v{};
                     read(v);
                     assert(v == expected);
@@ -69,7 +69,8 @@ int main()
 
                     for (auto const& item : buffer)
                     {
-                        uint32_t const expected = 0x41414141 + 0x01010101 * static_cast<uint32_t>(current);
+                        (void)item;
+                        [[maybe_unused]] uint32_t const expected = 0x41414141 + 0x01010101 * static_cast<uint32_t>(current);
                         assert(expected == item);
                         ++current;
                     }
@@ -77,7 +78,7 @@ int main()
 
                 for (; current < count; ++current)
                 {
-                    uint32_t const expected = 0x41414141 + 0x01010101 * static_cast<uint32_t>(current);
+                    [[maybe_unused]] uint32_t const expected = 0x41414141 + 0x01010101 * static_cast<uint32_t>(current);
                     uint32_t v{};
                     read(v);
                     assert(v == expected);

@@ -49,3 +49,14 @@
     _Pragma("clang diagnostic pop")
 
 #endif
+
+
+#if defined(_MSC_VER)
+#define WEAVE_DEBUGBREAK __debugbreak
+#elif defined(__GNUC__)
+#define WEAVE_DEBUGBREAK __builtin_trap
+#elif defined(__clang__)
+#define WEAVE_DEBUGBREAK __builtin_debugtrap
+#else
+#error Not implemented
+#endif

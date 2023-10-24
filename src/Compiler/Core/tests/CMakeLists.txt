@@ -6,6 +6,7 @@ add_executable(Weave.Core.Tests
 
 target_link_libraries(Weave.Core.Tests PUBLIC Weave.Core)
 target_link_libraries(Weave.Core.Tests PUBLIC Catch2)
+WEAVY_CXX_FORTIFY_CODE(Weave.Core.Tests)
 
 add_test(
     NAME        Weave.Core.Tests

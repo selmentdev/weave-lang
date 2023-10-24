@@ -1,5 +1,5 @@
 
-function(nifty_cxx_fortify_code target)
+function(weavy_cxx_fortify_code target)
     if (MSVC)
         target_compile_options(${target} PRIVATE
             -Wall       # enable all warnings
@@ -23,7 +23,17 @@ function(nifty_cxx_fortify_code target)
             -wd4587
             -wd4588
             -wd4574
+            -wd4686
+            -wd4868
             -wd4061 # Not all labels are EXPLICITLY handled in switch; w4062 (not all labels are handled and default is missing) is enabled
+            -Zc:preprocessor
+            -Zc:__cplusplus
+            -Zc:lambda
+            -Zc:referenceBinding
+            -Zc:rvalueCast
+            -Zc:inline
+            -Zc:strictStrings
+            -Zc:ternary
         )
     else()
         target_compile_options(${target} PRIVATE
