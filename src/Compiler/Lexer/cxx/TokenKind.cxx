@@ -1,4 +1,4 @@
-#include "Compiler.Lexer/TokenKind.hxx"
+#include "Weave.Lexer/TokenKind.hxx"
 
 #include <utility>
 #include <cassert>
@@ -9,7 +9,7 @@ namespace Weave::Lexer
     {
         static constexpr std::string_view lookup[]{
 #define WEAVE_TOKEN(name, spelling) #name,
-#include "Compiler.Lexer/TokenKind.inc"
+#include "Weave.Lexer/TokenKind.inc"
         };
 
         size_t const index = std::to_underlying(value);
@@ -21,7 +21,7 @@ namespace Weave::Lexer
     {
         static constexpr std::string_view lookup[]{
 #define WEAVE_TOKEN(name, spelling) spelling,
-#include "Compiler.Lexer/TokenKind.inc"
+#include "Weave.Lexer/TokenKind.inc"
         };
 
         size_t const index = std::to_underlying(value);
@@ -29,12 +29,12 @@ namespace Weave::Lexer
         return lookup[index];
     }
 
-    bool TokenKindTraits::IsSymbol(TokenKind value)
+    bool TokenKindTraits::IsPunctuation(TokenKind value)
     {
         static constexpr bool lookup[]{
 #define WEAVE_TOKEN(name, spelling) false,
-#define WEAVE_TOKEN_SYMBOL(name, spelling) true,
-#include "Compiler.Lexer/TokenKind.inc"
+#define WEAVE_TOKEN_PUNCTUATION(name, spelling) true,
+#include "Weave.Lexer/TokenKind.inc"
         };
 
         size_t const index = std::to_underlying(value);
@@ -42,12 +42,12 @@ namespace Weave::Lexer
         return lookup[index];
     }
 
-    bool TokenKindTraits::IsOpeningGroupSymbol(TokenKind value)
+    bool TokenKindTraits::IsOpeningGroupPunctuation(TokenKind value)
     {
         switch (value) // NOLINT(clang-diagnostic-switch-enum)
         {
-#define WEAVE_TOKEN_SYMBOL_GROUP_OPENING(name, spelling, matching) case TokenKind::name:
-#include "Compiler.Lexer/TokenKind.inc"
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(name, spelling, matching) case TokenKind::name:
+#include "Weave.Lexer/TokenKind.inc"
             return true;
 
         default:
@@ -57,12 +57,12 @@ namespace Weave::Lexer
         return false;
     }
 
-    bool TokenKindTraits::IsClosingGroupSymbol(TokenKind value)
+    bool TokenKindTraits::IsClosingGroupPunctuation(TokenKind value)
     {
         switch (value) // NOLINT(clang-diagnostic-switch-enum)
         {
-#define WEAVE_TOKEN_SYMBOL_GROUP_CLOSING(name, spelling, matching) case TokenKind::name:
-#include "Compiler.Lexer/TokenKind.inc"
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(name, spelling, matching) case TokenKind::name:
+#include "Weave.Lexer/TokenKind.inc"
             return true;
 
         default:
@@ -77,7 +77,7 @@ namespace Weave::Lexer
         static constexpr bool lookup[]{
 #define WEAVE_TOKEN(name, spelling) false,
 #define WEAVE_TOKEN_LITERAL(name, spelling) true,
-#include "Compiler.Lexer/TokenKind.inc"
+#include "Weave.Lexer/TokenKind.inc"
         };
 
         size_t const index = std::to_underlying(value);
@@ -90,7 +90,7 @@ namespace Weave::Lexer
         static constexpr bool lookup[]{
 #define WEAVE_TOKEN(name, spelling) false,
 #define WEAVE_TOKEN_KEYWORD(name, spelling) true,
-#include "Compiler.Lexer/TokenKind.inc"
+#include "Weave.Lexer/TokenKind.inc"
         };
 
         size_t const index = std::to_underlying(value);
@@ -103,7 +103,7 @@ namespace Weave::Lexer
         static constexpr bool lookup[]{
 #define WEAVE_TOKEN(name, spelling) false,
 #define WEAVE_TOKEN_TYPE_KEYWORD(name, spelling) true,
-#include "Compiler.Lexer/TokenKind.inc"
+#include "Weave.Lexer/TokenKind.inc"
         };
 
         size_t const index = std::to_underlying(value);
@@ -111,15 +111,15 @@ namespace Weave::Lexer
         return lookup[index];
     }
 
-    TokenKind TokenKindTraits::GetOpeningGroupSymbol(TokenKind value)
+    TokenKind TokenKindTraits::GetOpeningGroupPunctuation(TokenKind value)
     {
         switch (value) // NOLINT(clang-diagnostic-switch-enum)
         {
-#define WEAVE_TOKEN_SYMBOL_GROUP_OPENING(name, spelling, matching) \
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(name, spelling, matching) \
     case TokenKind::name: \
         return TokenKind::matching;
 
-#include "Compiler.Lexer/TokenKind.inc"
+#include "Weave.Lexer/TokenKind.inc"
 
         default:
             break;
@@ -128,14 +128,14 @@ namespace Weave::Lexer
         return TokenKind::Error;
     }
 
-    TokenKind TokenKindTraits::GetClosingGroupSymbol(TokenKind value)
+    TokenKind TokenKindTraits::GetClosingGroupPunctuation(TokenKind value)
     {
         switch (value)
         {
-#define WEAVE_TOKEN_SYMBOL_GROUP_CLOSING(name, spelling, matching) \
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(name, spelling, matching) \
     case TokenKind::name: \
         return TokenKind::matching;
-#include "Compiler.Lexer/TokenKind.inc"
+#include "Weave.Lexer/TokenKind.inc"
 
         default:
             break;
@@ -154,7 +154,7 @@ namespace Weave::Lexer
 
         static constexpr Entry lookup[]{
 #define WEAVE_TOKEN_KEYWORD(name, spelling) {spelling, TokenKind::name},
-#include "Compiler.Lexer/TokenKind.inc"
+#include "Weave.Lexer/TokenKind.inc"
         };
 
         for (Entry const& entry : lookup)

@@ -1,2 +1,2 @@
-#include "Compiler.Core/Diagnostic.hxx"
+#include "Weave.Core/Diagnostic.hxx"
 

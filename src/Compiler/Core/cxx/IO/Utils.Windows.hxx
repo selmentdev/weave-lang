@@ -1,6 +1,6 @@
 #pragma once
-#include "Compiler.Core/Platform/Compiler.hxx"
-#include "Compiler.Core/IO/FileSystemError.hxx"
+#include "Weave.Core/Platform/Compiler.hxx"
+#include "Weave.Core/IO/FileSystemError.hxx"
 
 namespace Weave::IO
 {

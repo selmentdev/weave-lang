@@ -1,4 +1,4 @@
-#include "Compiler.Core/IO/FileHandle.hxx"
+#include "Weave.Core/IO/FileHandle.hxx"
 
 #if defined(__linux__)
 

@@ -1,4 +1,4 @@
-#include "Compiler.Core/Platform/Compiler.hxx"
+#include "Weave.Core/Platform/Compiler.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
 
@@ -7,7 +7,7 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 WEAVE_EXTERNAL_HEADERS_END
 
 
-#include "Compiler.Core/SourceCursor.hxx"
+#include "Weave.Core/SourceCursor.hxx"
 
 TEST_CASE("Source Cursor")
 {

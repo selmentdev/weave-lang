@@ -1,4 +1,4 @@
-#include "Compiler.Lexer/CharTraits.hxx"
+#include "Weave.Lexer/CharTraits.hxx"
 
 namespace Weave::Lexer
 {

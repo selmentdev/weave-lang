@@ -1,5 +1,5 @@
 
-function(weavy_cxx_fortify_code target)
+function(weave_cxx_fortify_code target)
     if (MSVC)
         target_compile_options(${target} PRIVATE
             -Wall       # enable all warnings

@@ -1,4 +1,4 @@
-#include "Compiler.Core/Assert.hxx"
+#include "Weave.Core/Assert.hxx"
 
 namespace Weave
 {
@@ -6,7 +6,7 @@ namespace Weave
         std::source_location const& location,
         std::string_view condition) noexcept
     {
-        return AssertionFailedArgs(location, condition, "", fmt::make_format_args());
+        return AssertionFailedArgs(location, condition, "<none>", fmt::make_format_args());
     }
 
     [[nodiscard]] bool AssertionFailed(
@@ -30,9 +30,9 @@ namespace Weave
         fmt::println("");
 
 #if !defined(NDEBUG)
-        std::abort();
-#else
         return true;
+#else
+        std::abort();
 #endif
     }
 }

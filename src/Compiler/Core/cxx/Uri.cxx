@@ -1,4 +1,4 @@
-#include "Compiler.Core/Uri.hxx"
+#include "Weave.Core/Uri.hxx"
 
 namespace Weave
 {

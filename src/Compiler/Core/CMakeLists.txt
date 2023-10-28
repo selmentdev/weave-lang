@@ -17,10 +17,10 @@ add_library(Weave.Core STATIC
  "cxx/SourceText.cxx"
  "cxx/Unicode.cxx"
  "cxx/Uri.cxx"
-)
+ "cxx/Memory/VirtualHeap.cxx")
 
 target_include_directories(Weave.Core PUBLIC include)
 target_link_libraries(Weave.Core PUBLIC Fmt)
-WEAVY_CXX_FORTIFY_CODE(Weave.Core)
+WEAVE_CXX_FORTIFY_CODE(Weave.Core)
 
 add_subdirectory(tests)

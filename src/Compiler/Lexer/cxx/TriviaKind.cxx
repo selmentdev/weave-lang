@@ -1,4 +1,4 @@
-#include "Compiler.Lexer/TriviaKind.hxx"
+#include "Weave.Lexer/TriviaKind.hxx"
 
 #include <utility>
 #include <cassert>
@@ -9,7 +9,7 @@ namespace Weave::Lexer
     {
         static constexpr std::string_view lookup[]{
 #define WEAVE_TRIVIA(name, spelling) #name,
-#include "Compiler.Lexer/TriviaKind.inc"
+#include "Weave.Lexer/TriviaKind.inc"
         };
 
         size_t const index = std::to_underlying(value);
@@ -21,7 +21,7 @@ namespace Weave::Lexer
     {
         static constexpr std::string_view lookup[]{
 #define WEAVE_TRIVIA(name, spelling) spelling,
-#include "Compiler.Lexer/TriviaKind.inc"
+#include "Weave.Lexer/TriviaKind.inc"
         };
 
         size_t const index = std::to_underlying(value);

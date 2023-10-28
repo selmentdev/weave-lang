@@ -1,5 +1,5 @@
-#include "Compiler.Core/SourceText.hxx"
-#include "Compiler.Core/Unicode.hxx"
+#include "Weave.Core/SourceText.hxx"
+#include "Weave.Core/Unicode.hxx"
 
 #include <cassert>
 

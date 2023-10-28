@@ -1,4 +1,4 @@
-#include "Compiler.Core/Cryptography/Sha256.hxx"
+#include "Weave.Core/Cryptography/Sha256.hxx"
 
 namespace Weave::Cryptography::Sha256Private
 {
@@ -137,6 +137,7 @@ namespace Weave::Cryptography
             context.Count += n;
 
             length -= n;
+            buffer += n;
 
             if (context.Size == 64)
             {
@@ -171,5 +172,13 @@ namespace Weave::Cryptography
         ToBigEndianToBuffer(digest.data(), context.State.data(), 8);
 
         return digest;
-    }    
+    }
+
+    Sha256Digest Sha256(std::byte const* buffer, size_t length)
+    {
+        Sha256Context context;
+        Sha256Initialize(context);
+        Sha256Update(context, buffer, length);
+        return Sha256Final(context);
+    }
 }

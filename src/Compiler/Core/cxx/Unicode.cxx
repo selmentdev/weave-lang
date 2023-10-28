@@ -1,5 +1,5 @@
 #include <cstddef>
-#include "Compiler.Core/Unicode.hxx"
+#include "Weave.Core/Unicode.hxx"
 
 namespace Weave::Private
 {

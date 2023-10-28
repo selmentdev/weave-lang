@@ -1,11 +1,11 @@
-#include "Compiler.Core/StringBuffer.hxx"
-#include "Compiler.Core/IO/FileSystem.hxx"
-#include "Compiler.Core/Platform/Compiler.hxx"
+#include "Weave.Core/StringBuffer.hxx"
+#include "Weave.Core/IO/FileSystem.hxx"
+#include "Weave.Core/Platform/Compiler.hxx"
 
 #if defined(WIN32)
 
-#include "Compiler.Core/IO/FileHandle.hxx"
-#include "Compiler.Core/Platform/Windows.hxx"
+#include "Weave.Core/IO/FileHandle.hxx"
+#include "Weave.Core/Platform/Windows.hxx"
 
 #include "Utils.Windows.hxx"
 

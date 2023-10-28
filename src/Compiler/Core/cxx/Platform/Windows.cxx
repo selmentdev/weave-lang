@@ -1,5 +1,5 @@
-#include "Compiler.Core/Platform/Windows.hxx"
-#include "Compiler.Core/Platform/Compiler.hxx"
+#include "Weave.Core/Platform/Windows.hxx"
+#include "Weave.Core/Platform/Compiler.hxx"
 
 #if defined(WIN32)
 

@@ -1,6 +1,6 @@
-#include "Compiler.Core/Platform/PageAllocator.hxx"
-#include "Compiler.Core/Bits.hxx"
-#include "Compiler.Core/Platform/Compiler.hxx"
+#include "Weave.Core/Platform/PageAllocator.hxx"
+#include "Weave.Core/Bits.hxx"
+#include "Weave.Core/Platform/Compiler.hxx"
 
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
@@ -21,7 +21,7 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 WEAVE_EXTERNAL_HEADERS_END
 
 
-namespace Weave
+namespace Weave::Memory
 {
     PageAllocationResult PageAllocate(size_t size)
     {

@@ -1,0 +1,31 @@
+namespace Core.Platform {
+    public enum ErrorCode {
+        InvalidHandle,
+        InvalidPath,
+        FileAlreadyExists,
+        FileNotFound,
+    }
+
+    public enum Result<T> {
+        Success(T),
+        Failure(ErrorCode),
+    }
+
+    public struct NativeHandle(IntPtr);
+
+    public native function CreateFile(path: string) -> Result<NativeHandle>;
+    public native function CloseFile(handle: NativeHandle) -> Result<void>;
+    public native function ReadFile(handle: NativeHandle, buffer: *uint8, size: usize) -> Result<usize>;
+}
+
+namespace Core.FileSystem {
+    public struct FileHandle {
+        private field _handle: Platform::NativeHandle;
+    }
+
+    public impl FileHandle {
+        public function Read(self: FileHandle, buffer: *uint8, size: usize) -> Platform::Result<usize> {
+            return Platform::ReadFile(self._handle, buffer, size);
+        }
+    }
+}

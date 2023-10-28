@@ -1,5 +1,5 @@
-#include "Compiler.Core/SourceCursor.hxx"
-#include "Compiler.Core/Unicode.hxx"
+#include "Weave.Core/SourceCursor.hxx"
+#include "Weave.Core/Unicode.hxx"
 
 namespace Weave
 {

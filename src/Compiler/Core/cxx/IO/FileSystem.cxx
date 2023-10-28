@@ -1,5 +1,5 @@
-#include "Compiler.Core/IO/FileSystem.hxx"
-#include "Compiler.Core/IO/FileHandle.hxx"
+#include "Weave.Core/IO/FileSystem.hxx"
+#include "Weave.Core/IO/FileHandle.hxx"
 
 #include <memory>
 

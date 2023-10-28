@@ -1,4 +1,4 @@
-#include "Compiler.Core/IO/FileWriter.hxx"
+#include "Weave.Core/IO/FileWriter.hxx"
 
 #include <memory>
 

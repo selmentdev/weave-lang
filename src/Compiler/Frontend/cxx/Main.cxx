@@ -1,16 +1,72 @@
-#include "Compiler.Core/Platform/Windows.hxx"
-#include "Compiler.Core/HandleTable.hxx"
-#include "Compiler.Core/Diagnostic.hxx"
-#include "Compiler.Core/IO/FileHandle.hxx"
-#include "Compiler.Core/IO/FileSystem.hxx"
-#include "Compiler.Core/IO/FileReader.hxx"
-#include "Compiler.Core/IO/FileWriter.hxx"
+#include "Weave.Core/Platform/Windows.hxx"
+#include "Weave.Core/HandleTable.hxx"
+#include "Weave.Core/Diagnostic.hxx"
+#include "Weave.Core/IO/FileHandle.hxx"
+#include "Weave.Core/IO/FileSystem.hxx"
+#include "Weave.Core/IO/FileReader.hxx"
+#include "Weave.Core/IO/FileWriter.hxx"
 
 #include <fmt/format.h>
+
+#include "Weave.Core/Assert.hxx"
+#include "Weave.Core/Platform/PageAllocator.hxx"
+#include "Weave.Core/Memory/VirtualHeap.hxx"
+
+namespace Ast
+{
+    struct CompoundStatement
+    {
+        
+    };
+}
+
+struct testing
+{
+    int32_t arr[4]{1, 2, 3, 4};
+
+    testing()
+    {
+        fmt::println("ctor");
+    }
+
+    testing(testing const&) = default;
+    testing(testing&) = default;
+    testing& operator=(testing const&) = default;
+    testing& operator=(testing&) = default;
+
+    ~testing()
+    {
+        fmt::println("dtor");
+    }
+};
+
+static_assert(sizeof(testing) == 16);
 
 
 int main()
 {
+    {
+        using namespace Weave::Memory;
+
+        VirtualHeap heap{};
+        {
+            VirtualHeapHandle<testing> too = NewObject<testing>(heap);
+            too->arr[0] = 42;
+        }
+        {
+            VirtualHeapArray<testing> too = NewArray<testing>(heap, 512);
+            WEAVE_ASSERT(too[0].arr[0] == 1);
+            WEAVE_ASSERT(too[0].arr[1] == 2);
+            WEAVE_ASSERT(too[0].arr[2] == 3);
+            WEAVE_ASSERT(too[0].arr[3] == 4);
+            too[0].arr[1] = 2137;
+        }
+        {
+            VirtualHeapArray<char> too = NewArray<char>(heap, 128);
+            too[0] = 'a';
+            too[1] = '\0';
+        }
+    }
     {
 #if defined(WIN32)
         for (size_t capacity = 1; capacity <= (64 << 10u); capacity <<= 1)

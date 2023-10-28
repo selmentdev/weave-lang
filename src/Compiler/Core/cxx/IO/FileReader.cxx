@@ -1,4 +1,4 @@
-#include "Compiler.Core/IO/FileReader.hxx"
+#include "Weave.Core/IO/FileReader.hxx"
 
 namespace Weave::IO
 {
