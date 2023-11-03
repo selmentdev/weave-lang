@@ -41,31 +41,31 @@ namespace Weave::Syntax
             SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia,
-            CharacterPrefix prefix,
+            CharacterPrefixKind prefix,
             char32_t value);
 
         Token* CreateString(
             SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia,
-            StringPrefix prefix,
+            StringPrefixKind prefix,
             std::string_view value);
 
         Token* CreateFloat(
             SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia,
-            NumberLiteralPrefix prefix,
+            NumberLiteralPrefixKind prefix,
             std::string_view value,
-            FloatLiteralSuffix suffix);
+            FloatLiteralSuffixKind suffix);
 
         Token* CreateInteger(
             SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia,
-            NumberLiteralPrefix prefix,
+            NumberLiteralPrefixKind prefix,
             std::string_view value,
-            IntegerLiteralSuffix suffix);
+            IntegerLiteralSuffixKind suffix);
 
         Token* CreateIdentifier(
             SourceSpan const& source,

@@ -1,6 +1,7 @@
 #include "Weave.Core/IO/FileWriter.hxx"
 
 #include <memory>
+#include <cstring>
 
 namespace Weave::IO
 {

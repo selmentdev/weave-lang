@@ -23,7 +23,7 @@ namespace Weave::Syntax
                     info.Span,
                     this->_leadingTriviaBuilder,
                     this->_trailingTriviaBuilder,
-                    info.StringPrefix.value_or(StringPrefix::Default),
+                    info.StringPrefix.value_or(StringPrefixKind::Default),
                     this->_buffer);
             }
 
@@ -42,7 +42,7 @@ namespace Weave::Syntax
                     info.Span,
                     this->_leadingTriviaBuilder,
                     this->_trailingTriviaBuilder,
-                    info.CharacterPrefix.value_or(CharacterPrefix::Default),
+                    info.CharacterPrefix.value_or(CharacterPrefixKind::Default),
                     value);
             }
 
@@ -52,9 +52,9 @@ namespace Weave::Syntax
                     info.Span,
                     this->_leadingTriviaBuilder,
                     this->_trailingTriviaBuilder,
-                    info.NumberPrefix.value_or(NumberLiteralPrefix::Default),
+                    info.NumberPrefix.value_or(NumberLiteralPrefixKind::Default),
                     this->_buffer,
-                    info.FloatSuffix.value_or(FloatLiteralSuffix::Default));
+                    info.FloatSuffix.value_or(FloatLiteralSuffixKind::Default));
             }
 
             if (info.Kind == TokenKind::IntegerLiteral)
@@ -63,9 +63,9 @@ namespace Weave::Syntax
                     info.Span,
                     this->_leadingTriviaBuilder,
                     this->_trailingTriviaBuilder,
-                    info.NumberPrefix.value_or(NumberLiteralPrefix::Default),
+                    info.NumberPrefix.value_or(NumberLiteralPrefixKind::Default),
                     this->_buffer,
-                    info.IntegerSuffix.value_or(IntegerLiteralSuffix::Default));
+                    info.IntegerSuffix.value_or(IntegerLiteralSuffixKind::Default));
             }
 
             if (info.Kind == TokenKind::Identifier)
@@ -1489,79 +1489,79 @@ namespace Weave::Syntax
 
             if (suffix == "f16")
             {
-                info.FloatSuffix = FloatLiteralSuffix::Float16;
+                info.FloatSuffix = FloatLiteralSuffixKind::Float16;
             }
             else if ((suffix == "f32") or (suffix == "f"))
             {
-                info.FloatSuffix = FloatLiteralSuffix::Float32;
+                info.FloatSuffix = FloatLiteralSuffixKind::Float32;
             }
             else if (suffix == "f64")
             {
-                info.FloatSuffix = FloatLiteralSuffix::Float64;
+                info.FloatSuffix = FloatLiteralSuffixKind::Float64;
             }
             else if (suffix == "f128")
             {
-                info.FloatSuffix = FloatLiteralSuffix::Float128;
+                info.FloatSuffix = FloatLiteralSuffixKind::Float128;
             }
             else if (suffix == "m128")
             {
-                info.FloatSuffix = FloatLiteralSuffix::Decimal128;
+                info.FloatSuffix = FloatLiteralSuffixKind::Decimal128;
             }
             else if (suffix == "i8")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::Int8;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::Int8;
             }
             else if (suffix == "i16")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::Int16;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::Int16;
             }
             else if (suffix == "i32")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::Int32;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::Int32;
             }
             else if (suffix == "i64")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::Int64;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::Int64;
             }
             else if (suffix == "i128")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::Int128;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::Int128;
             }
             else if (suffix == "u8")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::UInt8;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt8;
             }
             else if (suffix == "u16")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::UInt16;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt16;
             }
             else if (suffix == "u32")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::UInt32;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt32;
             }
             else if (suffix == "u64")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::UInt64;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt64;
             }
             else if (suffix == "u128")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::UInt128;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt128;
             }
             else if (suffix == "isize")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::ISize;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::ISize;
             }
             else if (suffix == "usize")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::USize;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::USize;
             }
             else if (suffix == "iptr")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::IntPtr;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::IntPtr;
             }
             else if (suffix == "uptr")
             {
-                info.IntegerSuffix = IntegerLiteralSuffix::UIntPtr;
+                info.IntegerSuffix = IntegerLiteralSuffixKind::UIntPtr;
             }
             else
             {

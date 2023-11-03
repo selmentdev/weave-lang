@@ -1,5 +1,7 @@
 #include "Weave.Core/Cryptography/Sha256.hxx"
 
+#include <cstring>
+
 namespace Weave::Cryptography::Sha256Private
 {
     static constexpr uint32_t K[64] = {

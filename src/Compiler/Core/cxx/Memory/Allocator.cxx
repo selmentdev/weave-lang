@@ -1,6 +1,8 @@
 #include "Weave.Core/Memory/Allocator.hxx"
 #include "Weave.Core/Assert.hxx"
 
+#include <utility>
+
 namespace Weave::Memory
 {
     LinearAllocator::LinearAllocator()

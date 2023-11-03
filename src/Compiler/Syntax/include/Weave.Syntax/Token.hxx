@@ -25,7 +25,7 @@ namespace Weave::Syntax
         SourceSpan Source{};
     };
 
-    enum class NumberLiteralPrefix
+    enum class NumberLiteralPrefixKind
     {
         Default,
         Binary,
@@ -34,7 +34,7 @@ namespace Weave::Syntax
         Hexadecimal,
     };
 
-    enum class IntegerLiteralSuffix
+    enum class IntegerLiteralSuffixKind
     {
         Default, // No suffix
 
@@ -60,7 +60,7 @@ namespace Weave::Syntax
         UIntPtr, // uptr
     };
 
-    enum class FloatLiteralSuffix
+    enum class FloatLiteralSuffixKind
     {
         Default,
 
@@ -74,8 +74,8 @@ namespace Weave::Syntax
 
     struct IntegerLiteralValue final
     {
-        NumberLiteralPrefix Prefix{};
-        IntegerLiteralSuffix Suffix{};
+        NumberLiteralPrefixKind Prefix{};
+        IntegerLiteralSuffixKind Suffix{};
 
         // FIXME: This should be a big integer type.
         std::string_view Value{};
@@ -83,14 +83,14 @@ namespace Weave::Syntax
 
     struct FloatLiteralValue final
     {
-        NumberLiteralPrefix Prefix{};
-        FloatLiteralSuffix Suffix{};
+        NumberLiteralPrefixKind Prefix{};
+        FloatLiteralSuffixKind Suffix{};
 
         // FIXME: This should be a big float type.
         std::string_view Value{};
     };
 
-    enum class StringPrefix
+    enum class StringPrefixKind
     {
         Default, // ""
         Utf8, // u8""
@@ -98,7 +98,7 @@ namespace Weave::Syntax
         Utf32, // U""
     };
 
-    enum class CharacterPrefix
+    enum class CharacterPrefixKind
     {
         Default, // ''
         Utf8, // u8''
@@ -108,13 +108,13 @@ namespace Weave::Syntax
 
     struct StringLiteralValue final
     {
-        StringPrefix Prefix{};
+        StringPrefixKind Prefix{};
         std::string_view Value{};
     };
 
     struct CharacterLiteralValue final
     {
-        CharacterPrefix Prefix{};
+        CharacterPrefixKind Prefix{};
         char32_t Value;
     };
 

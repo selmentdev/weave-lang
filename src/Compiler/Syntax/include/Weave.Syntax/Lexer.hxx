@@ -97,11 +97,11 @@ namespace Weave::Syntax
             TokenKind Kind{};
             SourceSpan Span{};
 
-            std::optional<NumberLiteralPrefix> NumberPrefix{};
-            std::optional<StringPrefix> StringPrefix{};
-            std::optional<CharacterPrefix> CharacterPrefix{};
-            std::optional<IntegerLiteralSuffix> IntegerSuffix{};
-            std::optional<FloatLiteralSuffix> FloatSuffix{};
+            std::optional<NumberLiteralPrefixKind> NumberPrefix{};
+            std::optional<StringPrefixKind> StringPrefix{};
+            std::optional<CharacterPrefixKind> CharacterPrefix{};
+            std::optional<IntegerLiteralSuffixKind> IntegerSuffix{};
+            std::optional<FloatLiteralSuffixKind> FloatSuffix{};
         };
 
         struct SingleInteger final

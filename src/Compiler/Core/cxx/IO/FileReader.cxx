@@ -1,5 +1,7 @@
 #include "Weave.Core/IO/FileReader.hxx"
 
+#include <cstring>
+
 namespace Weave::IO
 {
     FileReader::FileReader(FileHandle& handle, size_t capacity)

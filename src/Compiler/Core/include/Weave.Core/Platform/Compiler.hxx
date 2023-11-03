@@ -39,6 +39,15 @@
 #define WEAVE_EXTERNAL_HEADERS_END \
     __pragma(warning(pop));
 
+#elif defined(__GNUC__)
+
+#define WEAVE_EXTERNAL_HEADERS_BEGIN \
+    _Pragma("GCC diagnostic push"); \
+    _Pragma("GCC diagnostic ignored \"-Wall\"")
+
+#define WEAVE_EXTERNAL_HEADERS_END \
+    _Pragma("GCC diagnostic pop")
+
 #else
 
 #define WEAVE_EXTERNAL_HEADERS_BEGIN \
