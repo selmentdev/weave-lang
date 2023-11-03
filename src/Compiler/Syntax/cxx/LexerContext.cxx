@@ -17,11 +17,33 @@ namespace Weave::Syntax
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia)
     {
-        return this->Tokens.Create(
+        return this->Create(
             kind,
             source,
             this->Trivias.CreateArray(leadingTrivia),
-            this->Trivias.CreateArray(trailingTrivia));
+            this->Trivias.CreateArray(trailingTrivia),
+            nullptr);
+    }
+
+    Token* LexerContext::Create(TokenKind kind, SourceSpan const& source, std::span<Trivia const> leadingTrivia, std::span<Trivia const> trailingTrivia, void* value)
+    {
+        WEAVE_ASSERT(leadingTrivia.size() < std::numeric_limits<uint16_t>::max());
+        WEAVE_ASSERT(trailingTrivia.size() < std::numeric_limits<uint16_t>::max());
+
+        Trivia const* trivia = nullptr;
+
+        if (size_t const count = leadingTrivia.size() + trailingTrivia.size(); count != 0)
+        {
+            trivia = this->Trivias.CreateCopyCombined(leadingTrivia, trailingTrivia).data();
+        }
+
+        return this->Tokens.Create(
+            kind,
+            source,
+            trivia,
+            static_cast<uint16_t>(leadingTrivia.size()),
+            static_cast<uint16_t>(trailingTrivia.size()),
+            value);
     }
 
     Token* LexerContext::CreateMissing(
@@ -44,8 +66,9 @@ namespace Weave::Syntax
             TokenKind::CharacterLiteral,
             source,
             leadingTrivia,
-            trailingTrivia);
-        result->Value = this->CharacterLiterals.Create(prefix, value);
+            trailingTrivia,
+            this->CharacterLiterals.Create(prefix, value)
+            );
         return result;
     }
 
@@ -60,8 +83,8 @@ namespace Weave::Syntax
             TokenKind::StringLiteral,
             source,
             leadingTrivia,
-            trailingTrivia);
-        result->Value = this->StringLiterals.Create(prefix, this->Strings.Get(value));
+            trailingTrivia,
+            this->StringLiterals.Create(prefix, this->Strings.Get(value)));
         return result;
     }
 
@@ -77,8 +100,8 @@ namespace Weave::Syntax
             TokenKind::FloatLiteral,
             source,
             leadingTrivia,
-            trailingTrivia);
-        result->Value = this->FloatLiterals.Create(prefix, suffix, this->Strings.Get(value));
+            trailingTrivia,
+            this->FloatLiterals.Create(prefix, suffix, this->Strings.Get(value)));
         return result;
     }
 
@@ -94,8 +117,8 @@ namespace Weave::Syntax
             TokenKind::IntegerLiteral,
             source,
             leadingTrivia,
-            trailingTrivia);
-        result->Value = this->IntegerLiterals.Create(prefix, suffix, this->Strings.Get(value));
+            trailingTrivia,
+            this->IntegerLiterals.Create(prefix, suffix, this->Strings.Get(value)));
         return result;
     }
 
@@ -109,8 +132,8 @@ namespace Weave::Syntax
             TokenKind::Identifier,
             source,
             leadingTrivia,
-            trailingTrivia);
-        result->Value = this->Identifiers.Create(this->Strings.Get(value));
+            trailingTrivia,
+            this->Identifiers.Create(this->Strings.Get(value)));
         return result;
     }
 

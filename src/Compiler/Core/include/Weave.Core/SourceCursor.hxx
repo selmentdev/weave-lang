@@ -47,30 +47,30 @@ namespace Weave
         [[nodiscard]] SourcePosition GetCurrentPosition() const
         {
             return SourcePosition{
-                static_cast<size_t>(this->m_Current - this->m_First),
+                static_cast<uint32_t>(this->m_Current - this->m_First),
             };
         }
 
         [[nodiscard]] SourcePosition GetNextPosition() const
         {
             return SourcePosition{
-                static_cast<size_t>(this->m_Next - this->m_First),
+                static_cast<uint32_t>(this->m_Next - this->m_First),
             };
         }
 
         [[nodiscard]] SourceSpan GetSpan() const
         {
             return SourceSpan{
-                .Start = SourcePosition{static_cast<size_t>(this->m_Start - this->m_First)},
-                .End = SourcePosition{static_cast<size_t>(this->m_Current - this->m_First)},
+                .Start = SourcePosition{static_cast<uint32_t>(this->m_Start - this->m_First)},
+                .End = SourcePosition{static_cast<uint32_t>(this->m_Current - this->m_First)},
             };
         }
 
         [[nodiscard]] SourceSpan GetSpanForCurrent() const
         {
             return SourceSpan{
-                .Start = SourcePosition{static_cast<size_t>(this->m_Current - this->m_First)},
-                .End = SourcePosition{static_cast<size_t>(this->m_Next - this->m_First)},
+                .Start = SourcePosition{static_cast<uint32_t>(this->m_Current - this->m_First)},
+                .End = SourcePosition{static_cast<uint32_t>(this->m_Next - this->m_First)},
             };
         }
 

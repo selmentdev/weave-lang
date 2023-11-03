@@ -29,7 +29,7 @@ namespace Weave::IO
             if (auto r = this->m_Handle.Write(std::span{this->m_Buffer.get(), this->m_BufferPosition}, this->m_Position))
             {
                 // Update file position.
-                this->m_Position += *r;
+                this->m_Position += static_cast<int64_t>(*r);
 
                 // Discard internal buffer.
                 this->m_BufferPosition = 0;
@@ -75,7 +75,7 @@ namespace Weave::IO
                 if (auto processed = this->m_Handle.Write(std::span{static_cast<std::byte const*>(buffer), size}, this->m_Position))
                 {
                     // Update file position.
-                    this->m_Position += *processed;
+                    this->m_Position += static_cast<int64_t>(*processed);
 
                     return *processed;
                 }

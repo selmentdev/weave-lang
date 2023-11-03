@@ -25,8 +25,8 @@ namespace Weave::IO
 
         if (WidenString(wExisting, existing) and WidenString(wDestination, destination))
         {
-            bool exists = false;
-            bool fail = true;
+            bool exists;
+            bool fail;
 
             if (DWORD const dwAttributes = GetFileAttributesW(wDestination.GetBuffer()); dwAttributes == INVALID_FILE_ATTRIBUTES)
             {

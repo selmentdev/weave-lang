@@ -33,10 +33,10 @@ TEST_CASE("Source Text")
             CHECK(optLineContent->End.Offset == 0);
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -49,10 +49,10 @@ TEST_CASE("Source Text")
             REQUIRE_FALSE(optLineContent.has_value());
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
     }
 
@@ -80,7 +80,7 @@ TEST_CASE("Source Text")
             REQUIRE(lineText == "\n");
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -97,10 +97,10 @@ TEST_CASE("Source Text")
             CHECK(optLineContent->End.Offset == 1);
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -113,10 +113,10 @@ TEST_CASE("Source Text")
             REQUIRE_FALSE(optLineContent.has_value());
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
     }
 
@@ -156,10 +156,10 @@ TEST_CASE("Source Text")
             REQUIRE_FALSE(optLineContent.has_value());
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
     }
 
@@ -187,7 +187,7 @@ TEST_CASE("Source Text")
             REQUIRE(lineText == "\r\n");
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -204,10 +204,10 @@ TEST_CASE("Source Text")
             CHECK(optLineContent->End.Offset == 2);
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -220,10 +220,10 @@ TEST_CASE("Source Text")
             REQUIRE_FALSE(optLineContent.has_value());
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
     }
 
@@ -253,7 +253,7 @@ TEST_CASE("Source Text")
             REQUIRE(lineText == "\n");
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -273,7 +273,7 @@ TEST_CASE("Source Text")
             REQUIRE(lineText == "\n");
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -293,7 +293,7 @@ TEST_CASE("Source Text")
             REQUIRE(lineText == "\n");
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -310,10 +310,10 @@ TEST_CASE("Source Text")
             CHECK(optLineContent->End.Offset == 3);
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -326,10 +326,10 @@ TEST_CASE("Source Text")
             REQUIRE_FALSE(optLineContent.has_value());
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
     }
 
@@ -369,10 +369,10 @@ TEST_CASE("Source Text")
             REQUIRE_FALSE(optLineContent.has_value());
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
     }
 
@@ -402,7 +402,7 @@ TEST_CASE("Source Text")
             REQUIRE(lineText == "\r\n");
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -422,7 +422,7 @@ TEST_CASE("Source Text")
             REQUIRE(lineText == "\r\n");
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -442,7 +442,7 @@ TEST_CASE("Source Text")
             REQUIRE(lineText == "\r\n");
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -459,10 +459,10 @@ TEST_CASE("Source Text")
             CHECK(optLineContent->End.Offset == 6);
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -475,10 +475,10 @@ TEST_CASE("Source Text")
             REQUIRE_FALSE(optLineContent.has_value());
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
     }
 
@@ -586,10 +586,10 @@ TEST_CASE("Source Text")
             CHECK(optLineContent->End.Offset == 19);
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
 
         {
@@ -602,10 +602,10 @@ TEST_CASE("Source Text")
             REQUIRE_FALSE(optLineContent.has_value());
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
     }
 
@@ -708,10 +708,10 @@ TEST_CASE("Source Text")
             REQUIRE_FALSE(optLineContent.has_value());
 
             auto const lineText = text.GetLineText(index);
-            REQUIRE(lineText == "");
+            REQUIRE(lineText.empty());
 
             auto const lineContentText = text.GetLineContentText(index);
-            REQUIRE(lineContentText == "");
+            REQUIRE(lineContentText.empty());
         }
     }
 
@@ -741,7 +741,7 @@ TEST_CASE("Source Text")
 
         SourceText const text{"S\n\tt\r\nr\tu\r\ng"};
 
-        for (size_t i = 0; i < std::size(Mapping); ++i)
+        for (uint32_t i = 0; i < std::size(Mapping); ++i)
         {
             LinePosition const& ie = Mapping[i];
 
@@ -752,7 +752,7 @@ TEST_CASE("Source Text")
             CHECK(ie.Line == p.Line);
             CHECK(ie.Column == p.Column);
 
-            for (size_t j = i; j < std::size(Mapping); ++j)
+            for (uint32_t j = i; j < std::size(Mapping); ++j)
             {
                 LinePosition const& je = Mapping[j];
 
@@ -765,9 +765,9 @@ TEST_CASE("Source Text")
             }
         }
 
-        for (size_t i = 0; i < text.GetContent().size(); ++i)
+        for (uint32_t i = 0; i < text.GetContent().size(); ++i)
         {
-            for (size_t j = i; j < text.GetContent().size(); ++j)
+            for (uint32_t j = i; j < text.GetContent().size(); ++j)
             {
                 SourceSpan const span{{i}, {j}};
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <array>
-#include <bit>
+
 #include "Weave.Core/Bits.hxx"
 
 namespace Weave::Cryptography

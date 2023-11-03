@@ -36,7 +36,7 @@ namespace Weave
                         ++it;
 
                         // Matched '\r\n'
-                        this->m_Lines.push_back(static_cast<size_t>(it - first));
+                        this->m_Lines.push_back(static_cast<uint32_t>(it - first));
                     }
                 }
                 else if (*it == '\n')
@@ -44,7 +44,7 @@ namespace Weave
                     ++it;
 
                     // Matched '\n'
-                    this->m_Lines.push_back(static_cast<size_t>(it - first));
+                    this->m_Lines.push_back(static_cast<uint32_t>(it - first));
                 }
                 else
                 {
@@ -56,22 +56,22 @@ namespace Weave
         }
     }
 
-    std::optional<SourceSpan> SourceText::GetLine(size_t index) const
+    std::optional<SourceSpan> SourceText::GetLine(uint32_t index) const
     {
         if (index < this->m_Lines.size())
         {
-            size_t const start = this->m_Lines[index];
+            uint32_t const start = this->m_Lines[index];
 
             if (index == (this->m_Lines.size() - 1u))
             {
                 return SourceSpan{
                     {start},
-                    {this->m_Content.length()},
+                    {static_cast<uint32_t>(this->m_Content.length())},
                 };
             }
 
             // Match line ending.
-            size_t const end = this->m_Lines[index + 1u];
+            uint32_t const end = this->m_Lines[index + 1u];
 
             return SourceSpan{
                 {start},
@@ -82,24 +82,24 @@ namespace Weave
         return std::nullopt;
     }
 
-    std::optional<SourceSpan> SourceText::GetLineContent(size_t index) const
+    std::optional<SourceSpan> SourceText::GetLineContent(uint32_t index) const
     {
         // Get part of line span without line ending. Handle '\r\n' as single one, matching lexer definition.
 
         if (index < this->m_Lines.size())
         {
-            size_t const start = this->m_Lines[index];
+            uint32_t const start = this->m_Lines[index];
 
             if (index == (this->m_Lines.size() - 1u))
             {
                 return SourceSpan{
                     {start},
-                    {this->m_Content.length()},
+                    {static_cast<uint32_t>(this->m_Content.length())},
                 };
             }
 
             // Match line ending.
-            size_t end = this->m_Lines[index + 1u];
+            uint32_t end = this->m_Lines[index + 1u];
 
             if ((end > 0) and (this->m_Content[end - 1] == '\n'))
             {
@@ -122,7 +122,7 @@ namespace Weave
         return std::nullopt;
     }
 
-    std::string_view SourceText::GetLineText(size_t index) const
+    std::string_view SourceText::GetLineText(uint32_t index) const
     {
         if (std::optional<SourceSpan> const& span = this->GetLine(index); span.has_value())
         {
@@ -132,7 +132,7 @@ namespace Weave
         return std::string_view{};
     }
 
-    std::string_view SourceText::GetLineContentText(size_t index) const
+    std::string_view SourceText::GetLineContentText(uint32_t index) const
     {
         if (std::optional<SourceSpan> const& span = this->GetLineContent(index); span.has_value())
         {
@@ -144,8 +144,8 @@ namespace Weave
 
     LinePosition SourceText::GetLinePosition(SourcePosition const& position) const
     {
-        size_t const index = this->GetLineIndex(position.Offset);
-        size_t const start = this->m_Lines[index];
+        uint32_t const index = this->GetLineIndex(position.Offset);
+        uint32_t const start = this->m_Lines[index];
 
         return LinePosition{
             .Line = index,
@@ -177,10 +177,10 @@ namespace Weave
         return std::string_view{};
     }
 
-    size_t SourceText::GetLineIndex(size_t position) const
+    uint32_t SourceText::GetLineIndex(uint32_t position) const
     {
         // TODO: don't look up positions past end of source
         auto const it = std::upper_bound(this->m_Lines.begin(), this->m_Lines.end(), position);
-        return static_cast<size_t>(std::distance(this->m_Lines.begin(), it)) - 1u;
+        return static_cast<uint32_t>(std::distance(this->m_Lines.begin(), it)) - 1u;
     }
 }

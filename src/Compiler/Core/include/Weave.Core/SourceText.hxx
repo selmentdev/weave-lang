@@ -12,12 +12,12 @@ namespace Weave
     {
     private:
         std::string m_Content{};
-        std::vector<size_t> m_Lines{};
+        std::vector<uint32_t> m_Lines{};
 
     public:
         explicit SourceText(std::string&& content);
 
-        [[nodiscard]] std::span<size_t const> GetLines() const
+        [[nodiscard]] std::span<uint32_t const> GetLines() const
         {
             return this->m_Lines;
         }
@@ -28,13 +28,13 @@ namespace Weave
         }
 
 
-        [[nodiscard]] std::optional<SourceSpan> GetLine(size_t index) const;
+        [[nodiscard]] std::optional<SourceSpan> GetLine(uint32_t index) const;
 
-        [[nodiscard]] std::optional<SourceSpan> GetLineContent(size_t index) const;
+        [[nodiscard]] std::optional<SourceSpan> GetLineContent(uint32_t index) const;
 
-        [[nodiscard]] std::string_view GetLineText(size_t index) const;
+        [[nodiscard]] std::string_view GetLineText(uint32_t index) const;
 
-        [[nodiscard]] std::string_view GetLineContentText(size_t index) const;
+        [[nodiscard]] std::string_view GetLineContentText(uint32_t index) const;
 
         [[nodiscard]] LinePosition GetLinePosition(SourcePosition const& position) const;
 
@@ -42,6 +42,6 @@ namespace Weave
 
         [[nodiscard]] std::string_view GetText(SourceSpan const& span) const;
 
-        [[nodiscard]] size_t GetLineIndex(size_t position) const;
+        [[nodiscard]] uint32_t GetLineIndex(uint32_t position) const;
     };
 }

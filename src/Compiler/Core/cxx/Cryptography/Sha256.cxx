@@ -131,7 +131,7 @@ namespace Weave::Cryptography
     {
         while (length > 0)
         {
-            size_t n = std::min(length, 64 - context.Size);
+            size_t const n = std::min(length, 64 - context.Size);
 
             std::memcpy(&context.Buffer[context.Size], buffer, n);
 

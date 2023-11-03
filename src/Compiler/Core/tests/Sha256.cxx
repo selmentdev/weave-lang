@@ -18,7 +18,7 @@ TEST_CASE("Cryptography Sha256")
     SECTION("Emtpy")
     {
         Sha256Initialize(context);
-        auto hash = Sha256Final(context);
+        auto const hash = Sha256Final(context);
 
         constexpr uint8_t expected[]{
             0xe3, 0xb0, 0xc4, 0x42, 0x98, 0xfc, 0x1c, 0x14, 0x9a, 0xfb, 0xf4, 0xc8, 0x99, 0x6f, 0xb9, 0x24,
@@ -34,7 +34,7 @@ TEST_CASE("Cryptography Sha256")
     {
         Sha256Initialize(context);
         Sha256Update(context, reinterpret_cast<std::byte const*>("foobar"), 6);
-        auto hash = Sha256Final(context);
+        auto const hash = Sha256Final(context);
 
         constexpr uint8_t expected[]{
             0xc3, 0xab, 0x8f, 0xf1, 0x37, 0x20, 0xe8, 0xad, 0x90, 0x47, 0xdd, 0x39, 0x46, 0x6b, 0x3c, 0x89,
@@ -54,7 +54,7 @@ TEST_CASE("Cryptography Sha256")
 
         Sha256Initialize(context);
         Sha256Update(context, reinterpret_cast<std::byte const*>(source), std::size(source));
-        auto hash = Sha256Final(context);
+        auto const hash = Sha256Final(context);
 
         constexpr uint8_t expected[]{
             0x3f, 0x2c, 0x7c, 0xca, 0xe9, 0x8a, 0xf8, 0x1e, 0x44, 0xc0, 0xec, 0x41, 0x96, 0x59, 0xf5, 0x0d,

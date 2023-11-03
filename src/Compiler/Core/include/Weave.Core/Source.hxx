@@ -9,8 +9,8 @@ namespace Weave
 {
     struct LinePosition final
     {
-        size_t Line;
-        size_t Column;
+        uint32_t Line;
+        uint32_t Column;
 
         [[nodiscard]] constexpr auto operator<=>(LinePosition const&) const = default;
     };
@@ -25,7 +25,7 @@ namespace Weave
 
     struct SourcePosition final
     {
-        size_t Offset;
+        uint32_t Offset;
 
         [[nodiscard]] constexpr auto operator<=>(SourcePosition const&) const = default;
     };

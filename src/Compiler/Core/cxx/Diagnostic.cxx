@@ -21,31 +21,31 @@ namespace Weave
         LineSpan const lineRange = source.GetLineSpan(entry.Source);
         lines.emplace_back(fmt::format("        --> {}:{}:{}", sink.Path, lineRange.Start.Line + 1, lineRange.Start.Column + 1));
 
-        size_t const linesCount = lineRange.End.Line - lineRange.Start.Line;
+        uint32_t const linesCount = lineRange.End.Line - lineRange.Start.Line;
 
         lines.emplace_back("         |");
 
         if (linesCount == 0)
         {
-            size_t const column = lineRange.Start.Column;
-            size_t const line = lineRange.Start.Line;
+            uint32_t const column = lineRange.Start.Column;
+            uint32_t const line = lineRange.Start.Line;
             std::string_view const lineView = source.GetLineContentText(line);
 
             lines.emplace_back(fmt::format("{:>8} | {}", line + 1, lineView));
-            lines.emplace_back(fmt::format("         | {0: <{1}}{0:^<{2}}", "", column, std::max<size_t>(1, entry.Source.End.Offset - entry.Source.Start.Offset)));
+            lines.emplace_back(fmt::format("         | {0: <{1}}{0:^<{2}}", "", column, std::max<uint32_t>(1, entry.Source.End.Offset - entry.Source.Start.Offset)));
         }
         else
         {
             bool tooLong = linesCount > 6;
-            size_t const prologLine = lineRange.Start.Line + 3;
-            size_t const epilogLine = lineRange.End.Line - 2;
+            uint32_t const prologLine = lineRange.Start.Line + 3;
+            uint32_t const epilogLine = lineRange.End.Line - 2;
 
             if (lineRange.Start.Column > 0)
             {
                 lines.emplace_back(fmt::format("         | /{0:-<{1}}\\", "", lineRange.End.Column));
             }
 
-            for (size_t line = lineRange.Start.Line; line <= lineRange.End.Line; ++line)
+            for (uint32_t line = lineRange.Start.Line; line <= lineRange.End.Line; ++line)
             {
                 if (tooLong)
                 {

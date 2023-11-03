@@ -33,6 +33,13 @@ namespace Weave::Syntax
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia);
 
+        Token* Create(
+            TokenKind kind,
+            SourceSpan const& source,
+            std::span<Trivia const> leadingTrivia,
+            std::span<Trivia const> trailingTrivia,
+            void* value);
+
         Token* CreateMissing(
             TokenKind kind,
             SourceSpan const& source);

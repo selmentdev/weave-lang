@@ -29,7 +29,7 @@ namespace Weave::IO
                 this->m_BufferPosition = 0;
 
                 // Update file position.
-                this->m_Position += *r;
+                this->m_Position += static_cast<int64_t>(*r);
                 return *r;
             }
             else
@@ -56,7 +56,7 @@ namespace Weave::IO
                         }
 
                         // Update file position.
-                        this->m_Position += *r;
+                        this->m_Position += static_cast<int64_t>(*r);
 
                         // Update buffer state.
                         this->m_BufferSize = *r;
