@@ -1,7 +1,10 @@
 #include "Weave.Syntax/TokenKind.hxx"
 #include "Weave.Core/Assert.hxx"
+#include "Weave.Core/Hash.hxx"
 
 #include <utility>
+#include <array>
+#include <algorithm>
 
 namespace Weave::Syntax
 {
@@ -147,21 +150,56 @@ namespace Weave::Syntax
     {
         struct Entry
         {
+            uint64_t Hash;
             std::string_view Spelling;
             TokenKind Token;
         };
 
-        static constexpr Entry lookup[]{
-#define WEAVE_TOKEN_KEYWORD(name, spelling) {spelling, TokenKind::name},
-#include "Weave.Syntax/TokenKind.inl"
-        };
-
-        for (Entry const& entry : lookup)
+        static constexpr auto lookup = []() constexpr
         {
-            if (entry.Spelling == value)
+            std::array<Entry, 291> items{{
+#define WEAVE_TOKEN_KEYWORD(name, spelling) Entry{Fnv1a64::FromString(spelling), spelling, TokenKind::name},
+#include "Weave.Syntax/TokenKind.inl"
+            }};
+
+            std::sort(std::begin(items), std::end(items), [](Entry const& lhs, Entry const& rhs)
+                {
+                    if (lhs.Hash == rhs.Hash)
+                    {
+                        if (lhs.Spelling.size() == rhs.Spelling.size())
+                        {
+                            return lhs.Spelling < rhs.Spelling;
+                        }
+
+                        return lhs.Spelling.size() < rhs.Spelling.size();
+                    }
+
+                    return lhs.Hash < rhs.Hash;
+                });
+
+            return items;
+        }();
+
+        uint64_t const hash = Fnv1a64::FromString(value);
+
+        auto const end = lookup.end();
+
+        auto it = std::lower_bound(
+            lookup.begin(),
+            lookup.end(),
+            hash,
+            [&](Entry const& e, uint64_t h)
             {
-                return entry.Token;
+                return e.Hash < h;
+            });
+
+        while((it != end) and (it->Hash == hash))
+        {
+            if (it->Spelling == value)
+            {
+                return it->Token;
             }
+            ++it;
         }
 
         return {};

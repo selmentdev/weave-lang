@@ -13,6 +13,7 @@ namespace Weave::Syntax
 
     class TriviaKindTraits final
     {
+    public:
         [[nodiscard]] static std::string_view GetName(TriviaKind value);
 
         [[nodiscard]] static std::string_view GetSpellign(TriviaKind value);

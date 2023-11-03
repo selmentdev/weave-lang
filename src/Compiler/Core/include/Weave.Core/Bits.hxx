@@ -22,32 +22,44 @@ namespace Weave
         return (size & (alignment - 1)) == 0;
     }
 
-    inline std::byte* AlignUp(std::byte* ptr, size_t alignment)
+    constexpr std::byte* AlignUp(std::byte* ptr, size_t alignment)
     {
-        uintptr_t const address = reinterpret_cast<uintptr_t>(ptr);
+        uintptr_t const address = std::bit_cast<uintptr_t>(ptr);
         uintptr_t const aligned = AlignUp(address, alignment);
         return ptr + (aligned - address);
     }
 
-    inline std::byte* AlignDown(std::byte* ptr, size_t alignment)
+    constexpr std::byte* AlignDown(std::byte* ptr, size_t alignment)
     {
-        uintptr_t const address = reinterpret_cast<uintptr_t>(ptr);
+        uintptr_t const address = std::bit_cast<uintptr_t>(ptr);
         uintptr_t const aligned = AlignDown(address, alignment);
         return ptr + (aligned - address);
     }
 
-    inline void* AlignUp(void* ptr, size_t alignment)
+    constexpr bool IsAligned(std::byte* ptr, size_t alignment)
     {
-        uintptr_t const address = reinterpret_cast<uintptr_t>(ptr);
+        uintptr_t const address = std::bit_cast<uintptr_t>(ptr);
+        return (address & (alignment - 1)) == 0;
+    }
+
+    constexpr void* AlignUp(void* ptr, size_t alignment)
+    {
+        uintptr_t const address = std::bit_cast<uintptr_t>(ptr);
         uintptr_t const aligned = AlignUp(address, alignment);
         return static_cast<char*>(ptr) + (aligned - address);
     }
 
-    inline void* AlignDown(void* ptr, size_t alignment)
+    constexpr void* AlignDown(void* ptr, size_t alignment)
     {
-        uintptr_t const address = reinterpret_cast<uintptr_t>(ptr);
+        uintptr_t const address = std::bit_cast<uintptr_t>(ptr);
         uintptr_t const aligned = AlignDown(address, alignment);
         return static_cast<char*>(ptr) + (aligned - address);
+    }
+
+    constexpr bool IsAligned(void* ptr, size_t alignment)
+    {
+        uintptr_t const address = std::bit_cast<uintptr_t>(ptr);
+        return (address & (alignment - 1)) == 0;
     }
 
     template <typename T>
@@ -66,7 +78,7 @@ namespace Weave
 
     template <typename T>
     constexpr T ToLittleEndian(T value)
-        requires (std::is_integral_v<T>)
+        requires(std::is_integral_v<T>)
     {
         if constexpr (std::endian::native == std::endian::big)
         {

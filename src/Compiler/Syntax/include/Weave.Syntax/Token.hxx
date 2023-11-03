@@ -1,8 +1,9 @@
 #pragma once
 #include "Weave.Core/Assert.hxx"
 #include "Weave.Core/Source.hxx"
+#include "Weave.Core/Memory/Allocator.hxx"
 #include "Weave.Syntax/TokenKind.hxx"
-#include "Weave.Core/Memory/VirtualHeap.hxx"
+#include "Weave.Syntax/TriviaKind.hxx"
 
 // Design:
 //
@@ -11,24 +12,31 @@
 
 namespace Weave::Syntax
 {
-    struct LexerContext
+    enum class TriviaMode
     {
-        Memory::VirtualHeap Heap{};
-
-        Memory::VirtualHeap& GetHeap() noexcept
-        {
-            return this->Heap;
-        }
+        None,
+        Documentation,
+        All
     };
-}
 
-namespace Weave::Syntax
-{
-    struct Token
+    struct Trivia final
     {
-        TokenKind Kind{};
+        TriviaKind Kind{};
         SourceSpan Source{};
     };
+
+    struct Token final
+    {
+        TokenKind Kind{};
+
+        SourceSpan Source{};
+
+        std::span<Trivia const> LeadingTrivia{};
+        std::span<Trivia const> TrailingTrivia{};
+
+        void* Value{};
+    };
+
 
     enum class NumberLiteralPrefix
     {
@@ -77,22 +85,22 @@ namespace Weave::Syntax
         Decimal128,
     };
 
-    struct IntegerLiteralToken final : Token
+    struct IntegerLiteralValue final
     {
         NumberLiteralPrefix Prefix{};
         IntegerLiteralSuffix Suffix{};
 
         // FIXME: This should be a big integer type.
-        std::string Value{};
+        std::string_view Value{};
     };
 
-    struct FloatLiteralToken final : Token
+    struct FloatLiteralValue final
     {
         NumberLiteralPrefix Prefix{};
-        FloatLiteralSuffix Type{};
+        FloatLiteralSuffix Suffix{};
 
         // FIXME: This should be a big float type.
-        std::string Value{};
+        std::string_view Value{};
     };
 
     enum class StringPrefix
@@ -111,39 +119,20 @@ namespace Weave::Syntax
         Utf32, // U''
     };
 
-    struct StringLiteralToken final : Token
+    struct StringLiteralValue final
     {
         StringPrefix Prefix{};
-        std::string Value{};
+        std::string_view Value{};
     };
 
-    struct CharacterLiteralToken final : Token
+    struct CharacterLiteralValue final
     {
-        StringPrefix Prefix{};
+        CharacterPrefix Prefix{};
         char32_t Value;
-
-        static CharacterLiteralToken* Create(LexerContext& context, SourceSpan source, StringPrefix prefix, char32_t value);
     };
-    static_assert(std::is_trivially_destructible_v<CharacterLiteralToken>);
 
-    inline CharacterLiteralToken* CharacterLiteralToken::Create(LexerContext& context, SourceSpan source, StringPrefix prefix, char32_t value)
+    struct Identifier final
     {
-        CharacterLiteralToken* result = static_cast<CharacterLiteralToken*>(context.GetHeap().Allocate(sizeof(CharacterLiteralToken), alignof(CharacterLiteralToken)));
-
-        return new (result) CharacterLiteralToken{
-            {
-                .Kind = TokenKind::CharacterLiteral,
-                .Source = source,
-            },
-            prefix,
-            value,
-        };
-    }
-
-
-}
-
-namespace Weave::Syntax
-{
-
+        std::string_view Value;
+    };
 }

@@ -2,7 +2,7 @@ add_library(Weave.Syntax STATIC
  "cxx/Token.cxx"
  "cxx/TokenKind.cxx"
  "cxx/TriviaKind.cxx"
- "cxx/CharTraits.cxx" "cxx/Lexer.cxx")
+ "cxx/CharTraits.cxx" "cxx/Lexer.cxx" "cxx/LexerContext.cxx")
 
 target_include_directories(Weave.Syntax PUBLIC include)
 target_link_libraries(Weave.Syntax PUBLIC Weave.Core)

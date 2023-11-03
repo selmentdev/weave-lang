@@ -1,18 +1,2 @@
 {
-    "files.associations": {
-        "chrono": "cpp",
-        "future": "cpp",
-        "system_error": "cpp",
-        "xlocale": "cpp",
-        "*.inc": "cpp",
-        "algorithm": "cpp",
-        "expected": "cpp",
-        "functional": "cpp",
-        "optional": "cpp",
-        "regex": "cpp",
-        "type_traits": "cpp",
-        "xlocmon": "cpp",
-        "xtr1common": "cpp",
-        "xutility": "cpp"
-    }
 }
