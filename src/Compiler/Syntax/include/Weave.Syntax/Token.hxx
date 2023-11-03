@@ -25,19 +25,6 @@ namespace Weave::Syntax
         SourceSpan Source{};
     };
 
-    struct Token final
-    {
-        TokenKind Kind{};
-
-        SourceSpan Source{};
-
-        std::span<Trivia const> LeadingTrivia{};
-        std::span<Trivia const> TrailingTrivia{};
-
-        void* Value{};
-    };
-
-
     enum class NumberLiteralPrefix
     {
         Default,
@@ -134,5 +121,81 @@ namespace Weave::Syntax
     struct Identifier final
     {
         std::string_view Value;
+    };
+
+    struct Token final
+    {
+        TokenKind Kind{};
+
+        SourceSpan Source{};
+
+        std::span<Trivia const> LeadingTrivia{};
+        std::span<Trivia const> TrailingTrivia{};
+
+        void* Value{};
+
+        constexpr IntegerLiteralValue const* TryGetIntegerValue() const
+        {
+            if (this->Kind == TokenKind::IntegerLiteral)
+            {
+                return static_cast<IntegerLiteralValue const*>(this->Value);
+            }
+
+            return nullptr;
+        }
+
+        constexpr FloatLiteralValue const* TryGetFloatValue() const
+        {
+            if (this->Kind == TokenKind::FloatLiteral)
+            {
+                return static_cast<FloatLiteralValue const*>(this->Value);
+            }
+
+            return nullptr;
+        }
+
+        constexpr StringLiteralValue const* TryGetStringValue() const
+        {
+            if (this->Kind == TokenKind::StringLiteral)
+            {
+                return static_cast<StringLiteralValue const*>(this->Value);
+            }
+
+            return nullptr;
+        }
+
+        constexpr CharacterLiteralValue const* TryGetCharacterValue() const
+        {
+            if (this->Kind == TokenKind::CharacterLiteral)
+            {
+                return static_cast<CharacterLiteralValue const*>(this->Value);
+            }
+
+            return nullptr;
+        }
+
+        IntegerLiteralValue const& GetIntegerValue() const
+        {
+            WEAVE_ASSERT(this->Kind == TokenKind::IntegerLiteral);
+            return *static_cast<IntegerLiteralValue const*>(this->Value);
+        }
+
+        FloatLiteralValue const& GetFloatValue() const
+        {
+            WEAVE_ASSERT(this->Kind == TokenKind::FloatLiteral);
+            return *static_cast<FloatLiteralValue const*>(this->Value);
+        }
+
+        StringLiteralValue const& GetStringValue() const
+        {
+            WEAVE_ASSERT(this->Kind == TokenKind::StringLiteral);
+            return *static_cast<StringLiteralValue const*>(this->Value);
+        }
+
+        CharacterLiteralValue const& GetCharacterValue() const
+        {
+            WEAVE_ASSERT(this->Kind == TokenKind::CharacterLiteral);
+            return *static_cast<CharacterLiteralValue const*>(this->Value);
+        }
     };
 }

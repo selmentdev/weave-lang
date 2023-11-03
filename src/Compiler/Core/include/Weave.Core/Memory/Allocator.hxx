@@ -243,7 +243,6 @@ namespace Weave::Memory
 
             while (segment != nullptr)
             {
-                fmt::println("----");
                 std::byte* const memory = reinterpret_cast<std::byte*>(segment + 1);
                 T* first = reinterpret_cast<T*>(AlignUp(memory, alignof(T)));
                 T* const last = reinterpret_cast<T*>(segment->Last);
@@ -260,7 +259,6 @@ namespace Weave::Memory
 
                 segment = segment->FLink;
             }
-            fmt::println("===");
         }
 
     public:
@@ -316,8 +314,7 @@ namespace Weave::Memory
             return {};
         }
 
-        [[deprecated("Use something better than this")]]
-        [[nodiscard]] std::span<T> CreateCopyCombined(std::span<T const> source1, std::span<T const> source2)
+        [[nodiscard]] std::span<T> CreateCopyCombined(std::span<T const> source1, std::span<T const> source2) [[deprecated("Use something better than this")]]
         {
             size_t const count = source1.size() + source2.size();
 

@@ -25,9 +25,11 @@ int main()
         using namespace Weave::IO;
         using namespace Weave;
 
-        //if (auto file = ReadTextFile(R"(D:\repos\runtime\src\tests\JIT\jit64\opt\cse\hugeexpr1.cs)"))
-        //if (auto file = ReadTextFile(R"(D:\repos\rust\library\stdarch\crates\core_arch\src\aarch64\neon\generated.rs)"))
-        if (auto file = ReadTextFile(R"(D:\repos\weave-lang\src\Compiler\Syntax\tests\data\Numbers.source)"))
+        // if (auto file = ReadTextFile(R"(D:\repos\runtime\src\tests\JIT\jit64\opt\cse\hugeexpr1.cs)"))
+        if (auto file = ReadTextFile(R"(D:\repos\rust\library\stdarch\crates\core_arch\src\aarch64\neon\generated.rs)"))
+        // if (auto file = ReadTextFile(R"(D:\repos\weave-lang\src\Compiler\Syntax\tests\data\Numbers.source)"))
+        //  if (auto file = ReadTextFile(R"(D:\test\windows.ui.xaml.controls.h)"))
+        //  if (auto file = ReadTextFile(R"(D:\test\d3d12.h)"))
         {
             std::vector<Token*> tokens{};
             DiagnosticSink diagnostic{"<source>"};
@@ -55,6 +57,7 @@ int main()
             }
 
             auto finished = std::chrono::high_resolution_clock::now();
+            context.Strings.Dump();
 
             std::chrono::duration<double, std::milli> const lexed = finished - started;
 
