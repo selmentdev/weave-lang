@@ -40,13 +40,7 @@ namespace Weave::Builtin
         {
         }
 
-        constexpr explicit UInt128(uint64_t lower)
-            : _lower{lower}
-            , _upper{}
-        {
-        }
-
-        constexpr explicit UInt128(uint64_t lower, uint64_t upper)
+        constexpr explicit UInt128(uint64_t upper, uint64_t lower)
             : _lower{lower}
             , _upper{upper}
         {
@@ -75,7 +69,7 @@ namespace Weave::Builtin
     public:
         static constexpr UInt128 Min()
         {
-            return UInt128{};
+            return UInt128{0, 0};
         }
 
         static constexpr UInt128 Max()
@@ -140,8 +134,8 @@ namespace Weave::Builtin
             uint64_t const lower = lhs._lower + rhs._lower;
 
             return UInt128{
-                lower,
                 lhs._upper + rhs._upper + ((lower < lhs._lower) ? 1 : 0), // carry
+                lower,
             };
         }
 
@@ -156,8 +150,8 @@ namespace Weave::Builtin
             uint64_t const lower = lhs._lower - rhs._lower;
 
             return UInt128{
-                lower,
                 lhs._upper - rhs._upper - ((lower > lhs._lower) ? 1 : 0), // borrow
+                lower,
             };
         }
 
@@ -171,7 +165,7 @@ namespace Weave::Builtin
             uint64_t lower;
             uint64_t upper = BigMul(x._lower, y._lower, lower);
             upper += (x._lower * y._upper) + (x._upper * y._lower);
-            return UInt128{lower, upper};
+            return UInt128{upper, lower};
         }
 
         static constexpr bool CheckedMultiply2(UInt128& result, UInt128 lhs, UInt128 rhs)
@@ -410,106 +404,110 @@ namespace Weave::Builtin
 
         [[nodiscard]] constexpr UInt128 operator+(unsigned int rhs) const
         {
-            return *this + UInt128{rhs};
+            return *this + UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator-(unsigned int rhs) const
         {
-            return *this - UInt128{rhs};
+            return *this - UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator*(unsigned int rhs) const
         {
-            return *this * UInt128{rhs};
+            return *this * UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator/(unsigned int rhs) const
         {
-            return *this / UInt128{rhs};
+            return *this / UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator%(unsigned int rhs) const
         {
-            return *this % UInt128{rhs};
+            return *this % UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator+(unsigned long rhs) const
         {
-            return *this + UInt128{rhs};
+            return *this + UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator-(unsigned long rhs) const
         {
-            return *this - UInt128{rhs};
+            return *this - UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator*(unsigned long rhs) const
         {
-            return *this * UInt128{rhs};
+            return *this * UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator/(unsigned long rhs) const
         {
-            return *this / UInt128{rhs};
+            return *this / UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator%(unsigned long rhs) const
         {
-            return *this % UInt128{rhs};
+            return *this % UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator+(unsigned long long rhs) const
         {
-            return *this + UInt128{rhs};
+            return *this + UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator-(unsigned long long rhs) const
         {
-            return *this - UInt128{rhs};
+            return *this - UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator*(unsigned long long rhs) const
         {
-            return *this * UInt128{rhs};
+            return *this * UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator/(unsigned long long rhs) const
         {
-            return *this / UInt128{rhs};
+            return *this / UInt128{0, rhs};
         }
 
         [[nodiscard]] constexpr UInt128 operator%(unsigned long long rhs) const
         {
-            return *this % UInt128{rhs};
+            return *this % UInt128{0, rhs};
         }
 
     public:
         [[nodiscard]] static constexpr UInt128 BitCompl(UInt128 rhs)
         {
             return UInt128{
+                ~rhs._upper,
                 ~rhs._lower,
-                ~rhs._upper};
+                };
         }
 
         [[nodiscard]] static constexpr UInt128 BitAnd(UInt128 lhs, UInt128 rhs)
         {
             return UInt128{
+                lhs._upper & rhs._upper,
                 lhs._lower & rhs._lower,
-                lhs._upper & rhs._upper};
+                };
         }
 
         [[nodiscard]] static constexpr UInt128 BitOr(UInt128 lhs, UInt128 rhs)
         {
             return UInt128{
+                lhs._upper | rhs._upper,
                 lhs._lower | rhs._lower,
-                lhs._upper | rhs._upper};
+                };
         }
 
         [[nodiscard]] static constexpr UInt128 BitXor(UInt128 lhs, UInt128 rhs)
         {
             return UInt128{
+                lhs._upper ^ rhs._upper,
                 lhs._lower ^ rhs._lower,
-                lhs._upper ^ rhs._upper};
+                };
         }
 
         [[nodiscard]] static constexpr UInt128 BitRotateLeft(UInt128 value, size_t bits)
@@ -538,12 +536,12 @@ namespace Weave::Builtin
             if (shift >= 64)
             {
                 uint64_t const upper = value._lower << (shift - 64);
-                return UInt128{0, upper};
+                return UInt128{upper, 0};
             }
 
             uint64_t const lower = value._lower << shift;
             uint64_t const upper = (value._upper << shift) | (value._lower >> (64 - shift));
-            return UInt128{lower, upper};
+            return UInt128{upper, lower};
         }
 
         [[nodiscard]] static constexpr UInt128 BitShiftRightZeroExtend(UInt128 value, size_t bits)
@@ -558,12 +556,12 @@ namespace Weave::Builtin
             if (shift >= 64)
             {
                 uint64_t const lower = value._upper >> (shift - 64);
-                return UInt128{lower, 0};
+                return UInt128{0, lower};
             }
 
             uint64_t const lower = (value._lower >> shift) | (value._upper << (64 - shift));
             uint64_t const upper = value._upper >> shift;
-            return UInt128{lower, upper};
+            return UInt128{upper, lower};
         }
 
         [[nodiscard]] static constexpr UInt128 BitShiftRightSignExtend(UInt128 value, size_t bits)
@@ -579,19 +577,19 @@ namespace Weave::Builtin
             {
                 uint64_t const lower = static_cast<uint64_t>(static_cast<int64_t>(value._upper) >> (shift - 64));
                 uint64_t const upper = static_cast<uint64_t>(static_cast<int64_t>(value._upper) >> 63);
-                return UInt128{lower, upper};
+                return UInt128{upper, lower};
             }
 
             uint64_t const lower = (value._lower >> shift) | (value._upper << (64 - shift));
             uint64_t const upper = static_cast<uint64_t>(static_cast<int64_t>(value._upper) >> shift);
-            return UInt128{lower, upper};
+            return UInt128{upper, lower};
         }
 
         [[nodiscard]] static constexpr UInt128 ByteSwap(UInt128 value)
         {
             uint64_t const lower = std::byteswap(value._upper);
             uint64_t const upper = std::byteswap(value._lower);
-            return UInt128{lower, upper};
+            return UInt128{upper, lower};
         }
 
     public:
@@ -633,15 +631,16 @@ namespace Weave::Builtin
 
         static constexpr UInt128 BigMul(UInt128 left, UInt128 right, UInt128& lower)
         {
-            UInt128 const ll{left._lower};
-            UInt128 const lu{left._upper};
-            UInt128 const rl{right._lower};
-            UInt128 const ru{right._upper};
+            UInt128 const ll{0, left._lower};
+            UInt128 const lu{0, left._upper};
+            UInt128 const rl{0, right._lower};
+            UInt128 const ru{0, right._upper};
 
             UInt128 const m = ll * rl;
             UInt128 const t = lu * rl + m._upper;
             UInt128 const tl = ll * ru + t._lower;
-            lower = UInt128{m._lower, tl._lower};
+            lower._lower = m._lower;
+            lower._upper = tl._lower;
             return lu * ru + t._upper + tl._upper;
         }
 
@@ -677,16 +676,16 @@ namespace Weave::Builtin
             UInt128 cutoff;
             UInt128 cutlim;
 
-            CheckedDivide(cutoff, cutlim, Max(), UInt128{radix});
+            UInt128 ubase{0, radix};
+            CheckedDivide(cutoff, cutlim, Max(), ubase);
 
-            UInt128 ubase{radix};
             UInt128 temp{};
 
             bool succeeded = true;
 
             for (char const c : value)
             {
-                UInt128 const digit{digit_from_char(c)};
+                UInt128 const digit{0, digit_from_char(c)};
 
                 if (digit._lower >= ubase._lower)
                 {
@@ -715,9 +714,9 @@ namespace Weave::Builtin
 
         static constexpr bool TryParseHex(UInt128& result, std::string_view value)
         {
-            UInt128 const maxDiv16{UInt128{0xFFFFFFFFFFFFFFFF, 0x0FFFFFFFFFFFFFFF}};
+            UInt128 const maxDiv16{UInt128{0x0FFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF}};
 
-            result = UInt128{};
+            result = UInt128{0, 0};
 
             for (char const c : value)
             {
@@ -790,7 +789,7 @@ namespace Weave::Builtin
             }
             else
             {
-                while (value != UInt128{})
+                while (not value.IsZero())
                 {
                     result.push_back(digits[value._lower & 0xF]);
                     value = BitShiftRightZeroExtend(value, 4);
@@ -806,7 +805,7 @@ namespace Weave::Builtin
         {
             constexpr char const* const digits = "0123456789";
 
-            constexpr UInt128 radix{10};
+            constexpr UInt128 radix{0, 10};
 
             std::string result{};
 
@@ -816,8 +815,9 @@ namespace Weave::Builtin
             }
             else
             {
-                UInt128 digit{};
-                while (value != UInt128{})
+                UInt128 digit{0, 0};
+
+                while (not value.IsZero())
                 {
                     CheckedDivide(value, digit, value, radix);
                     result.push_back(digits[digit._lower]);
@@ -876,10 +876,10 @@ namespace Weave::Builtin
                 uint64_t const upper = static_cast<uint64_t>(std::ldexp(value, -64));
                 uint64_t const lower = static_cast<uint64_t>(value - std::ldexp(static_cast<double>(upper), 64));
 
-                return UInt128{lower, upper};
+                return UInt128{upper, lower};
             }
 
-            return UInt128{static_cast<uint64_t>(value), 0};
+            return UInt128{0, static_cast<uint64_t>(value)};
         }
 
         static UInt128 FromFloat(float value)
@@ -891,10 +891,10 @@ namespace Weave::Builtin
                 uint64_t const upper = static_cast<uint64_t>(std::ldexp(value, -64));
                 uint64_t const lower = static_cast<uint64_t>(value - std::ldexp(static_cast<double>(upper), 64));
 
-                return UInt128{lower, upper};
+                return UInt128{upper, lower};
             }
 
-            return UInt128{static_cast<uint64_t>(value), 0};
+            return UInt128{0, static_cast<uint64_t>(value)};
         }
     };
 }
