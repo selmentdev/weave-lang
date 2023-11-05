@@ -168,10 +168,10 @@ namespace Weave::Builtin
 
         static constexpr UInt128 Multiply(UInt128 x, UInt128 y)
         {
-            UInt128 result;
-            result._upper = BigMul(x._lower, y._lower, result._lower);
-            result._upper += (x._lower * y._upper) + (x._upper * y._lower);
-            return result;
+            uint64_t lower;
+            uint64_t upper = BigMul(x._lower, y._lower, lower);
+            upper += (x._lower * y._upper) + (x._upper * y._lower);
+            return UInt128{lower, upper};
         }
 
         static constexpr bool CheckedMultiply2(UInt128& result, UInt128 lhs, UInt128 rhs)
@@ -672,7 +672,7 @@ namespace Weave::Builtin
             return static_cast<unsigned char>(g_character_to_digit_mapping[static_cast<unsigned char>(ch)]);
         }
 
-        static constexpr bool TryParse(UInt128& result, std::string_view value, unsigned radix)
+        static constexpr bool TryParse(UInt128& result, std::string_view value, unsigned radix = 10)
         {
             UInt128 cutoff;
             UInt128 cutlim;
@@ -693,7 +693,7 @@ namespace Weave::Builtin
                     break;
                 }
 
-                if (int const r = Compare(temp, cutoff); (r < 0) || ((r== 0) && (cutlim >= digit)))
+                if (int const r = Compare(temp, cutoff); (r < 0) || ((r == 0) && (cutlim >= digit)))
                 {
                     temp = (temp * ubase) + digit;
                 }
@@ -707,35 +707,10 @@ namespace Weave::Builtin
             return succeeded;
         }
 
-        static constexpr bool TryParse(UInt128& result, std::string_view value)
+        static constexpr std::optional<UInt128> Parse(std::string_view value, unsigned radix = 10)
         {
-            UInt128 const maxDiv10{UInt128{0x9999999999999999, 0x1999999999999999u}}; // UInt128::Max / 10
-
-            result = UInt128{};
-
-            for (char const c : value)
-            {
-                if (c < '0' or c > '9')
-                {
-                    return false;
-                }
-
-                if (result > maxDiv10)
-                {
-                    return false;
-                }
-
-                result = result * 10u;
-
-                if (result > (Max() - unsigned(c - '0')))
-                {
-                    return false;
-                }
-
-                result = result + unsigned(c - '0');
-            }
-
-            return true;
+            UInt128 result;
+            return TryParse(result, value, radix) ? std::optional{result} : std::nullopt;
         }
 
         static constexpr bool TryParseHex(UInt128& result, std::string_view value)

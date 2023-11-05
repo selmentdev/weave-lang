@@ -1038,3 +1038,123 @@ TEST_CASE("UInt128 - TryParse and ToString")
         CHECK(UInt128::ToStringHex(UInt128{0xFEDCBA9876543210, 0x0123456789ABCDEF}) == "123456789ABCDEFFEDCBA9876543210");
     }
 }
+
+TEST_CASE("UInt128 - Factorial")
+{
+    using namespace Weave::Builtin;
+
+    UInt128 result{1};
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{1}));
+    CHECK(result == UInt128::Parse("1"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{2}));
+    CHECK(result == UInt128::Parse("2"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{3}));
+    CHECK(result == UInt128::Parse("6"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{4}));
+    CHECK(result == UInt128::Parse("24"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{5}));
+    CHECK(result == UInt128::Parse("120"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{6}));
+    CHECK(result == UInt128::Parse("720"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{7}));
+    CHECK(result == UInt128::Parse("5040"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{8}));
+    CHECK(result == UInt128::Parse("40320"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{9}));
+    CHECK(result == UInt128::Parse("362880"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{10}));
+    CHECK(result == UInt128::Parse("3628800"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{11}));
+    CHECK(result == UInt128::Parse("39916800"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{12}));
+    CHECK(result == UInt128::Parse("479001600"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{13}));
+    CHECK(result == UInt128::Parse("6227020800"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{14}));
+    CHECK(result == UInt128::Parse("87178291200"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{15}));
+    CHECK(result == UInt128::Parse("1307674368000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{16}));
+    CHECK(result == UInt128::Parse("20922789888000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{17}));
+    CHECK(result == UInt128::Parse("355687428096000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{18}));
+    CHECK(result == UInt128::Parse("6402373705728000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{19}));
+    CHECK(result == UInt128::Parse("121645100408832000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{20}));
+    CHECK(result == UInt128::Parse("2432902008176640000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{21}));
+    CHECK(result == UInt128::Parse("51090942171709440000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{22}));
+    CHECK(result == UInt128::Parse("1124000727777607680000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{23}));
+    CHECK(result == UInt128::Parse("25852016738884976640000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{24}));
+    CHECK(result == UInt128::Parse("620448401733239439360000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{25}));
+    CHECK(result == UInt128::Parse("15511210043330985984000000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{26}));
+    CHECK(result == UInt128::Parse("403291461126605635584000000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{27}));
+    CHECK(result == UInt128::Parse("10888869450418352160768000000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{28}));
+    CHECK(result == UInt128::Parse("304888344611713860501504000000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{29}));
+    CHECK(result == UInt128::Parse("8841761993739701954543616000000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{30}));
+    CHECK(result == UInt128::Parse("265252859812191058636308480000000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{31}));
+    CHECK(result == UInt128::Parse("8222838654177922817725562880000000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{32}));
+    CHECK(result == UInt128::Parse("263130836933693530167218012160000000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{33}));
+    CHECK(result == UInt128::Parse("8683317618811886495518194401280000000"));
+
+    CHECK_FALSE(UInt128::CheckedMultiply(result, result, UInt128{34}));
+    CHECK(result == UInt128::Parse("295232799039604140847618609643520000000"));
+
+    UInt128 lower = result;
+
+    CHECK(UInt128::CheckedMultiply(result, result, UInt128{35}));
+    // Overflowed; result contains lower part of multiplication
+    CHECK(result == UInt128{0x58cde17100000000, 0x5dcbe8a8bc8b95cf});
+
+    // Verify using big multiplication.
+    UInt128 upper = UInt128::BigMul(lower, UInt128{35}, lower);
+    CHECK(result == UInt128{0x58cde17100000000, 0x5dcbe8a8bc8b95cf});
+    CHECK(upper == UInt128{0x000000000000001e, 0x0000000000000000});
+}
