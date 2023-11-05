@@ -18,7 +18,9 @@ add_library(Weave.Core STATIC
  "cxx/Unicode.cxx"
  "cxx/Uri.cxx"
  "cxx/Memory/Allocator.cxx"
- "cxx/StringPool.cxx")
+ "cxx/StringPool.cxx"
+ "cxx/UInt128.cxx"
+ "cxx/Int128.cxx")
 
 target_include_directories(Weave.Core PUBLIC include)
 target_link_libraries(Weave.Core PUBLIC Fmt)

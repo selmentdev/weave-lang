@@ -1,7 +1,7 @@
 #pragma once
 #include <cstddef>
 #include <cstdint>
-#include <cfloat>
+#include <optional>
 
 #include "Weave.Core/Assert.hxx"
 
@@ -27,8 +27,6 @@ namespace Weave::Builtin
 {
     struct UInt128 final
     {
-        friend struct Int128;
-
     private:
         uint64_t _lower;
         uint64_t _upper;
@@ -92,6 +90,11 @@ namespace Weave::Builtin
             return 0;
         }
 
+        static constexpr bool Equals(UInt128 left, UInt128 right)
+        {
+            return (left._lower == right._lower) && (left._upper == right._upper);
+        }
+
         [[nodiscard]] constexpr bool operator<(UInt128 const& rhs) const
         {
             return Compare(*this, rhs) < 0;
@@ -114,12 +117,12 @@ namespace Weave::Builtin
 
         [[nodiscard]] constexpr bool operator==(UInt128 const& rhs) const
         {
-            return Compare(*this, rhs) == 0;
+            return Equals(*this, rhs);
         }
 
         [[nodiscard]] constexpr bool operator!=(UInt128 const& rhs) const
         {
-            return Compare(*this, rhs) != 0;
+            return not Equals(*this, rhs);
         }
 
     public:
