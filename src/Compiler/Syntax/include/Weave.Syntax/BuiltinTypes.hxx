@@ -20,11 +20,17 @@ namespace Weave
         String16,
         String32,
 
+        USize,
+        UIntPtr,
+
         UInt8,
         UInt16,
         UInt32,
         UInt64,
         UInt128,
+
+        ISize,
+        IntPtr,
 
         Int8,
         Int16,

@@ -71,6 +71,110 @@ inline weave_builtin_uint128 weave_builtin_uint128_new(uint64_t upper, uint64_t 
 #endif
 }
 
+inline uint64_t weave_builtin_uint128_lower(weave_builtin_uint128 value)
+{
+#if WEAVE_BUILTIN_UINT128_NATIVE
+    return static_cast<uint64_t>(value.value);
+#else
+    return value.lower;
+#endif
+}
+
+inline uint64_t weave_builtin_uint128_upper(weave_builtin_uint128 value)
+{
+#if WEAVE_BUILTIN_UINT128_NATIVE
+    return static_cast<uint64_t>(value.value >> 64u);
+#else
+    return value.upper;
+#endif
+}
+
+inline weave_builtin_uint128 weave_builtin_uint128_zero_upper(weave_builtin_uint128 value)
+{
+#if WEAVE_BUILTIN_UINT128_NATIVE
+    return {
+        .value = static_cast<unsigned __int128>(value.value) & 0xFFFFFFFFFFFFFFFFu,
+    };
+#else
+    return {
+        .lower = value.lower,
+        .upper = 0,
+    };
+#endif
+}
+
+inline weave_builtin_uint128 weave_builtin_uint128_zero_lower(weave_builtin_uint128 value)
+{
+#if WEAVE_BUILTIN_UINT128_NATIVE
+    return {
+        .value = static_cast<unsigned __int128>(value.value) & ~0xFFFFFFFFFFFFFFFFu,
+    };
+#else
+    return {
+        .lower = 0,
+        .upper = value.upper,
+    };
+#endif
+}
+
+inline weave_builtin_uint128 weave_builtin_uint128_move_upper_to_lower(weave_builtin_uint128 value)
+{
+#if WEAVE_BUILTIN_UINT128_NATIVE
+    return {
+        .value = static_cast<unsigned __int128>(value.value) >> 64u,
+    };
+#else
+    return {
+        .lower = value.upper,
+        .upper = 0,
+    };
+#endif
+}
+
+inline weave_builtin_uint128 weave_builtin_uint128_move_lower_to_upper(weave_builtin_uint128 value)
+{
+#if WEAVE_BUILTIN_UINT128_NATIVE
+    return {
+        .value = static_cast<unsigned __int128>(value.value) << 64u,
+    };
+#else
+    return {
+        .lower = 0,
+        .upper = value.lower,
+    };
+#endif
+}
+
+inline weave_builtin_uint128 weave_builtin_uint128_combine_lower(weave_builtin_uint128 lower, weave_builtin_uint128 upper)
+{
+#if WEAVE_BUILTIN_UINT128_NATIVE
+    return {
+        .value = (static_cast<unsigned __int128>(upper.value) << 64u) | (static_cast<unsigned __int128>(lower.value) & 0xFFFFFFFFFFFFFFFFu),
+    };
+#else
+    return {
+        .lower = lower.lower,
+        .upper = upper.lower,
+    };
+#endif
+}
+
+inline weave_builtin_uint128 weave_builtin_uint128_combine_upper(weave_builtin_uint128 lower, weave_builtin_uint128 upper)
+{
+#if WEAVE_BUILTIN_UINT128_NATIVE
+    unsigned __int128 lower_upper = static_cast<unsigned __int128>(lower.value) >> 64u;
+    unsigned __int128 upper_upper = static_cast<unsigned __int128>(upper.value) >> 64u;
+    return {
+        .value = (upper_upper << 64u) | (lower_upper & 0xFFFFFFFFFFFFFFFFu),
+    };
+#else
+    return {
+        .lower = lower.upper,
+        .upper = upper.upper,
+    };
+#endif
+}
+
 inline weave_builtin_uint128 weave_builtin_uint128_from_uint64(uint64_t value)
 {
 #if WEAVE_BUILTIN_UINT128_NATIVE
@@ -382,21 +486,22 @@ inline weave_builtin_uint128 weave_builtin_uint128_ror(weave_builtin_uint128 val
 
 inline weave_builtin_uint128 weave_builtin_uint128_bigmul(weave_builtin_uint128 left, weave_builtin_uint128 right, weave_builtin_uint128* lower)
 {
-    weave_builtin_uint128 const ll = weave_builtin_uint128_from_uint64(left.lower);
-    weave_builtin_uint128 const lu = weave_builtin_uint128_from_uint64(left.upper);
-    weave_builtin_uint128 const rl = weave_builtin_uint128_from_uint64(right.lower);
-    weave_builtin_uint128 const ru = weave_builtin_uint128_from_uint64(right.upper);
+    weave_builtin_uint128 const ll = weave_builtin_uint128_zero_upper(left);
+    weave_builtin_uint128 const lu = weave_builtin_uint128_move_upper_to_lower(left);
+    weave_builtin_uint128 const rl = weave_builtin_uint128_zero_upper(right);
+    weave_builtin_uint128 const ru = weave_builtin_uint128_move_upper_to_lower(right);
 
     weave_builtin_uint128 const m = weave_builtin_uint128_mul(ll, rl);
-    weave_builtin_uint128 const t = weave_builtin_uint128_muladd(lu, rl, weave_builtin_uint128_from_uint64(m.upper));
-    weave_builtin_uint128 const tl = weave_builtin_uint128_muladd(ll, ru, weave_builtin_uint128_from_uint64(t.lower));
+    weave_builtin_uint128 const t = weave_builtin_uint128_muladd(lu, rl, weave_builtin_uint128_move_upper_to_lower(m));
+    weave_builtin_uint128 const tl = weave_builtin_uint128_muladd(ll, ru, weave_builtin_uint128_zero_upper(t));
 
-    lower->lower = m.lower;
-    lower->upper = tl.lower;
+    *lower = weave_builtin_uint128_combine_lower(m, tl);
+    //lower->lower = m.lower;
+    //lower->upper = tl.lower;
 
     return weave_builtin_uint128_add(
-        weave_builtin_uint128_muladd(lu, ru, weave_builtin_uint128_from_uint64(t.upper)),
-        weave_builtin_uint128_from_uint64(tl.upper));
+        weave_builtin_uint128_muladd(lu, ru, weave_builtin_uint128_move_upper_to_lower(t)),
+        weave_builtin_uint128_move_upper_to_lower(tl));
 }
 
 inline weave_builtin_uint256 weave_builtin_uint256_from_uint128(weave_builtin_uint128 value)
@@ -446,11 +551,5 @@ inline weave_builtin_uint256 weave_builtin_uint256_bigmul(weave_builtin_uint256 
         weave_builtin_uint256_muladd(lu, ru, weave_builtin_uint256_from_uint128(t.upper)),
         weave_builtin_uint256_from_uint128(tl.upper));
 }
-
-inline weave_builtin_int128 weave_builtin_int128_new(int64_t upper, uint64_t lower)
-{
-    return {.lower = lower, .upper = upper};
-}
-
 
 #endif // WEAVE_BUILTIN_UINT128_H

@@ -21,6 +21,13 @@
 int main()
 {
     {
+        double dv{};
+        std::string_view sv{"21.37"};
+        auto[ptr, ec] = std::from_chars(sv.data(), sv.data()+sv.size(), dv, std::chars_format::general);
+        WEAVE_ASSERT(ec == std::errc{});
+        fmt::println("{}", dv);
+    }
+    {
         using namespace Weave::Syntax;
         using namespace Weave::IO;
         using namespace Weave;

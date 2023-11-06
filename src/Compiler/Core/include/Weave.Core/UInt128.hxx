@@ -2,6 +2,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <optional>
+#include <algorithm>
 
 #include "Weave.Core/Assert.hxx"
 

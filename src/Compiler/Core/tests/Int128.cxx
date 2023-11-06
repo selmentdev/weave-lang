@@ -145,46 +145,55 @@ TEST_CASE("Numerics / Int128 / BigMultiply")
             Int128 lower;
             Int128 upper = Int128::BigMul(Int128::Make(-5), Int128::Make(-5), lower);
             CHECK(lower == Int128::Make(25));
+            CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
             Int128 upper = Int128::BigMul(Int128::Make(-5), Int128::Make(0), lower);
             CHECK(lower == Int128::Make(0));
+            CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
             Int128 upper = Int128::BigMul(Int128::Make(-5), Int128::Make(5), lower);
             CHECK(lower == Int128::Make(-25));
+            CHECK(upper == Int128::Make(-1));
         }
         {
             Int128 lower;
             Int128 upper = Int128::BigMul(Int128::Make(0), Int128::Make(-5), lower);
             CHECK(lower == Int128::Make(0));
+            CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
             Int128 upper = Int128::BigMul(Int128::Make(0), Int128::Make(0), lower);
             CHECK(lower == Int128::Make(0));
+            CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
             Int128 upper = Int128::BigMul(Int128::Make(0), Int128::Make(5), lower);
             CHECK(lower == Int128::Make(0));
+            CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
             Int128 upper = Int128::BigMul(Int128::Make(5), Int128::Make(-5), lower);
             CHECK(lower == Int128::Make(-25));
+            CHECK(upper == Int128::Make(-1));
         }
         {
             Int128 lower;
             Int128 upper = Int128::BigMul(Int128::Make(5), Int128::Make(0), lower);
             CHECK(lower == Int128::Make(0));
+            CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
             Int128 upper = Int128::BigMul(Int128::Make(5), Int128::Make(5), lower);
             CHECK(lower == Int128::Make(25));
+            CHECK(upper == Int128::Make(0));
         }
     }
 
@@ -396,6 +405,14 @@ TEST_CASE("Numerics / Int128 / CheckedDivide")
                 Int128 const expected_r = Int128::Make(i64_left % i64_right);
                 CHECK(q == expected_q);
                 CHECK(r == expected_r);
+
+#if defined(__GNUC__) || defined(__clang__)
+                // Additional tests: on compilers with support for 128-bit integers, check that the results are correct as well.
+                signed __int128 const expected_q2 = static_cast<signed __int128>(i64_left) / static_cast<signed __int128>(i64_right);
+                signed __int128 const expected_r2 = static_cast<signed __int128>(i64_left) % static_cast<signed __int128>(i64_right);
+                CHECK(q == Int128::Make(static_cast<int64_t>(expected_q2)));
+                CHECK(r == Int128::Make(static_cast<int64_t>(expected_r2)));
+#endif
             }
         }
     }

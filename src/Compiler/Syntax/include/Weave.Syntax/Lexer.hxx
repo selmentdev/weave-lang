@@ -5,6 +5,8 @@
 #include "Weave.Core/SourceCursor.hxx"
 #include "Weave.Core/SourceText.hxx"
 
+#include <variant>
+
 namespace Weave::Syntax
 {
     class Lexer final
@@ -96,6 +98,13 @@ namespace Weave::Syntax
         {
             TokenKind Kind{};
             SourceSpan Span{};
+
+            // Note:
+            //   - use builtin value type instead of suffixes - lexer knows about all known types already,
+            //   - prefix is used to determine the type of the literal - once we parse actual value, we don't need it anymore as value is stored in widest possible type,
+
+            std::variant<std::string, double, uint64_t> Value{};
+            // Value Type
 
             std::optional<NumberLiteralPrefixKind> NumberPrefix{};
             std::optional<StringPrefixKind> StringPrefix{};
