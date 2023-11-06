@@ -44,9 +44,66 @@ namespace Weave::Builtin
         {
         }
 
+    public:
+        static constexpr UInt128 Make(signed long long value)
+        {
+            int64_t const lower = value;
+            return UInt128{static_cast<uint64_t>(lower >> 63), static_cast<uint64_t>(lower)};
+        }
+
+        static constexpr UInt128 Make(signed long value)
+        {
+            int64_t const lower = value;
+            return UInt128{static_cast<uint64_t>(lower >> 63), static_cast<uint64_t>(lower)};
+        }
+
+        static constexpr UInt128 Make(signed int value)
+        {
+            int64_t const lower = value;
+            return UInt128{static_cast<uint64_t>(lower >> 63), static_cast<uint64_t>(lower)};
+        }
+
+        static constexpr UInt128 Make(signed short value)
+        {
+            int64_t const lower = value;
+            return UInt128{static_cast<uint64_t>(lower >> 63), static_cast<uint64_t>(lower)};
+        }
+
+        static constexpr UInt128 Make(signed char value)
+        {
+            int64_t const lower = value;  // NOLINT(bugprone-signed-char-misuse)
+            return UInt128{static_cast<uint64_t>(lower >> 63), static_cast<uint64_t>(lower)};
+        }
+
+        static constexpr UInt128 Make(unsigned long long value)
+        {
+            return UInt128{0, value};
+        }
+
+        static constexpr UInt128 Make(unsigned long value)
+        {
+            return UInt128{0, value};
+        }
+
+        static constexpr UInt128 Make(unsigned int value)
+        {
+            return UInt128{0, value};
+        }
+
+        static constexpr UInt128 Make(unsigned short value)
+        {
+            return UInt128{0, value};
+        }
+
+        static constexpr UInt128 Make(unsigned char value)
+        {
+            return UInt128{0, value};
+        }
+
+    public:
         constexpr bool IsZero() const
         {
-            return this->_lower == 0 && this->_upper == 0;
+            return (this->_lower | this->_upper) == 0;
         }
 
         constexpr uint64_t GetLower() const
@@ -166,7 +223,7 @@ namespace Weave::Builtin
         static constexpr UInt128 Multiply(UInt128 x, UInt128 y)
         {
             uint64_t lower;
-            uint64_t upper = BigMul(x._lower, y._lower, lower);
+            uint64_t upper = Builtin::BigMul(x._lower, y._lower, lower);
             upper += (x._lower * y._upper) + (x._upper * y._lower);
             return UInt128{upper, lower};
         }
@@ -231,7 +288,6 @@ namespace Weave::Builtin
             if ((lhs._upper == 0) and (rhs._upper == 0))
             {
                 // 64-bit fast path
-
                 quotient._lower = lhs._lower / rhs._lower;
                 quotient._upper = 0;
 
@@ -263,7 +319,6 @@ namespace Weave::Builtin
                 return false;
             }
 
-
             size_t const shift = countl_zero(lhs) - countl_zero(rhs);
 
             if (shift == 128)
@@ -290,79 +345,6 @@ namespace Weave::Builtin
 
             remainder = lhs;
             quotient = q;
-
-            return false;
-        }
-
-        static constexpr bool CheckedDivide3(UInt128& quotient, UInt128& remainder, UInt128 lhs, UInt128 rhs)
-        {
-            if ((lhs._upper == 0) and (rhs._upper == 0))
-            {
-                // Both are 64 bit values
-                quotient._lower = lhs._lower / rhs._lower;
-                quotient._upper = 0;
-                remainder._lower = lhs._lower % rhs._lower;
-                remainder._upper = 0;
-
-                // No overflow possible
-                return false;
-            }
-
-            if (Compare(lhs, rhs) < 0)
-            {
-                quotient._lower = 0;
-                quotient._upper = 0;
-                remainder = lhs;
-
-                return false;
-            }
-
-            UInt128 const half_lhs{
-                (lhs._lower >> 1) | (lhs._upper << 63),
-                (lhs._upper >> 1)};
-
-            size_t shift = 0;
-
-            while ((Compare(half_lhs, rhs) >= 0) and (shift < 128))
-            {
-                shift += 1;
-
-                rhs._upper = (rhs._upper << 1) | (rhs._lower >> 63);
-                rhs._lower <<= 1;
-            }
-
-            if (shift == 128)
-            {
-                // Overflow
-                return true;
-            }
-
-            UInt128 mask{
-                (shift >= 64) ? 0 : (uint64_t{1} << shift),
-                (shift < 64) ? 0 : (uint64_t{1} << (shift - 64))};
-
-            ++shift;
-
-            quotient._lower = 0;
-            quotient._upper = 0;
-
-            // Long division
-            while (shift--)
-            {
-                if (Compare(lhs, rhs) >= 0)
-                {
-                    CheckedAdd(quotient, mask, quotient);
-                    CheckedSubtract(lhs, lhs, rhs);
-                }
-
-                mask._lower = (mask._lower >> 1) | (mask._upper << 63);
-                mask._upper >>= 1;
-
-                rhs._lower = (rhs._lower >> 1) | (rhs._upper << 63);
-                rhs._upper >>= 1;
-            }
-
-            remainder = lhs;
 
             return false;
         }
@@ -617,21 +599,6 @@ namespace Weave::Builtin
         }
 
     public:
-        static constexpr uint64_t BigMul(uint64_t left, uint64_t right, uint64_t& lower)
-        {
-            uint64_t const ll = left & 0xFFFFFFFFu;
-            uint64_t const lu = left >> 32u;
-            uint64_t const rl = right & 0xFFFFFFFFu;
-            uint64_t const ru = right >> 32u;
-            uint64_t const ll_rl = ll * rl;
-            uint64_t const ll_ru = ll * ru;
-            uint64_t const lu_rl = lu * rl;
-            uint64_t const lu_ru = lu * ru;
-            uint64_t const m = (ll_rl >> 32u) + ll_ru + (lu_rl & 0xFFFFFFFFu);
-            lower = (ll_rl & 0xFFFFFFFFu) | (m << 32u);
-            return (m >> 32u) + (lu_rl >> 32u) + lu_ru;
-        }
-
         static constexpr UInt128 BigMul(UInt128 left, UInt128 right, UInt128& lower)
         {
             UInt128 const ll{0, left._lower};
@@ -684,7 +651,7 @@ namespace Weave::Builtin
 
             UInt128 temp{};
 
-            bool succeeded = true;
+            bool overflow = false;
 
             for (char const c : value)
             {
@@ -701,83 +668,18 @@ namespace Weave::Builtin
                 }
                 else
                 {
-                    succeeded = false;
+                    overflow = true;
                 }
             }
 
             result = temp;
-            return succeeded;
+            return !overflow;
         }
 
         static constexpr std::optional<UInt128> Parse(std::string_view value, unsigned radix = 10)
         {
             UInt128 result;
             return TryParse(result, value, radix) ? std::optional{result} : std::nullopt;
-        }
-
-        static constexpr bool TryParseHex(UInt128& result, std::string_view value)
-        {
-            UInt128 const maxDiv16{UInt128{0x0FFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF}};
-
-            result = UInt128{0, 0};
-
-            for (char const c : value)
-            {
-                if (c >= '0' and c <= '9')
-                {
-                    if (result > maxDiv16)
-                    {
-                        return false;
-                    }
-
-                    result = result * 16u;
-
-                    if (result > (Max() - unsigned(c - '0')))
-                    {
-                        return false;
-                    }
-
-                    result = result + unsigned(c - '0');
-                }
-                else if (c >= 'A' and c <= 'F')
-                {
-                    if (result > maxDiv16)
-                    {
-                        return false;
-                    }
-
-                    result = result * 16u;
-
-                    if (result > (Max() - unsigned(c - 'A' + 10)))
-                    {
-                        return false;
-                    }
-
-                    result = result + unsigned(c - 'A' + 10);
-                }
-                else if (c >= 'a' and c <= 'f')
-                {
-                    if (result > maxDiv16)
-                    {
-                        return false;
-                    }
-
-                    result = result * 16u;
-
-                    if (result > (Max() - unsigned(c - 'a' + 10)))
-                    {
-                        return false;
-                    }
-
-                    result = result + unsigned(c - 'a' + 10);
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         static std::string ToStringHex(UInt128 value)

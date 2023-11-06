@@ -15,7 +15,7 @@
 #include "Weave.Syntax/LexerContext.hxx"
 #include "Weave.Syntax/Lexer.hxx"
 
-
+#include <charconv>
 #include <chrono>
 
 int main()
@@ -35,7 +35,7 @@ int main()
             DiagnosticSink diagnostic{"<source>"};
             SourceText text{std::move(*file)};
             LexerContext context{};
-            Lexer lexer{diagnostic, context, text, TriviaMode::All};
+            Lexer lexer{diagnostic, context, text, TriviaMode::None};
 
             auto started = std::chrono::high_resolution_clock::now();
 
@@ -50,7 +50,7 @@ int main()
 
                 tokens.push_back(token);
 
-                if (token->kind() == TokenKind::EndOfFile)
+                if (token->GetKind() == TokenKind::EndOfFile)
                 {
                     break;
                 }

@@ -24,6 +24,7 @@ add_library(Weave.Core STATIC
 
 target_include_directories(Weave.Core PUBLIC include)
 target_link_libraries(Weave.Core PUBLIC Fmt)
+target_link_libraries(Weave.Core PUBLIC Weave.Builtin)
 WEAVE_CXX_FORTIFY_CODE(Weave.Core)
 
 add_subdirectory(tests)
