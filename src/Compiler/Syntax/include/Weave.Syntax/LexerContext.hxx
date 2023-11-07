@@ -5,6 +5,8 @@
 
 namespace Weave::Syntax
 {
+    class Lexer;
+
     struct LexerContext
     {
         // Regular tokens, produced during parsing.
@@ -22,6 +24,8 @@ namespace Weave::Syntax
         Memory::TypedLinearAllocator<Identifier> Identifiers{};
 
         StringPool Strings{};
+
+        Token* Lex(Lexer& lexer);
 
         Token* Create(
             TokenKind kind,
@@ -83,5 +87,7 @@ namespace Weave::Syntax
         void QueryMemoryUsage(
             size_t& allocated,
             size_t& reserved) const;
+
+        void DumpMemoryUsage() const;
     };
 }

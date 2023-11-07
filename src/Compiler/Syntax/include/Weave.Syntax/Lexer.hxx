@@ -4,32 +4,42 @@
 #include "Weave.Core/Diagnostic.hxx"
 #include "Weave.Core/SourceCursor.hxx"
 #include "Weave.Core/SourceText.hxx"
-
-#include <variant>
+#include "Weave.syntax/BuiltinTypes.hxx"
 
 namespace Weave::Syntax
 {
+    struct LexerToken final
+    {
+        TokenKind Kind;
+        SourceSpan Span;
+
+        std::string_view Prefix{};
+        std::string_view Value{};
+        std::string_view Suffix{};
+    };
+
     class Lexer final
     {
     private:
         DiagnosticSink& _diagnostic;
-        LexerContext& _context;
         SourceText const& _source;
         SourceCursor _cursor;
         TriviaMode _triviaMode;
 
-        std::vector<Trivia> _leadingTriviaBuilder{};
-        std::vector<Trivia> _trailingTriviaBuilder{};
-        std::string _buffer{};
+        std::vector<Trivia> _token_leading_trivia{};
+        std::vector<Trivia> _token_trailing_trivia{};
+        std::string _token_value{};
+        std::string _token_prefix{};
+        std::string _token_suffix{};
+        SourceSpan _token_span{};
+        TokenKind _token_kind{TokenKind::Error};
 
     public:
         explicit Lexer(
             DiagnosticSink& _diagnostic,
-            LexerContext& context,
             SourceText const& source,
             TriviaMode triviaMode)
             : _diagnostic{_diagnostic}
-            , _context{context}
             , _source{source}
             , _cursor{source.GetContent()}
             , _triviaMode{triviaMode}
@@ -47,8 +57,43 @@ namespace Weave::Syntax
             return this->_source;
         }
 
+        [[nodiscard]] std::string_view GetPrefix() const
+        {
+            return this->_token_prefix;
+        }
+
+        [[nodiscard]] std::string_view GetSuffix() const
+        {
+            return this->_token_suffix;
+        }
+
+        [[nodiscard]] std::string_view GetValue() const
+        {
+            return this->_token_value;
+        }
+
+        [[nodiscard]] SourceSpan GetSpan() const
+        {
+            return this->_token_span;
+        }
+
+        [[nodiscard]] TokenKind GetKind() const
+        {
+            return this->_token_kind;
+        }
+
+        [[nodiscard]] std::span<Trivia const> GetLeadingTrivia() const
+        {
+            return this->_token_leading_trivia;
+        }
+
+        [[nodiscard]] std::span<Trivia const> GetTrailingTrivia() const
+        {
+            return this->_token_trailing_trivia;
+        }
+
     public:
-        Token* Lex();
+        bool Lex();
 
     private:
         static constexpr bool AppendDecCharacter(uint64_t& result, char32_t c)
@@ -94,25 +139,6 @@ namespace Weave::Syntax
         }
 
     private:
-        struct TokenInfo final
-        {
-            TokenKind Kind{};
-            SourceSpan Span{};
-
-            // Note:
-            //   - use builtin value type instead of suffixes - lexer knows about all known types already,
-            //   - prefix is used to determine the type of the literal - once we parse actual value, we don't need it anymore as value is stored in widest possible type,
-
-            std::variant<std::string, double, uint64_t> Value{};
-            // Value Type
-
-            std::optional<NumberLiteralPrefixKind> NumberPrefix{};
-            std::optional<StringPrefixKind> StringPrefix{};
-            std::optional<CharacterPrefixKind> CharacterPrefix{};
-            std::optional<IntegerLiteralSuffixKind> IntegerSuffix{};
-            std::optional<FloatLiteralSuffixKind> FloatSuffix{};
-        };
-
         struct SingleInteger final
         {
             bool HasValue;
@@ -122,7 +148,7 @@ namespace Weave::Syntax
         };
 
     private:
-        [[nodiscard]] bool TryReadToken(TokenInfo& info);
+        [[nodiscard]] bool TryReadToken();
         void TryReadTrivia(std::vector<Trivia>& builder, bool leading);
 
     private:
@@ -130,8 +156,8 @@ namespace Weave::Syntax
         [[nodiscard]] bool TryReadRawStringLiteral();
         [[nodiscard]] bool TryReadStringLiteral();
         [[nodiscard]] bool TryReadCharacterLiteral();
-        [[nodiscard]] bool TryReadNumericLiteral(TokenInfo& info);
-        [[nodiscard]] bool TryReadPunctuation(TokenInfo& info);
+        [[nodiscard]] bool TryReadNumericLiteral();
+        [[nodiscard]] bool TryReadPunctuation();
         [[nodiscard]] bool TryReadEndOfLine();
         [[nodiscard]] bool TryReadWhitespace();
         [[nodiscard]] TriviaKind TryReadSingleLineComment();
@@ -154,6 +180,6 @@ namespace Weave::Syntax
         [[nodiscard]] bool TryReadEscapeSequence();
         [[nodiscard]] bool TryReadStringOrCharacterLiteralCore(char32_t specifier, size_t& consumed);
         [[nodiscard]] int TryReadNumberLiteralPrefixWithRadix();
-        void TryReadNumberValueType(TokenInfo& info);
+        void TryReadNumberValueType();
     };
 }

@@ -25,30 +25,34 @@ int main()
         std::string_view sv{"21.37"};
         auto[ptr, ec] = std::from_chars(sv.data(), sv.data()+sv.size(), dv, std::chars_format::general);
         WEAVE_ASSERT(ec == std::errc{});
-        fmt::println("{}", dv);
+        fmt::println("{}, {}", dv, std::to_underlying(ec));
     }
     {
         using namespace Weave::Syntax;
         using namespace Weave::IO;
         using namespace Weave;
 
-         if (auto file = ReadTextFile(R"(D:\repos\runtime\src\tests\JIT\jit64\opt\cse\hugeexpr1.cs)"))
+#if defined(WIN64)
+        //if (auto file = ReadTextFile(R"(D:\repos\runtime\src\tests\JIT\jit64\opt\cse\hugeexpr1.cs)"))
         //if (auto file = ReadTextFile(R"(D:\repos\rust\library\stdarch\crates\core_arch\src\aarch64\neon\generated.rs)"))
-        // if (auto file = ReadTextFile(R"(D:\repos\weave-lang\src\Compiler\Syntax\tests\data\Numbers.source)"))
+        //if (auto file = ReadTextFile(R"(D:\repos\weave-lang\src\Compiler\Syntax\tests\data\Numbers.source)"))
         //  if (auto file = ReadTextFile(R"(D:\test\windows.ui.xaml.controls.h)"))
-        //  if (auto file = ReadTextFile(R"(D:\test\d3d12.h)"))
+        if (auto file = ReadTextFile(R"(D:\test\d3d12.h)"))
+#else
+        if (auto file = ReadTextFile(R"(/usr/include/c++/12/vector)"))
+#endif
         {
             std::vector<Token*> tokens{};
             DiagnosticSink diagnostic{"<source>"};
             SourceText text{std::move(*file)};
             LexerContext context{};
-            Lexer lexer{diagnostic, context, text, TriviaMode::None};
+            Lexer lexer{diagnostic, text, TriviaMode::All};
 
             auto started = std::chrono::high_resolution_clock::now();
 
             while (true)
             {
-                Token* token = lexer.Lex();
+                Token* token = context.Lex(lexer);
 
                 if (token == nullptr)
                 {
@@ -79,6 +83,7 @@ int main()
             size_t allocated{};
             size_t reserved{};
             context.QueryMemoryUsage(allocated, reserved);
+            context.DumpMemoryUsage();
 
             fmt::println("lexed in {}", lexed);
             fmt::println("allocated: {}, reserved: {}", allocated, reserved);

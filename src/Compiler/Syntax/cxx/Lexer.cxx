@@ -6,159 +6,83 @@
 
 namespace Weave::Syntax
 {
-    Token* Lexer::Lex()
+    bool Lexer::Lex()
     {
-        this->TryReadTrivia(this->_leadingTriviaBuilder, true);
+        this->TryReadTrivia(this->_token_leading_trivia, true);
 
-        TokenInfo info{};
-        bool const lexed = this->TryReadToken(info);
+        bool const lexed = this->TryReadToken();
 
-        this->TryReadTrivia(this->_trailingTriviaBuilder, false);
+        this->TryReadTrivia(this->_token_trailing_trivia, false);
 
-        if (lexed)
-        {
-            if (info.Kind == TokenKind::StringLiteral)
-            {
-                return this->_context.CreateString(
-                    info.Span,
-                    this->_leadingTriviaBuilder,
-                    this->_trailingTriviaBuilder,
-                    info.StringPrefix.value_or(StringPrefixKind::Default),
-                    this->_buffer);
-            }
-
-            if (info.Kind == TokenKind::CharacterLiteral)
-            {
-                char32_t value{};
-                const char* c = this->_buffer.c_str();
-
-                [[maybe_unused]] UnicodeConversionResult const status = UTF8Decode(value, c, c + this->_buffer.size());
-
-                WEAVE_ASSERT(status == UnicodeConversionResult::Success);
-                WEAVE_ASSERT(c != nullptr);
-                WEAVE_ASSERT(c[0] == '\0');
-
-                return this->_context.CreateCharacter(
-                    info.Span,
-                    this->_leadingTriviaBuilder,
-                    this->_trailingTriviaBuilder,
-                    info.CharacterPrefix.value_or(CharacterPrefixKind::Default),
-                    value);
-            }
-
-            if (info.Kind == TokenKind::FloatLiteral)
-            {
-                return this->_context.CreateFloat(
-                    info.Span,
-                    this->_leadingTriviaBuilder,
-                    this->_trailingTriviaBuilder,
-                    info.NumberPrefix.value_or(NumberLiteralPrefixKind::Default),
-                    this->_buffer,
-                    info.FloatSuffix.value_or(FloatLiteralSuffixKind::Default));
-            }
-
-            if (info.Kind == TokenKind::IntegerLiteral)
-            {
-                return this->_context.CreateInteger(
-                    info.Span,
-                    this->_leadingTriviaBuilder,
-                    this->_trailingTriviaBuilder,
-                    info.NumberPrefix.value_or(NumberLiteralPrefixKind::Default),
-                    this->_buffer,
-                    info.IntegerSuffix.value_or(IntegerLiteralSuffixKind::Default));
-            }
-
-            if (info.Kind == TokenKind::Identifier)
-            {
-                return this->_context.CreateIdentifier(
-                    info.Span,
-
-                    this->_leadingTriviaBuilder,
-                    this->_trailingTriviaBuilder,
-                    this->_buffer);
-            }
-
-            return this->_context.Create(
-                info.Kind,
-                info.Span,
-                this->_leadingTriviaBuilder,
-                this->_trailingTriviaBuilder);
-        }
-        else
-        {
-            // Failed to lex token
-            return this->_context.Create(
-                TokenKind::Error,
-                this->_cursor.GetSpan());
-        }
-
-        // return nullptr;
+        return lexed;
     }
 
-    bool Lexer::TryReadToken(TokenInfo& info)
+    bool Lexer::TryReadToken()
     {
         this->_cursor.Start();
-        this->_buffer.clear();
+        this->_token_value.clear();
+        this->_token_prefix.clear();
+        this->_token_suffix.clear();
 
         if (this->_cursor.IsEnd())
         {
-            info.Kind = TokenKind::EndOfFile;
-            info.Span = this->_cursor.GetSpan();
+            this->_token_kind = TokenKind::EndOfFile;
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadRawIdentifier())
         {
-            info.Kind = TokenKind::Identifier;
-            info.Span = this->_cursor.GetSpan();
+            this->_token_kind = TokenKind::Identifier;
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadRawStringLiteral())
         {
-            info.Kind = TokenKind::StringLiteral;
-            info.Span = this->_cursor.GetSpan();
+            this->_token_kind = TokenKind::StringLiteral;
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadStringLiteral())
         {
-            info.Kind = TokenKind::StringLiteral;
-            info.Span = this->_cursor.GetSpan();
+            this->_token_kind = TokenKind::StringLiteral;
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadCharacterLiteral())
         {
-            info.Kind = TokenKind::CharacterLiteral;
-            info.Span = this->_cursor.GetSpan();
+            this->_token_kind = TokenKind::CharacterLiteral;
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
-        if (this->TryReadNumericLiteral(info))
+        if (this->TryReadNumericLiteral())
         {
-            info.Span = this->_cursor.GetSpan();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
-        if (this->TryReadPunctuation(info))
+        if (this->TryReadPunctuation())
         {
-            info.Span = this->_cursor.GetSpan();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadIdentifier())
         {
-            if (std::optional<TokenKind> const keyword = TokenKindTraits::TryMapIdentifierToKeyword(this->_buffer); keyword.has_value())
+            if (std::optional<TokenKind> const keyword = TokenKindTraits::TryMapIdentifierToKeyword(this->_token_value); keyword.has_value())
             {
-                info.Kind = *keyword;
+                this->_token_kind = *keyword;
             }
             else
             {
-                info.Kind = TokenKind::Identifier;
+                this->_token_kind = TokenKind::Identifier;
             }
 
-            info.Span = this->_cursor.GetSpan();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
@@ -174,8 +98,8 @@ namespace Weave::Syntax
         }
 
 
-        info.Kind = TokenKind::Error;
-        info.Span = this->_cursor.GetSpan();
+        this->_token_kind = TokenKind::Error;
+        this->_token_span = this->_cursor.GetSpan();
         return false;
     }
 
@@ -289,13 +213,13 @@ namespace Weave::Syntax
                         }
 
                         // Append unmatched characters.
-                        this->_buffer.push_back('"');
-                        this->_buffer.append(matched, '#');
+                        this->_token_value.push_back('"');
+                        this->_token_value.append(matched, '#');
                     }
                     else
                     {
                         // Append whatever we decoded.
-                        this->_buffer.append(this->_cursor.PeekAsStringView());
+                        this->_token_value.append(this->_cursor.PeekAsStringView());
                         this->_cursor.Advance();
                     }
                 }
@@ -347,7 +271,7 @@ namespace Weave::Syntax
         return false;
     }
 
-    bool Lexer::TryReadNumericLiteral(TokenInfo& info)
+    bool Lexer::TryReadNumericLiteral()
     {
         if (not CharTraits::IsDecimalDigit(this->_cursor.Peek()))
         {
@@ -384,8 +308,8 @@ namespace Weave::Syntax
 
             // Consume '.'
             this->_cursor.Advance();
-            size_t const revertSize = this->_buffer.size();
-            this->_buffer.push_back('.');
+            size_t const revertSize = this->_token_value.size();
+            this->_token_value.push_back('.');
 
             partFractional = this->TryReadSingleInteger(radix);
 
@@ -405,60 +329,58 @@ namespace Weave::Syntax
 
             if (revert)
             {
-                this->_buffer.resize(revertSize);
+                this->_token_value.resize(revertSize);
                 this->_cursor.Reset(start);
             }
         }
 
+        if (char32_t const exponent = this->_cursor.Peek(); CharTraits::IsDecimalExponent(exponent) or CharTraits::IsHexadecimalExponent(exponent))
         {
-            if (char32_t const exponent = this->_cursor.Peek(); CharTraits::IsDecimalExponent(exponent) or CharTraits::IsHexadecimalExponent(exponent))
+            this->_cursor.Advance();
+
+            size_t const revertSize = this->_token_value.size();
+
+            if (radix == 10)
+            {
+                if (not CharTraits::IsDecimalExponent(exponent))
+                {
+                    this->_diagnostic.AddError(this->_cursor.GetSpanForCurrent(), "invalid decimal exponent");
+                }
+
+                this->_token_value.push_back('e');
+            }
+            else if (radix == 16)
+            {
+                if (not CharTraits::IsHexadecimalExponent(exponent))
+                {
+                    this->_diagnostic.AddError(this->_cursor.GetSpanForCurrent(), "invalid hexadecimal exponent");
+                }
+
+                this->_token_value.push_back('p');
+            }
+
+            if (char32_t const sign = this->_cursor.Peek(); (sign == '+') or (sign == '-'))
             {
                 this->_cursor.Advance();
+                this->_token_value.push_back(static_cast<char>(sign));
+            }
 
-                size_t const revertSize = this->_buffer.size();
+            partExponent = this->TryReadSingleInteger(10);
 
-                if (radix == 10)
-                {
-                    if (not CharTraits::IsDecimalExponent(exponent))
-                    {
-                        this->_diagnostic.AddError(this->_cursor.GetSpanForCurrent(), "invalid decimal exponent");
-                    }
+            if (not partExponent.HasValue)
+            {
+                // There is no integer part after exponent.
+                this->_diagnostic.AddError(this->_cursor.GetSpan(), "expected at least one digit in exponent");
 
-                    this->_buffer.push_back('e');
-                }
-                else if (radix == 16)
-                {
-                    if (not CharTraits::IsHexadecimalExponent(exponent))
-                    {
-                        this->_diagnostic.AddError(this->_cursor.GetSpanForCurrent(), "invalid hexadecimal exponent");
-                    }
-
-                    this->_buffer.push_back('p');
-                }
-
-                if (char32_t const sign = this->_cursor.Peek(); (sign == '+') or (sign == '-'))
-                {
-                    this->_cursor.Advance();
-                    this->_buffer.push_back(static_cast<char>(sign));
-                }
-
-                partExponent = this->TryReadSingleInteger(10);
-
-                if (not partExponent.HasValue)
-                {
-                    // There is no integer part after exponent.
-                    this->_diagnostic.AddError(this->_cursor.GetSpan(), "expected at least one digit in exponent");
-
-                    this->_buffer.resize(revertSize);
-                }
+                this->_token_value.resize(revertSize);
             }
         }
 
-        this->TryReadNumberValueType(info);
+        this->TryReadNumberValueType();
 
-        if (partFractional.HasValue or partExponent.HasValue or (info.FloatSuffix.has_value()))
+        if (partFractional.HasValue or partExponent.HasValue)
         {
-            info.Kind = TokenKind::FloatLiteral;
+            this->_token_kind = TokenKind::FloatLiteral;
 
             if (radix == 2)
             {
@@ -471,7 +393,7 @@ namespace Weave::Syntax
         }
         else
         {
-            info.Kind = TokenKind::IntegerLiteral;
+            this->_token_kind = TokenKind::IntegerLiteral;
         }
 
         if ((radix == 16) and partFractional.HasValue and (not partExponent.HasValue))
@@ -482,14 +404,14 @@ namespace Weave::Syntax
         return true;
     }
 
-    bool Lexer::TryReadPunctuation(TokenInfo& info)
+    bool Lexer::TryReadPunctuation()
     {
         switch (this->_cursor.Peek())
         {
         case U'~':
             {
                 this->_cursor.Advance();
-                info.Kind = TokenKind::TildeToken;
+                this->_token_kind = TokenKind::TildeToken;
                 return true;
             }
 
@@ -499,11 +421,11 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::ExclamationEqualsToken;
+                    this->_token_kind = TokenKind::ExclamationEqualsToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::ExclamationToken;
+                    this->_token_kind = TokenKind::ExclamationToken;
                 }
 
                 return true;
@@ -515,15 +437,15 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::PlusEqualsToken;
+                    this->_token_kind = TokenKind::PlusEqualsToken;
                 }
                 else if (this->_cursor.First(U'+'))
                 {
-                    info.Kind = TokenKind::PlusPlusToken;
+                    this->_token_kind = TokenKind::PlusPlusToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::PlusToken;
+                    this->_token_kind = TokenKind::PlusToken;
                 }
 
                 return true;
@@ -535,19 +457,19 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::MinusEqualsToken;
+                    this->_token_kind = TokenKind::MinusEqualsToken;
                 }
                 else if (this->_cursor.First(U'-'))
                 {
-                    info.Kind = TokenKind::MinusMinusToken;
+                    this->_token_kind = TokenKind::MinusMinusToken;
                 }
                 else if (this->_cursor.First(U'>'))
                 {
-                    info.Kind = TokenKind::MinusGreaterThanToken;
+                    this->_token_kind = TokenKind::MinusGreaterThanToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::MinusToken;
+                    this->_token_kind = TokenKind::MinusToken;
                 }
 
                 return true;
@@ -559,11 +481,11 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::AsteriskEqualsToken;
+                    this->_token_kind = TokenKind::AsteriskEqualsToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::AsteriskToken;
+                    this->_token_kind = TokenKind::AsteriskToken;
                 }
 
                 return true;
@@ -575,11 +497,11 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::SlashEqualsToken;
+                    this->_token_kind = TokenKind::SlashEqualsToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::SlashToken;
+                    this->_token_kind = TokenKind::SlashToken;
                 }
 
                 return true;
@@ -589,7 +511,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::OpenParenToken;
+                this->_token_kind = TokenKind::OpenParenToken;
 
                 return true;
             }
@@ -598,7 +520,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::CloseParenToken;
+                this->_token_kind = TokenKind::CloseParenToken;
 
                 return true;
             }
@@ -607,7 +529,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::OpenBraceToken;
+                this->_token_kind = TokenKind::OpenBraceToken;
 
                 return true;
             }
@@ -616,7 +538,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::CloseBraceToken;
+                this->_token_kind = TokenKind::CloseBraceToken;
 
                 return true;
             }
@@ -625,7 +547,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::OpenBracketToken;
+                this->_token_kind = TokenKind::OpenBracketToken;
 
                 return true;
             }
@@ -634,7 +556,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::CloseBracketToken;
+                this->_token_kind = TokenKind::CloseBracketToken;
 
                 return true;
             }
@@ -645,11 +567,11 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U':'))
                 {
-                    info.Kind = TokenKind::ColonColonToken;
+                    this->_token_kind = TokenKind::ColonColonToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::ColonToken;
+                    this->_token_kind = TokenKind::ColonToken;
                 }
 
                 return true;
@@ -659,7 +581,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::SemicolonToken;
+                this->_token_kind = TokenKind::SemicolonToken;
 
                 return true;
             }
@@ -668,7 +590,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::AtToken;
+                this->_token_kind = TokenKind::AtToken;
 
                 return true;
             }
@@ -677,7 +599,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::HashToken;
+                this->_token_kind = TokenKind::HashToken;
 
                 return true;
             }
@@ -686,7 +608,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::DollarToken;
+                this->_token_kind = TokenKind::DollarToken;
 
                 return true;
             }
@@ -697,11 +619,11 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::PercentEqualsToken;
+                    this->_token_kind = TokenKind::PercentEqualsToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::PercentToken;
+                    this->_token_kind = TokenKind::PercentToken;
                 }
                 return true;
             }
@@ -712,11 +634,11 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'^'))
                 {
-                    info.Kind = TokenKind::CaretEqualsToken;
+                    this->_token_kind = TokenKind::CaretEqualsToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::CaretToken;
+                    this->_token_kind = TokenKind::CaretToken;
                 }
 
                 return true;
@@ -728,15 +650,15 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'&'))
                 {
-                    info.Kind = TokenKind::AmpersandAmpersandToken;
+                    this->_token_kind = TokenKind::AmpersandAmpersandToken;
                 }
                 else if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::AmpersandEqualsToken;
+                    this->_token_kind = TokenKind::AmpersandEqualsToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::AmpersandToken;
+                    this->_token_kind = TokenKind::AmpersandToken;
                 }
 
                 return true;
@@ -748,15 +670,15 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::EqualsEqualsToken;
+                    this->_token_kind = TokenKind::EqualsEqualsToken;
                 }
                 else if (this->_cursor.First(U'>'))
                 {
-                    info.Kind = TokenKind::EqualsGreaterThanToken;
+                    this->_token_kind = TokenKind::EqualsGreaterThanToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::EqualsToken;
+                    this->_token_kind = TokenKind::EqualsToken;
                 }
 
                 return true;
@@ -766,7 +688,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::BackslashToken;
+                this->_token_kind = TokenKind::BackslashToken;
 
                 return true;
             }
@@ -777,15 +699,15 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'|'))
                 {
-                    info.Kind = TokenKind::BarBarToken;
+                    this->_token_kind = TokenKind::BarBarToken;
                 }
                 else if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::BarEqualsToken;
+                    this->_token_kind = TokenKind::BarEqualsToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::BarToken;
+                    this->_token_kind = TokenKind::BarToken;
                 }
 
                 return true;
@@ -795,7 +717,7 @@ namespace Weave::Syntax
             {
                 this->_cursor.Advance();
 
-                info.Kind = TokenKind::CommaToken;
+                this->_token_kind = TokenKind::CommaToken;
 
                 return true;
             }
@@ -806,22 +728,22 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::LessThanEqualsToken;
+                    this->_token_kind = TokenKind::LessThanEqualsToken;
                 }
                 else if (this->_cursor.First(U'<'))
                 {
                     if (this->_cursor.First(U'='))
                     {
-                        info.Kind = TokenKind::LessThanLessThanEqualsToken;
+                        this->_token_kind = TokenKind::LessThanLessThanEqualsToken;
                     }
                     else
                     {
-                        info.Kind = TokenKind::LessThanLessThanToken;
+                        this->_token_kind = TokenKind::LessThanLessThanToken;
                     }
                 }
                 else
                 {
-                    info.Kind = TokenKind::LessThanToken;
+                    this->_token_kind = TokenKind::LessThanToken;
                 }
 
                 return true;
@@ -833,22 +755,22 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'='))
                 {
-                    info.Kind = TokenKind::GreaterThanEqualsToken;
+                    this->_token_kind = TokenKind::GreaterThanEqualsToken;
                 }
                 else if (this->_cursor.First(U'>'))
                 {
                     if (this->_cursor.First(U'='))
                     {
-                        info.Kind = TokenKind::GreaterThanGreaterThanEqualsToken;
+                        this->_token_kind = TokenKind::GreaterThanGreaterThanEqualsToken;
                     }
                     else
                     {
-                        info.Kind = TokenKind::GreaterThanGreaterThanToken;
+                        this->_token_kind = TokenKind::GreaterThanGreaterThanToken;
                     }
                 }
                 else
                 {
-                    info.Kind = TokenKind::GreaterThanToken;
+                    this->_token_kind = TokenKind::GreaterThanToken;
                 }
 
                 return true;
@@ -860,11 +782,11 @@ namespace Weave::Syntax
 
                 if (this->_cursor.First(U'?'))
                 {
-                    info.Kind = TokenKind::QuestionQuestionToken;
+                    this->_token_kind = TokenKind::QuestionQuestionToken;
                 }
                 else
                 {
-                    info.Kind = TokenKind::QuestionToken;
+                    this->_token_kind = TokenKind::QuestionToken;
                 }
 
                 return true;
@@ -878,16 +800,16 @@ namespace Weave::Syntax
                 {
                     if (this->_cursor.First(U'.'))
                     {
-                        info.Kind = TokenKind::DotDotDotToken;
+                        this->_token_kind = TokenKind::DotDotDotToken;
                     }
                     else
                     {
-                        info.Kind = TokenKind::DotDotToken;
+                        this->_token_kind = TokenKind::DotDotToken;
                     }
                 }
                 else
                 {
-                    info.Kind = TokenKind::DotToken;
+                    this->_token_kind = TokenKind::DotToken;
                 }
 
                 return true;
@@ -1023,7 +945,7 @@ namespace Weave::Syntax
         {
             do
             {
-                this->_buffer.append(this->_cursor.PeekAsStringView());
+                this->_token_value.append(this->_cursor.PeekAsStringView());
                 this->_cursor.Advance();
             } while (CharTraits::IsIdentifierContinuation(this->_cursor.Peek()));
 
@@ -1090,7 +1012,7 @@ namespace Weave::Syntax
                     }
                 }
 
-                this->_buffer.push_back(static_cast<char>(current));
+                this->_token_value.push_back(static_cast<char>(current));
                 result.HasValue = true;
                 result.HasTrailingSeparator = false;
             }
@@ -1207,7 +1129,7 @@ namespace Weave::Syntax
                 return false;
             }
 
-            this->_buffer.push_back(static_cast<char>(value));
+            this->_token_value.push_back(static_cast<char>(value));
 
             return true;
         }
@@ -1221,7 +1143,7 @@ namespace Weave::Syntax
 
         if (char* it = buffer.data(); UTF8Encode(it, it + buffer.size(), c) == UnicodeConversionResult::Success)
         {
-            this->_buffer.append(buffer.data(), it);
+            this->_token_value.append(buffer.data(), it);
             return true;
         }
 
@@ -1280,7 +1202,7 @@ namespace Weave::Syntax
         if (matched >= 0)
         {
             this->_cursor.Advance();
-            this->_buffer.push_back(static_cast<char>(matched));
+            this->_token_value.push_back(static_cast<char>(matched));
             return true;
         }
 
@@ -1387,7 +1309,7 @@ namespace Weave::Syntax
                 if (not this->TryReadEscapeSequence())
                 {
                     // All we can do is to append escaped character as-is.
-                    this->_buffer.append(this->_cursor.PeekAsStringView());
+                    this->_token_value.append(this->_cursor.PeekAsStringView());
                     this->_cursor.Advance();
                 }
 
@@ -1413,7 +1335,7 @@ namespace Weave::Syntax
                 else
                 {
                     // Append whatever we decoded.
-                    this->_buffer.append(this->_cursor.PeekAsStringView());
+                    this->_token_value.append(this->_cursor.PeekAsStringView());
                     this->_cursor.Advance();
 
                     ++consumed;
@@ -1446,6 +1368,7 @@ namespace Weave::Syntax
                 this->_diagnostic.AddError(this->_cursor.GetSpanToNext(start), "invalid base prefix for binary number literal");
                 [[fallthrough]];
             case U'b':
+                this->_token_prefix.assign("0b");
                 this->_cursor.Advance();
                 return 2;
 
@@ -1453,6 +1376,7 @@ namespace Weave::Syntax
                 this->_diagnostic.AddError(this->_cursor.GetSpanToNext(start), "invalid base prefix for octal number literal");
                 [[fallthrough]];
             case U'o':
+                this->_token_prefix.assign("0o");
                 this->_cursor.Advance();
                 return 8;
 
@@ -1460,6 +1384,7 @@ namespace Weave::Syntax
                 this->_diagnostic.AddError(this->_cursor.GetSpanToNext(start), "invalid base prefix for hexadecimal number literal");
                 [[fallthrough]];
             case U'x':
+                this->_token_prefix.assign("0x");
                 this->_cursor.Advance();
                 return 16;
 
@@ -1472,7 +1397,7 @@ namespace Weave::Syntax
         return 10;
     }
 
-    void Lexer::TryReadNumberValueType(TokenInfo& info)
+    void Lexer::TryReadNumberValueType()
     {
         SourcePosition const start = this->_cursor.GetCurrentPosition();
 
@@ -1487,87 +1412,7 @@ namespace Weave::Syntax
 
             std::string_view const suffix = this->_source.GetText(suffixSpan);
 
-            if (suffix == "f16")
-            {
-                info.FloatSuffix = FloatLiteralSuffixKind::Float16;
-            }
-            else if ((suffix == "f32") or (suffix == "f"))
-            {
-                info.FloatSuffix = FloatLiteralSuffixKind::Float32;
-            }
-            else if (suffix == "f64")
-            {
-                info.FloatSuffix = FloatLiteralSuffixKind::Float64;
-            }
-            else if (suffix == "f128")
-            {
-                info.FloatSuffix = FloatLiteralSuffixKind::Float128;
-            }
-            else if (suffix == "m128")
-            {
-                info.FloatSuffix = FloatLiteralSuffixKind::Decimal128;
-            }
-            else if (suffix == "i8")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::Int8;
-            }
-            else if (suffix == "i16")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::Int16;
-            }
-            else if (suffix == "i32")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::Int32;
-            }
-            else if (suffix == "i64")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::Int64;
-            }
-            else if (suffix == "i128")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::Int128;
-            }
-            else if (suffix == "u8")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt8;
-            }
-            else if (suffix == "u16")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt16;
-            }
-            else if (suffix == "u32")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt32;
-            }
-            else if (suffix == "u64")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt64;
-            }
-            else if (suffix == "u128")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::UInt128;
-            }
-            else if (suffix == "isize")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::ISize;
-            }
-            else if (suffix == "usize")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::USize;
-            }
-            else if (suffix == "iptr")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::IntPtr;
-            }
-            else if (suffix == "uptr")
-            {
-                info.IntegerSuffix = IntegerLiteralSuffixKind::UIntPtr;
-            }
-            else
-            {
-                // Matched some additional characters after valid suffix. Report whole suffix as invalid.
-                this->_diagnostic.AddError(suffixSpan, "invalid suffix for a number literal");
-            }
+            this->_token_suffix.assign(suffix);
         }
     }
 }
