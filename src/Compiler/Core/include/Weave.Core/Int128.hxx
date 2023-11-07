@@ -174,14 +174,14 @@ namespace Weave::Builtin
         static constexpr Int128 UncheckedMultiply(Int128 left, Int128 right)
         {
             uint64_t lower;
-            uint64_t upper = Builtin::BigMul(left._lower, right._lower, lower);
+            uint64_t upper = Builtin::MultiplyHigh(left._lower, right._lower, lower);
             upper += (left._lower * right._upper) + (left._upper * right._lower);
             return Int128{upper, lower};
         }
 
         static constexpr bool CheckedMultiply(Int128& result, Int128 left, Int128 right)
         {
-            Int128 const upper = BigMul(left, right, result);
+            Int128 const upper = MultiplyHigh(left, right, result);
 
             return (!upper.IsZero() || result.IsNegative()) && (upper.IsZero() || !result.IsNegative());
         }
@@ -273,33 +273,6 @@ namespace Weave::Builtin
             return r;
         }
 
-#if false
-        static bool CheckedDivide(Int128& result, Int128 left, Int128 right)
-        {
-            if ((right._lower == UINT64_MAX) && (right._upper == UINT64_MAX) && (left._upper== 0x8000'0000'0000'0000) && (left._lower == 0))
-            {
-                return true;
-            }
-
-            uint64_t const sign = (left._upper ^ right._upper) & (uint64_t{1} << 63);
-
-            if (IsNegative(left))
-            {
-                left = ~left + Int128{1};
-            }
-
-            if (IsNegative(right))
-            {
-                right = ~right + Int128{1};
-            }
-
-            UInt128 r;
-            UInt128 q;
-
-            if (UInt128::CheckedDivide()
-        }
-#endif
-
         constexpr Int128& operator+=(Int128 const& right)
         {
             *this = UncheckedAdd(*this, right);
@@ -318,8 +291,19 @@ namespace Weave::Builtin
             return *this;
         }
 
-        constexpr Int128& operator/=(Int128 const& right) = delete;
-        constexpr Int128& operator%=(Int128 const& right) = delete;
+        constexpr Int128& operator/=(Int128 const& right)
+        {
+            Int128 remainder;
+            CheckedDivide(*this, remainder, *this, right);
+            return *this;
+        }
+
+        constexpr Int128& operator%=(Int128 const& right)
+        {
+            Int128 quotient;
+            CheckedDivide(quotient, *this, *this, right);
+            return *this;
+        }
 
 
     public:
@@ -543,10 +527,10 @@ namespace Weave::Builtin
         }
 
     public:
-        static constexpr Int128 BigMul(Int128 left, Int128 right, Int128& lower)
+        static constexpr Int128 MultiplyHigh(Int128 left, Int128 right, Int128& lower)
         {
             UInt128 ulower;
-            UInt128 const upper = UInt128::BigMul(
+            UInt128 const upper = UInt128::MultiplyHigh(
                 UInt128{
                     left.GetUpper(),
                     left.GetLower(),
@@ -574,35 +558,35 @@ namespace Weave::Builtin
         }
 
     public:
-        [[nodiscard]] static constexpr Int128 BitCompl(Int128 rhs)
+        [[nodiscard]] static constexpr Int128 BitCompl(Int128 right)
         {
             return Int128{
-                ~rhs._upper,
-                ~rhs._lower,
+                ~right._upper,
+                ~right._lower,
             };
         }
 
-        [[nodiscard]] static constexpr Int128 BitAnd(Int128 lhs, Int128 rhs)
+        [[nodiscard]] static constexpr Int128 BitAnd(Int128 left, Int128 right)
         {
             return Int128{
-                lhs._upper & rhs._upper,
-                lhs._lower & rhs._lower,
+                left._upper & right._upper,
+                left._lower & right._lower,
             };
         }
 
-        [[nodiscard]] static constexpr Int128 BitOr(Int128 lhs, Int128 rhs)
+        [[nodiscard]] static constexpr Int128 BitOr(Int128 left, Int128 right)
         {
             return Int128{
-                lhs._upper | rhs._upper,
-                lhs._lower | rhs._lower,
+                left._upper | right._upper,
+                left._lower | right._lower,
             };
         }
 
-        [[nodiscard]] static constexpr Int128 BitXor(Int128 lhs, Int128 rhs)
+        [[nodiscard]] static constexpr Int128 BitXor(Int128 left, Int128 right)
         {
             return Int128{
-                lhs._upper ^ rhs._upper,
-                lhs._lower ^ rhs._lower,
+                left._upper ^ right._upper,
+                left._lower ^ right._lower,
             };
         }
 
@@ -768,7 +752,7 @@ namespace Weave::Builtin
         {
             if (!std::is_constant_evaluated())
             {
-                constexpr double p2_127 = 170141183460469231731687303715884105728.0;
+                [[maybe_unused]] constexpr double p2_127 = 170141183460469231731687303715884105728.0;
                 WEAVE_ASSERT(value >= -p2_127);
                 WEAVE_ASSERT(std::isfinite(value));
                 WEAVE_ASSERT(value < p2_127);

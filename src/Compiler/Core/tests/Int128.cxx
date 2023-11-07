@@ -135,7 +135,7 @@ TEST_CASE("Numerics / Int128 / Comparison")
     }
 }
 
-TEST_CASE("Numerics / Int128 / BigMultiply")
+TEST_CASE("Numerics / Int128 / MultiplyHigh")
 {
     using namespace Weave::Builtin;
 
@@ -143,55 +143,55 @@ TEST_CASE("Numerics / Int128 / BigMultiply")
     {
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(Int128::Make(-5), Int128::Make(-5), lower);
+            Int128 upper = Int128::MultiplyHigh(Int128::Make(-5), Int128::Make(-5), lower);
             CHECK(lower == Int128::Make(25));
             CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(Int128::Make(-5), Int128::Make(0), lower);
+            Int128 upper = Int128::MultiplyHigh(Int128::Make(-5), Int128::Make(0), lower);
             CHECK(lower == Int128::Make(0));
             CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(Int128::Make(-5), Int128::Make(5), lower);
+            Int128 upper = Int128::MultiplyHigh(Int128::Make(-5), Int128::Make(5), lower);
             CHECK(lower == Int128::Make(-25));
             CHECK(upper == Int128::Make(-1));
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(Int128::Make(0), Int128::Make(-5), lower);
+            Int128 upper = Int128::MultiplyHigh(Int128::Make(0), Int128::Make(-5), lower);
             CHECK(lower == Int128::Make(0));
             CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(Int128::Make(0), Int128::Make(0), lower);
+            Int128 upper = Int128::MultiplyHigh(Int128::Make(0), Int128::Make(0), lower);
             CHECK(lower == Int128::Make(0));
             CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(Int128::Make(0), Int128::Make(5), lower);
+            Int128 upper = Int128::MultiplyHigh(Int128::Make(0), Int128::Make(5), lower);
             CHECK(lower == Int128::Make(0));
             CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(Int128::Make(5), Int128::Make(-5), lower);
+            Int128 upper = Int128::MultiplyHigh(Int128::Make(5), Int128::Make(-5), lower);
             CHECK(lower == Int128::Make(-25));
             CHECK(upper == Int128::Make(-1));
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(Int128::Make(5), Int128::Make(0), lower);
+            Int128 upper = Int128::MultiplyHigh(Int128::Make(5), Int128::Make(0), lower);
             CHECK(lower == Int128::Make(0));
             CHECK(upper == Int128::Make(0));
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(Int128::Make(5), Int128::Make(5), lower);
+            Int128 upper = Int128::MultiplyHigh(Int128::Make(5), Int128::Make(5), lower);
             CHECK(lower == Int128::Make(25));
             CHECK(upper == Int128::Make(0));
         }
@@ -207,151 +207,151 @@ TEST_CASE("Numerics / Int128 / BigMultiply")
 
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nu, nu, lower);
+            Int128 upper = Int128::MultiplyHigh(nu, nu, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x4000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nu, nl, lower);
+            Int128 upper = Int128::MultiplyHigh(nu, nl, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x4000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nu, zz, lower);
+            Int128 upper = Int128::MultiplyHigh(nu, zz, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nu, pl, lower);
+            Int128 upper = Int128::MultiplyHigh(nu, pl, lower);
             CHECK(lower == Int128{0x8000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0xffffffffffffffff, 0xc000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nu, pu, lower);
+            Int128 upper = Int128::MultiplyHigh(nu, pu, lower);
             CHECK(lower == Int128{0x8000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0xc000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nl, nu, lower);
+            Int128 upper = Int128::MultiplyHigh(nl, nu, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x4000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nl, nl, lower);
+            Int128 upper = Int128::MultiplyHigh(nl, nl, lower);
             CHECK(lower == Int128{0x4000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nl, zz, lower);
+            Int128 upper = Int128::MultiplyHigh(nl, zz, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nl, pl, lower);
+            Int128 upper = Int128::MultiplyHigh(nl, pl, lower);
             CHECK(lower == Int128{0xc000000000000000, 0x8000000000000000});
             CHECK(upper == Int128{0xffffffffffffffff, 0xffffffffffffffff});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(nl, pu, lower);
+            Int128 upper = Int128::MultiplyHigh(nl, pu, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x8000000000000000});
             CHECK(upper == Int128{0xffffffffffffffff, 0xc000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(zz, nu, lower);
+            Int128 upper = Int128::MultiplyHigh(zz, nu, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(zz, nl, lower);
+            Int128 upper = Int128::MultiplyHigh(zz, nl, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(zz, zz, lower);
+            Int128 upper = Int128::MultiplyHigh(zz, zz, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(zz, pl, lower);
+            Int128 upper = Int128::MultiplyHigh(zz, pl, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(zz, pu, lower);
+            Int128 upper = Int128::MultiplyHigh(zz, pu, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pl, nu, lower);
+            Int128 upper = Int128::MultiplyHigh(pl, nu, lower);
             CHECK(lower == Int128{0x8000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0xffffffffffffffff, 0xc000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pl, nl, lower);
+            Int128 upper = Int128::MultiplyHigh(pl, nl, lower);
             CHECK(lower == Int128{0xc000000000000000, 0x8000000000000000});
             CHECK(upper == Int128{0xffffffffffffffff, 0xffffffffffffffff});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pl, zz, lower);
+            Int128 upper = Int128::MultiplyHigh(pl, zz, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pl, pl, lower);
+            Int128 upper = Int128::MultiplyHigh(pl, pl, lower);
             CHECK(lower == Int128{0x3fffffffffffffff, 0x0000000000000001});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pl, pu, lower);
+            Int128 upper = Int128::MultiplyHigh(pl, pu, lower);
             CHECK(lower == Int128{0x7fffffffffffffff, 0x8000000000000001});
             CHECK(upper == Int128{0x0000000000000000, 0x3fffffffffffffff});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pu, nu, lower);
+            Int128 upper = Int128::MultiplyHigh(pu, nu, lower);
             CHECK(lower == Int128{0x8000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0xc000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pu, nl, lower);
+            Int128 upper = Int128::MultiplyHigh(pu, nl, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x8000000000000000});
             CHECK(upper == Int128{0xffffffffffffffff, 0xc000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pu, zz, lower);
+            Int128 upper = Int128::MultiplyHigh(pu, zz, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000000});
             CHECK(upper == Int128{0x0000000000000000, 0x0000000000000000});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pu, pl, lower);
+            Int128 upper = Int128::MultiplyHigh(pu, pl, lower);
             CHECK(lower == Int128{0x7fffffffffffffff, 0x8000000000000001});
             CHECK(upper == Int128{0x0000000000000000, 0x3fffffffffffffff});
         }
         {
             Int128 lower;
-            Int128 upper = Int128::BigMul(pu, pu, lower);
+            Int128 upper = Int128::MultiplyHigh(pu, pu, lower);
             CHECK(lower == Int128{0x0000000000000000, 0x0000000000000001});
             CHECK(upper == Int128{0x3fffffffffffffff, 0xffffffffffffffff});
         }

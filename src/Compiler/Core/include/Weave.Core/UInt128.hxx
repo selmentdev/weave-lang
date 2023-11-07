@@ -8,7 +8,7 @@
 
 namespace Weave::Builtin
 {
-    constexpr uint64_t BigMul(uint64_t left, uint64_t right, uint64_t& lower)
+    constexpr uint64_t MultiplyHigh(uint64_t left, uint64_t right, uint64_t& lower)
     {
         uint64_t const ll = left & 0xFFFFFFFFu;
         uint64_t const lu = left >> 32u;
@@ -133,16 +133,16 @@ namespace Weave::Builtin
             return UInt128{UINT64_MAX, UINT64_MAX};
         }
 
-        static constexpr int Compare(UInt128 self, UInt128 other)
+        static constexpr int Compare(UInt128 left, UInt128 right)
         {
-            if (self._upper != other._upper)
+            if (left._upper != right._upper)
             {
-                return (self._upper < other._upper) ? -1 : 1;
+                return (left._upper < right._upper) ? -1 : 1;
             }
 
-            if (self._lower != other._lower)
+            if (left._lower != right._lower)
             {
-                return (self._lower < other._lower) ? -1 : 1;
+                return (left._lower < right._lower) ? -1 : 1;
             }
 
             return 0;
@@ -153,83 +153,83 @@ namespace Weave::Builtin
             return (left._lower == right._lower) && (left._upper == right._upper);
         }
 
-        [[nodiscard]] constexpr bool operator<(UInt128 const& rhs) const
+        [[nodiscard]] constexpr bool operator<(UInt128 const& right) const
         {
-            return Compare(*this, rhs) < 0;
+            return Compare(*this, right) < 0;
         }
 
-        [[nodiscard]] constexpr bool operator<=(UInt128 const& rhs) const
+        [[nodiscard]] constexpr bool operator<=(UInt128 const& right) const
         {
-            return Compare(*this, rhs) <= 0;
+            return Compare(*this, right) <= 0;
         }
 
-        [[nodiscard]] constexpr bool operator>(UInt128 const& rhs) const
+        [[nodiscard]] constexpr bool operator>(UInt128 const& right) const
         {
-            return Compare(*this, rhs) > 0;
+            return Compare(*this, right) > 0;
         }
 
-        [[nodiscard]] constexpr bool operator>=(UInt128 const& rhs) const
+        [[nodiscard]] constexpr bool operator>=(UInt128 const& right) const
         {
-            return Compare(*this, rhs) >= 0;
+            return Compare(*this, right) >= 0;
         }
 
-        [[nodiscard]] constexpr bool operator==(UInt128 const& rhs) const
+        [[nodiscard]] constexpr bool operator==(UInt128 const& right) const
         {
-            return Equals(*this, rhs);
+            return Equals(*this, right);
         }
 
-        [[nodiscard]] constexpr bool operator!=(UInt128 const& rhs) const
+        [[nodiscard]] constexpr bool operator!=(UInt128 const& right) const
         {
-            return not Equals(*this, rhs);
+            return not Equals(*this, right);
         }
 
     public:
-        static constexpr bool CheckedAdd(UInt128& result, UInt128 lhs, UInt128 rhs)
+        static constexpr bool CheckedAdd(UInt128& result, UInt128 left, UInt128 right)
         {
-            result = Add(lhs, rhs);
-            return (result._upper < lhs._upper); // overflow
+            result = Add(left, right);
+            return (result._upper < left._upper); // overflow
         }
 
-        static constexpr UInt128 Add(UInt128 lhs, UInt128 rhs)
+        static constexpr UInt128 Add(UInt128 left, UInt128 right)
         {
-            uint64_t const lower = lhs._lower + rhs._lower;
+            uint64_t const lower = left._lower + right._lower;
 
             return UInt128{
-                lhs._upper + rhs._upper + ((lower < lhs._lower) ? 1 : 0), // carry
+                left._upper + right._upper + ((lower < left._lower) ? 1 : 0), // carry
                 lower,
             };
         }
 
-        static constexpr bool CheckedSubtract(UInt128& result, UInt128 lhs, UInt128 rhs)
+        static constexpr bool CheckedSubtract(UInt128& result, UInt128 left, UInt128 right)
         {
-            result = Subtract(lhs, rhs);
-            return (result._upper > lhs._upper); // underflow
+            result = Subtract(left, right);
+            return (result._upper > left._upper); // underflow
         }
 
-        static constexpr UInt128 Subtract(UInt128 lhs, UInt128 rhs)
+        static constexpr UInt128 Subtract(UInt128 left, UInt128 right)
         {
-            uint64_t const lower = lhs._lower - rhs._lower;
+            uint64_t const lower = left._lower - right._lower;
 
             return UInt128{
-                lhs._upper - rhs._upper - ((lower > lhs._lower) ? 1 : 0), // borrow
+                left._upper - right._upper - ((lower > left._lower) ? 1 : 0), // borrow
                 lower,
             };
         }
 
-        static constexpr bool CheckedMultiply(UInt128& result, UInt128 lhs, UInt128 rhs)
+        static constexpr bool CheckedMultiply(UInt128& result, UInt128 left, UInt128 right)
         {
-            return not BigMul(lhs, rhs, result).IsZero();
+            return not MultiplyHigh(left, right, result).IsZero();
         }
 
-        static constexpr UInt128 Multiply(UInt128 x, UInt128 y)
+        static constexpr UInt128 Multiply(UInt128 left, UInt128 right)
         {
             uint64_t lower;
-            uint64_t upper = Builtin::BigMul(x._lower, y._lower, lower);
-            upper += (x._lower * y._upper) + (x._upper * y._lower);
+            uint64_t upper = Builtin::MultiplyHigh(left._lower, right._lower, lower);
+            upper += (left._lower * right._upper) + (left._upper * right._lower);
             return UInt128{upper, lower};
         }
 
-        static constexpr bool CheckedMultiply2(UInt128& result, UInt128 lhs, UInt128 rhs)
+        static constexpr bool CheckedMultiply2(UInt128& result, UInt128 left, UInt128 right)
         {
             bool overflow = false;
 
@@ -240,31 +240,31 @@ namespace Weave::Builtin
             {
                 uint64_t const mask = uint64_t{1} << (i & 0x3F);
 
-                if ((lhs._upper == 0) and (lhs._lower < mask))
+                if ((left._upper == 0) and (left._lower < mask))
                 {
                     // Early exit
                     break;
                 }
 
-                if ((i >= 64) and (lhs._upper < mask))
+                if ((i >= 64) and (left._upper < mask))
                 {
                     // Early exit
                     break;
                 }
 
-                if (mask & ((i >= 64) ? lhs._upper : lhs._lower))
+                if (mask & ((i >= 64) ? left._upper : left._lower))
                 {
-                    overflow |= CheckedAdd(result, rhs, result); // NOLINT(readability-suspicious-call-argument)
+                    overflow |= CheckedAdd(result, right, result); // NOLINT(readability-suspicious-call-argument)
                 }
 
-                rhs._upper = (rhs._upper << 1) | (rhs._lower >> 63);
-                rhs._lower = (rhs._lower << 1);
+                right._upper = (right._upper << 1) | (right._lower >> 63);
+                right._lower = (right._lower << 1);
             }
 
             return overflow;
         }
 
-        static constexpr size_t countl_zero(UInt128 value)
+        static constexpr size_t CountLeadingZero(UInt128 value)
         {
             if (value._upper != 0)
             {
@@ -274,11 +274,11 @@ namespace Weave::Builtin
             return 63 - std::countl_zero(value._lower);
         }
 
-        static constexpr bool CheckedDivide(UInt128& quotient, UInt128& remainder, UInt128 lhs, UInt128 rhs)
+        static constexpr bool CheckedDivide(UInt128& quotient, UInt128& remainder, UInt128 left, UInt128 right)
         {
-            if ((rhs._upper == 0) and (rhs._lower == 1))
+            if ((right._upper == 0) and (right._lower == 1))
             {
-                quotient = lhs;
+                quotient = left;
 
                 remainder._lower = 0;
                 remainder._upper = 0;
@@ -286,22 +286,22 @@ namespace Weave::Builtin
                 return false;
             }
 
-            if ((lhs._upper == 0) and (rhs._upper == 0))
+            if ((left._upper == 0) and (right._upper == 0))
             {
                 // 64-bit fast path
-                quotient._lower = lhs._lower / rhs._lower;
+                quotient._lower = left._lower / right._lower;
                 quotient._upper = 0;
 
-                remainder._lower = lhs._lower % rhs._lower;
+                remainder._lower = left._lower % right._lower;
                 remainder._upper = 0;
 
                 // No overflow possible
                 return false;
             }
 
-            if (int const r = Compare(lhs, rhs); r == 0)
+            if (int const r = Compare(left, right); r == 0)
             {
-                // lhs / rhs => 1 rem 0
+                // left / right => 1 rem 0
                 quotient._lower = 1;
                 quotient._upper = 0;
 
@@ -315,12 +315,12 @@ namespace Weave::Builtin
                 quotient._lower = 0;
                 quotient._upper = 0;
 
-                remainder = lhs;
+                remainder = left;
 
                 return false;
             }
 
-            size_t const shift = countl_zero(lhs) - countl_zero(rhs);
+            size_t const shift = CountLeadingZero(left) - CountLeadingZero(right);
 
             if (shift == 128)
             {
@@ -328,171 +328,171 @@ namespace Weave::Builtin
                 return true;
             }
 
-            UInt128 d = BitShiftLeft(rhs, shift);
+            UInt128 d = BitShiftLeft(right, shift);
             UInt128 q{};
 
             for (size_t i = 0; i <= shift; ++i)
             {
                 q = BitShiftLeft(q, 1);
 
-                if (lhs >= d)
+                if (left >= d)
                 {
-                    lhs = lhs - d;
+                    left = left - d;
                     q._lower |= 1;
                 }
 
                 d = BitShiftRightZeroExtend(d, 1);
             }
 
-            remainder = lhs;
+            remainder = left;
             quotient = q;
 
             return false;
         }
 
-        [[nodiscard]] static constexpr UInt128 Divide(UInt128& remainder, UInt128 lhs, UInt128 rhs)
+        [[nodiscard]] static constexpr UInt128 Divide(UInt128& remainder, UInt128 left, UInt128 right)
         {
             UInt128 result{};
-            CheckedDivide(result, remainder, lhs, rhs);
+            CheckedDivide(result, remainder, left, right);
             return result;
         }
 
-        [[nodiscard]] constexpr UInt128 operator+(UInt128 rhs) const
+        [[nodiscard]] constexpr UInt128 operator+(UInt128 right) const
         {
-            return Add(*this, rhs);
+            return Add(*this, right);
         }
 
-        [[nodiscard]] constexpr UInt128 operator-(UInt128 rhs) const
+        [[nodiscard]] constexpr UInt128 operator-(UInt128 right) const
         {
-            return Subtract(*this, rhs);
+            return Subtract(*this, right);
         }
 
-        [[nodiscard]] constexpr UInt128 operator*(UInt128 rhs) const
+        [[nodiscard]] constexpr UInt128 operator*(UInt128 right) const
         {
-            return Multiply(*this, rhs);
+            return Multiply(*this, right);
         }
 
-        [[nodiscard]] constexpr UInt128 operator/(UInt128 rhs) const
+        [[nodiscard]] constexpr UInt128 operator/(UInt128 right) const
         {
             UInt128 quotient;
             UInt128 remainder;
-            CheckedDivide(quotient, remainder, *this, rhs);
+            CheckedDivide(quotient, remainder, *this, right);
             return quotient;
         }
 
-        [[nodiscard]] constexpr UInt128 operator%(UInt128 rhs) const
+        [[nodiscard]] constexpr UInt128 operator%(UInt128 right) const
         {
             UInt128 quotient;
             UInt128 remainder;
-            CheckedDivide(quotient, remainder, *this, rhs);
+            CheckedDivide(quotient, remainder, *this, right);
             return remainder;
         }
 
-        [[nodiscard]] constexpr UInt128 operator+(unsigned int rhs) const
+        [[nodiscard]] constexpr UInt128 operator+(unsigned int right) const
         {
-            return *this + UInt128{0, rhs};
+            return *this + UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator-(unsigned int rhs) const
+        [[nodiscard]] constexpr UInt128 operator-(unsigned int right) const
         {
-            return *this - UInt128{0, rhs};
+            return *this - UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator*(unsigned int rhs) const
+        [[nodiscard]] constexpr UInt128 operator*(unsigned int right) const
         {
-            return *this * UInt128{0, rhs};
+            return *this * UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator/(unsigned int rhs) const
+        [[nodiscard]] constexpr UInt128 operator/(unsigned int right) const
         {
-            return *this / UInt128{0, rhs};
+            return *this / UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator%(unsigned int rhs) const
+        [[nodiscard]] constexpr UInt128 operator%(unsigned int right) const
         {
-            return *this % UInt128{0, rhs};
+            return *this % UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator+(unsigned long rhs) const
+        [[nodiscard]] constexpr UInt128 operator+(unsigned long right) const
         {
-            return *this + UInt128{0, rhs};
+            return *this + UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator-(unsigned long rhs) const
+        [[nodiscard]] constexpr UInt128 operator-(unsigned long right) const
         {
-            return *this - UInt128{0, rhs};
+            return *this - UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator*(unsigned long rhs) const
+        [[nodiscard]] constexpr UInt128 operator*(unsigned long right) const
         {
-            return *this * UInt128{0, rhs};
+            return *this * UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator/(unsigned long rhs) const
+        [[nodiscard]] constexpr UInt128 operator/(unsigned long right) const
         {
-            return *this / UInt128{0, rhs};
+            return *this / UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator%(unsigned long rhs) const
+        [[nodiscard]] constexpr UInt128 operator%(unsigned long right) const
         {
-            return *this % UInt128{0, rhs};
+            return *this % UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator+(unsigned long long rhs) const
+        [[nodiscard]] constexpr UInt128 operator+(unsigned long long right) const
         {
-            return *this + UInt128{0, rhs};
+            return *this + UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator-(unsigned long long rhs) const
+        [[nodiscard]] constexpr UInt128 operator-(unsigned long long right) const
         {
-            return *this - UInt128{0, rhs};
+            return *this - UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator*(unsigned long long rhs) const
+        [[nodiscard]] constexpr UInt128 operator*(unsigned long long right) const
         {
-            return *this * UInt128{0, rhs};
+            return *this * UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator/(unsigned long long rhs) const
+        [[nodiscard]] constexpr UInt128 operator/(unsigned long long right) const
         {
-            return *this / UInt128{0, rhs};
+            return *this / UInt128{0, right};
         }
 
-        [[nodiscard]] constexpr UInt128 operator%(unsigned long long rhs) const
+        [[nodiscard]] constexpr UInt128 operator%(unsigned long long right) const
         {
-            return *this % UInt128{0, rhs};
+            return *this % UInt128{0, right};
         }
 
     public:
-        [[nodiscard]] static constexpr UInt128 BitCompl(UInt128 rhs)
+        [[nodiscard]] static constexpr UInt128 BitCompl(UInt128 value)
         {
             return UInt128{
-                ~rhs._upper,
-                ~rhs._lower,
+                ~value._upper,
+                ~value._lower,
                 };
         }
 
-        [[nodiscard]] static constexpr UInt128 BitAnd(UInt128 lhs, UInt128 rhs)
+        [[nodiscard]] static constexpr UInt128 BitAnd(UInt128 left, UInt128 right)
         {
             return UInt128{
-                lhs._upper & rhs._upper,
-                lhs._lower & rhs._lower,
+                left._upper & right._upper,
+                left._lower & right._lower,
                 };
         }
 
-        [[nodiscard]] static constexpr UInt128 BitOr(UInt128 lhs, UInt128 rhs)
+        [[nodiscard]] static constexpr UInt128 BitOr(UInt128 left, UInt128 right)
         {
             return UInt128{
-                lhs._upper | rhs._upper,
-                lhs._lower | rhs._lower,
+                left._upper | right._upper,
+                left._lower | right._lower,
                 };
         }
 
-        [[nodiscard]] static constexpr UInt128 BitXor(UInt128 lhs, UInt128 rhs)
+        [[nodiscard]] static constexpr UInt128 BitXor(UInt128 left, UInt128 right)
         {
             return UInt128{
-                lhs._upper ^ rhs._upper,
-                lhs._lower ^ rhs._lower,
+                left._upper ^ right._upper,
+                left._lower ^ right._lower,
                 };
         }
 
@@ -584,23 +584,23 @@ namespace Weave::Builtin
             return BitCompl(*this);
         }
 
-        [[nodiscard]] constexpr UInt128 operator&(UInt128 rhs) const
+        [[nodiscard]] constexpr UInt128 operator&(UInt128 right) const
         {
-            return BitAnd(*this, rhs);
+            return BitAnd(*this, right);
         }
 
-        [[nodiscard]] constexpr UInt128 operator|(UInt128 rhs) const
+        [[nodiscard]] constexpr UInt128 operator|(UInt128 right) const
         {
-            return BitOr(*this, rhs);
+            return BitOr(*this, right);
         }
 
-        [[nodiscard]] constexpr UInt128 operator^(UInt128 rhs) const
+        [[nodiscard]] constexpr UInt128 operator^(UInt128 right) const
         {
-            return BitXor(*this, rhs);
+            return BitXor(*this, right);
         }
 
     public:
-        static constexpr UInt128 BigMul(UInt128 left, UInt128 right, UInt128& lower)
+        static constexpr UInt128 MultiplyHigh(UInt128 left, UInt128 right, UInt128& lower)
         {
             UInt128 const ll{0, left._lower};
             UInt128 const lu{0, left._upper};

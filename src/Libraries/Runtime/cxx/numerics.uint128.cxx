@@ -1,1 +1,2 @@
-#include "weave_builtin_uint128.h"
+#include "Weave.ABI.UInt128.hxx"
+#include "Weave.ABI.UInt256.hxx"
