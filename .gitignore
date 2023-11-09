@@ -13,3 +13,5 @@ _deps
 .vs/
 out/
 enc_temp_folder/
+cmake-*/
+.idea/
