@@ -4,7 +4,7 @@
 #include "Weave.Core/Diagnostic.hxx"
 #include "Weave.Core/SourceCursor.hxx"
 #include "Weave.Core/SourceText.hxx"
-#include "Weave.syntax/BuiltinTypes.hxx"
+#include "Weave.Syntax/BuiltinTypes.hxx"
 
 namespace Weave::Syntax
 {

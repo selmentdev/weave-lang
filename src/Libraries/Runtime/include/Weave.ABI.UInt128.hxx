@@ -293,8 +293,8 @@ namespace Weave::ABI
     constexpr bool UInt128_CheckedAdd(UInt128 left, UInt128 right, UInt128& result)
     {
 #if WEAVE_BUILTIN_UINT128_NATIVE
-        result->value = left.value + right.value;
-        return result->value < left.value;
+        result.value = left.value + right.value;
+        return result.value < left.value;
 #else
         result = UInt128_Add(left, right);
         return result.upper < left.upper;
