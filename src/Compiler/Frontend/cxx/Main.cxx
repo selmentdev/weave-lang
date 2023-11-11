@@ -23,7 +23,7 @@ int main()
     {
         double dv{};
         std::string_view sv{"21.37"};
-        auto[ptr, ec] = std::from_chars(sv.data(), sv.data()+sv.size(), dv, std::chars_format::general);
+        auto [ptr, ec] = std::from_chars(sv.data(), sv.data() + sv.size(), dv, std::chars_format::general);
         WEAVE_ASSERT(ec == std::errc{});
         fmt::println("{}, {}", dv, std::to_underlying(ec));
     }
@@ -32,12 +32,13 @@ int main()
         using namespace Weave::IO;
         using namespace Weave;
 
-#if defined(WIN64)
+#if defined(WIN32)
         //if (auto file = ReadTextFile(R"(D:\repos\runtime\src\tests\JIT\jit64\opt\cse\hugeexpr1.cs)"))
-        //if (auto file = ReadTextFile(R"(D:\repos\rust\library\stdarch\crates\core_arch\src\aarch64\neon\generated.rs)"))
-        //if (auto file = ReadTextFile(R"(D:\repos\weave-lang\src\Compiler\Syntax\tests\data\Numbers.source)"))
-        //  if (auto file = ReadTextFile(R"(D:\test\windows.ui.xaml.controls.h)"))
-        if (auto file = ReadTextFile(R"(D:\test\d3d12.h)"))
+        // if (auto file = ReadTextFile(R"(D:\repos\rust\library\stdarch\crates\core_arch\src\aarch64\neon\generated.rs)"))
+         //if (auto file = ReadTextFile(R"(D:\repos\weave-lang\src\Compiler\Syntax\tests\data\Numbers.source)"))
+         if (auto file = ReadTextFile(R"(D:\repos\weave-lang\src\Compiler\Syntax\tests\data\Strings.source)"))
+        //   if (auto file = ReadTextFile(R"(D:\test\windows.ui.xaml.controls.h)"))
+        //if (auto file = ReadTextFile(R"(D:\test\d3d12.h)"))
 #else
         if (auto file = ReadTextFile(R"(/usr/include/c++/12/vector)"))
 #endif
@@ -50,18 +51,35 @@ int main()
 
             auto started = std::chrono::high_resolution_clock::now();
 
-            while (true)
+            while (lexer.Lex())
             {
-                Token* token = context.Lex(lexer);
-
-                if (token == nullptr)
+                for (auto const& t : lexer.GetLeadingTrivia())
                 {
-                    break;
+                    LineSpan const loc = text.GetLineSpan(t.Source);
+                    fmt::println("ll: {}, {}:{}-{}:{}: {}",
+                        TriviaKindTraits::GetName(t.Kind),
+                        loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
+                        t.Source.End.Offset - t.Source.Start.Offset);
+                }
+                {
+                    LineSpan const loc = text.GetLineSpan(lexer.GetSpan());
+                    fmt::println("kk: {} ('{}'): '{}' '{}' '{}', {}:{}-{}:{}: {}",
+                        TokenKindTraits::GetName(lexer.GetKind()),
+                        TokenKindTraits::GetSpelling(lexer.GetKind()),
+                        lexer.GetPrefix(), lexer.GetValue(), lexer.GetSuffix(),
+                        loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
+                        lexer.GetSpan().End.Offset - lexer.GetSpan().Start.Offset);
+                }
+                for (auto const& t : lexer.GetTrailingTrivia())
+                {
+                    LineSpan const loc = text.GetLineSpan(t.Source);
+                    fmt::println("tt: {}, {}:{}-{}:{}: {}",
+                        TriviaKindTraits::GetName(t.Kind),
+                        loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
+                        t.Source.End.Offset - t.Source.Start.Offset);
                 }
 
-                tokens.push_back(token);
-
-                if (token->GetKind() == TokenKind::EndOfFile)
+                if (lexer.GetKind() == TokenKind::EndOfFile)
                 {
                     break;
                 }

@@ -154,6 +154,8 @@ namespace Weave::Syntax
     private:
         [[nodiscard]] bool TryReadRawIdentifier();
         [[nodiscard]] bool TryReadRawStringLiteral();
+        [[nodiscard]] bool TryReadDefaultStringLiteral();
+        [[nodiscard]] bool TryReadStringPrefix();
         [[nodiscard]] bool TryReadStringLiteral();
         [[nodiscard]] bool TryReadCharacterLiteral();
         [[nodiscard]] bool TryReadNumericLiteral();

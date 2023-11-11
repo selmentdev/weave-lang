@@ -1,3 +1,9 @@
+u8"test"
+u8r#"test"#
+u16"test"
+u16r##"test"##
+u32"test"
+u32r###"test"###
 ''
 ' '
 '    '
@@ -60,4 +66,3 @@ and on
 
 r"#
 r#~"#"~#
-

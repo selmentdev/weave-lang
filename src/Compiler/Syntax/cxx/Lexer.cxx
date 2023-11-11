@@ -38,13 +38,6 @@ namespace Weave::Syntax
             return true;
         }
 
-        if (this->TryReadRawStringLiteral())
-        {
-            this->_token_kind = TokenKind::StringLiteral;
-            this->_token_span = this->_cursor.GetSpan();
-            return true;
-        }
-
         if (this->TryReadStringLiteral())
         {
             this->_token_kind = TokenKind::StringLiteral;
@@ -239,7 +232,7 @@ namespace Weave::Syntax
         return false;
     }
 
-    bool Lexer::TryReadStringLiteral()
+    bool Lexer::TryReadDefaultStringLiteral()
     {
         size_t consumed{};
         if (this->TryReadStringOrCharacterLiteralCore(U'"', consumed))
@@ -247,6 +240,62 @@ namespace Weave::Syntax
             return true;
         }
 
+        return false;
+    }
+
+    bool Lexer::TryReadStringPrefix()
+    {
+        if (this->_cursor.First(U'u'))
+        {
+            if (this->_cursor.First(U'1'))
+            {
+                if (this->_cursor.First(U'6'))
+                {
+                    this->_token_prefix.assign("u16");
+                    return true;
+                }
+            }
+            else if (this->_cursor.First(U'3'))
+            {
+                if (this->_cursor.First(U'2'))
+                {
+                    this->_token_prefix.assign("u32");
+                    return true;
+                }
+            }
+            else if (this->_cursor.First(U'8'))
+            {
+                // u8
+                this->_token_prefix.assign("u8");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool Lexer::TryReadStringLiteral()
+    {
+        SourcePosition const start = this->_cursor.GetCurrentPosition();
+
+        if (!this->TryReadStringPrefix())
+        {
+            // Not a string prefix. Continue trying as string literal.
+            this->_cursor.Reset(start);
+        }
+        
+        if (this->TryReadRawStringLiteral())
+        {
+            return true;
+        }
+
+        if (this->TryReadDefaultStringLiteral())
+        {
+            return true;
+        }
+
+        // Not a string literal.
+        this->_cursor.Reset(start);
         return false;
     }
 
