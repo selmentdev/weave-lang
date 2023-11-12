@@ -95,7 +95,7 @@ int main()
 
             for (std::string const& item : diag)
             {
-                fmt::println("{}", item);
+                fmt::println(stderr, "{}", item);
             }
 
             size_t allocated{};

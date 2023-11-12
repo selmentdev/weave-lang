@@ -79,5 +79,10 @@ namespace Weave
         {
             return this->m_Data;
         }
+
+        [[nodiscard]] CharT* GetBuffer()
+        {
+            return this->m_Data;
+        }
     };
 }

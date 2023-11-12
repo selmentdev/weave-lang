@@ -22,6 +22,11 @@ add_library(Weave.Core STATIC
  "cxx/UInt128.cxx"
  "cxx/Int128.cxx"
  "cxx/String.cxx"
+ "cxx/IO/Pipe.cxx"
+ "cxx/IO/Pipe.Posix.cxx"
+ "cxx/IO/Pipe.Windows.cxx"
+ "cxx/Process.Posix.cxx"
+ "cxx/Process.Windows.cxx"
 )
 
 target_include_directories(Weave.Core PUBLIC include)
