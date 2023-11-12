@@ -7,131 +7,235 @@
 #include <variant>
 #include <map>
 #include <filesystem>
-// CLI schema:
-// path/to/file.exe ${action} ${--command [args...]}... -- positional...
+#include <expected>
 
-namespace Weave
+namespace Weave::Cli
 {
-    struct CommandLineOption
+    enum class OptionArity
     {
-        std::string_view Name;
-        std::string_view ShortName;
-        std::string_view Description;
-        bool Required;
-        bool NeedsValue;
-        bool MultipleValues;
-        std::function<void(std::optional<std::string_view> const& value)> Callback;
+        None,
+        Single,
+        Multiple,
     };
 
-    std::optional<std::string_view> Parse(
-        std::span<char*> args,
-        std::span<CommandLineOption const> options,
-        std::vector<std::string_view>* tail)
+    enum class OptionUsage
     {
-        std::map<CommandLineOption const*, size_t> counts{};
-        std::optional<std::string_view> action{};
+        Required,
+        Optional,
+    };
 
-        auto arg = std::next(args.begin());
+    struct Option
+    {
+        std::string_view Name{};
+        std::string_view ShortName{};
+        std::string_view Description{};
+        std::string_view Hint{};
+        OptionArity Arity{};
+        OptionUsage Usage{};
+    };
 
-        if (arg != args.end())
+    class Parser;
+
+    class Matched
+    {
+        friend class Parser;
+
+    private:
+        std::vector<std::string_view> m_Names{};
+        std::vector<std::pair<size_t, std::string_view>> m_Values{};
+        std::vector<std::string_view> m_Positional{};
+
+    private:
+        Matched(
+            std::vector<std::string_view>&& names,
+            std::vector<std::pair<size_t, std::string_view>>&& values,
+            std::vector<std::string_view>&& positional)
+            : m_Names{names}
+            , m_Values{values}
+            , m_Positional{positional}
         {
-            if (std::string_view view_action{*arg}; !view_action.starts_with('-'))
-            {
-                // Consume action
-                action = view_action;
-                ++arg;
-            }
         }
 
-        bool positional = false;
-
-        for (; arg != args.end(); ++arg)
+    public:
+        std::vector<std::string_view> GetValues(std::string_view name) const
         {
-            std::string_view name{*arg};
+            std::vector<std::string_view> result{};
 
-            if (name == "--")
+            for (auto const& [index, value] : this->m_Values)
             {
-                positional = true;
-                continue;
-            }
-
-            if (!name.starts_with('-'))
-            {
-                positional = true;
-            }
-
-            if (positional)
-            {
-                if (tail != nullptr)
+                if (this->m_Names[index] == name)
                 {
-                    tail->emplace_back(name);
+                    result.emplace_back(value);
                 }
             }
-            else
+
+            return result;
+        }
+
+        std::optional<std::string_view> GetValue(std::string_view name) const
+        {
+            for (auto const& [index, value] : this->m_Values)
             {
-                auto option = std::find_if(options.begin(), options.end(), [&](CommandLineOption const& opt)
-                    {
-                        return opt.Name == name || opt.ShortName == name;
-                    });
-
-                if (option != options.end())
+                if (this->m_Names[index] == name)
                 {
-                    // Found option.
-                    size_t& count = counts[&*option];
-                    ++count;
+                    return value;
+                }
+            }
 
-                    if ((not option->MultipleValues) and (count != 1))
-                    {
-                        // Error: Option can only be specified once.
-                        fmt::println("Option '{}' specified more than once", name);
-                    }
+            return std::nullopt;
+        }
 
-                    if (option->NeedsValue)
+        std::span<std::string_view const> GetPositional() const
+        {
+            return this->m_Positional;
+        }
+
+        bool HasFlag(std::string_view name) const
+        {
+            return std::find(this->m_Names.begin(), this->m_Names.end(), name) != this->m_Names.end();
+        }
+    };
+
+    struct ParseError final
+    {
+        std::string_view Message{};
+        std::string_view Option{};
+    };
+
+    class Parser final
+    {
+    private:
+        std::vector<Option> m_Options{};
+
+        Option const* FindOption(std::string_view name) const
+        {
+            for (auto const& option : this->m_Options)
+            {
+                if (option.Name == name || option.ShortName == name)
+                {
+                    return &option;
+                }
+            }
+
+            return nullptr;
+        }
+
+    public:
+        std::span<Option const> GetOptions() const
+        {
+            return this->m_Options;
+        }
+
+        void Add(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint, OptionArity arity, OptionUsage usage)
+        {
+            WEAVE_ASSERT(not name.empty());
+
+            this->m_Options.push_back(Option{
+                .Name = name,
+                .ShortName = shortName,
+                .Description = description,
+                .Hint = hint,
+                .Arity = arity,
+                .Usage = usage,
+            });
+        }
+
+        std::expected<Matched, ParseError> Parse(std::span<const char*> args) const&
+        {
+            std::vector<std::string_view> resultNames{};
+            std::vector<std::pair<size_t, std::string_view>> resultValues{};
+            std::vector<std::string_view> resultPositional{};
+
+            bool parsePositional = false;
+
+            for (auto it = args.begin(); it != args.end(); ++it)
+            {
+                std::string_view item{*it};
+
+                if (item == "--")
+                {
+                    parsePositional = true;
+                    continue;
+                }
+
+                if (!item.starts_with('-'))
+                {
+                    parsePositional = true;
+                }
+
+                if (parsePositional)
+                {
+                    resultPositional.emplace_back(item);
+                }
+                else
+                {
+                    if (Option const* option = this->FindOption(item); option != nullptr)
                     {
-                        // Option needs a value.
-                        if (std::next(arg) < args.end())
+                        // Found option. Get or add it to names by index.
+                        size_t optionIndex;
+                        bool added = false;
+
+                        if (auto optit = std::find(resultNames.begin(), resultNames.end(), option->Name); optit != resultNames.end())
                         {
-                            // Consume value.
-                            arg = std::next(arg);
-                            std::string_view value{*arg};
-                            option->Callback(value);
+                            optionIndex = std::distance(resultNames.begin(), optit);
                         }
                         else
                         {
-                            // Error: Missing value.
-                            fmt::println("Missing value for option '{}'", name);
+                            optionIndex = resultNames.size();
+                            resultNames.emplace_back(option->Name);
+                            added = true;
+                        }
+
+                        // Verify if option can be set multiple times.
+                        if (option->Arity != OptionArity::Multiple)
+                        {
+                            if (not added)
+                            {
+                                return std::unexpected(ParseError{.Message = "Option already parsed", .Option = item});
+                            }
+                        }
+
+                        if (option->Arity != OptionArity::None)
+                        {
+                            ++it;
+
+                            if (it == args.end())
+                            {
+                                return std::unexpected(ParseError{.Message = "Missing value", .Option = item});
+                            }
+
+                            std::string_view value{*it};
+
+                            resultValues.emplace_back(optionIndex, value);
                         }
                     }
                     else
                     {
-                        // Option does not need a value.
-                        option->Callback(std::nullopt);
+                        return std::unexpected(ParseError{.Message = "Unknown option", .Option = item});
                     }
                 }
-                else
-                {
-                    // Error: Unknown option.
-                    fmt::println("Unknown option '{}'", name);
-                }
             }
-        }
 
-        // Validate required options.
-        for (CommandLineOption const& option : options)
-        {
-            if (option.Required)
+            // Verify if all required options are present.
+            for (auto const& option : this->m_Options)
             {
-                auto it = counts.find(&option);
-                if (it == counts.end())
+                if (option.Usage == OptionUsage::Required)
                 {
-                    // Error: Missing required option.
-                    fmt::println("Missing required option '{}'", option.Name);
+                    if (std::find(resultNames.begin(), resultNames.end(), option.Name) == resultNames.end())
+                    {
+                        return std::unexpected(ParseError{.Message = "Missing required option", .Option = option.Name});
+                    }
                 }
             }
-        }
 
-        return action;
-    }
+            return Matched{
+                std::move(resultNames),
+                std::move(resultValues),
+                std::move(resultPositional),
+            };
+        }
+    };
+
 }
 
 int main(int argc, char** argv)
@@ -143,143 +247,92 @@ int main(int argc, char** argv)
     }
     fmt::println("--- args-end ---");
 
-    std::optional<std::string_view> exeName{};
-    std::optional<std::string_view> config{};
-    std::optional<std::string_view> workingDirectory{};
-    std::vector<std::string_view> compilerArgs{};
-    std::vector<std::string_view> tail{};
+    using namespace Weave::Cli;
+    Parser parser{};
+    parser.Add("--exe", "", "Path to executable", "FILE", OptionArity::Single, OptionUsage::Required);
+    parser.Add("--working-directory", "-W", "Working directory", "PATH", OptionArity::Single, OptionUsage::Required);
+    parser.Add("--codegen", "-C", "Code generator options", "OPT[=VALUE]", OptionArity::Multiple, OptionUsage::Optional);
+    parser.Add("--config", "", "Configuration", "[release|debug|checked]", OptionArity::Single, OptionUsage::Optional);
+    parser.Add("--verbose", "-v", "Use verbose output", "", OptionArity::None, OptionUsage::Optional);
+    parser.Add("--version", "-V", "Prints version information", "", OptionArity::None, OptionUsage::Optional);
+    parser.Add("--help", "-h", "Prints help", "", OptionArity::None, OptionUsage::Optional);
 
-    Weave::CommandLineOption options[]{
-        {
-            .Name = "--exe",
-            .Required = true,
-            .NeedsValue = true,
-            .Callback = [&](std::optional<std::string_view> const& value)
-            {
-                exeName = value;
-            },
-        },
-        {
-            .Name = "--config",
-            .Required = false,
-            .NeedsValue = true,
-            .Callback = [&](std::optional<std::string_view> const& value)
-            {
-                config = value;
-            },
-        },
-        {
-            .Name = "--working-directory",
-            .Required = true,
-            .NeedsValue = true,
-            .Callback = [&](std::optional<std::string_view> const& value)
-            {
-                workingDirectory = value;
-            },
-        },
-        {
-            .Name = "--compiler",
-            .ShortName = "-C",
-            .Required = false,
-            .NeedsValue = true,
-            .MultipleValues = true,
-            .Callback = [&](std::optional<std::string_view> const& value)
-            {
-                compilerArgs.emplace_back(*value);
-            },
-        },
-    };
-
-    auto const action = Weave::Parse(
-        std::span(argv, argc),
-        options,
-        &tail);
-
-    if (action == "help")
+    if (auto r = parser.Parse(std::span{const_cast<const char**>(argv + 1), static_cast<size_t>(argc - 1)}); !r.has_value())
     {
-        //auto max = std::max_element(std::begin(options), std::end(options), [](Weave::CommandLineOption const& left, Weave::CommandLineOption const& right)
-        //    {
-        //        size_t const max_left = std::max(left.Name.length(), left.ShortName.length());
-        //        size_t const max_right = std::max(right.Name.length(), right.ShortName.length());
-        //        return max_left < max_right;
-        //    });
+        ParseError const& e = r.error();
+        fmt::println(stderr, "{}: {}", e.Message, e.Option);
+        return EXIT_FAILURE;
+    }
+    else
+    {
+        Matched const& m = *r;
 
-        fmt::println("Usage: {} action [options]", std::filesystem::path{argv[0]}.filename().string());
-
-        for (auto const& option: options)
+        if (auto v = m.GetValue("--exe"))
         {
-            fmt::print("  ");
-
-            if (not option.Name.empty())
-            {
-                fmt::print("{} ", option.Name);
-            }
-
-            if (not option.ShortName.empty())
-            {
-                fmt::print("{} ", option.ShortName);
-            }
-
-            if (not option.Description.empty())
-            {
-                fmt::print("- {}", option.Description);
-            }
-
-            fmt::println("");
+            fmt::println("exe: {}", *v);
         }
 
-        return EXIT_SUCCESS;
-    }
-
-    fmt::println("action: {}", action.value_or("<none>"));
-
-    fmt::println("--exe: '{}'", exeName.value_or("<nullopt>"));
-    fmt::println("--working-directory: '{}'", workingDirectory.value_or("<nullopt>"));
-    fmt::println("--config: '{}'", config.value_or("<nullopt>"));
-    fmt::println("--- compiler-options-begin ---");
-    for (auto const& item : compilerArgs)
-    {
-        fmt::println("-: '{}'", item);
-    }
-    fmt::println("--- compiler-options-end ---");
-    fmt::println("--- tail-begin ---");
-    for (auto const& item : tail)
-    {
-        fmt::println("-: '{}'", item);
-    }
-    fmt::println("--- tail-end ---");
-
-    //exeName = R"(D:\repos\weave-lang\out\build\x64-Debug\src\Compiler\Frontend\weave-frontend.exe)";
-    //workingDirectory = R"(D:\repos\weave-lang\src\Compiler\Syntax\tests)";
-    std::filesystem::path const wd{workingDirectory.value()};
-
-    std::filesystem::recursive_directory_iterator it{wd};
-
-    for (auto const& entry : it)
-    {
-        fmt::println("{}", entry.path().string());
-
-        if (entry.path().extension() != ".source")
+        for (auto v : m.GetValues("--codegen"))
         {
-            continue;
+            fmt::println("codegen: {}", v);
         }
 
-        std::string output{};
-        std::string error{};
-        
-        if (auto ret = Weave::Execute(std::string{exeName.value()}.c_str(), entry.path().string().c_str(), nullptr, output, error))
+        for (auto v : m.GetPositional())
         {
-            fmt::println("ret: {}", *ret);
-
-            //fmt::println("output:");
-            //puts(output.c_str());
-
-            //fmt::println("error:");
-            //puts(error.c_str());
+            fmt::println("positional: {}", v);
         }
-        else
+
+        if (m.HasFlag("--help"))
         {
-            fmt::println("Failed to spawn child process");
+            for (auto const& option : parser.GetOptions())
+            {
+                fmt::println("    {:>2} {} {}", option.ShortName, option.Name, option.Hint);
+
+                if (not option.Description.empty())
+                {
+                    fmt::println("                {}", option.Description);
+                }
+            }
+
+            return EXIT_SUCCESS;
+        }
+
+        auto exeName = m.GetValue("--exe");
+        auto workingDirectory = m.GetValue("--working-directory");
+        auto compilerArgs = m.GetValues("--codegen");
+
+        // exeName = R"(D:\repos\weave-lang\out\build\x64-Debug\src\Compiler\Frontend\weave-frontend.exe)";
+        // workingDirectory = R"(D:\repos\weave-lang\src\Compiler\Syntax\tests)";
+        std::filesystem::path const wd{workingDirectory.value()};
+
+        std::filesystem::recursive_directory_iterator it{wd};
+
+        for (auto const& entry : it)
+        {
+            fmt::println("{}", entry.path().string());
+
+            if (entry.path().extension() != ".source")
+            {
+                continue;
+            }
+
+            std::string output{};
+            std::string error{};
+
+            if (auto ret = Weave::Execute(std::string{exeName.value()}.c_str(), entry.path().string().c_str(), nullptr, output, error))
+            {
+                fmt::println("ret: {}", *ret);
+
+                // fmt::println("output:");
+                // puts(output.c_str());
+
+                // fmt::println("error:");
+                // puts(error.c_str());
+            }
+            else
+            {
+                fmt::println("Failed to spawn child process");
+            }
         }
     }
 
