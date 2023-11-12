@@ -1,6 +1,7 @@
 #include "Weave.Core/IO/FileHandle.hxx"
 
 #if defined(__linux__)
+#include "Utils.Posix.hxx"
 
 #include <cassert>
 #include <cerrno>
@@ -64,40 +65,6 @@ namespace Weave::IO
         }
 
         return result;
-    }
-
-    constexpr FileSystemError TranslateErrno(int error)
-    {
-        switch (error)
-        {
-        case EACCES:
-        case EBADF:
-        case EPERM:
-            return FileSystemError::AccessDenied;
-
-        case ENOENT:
-            return FileSystemError::FileNotFound;
-
-        case ENOTDIR:
-            return FileSystemError::DirectoryNotFound;
-
-        case ENAMETOOLONG:
-            return FileSystemError::PathTooLong;
-
-        case EWOULDBLOCK:
-            return FileSystemError::SharingViolation;
-
-        case ECANCELED:
-            return FileSystemError::OperationCancelled;
-
-        case EEXIST:
-            return FileSystemError::FileExists;
-
-        default:
-            break;
-        }
-
-        return FileSystemError::InvalidOperation;
     }
 
     static int ToFileDescriptor(void* handle)

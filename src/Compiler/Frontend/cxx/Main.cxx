@@ -17,8 +17,9 @@
 
 #include <charconv>
 #include <chrono>
+#include <cstdlib>
 
-int main()
+int main(int argc, char* argv[])
 {
     {
         double dv{};
@@ -32,16 +33,13 @@ int main()
         using namespace Weave::IO;
         using namespace Weave;
 
-#if defined(WIN32)
-        //if (auto file = ReadTextFile(R"(D:\repos\runtime\src\tests\JIT\jit64\opt\cse\hugeexpr1.cs)"))
-        // if (auto file = ReadTextFile(R"(D:\repos\rust\library\stdarch\crates\core_arch\src\aarch64\neon\generated.rs)"))
-         //if (auto file = ReadTextFile(R"(D:\repos\weave-lang\src\Compiler\Syntax\tests\data\Numbers.source)"))
-         if (auto file = ReadTextFile(R"(D:\repos\weave-lang\src\Compiler\Syntax\tests\data\Strings.source)"))
-        //   if (auto file = ReadTextFile(R"(D:\test\windows.ui.xaml.controls.h)"))
-        //if (auto file = ReadTextFile(R"(D:\test\d3d12.h)"))
-#else
-        if (auto file = ReadTextFile(R"(/usr/include/c++/12/vector)"))
-#endif
+        if (argc != 2)
+        {
+            fmt::println(stderr, "invalid number of arguments");
+            return EXIT_FAILURE;
+        }
+
+        if (auto file = ReadTextFile(argv[1]))
         {
             std::vector<Token*> tokens{};
             DiagnosticSink diagnostic{"<source>"};

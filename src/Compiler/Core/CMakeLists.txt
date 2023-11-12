@@ -11,6 +11,7 @@ add_library(Weave.Core STATIC
  "cxx/IO/FileSystem.Windows.cxx"
  "cxx/IO/FileWriter.cxx"
  "cxx/IO/Utils.Windows.cxx"
+ "cxx/IO/Utils.Posix.cxx"
  "cxx/Platform/PageAllocator.cxx"
  "cxx/Platform/Windows.cxx"
  "cxx/SourceCursor.cxx"

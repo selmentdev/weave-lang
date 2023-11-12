@@ -4,6 +4,7 @@
 #include <vector>
 #include <expected>
 #include <span>
+#include <utility>
 
 #include "Weave.Core/IO/FileSystemError.hxx"
 

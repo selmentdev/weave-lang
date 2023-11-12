@@ -6,7 +6,7 @@
 #include <functional>
 #include <variant>
 #include <map>
-
+#include <filesystem>
 // CLI schema:
 // path/to/file.exe ${action} ${--command [args...]}... -- positional...
 
@@ -213,23 +213,37 @@ int main(int argc, char** argv)
     }
     fmt::println("--- tail-end ---");
 
-#if false
-    std::string output{};
-    std::string error{};
-    if (auto ret = Weave::Execute(std::string{exeName.value()}.c_str(), nullptr, nullptr, output, error))
-    {
-        fmt::println("ret: {}", *ret);
+    std::filesystem::path const wd{workingDirectory.value()};
 
-        fmt::println("output:");
-        puts(output.c_str());
+    std::filesystem::recursive_directory_iterator it{wd};
 
-        fmt::println("error:");
-        puts(error.c_str());
-    }
-    else
+    for (auto const& entry : it)
     {
-        fmt::println("Failed to spawn child process");
+        fmt::println("{}", entry.path().string());
+
+        if (entry.path().extension() != ".source")
+        {
+            continue;
+        }
+
+        std::string output{};
+        std::string error{};
+        
+        if (auto ret = Weave::Execute(std::string{exeName.value()}.c_str(), entry.path().string().c_str(), nullptr, output, error))
+        {
+            fmt::println("ret: {}", *ret);
+
+            fmt::println("output:");
+            puts(output.c_str());
+
+            fmt::println("error:");
+            puts(error.c_str());
+        }
+        else
+        {
+            fmt::println("Failed to spawn child process");
+        }
     }
-#endif
+
     return EXIT_SUCCESS;
 }

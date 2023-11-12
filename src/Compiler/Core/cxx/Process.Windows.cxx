@@ -116,7 +116,6 @@ namespace Weave
 
             do
             {
-
                 while (Read(pipeOutput, bufferOutput).value_or(0) > 0)
                 {
                     output.append(bufferOutput);
