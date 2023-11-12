@@ -128,7 +128,7 @@ namespace Weave::Cli
 
         void Add(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint, OptionArity arity, OptionUsage usage)
         {
-            WEAVE_ASSERT(not name.empty());
+            WEAVE_ASSERT(not name.empty() or not shortName.empty());
 
             this->m_Options.push_back(Option{
                 .Name = name,
@@ -173,26 +173,21 @@ namespace Weave::Cli
                     {
                         // Found option. Get or add it to names by index.
                         size_t optionIndex;
-                        bool added = false;
 
                         if (auto optit = std::find(resultNames.begin(), resultNames.end(), option->Name); optit != resultNames.end())
                         {
+                            // Verify if option can be set multiple times.
+                            if (option->Arity != OptionArity::Multiple)
+                            {
+                                return std::unexpected(ParseError{.Message = "Option already parsed", .Option = item});
+                            }
+
                             optionIndex = std::distance(resultNames.begin(), optit);
                         }
                         else
                         {
                             optionIndex = resultNames.size();
                             resultNames.emplace_back(option->Name);
-                            added = true;
-                        }
-
-                        // Verify if option can be set multiple times.
-                        if (option->Arity != OptionArity::Multiple)
-                        {
-                            if (not added)
-                            {
-                                return std::unexpected(ParseError{.Message = "Option already parsed", .Option = item});
-                            }
                         }
 
                         if (option->Arity != OptionArity::None)
@@ -256,6 +251,7 @@ int main(int argc, char** argv)
     parser.Add("--verbose", "-v", "Use verbose output", "", OptionArity::None, OptionUsage::Optional);
     parser.Add("--version", "-V", "Prints version information", "", OptionArity::None, OptionUsage::Optional);
     parser.Add("--help", "-h", "Prints help", "", OptionArity::None, OptionUsage::Optional);
+    parser.Add("", "-O", "Output", "FILE", OptionArity::Single, OptionUsage::Optional);
 
     if (auto r = parser.Parse(std::span{const_cast<const char**>(argv + 1), static_cast<size_t>(argc - 1)}); !r.has_value())
     {

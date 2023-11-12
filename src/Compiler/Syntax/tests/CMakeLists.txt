@@ -13,18 +13,13 @@ add_test(
 add_test(
     NAME        weave-compiletest-syntax-tests
     COMMAND     Weave.CompileTest
-        test
-        --config $<CONFIG>
-        --config $<CONFIG>
-        --config $<CONFIG>
-        --config $<CONFIG>
         --exe $<TARGET_FILE:Weave.Frontend>
         --working-directory ${CMAKE_CURRENT_SOURCE_DIR}
-        --unknown-switch
         -C name=value
         -C opt=3
         -C debug=false
         --
+        --unknown-switch
         positional
         --options
         -a -r -e
