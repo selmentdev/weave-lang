@@ -120,12 +120,6 @@ namespace Weave::Cli
             return nullptr;
         }
 
-    public:
-        std::span<Option const> GetOptions() const
-        {
-            return this->m_Options;
-        }
-
         void Add(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint, OptionArity arity, OptionUsage usage)
         {
             WEAVE_ASSERT(not name.empty() or not shortName.empty());
@@ -138,6 +132,37 @@ namespace Weave::Cli
                 .Arity = arity,
                 .Usage = usage,
             });
+        }
+
+    public:
+        std::span<Option const> GetOptions() const
+        {
+            return this->m_Options;
+        }
+
+        void AddFlag(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint)
+        {
+            this->Add(name, shortName, description, hint, OptionArity::None, OptionUsage::Optional);
+        }
+
+        void AddSingle(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint)
+        {
+            this->Add(name, shortName, description, hint, OptionArity::Single, OptionUsage::Optional);
+        }
+
+        void AddSingleRequired(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint)
+        {
+            this->Add(name, shortName, description, hint, OptionArity::Single, OptionUsage::Required);
+        }
+
+        void AddMultiple(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint)
+        {
+            this->Add(name, shortName, description, hint, OptionArity::Multiple, OptionUsage::Optional);
+        }
+
+        void AddMultipleRequired(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint)
+        {
+            this->Add(name, shortName, description, hint, OptionArity::Multiple, OptionUsage::Required);
         }
 
         std::expected<Matched, ParseError> Parse(std::span<const char*> args) const&
@@ -244,14 +269,14 @@ int main(int argc, char** argv)
 
     using namespace Weave::Cli;
     Parser parser{};
-    parser.Add("--exe", "", "Path to executable", "FILE", OptionArity::Single, OptionUsage::Required);
-    parser.Add("--working-directory", "-W", "Working directory", "PATH", OptionArity::Single, OptionUsage::Required);
-    parser.Add("--codegen", "-C", "Code generator options", "OPT[=VALUE]", OptionArity::Multiple, OptionUsage::Optional);
-    parser.Add("--config", "", "Configuration", "[release|debug|checked]", OptionArity::Single, OptionUsage::Optional);
-    parser.Add("--verbose", "-v", "Use verbose output", "", OptionArity::None, OptionUsage::Optional);
-    parser.Add("--version", "-V", "Prints version information", "", OptionArity::None, OptionUsage::Optional);
-    parser.Add("--help", "-h", "Prints help", "", OptionArity::None, OptionUsage::Optional);
-    parser.Add("", "-O", "Output", "FILE", OptionArity::Single, OptionUsage::Optional);
+    parser.AddSingleRequired("--exe", "", "Path to executable", "FILE");
+    parser.AddSingleRequired("--working-directory", "-W", "Working directory", "PATH");
+    parser.AddSingleRequired("", "-O", "Output", "FILE");
+    parser.AddMultiple("--codegen", "-C", "Code generator options", "OPT[=VALUE]");
+    parser.AddMultiple("--config", "", "Configuration", "[release|debug|checked]");
+    parser.AddFlag("--verbose", "-v", "Use verbose output", "");
+    parser.AddFlag("--version", "-V", "Prints version information", "");
+    parser.AddFlag("--help", "-h", "Prints help", "");
 
     if (auto r = parser.Parse(std::span{const_cast<const char**>(argv + 1), static_cast<size_t>(argc - 1)}); !r.has_value())
     {
