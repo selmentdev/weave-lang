@@ -195,6 +195,42 @@ int main(int argc, char** argv)
         options,
         &tail);
 
+    if (action == "help")
+    {
+        //auto max = std::max_element(std::begin(options), std::end(options), [](Weave::CommandLineOption const& left, Weave::CommandLineOption const& right)
+        //    {
+        //        size_t const max_left = std::max(left.Name.length(), left.ShortName.length());
+        //        size_t const max_right = std::max(right.Name.length(), right.ShortName.length());
+        //        return max_left < max_right;
+        //    });
+
+        fmt::println("Usage: {} action [options]", std::filesystem::path{argv[0]}.filename().string());
+
+        for (auto const& option: options)
+        {
+            fmt::print("  ");
+
+            if (not option.Name.empty())
+            {
+                fmt::print("{} ", option.Name);
+            }
+
+            if (not option.ShortName.empty())
+            {
+                fmt::print("{} ", option.ShortName);
+            }
+
+            if (not option.Description.empty())
+            {
+                fmt::print("- {}", option.Description);
+            }
+
+            fmt::println("");
+        }
+
+        return EXIT_SUCCESS;
+    }
+
     fmt::println("action: {}", action.value_or("<none>"));
 
     fmt::println("--exe: '{}'", exeName.value_or("<nullopt>"));
@@ -213,6 +249,8 @@ int main(int argc, char** argv)
     }
     fmt::println("--- tail-end ---");
 
+    //exeName = R"(D:\repos\weave-lang\out\build\x64-Debug\src\Compiler\Frontend\weave-frontend.exe)";
+    //workingDirectory = R"(D:\repos\weave-lang\src\Compiler\Syntax\tests)";
     std::filesystem::path const wd{workingDirectory.value()};
 
     std::filesystem::recursive_directory_iterator it{wd};
@@ -233,11 +271,11 @@ int main(int argc, char** argv)
         {
             fmt::println("ret: {}", *ret);
 
-            fmt::println("output:");
-            puts(output.c_str());
+            //fmt::println("output:");
+            //puts(output.c_str());
 
-            fmt::println("error:");
-            puts(error.c_str());
+            //fmt::println("error:");
+            //puts(error.c_str());
         }
         else
         {

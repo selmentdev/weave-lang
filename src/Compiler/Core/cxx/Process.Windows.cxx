@@ -6,6 +6,8 @@
 #include "Weave.Core/Platform/Compiler.hxx"
 #include "Weave.Core/Platform/Windows.hxx"
 
+#include <fmt/format.h>
+
 WEAVE_EXTERNAL_HEADERS_BEGIN
 
 #define NOMINMAX
@@ -72,8 +74,13 @@ namespace Weave
 
         DWORD constexpr flags = CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT;
 
+        // C runtime expects that first argument is the name of the executable.
+        std::string commandLine = (args != nullptr)
+            ? fmt::format("\"{}\" {}", path, args)
+            : fmt::format("\"{}\"", path);
+
         StringBuffer<wchar_t, 512> wPath{};
-        StringBuffer<wchar_t, 512> wArgs{};
+        StringBuffer<wchar_t, 512> wCommandLine{};
         StringBuffer<wchar_t, 512> wWorkingDirectory{};
 
         if (!WidenString(wPath, path))
@@ -81,7 +88,7 @@ namespace Weave
             return std::nullopt;
         }
 
-        if (!WidenString(wArgs, args ? args : ""))
+        if (!WidenString(wCommandLine, commandLine))
         {
             return std::nullopt;
         }
@@ -95,7 +102,7 @@ namespace Weave
 
         if (CreateProcessW(
                 path != nullptr ? wPath.GetBuffer() : nullptr,
-                args != nullptr ? wArgs.GetBuffer() : nullptr,
+                args != nullptr ? wCommandLine.GetBuffer() : nullptr,
                 &sa,
                 &sa,
                 TRUE,

@@ -21,12 +21,19 @@
 
 int main(int argc, char* argv[])
 {
+    fmt::println("--- args-begin ---");
+    for (int i = 0; i < argc; ++i)
+    {
+        fmt::println("{}: '{}'", i, argv[i]);
+    }
+    fmt::println("--- args-end ---");
     {
         double dv{};
         std::string_view sv{"21.37"};
         auto [ptr, ec] = std::from_chars(sv.data(), sv.data() + sv.size(), dv, std::chars_format::general);
         WEAVE_ASSERT(ec == std::errc{});
         fmt::println("{}, {}", dv, std::to_underlying(ec));
+        fflush(stdout);
     }
     {
         using namespace Weave::Syntax;
