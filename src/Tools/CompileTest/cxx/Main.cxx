@@ -35,8 +35,7 @@ int main(int argc, char** argv)
 
     if (auto r = parser.Parse(std::span{const_cast<const char**>(argv + 1), static_cast<size_t>(argc - 1)}); !r.has_value())
     {
-        CommandLineErrorResult const& e = r.error();
-        fmt::println(stderr, "{}: {}", e.Error, e.Option);
+        fmt::println(stderr, "{}", r.error());
         return EXIT_FAILURE;
     }
     else

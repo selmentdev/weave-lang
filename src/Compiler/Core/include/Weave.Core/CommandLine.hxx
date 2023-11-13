@@ -190,3 +190,17 @@ struct fmt::formatter<Weave::CommandLineError>
         return formatter<std::string_view>::format(result, context);
     }
 };
+
+template <>
+struct fmt::formatter<Weave::CommandLineErrorResult>
+{
+    constexpr auto parse(auto& context)
+    {
+        return context.begin();
+    }
+
+    constexpr auto format(Weave::CommandLineErrorResult const& value, auto& context)
+    {
+        return fmt::format_to(context.out(), "{}: {}", value.Error, value.Option);
+    }
+};
