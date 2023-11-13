@@ -1,6 +1,8 @@
 #include "Weave.Core/CommandLine.hxx"
 #include "Weave.Core/Assert.hxx"
 
+#include <algorithm>
+
 namespace Weave
 {
     std::vector<std::string_view> CommandLineParseResult::GetValues(std::string_view name) const

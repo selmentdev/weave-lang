@@ -1,6 +1,7 @@
 #include "Weave.Core/Assert.hxx"
 #include "Weave.Core/Process.hxx"
 #include "Weave.Core/CommandLine.hxx"
+#include "Weave.Core/IO/FileSystem.hxx"
 #include <span>
 #include <string_view>
 #include <vector>
@@ -98,13 +99,26 @@ int main(int argc, char** argv)
 
             if (auto ret = Weave::Execute(std::string{exeName.value()}.c_str(), entry.path().string().c_str(), nullptr, output, error))
             {
-                fmt::println("ret: {}", *ret);
+                std::filesystem::path outputFilePath = entry.path();
+                outputFilePath.replace_extension(".output");
 
-                // fmt::println("output:");
-                // puts(output.c_str());
+                std::filesystem::path errorFilePath = entry.path();
+                errorFilePath.replace_extension(".error");
 
-                // fmt::println("error:");
-                // puts(error.c_str());
+                // Try to read output and error files
+                if (auto const expected = Weave::IO::ReadTextFile(outputFilePath.string()).value_or(""); expected != output)
+                {
+                    fmt::println("output file content does not match");
+
+                    Weave::IO::WriteTextFile(outputFilePath.string(), output);
+                }
+                
+                if (auto const expected = Weave::IO::ReadTextFile(errorFilePath.string()).value_or(""); expected != error)
+                {
+                    fmt::println("output file content does not match");
+
+                    Weave::IO::WriteTextFile(errorFilePath.string(), error);
+                }
             }
             else
             {
