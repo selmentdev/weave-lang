@@ -28,7 +28,7 @@ add_library(Weave.Core STATIC
  "cxx/IO/Pipe.Windows.cxx"
  "cxx/Process.Posix.cxx"
  "cxx/Process.Windows.cxx"
-)
+ "cxx/CommandLine.cxx")
 
 target_include_directories(Weave.Core PUBLIC include)
 target_link_libraries(Weave.Core PUBLIC Fmt)
