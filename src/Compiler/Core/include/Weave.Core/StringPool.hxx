@@ -41,7 +41,7 @@ namespace Weave
 
         void QueryMemoryUsage(size_t& allocated, size_t& reserved) const
         {
-            if (size_t const size = this->_mapping.size() * sizeof(Entry); size != 0)
+            if (size_t const size = this->_mapping.size() * sizeof(Entry*); size != 0)
             {
                 allocated += size;
                 reserved += size;
