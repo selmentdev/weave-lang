@@ -47,6 +47,11 @@ int main(int argc, char** argv)
             fmt::println("exe: {}", *v);
         }
 
+        if (auto v = m.GetValue("working-directory"))
+        {
+            fmt::println("dir: {}", *v);
+        }
+
         for (auto v : m.GetValues("codegen"))
         {
             fmt::println("codegen: {}", v);

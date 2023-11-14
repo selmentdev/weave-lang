@@ -126,6 +126,7 @@ namespace Weave
 
             if (item.starts_with('-'))
             {
+                // Handle name of the parameter
                 item.remove_prefix(1);
 
                 if (item.starts_with('-'))
@@ -141,13 +142,16 @@ namespace Weave
                 else
                 {
                     // This is short option. Verify if it has just single letter.
-                    if (item.size() != 1)
+                    if (item.empty())
                     {
                         return std::unexpected(CommandLineErrorResult{.Error = CommandLineError::InvalidFormat, .Option = item});
                     }
                 }
 
-                if (CommandLineOption const* option = this->FindOption(item); option != nullptr)
+                size_t const nameValueSeparator = item.find(':');
+                std::string_view const name = item.substr(0, nameValueSeparator);
+
+                if (CommandLineOption const* option = this->FindOption(name); option != nullptr)
                 {
                     // Found option. Get or add it to names by index.
                     size_t optionIndex;
@@ -157,7 +161,7 @@ namespace Weave
                         // Verify if option can be set multiple times.
                         if (option->Arity != CommandLineOptionArity::Multiple)
                         {
-                            return std::unexpected(CommandLineErrorResult{.Error = CommandLineError::DuplicatedOption, .Option = item});
+                            return std::unexpected(CommandLineErrorResult{.Error = CommandLineError::DuplicatedOption, .Option = name});
                         }
 
                         optionIndex = std::distance(resultNames.begin(), optit);
@@ -170,21 +174,34 @@ namespace Weave
 
                     if (option->Arity != CommandLineOptionArity::None)
                     {
-                        ++it;
-
-                        if (it == args.end())
+                        if (nameValueSeparator != std::string_view::npos)
                         {
-                            return std::unexpected(CommandLineErrorResult{.Error = CommandLineError::MissingValue, .Option = item});
+                            resultValues.emplace_back(optionIndex, item.substr(nameValueSeparator + 1));
                         }
+                        else
+                        {
+                            ++it;
 
-                        std::string_view value{*it};
+                            if (it == args.end())
+                            {
+                                return std::unexpected(CommandLineErrorResult{.Error = CommandLineError::MissingValue, .Option = name});
+                            }
 
-                        resultValues.emplace_back(optionIndex, value);
+                            resultValues.emplace_back(optionIndex, *it);
+                        }
+                    }
+                    else
+                    {
+                        // Arity is none - validate if '=' was after the option.
+                        if (nameValueSeparator != std::string_view::npos)
+                        {
+                            return std::unexpected(CommandLineErrorResult{.Error = CommandLineError::UnrecognizedValue, .Option = name});
+                        }
                     }
                 }
                 else
                 {
-                    return std::unexpected(CommandLineErrorResult{.Error = CommandLineError::UnrecognizedOption, .Option = item});
+                    return std::unexpected(CommandLineErrorResult{.Error = CommandLineError::UnrecognizedOption, .Option = name});
                 }
             }
             else
