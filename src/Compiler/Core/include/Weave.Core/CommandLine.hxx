@@ -95,9 +95,19 @@ namespace Weave
 
         CommandLineBuilder& Add(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint, CommandLineOptionArity arity, CommandLineOptionUsage usage) &;
 
-        CommandLineBuilder& Flag(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint) &;
+        CommandLineBuilder& Flag(std::string_view name, std::string_view shortName, std::string_view description) &;
 
         CommandLineBuilder& Single(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint) &;
+
+        CommandLineBuilder& Single(std::string_view name, std::string_view shortName, std::string_view description) &
+        {
+            return this->Single(name, shortName, description, {});
+        }
+
+        CommandLineBuilder& Single(std::string_view name, std::string_view shortName) &
+        {
+            return this->Single(name, shortName, {}, {});
+        }
 
         CommandLineBuilder& RequiredSingle(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint) &;
 
@@ -105,7 +115,7 @@ namespace Weave
 
         CommandLineBuilder& RequiredMultiple(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint) &;
 
-        std::expected<CommandLineParseResult, CommandLineErrorResult> Parse(std::span<const char*> args) const&;
+        [[nodiscard]] std::expected<CommandLineParseResult, CommandLineErrorResult> Parse(std::span<const char*> args) const&;
     };
 
     constexpr std::string FormatOption(CommandLineOption const& option)

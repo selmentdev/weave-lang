@@ -30,9 +30,9 @@ int main(int argc, char** argv)
         .Single("", "O", "Output", "<file>")
         .Multiple("codegen", "C", "Code generator options", "<name>[=<value>]")
         .Multiple("config", "", "Configuration", "<release|debug|checked>")
-        .Flag("verbose", "v", "Use verbose output", "")
-        .Flag("version", "V", "Prints version information", "")
-        .Flag("help", "h", "Prints help", "");
+        .Flag("verbose", "v", "Use verbose output")
+        .Flag("version", "V", "Prints version information")
+        .Flag("help", "h", "Prints help");
 
     if (auto r = parser.Parse(std::span{const_cast<const char**>(argv + 1), static_cast<size_t>(argc - 1)}); !r.has_value())
     {

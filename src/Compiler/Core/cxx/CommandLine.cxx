@@ -79,9 +79,9 @@ namespace Weave
         return *this;
     }
 
-    CommandLineBuilder& CommandLineBuilder::Flag(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint) &
+    CommandLineBuilder& CommandLineBuilder::Flag(std::string_view name, std::string_view shortName, std::string_view description) &
     {
-        return this->Add(name, shortName, description, hint, CommandLineOptionArity::None, CommandLineOptionUsage::Optional);
+        return this->Add(name, shortName, description, {}, CommandLineOptionArity::None, CommandLineOptionUsage::Optional);
     }
 
     CommandLineBuilder& CommandLineBuilder::Single(std::string_view name, std::string_view shortName, std::string_view description, std::string_view hint) &

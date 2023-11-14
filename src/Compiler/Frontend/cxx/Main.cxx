@@ -14,39 +14,93 @@
 #include "Weave.Syntax/Token.hxx"
 #include "Weave.Syntax/LexerContext.hxx"
 #include "Weave.Syntax/Lexer.hxx"
+#include "Weave.Core/CommandLine.hxx"
 
 #include <charconv>
 #include <chrono>
 #include <cstdlib>
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
-    fmt::println("--- args-begin ---");
-    for (int i = 0; i < argc; ++i)
+    Weave::CommandLineBuilder builder{};
+
+    builder.Multiple(
+        "codegen",
+        "c",
+        "Code generator options",
+        "<name=value>");
+
+    builder.Multiple(
+        "emit",
+        "e",
+        "List of types of output to emit",
+        "items");
+
+    builder.Multiple(
+        "experimental",
+        "x",
+        "Experimental options",
+        "name[=value]");
+
+    builder.Flag(
+        "help",
+        "h",
+        "Prints help");
+
+    builder.Flag(
+        "verbose",
+        "v",
+        "Use verbose output");
+
+
+    std::span args{argv+1, static_cast<size_t>(argc-1)};
+
+    if (auto matched = builder.Parse(args); matched.has_value())
     {
-        fmt::println("{}: '{}'", i, argv[i]);
-    }
-    fmt::println("--- args-end ---");
-    {
-        double dv{};
-        std::string_view sv{"21.37"};
-        auto [ptr, ec] = std::from_chars(sv.data(), sv.data() + sv.size(), dv, std::chars_format::general);
-        WEAVE_ASSERT(ec == std::errc{});
-        fmt::println("{}, {}", dv, std::to_underlying(ec));
-        fflush(stdout);
-    }
-    {
+        if (matched->HasFlag("help"))
+        {
+            fmt::println("Usage: {} [OPTIONS]", argv[0]);
+            fmt::println("");
+
+            for (auto const& option : builder.GetOptions())
+            {
+                fmt::println("{}", Weave::FormatOption(option));
+                fmt::println("\t{}", option.Description);
+                fmt::println("");
+            }
+            return EXIT_SUCCESS;
+        }
+
+        auto const& result = matched.value();
+
+        auto const& files = result.GetPositional();
+
+        fmt::println("---");
+
+        for (auto const& f : files)
+        {
+            fmt::println("file: {}", f);
+        }
+
+        fmt::println("___");
+
+        if (files.empty())
+        {
+            fmt::println(stderr, "No input files specified");
+            return EXIT_FAILURE;
+        }
+
+        if (files.size() > 1)
+        {
+            fmt::println(stderr, "Too many files specified");
+            return EXIT_FAILURE;
+        }
+
         using namespace Weave::Syntax;
         using namespace Weave::IO;
         using namespace Weave;
 
-        if (argc != 2)
-        {
-            fmt::println(stderr, "invalid number of arguments");
-            return EXIT_FAILURE;
-        }
-
-        if (auto file = ReadTextFile(argv[1]))
+        if (auto file = ReadTextFile(files.front()); file.has_value())
         {
             std::vector<Token*> tokens{};
             DiagnosticSink diagnostic{"<source>"};
@@ -111,6 +165,16 @@ int main(int argc, char* argv[])
             fmt::println("lexed in {}", lexed);
             fmt::println("allocated: {}, reserved: {}", allocated, reserved);
         }
+        else
+        {
+            fmt::println(stderr, "Failed to open file: {}", files.front());
+        }
     }
+    else
+    {
+        fmt::println(stderr, "{}", matched.error());
+        return EXIT_FAILURE;
+    }
+
     return 0;
 }
