@@ -2,6 +2,7 @@
 #include "Weave.Core/Process.hxx"
 #include "Weave.Core/CommandLine.hxx"
 #include "Weave.Core/IO/FileSystem.hxx"
+#include "Weave/Version.hxx"
 #include <span>
 #include <string_view>
 #include <vector>
@@ -24,9 +25,9 @@ int main(int argc, char** argv)
     using namespace Weave;
     CommandLineBuilder parser{};
     parser
-        .RequiredSingle("exe", "", "Path to executable", "<file>")
-        .RequiredSingle("working-directory", "W", "Working directory", "<dir>")
-        .RequiredSingle("", "O", "Output", "<file>")
+        .Single("exe", "", "Path to executable", "<file>")
+        .Single("working-directory", "W", "Working directory", "<dir>")
+        .Single("", "O", "Output", "<file>")
         .Multiple("codegen", "C", "Code generator options", "<name>[=<value>]")
         .Multiple("config", "", "Configuration", "<release|debug|checked>")
         .Flag("verbose", "v", "Use verbose output", "")
@@ -76,6 +77,12 @@ int main(int argc, char** argv)
                 }
             }
 
+            return EXIT_SUCCESS;
+        }
+
+        if (m.HasFlag("version"))
+        {
+            fmt::println(stdout, "weave-compiletest version {}", WEAVE_LANG_VERSION);
             return EXIT_SUCCESS;
         }
 
