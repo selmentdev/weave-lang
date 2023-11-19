@@ -34,6 +34,7 @@ function(weave_cxx_fortify_code target)
             -Zc:inline
             -Zc:strictStrings
             -Zc:ternary
+            -diagnostics:caret
         )
     else()
         target_compile_options(${target} PRIVATE

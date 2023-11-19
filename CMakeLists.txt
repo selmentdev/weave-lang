@@ -12,9 +12,13 @@ include_directories("${CMAKE_CURRENT_BINARY_DIR}/include")
 
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Version.hxx.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/include/Weave/Version.hxx" @ONLY
+    "${CMAKE_CURRENT_BINARY_DIR}/include/weave/Version.hxx" @ONLY
 )
 
-include("cmake/Warnings.cmake")
+include("cmake/warnings.cmake")
 
-add_subdirectory("src")
+add_subdirectory(compiler)
+add_subdirectory(libraries)
+add_subdirectory(tests)
+add_subdirectory(thirdparty)
+add_subdirectory(tools)

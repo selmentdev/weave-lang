@@ -1,0 +1,18 @@
+add_executable(weave_driver
+ cxx/main.cxx
+)
+
+target_link_libraries(weave_driver PUBLIC weave_hash)
+target_link_libraries(weave_driver PUBLIC weave_bugcheck)
+target_link_libraries(weave_driver PUBLIC weave_commandline)
+target_link_libraries(weave_driver PUBLIC weave_memory)
+target_link_libraries(weave_driver PUBLIC weave_unicode)
+target_link_libraries(weave_driver PUBLIC weave_source)
+target_link_libraries(weave_driver PUBLIC weave_system)
+target_link_libraries(weave_driver PUBLIC weave_session)
+target_link_libraries(weave_driver PUBLIC weave_filesystem)
+target_link_libraries(weave_driver PUBLIC weave_syntax)
+
+WEAVE_CXX_FORTIFY_CODE(weave_driver)
+
+set_target_properties(weave_driver PROPERTIES OUTPUT_NAME "weave-driver")
