@@ -1,5 +1,7 @@
-#include "weave/hash/sha256.hxx"
-#include "weave/bitwise.hxx"
+#include "weave/hash/Sha256.hxx"
+#include "weave/Bitwise.hxx"
+
+#include <cstring>
 
 namespace weave::hash::sha256_impl
 {

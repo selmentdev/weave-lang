@@ -1,4 +1,4 @@
-#include "weave/bugcheck.hxx"
+#include "weave/BugCheck.hxx"
 
 namespace weave::bugcheck
 {

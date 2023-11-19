@@ -1,4 +1,4 @@
-#include "weave/source/diagnostic.hxx"
+#include "weave/source/Diagnostic.hxx"
 #include "weave/source/SourceText.hxx"
 
 namespace weave::source

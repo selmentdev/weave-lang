@@ -1,6 +1,6 @@
 #pragma once
-#include "Weave.Core/Platform/Compiler.hxx"
-#include "Weave.Core/IO/FileSystemError.hxx"
+#include "weave/platform/Compiler.hxx"
+#include "weave/filesystem/FileSystemError.hxx"
 
 #include <cstdint>
 

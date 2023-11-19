@@ -1,4 +1,4 @@
-#include "weave/platform/compiler.hxx"
+#include "weave/platform/Compiler.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
 

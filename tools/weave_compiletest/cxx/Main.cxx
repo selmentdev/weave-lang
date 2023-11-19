@@ -1,6 +1,6 @@
-#include "Weave/Version.hxx"
-#include "weave/commandline.hxx"
-#include "weave/system/process.hxx"
+#include "weave/Version.hxx"
+#include "weave/CommandLine.hxx"
+#include "weave/system/Process.hxx"
 #include "weave/filesystem/FileSystem.hxx"
 
 #include <span>

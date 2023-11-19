@@ -91,7 +91,7 @@ namespace weave::filesystem
                 if (failed)
                 {
                     close(fd);
-                    return std::unexpected(TranslateErrno(error));
+                    return std::unexpected(impl::TranslateErrno(error));
                 }
             }
 
@@ -102,14 +102,14 @@ namespace weave::filesystem
                     int error = errno;
                     close(fd);
 
-                    return std::unexpected(TranslateErrno(error));
+                    return std::unexpected(impl::TranslateErrno(error));
                 }
             }
 
             return FileHandle{reinterpret_cast<void*>(fd)};
         }
 
-        return std::unexpected(TranslateErrno(errno));
+        return std::unexpected(impl::TranslateErrno(errno));
     }
 
     bool FileHandle::Exists(std::string_view path)
@@ -127,7 +127,7 @@ namespace weave::filesystem
             return {};
         }
 
-        return std::unexpected(TranslateErrno(errno));
+        return std::unexpected(impl::TranslateErrno(errno));
     }
 
     std::expected<int64_t, FileSystemError> FileHandle::GetLength() const
@@ -141,7 +141,7 @@ namespace weave::filesystem
             return st.st_size;
         }
 
-        return std::unexpected(TranslateErrno(errno));
+        return std::unexpected(impl::TranslateErrno(errno));
     }
 
     std::expected<void, FileSystemError> FileHandle::SetLength(int64_t length)
@@ -153,7 +153,7 @@ namespace weave::filesystem
             return {};
         }
 
-        return std::unexpected(TranslateErrno(errno));
+        return std::unexpected(impl::TranslateErrno(errno));
     }
 
     std::expected<size_t, FileSystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
@@ -172,7 +172,7 @@ namespace weave::filesystem
 
             if (result < 0)
             {
-                return std::unexpected(TranslateErrno(errno));
+                return std::unexpected(impl::TranslateErrno(errno));
             }
 
             if (result == 0)
@@ -202,7 +202,7 @@ namespace weave::filesystem
 
             if (result < 0)
             {
-                return std::unexpected(TranslateErrno(errno));
+                return std::unexpected(impl::TranslateErrno(errno));
             }
 
             if (result == 0)

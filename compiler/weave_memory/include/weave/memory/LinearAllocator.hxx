@@ -1,7 +1,7 @@
 #pragma once
-#include "weave/platform/compiler.hxx"
-#include "weave/memory/layout.hxx"
-#include "weave/bitwise.hxx"
+#include "weave/platform/Compiler.hxx"
+#include "weave/memory/Layout.hxx"
+#include "weave/Bitwise.hxx"
 
 #include <span>
 #include <memory>

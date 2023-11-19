@@ -6,7 +6,7 @@
 #include <chrono>
 #include <cstdlib>
 
-#include "weave/session.hxx"
+#include "weave/Session.hxx"
 #include "weave/core/String.hxx"
 #include "weave/CommandLine.hxx"
 #include "weave/syntax/Token.hxx"

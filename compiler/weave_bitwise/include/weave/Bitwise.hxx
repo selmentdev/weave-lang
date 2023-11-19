@@ -1,6 +1,7 @@
 #pragma once
 #include <bit>
 #include <cstddef>
+#include <cstdint>
 
 namespace weave::bitwise
 {

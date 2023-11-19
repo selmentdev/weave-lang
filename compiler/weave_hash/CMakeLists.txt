@@ -1,5 +1,5 @@
 add_library(weave_hash STATIC
- cxx/sha256.cxx
+ cxx/Sha256.cxx
 )
 
 target_include_directories(weave_hash PUBLIC include)

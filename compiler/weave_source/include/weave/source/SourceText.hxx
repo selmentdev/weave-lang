@@ -1,5 +1,5 @@
 #pragma once
-#include "weave/source/source.hxx"
+#include "weave/source/Source.hxx"
 
 #include <string>
 #include <vector>

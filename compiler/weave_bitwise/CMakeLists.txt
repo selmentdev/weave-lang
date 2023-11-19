@@ -1,9 +1,11 @@
-add_library(weave_bitwise INTERFACE)
+add_library(weave_bitwise STATIC
+ cxx/Bitwise.cxx
+)
 
-target_include_directories(weave_bitwise INTERFACE include)
+target_include_directories(weave_bitwise PUBLIC include)
 
-target_link_libraries(weave_bitwise INTERFACE weave_platform)
+target_link_libraries(weave_bitwise PUBLIC weave_platform)
 
-#WEAVE_CXX_FORTIFY_CODE(weave_bitwise)
+WEAVE_CXX_FORTIFY_CODE(weave_bitwise)
 
 # add_subdirectory(tests)

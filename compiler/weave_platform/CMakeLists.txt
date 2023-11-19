@@ -1,10 +1,11 @@
 add_library(weave_platform STATIC
-  cxx/StringBuffer.cxx)
+  cxx/StringBuffer.cxx
+)
 
 if (WIN32)
 
 target_sources(weave_platform PRIVATE
- cxx/windows/string.cxx
+ cxx/windows/String.cxx
 )
 
 endif()

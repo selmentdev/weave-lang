@@ -1,5 +1,5 @@
 add_library(weave_errors STATIC
-    "cxx/handler.cxx"
+    "cxx/Handler.cxx"
  )
 
 target_include_directories(weave_errors PUBLIC include)

@@ -1,5 +1,5 @@
-#include "weave/stringpool/stringpool.hxx"
-#include "weave/hash/fnv1a.hxx"
+#include "weave/stringpool/StringPool.hxx"
+#include "weave/hash/Fnv1a.hxx"
 
 #include <fmt/format.h>
 

@@ -1,5 +1,5 @@
-#include "weave/platform/compiler.hxx"
-#include "weave/hash/sha256.hxx"
+#include "weave/platform/Compiler.hxx"
+#include "weave/hash/Sha256.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
 

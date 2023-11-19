@@ -1,5 +1,5 @@
-#include "weave/commandline.hxx"
-#include "weave/bugcheck.hxx"
+#include "weave/CommandLine.hxx"
+#include "weave/BugCheck.hxx"
 
 #include <algorithm>
 

@@ -1,7 +1,5 @@
-#include "Weave.Core/Process.hxx"
-
-#include "Weave.Core/Assert.hxx"
-#include "Weave.Core/IO/Pipe.hxx"
+#include "weave/system/Process.hxx"
+#include "weave/BugCheck.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
 
@@ -15,7 +13,7 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 
 WEAVE_EXTERNAL_HEADERS_END
 
-namespace Weave
+namespace weave::system
 {
     std::optional<int> Execute(
         const char* path,
@@ -87,8 +85,7 @@ namespace Weave
 
             std::unique_ptr<char[]> buffer = std::make_unique<char[]>(buffer_size);
 
-            int ret{};
-            while ((ret = poll(pfd, 2, -1)) > 0)
+            while (poll(pfd, 2, -1) > 0)
             {
                 if (pfd[0].revents & POLLIN)
                 {

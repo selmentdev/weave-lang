@@ -1,4 +1,4 @@
-#include "weave/session.hxx"
+#include "weave/Session.hxx"
 
 #include <array>
 #include <span>

@@ -15,7 +15,7 @@ configure_file(
     "${CMAKE_CURRENT_BINARY_DIR}/include/weave/Version.hxx" @ONLY
 )
 
-include("cmake/warnings.cmake")
+include("cmake/Warnings.cmake")
 
 add_subdirectory(compiler)
 add_subdirectory(libraries)

@@ -1,7 +1,7 @@
 #include "weave/filesystem/Pipe.hxx"
+#include "weave/BugCheck.hxx"
 
-#include "Weave.Core/Assert.hxx"
-#include "Utils.Posix.hxx"
+#include "Error.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
 
@@ -41,7 +41,7 @@ namespace weave::filesystem
             };
         }
 
-        return std::unexpected(TranslateErrno(errno));
+        return std::unexpected(impl::TranslateErrno(errno));
     }
 
     std::expected<size_t, FileSystemError> Pipe::Read(std::span<std::byte> buffer)
@@ -57,7 +57,7 @@ namespace weave::filesystem
         fmt::println("pipe read: {}", processed);
         if (processed < 0)
         {
-            return std::unexpected(TranslateErrno(errno));
+            return std::unexpected(impl::TranslateErrno(errno));
         }
         
         return static_cast<size_t>(processed);
@@ -76,7 +76,7 @@ namespace weave::filesystem
         fmt::println("pipe write: {}", processed);
         if (processed < 0)
         {
-            return std::unexpected(TranslateErrno(errno));
+            return std::unexpected(impl::TranslateErrno(errno));
         }
 
         return static_cast<size_t>(processed);
@@ -98,6 +98,6 @@ namespace weave::filesystem
         fmt::println("bytes avail failed");
         fflush(stdout);
 
-        return std::unexpected(TranslateErrno(errno));
+        return std::unexpected(impl::TranslateErrno(errno));
     }
 }

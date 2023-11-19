@@ -1,5 +1,5 @@
 add_library(weave_session STATIC
-    "cxx/session.cxx"
+    "cxx/Session.cxx"
  )
 
 target_include_directories(weave_session PUBLIC include)

@@ -1,4 +1,4 @@
-#include "weave/unicode.hxx"
+#include "weave/Unicode.hxx"
 #include <cstddef>
 #include <cstdint>
 

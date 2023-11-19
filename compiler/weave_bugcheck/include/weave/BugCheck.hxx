@@ -1,5 +1,5 @@
 #pragma once
-#include "weave/platform/compiler.hxx"
+#include "weave/platform/Compiler.hxx"
 
 #include <string_view>
 #include <source_location>

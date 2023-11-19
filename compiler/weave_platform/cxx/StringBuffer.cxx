@@ -1,1 +1,1 @@
-#include "weave/platform/stringbuffer.hxx"
+#include "weave/platform/StringBuffer.hxx"

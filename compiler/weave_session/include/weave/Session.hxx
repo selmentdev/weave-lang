@@ -1,7 +1,7 @@
 #pragma once
 #include "weave/core/String.hxx"
 #include "weave/CommandLine.hxx"
-#include "weave/errors/handler.hxx"
+#include "weave/errors/Handler.hxx"
 
 #include <expected>
 #include <optional>

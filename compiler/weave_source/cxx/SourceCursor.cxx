@@ -1,5 +1,5 @@
 #include "weave/source/SourceCursor.hxx"
-#include "weave/unicode.hxx"
+#include "weave/Unicode.hxx"
 
 namespace weave::source
 {
