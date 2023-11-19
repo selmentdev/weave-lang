@@ -26,6 +26,7 @@ function(weave_cxx_fortify_code target)
             -wd4686
             -wd4868
             -wd4061 # Not all labels are EXPLICITLY handled in switch; w4062 (not all labels are handled and default is missing) is enabled
+            -wd4668 # regression in vs2022.17.8
             -Zc:preprocessor
             -Zc:__cplusplus
             -Zc:lambda
