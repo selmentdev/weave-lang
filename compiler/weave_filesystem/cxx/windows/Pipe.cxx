@@ -27,7 +27,7 @@ namespace weave::filesystem
         {
             CloseHandle(this->_write);
             this->_write = nullptr;
-        }   
+        }
     }
 
     std::expected<Pipe, FileSystemError> Pipe::Create()
@@ -46,7 +46,7 @@ namespace weave::filesystem
             return std::unexpected(impl::TranslateErrorCode(GetLastError()));
         }
 
-        return Pipe{read, write};        
+        return Pipe{read, write};
     }
 
     std::expected<size_t, FileSystemError> Pipe::Read(std::span<std::byte> buffer)

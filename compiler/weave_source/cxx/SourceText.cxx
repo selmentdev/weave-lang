@@ -7,7 +7,7 @@ namespace weave::source
     SourceText::SourceText(std::string&& content)
         : _content{std::move(content)}
     {
-        WEAVE_ASSERT(unicode::utf8_validate_string(this->_content));
+        WEAVE_ASSERT(unicode::UTF8ValidateString(this->_content));
 
         // Even empty source has one line starting at '0'
         this->_lines.emplace_back(0);
@@ -55,7 +55,7 @@ namespace weave::source
         }
     }
 
-    std::optional<SourceSpan> SourceText::get_line(uint32_t index) const
+    std::optional<SourceSpan> SourceText::GetLine(uint32_t index) const
     {
         if (index < this->_lines.size())
         {
@@ -81,7 +81,7 @@ namespace weave::source
         return std::nullopt;
     }
 
-    std::optional<SourceSpan> SourceText::get_line_content(uint32_t index) const
+    std::optional<SourceSpan> SourceText::GetLineContent(uint32_t index) const
     {
         // Get part of line span without line ending. Handle '\r\n' as single one, matching lexer definition.
 
@@ -121,49 +121,49 @@ namespace weave::source
         return std::nullopt;
     }
 
-    std::string_view SourceText::get_line_text(uint32_t index) const
+    std::string_view SourceText::GetLineText(uint32_t index) const
     {
-        if (std::optional<SourceSpan> const& span = this->get_line(index); span.has_value())
+        if (std::optional<SourceSpan> const& span = this->GetLine(index); span.has_value())
         {
-            return this->get_text(*span);
+            return this->GetText(*span);
         }
 
         return std::string_view{};
     }
 
-    std::string_view SourceText::get_line_content_text(uint32_t index) const
+    std::string_view SourceText::GetLineContentText(uint32_t index) const
     {
-        if (std::optional<SourceSpan> const& span = this->get_line_content(index); span.has_value())
+        if (std::optional<SourceSpan> const& span = this->GetLineContent(index); span.has_value())
         {
-            return this->get_text(*span);
+            return this->GetText(*span);
         }
 
         return std::string_view{};
     }
 
-    LinePosition SourceText::get_line_position(SourcePosition const& position) const
+    LinePosition SourceText::GetLinePosition(SourcePosition const& position) const
     {
-        uint32_t const index = this->get_line_index(position.offset);
+        uint32_t const index = this->GetLineIndex(position.Offset);
         uint32_t const start = this->_lines[index];
 
         return LinePosition{
-            .line = index,
-            .column = position.offset - start,
+            .Line = index,
+            .Column = position.Offset - start,
         };
     }
 
-    LineSpan SourceText::get_line_span(SourceSpan const& span) const
+    LineSpan SourceText::GetLineSpan(SourceSpan const& span) const
     {
         return LineSpan{
-            this->get_line_position(span.start),
-            this->get_line_position(span.end),
+            this->GetLinePosition(span.Start),
+            this->GetLinePosition(span.End),
         };
     }
 
-    std::string_view SourceText::get_text(const SourceSpan& span) const
+    std::string_view SourceText::GetText(const SourceSpan& span) const
     {
-        size_t const start = span.start.offset;
-        size_t const end = span.end.offset;
+        size_t const start = span.Start.Offset;
+        size_t const end = span.End.Offset;
 
         WEAVE_ASSERT(start <= end);
 
@@ -176,7 +176,7 @@ namespace weave::source
         return std::string_view{};
     }
 
-    uint32_t SourceText::get_line_index(uint32_t position) const
+    uint32_t SourceText::GetLineIndex(uint32_t position) const
     {
         // TODO: don't look up positions past end of source
         auto const it = std::upper_bound(this->_lines.begin(), this->_lines.end(), position);

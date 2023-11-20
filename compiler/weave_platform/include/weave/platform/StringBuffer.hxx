@@ -23,9 +23,9 @@ namespace weave::platform
 
         constexpr explicit StringBuffer(std::basic_string_view<CharT> value)
         {
-            this->resize_for_overwrite(value.size() + 1);
+            this->ResizeForOverwrite(value.size() + 1);
             std::copy(value.begin(), value.end(), this->_data);
-            this->trim(value.size());
+            this->Trim(value.size());
         }
 
     public:
@@ -36,7 +36,7 @@ namespace weave::platform
 
         ~StringBuffer() = default;
 
-        constexpr void resize_for_overwrite(size_t size)
+        constexpr void ResizeForOverwrite(size_t size)
         {
             if (size < StaticCapacityT)
             {
@@ -54,33 +54,33 @@ namespace weave::platform
             }
         }
 
-        constexpr void trim(size_t size)
+        constexpr void Trim(size_t size)
         {
             assert(size <= this->_capacity);
             this->_data[size] = {};
         }
 
-        [[nodiscard]] constexpr std::basic_string_view<CharT> as_view() const
+        [[nodiscard]] constexpr std::basic_string_view<CharT> AsView() const
         {
             return std::basic_string_view<CharT>{this->_data};
         }
 
-        [[nodiscard]] constexpr std::span<CharT> get_buffer_view()
+        [[nodiscard]] constexpr std::span<CharT> GetBufferView()
         {
             return std::span<CharT>{this->_data, this->_capacity};
         }
 
-        [[nodiscard]] constexpr std::span<CharT const> get_buffer_view() const
+        [[nodiscard]] constexpr std::span<CharT const> GetBufferView() const
         {
             return std::span<CharT const>{this->_data, this->_capacity};
         }
 
-        [[nodiscard]] CharT const* get_buffer() const
+        [[nodiscard]] CharT const* GetBuffer() const
         {
             return this->_data;
         }
 
-        [[nodiscard]] CharT* get_buffer()
+        [[nodiscard]] CharT* GetBuffer()
         {
             return this->_data;
         }

@@ -18,7 +18,7 @@ namespace weave::system
     std::optional<int> Execute(
         const char* path,
         const char* args,
-        const char* workingDirectory,
+        const char* working_directory,
         std::string& output,
         std::string& error)
     {
@@ -61,6 +61,8 @@ namespace weave::system
         posix_spawn_file_actions_addclose(&files, pipeError[0]);
         posix_spawn_file_actions_adddup2(&files, pipeOutput[1], STDOUT_FILENO);
         posix_spawn_file_actions_adddup2(&files, pipeError[1], STDERR_FILENO);
+
+        // posix_spawn_file_actions_add_chdir_np?
 
         int spawn_result = posix_spawnp(
             &process_id,

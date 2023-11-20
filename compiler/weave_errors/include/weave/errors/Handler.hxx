@@ -18,19 +18,19 @@ namespace weave::errors
         size_t _errors{};
 
     public:
-        constexpr void warning(std::string message)
+        constexpr void AddWarning(std::string message)
         {
             this->_messages.emplace_back(std::move(message));
             ++this->_warnings;
         }
 
-        constexpr void error(std::string message)
+        constexpr void AddError(std::string message)
         {
             this->_messages.emplace_back(std::move(message));
             ++this->_errors;
         }
 
-        [[nodiscard]] constexpr std::span<DiagnosticMessage const> messages() const
+        [[nodiscard]] constexpr std::span<DiagnosticMessage const> GetMessages() const
         {
             return this->_messages;
         }

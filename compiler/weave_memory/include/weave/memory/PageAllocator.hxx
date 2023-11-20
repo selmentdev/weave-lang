@@ -9,12 +9,12 @@ namespace weave::memory
 
     struct PageAllocationResult final
     {
-        void* pointer;
-        size_t size;
-        size_t alignment;
+        void* Pointer;
+        size_t Size;
+        size_t Alignment;
     };
 
-    PageAllocationResult page_allocate(size_t size);
+    PageAllocationResult PageAllocate(size_t size);
 
-    void page_deallocate(void* pointer);
+    void PageDeallocate(void* pointer);
 }

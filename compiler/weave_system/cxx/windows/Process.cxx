@@ -13,7 +13,7 @@ WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::system::impl
 {
-    static size_t read_from_pipe(HANDLE handle, std::string& buffer)
+    static size_t ReadFromPipe(HANDLE handle, std::string& buffer)
     {
         DWORD dw_available{};
 
@@ -65,13 +65,13 @@ namespace weave::system::impl
 
     struct scope_close_handle final
     {
-        HANDLE _handle;
+        HANDLE Handle;
 
         ~scope_close_handle()
         {
-            if (this->_handle != nullptr)
+            if (this->Handle != nullptr)
             {
-                CloseHandle(this->_handle);
+                CloseHandle(this->Handle);
             }
         }
     };
@@ -86,12 +86,11 @@ namespace weave::system
         std::string& output,
         std::string& error)
     {
-
         platform::StringBuffer<wchar_t, 512> wide_path{};
         platform::StringBuffer<wchar_t, 512> wide_command_line{};
         platform::StringBuffer<wchar_t, 512> wide_working_directory{};
 
-        if (not platform::widen_string(wide_path, path))
+        if (not platform::WidenString(wide_path, path))
         {
             return std::nullopt;
         }
@@ -101,12 +100,12 @@ namespace weave::system
             ? fmt::format("\"{}\" {}", path, args)
             : fmt::format("\"{}\"", path);
 
-        if (not platform::widen_string(wide_command_line, command_line))
+        if (not platform::WidenString(wide_command_line, command_line))
         {
             return std::nullopt;
         }
 
-        if (not platform::widen_string(wide_working_directory, working_directory ? working_directory : ""))
+        if (not platform::WidenString(wide_working_directory, working_directory ? working_directory : ""))
         {
             return std::nullopt;
         }
@@ -117,46 +116,17 @@ namespace weave::system
             .bInheritHandle = TRUE,
         };
 
-        HANDLE pipe_output_read{};
-        HANDLE pipe_output_write{};
-        HANDLE pipe_error_read{};
-        HANDLE pipe_error_write{};
+        impl::scope_close_handle pipe_output_read{};
+        impl::scope_close_handle pipe_output_write{};
+        impl::scope_close_handle pipe_error_read{};
+        impl::scope_close_handle pipe_error_write{};
 
-        impl::defer closeOutRead{[&]()
-            {
-                if (pipe_output_read != nullptr)
-                {
-                    CloseHandle(pipe_output_read);
-                }
-            }};
-        impl::defer closeOutWrite{[&]()
-            {
-                if (pipe_output_write != nullptr)
-                {
-                    CloseHandle(pipe_output_write);
-                }
-            }};
-        impl::defer closeErrRead{[&]()
-            {
-                if (pipe_error_read != nullptr)
-                {
-                    CloseHandle(pipe_error_read);
-                }
-            }};
-        impl::defer closeErrWrite{[&]()
-            {
-                if (pipe_error_write != nullptr)
-                {
-                    CloseHandle(pipe_error_write);
-                }
-            }};
-
-        if (not CreatePipe(&pipe_output_read, &pipe_output_write, &sa, 0))
+        if (not CreatePipe(&pipe_output_read.Handle, &pipe_output_write.Handle, &sa, 0))
         {
             return std::nullopt;
         }
 
-        if (not CreatePipe(&pipe_error_read, &pipe_error_write, &sa, 0))
+        if (not CreatePipe(&pipe_error_read.Handle, &pipe_error_write.Handle, &sa, 0))
         {
             return std::nullopt;
         }
@@ -177,8 +147,8 @@ namespace weave::system
             .cbReserved2 = 0,
             .lpReserved2 = nullptr,
             .hStdInput = GetStdHandle(STD_INPUT_HANDLE),
-            .hStdOutput = pipe_output_write,
-            .hStdError = pipe_error_write,
+            .hStdOutput = pipe_output_write.Handle,
+            .hStdError = pipe_error_write.Handle,
         };
 
         DWORD constexpr flags = CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT;
@@ -186,14 +156,14 @@ namespace weave::system
         PROCESS_INFORMATION pi{};
 
         if (CreateProcessW(
-                path != nullptr ? wide_path.get_buffer() : nullptr,
-                args != nullptr ? wide_command_line.get_buffer() : nullptr,
+                path != nullptr ? wide_path.GetBuffer() : nullptr,
+                args != nullptr ? wide_command_line.GetBuffer() : nullptr,
                 &sa,
                 &sa,
                 TRUE,
                 flags,
                 nullptr,
-                working_directory != nullptr ? wide_working_directory.get_buffer() : nullptr,
+                working_directory != nullptr ? wide_working_directory.GetBuffer() : nullptr,
                 &si,
                 &pi) != FALSE)
         {
@@ -207,12 +177,12 @@ namespace weave::system
 
             do
             {
-                while (impl::read_from_pipe(pipe_output_read, buffer) != 0)
+                while (impl::ReadFromPipe(pipe_output_read.Handle, buffer) != 0)
                 {
                     output.append(buffer);
                 }
 
-                while (impl::read_from_pipe(pipe_error_read, buffer) != 0)
+                while (impl::ReadFromPipe(pipe_error_read.Handle, buffer) != 0)
                 {
                     error.append(buffer);
                 }
@@ -235,12 +205,12 @@ namespace weave::system
 
 
             // Finish reading data from pipes
-            while (impl::read_from_pipe(pipe_output_read, buffer) != 0)
+            while (impl::ReadFromPipe(pipe_output_read.Handle, buffer) != 0)
             {
                 output.append(buffer);
             }
 
-            while (impl::read_from_pipe(pipe_error_read, buffer) != 0)
+            while (impl::ReadFromPipe(pipe_error_read.Handle, buffer) != 0)
             {
                 error.append(buffer);
             }

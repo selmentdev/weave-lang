@@ -63,12 +63,12 @@ namespace weave::session
 
     static constexpr Option<CodeGeneratorOptions> g_CodeGeneratorOptions[]{
         // clang-format off
-        {"checked", "Enables checked build", [](CodeGeneratorOptions& self, std::optional<std::string_view> const& value) -> bool { return impl::ParseBoolean(self.checked, value); }},
-        {"debug", "Enables debug symbol info", [](CodeGeneratorOptions& self, std::optional<std::string_view> const& value) -> bool { return impl::ParseBoolean(self.debug, value); }},
+        {"checked", "Enables checked build", [](CodeGeneratorOptions& self, std::optional<std::string_view> const& value) -> bool { return impl::ParseBoolean(self.Checked, value); }},
+        {"debug", "Enables debug symbol info", [](CodeGeneratorOptions& self, std::optional<std::string_view> const& value) -> bool { return impl::ParseBoolean(self.Debug, value); }},
         // clang-format on
     };
 
-    template<typename O>
+    template <typename O>
     bool ApplyOption(std::span<Option<O> const> options, O& result, std::string_view name, std::optional<std::string_view> value)
     {
         auto it = std::find_if(options.begin(), options.end(), [&](Option<O> const& option)
@@ -84,7 +84,7 @@ namespace weave::session
         return false;
     }
 
-    CodeGeneratorOptions CodeGeneratorOptions::from_command_line(
+    CodeGeneratorOptions CodeGeneratorOptions::FromCommandLine(
         errors::Handler& handler,
         commandline::CommandLineParseResult const& command_line)
     {
@@ -99,11 +99,11 @@ namespace weave::session
             {
                 if (value.has_value())
                 {
-                    handler.error(fmt::format("Failed to set option '{}' to value '{}'", name, *value));
+                    handler.AddError(fmt::format("Failed to set option '{}' to value '{}'", name, *value));
                 }
                 else
                 {
-                    handler.error(fmt::format("Option '{}' requires value", name));
+                    handler.AddError(fmt::format("Option '{}' requires value", name));
                 }
             }
         }
@@ -112,7 +112,7 @@ namespace weave::session
     }
 
 
-    ExperimentalOptions ExperimentalOptions::from_command_line(
+    ExperimentalOptions ExperimentalOptions::FromCommandLine(
         errors::Handler& handler,
         commandline::CommandLineParseResult const& command_line)
     {

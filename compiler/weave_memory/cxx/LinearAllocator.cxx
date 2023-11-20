@@ -10,23 +10,23 @@ namespace weave::memory
     {
     }
 
-    LinearAllocator::LinearAllocator(size_t segmentSize)
+    LinearAllocator::LinearAllocator(size_t segment_size)
         : _end{nullptr}
-        , _segment_size{segmentSize}
+        , _segment_size{segment_size}
     {
-        Segment* const segment = allocate_segment(this->_segment_size);
+        Segment* const segment = AllocateSegment(this->_segment_size);
         this->_end = reinterpret_cast<std::byte*>(segment) + this->_segment_size;
 
-        push_back(this->_list, segment);
+        PushBack(this->_list, segment);
     }
 
     LinearAllocator::~LinearAllocator()
     {
-        Segment* current = this->_list.head;
+        Segment* current = this->_list.Head;
 
         while (current != nullptr)
         {
-            Segment* const back = current->flink;
+            Segment* const back = current->ForwardLink;
             ::operator delete(current);
             current = back;
         }
@@ -51,7 +51,7 @@ namespace weave::memory
         return *this;
     }
 
-    LinearAllocator::Segment* LinearAllocator::allocate_segment(size_t size)
+    LinearAllocator::Segment* LinearAllocator::AllocateSegment(size_t size)
     {
         this->_allocated_segments_size += size;
 
@@ -62,6 +62,8 @@ namespace weave::memory
         WEAVE_ASSERT(bitwise::IsAligned(memory, alignof(Segment)));
         std::byte* const last = memory + sizeof(Segment);
 
+        // ReSharper disable once CppDFAMemoryLeak
+        // This is not a leak - segments are released in destructor.
         Segment* const result = new (memory) Segment{nullptr, nullptr, last};
 
         ASAN_POISON_MEMORY_REGION(last, size - sizeof(Segment));
@@ -69,49 +71,49 @@ namespace weave::memory
         return result;
     }
 
-    Allocation LinearAllocator::allocate_impl(Layout const& layout)
+    Allocation LinearAllocator::AllocateImpl(Layout const& layout)
     {
-        if (this->needs_separate_segment(layout.size))
+        if (this->NeedsSeparateSegment(layout.Size))
         {
             // Compute size of segment.
-            size_t const size = bitwise::AlignUp(sizeof(Segment), layout.alignment) + layout.size;
+            size_t const size = bitwise::AlignUp(sizeof(Segment), layout.Alignment) + layout.Size;
 
             // Insert it before the current segment.
-            Segment* const segment = this->allocate_segment(size);
+            Segment* const segment = this->AllocateSegment(size);
 
-            insert_before(this->_list, this->_list.tail, segment);
+            InsertBefore(this->_list, this->_list.Tail, segment);
 
-            std::byte* const result = bitwise::AlignUp(segment->last, layout.alignment);
-            segment->last = result + layout.size;
+            std::byte* const result = bitwise::AlignUp(segment->Last, layout.Alignment);
+            segment->Last = result + layout.Size;
 
-            ASAN_UNPOISON_MEMORY_REGION(result, layout.size);
+            ASAN_UNPOISON_MEMORY_REGION(result, layout.Size);
 
             return Allocation{
-                .address = result,
-                .size = layout.size,
+                .Address = result,
+                .Size = layout.Size,
             };
         }
 
         // Start new segment.
-        Segment* const segment = this->allocate_segment(this->_segment_size);
+        Segment* const segment = this->AllocateSegment(this->_segment_size);
 
-        push_back(this->_list, segment);
+        PushBack(this->_list, segment);
 
         // Remember last allocation point.
         this->_end = reinterpret_cast<std::byte*>(segment) + this->_segment_size;
 
         // Restart allocation - this time it should work
-        return this->allocate(layout);
+        return this->Allocate(layout);
     }
 
-    void LinearAllocator::query_memory_usage(size_t& allocated, size_t& reserved) const
+    void LinearAllocator::QueryMemoryUsage(size_t& allocated, size_t& reserved) const
     {
-        Segment* current = this->_list.head;
+        Segment* current = this->_list.Head;
 
         while (current != nullptr)
         {
-            allocated += current->last - reinterpret_cast<std::byte*>(current);
-            current = current->flink;
+            allocated += current->Last - reinterpret_cast<std::byte*>(current);
+            current = current->ForwardLink;
         }
 
         reserved += this->_allocated_segments_size;

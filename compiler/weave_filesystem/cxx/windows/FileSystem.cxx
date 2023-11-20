@@ -18,12 +18,12 @@ namespace weave::filesystem
         platform::StringBuffer<wchar_t, MAX_PATH> wExisting{};
         platform::StringBuffer<wchar_t, MAX_PATH> wDestination{};
 
-        if (platform::widen_string(wExisting, existing) and platform::widen_string(wDestination, destination))
+        if (platform::WidenString(wExisting, existing) and platform::WidenString(wDestination, destination))
         {
             bool exists;
             bool fail;
 
-            if (DWORD const dwAttributes = GetFileAttributesW(wDestination.get_buffer()); dwAttributes == INVALID_FILE_ATTRIBUTES)
+            if (DWORD const dwAttributes = GetFileAttributesW(wDestination.GetBuffer()); dwAttributes == INVALID_FILE_ATTRIBUTES)
             {
                 DWORD const dwError = GetLastError();
 
@@ -79,7 +79,7 @@ namespace weave::filesystem
                 .dwCopyFlags = static_cast<DWORD>(fail ? COPY_FILE_FAIL_IF_EXISTS : 0),
             };
 
-            if (FAILED(CopyFile2(wExisting.get_buffer(), wDestination.get_buffer(), &params)))
+            if (FAILED(CopyFile2(wExisting.GetBuffer(), wDestination.GetBuffer(), &params)))
             {
                 return std::unexpected(FileSystemError::FileExists);
             }

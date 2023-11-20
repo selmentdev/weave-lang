@@ -16,17 +16,17 @@ TEST_CASE("Source Cursor")
 
         weave::source::SourceCursor cursor{text};
 
-        REQUIRE_FALSE(cursor.is_end());
-        REQUIRE(cursor.is_valid());
-        REQUIRE(cursor.first(U'A'));
-        REQUIRE(cursor.first(U' '));
-        REQUIRE_FALSE(cursor.starts_with(U"37f32"));
-        REQUIRE(cursor.first(U'2'));
-        REQUIRE(cursor.first(U'1'));
-        REQUIRE(cursor.first(U'.'));
-        REQUIRE(cursor.starts_with(U"37f32"));
+        REQUIRE_FALSE(cursor.IsEnd());
+        REQUIRE(cursor.IsValid());
+        REQUIRE(cursor.First(U'A'));
+        REQUIRE(cursor.First(U' '));
+        REQUIRE_FALSE(cursor.StartsWith(U"37f32"));
+        REQUIRE(cursor.First(U'2'));
+        REQUIRE(cursor.First(U'1'));
+        REQUIRE(cursor.First(U'.'));
+        REQUIRE(cursor.StartsWith(U"37f32"));
 
-        REQUIRE(cursor.is_end());
-        REQUIRE_FALSE(cursor.is_valid());
+        REQUIRE(cursor.IsEnd());
+        REQUIRE_FALSE(cursor.IsValid());
     }
 }

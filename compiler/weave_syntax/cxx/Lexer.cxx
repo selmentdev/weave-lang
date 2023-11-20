@@ -19,48 +19,48 @@ namespace weave::syntax
 
     bool Lexer::TryReadToken()
     {
-        this->_cursor.start();
+        this->_cursor.Start();
         this->_token_value.clear();
         this->_token_prefix.clear();
         this->_token_suffix.clear();
 
-        if (this->_cursor.is_end())
+        if (this->_cursor.IsEnd())
         {
             this->_token_kind = TokenKind::EndOfFile;
-            this->_token_span = this->_cursor.get_span();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadRawIdentifier())
         {
             this->_token_kind = TokenKind::Identifier;
-            this->_token_span = this->_cursor.get_span();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadStringLiteral())
         {
             this->_token_kind = TokenKind::StringLiteral;
-            this->_token_span = this->_cursor.get_span();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadCharacterLiteral())
         {
             this->_token_kind = TokenKind::CharacterLiteral;
-            this->_token_span = this->_cursor.get_span();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadNumericLiteral())
         {
-            this->_token_span = this->_cursor.get_span();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
         if (this->TryReadPunctuation())
         {
-            this->_token_span = this->_cursor.get_span();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
@@ -75,24 +75,24 @@ namespace weave::syntax
                 this->_token_kind = TokenKind::Identifier;
             }
 
-            this->_token_span = this->_cursor.get_span();
+            this->_token_span = this->_cursor.GetSpan();
             return true;
         }
 
-        if (this->_cursor.is_valid())
+        if (this->_cursor.IsValid())
         {
             // Current character is not recognized.
-            this->_diagnostic.add_error(this->_cursor.get_span(), "unexpected character");
+            this->_diagnostic.AddError(this->_cursor.GetSpan(), "unexpected character");
         }
         else
         {
             // Character was not encoded in UTF8. This is not a EOF.
-            this->_diagnostic.add_error(this->_cursor.get_span(), "invalid UTF-8 character");
+            this->_diagnostic.AddError(this->_cursor.GetSpan(), "invalid UTF-8 character");
         }
 
 
         this->_token_kind = TokenKind::Error;
-        this->_token_span = this->_cursor.get_span();
+        this->_token_span = this->_cursor.GetSpan();
         return false;
     }
 
@@ -102,18 +102,18 @@ namespace weave::syntax
 
         while (true)
         {
-            if (this->_cursor.is_end())
+            if (this->_cursor.IsEnd())
             {
                 break;
             }
 
-            this->_cursor.start();
+            this->_cursor.Start();
 
             if (this->TryReadEndOfLine())
             {
                 if (this->_triviaMode == TriviaMode::All)
                 {
-                    builder.emplace_back(TriviaKind::EndOfLine, this->_cursor.get_span());
+                    builder.emplace_back(TriviaKind::EndOfLine, this->_cursor.GetSpan());
                 }
 
                 if (not leading)
@@ -125,14 +125,14 @@ namespace weave::syntax
             {
                 if (this->_triviaMode == TriviaMode::All)
                 {
-                    builder.emplace_back(TriviaKind::Whitespace, this->_cursor.get_span());
+                    builder.emplace_back(TriviaKind::Whitespace, this->_cursor.GetSpan());
                 }
             }
             else if (TriviaKind kind = this->TryReadComment(); kind != TriviaKind::Error)
             {
                 if ((this->_triviaMode == TriviaMode::All) or ((this->_triviaMode == TriviaMode::Documentation) and (TriviaKindTraits::IsDocumentation(kind))))
                 {
-                    builder.emplace_back(kind, this->_cursor.get_span());
+                    builder.emplace_back(kind, this->_cursor.GetSpan());
                 }
             }
             else
@@ -144,11 +144,11 @@ namespace weave::syntax
 
     bool Lexer::TryReadRawIdentifier()
     {
-        source::SourcePosition const start = this->_cursor.get_current_position();
+        source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
-        if (this->_cursor.first(U'r'))
+        if (this->_cursor.First(U'r'))
         {
-            if (this->_cursor.first(U'#'))
+            if (this->_cursor.First(U'#'))
             {
                 if (this->TryReadIdentifier())
                 {
@@ -157,36 +157,36 @@ namespace weave::syntax
             }
         }
 
-        this->_cursor.reset(start);
+        this->_cursor.Reset(start);
         return false;
     }
 
     bool Lexer::TryReadRawStringLiteral()
     {
-        source::SourcePosition const start = this->_cursor.get_current_position();
+        source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
-        if (this->_cursor.first(U'r'))
+        if (this->_cursor.First(U'r'))
         {
             // Count number of '#' before literal.
-            size_t const delimiter = this->_cursor.count(U'#');
+            size_t const delimiter = this->_cursor.Count(U'#');
 
-            if (this->_cursor.first(U'"'))
+            if (this->_cursor.First(U'"'))
             {
                 bool terminated = false;
 
                 while (true)
                 {
-                    if (not this->_cursor.is_valid() or this->_cursor.is_end())
+                    if (not this->_cursor.IsValid() or this->_cursor.IsEnd())
                     {
                         break;
                     }
 
-                    if (this->_cursor.peek() == U'"')
+                    if (this->_cursor.Peek() == U'"')
                     {
-                        source::SourcePosition const startTerminator = this->_cursor.get_current_position();
-                        this->_cursor.advance();
+                        source::SourcePosition const startTerminator = this->_cursor.GetCurrentPosition();
+                        this->_cursor.Advance();
 
-                        size_t const matched = this->_cursor.count(U'#');
+                        size_t const matched = this->_cursor.Count(U'#');
 
                         if (matched == delimiter)
                         {
@@ -197,8 +197,8 @@ namespace weave::syntax
 
                         if (matched > delimiter)
                         {
-                            this->_diagnostic.add_error(
-                                this->_cursor.get_span_to_current(startTerminator),
+                            this->_diagnostic.AddError(
+                                this->_cursor.GetSpanToCurrent(startTerminator),
                                 "raw string literal terminator too long");
 
                             terminated = true;
@@ -212,15 +212,15 @@ namespace weave::syntax
                     else
                     {
                         // Append whatever we decoded.
-                        this->_token_value.append(this->_cursor.peek_as_string_view());
-                        this->_cursor.advance();
+                        this->_token_value.append(this->_cursor.PeekAsStringView());
+                        this->_cursor.Advance();
                     }
                 }
 
                 if (not terminated)
                 {
-                    this->_diagnostic.add_error(
-                        this->_cursor.get_span(),
+                    this->_diagnostic.AddError(
+                        this->_cursor.GetSpan(),
                         "missing terminating character error");
                 }
 
@@ -228,7 +228,7 @@ namespace weave::syntax
             }
         }
 
-        this->_cursor.reset(start);
+        this->_cursor.Reset(start);
         return false;
     }
 
@@ -245,25 +245,25 @@ namespace weave::syntax
 
     bool Lexer::TryReadStringPrefix()
     {
-        if (this->_cursor.first(U'u'))
+        if (this->_cursor.First(U'u'))
         {
-            if (this->_cursor.first(U'1'))
+            if (this->_cursor.First(U'1'))
             {
-                if (this->_cursor.first(U'6'))
+                if (this->_cursor.First(U'6'))
                 {
                     this->_token_prefix.assign("u16");
                     return true;
                 }
             }
-            else if (this->_cursor.first(U'3'))
+            else if (this->_cursor.First(U'3'))
             {
-                if (this->_cursor.first(U'2'))
+                if (this->_cursor.First(U'2'))
                 {
                     this->_token_prefix.assign("u32");
                     return true;
                 }
             }
-            else if (this->_cursor.first(U'8'))
+            else if (this->_cursor.First(U'8'))
             {
                 // u8
                 this->_token_prefix.assign("u8");
@@ -276,12 +276,12 @@ namespace weave::syntax
 
     bool Lexer::TryReadStringLiteral()
     {
-        source::SourcePosition const start = this->_cursor.get_current_position();
+        source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
         if (!this->TryReadStringPrefix())
         {
             // Not a string prefix. Continue trying as string literal.
-            this->_cursor.reset(start);
+            this->_cursor.Reset(start);
         }
         
         if (this->TryReadRawStringLiteral())
@@ -295,7 +295,7 @@ namespace weave::syntax
         }
 
         // Not a string literal.
-        this->_cursor.reset(start);
+        this->_cursor.Reset(start);
         return false;
     }
 
@@ -307,11 +307,11 @@ namespace weave::syntax
         {
             if (consumed == 0)
             {
-                this->_diagnostic.add_error(this->_cursor.get_span(), "empty character literal");
+                this->_diagnostic.AddError(this->_cursor.GetSpan(), "empty character literal");
             }
             else if (consumed > 1)
             {
-                this->_diagnostic.add_error(this->_cursor.get_span(), "character literal may only contain one codepoint");
+                this->_diagnostic.AddError(this->_cursor.GetSpan(), "character literal may only contain one codepoint");
             }
 
             return true;
@@ -322,7 +322,7 @@ namespace weave::syntax
 
     bool Lexer::TryReadNumericLiteral()
     {
-        if (not CharTraits::IsDecimalDigit(this->_cursor.peek()))
+        if (not CharTraits::IsDecimalDigit(this->_cursor.Peek()))
         {
             return false;
         }
@@ -342,12 +342,12 @@ namespace weave::syntax
         SingleInteger const partInteger = this->TryReadSingleInteger(radix);
         if (hasPrefix and not partInteger.HasValue)
         {
-            this->_diagnostic.add_error(this->_cursor.get_span(), "expected at least one digit in value");
+            this->_diagnostic.AddError(this->_cursor.GetSpan(), "expected at least one digit in value");
         }
 
-        if (this->_cursor.peek() == U'.')
+        if (this->_cursor.Peek() == U'.')
         {
-            source::SourcePosition const start = this->_cursor.get_current_position();
+            source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
             if (not partInteger.HasValue)
             {
@@ -356,7 +356,7 @@ namespace weave::syntax
             }
 
             // Consume '.'
-            this->_cursor.advance();
+            this->_cursor.Advance();
             size_t const revertSize = this->_token_value.size();
             this->_token_value.push_back('.');
 
@@ -372,20 +372,20 @@ namespace weave::syntax
             else if (partFractional.HasLeadingSeparator)
             {
                 // Fractional part cannot start with '_'.
-                this->_diagnostic.add_error(this->_cursor.get_span_to_current(start), "fractional part must not start with '_'");
+                this->_diagnostic.AddError(this->_cursor.GetSpanToCurrent(start), "fractional part must not start with '_'");
                 revert = true;
             }
 
             if (revert)
             {
                 this->_token_value.resize(revertSize);
-                this->_cursor.reset(start);
+                this->_cursor.Reset(start);
             }
         }
 
-        if (char32_t const exponent = this->_cursor.peek(); CharTraits::IsDecimalExponent(exponent) or CharTraits::IsHexadecimalExponent(exponent))
+        if (char32_t const exponent = this->_cursor.Peek(); CharTraits::IsDecimalExponent(exponent) or CharTraits::IsHexadecimalExponent(exponent))
         {
-            this->_cursor.advance();
+            this->_cursor.Advance();
 
             size_t const revertSize = this->_token_value.size();
 
@@ -393,7 +393,7 @@ namespace weave::syntax
             {
                 if (not CharTraits::IsDecimalExponent(exponent))
                 {
-                    this->_diagnostic.add_error(this->_cursor.get_span_for_current(), "invalid decimal exponent");
+                    this->_diagnostic.AddError(this->_cursor.GetSpanForCurrent(), "invalid decimal exponent");
                 }
 
                 this->_token_value.push_back('e');
@@ -402,15 +402,15 @@ namespace weave::syntax
             {
                 if (not CharTraits::IsHexadecimalExponent(exponent))
                 {
-                    this->_diagnostic.add_error(this->_cursor.get_span_for_current(), "invalid hexadecimal exponent");
+                    this->_diagnostic.AddError(this->_cursor.GetSpanForCurrent(), "invalid hexadecimal exponent");
                 }
 
                 this->_token_value.push_back('p');
             }
 
-            if (char32_t const sign = this->_cursor.peek(); (sign == '+') or (sign == '-'))
+            if (char32_t const sign = this->_cursor.Peek(); (sign == '+') or (sign == '-'))
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
                 this->_token_value.push_back(static_cast<char>(sign));
             }
 
@@ -419,7 +419,7 @@ namespace weave::syntax
             if (not partExponent.HasValue)
             {
                 // There is no integer part after exponent.
-                this->_diagnostic.add_error(this->_cursor.get_span(), "expected at least one digit in exponent");
+                this->_diagnostic.AddError(this->_cursor.GetSpan(), "expected at least one digit in exponent");
 
                 this->_token_value.resize(revertSize);
             }
@@ -433,11 +433,11 @@ namespace weave::syntax
 
             if (radix == 2)
             {
-                this->_diagnostic.add_error(this->_cursor.get_span(), "binary float literals are not supported");
+                this->_diagnostic.AddError(this->_cursor.GetSpan(), "binary float literals are not supported");
             }
             else if (radix == 8)
             {
-                this->_diagnostic.add_error(this->_cursor.get_span(), "octal float literals are not supported");
+                this->_diagnostic.AddError(this->_cursor.GetSpan(), "octal float literals are not supported");
             }
         }
         else
@@ -447,7 +447,7 @@ namespace weave::syntax
 
         if ((radix == 16) and partFractional.HasValue and (not partExponent.HasValue))
         {
-            this->_diagnostic.add_error(this->_cursor.get_span(), "hexadecimal floating literal requires exponent");
+            this->_diagnostic.AddError(this->_cursor.GetSpan(), "hexadecimal floating literal requires exponent");
         }
 
         return true;
@@ -455,20 +455,20 @@ namespace weave::syntax
 
     bool Lexer::TryReadPunctuation()
     {
-        switch (this->_cursor.peek())
+        switch (this->_cursor.Peek())
         {
         case U'~':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
                 this->_token_kind = TokenKind::TildeToken;
                 return true;
             }
 
         case U'!':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'='))
+                if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::ExclamationEqualsToken;
                 }
@@ -482,13 +482,13 @@ namespace weave::syntax
 
         case U'+':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'='))
+                if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::PlusEqualsToken;
                 }
-                else if (this->_cursor.first(U'+'))
+                else if (this->_cursor.First(U'+'))
                 {
                     this->_token_kind = TokenKind::PlusPlusToken;
                 }
@@ -502,17 +502,17 @@ namespace weave::syntax
 
         case U'-':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'='))
+                if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::MinusEqualsToken;
                 }
-                else if (this->_cursor.first(U'-'))
+                else if (this->_cursor.First(U'-'))
                 {
                     this->_token_kind = TokenKind::MinusMinusToken;
                 }
-                else if (this->_cursor.first(U'>'))
+                else if (this->_cursor.First(U'>'))
                 {
                     this->_token_kind = TokenKind::MinusGreaterThanToken;
                 }
@@ -526,9 +526,9 @@ namespace weave::syntax
 
         case U'*':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'='))
+                if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::AsteriskEqualsToken;
                 }
@@ -542,9 +542,9 @@ namespace weave::syntax
 
         case U'/':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'='))
+                if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::SlashEqualsToken;
                 }
@@ -558,7 +558,7 @@ namespace weave::syntax
 
         case U'(':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::OpenParenToken;
 
@@ -567,7 +567,7 @@ namespace weave::syntax
 
         case U')':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::CloseParenToken;
 
@@ -576,7 +576,7 @@ namespace weave::syntax
 
         case U'{':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::OpenBraceToken;
 
@@ -585,7 +585,7 @@ namespace weave::syntax
 
         case U'}':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::CloseBraceToken;
 
@@ -594,7 +594,7 @@ namespace weave::syntax
 
         case U'[':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::OpenBracketToken;
 
@@ -603,7 +603,7 @@ namespace weave::syntax
 
         case U']':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::CloseBracketToken;
 
@@ -612,9 +612,9 @@ namespace weave::syntax
 
         case U':':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U':'))
+                if (this->_cursor.First(U':'))
                 {
                     this->_token_kind = TokenKind::ColonColonToken;
                 }
@@ -628,7 +628,7 @@ namespace weave::syntax
 
         case U';':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::SemicolonToken;
 
@@ -637,7 +637,7 @@ namespace weave::syntax
 
         case U'@':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::AtToken;
 
@@ -646,7 +646,7 @@ namespace weave::syntax
 
         case U'#':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::HashToken;
 
@@ -655,7 +655,7 @@ namespace weave::syntax
 
         case U'$':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::DollarToken;
 
@@ -664,9 +664,9 @@ namespace weave::syntax
 
         case U'%':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'='))
+                if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::PercentEqualsToken;
                 }
@@ -679,9 +679,9 @@ namespace weave::syntax
 
         case U'^':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'^'))
+                if (this->_cursor.First(U'^'))
                 {
                     this->_token_kind = TokenKind::CaretEqualsToken;
                 }
@@ -695,13 +695,13 @@ namespace weave::syntax
 
         case U'&':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'&'))
+                if (this->_cursor.First(U'&'))
                 {
                     this->_token_kind = TokenKind::AmpersandAmpersandToken;
                 }
-                else if (this->_cursor.first(U'='))
+                else if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::AmpersandEqualsToken;
                 }
@@ -715,13 +715,13 @@ namespace weave::syntax
 
         case U'=':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'='))
+                if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::EqualsEqualsToken;
                 }
-                else if (this->_cursor.first(U'>'))
+                else if (this->_cursor.First(U'>'))
                 {
                     this->_token_kind = TokenKind::EqualsGreaterThanToken;
                 }
@@ -735,7 +735,7 @@ namespace weave::syntax
 
         case U'\\':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::BackslashToken;
 
@@ -744,13 +744,13 @@ namespace weave::syntax
 
         case U'|':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'|'))
+                if (this->_cursor.First(U'|'))
                 {
                     this->_token_kind = TokenKind::BarBarToken;
                 }
-                else if (this->_cursor.first(U'='))
+                else if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::BarEqualsToken;
                 }
@@ -764,7 +764,7 @@ namespace weave::syntax
 
         case U',':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
                 this->_token_kind = TokenKind::CommaToken;
 
@@ -773,15 +773,15 @@ namespace weave::syntax
 
         case U'<':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'='))
+                if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::LessThanEqualsToken;
                 }
-                else if (this->_cursor.first(U'<'))
+                else if (this->_cursor.First(U'<'))
                 {
-                    if (this->_cursor.first(U'='))
+                    if (this->_cursor.First(U'='))
                     {
                         this->_token_kind = TokenKind::LessThanLessThanEqualsToken;
                     }
@@ -800,15 +800,15 @@ namespace weave::syntax
 
         case U'>':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'='))
+                if (this->_cursor.First(U'='))
                 {
                     this->_token_kind = TokenKind::GreaterThanEqualsToken;
                 }
-                else if (this->_cursor.first(U'>'))
+                else if (this->_cursor.First(U'>'))
                 {
-                    if (this->_cursor.first(U'='))
+                    if (this->_cursor.First(U'='))
                     {
                         this->_token_kind = TokenKind::GreaterThanGreaterThanEqualsToken;
                     }
@@ -827,9 +827,9 @@ namespace weave::syntax
 
         case U'?':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'?'))
+                if (this->_cursor.First(U'?'))
                 {
                     this->_token_kind = TokenKind::QuestionQuestionToken;
                 }
@@ -843,11 +843,11 @@ namespace weave::syntax
 
         case U'.':
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
 
-                if (this->_cursor.first(U'.'))
+                if (this->_cursor.First(U'.'))
                 {
-                    if (this->_cursor.first(U'.'))
+                    if (this->_cursor.First(U'.'))
                     {
                         this->_token_kind = TokenKind::DotDotDotToken;
                     }
@@ -874,17 +874,17 @@ namespace weave::syntax
 
     bool Lexer::TryReadEndOfLine()
     {
-        if (this->_cursor.first(U'\n'))
+        if (this->_cursor.First(U'\n'))
         {
             return true;
         }
 
         // TODO: Think about handling lone '\r' as well here.
-        if (this->_cursor.peek() == U'\r')
+        if (this->_cursor.Peek() == U'\r')
         {
-            source::SourceCursor next = this->_cursor.next();
+            source::SourceCursor next = this->_cursor.NextCursor();
 
-            if (next.first(U'\n'))
+            if (next.First(U'\n'))
             {
                 this->_cursor = next;
                 return true;
@@ -896,23 +896,23 @@ namespace weave::syntax
 
     bool Lexer::TryReadWhitespace()
     {
-        return this->_cursor.skip_if(CharTraits::IsWhitespace);
+        return this->_cursor.SkipIf(CharTraits::IsWhitespace);
     }
 
     TriviaKind Lexer::TryReadSingleLineComment()
     {
         // Starts with '///' or '//!'
-        bool const documentation = (this->_cursor.peek() == U'/') or (this->_cursor.peek() == U'!');
+        bool const documentation = (this->_cursor.Peek() == U'/') or (this->_cursor.Peek() == U'!');
 
         while (true)
         {
-            char32_t const current = this->_cursor.peek();
-            if (CharTraits::IsNewLine(current) or not this->_cursor.is_valid() or this->_cursor.is_end())
+            char32_t const current = this->_cursor.Peek();
+            if (CharTraits::IsNewLine(current) or not this->_cursor.IsValid() or this->_cursor.IsEnd())
             {
                 break;
             }
 
-            this->_cursor.advance();
+            this->_cursor.Advance();
         }
 
         return documentation
@@ -923,23 +923,23 @@ namespace weave::syntax
     TriviaKind Lexer::TryReadMultiLineComment()
     {
         // Starts with '/**' or '/*!'
-        bool const documentation = (this->_cursor.peek() == U'*') or (this->_cursor.peek() == U'!');
+        bool const documentation = (this->_cursor.Peek() == U'*') or (this->_cursor.Peek() == U'!');
 
         size_t depth = 1;
 
         while (true)
         {
-            if (not this->_cursor.is_valid() or this->_cursor.is_end())
+            if (not this->_cursor.IsValid() or this->_cursor.IsEnd())
             {
-                this->_diagnostic.add_error(
-                    this->_cursor.get_span(),
+                this->_diagnostic.AddError(
+                    this->_cursor.GetSpan(),
                     "unterminated multi line comment");
                 break;
             }
 
-            if (this->_cursor.first(U'*'))
+            if (this->_cursor.First(U'*'))
             {
-                if (this->_cursor.first(U'/'))
+                if (this->_cursor.First(U'/'))
                 {
                     --depth;
 
@@ -949,16 +949,16 @@ namespace weave::syntax
                     }
                 }
             }
-            else if (this->_cursor.first(U'/'))
+            else if (this->_cursor.First(U'/'))
             {
-                if (this->_cursor.first(U'*'))
+                if (this->_cursor.First(U'*'))
                 {
                     ++depth;
                 }
             }
             else
             {
-                this->_cursor.advance();
+                this->_cursor.Advance();
             }
         }
 
@@ -969,34 +969,34 @@ namespace weave::syntax
 
     TriviaKind Lexer::TryReadComment()
     {
-        source::SourcePosition const start = this->_cursor.get_current_position();
+        source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
-        if (this->_cursor.first(U'/'))
+        if (this->_cursor.First(U'/'))
         {
-            if (this->_cursor.first(U'/'))
+            if (this->_cursor.First(U'/'))
             {
                 return this->TryReadSingleLineComment();
             }
 
-            if (this->_cursor.first(U'*'))
+            if (this->_cursor.First(U'*'))
             {
                 return this->TryReadMultiLineComment();
             }
         }
 
-        this->_cursor.reset(start);
+        this->_cursor.Reset(start);
         return TriviaKind::Error;
     }
 
     bool Lexer::TryReadIdentifier()
     {
-        if (CharTraits::IsIdentifierStart(this->_cursor.peek()))
+        if (CharTraits::IsIdentifierStart(this->_cursor.Peek()))
         {
             do
             {
-                this->_token_value.append(this->_cursor.peek_as_string_view());
-                this->_cursor.advance();
-            } while (CharTraits::IsIdentifierContinuation(this->_cursor.peek()));
+                this->_token_value.append(this->_cursor.PeekAsStringView());
+                this->_cursor.Advance();
+            } while (CharTraits::IsIdentifierContinuation(this->_cursor.Peek()));
 
             return true;
         }
@@ -1006,9 +1006,9 @@ namespace weave::syntax
 
     Lexer::SingleInteger Lexer::TryReadSingleInteger(int base)
     {
-        source::SourcePosition const start = this->_cursor.get_current_position();
+        source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
-        auto const charset = [base]()
+        auto const charset = [base]
         {
             switch (base)
             {
@@ -1030,14 +1030,14 @@ namespace weave::syntax
 
         SingleInteger result{};
 
-        if (this->_cursor.peek() == U'_')
+        if (this->_cursor.Peek() == U'_')
         {
             result.HasLeadingSeparator = true;
         }
 
         while (true)
         {
-            char32_t const current = this->_cursor.peek();
+            char32_t const current = this->_cursor.Peek();
 
             if (current == U'_')
             {
@@ -1051,8 +1051,8 @@ namespace weave::syntax
                     if (CharTraits::IsDecimalDigit(current))
                     {
                         // Wrong digit for base.
-                        this->_diagnostic.add_error(
-                            this->_cursor.get_span_for_current(),
+                        this->_diagnostic.AddError(
+                            this->_cursor.GetSpanForCurrent(),
                             fmt::format("invalid digit for base {} literal", base));
                     }
                     else
@@ -1066,13 +1066,13 @@ namespace weave::syntax
                 result.HasTrailingSeparator = false;
             }
 
-            this->_cursor.advance();
+            this->_cursor.Advance();
         }
 
         if (not result.HasValue)
         {
             // Revert scanning, it was either empty match or more than one separators.
-            this->_cursor.reset(start);
+            this->_cursor.Reset(start);
         }
 
         return result;
@@ -1084,12 +1084,12 @@ namespace weave::syntax
 
         while (true)
         {
-            if (not AppendDecCharacter(result, this->_cursor.peek()))
+            if (not AppendDecCharacter(result, this->_cursor.Peek()))
             {
                 break;
             }
 
-            this->_cursor.advance();
+            this->_cursor.Advance();
             ++count;
         }
 
@@ -1102,12 +1102,12 @@ namespace weave::syntax
 
         while (true)
         {
-            if (not AppendHexCharacter(result, this->_cursor.peek()))
+            if (not AppendHexCharacter(result, this->_cursor.Peek()))
             {
                 break;
             }
 
-            this->_cursor.advance();
+            this->_cursor.Advance();
             ++count;
         }
 
@@ -1120,12 +1120,12 @@ namespace weave::syntax
 
         for (; count < maxLength; ++count)
         {
-            if (not AppendDecCharacter(result, this->_cursor.peek()))
+            if (not AppendDecCharacter(result, this->_cursor.Peek()))
             {
                 break;
             }
 
-            this->_cursor.advance();
+            this->_cursor.Advance();
         }
 
         return count;
@@ -1137,12 +1137,12 @@ namespace weave::syntax
 
         for (; count < maxLength; ++count)
         {
-            if (not AppendHexCharacter(result, this->_cursor.peek()))
+            if (not AppendHexCharacter(result, this->_cursor.Peek()))
             {
                 break;
             }
 
-            this->_cursor.advance();
+            this->_cursor.Advance();
         }
 
         return count;
@@ -1150,9 +1150,9 @@ namespace weave::syntax
 
     bool Lexer::TryReadHexEscapeSequence()
     {
-        source::SourcePosition const start = this->_cursor.get_current_position();
+        source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
-        if (this->_cursor.first(U'x'))
+        if (this->_cursor.First(U'x'))
         {
             uint64_t value{};
 
@@ -1160,21 +1160,21 @@ namespace weave::syntax
 
             if (count != 2)
             {
-                this->_diagnostic.add_error(this->_cursor.get_span_to_current(start), "numeric character sequence is too short");
+                this->_diagnostic.AddError(this->_cursor.GetSpanToCurrent(start), "numeric character sequence is too short");
 
                 // Emit invalid sequence later
-                this->_cursor.reset(start);
+                this->_cursor.Reset(start);
                 return false;
             }
 
             if (value >= 0x80)
             {
-                this->_diagnostic.add_error(
-                    this->_cursor.get_span_to_current(start),
+                this->_diagnostic.AddError(
+                    this->_cursor.GetSpanToCurrent(start),
                     R"(must be a character in the range[\x00-\x7F])");
 
                 // Emit invalid sequence later
-                this->_cursor.reset(start);
+                this->_cursor.Reset(start);
                 return false;
             }
 
@@ -1190,7 +1190,7 @@ namespace weave::syntax
     {
         std::array<char, 8> buffer; // NOLINT(cppcoreguidelines-pro-type-member-init, hicpp-member-init)
 
-        if (char* it = buffer.data(); unicode::utf8_encode(it, it + buffer.size(), c) == unicode::UnicodeConversionResult::Success)
+        if (char* it = buffer.data(); unicode::UTF8Encode(it, it + buffer.size(), c) == unicode::UnicodeConversionResult::Success)
         {
             this->_token_value.append(buffer.data(), it);
             return true;
@@ -1201,7 +1201,7 @@ namespace weave::syntax
 
     bool Lexer::TryReadTrivialEscapeSequence()
     {
-        int const matched = [](char32_t c) -> int
+        int const matched = [c = this->_cursor.Peek()]() -> int
         {
             switch (c)
             {
@@ -1246,28 +1246,28 @@ namespace weave::syntax
             }
 
             return -1;
-        }(this->_cursor.peek());
+        }();
 
         if (matched >= 0)
         {
-            this->_cursor.advance();
+            this->_cursor.Advance();
             this->_token_value.push_back(static_cast<char>(matched));
             return true;
         }
 
-        this->_diagnostic.add_error(
-            this->_cursor.get_span_for_current(),
+        this->_diagnostic.AddError(
+            this->_cursor.GetSpanForCurrent(),
             "invalid character escape sequence");
         return false;
     }
 
     bool Lexer::TryReadUnicodeEscapeSequence()
     {
-        source::SourcePosition const start = this->_cursor.get_current_position();
+        source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
-        if (this->_cursor.first(U'u'))
+        if (this->_cursor.First(U'u'))
         {
-            if (this->_cursor.first(U'{'))
+            if (this->_cursor.First(U'{'))
             {
                 uint64_t value{};
 
@@ -1275,42 +1275,42 @@ namespace weave::syntax
 
                 if (count == 0)
                 {
-                    this->_diagnostic.add_error(
-                        this->_cursor.get_span_to_current(start),
+                    this->_diagnostic.AddError(
+                        this->_cursor.GetSpanToCurrent(start),
                         "escape sequence must have at least 1 hex digit");
                 }
                 else if (count > 6)
                 {
-                    this->_diagnostic.add_error(
-                        this->_cursor.get_span_to_current(start),
+                    this->_diagnostic.AddError(
+                        this->_cursor.GetSpanToCurrent(start),
                         "must have at most 6 hex digits");
                 }
 
-                if (this->_cursor.first(U'}'))
+                if (this->_cursor.First(U'}'))
                 {
                     if (not this->TryAppendUnicodeCodepoint(static_cast<char32_t>(value)))
                     {
-                        this->_diagnostic.add_error(
-                            this->_cursor.get_span_to_current(start),
+                        this->_diagnostic.AddError(
+                            this->_cursor.GetSpanToCurrent(start),
                             "invalid unicode character escape sequence");
                     }
 
                     return true;
                 }
 
-                this->_diagnostic.add_error(
-                    this->_cursor.get_span_for_current(),
+                this->_diagnostic.AddError(
+                    this->_cursor.GetSpanForCurrent(),
                     "missing closing '}' on unicode sequence");
             }
             else
             {
-                this->_diagnostic.add_error(
-                    this->_cursor.get_span_to_current(start),
+                this->_diagnostic.AddError(
+                    this->_cursor.GetSpanToCurrent(start),
                     R"(expected '{' after '\\u')");
             }
         }
 
-        this->_cursor.reset(start);
+        this->_cursor.Reset(start);
         return false;
     }
 
@@ -1336,7 +1336,7 @@ namespace weave::syntax
 
     bool Lexer::TryReadStringOrCharacterLiteralCore(char32_t specifier, size_t& consumed)
     {
-        if (not this->_cursor.first(specifier))
+        if (not this->_cursor.First(specifier))
         {
             return false;
         }
@@ -1346,7 +1346,7 @@ namespace weave::syntax
 
         while (true)
         {
-            if (not this->_cursor.is_valid() or this->_cursor.is_end())
+            if (not this->_cursor.IsValid() or this->_cursor.IsEnd())
             {
                 break;
             }
@@ -1358,15 +1358,15 @@ namespace weave::syntax
                 if (not this->TryReadEscapeSequence())
                 {
                     // All we can do is to append escaped character as-is.
-                    this->_token_value.append(this->_cursor.peek_as_string_view());
-                    this->_cursor.advance();
+                    this->_token_value.append(this->_cursor.PeekAsStringView());
+                    this->_cursor.Advance();
                 }
 
                 ++consumed;
             }
             else
             {
-                if (this->_cursor.first(specifier))
+                if (this->_cursor.First(specifier))
                 {
                     terminated = true;
                     break;
@@ -1377,15 +1377,15 @@ namespace weave::syntax
                     break;
                 }
 
-                if (this->_cursor.first(U'\\'))
+                if (this->_cursor.First(U'\\'))
                 {
                     escaping = true;
                 }
                 else
                 {
                     // Append whatever we decoded.
-                    this->_token_value.append(this->_cursor.peek_as_string_view());
-                    this->_cursor.advance();
+                    this->_token_value.append(this->_cursor.PeekAsStringView());
+                    this->_cursor.Advance();
 
                     ++consumed;
                 }
@@ -1394,12 +1394,12 @@ namespace weave::syntax
 
         if (not terminated)
         {
-            this->_diagnostic.add_error(this->_cursor.get_span(), "unterminated string literal");
+            this->_diagnostic.AddError(this->_cursor.GetSpan(), "unterminated string literal");
         }
 
         if (escaping)
         {
-            this->_diagnostic.add_error(this->_cursor.get_span(), "unterminated escape sequence");
+            this->_diagnostic.AddError(this->_cursor.GetSpan(), "unterminated escape sequence");
         }
 
         return terminated;
@@ -1407,38 +1407,38 @@ namespace weave::syntax
 
     int Lexer::TryReadNumberLiteralPrefixWithRadix()
     {
-        source::SourcePosition const start = this->_cursor.get_current_position();
+        source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
-        if (this->_cursor.first(U'0'))
+        if (this->_cursor.First(U'0'))
         {
-            switch (this->_cursor.peek())
+            switch (this->_cursor.Peek())
             {
             case U'B':
-                this->_diagnostic.add_error(this->_cursor.get_span_to_next(start), "invalid base prefix for binary number literal");
+                this->_diagnostic.AddError(this->_cursor.GetSpanToNext(start), "invalid base prefix for binary number literal");
                 [[fallthrough]];
             case U'b':
                 this->_token_prefix.assign("0b");
-                this->_cursor.advance();
+                this->_cursor.Advance();
                 return 2;
 
             case U'O':
-                this->_diagnostic.add_error(this->_cursor.get_span_to_next(start), "invalid base prefix for octal number literal");
+                this->_diagnostic.AddError(this->_cursor.GetSpanToNext(start), "invalid base prefix for octal number literal");
                 [[fallthrough]];
             case U'o':
                 this->_token_prefix.assign("0o");
-                this->_cursor.advance();
+                this->_cursor.Advance();
                 return 8;
 
             case U'X':
-                this->_diagnostic.add_error(this->_cursor.get_span_to_next(start), "invalid base prefix for hexadecimal number literal");
+                this->_diagnostic.AddError(this->_cursor.GetSpanToNext(start), "invalid base prefix for hexadecimal number literal");
                 [[fallthrough]];
             case U'x':
                 this->_token_prefix.assign("0x");
-                this->_cursor.advance();
+                this->_cursor.Advance();
                 return 16;
 
             default:
-                this->_cursor.reset(start);
+                this->_cursor.Reset(start);
                 return 0;
             }
         }
@@ -1448,18 +1448,18 @@ namespace weave::syntax
 
     void Lexer::TryReadNumberValueType()
     {
-        source::SourcePosition const start = this->_cursor.get_current_position();
+        source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
-        if (CharTraits::IsIdentifierStart(this->_cursor.peek()))
+        if (CharTraits::IsIdentifierStart(this->_cursor.Peek()))
         {
             do
             {
-                this->_cursor.advance();
-            } while (CharTraits::IsIdentifierContinuation(this->_cursor.peek()));
+                this->_cursor.Advance();
+            } while (CharTraits::IsIdentifierContinuation(this->_cursor.Peek()));
 
-            source::SourceSpan const suffixSpan = this->_cursor.get_span_to_current(start);
+            source::SourceSpan const suffixSpan = this->_cursor.GetSpanToCurrent(start);
 
-            std::string_view const suffix = this->_source.get_text(suffixSpan);
+            std::string_view const suffix = this->_source.GetText(suffixSpan);
 
             this->_token_suffix.assign(suffix);
         }

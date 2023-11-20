@@ -23,7 +23,7 @@ WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::memory
 {
-    PageAllocationResult page_allocate(size_t size)
+    PageAllocationResult PageAllocate(size_t size)
     {
         size_t const alignment = (size < PageGranularity)
             ? PageSize
@@ -46,13 +46,13 @@ namespace weave::memory
         WEAVE_ASSERT(bitwise::IsAligned(result, alignment));
 
         return PageAllocationResult{
-            .pointer = result,
-            .size = aligned_size,
-            .alignment = alignment,
+            .Pointer = result,
+            .Size = aligned_size,
+            .Alignment = alignment,
         };
     }
 
-    void page_deallocate(void* pointer)
+    void PageDeallocate(void* pointer)
     {
 #if defined(WIN32)
 

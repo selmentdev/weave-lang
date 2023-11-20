@@ -5,36 +5,39 @@
 
 namespace weave::stringpool
 {
-    std::string_view StringPool::intern(std::string_view value)
+    std::string_view StringPool::Intern(std::string_view value)
     {
-        char* buffer = reinterpret_cast<char*>(this->_storage.allocate(memory::Layout{value.length() + 1, alignof(char)}).address);
+        char* buffer = reinterpret_cast<char*>(this->_storage.Allocate(memory::Layout{value.length() + 1, alignof(char)}).Address);
         std::memcpy(buffer, value.data(), value.length());
         buffer[value.length()] = '\0';
+
+        // ReSharper disable once CppDFALocalValueEscapesFunction
+        // Value is allocated from allocator.
         return std::string_view{buffer, value.length()};
     }
 
-    StringPool::Entry** StringPool::try_find(uint64_t hash, std::string_view value, size_t& chainLength)
+    StringPool::Entry** StringPool::TryFind(uint64_t hash, std::string_view value, size_t& chainLength)
     {
         size_t const index = hash % this->_mapping.size();
         Entry** entry = &this->_mapping[index];
 
         while (*entry != nullptr)
         {
-            if (((*entry)->hash == hash) and ((*entry)->value == value))
+            if (((*entry)->Hash == hash) and ((*entry)->Value == value))
             {
                 // Found the place where matching entry is.
                 break;
             }
 
             ++chainLength;
-            entry = &(*entry)->next;
+            entry = &(*entry)->Next;
         }
 
         // Entry couldn't be found here, but if we need to place a new one, this is the location.
         return entry;
     }
 
-    void StringPool::rehash()
+    void StringPool::Rehash()
     {
         std::vector<Entry*> mapping{this->_mapping.size() * 2};
         size_t const old_size = this->_mapping.size();
@@ -45,9 +48,9 @@ namespace weave::stringpool
 
             while (entry != nullptr)
             {
-                Entry* const next = entry->next;
-                size_t const index = entry->hash % mapping.size();
-                entry->next = mapping[index];
+                Entry* const next = entry->Next;
+                size_t const index = entry->Hash % mapping.size();
+                entry->Next = mapping[index];
                 mapping[index] = entry;
                 entry = next;
             }
@@ -56,33 +59,33 @@ namespace weave::stringpool
         this->_mapping = std::move(mapping);
     }
 
-    std::string_view StringPool::get(std::string_view value)
+    std::string_view StringPool::Get(std::string_view value)
     {
         if (this->_count >= (this->_mapping.size() * RehashFactor))
         {
-            this->rehash();
+            this->Rehash();
         }
 
         uint64_t const hash = hash::Fnv1a64::FromString(value);
 
         size_t chain_length{};
 
-        Entry** entry = this->try_find(hash, value, chain_length);
+        Entry** entry = this->TryFind(hash, value, chain_length);
 
         if (*entry == nullptr)
         {
             // Entry doesn't exist, create a new one.
-            *entry = this->_entries.create(
+            *entry = this->_entries.Emplace(
                 nullptr,
-                this->intern(value),
+                this->Intern(value),
                 hash);
             ++this->_count;
         }
 
-        return (*entry)->value;
+        return (*entry)->Value;
     }
 
-    void StringPool::dump() const
+    void StringPool::Dump() const
     {
         fmt::println("StringTable: {} entries, {} buckets", this->_count, this->_mapping.size());
 
@@ -97,14 +100,14 @@ namespace weave::stringpool
 
                 do
                 {
-                    fmt::println("  hash: {:016X}, value: {}", entry->hash, entry->value);
-                    entry = entry->next;
+                    fmt::println("  hash: {:016X}, value: {}", entry->Hash, entry->Value);
+                    entry = entry->Next;
                 } while (entry != nullptr);
             }
         }
     }
 
-    void StringPool::enumerate(void* context, bool (*callback)(void*, std::string_view)) const
+    void StringPool::Enumerate(void* context, bool (*callback)(void*, std::string_view)) const
     {
         for (Entry const* bucket : this->_mapping)
         {
@@ -112,12 +115,12 @@ namespace weave::stringpool
 
             while (current != nullptr)
             {
-                if (callback(context, current->value))
+                if (callback(context, current->Value))
                 {
                     return;
                 }
 
-                current = current->next;
+                current = current->Next;
             }
         }
     }

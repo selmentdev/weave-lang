@@ -50,11 +50,11 @@ namespace weave::filesystem
     class FileHandle final
     {
     private:
-        void* m_Handle{};
+        void* _handle{};
 
     private:
-        FileHandle(void* handle)
-            : m_Handle{handle}
+        explicit FileHandle(void* handle)
+            : _handle{handle}
         {
         }
 
@@ -64,7 +64,7 @@ namespace weave::filesystem
         FileHandle(FileHandle const&) = delete;
 
         FileHandle(FileHandle&& other) noexcept
-            : m_Handle{std::exchange(other.m_Handle, nullptr)}
+            : _handle{std::exchange(other._handle, nullptr)}
         {
         }
 
@@ -74,12 +74,13 @@ namespace weave::filesystem
         {
             if (this != std::addressof(other))
             {
-                if (this->m_Handle != nullptr)
+                if (this->_handle != nullptr)
                 {
-                    this->Close();
+                    // Ignore errors.
+                    (void)this->Close();
                 }
 
-                this->m_Handle = std::exchange(other.m_Handle, nullptr);
+                this->_handle = std::exchange(other._handle, nullptr);
             }
 
             return *this;
@@ -87,9 +88,10 @@ namespace weave::filesystem
 
         ~FileHandle()
         {
-            if (this->m_Handle != nullptr)
+            if (this->_handle != nullptr)
             {
-                this->Close();
+                // Ignore errors.
+                (void)this->Close();
             }
         }
 
@@ -108,7 +110,7 @@ namespace weave::filesystem
 
         std::expected<void, FileSystemError> Flush();
 
-        std::expected<int64_t, FileSystemError> GetLength() const;
+        [[nodiscard]] std::expected<int64_t, FileSystemError> GetLength() const;
 
         std::expected<void, FileSystemError> SetLength(int64_t length);
 

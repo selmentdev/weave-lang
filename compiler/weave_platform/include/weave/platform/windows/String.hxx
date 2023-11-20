@@ -7,14 +7,14 @@
 
 namespace weave::platform
 {
-    bool widen_string_impl(
+    bool WidenStringImpl(
         void* context,
         void (*reserve)(void*, size_t),
         std::span<wchar_t> (*get)(void*),
         void (*trim)(void*, size_t),
         std::string_view value);
 
-    bool narrow_string_impl(
+    bool NarrowStringImpl(
         void* context,
         void (*reserve)(void*, size_t),
         std::span<char> (*get)(void*),
@@ -22,29 +22,29 @@ namespace weave::platform
         std::wstring_view value);
 
     template <size_t CapacityT>
-    bool widen_string(
+    bool WidenString(
         StringBuffer<wchar_t, CapacityT>& result,
         std::string_view value)
     {
-        return widen_string_impl(
+        return WidenStringImpl(
             &result,
             [](void* context, size_t const size)
             {
-                static_cast<StringBuffer<wchar_t, CapacityT>*>(context)->resize_for_overwrite(size);
+                static_cast<StringBuffer<wchar_t, CapacityT>*>(context)->ResizeForOverwrite(size);
             },
             [](void* context) -> std::span<wchar_t>
             {
-                return static_cast<StringBuffer<wchar_t, CapacityT>*>(context)->get_buffer_view();
+                return static_cast<StringBuffer<wchar_t, CapacityT>*>(context)->GetBufferView();
             },
             [](void* context, size_t const size)
             {
-                static_cast<StringBuffer<wchar_t, CapacityT>*>(context)->trim(size);
+                static_cast<StringBuffer<wchar_t, CapacityT>*>(context)->Trim(size);
             },
             value);
     }
 
     template <size_t CapacityT>
-    bool narrow_string(
+    bool NarrowString(
         StringBuffer<char, CapacityT>& result,
         std::wstring_view value)
     {
@@ -52,15 +52,15 @@ namespace weave::platform
             &result,
             [](void* context, size_t const size)
             {
-                static_cast<StringBuffer<char, CapacityT>*>(context)->resize_for_overwrite(size);
+                static_cast<StringBuffer<char, CapacityT>*>(context)->ResizeForOverwrite(size);
             },
             [](void* context) -> std::span<char>
             {
-                return static_cast<StringBuffer<char, CapacityT>*>(context)->get_buffer_view();
+                return static_cast<StringBuffer<char, CapacityT>*>(context)->GetBufferView();
             },
             [](void* context, size_t const size)
             {
-                static_cast<StringBuffer<char, CapacityT>*>(context)->trim(size);
+                static_cast<StringBuffer<char, CapacityT>*>(context)->Trim(size);
             },
             value);
     }

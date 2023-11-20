@@ -11,7 +11,7 @@ WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::platform
 {
-    bool widen_string_impl(
+    bool WidenStringImpl(
         void* context,
         void (*reserve)(void*, size_t),
         std::span<wchar_t> (*get)(void*),
@@ -63,7 +63,7 @@ namespace weave::platform
         return true;
     }
 
-    bool narrow_string_impl(
+    bool NarrowStringImpl(
         void* context,
         void (*reserve)(void*, size_t),
         std::span<char> (*get)(void*),

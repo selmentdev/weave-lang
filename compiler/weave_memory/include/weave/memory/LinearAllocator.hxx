@@ -15,15 +15,15 @@ namespace weave::memory
     protected:
         struct Segment
         {
-            Segment* blink{};
-            Segment* flink{};
-            std::byte* last{};
+            Segment* BackLink{};
+            Segment* ForwardLink{};
+            std::byte* Last{};
         };
 
         struct SegmentList
         {
-            Segment* head{};
-            Segment* tail{};
+            Segment* Head{};
+            Segment* Tail{};
         };
 
     protected:
@@ -34,7 +34,7 @@ namespace weave::memory
 
     public:
         LinearAllocator();
-        LinearAllocator(size_t segment_size);
+        explicit LinearAllocator(size_t segment_size);
         ~LinearAllocator();
 
         LinearAllocator(LinearAllocator const&) = delete;
@@ -44,94 +44,94 @@ namespace weave::memory
         LinearAllocator& operator=(LinearAllocator&& other) noexcept;
 
     protected:
-        Segment* allocate_segment(size_t size);
+        Segment* AllocateSegment(size_t size);
 
-        Allocation allocate_impl(Layout const& layout);
+        Allocation AllocateImpl(Layout const& layout);
 
-        constexpr bool needs_separate_segment(size_t size) const
+        [[nodiscard]] constexpr bool NeedsSeparateSegment(size_t size) const
         {
             return size > (this->_segment_size / 4);
         }
 
         // Inserts `other` before `self` segment.
-        static constexpr void insert_before(SegmentList& list, Segment* self, Segment* other)
+        static constexpr void InsertBefore(SegmentList& list, Segment* self, Segment* other)
         {
-            other->blink = self->blink;
-            other->flink = self;
+            other->BackLink = self->BackLink;
+            other->ForwardLink = self;
 
-            if (self->blink != nullptr)
+            if (self->BackLink != nullptr)
             {
-                self->blink->flink = other;
+                self->BackLink->ForwardLink = other;
             }
             else
             {
-                list.head = other;
+                list.Head = other;
             }
 
-            self->blink = other;
+            self->BackLink = other;
         }
 
-        static constexpr void push_back(SegmentList& list, Segment* segment)
+        static constexpr void PushBack(SegmentList& list, Segment* segment)
         {
-            if (list.head == nullptr)
+            if (list.Head == nullptr)
             {
-                list.head = segment;
-                list.tail = segment;
+                list.Head = segment;
+                list.Tail = segment;
             }
             else
             {
-                list.tail->flink = segment;
-                segment->blink = list.tail;
-                list.tail = segment;
+                list.Tail->ForwardLink = segment;
+                segment->BackLink = list.Tail;
+                list.Tail = segment;
             }
         }
 
     public:
-        Allocation allocate(Layout const& layout)
+        Allocation Allocate(Layout const& layout)
         {
-            std::byte* const result = bitwise::AlignUp(this->_list.tail->last, layout.alignment);
-            std::byte* const last = result + layout.size;
+            std::byte* const result = bitwise::AlignUp(this->_list.Tail->Last, layout.Alignment);
+            std::byte* const last = result + layout.Size;
 
             if (last > this->_end)
             {
-                return this->allocate_impl(layout);
+                return this->AllocateImpl(layout);
             }
 
             // Update head's end pointer.
-            this->_list.tail->last = last;
+            this->_list.Tail->Last = last;
 
-            ASAN_UNPOISON_MEMORY_REGION(result, layout.size);
+            ASAN_UNPOISON_MEMORY_REGION(result, layout.Size);
 
             return Allocation{
-                .address = result,
-                .size = layout.size,
+                .Address = result,
+                .Size = layout.Size,
             };
         }
 
         template <typename T, typename... ArgsT>
-        [[nodiscard]] T* create(ArgsT&&... args)
+        [[nodiscard]] T* Emplace(ArgsT&&... args)
         {
             static_assert(std::is_trivially_destructible_v<T>);
 
-            Allocation const allocation = this->allocate(Layout{
-                .size = sizeof(T),
-                .alignment = alignof(T),
+            Allocation const allocation = this->Allocate(Layout{
+                .Size = sizeof(T),
+                .Alignment = alignof(T),
             });
 
-            return new (allocation.address) T(std::forward<ArgsT>(args)...);
+            return new (allocation.Address) T(std::forward<ArgsT>(args)...);
         }
 
         template <typename T>
-        [[nodiscard]] std::span<T> create_array(size_t size)
+        [[nodiscard]] std::span<T> EmplaceArray(size_t size)
         {
             static_assert(std::is_trivially_destructible_v<T>);
 
-            Allocation const allocation = this->allocate(Layout{
-                .size = sizeof(T) * size,
-                .alignment = alignof(T),
+            Allocation const allocation = this->Allocate(Layout{
+                .Size = sizeof(T) * size,
+                .Alignment = alignof(T),
             });
 
-            T* const result = reinterpret_cast<T*>(allocation.address);
+            T* const result = reinterpret_cast<T*>(allocation.Address);
 
             std::uninitialized_default_construct_n(
                 result,
@@ -144,18 +144,18 @@ namespace weave::memory
         }
 
         template <typename T>
-        [[nodiscard]] std::span<T> create_array(std::span<T const> source)
+        [[nodiscard]] std::span<T> EmplaceArray(std::span<T const> source)
         {
             static_assert(std::is_trivially_destructible_v<T>);
 
             if (not source.empty())
             {
-                Allocation const allocation = this->allocate(Layout{
-                    .size = sizeof(T) * source.size(),
-                    .alignment = alignof(T),
+                Allocation const allocation = this->Allocate(Layout{
+                    .Size = sizeof(T) * source.size(),
+                    .Alignment = alignof(T),
                 });
 
-                T* const result = reinterpret_cast<T*>(allocation.address);
+                T* const result = reinterpret_cast<T*>(allocation.Address);
 
                 std::uninitialized_copy_n(
                     source.data(),
@@ -172,6 +172,6 @@ namespace weave::memory
         }
 
     public:
-        void query_memory_usage(size_t& allocated, size_t& reserved) const;
+        void QueryMemoryUsage(size_t& allocated, size_t& reserved) const;
     };
 }

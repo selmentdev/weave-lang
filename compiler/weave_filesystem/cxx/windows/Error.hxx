@@ -4,5 +4,5 @@
 
 namespace weave::filesystem::impl
 {
-    FileSystemError TranslateErrorCode(uint32_t dwError);
+    FileSystemError TranslateErrorCode(uint32_t error);
 }

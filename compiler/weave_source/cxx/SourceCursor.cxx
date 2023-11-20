@@ -3,11 +3,11 @@
 
 namespace weave::source
 {
-    void SourceCursor::advance()
+    void SourceCursor::Advance()
     {
         this->_current = this->_next;
 
-        if (unicode::utf8_decode(this->_value, this->_next, this->_last) != unicode::UnicodeConversionResult::Success)
+        if (unicode::UTF8Decode(this->_value, this->_next, this->_last) != unicode::UnicodeConversionResult::Success)
         {
             this->_value = Invalid;
         }

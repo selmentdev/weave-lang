@@ -97,7 +97,7 @@ namespace weave::filesystem
 
         platform::StringBuffer<wchar_t, MAX_PATH> wpath{};
 
-        if (platform::widen_string(wpath, path))
+        if (platform::WidenString(wpath, path))
         {
             SECURITY_ATTRIBUTES sa{
                 .nLength = sizeof(SECURITY_ATTRIBUTES),
@@ -114,7 +114,7 @@ namespace weave::filesystem
             };
 
             HANDLE const result = CreateFile2(
-                wpath.get_buffer(),
+                wpath.GetBuffer(),
                 dwAccess,
                 dwShare,
                 dwMode,
@@ -135,9 +135,9 @@ namespace weave::filesystem
     {
         platform::StringBuffer<wchar_t, MAX_PATH> wpath{};
 
-        if (platform::widen_string(wpath, path))
+        if (platform::WidenString(wpath, path))
         {
-            DWORD const dwAttributes = GetFileAttributesW(wpath.get_buffer());
+            DWORD const dwAttributes = GetFileAttributesW(wpath.GetBuffer());
 
             if (dwAttributes != INVALID_FILE_ATTRIBUTES)
             {
@@ -150,9 +150,9 @@ namespace weave::filesystem
 
     std::expected<void, FileSystemError> FileHandle::Close()
     {
-        assert(this->m_Handle != nullptr);
+        assert(this->_handle != nullptr);
 
-        void* handle = std::exchange(this->m_Handle, nullptr);
+        void* handle = std::exchange(this->_handle, nullptr);
 
         if (!CloseHandle(handle))
         {
@@ -164,9 +164,9 @@ namespace weave::filesystem
 
     std::expected<void, FileSystemError> FileHandle::Flush()
     {
-        assert(this->m_Handle != nullptr);
+        assert(this->_handle != nullptr);
 
-        if (!FlushFileBuffers(this->m_Handle))
+        if (!FlushFileBuffers(this->_handle))
         {
             return std::unexpected(impl::TranslateErrorCode(GetLastError()));
         }
@@ -176,10 +176,10 @@ namespace weave::filesystem
 
     std::expected<int64_t, FileSystemError> FileHandle::GetLength() const
     {
-        assert(this->m_Handle != nullptr);
+        assert(this->_handle != nullptr);
 
         LARGE_INTEGER li{};
-        if (!GetFileSizeEx(this->m_Handle, &li))
+        if (!GetFileSizeEx(this->_handle, &li))
         {
             return std::unexpected(impl::TranslateErrorCode(GetLastError()));
         }
@@ -189,15 +189,15 @@ namespace weave::filesystem
 
     std::expected<void, FileSystemError> FileHandle::SetLength(int64_t length)
     {
-        assert(this->m_Handle != nullptr);
+        assert(this->_handle != nullptr);
 
         LARGE_INTEGER const li = std::bit_cast<LARGE_INTEGER>(length);
 
-        BOOL result = SetFilePointerEx(this->m_Handle, li, nullptr, FILE_BEGIN);
-        
+        BOOL result = SetFilePointerEx(this->_handle, li, nullptr, FILE_BEGIN);
+
         if (result != FALSE)
         {
-            result = SetEndOfFile(this->m_Handle);
+            result = SetEndOfFile(this->_handle);
         }
 
         if (result == FALSE)
@@ -236,7 +236,7 @@ namespace weave::filesystem
 
     std::expected<size_t, FileSystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
     {
-        assert(this->m_Handle != nullptr);
+        assert(this->_handle != nullptr);
 
         size_t processed = 0;
 
@@ -247,7 +247,7 @@ namespace weave::filesystem
             DWORD const dwRequested = static_cast<DWORD>(std::min<size_t>(DefaultBufferSize, buffer.size()));
             DWORD dwProcessed = 0;
 
-            if (ReadFile(this->m_Handle, buffer.data(), dwRequested, &dwProcessed, &overlapped) == FALSE)
+            if (ReadFile(this->_handle, buffer.data(), dwRequested, &dwProcessed, &overlapped) == FALSE)
             {
                 DWORD const dwError = GetLastError();
 
@@ -261,7 +261,7 @@ namespace weave::filesystem
                     return std::unexpected(impl::TranslateErrorCode(dwError));
                 }
 
-                if (GetOverlappedResult(this->m_Handle, &overlapped, &dwProcessed, TRUE) == FALSE)
+                if (GetOverlappedResult(this->_handle, &overlapped, &dwProcessed, TRUE) == FALSE)
                 {
                     return std::unexpected(impl::TranslateErrorCode(GetLastError()));
                 }
@@ -278,7 +278,7 @@ namespace weave::filesystem
 
     std::expected<size_t, FileSystemError> FileHandle::Write(std::span<std::byte const> buffer, int64_t position)
     {
-        assert(this->m_Handle != nullptr);
+        assert(this->_handle != nullptr);
 
         size_t processed = 0;
 
@@ -289,7 +289,7 @@ namespace weave::filesystem
             DWORD const dwRequested = static_cast<DWORD>(std::min<size_t>(DefaultBufferSize, buffer.size()));
             DWORD dwProcessed{};
 
-            if (WriteFile(this->m_Handle, buffer.data(), dwRequested, &dwProcessed, &overlapped) == FALSE)
+            if (WriteFile(this->_handle, buffer.data(), dwRequested, &dwProcessed, &overlapped) == FALSE)
             {
                 DWORD const dwError = ::GetLastError();
 
@@ -305,7 +305,7 @@ namespace weave::filesystem
 
                 dwProcessed = 0;
 
-                if (GetOverlappedResult(this->m_Handle, &overlapped, &dwProcessed, TRUE) == FALSE)
+                if (GetOverlappedResult(this->_handle, &overlapped, &dwProcessed, TRUE) == FALSE)
                 {
                     return std::unexpected(FileSystemError::WriteFailure);
                 }

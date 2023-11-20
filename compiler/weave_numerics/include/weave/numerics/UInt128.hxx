@@ -72,7 +72,7 @@ namespace weave::numerics
 
         static constexpr UInt128 Make(signed char value)
         {
-            int64_t const lower = value;  // NOLINT(bugprone-signed-char-misuse)
+            int64_t const lower = value; // NOLINT(bugprone-signed-char-misuse)
             return UInt128{static_cast<uint64_t>(lower >> 63), static_cast<uint64_t>(lower)};
         }
 
@@ -102,22 +102,22 @@ namespace weave::numerics
         }
 
     public:
-        constexpr bool IsZero() const
+        [[nodiscard]] constexpr bool IsZero() const
         {
             return (this->_lower | this->_upper) == 0;
         }
 
-        constexpr uint64_t GetLower() const
+        [[nodiscard]] constexpr uint64_t GetLower() const
         {
             return this->_lower;
         }
 
-        constexpr uint64_t GetUpper() const
+        [[nodiscard]] constexpr uint64_t GetUpper() const
         {
             return this->_upper;
         }
 
-        constexpr uint64_t ToUInt64() const
+        [[nodiscard]] constexpr uint64_t ToUInt64() const
         {
             return this->_lower;
         }
@@ -469,7 +469,7 @@ namespace weave::numerics
             return UInt128{
                 ~value._upper,
                 ~value._lower,
-                };
+            };
         }
 
         [[nodiscard]] static constexpr UInt128 BitAnd(UInt128 left, UInt128 right)
@@ -477,7 +477,7 @@ namespace weave::numerics
             return UInt128{
                 left._upper & right._upper,
                 left._lower & right._lower,
-                };
+            };
         }
 
         [[nodiscard]] static constexpr UInt128 BitOr(UInt128 left, UInt128 right)
@@ -485,7 +485,7 @@ namespace weave::numerics
             return UInt128{
                 left._upper | right._upper,
                 left._lower | right._lower,
-                };
+            };
         }
 
         [[nodiscard]] static constexpr UInt128 BitXor(UInt128 left, UInt128 right)
@@ -493,7 +493,7 @@ namespace weave::numerics
             return UInt128{
                 left._upper ^ right._upper,
                 left._lower ^ right._lower,
-                };
+            };
         }
 
         [[nodiscard]] static constexpr UInt128 BitRotateLeft(UInt128 value, size_t bits)

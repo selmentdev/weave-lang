@@ -8,18 +8,18 @@ namespace weave::filesystem
     class FileWriter
     {
     private:
-        FileHandle& m_Handle;
-        std::unique_ptr<std::byte[]> m_Buffer{};
-        size_t m_BufferCapacity{};
-        size_t m_BufferPosition{};
-        int64_t m_Position{};
+        FileHandle& _handle;
+        std::unique_ptr<std::byte[]> _buffer{};
+        size_t _buffer_capacity{};
+        size_t _buffer_position{};
+        int64_t _position{};
 
         static constexpr size_t DefaultBufferCapacity = 8u << 10u;
 
     public:
         FileWriter(FileHandle& handle, size_t capacity);
 
-        FileWriter(FileHandle& handle);
+        explicit FileWriter(FileHandle& handle);
 
         FileWriter(FileWriter const&) = delete;
 
@@ -41,9 +41,9 @@ namespace weave::filesystem
 
         std::expected<size_t, FileSystemError> Write(std::span<std::byte const> buffer);
 
-        int64_t GetPosition() const
+        [[nodiscard]] int64_t GetPosition() const
         {
-            return this->m_Position;
+            return this->_position;
         }
     };
 }

@@ -17,7 +17,7 @@ namespace weave::hash
     public:
         constexpr Fnv1a64() = default;
 
-        constexpr Fnv1a64(uint64_t state)
+        explicit constexpr Fnv1a64(uint64_t state)
             : _state{state}
         {
         }
@@ -75,7 +75,7 @@ namespace weave::hash
     public:
         constexpr Fnv1a32() = default;
 
-        constexpr Fnv1a32(uint32_t state)
+        explicit constexpr Fnv1a32(uint32_t state)
             : _state{state}
         {
         }

@@ -55,12 +55,12 @@ namespace weave::filesystem
         }
 
     public:
-        void* GetReadHandle() const
+        [[nodiscard]] void* GetReadHandle() const
         {
             return this->_read;
         }
 
-        void* GetWriteHandle() const
+        [[nodiscard]] void* GetWriteHandle() const
         {
             return this->_write;
         }
@@ -73,7 +73,7 @@ namespace weave::filesystem
 
         std::expected<size_t, FileSystemError> Write(std::span<std::byte const> buffer);
 
-        std::expected<size_t, FileSystemError> BytesAvailable() const;
+        [[nodiscard]] std::expected<size_t, FileSystemError> BytesAvailable() const;
 
     public:
         void CloseRead();

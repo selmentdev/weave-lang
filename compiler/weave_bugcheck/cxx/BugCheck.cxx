@@ -2,6 +2,7 @@
 
 namespace weave::bugcheck
 {
+    // ReSharper disable once CppDFAConstantFunctionResult
     bool BugcheckFailed(
         std::source_location const& location,
         std::string_view condition)
@@ -9,6 +10,7 @@ namespace weave::bugcheck
         return BugcheckFailedArgs(location, condition, "<none>", fmt::make_format_args());
     }
 
+    // ReSharper disable once CppDFAConstantFunctionResult
     bool BugcheckFialed(
         std::source_location const& location,
         std::string_view condition,

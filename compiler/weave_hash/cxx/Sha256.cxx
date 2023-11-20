@@ -125,7 +125,7 @@ namespace weave::hash
         context.state[6] = 0x1f83d9abu;
         context.state[7] = 0x5be0cd19u;
         context.count = 0;
-        context.size = 0;        
+        context.size = 0;
     }
 
     void Sha256Update(Sha256& context, std::byte const* buffer, size_t length)
@@ -175,7 +175,6 @@ namespace weave::hash
         bitwise::ToBigEndianToBuffer(digest.data(), context.state.data(), 8);
 
         return digest;
-        
     }
 
     auto Sha256FromBuffer(std::byte const* buffer, size_t length) -> std::array<uint8_t, 32>
@@ -184,7 +183,6 @@ namespace weave::hash
         Sha256Initialize(context);
         Sha256Update(context, buffer, length);
         return Sha256Finalize(context);
-        
     }
 
     auto Sha256FromString(std::string_view value) -> std::array<uint8_t, 32>
@@ -192,6 +190,6 @@ namespace weave::hash
         Sha256 context;
         Sha256Initialize(context);
         Sha256Update(context, reinterpret_cast<std::byte const*>(value.data()), value.size());
-        return Sha256Finalize(context);    
+        return Sha256Finalize(context);
     }
 }

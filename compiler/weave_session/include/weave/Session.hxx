@@ -12,19 +12,19 @@ namespace weave::session
     class CodeGeneratorOptions final
     {
     public:
-        static CodeGeneratorOptions from_command_line(
+        static CodeGeneratorOptions FromCommandLine(
             errors::Handler& handler,
             commandline::CommandLineParseResult const& command_line);
 
     public:
-        bool checked = false;
-        bool debug = false;
+        bool Checked = false;
+        bool Debug = false;
     };
 
     class ExperimentalOptions final
     {
     public:
-        static ExperimentalOptions from_command_line(
+        static ExperimentalOptions FromCommandLine(
             errors::Handler& handler,
             commandline::CommandLineParseResult const& command_line);
     };

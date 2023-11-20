@@ -39,7 +39,7 @@ namespace weave::syntax
             TriviaMode triviaMode)
             : _diagnostic{diagnostic}
             , _source{source}
-            , _cursor{source.get_content_view()}
+            , _cursor{source.GetContentView()}
             , _triviaMode{triviaMode}
         {
         }

@@ -43,37 +43,37 @@ namespace weave::unicode::impl
     inline constexpr uint32_t UNICODE_MAX_BMP = 0xFFFFu;
     inline constexpr uint32_t UNICODE_MAX = 0x10'FFFFu;
 
-    constexpr bool utf16_is_surrogate_pair(char32_t value)
+    constexpr bool UTF16IsSurrogatePair(char32_t value)
     {
         return (UTF16_SURROGATE_FIRST <= value) and (value <= UTF16_SURROGATE_LAST);
     }
 
-    constexpr bool utf16_is_low_surrogate_pair(char32_t value)
+    constexpr bool UTF16IsLowSurrogatePair(char32_t value)
     {
         return (UTF16_SURROGATE_LOW_FIRST <= value) and (value <= UTF16_SURROGATE_LOW_LAST);
     }
 
-    constexpr bool utf16_is_high_surrogate_pair(char32_t value)
+    constexpr bool UTF16IsHighSurrogatePair(char32_t value)
     {
         return (UTF16_SURROGATE_HIGH_FIRST <= value) and (value <= UTF16_SURROGATE_HIGH_LAST);
     }
 
-    constexpr uint32_t utf16_combine_surrogate_pair(uint32_t high, uint32_t low)
+    constexpr uint32_t UTF16CombineSurrogatePair(uint32_t high, uint32_t low)
     {
         return ((high - UTF16_SURROGATE_HIGH_FIRST) << UTF16_SURROGATE_SHIFT) + (low - UTF16_SURROGATE_LOW_FIRST) + UTF16_SURROGATE_BASE;
     }
 
-    constexpr uint32_t utf8_first_byte(uint8_t byte, size_t width)
+    constexpr uint32_t UTF8FirstByte(uint8_t byte, size_t width)
     {
         return (byte & (0b0111'1111u >> width));
     }
 
-    constexpr uint32_t utf8_accumulate_continuation_byte(uint32_t ch, uint8_t byte)
+    constexpr uint32_t UTF8AccumulateContinuationByte(uint32_t ch, uint8_t byte)
     {
         return (ch << 6) | (byte & UTF8_CONTINUATION_MASK);
     }
 
-    constexpr bool utf8_is_continuation_byte(uint8_t byte)
+    constexpr bool UTF8IsContinuationByte(uint8_t byte)
     {
         return static_cast<int8_t>(byte) < -64;
     }
@@ -82,7 +82,7 @@ namespace weave::unicode::impl
 
 namespace weave::unicode
 {
-    bool utf8_is_legal(const uint8_t* it, size_t length)
+    bool UTF8IsLegal(const uint8_t* it, size_t length)
     {
         uint8_t c;
 
@@ -175,7 +175,7 @@ namespace weave::unicode
         return true;
     }
 
-    bool utf8_is_legal(const uint8_t* first, const uint8_t* last)
+    bool UTF8IsLegal(const uint8_t* first, const uint8_t* last)
     {
         size_t const length = impl::UTF8_CHAR_WIDTH[*first];
 
@@ -184,14 +184,14 @@ namespace weave::unicode
             return false;
         }
 
-        return utf8_is_legal(first, length);
+        return UTF8IsLegal(first, length);
     }
 
-    size_t utf8_sequence_size(const uint8_t* first, const uint8_t* last)
+    size_t UTF8SequenceSize(const uint8_t* first, const uint8_t* last)
     {
         size_t const length = impl::UTF8_CHAR_WIDTH[*first];
 
-        if ((length <= static_cast<size_t>(last - first)) and utf8_is_legal(first, length))
+        if ((length <= static_cast<size_t>(last - first)) and UTF8IsLegal(first, length))
         {
             return length;
         }
@@ -199,11 +199,11 @@ namespace weave::unicode
         return 0u;
     }
 
-    bool utf8_validate_string(const uint8_t* first, const uint8_t* last)
+    bool UTF8ValidateString(const uint8_t* first, const uint8_t* last)
     {
         while (first < last)
         {
-            size_t const skip = utf8_sequence_size(first, last);
+            size_t const skip = UTF8SequenceSize(first, last);
 
             if (skip == 0)
             {
@@ -217,17 +217,17 @@ namespace weave::unicode
         return first == last;
     }
 
-    bool utf32_is_valid_code_point(char32_t value) noexcept
+    bool UTF32IsValidCodepoint(char32_t value) noexcept
     {
         if (value <= impl::UNICODE_MAX)
         {
-            return not impl::utf16_is_surrogate_pair(value);
+            return not impl::UTF16IsSurrogatePair(value);
         }
 
         return false;
     }
 
-    char32_t utf32_sanitize_codepoint(char32_t value) noexcept
+    char32_t UTF32SanitizeCodepoint(char32_t value) noexcept
     {
         if (value <= impl::UNICODE_MAX)
         {
@@ -242,7 +242,7 @@ namespace weave::unicode
         return impl::UNICODE_REPLACEMENT_CHARACTER;
     }
 
-    UnicodeConversionResult utf8_decode(char32_t& codepoint, const uint8_t*& first, const uint8_t* last)
+    UnicodeConversionResult UTF8Decode(char32_t& codepoint, const uint8_t*& first, const uint8_t* last)
     {
         if (first < last)
         {
@@ -263,7 +263,7 @@ namespace weave::unicode
                 return UnicodeConversionResult::SourceIllegal;
             }
 
-            uint32_t ch = impl::utf8_first_byte(lead, width);
+            uint32_t ch = impl::UTF8FirstByte(lead, width);
 
             size_t consumed = 1;
 
@@ -271,7 +271,7 @@ namespace weave::unicode
             {
                 uint8_t const next = static_cast<uint8_t>(*first++);
 
-                if (not impl::utf8_is_continuation_byte(next))
+                if (not impl::UTF8IsContinuationByte(next))
                 {
                     // Invalid byte sequence.
                     --first;
@@ -279,7 +279,7 @@ namespace weave::unicode
                     return UnicodeConversionResult::SourceIllegal;
                 }
 
-                ch = impl::utf8_accumulate_continuation_byte(ch, next);
+                ch = impl::UTF8AccumulateContinuationByte(ch, next);
             }
 
             if (consumed != width)
@@ -291,7 +291,7 @@ namespace weave::unicode
 
             // ch -= Private::UTF8_CODEPOINT_OFFSETS[width];
 
-            if (impl::utf16_is_surrogate_pair(ch) or (ch > impl::UNICODE_MAX))
+            if (impl::UTF16IsSurrogatePair(ch) or (ch > impl::UNICODE_MAX))
             {
                 // Byte sequence was valid UTF8 sequence, but encoded invalid codepoint.
                 codepoint = impl::UNICODE_REPLACEMENT_CHARACTER;
@@ -305,9 +305,9 @@ namespace weave::unicode
         return UnicodeConversionResult::SourceExhausted;
     }
 
-    UnicodeConversionResult utf8_encode(uint8_t*& first, uint8_t* last, char32_t codepoint)
+    UnicodeConversionResult UTF8Encode(uint8_t*& first, uint8_t* last, char32_t codepoint)
     {
-        if (not utf32_is_valid_code_point(codepoint))
+        if (not UTF32IsValidCodepoint(codepoint))
         {
             return UnicodeConversionResult::SourceIllegal;
         }

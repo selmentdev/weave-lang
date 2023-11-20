@@ -265,14 +265,14 @@ int main(int argc, const char* argv[])
     if (auto matched = builder.Parse(argc, argv); matched.has_value())
     {
         weave::errors::Handler handler{};
-        auto cmd = weave::session::CodeGeneratorOptions::from_command_line(handler, *matched);
+        auto cmd = weave::session::CodeGeneratorOptions::FromCommandLine(handler, *matched);
 
-        for (auto const& message : handler.messages())
+        for (auto const& message : handler.GetMessages())
         {
             fmt::println(stderr, "codegen errors: {}", message.Value);
         }
 
-        fmt::println("cmd.debug: {}", cmd.debug);
+        fmt::println("cmd.debug: {}", cmd.Debug);
 
         if (matched->HasFlag("help"))
         {
@@ -333,28 +333,28 @@ int main(int argc, const char* argv[])
             {
                 for (auto const& t : lexer.GetLeadingTrivia())
                 {
-                    source::LineSpan const loc = text.get_line_span(t.Source);
+                    source::LineSpan const loc = text.GetLineSpan(t.Source);
                     fmt::println("ll: {}, {}:{}-{}:{}: {}",
                         syntax::TriviaKindTraits::GetName(t.Kind),
-                        loc.start.line, loc.start.column, loc.end.line, loc.end.column,
-                        t.Source.end.offset - t.Source.start.offset);
+                        loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
+                        t.Source.End.Offset - t.Source.Start.Offset);
                 }
                 {
-                    source::LineSpan const loc = text.get_line_span(lexer.GetSpan());
+                    source::LineSpan const loc = text.GetLineSpan(lexer.GetSpan());
                     fmt::println("kk: {} ('{}'): '{}' '{}' '{}', {}:{}-{}:{}: {}",
                         syntax::TokenKindTraits::GetName(lexer.GetKind()),
                         syntax::TokenKindTraits::GetSpelling(lexer.GetKind()),
                         lexer.GetPrefix(), lexer.GetValue(), lexer.GetSuffix(),
-                        loc.start.line, loc.start.column, loc.end.line, loc.end.column,
-                        lexer.GetSpan().end.offset - lexer.GetSpan().start.offset);
+                        loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
+                        lexer.GetSpan().End.Offset - lexer.GetSpan().Start.Offset);
                 }
                 for (auto const& t : lexer.GetTrailingTrivia())
                 {
-                    source::LineSpan const loc = text.get_line_span(t.Source);
+                    source::LineSpan const loc = text.GetLineSpan(t.Source);
                     fmt::println("tt: {}, {}:{}-{}:{}: {}",
                         syntax::TriviaKindTraits::GetName(t.Kind),
-                        loc.start.line, loc.start.column, loc.end.line, loc.end.column,
-                        t.Source.end.offset - t.Source.start.offset);
+                        loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
+                        t.Source.End.Offset - t.Source.Start.Offset);
                 }
 
                 if (lexer.GetKind() == syntax::TokenKind::EndOfFile)
@@ -364,12 +364,12 @@ int main(int argc, const char* argv[])
             }
 
             auto finished = std::chrono::high_resolution_clock::now();
-            context.Strings.dump();
+            context.Strings.Dump();
 
             std::chrono::duration<double, std::milli> const lexed = finished - started;
 
             std::vector<std::string> diag{};
-            source::format_diagnostics(diag, text, diagnostic, 1000);
+            source::FormatDiagnostics(diag, text, diagnostic, 1000);
 
             for (std::string const& item : diag)
             {

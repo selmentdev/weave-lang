@@ -5,13 +5,13 @@ namespace weave::memory
 {
     struct Layout
     {
-        size_t size{};
-        size_t alignment{};
+        size_t Size{};
+        size_t Alignment{};
     };
 
     struct Allocation
     {
-        std::byte* address{};
-        size_t size{};
+        std::byte* Address{};
+        size_t Size{};
     };
 }

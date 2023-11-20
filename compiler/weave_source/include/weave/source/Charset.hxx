@@ -21,25 +21,25 @@ namespace weave::source
             }
         }
 
-        [[nodiscard]] constexpr bool contains(char32_t c) const noexcept
+        [[nodiscard]] constexpr bool Contains(char32_t c) const noexcept
         {
             size_t const index = static_cast<size_t>(c);
             return (this->_bits[index >> 5u] & (uint64_t{1u} << (index & 0x3Fu))) != 0;
         }
 
-        [[nodiscard]] constexpr bool contains(char16_t c) const noexcept
+        [[nodiscard]] constexpr bool Contains(char16_t c) const noexcept
         {
-            return this->contains(static_cast<char32_t>(c));
+            return this->Contains(static_cast<char32_t>(c));
         }
 
-        [[nodiscard]] constexpr bool contains(char8_t c) const noexcept
+        [[nodiscard]] constexpr bool Contains(char8_t c) const noexcept
         {
-            return this->contains(static_cast<char32_t>(c));
+            return this->Contains(static_cast<char32_t>(c));
         }
 
-        [[nodiscard]] constexpr bool contains(char c) const noexcept
+        [[nodiscard]] constexpr bool Contains(char c) const noexcept
         {
-            return this->contains(static_cast<char8_t>(c));
+            return this->Contains(static_cast<char8_t>(c));
         }
     };
 
@@ -71,9 +71,24 @@ namespace weave::source
         {
         }
 
-        [[nodiscard]] constexpr bool contains(char32_t value) noexcept
+        [[nodiscard]] constexpr bool Contains(char32_t value) const noexcept
         {
             return std::binary_search(this->_items.begin(), this->_items.end(), value);
+        }
+
+        [[nodiscard]] constexpr bool Contains(char16_t c) const noexcept
+        {
+            return this->Contains(static_cast<char32_t>(c));
+        }
+
+        [[nodiscard]] constexpr bool Contains(char8_t c) const noexcept
+        {
+            return this->Contains(static_cast<char32_t>(c));
+        }
+
+        [[nodiscard]] constexpr bool Contains(char c) const noexcept
+        {
+            return this->Contains(static_cast<char8_t>(c));
         }
     };
 }

@@ -11,11 +11,11 @@ WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::filesystem::impl
 {
-    FileSystemError TranslateErrorCode(uint32_t dwError)
+    FileSystemError TranslateErrorCode(uint32_t error)
     {
-        assert(dwError != ERROR_SUCCESS);
+        assert(error != ERROR_SUCCESS);
 
-        switch (dwError)
+        switch (error)
         {
         case ERROR_FILE_NOT_FOUND:
             return FileSystemError::FileNotFound;

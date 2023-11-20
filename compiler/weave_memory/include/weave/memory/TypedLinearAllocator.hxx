@@ -14,26 +14,26 @@ namespace weave::memory
         {
         }
 
-        TypedLinearAllocator(size_t capacity)
+        explicit TypedLinearAllocator(size_t capacity)
             : LinearAllocator{sizeof(T) * capacity}
         {
         }
 
         ~TypedLinearAllocator()
         {
-            Segment* segment = this->_list.head;
+            Segment* segment = this->_list.Head;
 
             while (segment != nullptr)
             {
                 std::byte* const memory = reinterpret_cast<std::byte*>(segment + 1);
                 T* const first = reinterpret_cast<T*>(bitwise::AlignUp(memory, alignof(T)));
-                T* const last = reinterpret_cast<T*>(segment->last);
+                T* const last = reinterpret_cast<T*>(segment->Last);
 
                 std::destroy(first, last);
 
                 ASAN_POISON_MEMORY_REGION(first, (last - first) * sizeof(T));
 
-                segment = segment->flink;
+                segment = segment->ForwardLink;
             }
         }
 
@@ -45,15 +45,15 @@ namespace weave::memory
 
     public:
         template <typename CallbackT = bool(T*)>
-        void enumerate(CallbackT&& callback)
+        void Enumerate(CallbackT&& callback)
         {
-            Segment* segment = this->_list.head;
+            Segment* segment = this->_list.Head;
 
             while (segment != nullptr)
             {
                 std::byte* const memory = reinterpret_cast<std::byte*>(segment + 1);
                 T* first = reinterpret_cast<T*>(bitwise::AlignUp(memory, alignof(T)));
-                T* const last = reinterpret_cast<T*>(segment->last);
+                T* const last = reinterpret_cast<T*>(segment->Last);
 
                 while (first != last)
                 {
@@ -65,30 +65,30 @@ namespace weave::memory
                     ++first;
                 }
 
-                segment = segment->flink;
+                segment = segment->ForwardLink;
             }
         }
 
     public:
         template <typename... ArgsT>
-        [[nodiscard]] T* create(ArgsT&&... args)
+        [[nodiscard]] T* Emplace(ArgsT&&... args)
         {
-            Allocation const allocation = this->allocate(Layout{
-                .size = sizeof(T),
-                .alignment = alignof(T),
+            Allocation const allocation = this->Allocate(Layout{
+                .Size = sizeof(T),
+                .Alignment = alignof(T),
             });
 
-            return new (allocation.address) T(std::forward<ArgsT>(args)...);
+            return new (allocation.Address) T(std::forward<ArgsT>(args)...);
         }
 
-        [[nodiscard]] std::span<T> create_array(size_t size)
+        [[nodiscard]] std::span<T> EmplaceArray(size_t size)
         {
-            Allocation const allocation = this->allocate(Layout{
-                .size = sizeof(T) * size,
-                .alignment = alignof(T),
+            Allocation const allocation = this->Allocate(Layout{
+                .Size = sizeof(T) * size,
+                .Alignment = alignof(T),
             });
 
-            T* const result = reinterpret_cast<T*>(allocation.address);
+            T* const result = reinterpret_cast<T*>(allocation.Address);
 
             std::uninitialized_default_construct_n(
                 result,
@@ -100,16 +100,16 @@ namespace weave::memory
             };
         }
 
-        [[nodiscard]] std::span<T> create_array(std::span<T const> source)
+        [[nodiscard]] std::span<T> EmplaceArray(std::span<T const> source)
         {
             if (not source.empty())
             {
-                Allocation const allocation = this->allocate(Layout{
-                    .size = sizeof(T) * source.size(),
-                    .alignment = alignof(T),
+                Allocation const allocation = this->Allocate(Layout{
+                    .Size = sizeof(T) * source.size(),
+                    .Alignment = alignof(T),
                 });
 
-                T* const result = reinterpret_cast<T*>(allocation.address);
+                T* const result = reinterpret_cast<T*>(allocation.Address);
 
                 std::uninitialized_copy_n(
                     source.data(),
@@ -125,18 +125,18 @@ namespace weave::memory
             return {};
         }
 
-        [[nodiscard]] std::span<T> create_copy_combined(std::span<T const> source1, std::span<T const> source2) [[deprecated("Use something better than this")]]
+        [[nodiscard]] std::span<T> EmplaceArrayCombined(std::span<T const> source1, std::span<T const> source2) [[deprecated("Use something better than this")]]
         {
             size_t const count = source1.size() + source2.size();
 
             if (count != 0)
             {
-                Allocation const allocation = this->allocate(Layout{
-                    .size = sizeof(T) * count,
-                    .alignment = alignof(T),
+                Allocation const allocation = this->Allocate(Layout{
+                    .Size = sizeof(T) * count,
+                    .Alignment = alignof(T),
                 });
 
-                T* const result = reinterpret_cast<T*>(allocation.address);
+                T* const result = reinterpret_cast<T*>(allocation.Address);
 
                 T* out = std::uninitialized_copy_n(
                     source1.data(),

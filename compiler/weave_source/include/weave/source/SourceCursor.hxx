@@ -29,107 +29,107 @@ namespace weave::source
             , _last{v.data() + v.size()}
             , _value{Invalid}
         {
-            this->advance();
+            this->Advance();
         }
 
-        void start()
+        void Start()
         {
             // Remember where current range starts.
             this->_start = this->_current;
         }
 
-        void reset(SourcePosition const& position)
+        void Reset(SourcePosition const& position)
         {
-            this->_next = this->_first + position.offset;
-            this->advance();
+            this->_next = this->_first + position.Offset;
+            this->Advance();
         }
 
-        [[nodiscard]] SourcePosition get_current_position() const
+        [[nodiscard]] SourcePosition GetCurrentPosition() const
         {
             return SourcePosition{
                 static_cast<uint32_t>(this->_current - this->_first),
             };
         }
 
-        [[nodiscard]] SourcePosition get_next_position() const
+        [[nodiscard]] SourcePosition GetNextPosition() const
         {
             return SourcePosition{
                 static_cast<uint32_t>(this->_next - this->_first),
             };
         }
 
-        [[nodiscard]] SourceSpan get_span() const
+        [[nodiscard]] SourceSpan GetSpan() const
         {
             return SourceSpan{
-                .start = SourcePosition{static_cast<uint32_t>(this->_start - this->_first)},
-                .end = SourcePosition{static_cast<uint32_t>(this->_current - this->_first)},
+                .Start = SourcePosition{static_cast<uint32_t>(this->_start - this->_first)},
+                .End = SourcePosition{static_cast<uint32_t>(this->_current - this->_first)},
             };
         }
 
-        [[nodiscard]] SourceSpan get_span_for_current() const
+        [[nodiscard]] SourceSpan GetSpanForCurrent() const
         {
             return SourceSpan{
-                .start = SourcePosition{static_cast<uint32_t>(this->_current - this->_first)},
-                .end = SourcePosition{static_cast<uint32_t>(this->_next - this->_first)},
+                .Start = SourcePosition{static_cast<uint32_t>(this->_current - this->_first)},
+                .End = SourcePosition{static_cast<uint32_t>(this->_next - this->_first)},
             };
         }
 
-        [[nodiscard]] SourceSpan get_span_to_current(SourcePosition const& start) const
+        [[nodiscard]] SourceSpan GetSpanToCurrent(SourcePosition const& start) const
         {
             return SourceSpan{
-                .start = start,
-                .end = this->get_current_position(),
+                .Start = start,
+                .End = this->GetCurrentPosition(),
             };
         }
 
-        [[nodiscard]] SourceSpan get_span_to_next(SourcePosition const& start) const
+        [[nodiscard]] SourceSpan GetSpanToNext(SourcePosition const& start) const
         {
             return SourceSpan{
-                .start = start,
-                .end = this->get_next_position(),
+                .Start = start,
+                .End = this->GetNextPosition(),
             };
         }
 
-        [[nodiscard]] bool is_end() const
+        [[nodiscard]] bool IsEnd() const
         {
             return this->_current == this->_last;
         }
 
-        [[nodiscard]] bool is_valid() const
+        [[nodiscard]] bool IsValid() const
         {
             return this->_value != Invalid;
         }
 
-        [[nodiscard]] char32_t peek() const
+        [[nodiscard]] char32_t Peek() const
         {
             return this->_value;
         }
 
-        [[nodiscard]] std::string_view peek_as_string_view() const
+        [[nodiscard]] std::string_view PeekAsStringView() const
         {
             return std::string_view{this->_current, this->_next};
         }
 
-        [[nodiscard]] SourceCursor next() const
+        [[nodiscard]] SourceCursor NextCursor() const
         {
             SourceCursor cursor{*this};
-            cursor.advance();
+            cursor.Advance();
             return cursor;
         }
 
-        void advance();
+        void Advance();
 
-        [[nodiscard]] bool starts_with(std::u32string_view n)
+        [[nodiscard]] bool StartsWith(std::u32string_view n)
         {
             if (not n.empty())
             {
-                SourcePosition const start = this->get_current_position();
+                SourcePosition const start = this->GetCurrentPosition();
 
                 for (char32_t const ch : n)
                 {
-                    if (not this->first(ch))
+                    if (not this->First(ch))
                     {
-                        this->reset(start);
+                        this->Reset(start);
                         return false;
                     }
                 }
@@ -138,11 +138,11 @@ namespace weave::source
             return true;
         }
 
-        [[nodiscard]] bool first(char32_t c)
+        [[nodiscard]] bool First(char32_t c)
         {
             if (this->_value == c)
             {
-                this->advance();
+                this->Advance();
                 return true;
             }
 
@@ -150,24 +150,24 @@ namespace weave::source
         }
 
         template <typename PredicateT>
-        [[nodiscard]] bool first_if(PredicateT&& predicate)
+        [[nodiscard]] bool FirstIf(PredicateT&& predicate)
         {
             if (predicate(this->_value))
             {
-                this->advance();
+                this->Advance();
                 return true;
             }
 
             return false;
         }
 
-        [[nodiscard]] bool skip(char32_t c)
+        [[nodiscard]] bool Skip(char32_t c)
         {
             if (this->_value == c)
             {
                 do
                 {
-                    this->advance();
+                    this->Advance();
                 } while (this->_value == c);
 
                 return true;
@@ -177,13 +177,13 @@ namespace weave::source
         }
 
         template <typename PredicateT>
-        [[nodiscard]] bool skip_if(PredicateT&& predicate)
+        [[nodiscard]] bool SkipIf(PredicateT&& predicate)
         {
             if (predicate(this->_value))
             {
                 do
                 {
-                    this->advance();
+                    this->Advance();
                 } while (predicate(this->_value));
 
                 return true;
@@ -193,26 +193,26 @@ namespace weave::source
         }
 
         template <typename PredicateT>
-        [[nodiscard]] bool skip_max_if(size_t count, PredicateT&& predicate)
+        [[nodiscard]] bool SkipMaxIf(size_t count, PredicateT&& predicate)
         {
             size_t consumed = 0;
 
             while ((consumed < count) and (predicate(this->_value)))
             {
-                this->advance();
+                this->Advance();
                 ++consumed;
             }
 
             return consumed;
         }
 
-        [[nodiscard]] size_t count(char32_t c)
+        [[nodiscard]] size_t Count(char32_t c)
         {
             size_t count = 0;
 
             while (this->_value == c)
             {
-                this->advance();
+                this->Advance();
                 ++count;
             }
 
@@ -220,33 +220,33 @@ namespace weave::source
         }
 
         template <typename PredicateT>
-        [[nodiscard]] size_t count_if(PredicateT&& predicate)
+        [[nodiscard]] size_t CountIf(PredicateT&& predicate)
         {
             size_t count = 0;
 
             while (predicate(this->_value))
             {
-                this->advance();
+                this->Advance();
                 ++count;
             }
 
             return count;
         }
 
-        void discard(char32_t c)
+        void Discard(char32_t c)
         {
             while (this->_value == c)
             {
-                this->advance();
+                this->Advance();
             }
         }
 
         template <typename PredicateT>
-        void discard_if(PredicateT&& predicate)
+        void DiscardIf(PredicateT&& predicate)
         {
             while (predicate(this->_value))
             {
-                this->advance();
+                this->Advance();
             }
         }
     };

@@ -26,7 +26,7 @@ namespace weave::syntax
                 const char* first = s.data();
                 const char* const last = first + s.size();
 
-                [[maybe_unused]] unicode::UnicodeConversionResult const status = unicode::utf8_decode(value, first, last);
+                [[maybe_unused]] unicode::UnicodeConversionResult const status = unicode::UTF8Decode(value, first, last);
 
                 WEAVE_ASSERT(status == unicode::UnicodeConversionResult::Success);
                 WEAVE_ASSERT(first == last);
@@ -88,7 +88,7 @@ namespace weave::syntax
         TokenKind kind,
         source::SourceSpan const& source)
     {
-        return this->Tokens.create(
+        return this->Tokens.Emplace(
             kind,
             source);
     }
@@ -102,8 +102,8 @@ namespace weave::syntax
         return this->Create(
             kind,
             source,
-            this->Trivias.create_array(leadingTrivia),
-            this->Trivias.create_array(trailingTrivia),
+            this->Trivias.EmplaceArray(leadingTrivia),
+            this->Trivias.EmplaceArray(trailingTrivia),
             nullptr);
     }
 
@@ -121,10 +121,10 @@ namespace weave::syntax
 
         if (size_t const count = leadingTrivia.size() + trailingTrivia.size(); count != 0)
         {
-            trivia = this->Trivias.create_copy_combined(leadingTrivia, trailingTrivia).data();
+            trivia = this->Trivias.EmplaceArrayCombined(leadingTrivia, trailingTrivia).data();
         }
 
-        return this->Tokens.create(
+        return this->Tokens.Emplace(
             kind,
             source,
             trivia,
@@ -137,7 +137,7 @@ namespace weave::syntax
         TokenKind kind,
         source::SourceSpan const& source)
     {
-        return this->MissingTokens.create(
+        return this->MissingTokens.Emplace(
             kind,
             source);
     }
@@ -154,7 +154,7 @@ namespace weave::syntax
             source,
             leadingTrivia,
             trailingTrivia,
-            this->CharacterLiterals.create(prefix, value));
+            this->CharacterLiterals.Emplace(prefix, value));
         return result;
     }
 
@@ -170,7 +170,7 @@ namespace weave::syntax
             source,
             leadingTrivia,
             trailingTrivia,
-            this->StringLiterals.create(prefix, this->Strings.get(value)));
+            this->StringLiterals.Emplace(prefix, this->Strings.Get(value)));
         return result;
     }
 
@@ -187,7 +187,7 @@ namespace weave::syntax
             source,
             leadingTrivia,
             trailingTrivia,
-            this->FloatLiterals.create(prefix, suffix, this->Strings.get(value)));
+            this->FloatLiterals.Emplace(prefix, suffix, this->Strings.Get(value)));
         return result;
     }
 
@@ -204,7 +204,7 @@ namespace weave::syntax
             source,
             leadingTrivia,
             trailingTrivia,
-            this->IntegerLiterals.create(prefix, suffix, this->Strings.get(value)));
+            this->IntegerLiterals.Emplace(prefix, suffix, this->Strings.Get(value)));
         return result;
     }
 
@@ -219,7 +219,7 @@ namespace weave::syntax
             source,
             leadingTrivia,
             trailingTrivia,
-            this->Identifiers.create(this->Strings.get(value)));
+            this->Identifiers.Emplace(this->Strings.Get(value)));
         return result;
     }
 
@@ -228,16 +228,16 @@ namespace weave::syntax
         allocated = 0;
         reserved = 0;
 
-        this->Tokens.query_memory_usage(allocated, reserved);
-        this->MissingTokens.query_memory_usage(allocated, reserved);
-        this->Trivias.query_memory_usage(allocated, reserved);
-        this->CharacterLiterals.query_memory_usage(allocated, reserved);
-        this->StringLiterals.query_memory_usage(allocated, reserved);
-        this->FloatLiterals.query_memory_usage(allocated, reserved);
-        this->IntegerLiterals.query_memory_usage(allocated, reserved);
-        this->Identifiers.query_memory_usage(allocated, reserved);
+        this->Tokens.QueryMemoryUsage(allocated, reserved);
+        this->MissingTokens.QueryMemoryUsage(allocated, reserved);
+        this->Trivias.QueryMemoryUsage(allocated, reserved);
+        this->CharacterLiterals.QueryMemoryUsage(allocated, reserved);
+        this->StringLiterals.QueryMemoryUsage(allocated, reserved);
+        this->FloatLiterals.QueryMemoryUsage(allocated, reserved);
+        this->IntegerLiterals.QueryMemoryUsage(allocated, reserved);
+        this->Identifiers.QueryMemoryUsage(allocated, reserved);
 
-        this->Strings.query_memory_usage(allocated, reserved);
+        this->Strings.QueryMemoryUsage(allocated, reserved);
     }
 
     void LexerContext::DumpMemoryUsage() const
@@ -245,55 +245,55 @@ namespace weave::syntax
         {
             size_t allocated = 0;
             size_t reserved = 0;
-            this->Tokens.query_memory_usage(allocated, reserved);
+            this->Tokens.QueryMemoryUsage(allocated, reserved);
             fmt::println("Tokens:               allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;
             size_t reserved = 0;
-            this->MissingTokens.query_memory_usage(allocated, reserved);
+            this->MissingTokens.QueryMemoryUsage(allocated, reserved);
             fmt::println("MissingTokens:        allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;
             size_t reserved = 0;
-            this->Trivias.query_memory_usage(allocated, reserved);
+            this->Trivias.QueryMemoryUsage(allocated, reserved);
             fmt::println("Trivias:              allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;
             size_t reserved = 0;
-            this->CharacterLiterals.query_memory_usage(allocated, reserved);
+            this->CharacterLiterals.QueryMemoryUsage(allocated, reserved);
             fmt::println("CharacterLiterals:    allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;
             size_t reserved = 0;
-            this->StringLiterals.query_memory_usage(allocated, reserved);
+            this->StringLiterals.QueryMemoryUsage(allocated, reserved);
             fmt::println("StringLiterals:       allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;
             size_t reserved = 0;
-            this->FloatLiterals.query_memory_usage(allocated, reserved);
+            this->FloatLiterals.QueryMemoryUsage(allocated, reserved);
             fmt::println("FloatLiterals:        allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;
             size_t reserved = 0;
-            this->IntegerLiterals.query_memory_usage(allocated, reserved);
+            this->IntegerLiterals.QueryMemoryUsage(allocated, reserved);
             fmt::println("IntegerLiterals:      allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;
             size_t reserved = 0;
-            this->Identifiers.query_memory_usage(allocated, reserved);
+            this->Identifiers.QueryMemoryUsage(allocated, reserved);
             fmt::println("Identifiers:          allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;
             size_t reserved = 0;
-            this->Strings.query_memory_usage(allocated, reserved);
+            this->Strings.QueryMemoryUsage(allocated, reserved);
             fmt::println("Strings:              allocated = {}, reserved = {}", allocated, reserved);
         }
     }

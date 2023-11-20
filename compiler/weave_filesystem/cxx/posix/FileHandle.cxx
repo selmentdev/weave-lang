@@ -120,9 +120,9 @@ namespace weave::filesystem
 
     std::expected<void, FileSystemError> FileHandle::Close()
     {
-        assert(this->m_Handle != nullptr);
+        assert(this->_handle != nullptr);
 
-        if (close(ToFileDescriptor(this->m_Handle)) == 0)
+        if (close(ToFileDescriptor(this->_handle)) == 0)
         {
             return {};
         }
@@ -132,11 +132,11 @@ namespace weave::filesystem
 
     std::expected<int64_t, FileSystemError> FileHandle::GetLength() const
     {
-        assert(this->m_Handle != nullptr);
+        assert(this->_handle != nullptr);
 
         struct stat64 st{};
 
-        if (fstat64(ToFileDescriptor(this->m_Handle), &st) == 0)
+        if (fstat64(ToFileDescriptor(this->_handle), &st) == 0)
         {
             return st.st_size;
         }
@@ -146,9 +146,9 @@ namespace weave::filesystem
 
     std::expected<void, FileSystemError> FileHandle::SetLength(int64_t length)
     {
-        assert(this->m_Handle != nullptr);
+        assert(this->_handle != nullptr);
 
-        if (ftruncate64(ToFileDescriptor(this->m_Handle), length) == 0)
+        if (ftruncate64(ToFileDescriptor(this->_handle), length) == 0)
         {
             return {};
         }
@@ -158,8 +158,8 @@ namespace weave::filesystem
 
     std::expected<size_t, FileSystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
     {
-        assert(this->m_Handle != nullptr);
-        int const fd = ToFileDescriptor(this->m_Handle);
+        assert(this->_handle != nullptr);
+        int const fd = ToFileDescriptor(this->_handle);
 
         size_t processed = 0;
         while (processed < buffer.size())
@@ -188,8 +188,8 @@ namespace weave::filesystem
 
     std::expected<size_t, FileSystemError> FileHandle::Write(std::span<std::byte const> buffer, int64_t position)
     {
-        assert(this->m_Handle != nullptr);
-        int const fd = ToFileDescriptor(this->m_Handle);
+        assert(this->_handle != nullptr);
+        int const fd = ToFileDescriptor(this->_handle);
 
         size_t processed = 0;
         while (processed < buffer.size())

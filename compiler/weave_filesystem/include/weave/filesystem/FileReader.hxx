@@ -8,19 +8,19 @@ namespace weave::filesystem
     class FileReader
     {
     private:
-        FileHandle& m_Handle;
-        std::unique_ptr<std::byte[]> m_Buffer{};
-        size_t m_BufferSize{};
-        size_t m_BufferCapacity{};
-        size_t m_BufferPosition{};
-        int64_t m_Position{};
+        FileHandle& _handle;
+        std::unique_ptr<std::byte[]> _buffer{};
+        size_t _buffer_size{};
+        size_t _buffer_capacity{};
+        size_t _buffer_position{};
+        int64_t _position{};
 
         static constexpr size_t DefaultBufferCapacity = 8u << 10u;
 
     public:
         FileReader(FileHandle& handle, size_t capacity);
 
-        FileReader(FileHandle& handle);
+        explicit FileReader(FileHandle& handle);
 
         FileReader(FileReader const&) = delete;
 
@@ -41,9 +41,9 @@ namespace weave::filesystem
 
         std::expected<void, FileSystemError> ReadExact(std::span<std::byte> buffer);
 
-        int64_t GetPosition() const
+        [[nodiscard]] int64_t GetPosition() const
         {
-            return this->m_Position;
+            return this->_position;
         }
     };
 }

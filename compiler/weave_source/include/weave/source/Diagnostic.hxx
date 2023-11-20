@@ -58,49 +58,49 @@ namespace weave::source
     public:
         struct Entry final
         {
-            SourceSpan source{};
-            DiagnosticLevel level{};
-            std::string message{};
+            SourceSpan Source{};
+            DiagnosticLevel Level{};
+            std::string Message{};
         };
 
     public:
-        std::string path{};
-        std::vector<Entry> items{};
+        std::string Path{};
+        std::vector<Entry> Items{};
 
     public:
-        void add(SourceSpan const& source, DiagnosticLevel level, std::string&& message)
+        void Add(SourceSpan const& source, DiagnosticLevel level, std::string&& message)
         {
-            this->items.emplace_back(source, level, std::move(message));
+            this->Items.emplace_back(source, level, std::move(message));
         }
 
-        void add_error(SourceSpan const& source, std::string&& message)
+        void AddError(SourceSpan const& source, std::string&& message)
         {
-            this->add(source, DiagnosticLevel::Error, std::move(message));
+            this->Add(source, DiagnosticLevel::Error, std::move(message));
         }
 
-        void add_warning(SourceSpan const& source, std::string&& message)
+        void AddWarning(SourceSpan const& source, std::string&& message)
         {
-            this->add(source, DiagnosticLevel::Warning, std::move(message));
+            this->Add(source, DiagnosticLevel::Warning, std::move(message));
         }
 
-        void add_info(SourceSpan const& source, std::string&& message)
+        void AddInfo(SourceSpan const& source, std::string&& message)
         {
-            this->add(source, DiagnosticLevel::Info, std::move(message));
+            this->Add(source, DiagnosticLevel::Info, std::move(message));
         }
 
-        void add_hint(SourceSpan const& source, std::string&& message)
+        void AddHint(SourceSpan const& source, std::string&& message)
         {
-            this->add(source, DiagnosticLevel::Hint, std::move(message));
+            this->Add(source, DiagnosticLevel::Hint, std::move(message));
         }
     };
 
-    void format_diagnostic(
+    void FormatDiagnostic(
         std::vector<std::string>& lines,
         SourceText const& source,
         DiagnosticSink::Entry const& entry,
         DiagnosticSink const& sink);
 
-    void format_diagnostics(
+    void FormatDiagnostics(
         std::vector<std::string>& lines,
         SourceText const& source,
         DiagnosticSink const& sink,

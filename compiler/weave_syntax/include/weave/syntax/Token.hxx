@@ -116,7 +116,7 @@ namespace weave::syntax
     struct CharacterLiteralValue final
     {
         CharacterPrefixKind Prefix{};
-        char32_t Value;
+        char32_t Value{};
     };
 
     struct Identifier final
@@ -160,27 +160,27 @@ namespace weave::syntax
         {
         }
 
-        TokenKind GetKind() const
+        [[nodiscard]] TokenKind GetKind() const
         {
             return this->_kind;
         }
 
-        source::SourceSpan const& GetSource() const
+        [[nodiscard]] source::SourceSpan const& GetSource() const
         {
             return this->_source;
         }
 
-        std::span<Trivia const> GetLeadingTrivia() const
+        [[nodiscard]] std::span<Trivia const> GetLeadingTrivia() const
         {
             return std::span{this->_trivia, this->_leading_trivia_count};
         }
 
-        std::span<Trivia const> GetTrailingTrivia() const
+        [[nodiscard]] std::span<Trivia const> GetTrailingTrivia() const
         {
             return std::span{this->_trivia + this->_leading_trivia_count, this->_trailing_trivia_count};
         }
 
-        constexpr IntegerLiteralValue const* TryGetIntegerValue() const
+        [[nodiscard]] constexpr IntegerLiteralValue const* TryGetIntegerValue() const
         {
             if (this->_kind == TokenKind::IntegerLiteral)
             {
@@ -190,7 +190,7 @@ namespace weave::syntax
             return nullptr;
         }
 
-        constexpr FloatLiteralValue const* TryGetFloatValue() const
+        [[nodiscard]] constexpr FloatLiteralValue const* TryGetFloatValue() const
         {
             if (this->_kind == TokenKind::FloatLiteral)
             {
@@ -200,7 +200,7 @@ namespace weave::syntax
             return nullptr;
         }
 
-        constexpr StringLiteralValue const* TryGetStringValue() const
+        [[nodiscard]] constexpr StringLiteralValue const* TryGetStringValue() const
         {
             if (this->_kind == TokenKind::StringLiteral)
             {
@@ -210,7 +210,7 @@ namespace weave::syntax
             return nullptr;
         }
 
-        constexpr CharacterLiteralValue const* TryGetCharacterValue() const
+        [[nodiscard]] constexpr CharacterLiteralValue const* TryGetCharacterValue() const
         {
             if (this->_kind == TokenKind::CharacterLiteral)
             {
@@ -220,25 +220,25 @@ namespace weave::syntax
             return nullptr;
         }
 
-        IntegerLiteralValue const& GetIntegerValue() const
+        [[nodiscard]] IntegerLiteralValue const& GetIntegerValue() const
         {
             WEAVE_ASSERT(this->_kind == TokenKind::IntegerLiteral);
             return *static_cast<IntegerLiteralValue const*>(this->_value);
         }
 
-        FloatLiteralValue const& GetFloatValue() const
+        [[nodiscard]] FloatLiteralValue const& GetFloatValue() const
         {
             WEAVE_ASSERT(this->_kind == TokenKind::FloatLiteral);
             return *static_cast<FloatLiteralValue const*>(this->_value);
         }
 
-        StringLiteralValue const& GetStringValue() const
+        [[nodiscard]] StringLiteralValue const& GetStringValue() const
         {
             WEAVE_ASSERT(this->_kind == TokenKind::StringLiteral);
             return *static_cast<StringLiteralValue const*>(this->_value);
         }
 
-        CharacterLiteralValue const& GetCharacterValue() const
+        [[nodiscard]] CharacterLiteralValue const& GetCharacterValue() const
         {
             WEAVE_ASSERT(this->_kind == TokenKind::CharacterLiteral);
             return *static_cast<CharacterLiteralValue const*>(this->_value);

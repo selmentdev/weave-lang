@@ -6,9 +6,9 @@
 namespace weave::filesystem
 {
     FileWriter::FileWriter(FileHandle& handle, size_t capacity)
-        : m_Handle{handle}
-        , m_Buffer{std::make_unique<std::byte[]>(capacity)}
-        , m_BufferCapacity{capacity}
+        : _handle{handle}
+        , _buffer{std::make_unique<std::byte[]>(capacity)}
+        , _buffer_capacity{capacity}
     {
     }
 
@@ -19,20 +19,20 @@ namespace weave::filesystem
 
     FileWriter::~FileWriter()
     {
-        this->FlushBuffer();
+        (void)this->FlushBuffer();
     }
 
     std::expected<void, FileSystemError> FileWriter::FlushBuffer()
     {
-        if (this->m_BufferPosition > 0)
+        if (this->_buffer_position > 0)
         {
-            if (auto r = this->m_Handle.Write(std::span{this->m_Buffer.get(), this->m_BufferPosition}, this->m_Position))
+            if (auto r = this->_handle.Write(std::span{this->_buffer.get(), this->_buffer_position}, this->_position))
             {
                 // Update file position.
-                this->m_Position += static_cast<int64_t>(*r);
+                this->_position += static_cast<int64_t>(*r);
 
                 // Discard internal buffer.
-                this->m_BufferPosition = 0;
+                this->_buffer_position = 0;
             }
             else
             {
@@ -49,7 +49,7 @@ namespace weave::filesystem
         {
             // Flushed internal writer buffer.
 
-            if (auto flushed = this->m_Handle.Flush())
+            if (auto flushed = this->_handle.Flush())
             {
                 // Flushed file system buffers.
                 return {};
@@ -67,15 +67,15 @@ namespace weave::filesystem
 
     std::expected<size_t, FileSystemError> FileWriter::Write(void const* buffer, size_t size)
     {
-        if (size >= this->m_BufferCapacity)
+        if (size >= this->_buffer_capacity)
         {
             // Buffer is too large, flush internal buffer first, then write directly.
             if (auto flushed = this->FlushBuffer())
             {
-                if (auto processed = this->m_Handle.Write(std::span{static_cast<std::byte const*>(buffer), size}, this->m_Position))
+                if (auto processed = this->_handle.Write(std::span{static_cast<std::byte const*>(buffer), size}, this->_position))
                 {
                     // Update file position.
-                    this->m_Position += static_cast<int64_t>(*processed);
+                    this->_position += static_cast<int64_t>(*processed);
 
                     return *processed;
                 }
@@ -92,12 +92,12 @@ namespace weave::filesystem
         else
         {
             // Buffer is large enough, copy to internal buffer, flush if necessary.
-            if (this->m_BufferPosition + size > this->m_BufferCapacity)
+            if (this->_buffer_position + size > this->_buffer_capacity)
             {
                 if (auto r = this->FlushBuffer())
                 {
-                    std::memcpy(this->m_Buffer.get(), buffer, size);
-                    this->m_BufferPosition = size;
+                    std::memcpy(this->_buffer.get(), buffer, size);
+                    this->_buffer_position = size;
 
                     return size;
                 }
@@ -108,8 +108,8 @@ namespace weave::filesystem
             }
             else
             {
-                std::memcpy(this->m_Buffer.get() + this->m_BufferPosition, buffer, size);
-                this->m_BufferPosition += size;
+                std::memcpy(this->_buffer.get() + this->_buffer_position, buffer, size);
+                this->_buffer_position += size;
 
                 return size;
             }

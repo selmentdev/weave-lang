@@ -15,42 +15,42 @@ TEST_CASE("Source Text")
     SECTION(R"(Empty text)")
     {
         SourceText const text{""};
-        REQUIRE(text.get_lines().size() == 1);
-        REQUIRE(text.get_lines()[0] == 0);
+        REQUIRE(text.GetLines().size() == 1);
+        REQUIRE(text.GetLines()[0] == 0);
 
         {
             constexpr size_t index = 0;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 0);
-            CHECK(optLine->end.offset == 0);
+            CHECK(optLine->Start.Offset == 0);
+            CHECK(optLine->End.Offset == 0);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 0);
-            CHECK(optLineContent->end.offset == 0);
+            CHECK(optLineContent->Start.Offset == 0);
+            CHECK(optLineContent->End.Offset == 0);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 1;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE_FALSE(optLine.has_value());
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE_FALSE(optLineContent.has_value());
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
     }
@@ -58,63 +58,63 @@ TEST_CASE("Source Text")
     SECTION(R"(Single \n)")
     {
         SourceText const text{"\n"};
-        REQUIRE(text.get_lines().size() == 2);
-        REQUIRE(text.get_lines()[0] == 0);
-        REQUIRE(text.get_lines()[1] == 1);
+        REQUIRE(text.GetLines().size() == 2);
+        REQUIRE(text.GetLines()[0] == 0);
+        REQUIRE(text.GetLines()[1] == 1);
 
         {
             constexpr size_t index = 0;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 0);
-            CHECK(optLine->end.offset == 1);
+            CHECK(optLine->Start.Offset == 0);
+            CHECK(optLine->End.Offset == 1);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 0);
-            CHECK(optLineContent->end.offset == 0);
+            CHECK(optLineContent->Start.Offset == 0);
+            CHECK(optLineContent->End.Offset == 0);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 1;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 1);
-            CHECK(optLine->end.offset == 1);
+            CHECK(optLine->Start.Offset == 1);
+            CHECK(optLine->End.Offset == 1);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 1);
-            CHECK(optLineContent->end.offset == 1);
+            CHECK(optLineContent->Start.Offset == 1);
+            CHECK(optLineContent->End.Offset == 1);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 2;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE_FALSE(optLine.has_value());
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE_FALSE(optLineContent.has_value());
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
     }
@@ -122,42 +122,42 @@ TEST_CASE("Source Text")
     SECTION(R"(Single \r)")
     {
         SourceText const text{"\r"};
-        REQUIRE(text.get_lines().size() == 1);
-        REQUIRE(text.get_lines()[0] == 0);
+        REQUIRE(text.GetLines().size() == 1);
+        REQUIRE(text.GetLines()[0] == 0);
 
         {
             constexpr size_t index = 0;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 0);
-            CHECK(optLine->end.offset == 1);
+            CHECK(optLine->Start.Offset == 0);
+            CHECK(optLine->End.Offset == 1);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 0);
-            CHECK(optLineContent->end.offset == 1);
+            CHECK(optLineContent->Start.Offset == 0);
+            CHECK(optLineContent->End.Offset == 1);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\r");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "\r");
         }
 
         {
             constexpr size_t index = 1;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE_FALSE(optLine.has_value());
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE_FALSE(optLineContent.has_value());
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
     }
@@ -165,63 +165,63 @@ TEST_CASE("Source Text")
     SECTION(R"(Single \r\n)")
     {
         SourceText const text{"\r\n"};
-        REQUIRE(text.get_lines().size() == 2);
-        REQUIRE(text.get_lines()[0] == 0);
-        REQUIRE(text.get_lines()[1] == 2);
+        REQUIRE(text.GetLines().size() == 2);
+        REQUIRE(text.GetLines()[0] == 0);
+        REQUIRE(text.GetLines()[1] == 2);
 
         {
             constexpr size_t index = 0;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 0);
-            CHECK(optLine->end.offset == 2);
+            CHECK(optLine->Start.Offset == 0);
+            CHECK(optLine->End.Offset == 2);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 0);
-            CHECK(optLineContent->end.offset == 0);
+            CHECK(optLineContent->Start.Offset == 0);
+            CHECK(optLineContent->End.Offset == 0);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\r\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 1;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 2);
-            CHECK(optLine->end.offset == 2);
+            CHECK(optLine->Start.Offset == 2);
+            CHECK(optLine->End.Offset == 2);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 2);
-            CHECK(optLineContent->end.offset == 2);
+            CHECK(optLineContent->Start.Offset == 2);
+            CHECK(optLineContent->End.Offset == 2);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 2;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE_FALSE(optLine.has_value());
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE_FALSE(optLineContent.has_value());
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
     }
@@ -229,105 +229,105 @@ TEST_CASE("Source Text")
     SECTION(R"(Multiple \n)")
     {
         SourceText const text{"\n\n\n"};
-        REQUIRE(text.get_lines().size() == 4);
-        REQUIRE(text.get_lines()[0] == 0);
-        REQUIRE(text.get_lines()[1] == 1);
-        REQUIRE(text.get_lines()[2] == 2);
-        REQUIRE(text.get_lines()[3] == 3);
+        REQUIRE(text.GetLines().size() == 4);
+        REQUIRE(text.GetLines()[0] == 0);
+        REQUIRE(text.GetLines()[1] == 1);
+        REQUIRE(text.GetLines()[2] == 2);
+        REQUIRE(text.GetLines()[3] == 3);
 
         {
             constexpr size_t index = 0;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 0);
-            CHECK(optLine->end.offset == 1);
+            CHECK(optLine->Start.Offset == 0);
+            CHECK(optLine->End.Offset == 1);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 0);
-            CHECK(optLineContent->end.offset == 0);
+            CHECK(optLineContent->Start.Offset == 0);
+            CHECK(optLineContent->End.Offset == 0);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 1;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 1);
-            CHECK(optLine->end.offset == 2);
+            CHECK(optLine->Start.Offset == 1);
+            CHECK(optLine->End.Offset == 2);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 1);
-            CHECK(optLineContent->end.offset == 1);
+            CHECK(optLineContent->Start.Offset == 1);
+            CHECK(optLineContent->End.Offset == 1);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 2;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 2);
-            CHECK(optLine->end.offset == 3);
+            CHECK(optLine->Start.Offset == 2);
+            CHECK(optLine->End.Offset == 3);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 2);
-            CHECK(optLineContent->end.offset == 2);
+            CHECK(optLineContent->Start.Offset == 2);
+            CHECK(optLineContent->End.Offset == 2);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 3;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 3);
-            CHECK(optLine->end.offset == 3);
+            CHECK(optLine->Start.Offset == 3);
+            CHECK(optLine->End.Offset == 3);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 3);
-            CHECK(optLineContent->end.offset == 3);
+            CHECK(optLineContent->Start.Offset == 3);
+            CHECK(optLineContent->End.Offset == 3);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 4;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE_FALSE(optLine.has_value());
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE_FALSE(optLineContent.has_value());
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
     }
@@ -335,42 +335,42 @@ TEST_CASE("Source Text")
     SECTION(R"(Multiple \r)")
     {
         SourceText const text{"\r\r\r"};
-        REQUIRE(text.get_lines().size() == 1);
-        REQUIRE(text.get_lines()[0] == 0);
+        REQUIRE(text.GetLines().size() == 1);
+        REQUIRE(text.GetLines()[0] == 0);
 
         {
             constexpr size_t index = 0;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 0);
-            CHECK(optLine->end.offset == 3);
+            CHECK(optLine->Start.Offset == 0);
+            CHECK(optLine->End.Offset == 3);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 0);
-            CHECK(optLineContent->end.offset == 3);
+            CHECK(optLineContent->Start.Offset == 0);
+            CHECK(optLineContent->End.Offset == 3);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\r\r\r");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "\r\r\r");
         }
 
         {
             constexpr size_t index = 1;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE_FALSE(optLine.has_value());
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE_FALSE(optLineContent.has_value());
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
     }
@@ -378,105 +378,105 @@ TEST_CASE("Source Text")
     SECTION(R"(Multiple \r\n)")
     {
         SourceText const text{"\r\n\r\n\r\n"};
-        REQUIRE(text.get_lines().size() == 4);
-        REQUIRE(text.get_lines()[0] == 0);
-        REQUIRE(text.get_lines()[1] == 2);
-        REQUIRE(text.get_lines()[2] == 4);
-        REQUIRE(text.get_lines()[3] == 6);
+        REQUIRE(text.GetLines().size() == 4);
+        REQUIRE(text.GetLines()[0] == 0);
+        REQUIRE(text.GetLines()[1] == 2);
+        REQUIRE(text.GetLines()[2] == 4);
+        REQUIRE(text.GetLines()[3] == 6);
 
         {
             constexpr size_t index = 0;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 0);
-            CHECK(optLine->end.offset == 2);
+            CHECK(optLine->Start.Offset == 0);
+            CHECK(optLine->End.Offset == 2);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 0);
-            CHECK(optLineContent->end.offset == 0);
+            CHECK(optLineContent->Start.Offset == 0);
+            CHECK(optLineContent->End.Offset == 0);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\r\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 1;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 2);
-            CHECK(optLine->end.offset == 4);
+            CHECK(optLine->Start.Offset == 2);
+            CHECK(optLine->End.Offset == 4);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 2);
-            CHECK(optLineContent->end.offset == 2);
+            CHECK(optLineContent->Start.Offset == 2);
+            CHECK(optLineContent->End.Offset == 2);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\r\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 2;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 4);
-            CHECK(optLine->end.offset == 6);
+            CHECK(optLine->Start.Offset == 4);
+            CHECK(optLine->End.Offset == 6);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 4);
-            CHECK(optLineContent->end.offset == 4);
+            CHECK(optLineContent->Start.Offset == 4);
+            CHECK(optLineContent->End.Offset == 4);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "\r\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 3;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 6);
-            CHECK(optLine->end.offset == 6);
+            CHECK(optLine->Start.Offset == 6);
+            CHECK(optLine->End.Offset == 6);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 6);
-            CHECK(optLineContent->end.offset == 6);
+            CHECK(optLineContent->Start.Offset == 6);
+            CHECK(optLineContent->End.Offset == 6);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 4;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE_FALSE(optLine.has_value());
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE_FALSE(optLineContent.has_value());
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
     }
@@ -484,126 +484,126 @@ TEST_CASE("Source Text")
     SECTION(R"(Mixed new line characters)")
     {
         SourceText const text{"This\nis\r\nsome\ntext\n"};
-        REQUIRE(text.get_lines().size() == 5);
-        REQUIRE(text.get_lines()[0] == 0);
-        REQUIRE(text.get_lines()[1] == 5);
-        REQUIRE(text.get_lines()[2] == 9);
-        REQUIRE(text.get_lines()[3] == 14);
-        REQUIRE(text.get_lines()[4] == 19);
+        REQUIRE(text.GetLines().size() == 5);
+        REQUIRE(text.GetLines()[0] == 0);
+        REQUIRE(text.GetLines()[1] == 5);
+        REQUIRE(text.GetLines()[2] == 9);
+        REQUIRE(text.GetLines()[3] == 14);
+        REQUIRE(text.GetLines()[4] == 19);
 
         {
             constexpr size_t index = 0;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 0);
-            CHECK(optLine->end.offset == 5);
+            CHECK(optLine->Start.Offset == 0);
+            CHECK(optLine->End.Offset == 5);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 0);
-            CHECK(optLineContent->end.offset == 4);
+            CHECK(optLineContent->Start.Offset == 0);
+            CHECK(optLineContent->End.Offset == 4);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "This\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "This");
         }
 
         {
             constexpr size_t index = 1;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 5);
-            CHECK(optLine->end.offset == 9);
+            CHECK(optLine->Start.Offset == 5);
+            CHECK(optLine->End.Offset == 9);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 5);
-            CHECK(optLineContent->end.offset == 7);
+            CHECK(optLineContent->Start.Offset == 5);
+            CHECK(optLineContent->End.Offset == 7);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "is\r\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "is");
         }
 
         {
             constexpr size_t index = 2;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 9);
-            CHECK(optLine->end.offset == 14);
+            CHECK(optLine->Start.Offset == 9);
+            CHECK(optLine->End.Offset == 14);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 9);
-            CHECK(optLineContent->end.offset == 13);
+            CHECK(optLineContent->Start.Offset == 9);
+            CHECK(optLineContent->End.Offset == 13);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "some\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "some");
         }
 
         {
             constexpr size_t index = 3;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 14);
-            CHECK(optLine->end.offset == 19);
+            CHECK(optLine->Start.Offset == 14);
+            CHECK(optLine->End.Offset == 19);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 14);
-            CHECK(optLineContent->end.offset == 18);
+            CHECK(optLineContent->Start.Offset == 14);
+            CHECK(optLineContent->End.Offset == 18);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "text\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "text");
         }
 
         {
             constexpr size_t index = 4;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 19);
-            CHECK(optLine->end.offset == 19);
+            CHECK(optLine->Start.Offset == 19);
+            CHECK(optLine->End.Offset == 19);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 19);
-            CHECK(optLineContent->end.offset == 19);
+            CHECK(optLineContent->Start.Offset == 19);
+            CHECK(optLineContent->End.Offset == 19);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
 
         {
             constexpr size_t index = 5;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE_FALSE(optLine.has_value());
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE_FALSE(optLineContent.has_value());
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
     }
@@ -611,105 +611,105 @@ TEST_CASE("Source Text")
     SECTION(R"(No new line at end of text)")
     {
         SourceText const text{"This\nis\r\nsome\ntext"};
-        REQUIRE(text.get_lines().size() == 4);
-        REQUIRE(text.get_lines()[0] == 0);
-        REQUIRE(text.get_lines()[1] == 5);
-        REQUIRE(text.get_lines()[2] == 9);
-        REQUIRE(text.get_lines()[3] == 14);
+        REQUIRE(text.GetLines().size() == 4);
+        REQUIRE(text.GetLines()[0] == 0);
+        REQUIRE(text.GetLines()[1] == 5);
+        REQUIRE(text.GetLines()[2] == 9);
+        REQUIRE(text.GetLines()[3] == 14);
 
         {
             constexpr size_t index = 0;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 0);
-            CHECK(optLine->end.offset == 5);
+            CHECK(optLine->Start.Offset == 0);
+            CHECK(optLine->End.Offset == 5);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 0);
-            CHECK(optLineContent->end.offset == 4);
+            CHECK(optLineContent->Start.Offset == 0);
+            CHECK(optLineContent->End.Offset == 4);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "This\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "This");
         }
 
         {
             constexpr size_t index = 1;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 5);
-            CHECK(optLine->end.offset == 9);
+            CHECK(optLine->Start.Offset == 5);
+            CHECK(optLine->End.Offset == 9);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 5);
-            CHECK(optLineContent->end.offset == 7);
+            CHECK(optLineContent->Start.Offset == 5);
+            CHECK(optLineContent->End.Offset == 7);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "is\r\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "is");
         }
 
         {
             constexpr size_t index = 2;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 9);
-            CHECK(optLine->end.offset == 14);
+            CHECK(optLine->Start.Offset == 9);
+            CHECK(optLine->End.Offset == 14);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 9);
-            CHECK(optLineContent->end.offset == 13);
+            CHECK(optLineContent->Start.Offset == 9);
+            CHECK(optLineContent->End.Offset == 13);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "some\n");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "some");
         }
 
         {
             constexpr size_t index = 3;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE(optLine.has_value());
-            CHECK(optLine->start.offset == 14);
-            CHECK(optLine->end.offset == 18);
+            CHECK(optLine->Start.Offset == 14);
+            CHECK(optLine->End.Offset == 18);
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE(optLineContent.has_value());
-            CHECK(optLineContent->start.offset == 14);
-            CHECK(optLineContent->end.offset == 18);
+            CHECK(optLineContent->Start.Offset == 14);
+            CHECK(optLineContent->End.Offset == 18);
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText == "text");
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText == "text");
         }
 
         {
             constexpr size_t index = 4;
 
-            auto const optLine = text.get_line(index);
+            auto const optLine = text.GetLine(index);
             REQUIRE_FALSE(optLine.has_value());
 
-            auto const optLineContent = text.get_line_content(index);
+            auto const optLineContent = text.GetLineContent(index);
             REQUIRE_FALSE(optLineContent.has_value());
 
-            auto const lineText = text.get_line_text(index);
+            auto const lineText = text.GetLineText(index);
             REQUIRE(lineText.empty());
 
-            auto const lineContentText = text.get_line_content_text(index);
+            auto const lineContentText = text.GetLineContentText(index);
             REQUIRE(lineContentText.empty());
         }
     }
@@ -744,34 +744,34 @@ TEST_CASE("Source Text")
         {
             LinePosition const& ie = Mapping[i];
 
-            CHECK(text.get_line_index(i) == ie.line);
+            CHECK(text.GetLineIndex(i) == ie.Line);
 
-            LinePosition const& p = text.get_line_position(SourcePosition{i});
+            LinePosition const& p = text.GetLinePosition(SourcePosition{i});
 
-            CHECK(ie.line == p.line);
-            CHECK(ie.column == p.column);
+            CHECK(ie.Line == p.Line);
+            CHECK(ie.Column == p.Column);
 
             for (uint32_t j = i; j < std::size(Mapping); ++j)
             {
                 LinePosition const& je = Mapping[j];
 
                 SourceSpan const span{{i}, {j}};
-                LineSpan const line = text.get_line_span(span);
-                CHECK(line.start.line == ie.line);
-                CHECK(line.start.column == ie.column);
-                CHECK(line.end.line == je.line);
-                CHECK(line.end.column == je.column);
+                LineSpan const line = text.GetLineSpan(span);
+                CHECK(line.Start.Line == ie.Line);
+                CHECK(line.Start.Column == ie.Column);
+                CHECK(line.End.Line == je.Line);
+                CHECK(line.End.Column == je.Column);
             }
         }
 
-        for (uint32_t i = 0; i < text.get_content_view().size(); ++i)
+        for (uint32_t i = 0; i < text.GetContentView().size(); ++i)
         {
-            for (uint32_t j = i; j < text.get_content_view().size(); ++j)
+            for (uint32_t j = i; j < text.GetContentView().size(); ++j)
             {
                 SourceSpan const span{{i}, {j}};
 
-                std::string_view const lineText = text.get_text(span);
-                CHECK(lineText == text.get_content_view().substr(i, j - i));
+                std::string_view const lineText = text.GetText(span);
+                CHECK(lineText == text.GetContentView().substr(i, j - i));
             }
         }
     }
