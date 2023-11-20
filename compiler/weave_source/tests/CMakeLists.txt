@@ -1,6 +1,6 @@
 add_executable(weave_source_tests
- "SourceCursor.cxx"
- "SourceText.cxx"
+    SourceCursor.cxx
+    SourceText.cxx
 )
 
 target_link_libraries(weave_source_tests PUBLIC weave_source)

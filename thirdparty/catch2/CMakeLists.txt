@@ -1,6 +1,5 @@
-add_library(thirdparty_catch2
-    "lib/catch_amalgamated.cpp"
-    "include/catch_amalgamated.hpp"
-)
+add_library(thirdparty_catch2 STATIC)
 
-target_include_directories(thirdparty_catch2 PUBLIC "include")
+target_include_directories(thirdparty_catch2 PUBLIC include)
+
+add_subdirectory(lib)

@@ -117,18 +117,30 @@ int main(int argc, char** argv)
                 errorFilePath.replace_extension(".error");
 
                 // Try to read output and error files
-                if (auto const expected = weave::filesystem::ReadTextFile(outputFilePath.string()).value_or(""); expected != output)
+                if (auto const expected = weave::filesystem::ReadTextFile(outputFilePath.string()))
                 {
-                    fmt::println("output file content does not match");
-
-                    weave::filesystem::WriteTextFile(outputFilePath.string(), output);
+                    if (*expected != output)
+                    {
+                        fmt::println("output file content does not match");
+                        weave::filesystem::WriteTextFile(outputFilePath.string(), output);
+                    }
                 }
-                
-                if (auto const expected = weave::filesystem::ReadTextFile(errorFilePath.string()).value_or(""); expected != error)
+                else
                 {
-                    fmt::println("output file content does not match");
+                    fmt::println(stderr, "Failed to open file '{}' ('{}')", outputFilePath.string(), std::to_underlying(expected.error()));
+                }
 
-                    weave::filesystem::WriteTextFile(errorFilePath.string(), error);
+                if (auto const expected = weave::filesystem::ReadTextFile(errorFilePath.string()))
+                {
+                    if (*expected != error)
+                    {
+                        fmt::println("output file content does not match");
+                        weave::filesystem::WriteTextFile(errorFilePath.string(), error);
+                    }
+                }
+                else
+                {
+                    fmt::println(stderr, "Failed to open file '{}' ('{}')", outputFilePath.string(), std::to_underlying(expected.error()));
                 }
             }
             else

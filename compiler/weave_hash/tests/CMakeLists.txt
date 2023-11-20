@@ -1,5 +1,5 @@
 add_executable(weave_hash_tests
- Sha256.cxx
+    Sha256.cxx
 )
 
 target_link_libraries(weave_hash_tests PUBLIC weave_hash)

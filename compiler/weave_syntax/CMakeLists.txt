@@ -1,12 +1,4 @@
-add_library(weave_syntax STATIC
- "cxx/Token.cxx"
- "cxx/TokenKind.cxx"
- "cxx/TriviaKind.cxx"
- "cxx/CharTraits.cxx"
- "cxx/Lexer.cxx"
- "cxx/LexerContext.cxx"
- "cxx/SyntaxKind.cxx"
-)
+add_library(weave_syntax STATIC)
 
 target_include_directories(weave_syntax PUBLIC include)
 
@@ -19,4 +11,5 @@ target_link_libraries(weave_syntax PUBLIC weave_hash)
 
 WEAVE_CXX_FORTIFY_CODE(weave_syntax)
 
+add_subdirectory(cxx)
 add_subdirectory(tests)

@@ -1,11 +1,11 @@
-add_executable(weave_compiletest
-    cxx/Main.cxx
-)
+add_executable(weave_compiletest)
 
 target_link_libraries(weave_compiletest PUBLIC weave_system)
 target_link_libraries(weave_compiletest PUBLIC weave_commandline)
 target_link_libraries(weave_compiletest PUBLIC weave_filesystem)
 
+set_target_properties(weave_compiletest PROPERTIES OUTPUT_NAME "weave-compiletest")
+
 WEAVE_CXX_FORTIFY_CODE(weave_compiletest)
 
-set_target_properties(weave_compiletest PROPERTIES OUTPUT_NAME "weave-compiletest")
+add_subdirectory(cxx)

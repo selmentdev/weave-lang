@@ -1,5 +1,7 @@
 add_executable(weave_syntax_tests
- "Main.cxx" "TokenKind.cxx")
+    Main.cxx
+    TokenKind.cxx
+)
 
 target_link_libraries(weave_syntax_tests PUBLIC weave_syntax)
 target_link_libraries(weave_syntax_tests PUBLIC thirdparty_catch2)

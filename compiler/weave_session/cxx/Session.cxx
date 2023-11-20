@@ -51,20 +51,20 @@ namespace weave::session
 namespace weave::session
 {
     template <typename O>
-    using OptionSetter = bool(O&, std::optional<std::string_view> const&);
+    using OptionSetter = bool (O::*)(std::optional<std::string_view> const& value);
 
     template <typename O>
     struct Option
     {
         std::string_view name;
         std::string_view description;
-        OptionSetter<O>* setter;
+        OptionSetter<O> setter;
     };
 
     static constexpr Option<CodeGeneratorOptions> g_CodeGeneratorOptions[]{
         // clang-format off
-        {"checked", "Enables checked build", [](CodeGeneratorOptions& self, std::optional<std::string_view> const& value) -> bool { return impl::ParseBoolean(self.Checked, value); }},
-        {"debug", "Enables debug symbol info", [](CodeGeneratorOptions& self, std::optional<std::string_view> const& value) -> bool { return impl::ParseBoolean(self.Debug, value); }},
+        {"checked", "Enables checked build", &CodeGeneratorOptions::CheckedFromString},
+        {"debug", "Enables debug symbol info", &CodeGeneratorOptions::DebugFromString},
         // clang-format on
     };
 
@@ -78,7 +78,7 @@ namespace weave::session
 
         if (it != options.end())
         {
-            return it->setter(result, value);
+            return (result.*(it->setter))(value);
         }
 
         return false;

@@ -17,6 +17,47 @@ namespace weave::session
             commandline::CommandLineParseResult const& command_line);
 
     public:
+        bool CheckedFromString(std::optional<std::string_view> const& value)
+        {
+            if (value)
+            {
+                if (*value == "true")
+                {
+                    this->Checked = true;
+                    return true;
+                }
+
+                if (*value == "false")
+                {
+                    this->Checked = false;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        bool DebugFromString(std::optional<std::string_view> const& value)
+        {
+            if (value)
+            {
+                if (*value == "true")
+                {
+                    this->Debug = true;
+                    return true;
+                }
+
+                if (*value == "false")
+                {
+                    this->Debug = false;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+    public:
         bool Checked = false;
         bool Debug = false;
     };

@@ -1,6 +1,4 @@
-add_library(weave_stringpool STATIC
- "cxx/StringPool.cxx"
-)
+add_library(weave_stringpool STATIC)
 
 target_include_directories(weave_stringpool PUBLIC include)
 
@@ -9,3 +7,5 @@ target_link_libraries(weave_stringpool PUBLIC weave_memory)
 target_link_libraries(weave_stringpool PUBLIC weave_hash)
 
 WEAVE_CXX_FORTIFY_CODE(weave_stringpool)
+
+add_subdirectory(cxx)

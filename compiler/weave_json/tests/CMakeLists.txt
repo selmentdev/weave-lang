@@ -1,5 +1,5 @@
 add_executable(weave_json_tests
- SmokeTests.cxx
+    SmokeTests.cxx
 )
 
 target_link_libraries(weave_json_tests PUBLIC weave_json)
