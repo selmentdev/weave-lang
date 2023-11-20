@@ -5,8 +5,6 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 
 #include <unistd.h>
 #include <wordexp.h>
-#include <sched.h>
-#include <signal.h>
 #include <spawn.h>
 #include <sys/wait.h>
 #include <poll.h>
@@ -62,7 +60,12 @@ namespace weave::system
         posix_spawn_file_actions_adddup2(&files, pipeOutput[1], STDOUT_FILENO);
         posix_spawn_file_actions_adddup2(&files, pipeError[1], STDERR_FILENO);
 
-        // posix_spawn_file_actions_add_chdir_np?
+#if defined(__USE_MISC)
+        if (working_directory != nullptr)
+        {
+            posix_spawn_file_actions_addchdir_np(&files, working_directory);
+        }
+#endif
 
         int spawn_result = posix_spawnp(
             &process_id,

@@ -1,5 +1,5 @@
 add_executable(weave_driver
- cxx/main.cxx
+        cxx/Main.cxx
 )
 
 target_link_libraries(weave_driver PUBLIC weave_hash)
