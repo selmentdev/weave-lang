@@ -108,7 +108,7 @@ int main(int argc, char** argv)
             std::string output{};
             std::string error{};
 
-            if (auto ret = weave::system::Execute(std::string{exeName.value()}.c_str(), entry.path().string().c_str(), wd.c_str(), output, error))
+            if (auto ret = weave::system::Execute(std::string{exeName.value()}.c_str(), entry.path().string().c_str(), wd.string().c_str(), output, error))
             {
                 std::filesystem::path outputFilePath = entry.path();
                 outputFilePath.replace_extension(".output");
