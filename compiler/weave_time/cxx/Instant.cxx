@@ -60,7 +60,7 @@ namespace weave::time
         struct timespec ts;
 
         [[maybe_unused]] int const result = clock_gettime(CLOCK_MONOTONIC, &ts);
-        ANEMONE_ASSERT(result == 0);
+        WEAVE_ASSERT(result == 0);
 
         return {.Value = (static_cast<int64_t>(ts.tv_sec) * Duration::NanosecondsInSecond) + static_cast<int64_t>(ts.tv_nsec)};
 
