@@ -10,6 +10,7 @@ target_link_libraries(weave_driver PUBLIC weave_system)
 target_link_libraries(weave_driver PUBLIC weave_session)
 target_link_libraries(weave_driver PUBLIC weave_filesystem)
 target_link_libraries(weave_driver PUBLIC weave_syntax)
+target_link_libraries(weave_driver PUBLIC weave_time)
 
 set_target_properties(weave_driver PROPERTIES OUTPUT_NAME "weave-driver")
 

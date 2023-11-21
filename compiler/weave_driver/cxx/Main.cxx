@@ -3,7 +3,6 @@
 
 
 #include <charconv>
-#include <chrono>
 #include <cstdlib>
 
 #include "weave/Session.hxx"
@@ -14,6 +13,7 @@
 #include "weave/source/Diagnostic.hxx"
 #include "weave/syntax/Lexer.hxx"
 #include "weave/syntax/LexerContext.hxx"
+#include "weave/time/Instant.hxx"
 
 namespace weave
 {
@@ -264,6 +264,20 @@ int main(int argc, const char* argv[])
 
     if (auto matched = builder.Parse(argc, argv); matched.has_value())
     {
+        if (matched->HasFlag("help"))
+        {
+            fmt::println("Usage: {} [OPTIONS]", argv[0]);
+            fmt::println("");
+
+            for (auto const& option : builder.GetOptions())
+            {
+                fmt::println("{}", commandline::FormatOption(option));
+                fmt::println("\t{}", option.Description);
+                fmt::println("");
+            }
+            return EXIT_SUCCESS;
+        }
+
         weave::errors::Handler handler{};
         auto cmd = weave::session::CodeGeneratorOptions::FromCommandLine(handler, *matched);
 
@@ -274,19 +288,6 @@ int main(int argc, const char* argv[])
 
         fmt::println("cmd.debug: {}", cmd.Debug);
 
-        if (matched->HasFlag("help"))
-        {
-            fmt::println("Usage: {} [OPTIONS]", argv[0]);
-            fmt::println("");
-
-            for (auto const& option : builder.GetOptions())
-            {
-                fmt::println("{}", commandline::format_option(option));
-                fmt::println("\t{}", option.Description);
-                fmt::println("");
-            }
-            return EXIT_SUCCESS;
-        }
 
         auto const& result = matched.value();
 
@@ -327,7 +328,7 @@ int main(int argc, const char* argv[])
             syntax::LexerContext context{};
             syntax::Lexer lexer{diagnostic, text, syntax::TriviaMode::All};
 
-            auto started = std::chrono::high_resolution_clock::now();
+            time::Instant const started = time::Instant::Now();
 
             while (lexer.Lex())
             {
@@ -363,10 +364,8 @@ int main(int argc, const char* argv[])
                 }
             }
 
-            auto finished = std::chrono::high_resolution_clock::now();
+            time::Duration const timeout = started.QueryElapsed();
             context.Strings.Dump();
-
-            std::chrono::duration<double, std::milli> const lexed = finished - started;
 
             std::vector<std::string> diag{};
             source::FormatDiagnostics(diag, text, diagnostic, 1000);
@@ -381,7 +380,7 @@ int main(int argc, const char* argv[])
             context.QueryMemoryUsage(allocated, reserved);
             context.DumpMemoryUsage();
 
-            fmt::println("lexed in {}", lexed);
+            fmt::println("lexed in {} ms", timeout.AsMilliseconds());
             fmt::println("allocated: {}, reserved: {}", allocated, reserved);
         }
         else

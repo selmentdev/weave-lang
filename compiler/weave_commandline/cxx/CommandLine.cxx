@@ -244,7 +244,7 @@ namespace weave::commandline
 
 namespace weave::commandline
 {
-    std::string format_option(CommandLineOption const& option)
+    std::string FormatOption(CommandLineOption const& option)
     {
         std::string line{};
 

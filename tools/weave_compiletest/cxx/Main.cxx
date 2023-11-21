@@ -70,7 +70,7 @@ int main(int argc, char** argv)
             {
                 //fmt::println("    {:>2} {} {}", option.ShortName, option.Name, option.Hint);
 
-                fmt::println("    {}", weave::commandline::format_option(option));
+                fmt::println("    {}", weave::commandline::FormatOption(option));
 
                 if (not option.Description.empty())
                 {
