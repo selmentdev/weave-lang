@@ -1,0 +1,461 @@
+namespace OsDev.Dev.Uart {
+    public const UART_CLOCK_RATE = 115200u32;
+
+    public enum UartDeviceType(u32) {
+        Unknown = 0,
+        Uart8250 = 1,
+        Uart16450 = 2,
+        Uart16550 = 3,
+        Uart16550A = 4,
+        Uart16750 = 5
+    }
+
+    public const UART_ADDRESS_COM1          = 0x3F8u16;
+    public const UART_ADDRESS_COM2          = 0x2F8u16;
+    public const UART_ADDRESS_COM3          = 0x3E8u16;
+    public const UART_ADDRESS_COM4          = 0x2E8u16;
+
+    public const UART_REGISTER_DTX          = 0u8; // Transmit Holding Register
+    public const UART_REGISTER_DRX          = 0u8; // Receive Buffer Register
+    public const UART_REGISTER_DLL          = 0u8; // Divisor Latch Low Byte
+    public const UART_REGISTER_DLH          = 1u8; // Divisor Latch High Byte
+    public const UART_REGISTER_IER          = 1u8; // Interrupt Enable Register
+    public const UART_REGISTER_IIR          = 2u8; // Interrupt Identification Register
+    public const UART_REGISTER_FCR          = 2u8; // Fifo Control Register
+    public const UART_REGISTER_LCR          = 3u8; // Line Control Register
+    public const UART_REGISTER_MCR          = 4u8; // Modem Control Register
+    public const UART_REGISTER_LSR          = 5u8; // Line Status Register
+    public const UART_REGISTER_MSR          = 6u8; // Modem Status Register
+    public const UART_REGISTER_SCRATCH      = 7u8; // Scratch Register
+
+    public const UART_IER_RECEIVED_DATA_AVAILABLE            = 0x01u8; // Enable Received Data Available Interrupt
+    public const UART_IER_TRANSMITTER_HOLDING_REGISTER_EMPTY = 0x02u8; // Enable Transmitter Holding Register Empty Interrupt
+    public const UART_IER_RECEIVER_LSR                       = 0x04u8; // Enable Receiver Line Status Interrupt
+    public const UART_IER_MSR                                = 0x08u8; // Enable Modem Status Interrupt
+    public const UART_IER_SLEEP_MODE                         = 0x10u8; // Enable Sleep Mode
+    public const UART_IER_LOW_POWER_MODE                     = 0x20u8; // Enable Low Power Mode
+    // 0x40 and 0x80 are reserved
+
+    public const UART_IIR_NO_INT_PENDING                     = 0x01u8; // No Interrupts Pending 
+    public const UART_IIR_MASK                               = 0x0eu8; // Interrupt ID Mask
+    public const UART_IIR_MSR                                = 0x00u8; // Modem Status Interrupt ID
+    public const UART_IIR_TRANSMITTER_HOLDING_REGISTER_EMPTY = 0x02u8;
+    public const UART_IIR_RECEIVED_DATA_AVAILABLE            = 0x04u8;
+    public const UART_IIR_RECEIVER_LSR                       = 0x06u8;
+    public const UART_IIR_TIMEOUT_INTERRUPT_PENDING          = 0x0Cu8;
+    public const UART_IIR_FIFO64                             = 0x20u8;
+    public const UART_IIR_FIFO_BIT_WORKING                   = 0x40u8;
+    public const UART_IIR_FIFO_BIT_ENABLED                   = 0x80u8;
+    public const UART_IIR_FIFO_TYPE_MASK                     = 0xC0u8;
+    public const UART_IIR_FIFO_TYPE_NONE                     = 0x00u8;
+    public const UART_IIR_FIFO_TYPE_BROKEN                   = 0x80u8;
+    public const UART_IIR_FIFO_TYPE_ENABLED                  = 0xC0u8;
+
+    public const UART_FCR_DISABLE                            = 0x00u8;
+    public const UART_FCR_ENABLE                             = 0x10u8;
+    public const UART_FCR_CLEAR_RECEIVE                      = 0x20u8;
+    public const UART_FCR_CLEAR_TRANSMIT                     = 0x40u8;
+    public const UART_FCR_DMA_MODE_MASK                      = 0x80u8;
+    public const UART_FCR_DMA_MODE_0                         = 0x00u8;
+    public const UART_FCR_DMA_MODE_1                         = 0x80u8;
+    public const UART_FCR_TRIGGER_MASK                       = 0xC0u8;
+    public const UART_FCR_TRIGGER_1_BYTE_FIFO16              = 0x00u8;
+    public const UART_FCR_TRIGGER_4_BYTE_FIFO16              = 0x40u8;
+    public const UART_FCR_TRIGGER_8_BYTE_FIFO16              = 0x80u8;
+    public const UART_FCR_TRIGGER_14_BYTE_FIFO16             = 0xC0u8;
+    public const UART_FCR_TRIGGER_1_BYTE_FIFO64              = 0x20u8;
+    public const UART_FCR_TRIGGER_16_BYTE_FIFO64             = 0x60u8;
+    public const UART_FCR_TRIGGER_32_BYTE_FIFO64             = 0xA0u8;
+    public const UART_FCR_TRIGGER_56_BYTE_FIFO64             = 0xE0u8;
+
+    public const UART_LCR_BITS_MASK                          = 0b0000_0111u8;
+    public const UART_LCR_BITS_5D1S                          = 0u8;
+    public const UART_LCR_BITS_6D1S                          = 1u8;
+    public const UART_LCR_BITS_7D1S                          = 2u8;
+    public const UART_LCR_BITS_8D1S                          = 3u8;
+    public const UART_LCR_BITS_5D15S                         = 4u8;
+    public const UART_LCR_BITS_6D2S                          = 5u8;
+    public const UART_LCR_BITS_7D2S                          = 6u8;
+    public const UART_LCR_BITS_8D2S                          = 7u8;
+    public const UART_LCR_PARITY_MASK                        = 0b0011_1000u8;
+    public const UART_LCR_PARITY_NONE                        = 0b0000_0000u8;
+    public const UART_LCR_PARITY_ODD                         = 0b0000_1000u8;
+    public const UART_LCR_PARITY_EVEN                        = 0b0001_1000u8;
+    public const UART_LCR_PARITY_MARK                        = 0b0010_1000u8;
+    public const UART_LCR_PARITY_SPACE                       = 0b0011_1000u8;
+    public const UART_LCR_BREAK_ENABLE                       = 0x40u8;
+    public const UART_LCR_DIVISOR_LATCH                      = 0x80u8;
+
+    public const UART_MCR_DATA_TERMINAL_READY                = 0x01u8;
+    public const UART_MCR_REQUEST_TO_SEND                    = 0x02u8;
+    public const UART_MCR_AUX_OUTPUT_1                       = 0x04u8;
+    public const UART_MCR_AUX_OUTPUT_2                       = 0x08u8;
+    public const UART_MCR_LOOPBACK                           = 0x10u8;
+    public const UART_MCR_AUTOFLOW                           = 0x20u8; // 16750 only
+
+    public const UART_LSR_RECEIVER_DATA_READY                = 0x01u8;
+    public const UART_LSR_ERROR_OVERRUN                      = 0x02u8;
+    public const UART_LSR_ERROR_PARITY                       = 0x04u8;
+    public const UART_LSR_ERROR_FRAMING                      = 0x08u8;
+    public const UART_LSR_BREAK_INTERRUPT                    = 0x10u8;
+    public const UART_LSR_EMPTY_TRANSMITTER                  = 0x20u8;
+    public const UART_LSR_EMPTY_RECEIVER                     = 0x40u8;
+    public const UART_LSR_ERROR_FIFO                         = 0x80u8;
+    public const UART_LSR_ERROR_MASK                         = 0x8Eu8;
+
+    public const UART_MSR_DELTA_CLEAR_TO_SEND                = 0x01u8;
+    public const UART_MSR_DELTA_DATA_SET_READY               = 0x02u8;
+    public const UART_MSR_TRAILING_EDGE_RING                 = 0x04u8;
+    public const UART_MSR_DELTA_DATA_CARRIER_DETECT          = 0x08u8;
+    public const UART_MSR_CLEAR_TO_SEND                      = 0x10u8;
+    public const UART_MSR_DATA_SET_READY                     = 0x20u8;
+    public const UART_MSR_RING_INDICATOR                     = 0x40u8;
+    public const UART_MSR_CARRIER_DETECT                     = 0x80u8;
+
+    public const UART_BAUD_RATE_115200_BPS                   = 115200u32;
+    public const UART_BAUD_RATE_57600_BPS                    = 57600u32;
+    public const UART_BAUD_RATE_38400_BPS                    = 38400u32;
+    public const UART_BAUD_RATE_19200_BPS                    = 19200u32;
+    public const UART_BAUD_RATE_9600_BPS                     = 9600u32;
+    public const UART_BAUD_RATE_4800_BPS                     = 4800u32;
+    public const UART_BAUD_RATE_2400_BPS                     = 2400u32;
+    public const UART_BAUD_RATE_1200_BPS                     = 1200u32;
+    public const UART_BAUD_RATE_600_BPS                      = 600u32;
+    public const UART_BAUD_RATE_300_BPS                      = 300u32;
+    public const UART_BAUD_RATE_220_BPS                      = 220u32;
+    public const UART_BAUD_RATE_110_BPS                      = 110u32;
+    public const UART_BAUD_RATE_50_BPS                       = 50u32;
+
+
+    public extern function uart16550_read_register(address: uptr, offset: u16) -> u8;
+
+    public extern function uart16550_write_register(address: uptr, offset: u16, value: u8);
+
+    internal function uart16550_set_baud_rate(address: uptr, baudrate: u32)
+    {
+        // compute divisor
+        let divisor = (UART_CLOCK_RATE / baudrate) as u16;
+        let divisor_lower = divisor as u8;
+        let divisor_upper = (divisor >> 8) as u8;
+
+        // enable divisor latch
+        let lcr = uart16550_read_register(address, UART_REGISTER_LCR);
+        uart16550_write_register(address, UART_REGISTER_LCR, lcr | UART_LCR_DIVISOR_LATCH);
+
+        // set divisor
+        uart16550_write_register(address, UART_REGISTER_DLL, divisor_lower);
+        uart16550_write_register(address, UART_REGISTER_DLH, divisor_upper);
+
+        // disable divisor latch
+        let lcr2 = uart16550_read_register(address, UART_REGISTER_LCR);
+        uart16550_write_register(address, UART_REGISTER_LCR, lcr2 & ~UART_LCR_DIVISOR_LATCH);
+    }
+
+    internal function uart16550_get_baud_rate(address: uptr) -> u32
+    {
+        // enable divisor latch
+        let lcr = uart16550_read_register(address, UART_REGISTER_LCR);
+        uart16550_write_register(address, UART_REGISTER_LCR, lcr | UART_LCR_DIVISOR_LATCH);
+
+        // get divisor
+        let divisor_lower = uart16550_read_register(address, UART_REGISTER_DLL);
+        let divisor_upper = uart16550_read_register(address, UART_REGISTER_DLH);
+
+        // disable divisor latch
+        let lcr2 = uart16550_read_register(address, UART_REGISTER_LCR);
+        uart16550_write_register(address, UART_REGISTER_LCR, lcr2 & ~UART_LCR_DIVISOR_LATCH);
+
+        let divisor = (divisor_lower as u16) | ((divisor_upper as u16) << 8);
+
+        return (UART_CLOCK_RATE / divisor) as u32;
+    }
+
+    internal function uart16550_enable_fifo(address: uptr, bool enable)
+    {
+        if (enable)
+        {
+            uart16550_write_register(address, UART_REGISTER_FCR,
+                UART_FCR_ENABLE |
+                UART_FCR_CLEAR_RECEIVE |
+                UART_FCR_CLEAR_TRANSMIT
+            );
+        }
+        else
+        {
+            uart16550_write_register(address, UART_REGISTER_FCR, UART_FCR_DISABLE);
+        }
+    }
+
+    internal function uart16550_detect_device_type(address: uptr) -> UartDeviceType
+    {
+        // Try to enable full-featured FIFO.
+        uart16550_write_register(address, UART_REGISTER_FCR,
+            UART_FCR_ENABLE | UART_FCR_CLEAR_RECEIVE | UART_FCR_CLEAR_TRANSMIT | UART_FCR_TRIGGER_56_BYTE_FIFO64);
+
+        // Check whether IIR has valid value.
+        let iir = uart16550_read_register(address, UART_REGISTER_IIR);
+
+        if (iir == 0xFF)
+        {
+            return Unknown;
+        }
+
+        // Check if this UART has working FIFO.
+        if (iir & UART_IIR_FIFO_BIT_WORKING)
+        {
+            // Check if FIFO is really enabled.
+            if (iir & UART_IIR_FIFO_BIT_ENABLED)
+            {
+                // Check if FIFO is 64 byte.
+                if (iir & UART_IIR_FIFO64)
+                {
+                    return Uart16750;
+                }
+                else
+                {
+                    return Uart16550A;
+                }
+            }
+            else
+            {
+                return Uart16550;
+            }
+        }
+        else
+        {
+            // FIFO is not supported, check for scratch register.
+            uart16550_write_register(address, UART_REGISTER_SCRATCH, 0x2A);
+
+            if (uart16550_read_register(address, UART_REGISTER_SCRATCH) == 0x2A)
+            {
+                return Uart16450;
+            }
+            else
+            {
+                // Scratch register is not available. Try more advanced check.
+                let mutable is_valid = false;
+
+                // Save MCR.
+                let mcr = uart16550_read_register(address, UART_REGISTER_MCR);
+
+                // Enable loop mode and clear output.
+                uart16550_write_register(address, UART_REGISTER_MCR, UART_MCR_LOOPBACK);
+                uart16550_write_register(address, UART_REGISTER_MCR, UART_MCR_LOOPBACK);
+
+                // Read MSR.
+                let mutable msr = uart16550_read_register(address, UART_REGISTER_MSR);
+                
+                if (msr & (UART_MSR_CLEAR_TO_SEND | UART_MSR_DATA_SET_READY | UART_MSR_RING_INDICATOR | UART_MSR_CARRIER_DETECT))
+                {
+                    uart16550_write_register(address, UART_REGISTER_MCR, UART_MCR_AUX_OUTPUT_1 | UART_MCR_LOOPBACK);
+
+                    msr = uart16550_read_register(address, UART_REGISTER_MSR);
+
+                    if (msr & UART_MSR_RING_INDICATOR)
+                    {
+                        is_valid = false;
+                    }
+                }
+
+                uart16550_write_register(address, UART_REGISTER_MCR, mcr);
+
+                if (is_valid)
+                {
+                    return Uart8250;
+                }
+            }
+        }
+        
+        return Unknown;
+    }
+
+    internal function uart16550_disable_interrupts(address: uptr) {
+        uart16550_write_register(address, UART_REGISTER_LCR, 0);
+        uart16550_write_register(address, UART_REGISTER_IER, 0);
+        uart16550_write_register(address, UART_REGISTER_FCR, 0);
+    }
+
+    internal function uart16550_enable_modem(address: uptr)
+    {
+        uart16550_write_register(address, UART_REGISTER_MCR,
+            UART_MCR_DATA_TERMINAL_READY |
+            UART_MCR_REQUEST_TO_SEND |
+            UART_MCR_AUX_OUTPUT_2
+        );
+    }
+
+    internal function uart16550_configure_data_transfer(address: uptr, mode: u32, parity: u32)
+    {
+        uart16550_write_register(address, UART_REGISTER_LCR, (uint8_t)(mode | parity));
+    }
+
+    internal function uart16550_clean_data_buffer(address: uptr)
+    {
+        discard uart16550_read_register(address, UART_REGISTER_DRX);
+    }
+
+    internal function uart16550_initialize(address: uptr, baudrate: u32, mode: u32, parity: u32, enable_fifo: bool) -> bool
+    {
+        if uart16550_detect_device_type(address) == Unknown
+        {
+            return false;
+        }
+        
+        uart16550_disable_interrupts(address);
+        uart16550_enable_modem(address);
+        uart16550_set_baud_rate(address, baudrate);
+        uart16550_configure_data_transfer(address, mode, parity);
+        uart16550_enable_fifo(address, enable_fifo);
+        uart16550_clean_data_buffer(address);
+        return true;
+    }
+
+    internal function uart16550_data_available(address: uptr) -> bool
+    {
+        return uart16550_read_register(address, UART_REGISTER_LSR) & UART_LSR_RECEIVER_DATA_READY;
+    }
+
+    internal function uart16550_read_byte_ex(address: uptr, value: out u8, bool wait, bool pool)
+    {
+        mut limit = wait ? 0x1000u : 1u;
+
+        while limit-- != 0 {
+            let status = uart16550_read_register(address, UART_REGISTER_LSR);
+
+            if status & UART_LSR_RECEIVER_DATA_READY {
+                if status & UART_LSR_ERROR_MASK {
+                    value = 0;
+                    return false;
+                }
+
+                if pool {
+                    return true;
+                }
+
+                value = uart16550_read_register(address, UART_REGISTER_DRX);
+                return true;
+            }
+        }
+
+        uart16550_read_register(address, UART_REGISTER_LSR);
+
+        return true;
+    }
+
+/*
+static bool uart16550_read_byte(uintptr_t address, uint8_t* out_value)
+{
+    uart16550_read_register(address, UART_REGISTER_MSR);
+    uint8_t status = 0;
+
+    do
+    {
+        status = uart16550_read_register(address, UART_REGISTER_LSR);
+        if (RTL_FLAGS_ANY(status, UART_LSR_ERROR_MASK))
+        {
+            return false;
+        }
+    } while (RTL_FLAGS_NONE(status, UART_LSR_RECEIVER_DATA_READY));
+
+    uint8_t value = uart16550_read_register(address, UART_REGISTER_DRX);
+    status = uart16550_read_register(address, UART_REGISTER_LSR);
+
+    if (RTL_FLAGS_ANY(status, UART_LSR_ERROR_MASK))
+    {
+        return false;
+    }
+
+    (*out_value) = value;
+    return true;
+}
+
+static bool uart16550_write_byte(uintptr_t address, uint8_t value)
+{
+    uint8_t status = 0;
+
+    do
+    {
+        status = uart16550_read_register(address, UART_REGISTER_LSR);
+        if (RTL_FLAGS_ANY(status, UART_LSR_ERROR_MASK))
+        {
+            return false;
+        }
+    } while (RTL_FLAGS_NONE(status, UART_LSR_EMPTY_TRANSMITTER));
+
+    //
+    // Write data.
+    //
+    uart16550_write_register(address, UART_REGISTER_DTX, value);
+
+    //
+    // Check status.
+    //
+    status = uart16550_read_register(address, UART_REGISTER_LSR);
+    if (RTL_FLAGS_ANY(status, UART_LSR_ERROR_MASK))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+static os_result_t uart16550_read_buffer(uintptr_t address, void* buffer, size_t size, size_t* out_processed)
+{
+    if (buffer == NULL)
+    {
+        return E_INVALID_ARGUMENT;
+    }
+
+    uint8_t* array = (uint8_t*)buffer;
+
+    os_result_t status = S_OK;
+
+    size_t index = 0;
+
+    for (; index < size; ++index)
+    {
+        if (!uart16550_read_byte(address, &array[index]))
+        {
+            status = E_READ_FAULT;
+            break;
+        }
+    }
+
+    if (out_processed != NULL)
+    {
+        (*out_processed) = index;
+    }
+
+    return status;
+}
+
+static os_result_t uart16550_write_buffer(uintptr_t address, const void* buffer, size_t size, size_t* out_processed)
+{
+    if (buffer == NULL)
+    {
+        return E_INVALID_ARGUMENT;
+    }
+
+    const uint8_t* array = (const uint8_t*)buffer;
+
+    os_result_t status = S_OK;
+
+    size_t index = 0;
+
+    for (; index < size; ++index)
+    {
+        if (!uart16550_write_byte(address, array[index]))
+        {
+            status = E_WRITE_FAULT;
+            break;
+        }
+    }
+
+    if (out_processed != NULL)
+    {
+        (*out_processed) = index;
+    }
+
+    return status;
+}
+*/

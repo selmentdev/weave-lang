@@ -1,0 +1,172 @@
+namespace OsDev.Multiboot
+{
+    public const MULTIBOOT_MAGIC = 0x1BADB002u32;
+
+    public const MULTIBOOT_HEADER_ALIGN = 8usize;
+
+    public const MULTIBOOT_HEADER_TAG_END                   = 0u32;
+    public const MULTIBOOT_HEADER_TAG_INFORMATION_REQUEST   = 1u32;
+    public const MULTIBOOT_HEADER_TAG_ADDRESS               = 2u32;
+    public const MULTIBOOT_HEADER_TAG_ENTRY_ADDRESS         = 3u32;
+    public const MULTIBOOT_HEADER_TAG_CONSOLE               = 4u32;
+    public const MULTIBOOT_HEADER_TAG_FRAMEBUFFER           = 5u32;
+    public const MULTIBOOT_HEADER_TAG_MODULE_ALIGN          = 6u32;
+    public const MULTIBOOT_HEADER_TAG_EFI_BS                = 7u32;
+
+    public const MULTIBOOT_HEADER_TAG_OPTIONAL                       = 1u32;
+
+    public const MULTIBOOT_CONSOLE_FLAG_REQUIRE_CONSOLE              : u32 = (1 << 0);
+    public const MULTIBOOT_CONSOLE_FLAG_SUPPORTS_EGA                 : u32 = (1 << 1);
+
+    public const MULTIBOOT_ARCHITECTURE_I386                         = 0u32;
+    public const MULTIBOOT_ARCHITECTURE_MIPS32                       = 4u32;
+
+
+    public const MULTIBOOT_TAG_TYPE_END                              = 0u32;
+    public const MULTIBOOT_TAG_TYPE_CMDLINE                          = 1u32;
+    public const MULTIBOOT_TAG_TYPE_BOOT_LOADER_NAME                 = 2u32;
+    public const MULTIBOOT_TAG_TYPE_MODULE                           = 3u32;
+    public const MULTIBOOT_TAG_TYPE_BASIC_MEMINFO                    = 4u32;
+    public const MULTIBOOT_TAG_TYPE_BOOTDEV                          = 5u32;
+    public const MULTIBOOT_TAG_TYPE_MMAP                             = 6u32;
+    public const MULTIBOOT_TAG_TYPE_VBE                              = 7u32;
+    public const MULTIBOOT_TAG_TYPE_FRAMEBUFFER                      = 8u32;
+    public const MULTIBOOT_TAG_TYPE_ELF_SECTIONS                     = 9u32;
+    public const MULTIBOOT_TAG_TYPE_APM                              = 10u32;
+    public const MULTIBOOT_TAG_TYPE_EFI32                            = 11u32;
+    public const MULTIBOOT_TAG_TYPE_EFI64                            = 12u32;
+    public const MULTIBOOT_TAG_TYPE_SMBIOS                           = 13u32;
+    public const MULTIBOOT_TAG_TYPE_ACPI_OLD                         = 14u32;
+    public const MULTIBOOT_TAG_TYPE_ACPI_NEW                         = 15u32;
+    public const MULTIBOOT_TAG_TYPE_NETWORK                          = 16u32;
+    public const MULTIBOOT_TAG_TYPE_EFI_MMAP                         = 17u32;
+    public const MULTIBOOT_TAG_TYPE_EFI_BS                           = 18u32;
+
+    public const MULTIBOOT_HIGH_KERNEL_VIRTUAL_OFFSET                = 0xFFFFFFFF80000000u64;
+}
+
+namespace OsDev.Arch.Amd64
+{
+    public const CR0_PE = 1u64 << 0;
+    public const CR0_MP = 1u64 << 1;
+    public const CR0_EM = 1u64 << 2;
+    public const CR0_TS = 1u64 << 3;
+    public const CR0_ET = 1u64 << 4;
+    public const CR0_NE = 1u64 << 5;
+    public const CR0_WP = 1u64 << 16;
+    public const CR0_AM = 1u64 << 18;
+    public const CR0_NW = 1u64 << 29;
+    public const CR0_CD = 1u64 << 30;
+    public const CR0_PG = 1u64 << 31;
+
+    public const CR3_PWT = 1u64 << 3; // Page Level Write-Through.
+    public const CR3_PCD = 1u64 << 4; // Page Level Cache-Disable.
+
+    public const CR4_VME        = 1u64 << 0; // Virtual-8086 Mode Extensions.
+    public const CR4_PVI        = 1u64 << 1; // Protected-Mode Virtual Interrupts.
+    public const CR4_TSD        = 1u64 << 2; // Time Stamp Disable.
+    public const CR4_DE         = 1u64 << 3; // Debugging Extensions.
+    public const CR4_PSE        = 1u64 << 4; // Page Size Extensions.
+    public const CR4_PAE        = 1u64 << 5; // Physical Address Extensions.
+    public const CR4_MCE        = 1u64 << 6; // Machine-Check Enable.
+    public const CR4_PGE        = 1u64 << 7; // Page Global Enable.
+    public const CR4_PCE        = 1u64 << 8; // Performance-Monitoring Counter Enable.
+    public const CR4_OSFXSR     = 1u64 << 9; // OS Support for FXSAVE and FXRSTOR Instructions.
+    public const CR4_OSXMMEXCPT = 1u64 << 10; // OS Support for Unmasked SIMD Floating-Point Exceptions.
+    public const CR4_VMXE       = 1u64 << 13; // Virtual Machine Extensions Enabled.
+    public const CR4_SMXE       = 1u64 << 14; // SMX-Enable Bit.
+    public const CR4_FSGSBASE   = 1u64 << 16; // Enables the instructions RDFSBASE, RDGSBASE, WRFSBASE, and WRGSBASE.
+    public const CR4_PCIDE      = 1u64 << 17; // PCID Enable.
+    public const CR4_OSXSAVE    = 1u64 << 18; // XSAVE and Processor Extended States-Enable Bit.
+    public const CR4_SMEP       = 1u64 << 20; // SMEP Enable.
+    public const CR4_SMAP       = 1u64 << 21; // SMAP Enable.
+    public const CR4_PKE        = 1u64 << 22; // Protection-Key Enable.
+
+    public const FLAGS_CF   = 1u64 << 0; // Carry Flag.
+    public const FLAGS_PF   = 1u64 << 2; // Parity Flag.
+    public const FLAGS_AF   = 1u64 << 4; // Auxiliary Carry Flag.
+    public const FLAGS_ZF   = 1u64 << 6; // Zero Flag.
+    public const FLAGS_SF   = 1u64 << 7; // Sign Flag.
+    public const FLAGS_TF   = 1u64 << 8; // Trap Flag.
+    public const FLAGS_IF   = 1u64 << 9; // Interrupt Flag.
+    public const FLAGS_DF   = 1u64 << 10; // Direction Flag.
+    public const FLAGS_OF   = 1u64 << 11; // Overflow Flag.
+    public const FLAGS_IOPL = 3u64 << 12; // I/O Privilege Level.
+    public const FLAGS_NT   = 1u64 << 14; // Nested Task.
+    public const FLAGS_RF   = 1u64 << 16; // Resume Flag.
+    public const FLAGS_VM   = 1u64 << 17; // Virtual-8086 Mode.
+    public const FLAGS_AC   = 1u64 << 18; // Alignment Check.
+    public const FLAGS_VIF  = 1u64 << 19; // Virtual Interrupt Flag.
+    public const FLAGS_VIP  = 1u64 << 20; // Virtual Interrupt Pending.
+    public const FLAGS_ID   = 1u64 << 21; // ID Flag.
+
+    public const MSR_PLATFORMID     = 0x00000017u32; // Platform ID.
+    public const MSR_APICBASE       = 0x0000001Bu32; // APIC base.
+    public const MSR_PMC0           = 0x000000C1u32; // Performance Counter Register.
+    public const MSR_PMC1           = 0x000000C2u32; // Performance Counter Register.
+    public const MSR_FSBFREQ        = 0x000000CDu32; // FSB Frequency.
+    public const MSR_MPREF          = 0x000000E7u32; // Maximum Performance Frequency Clock Count.
+    public const MSR_APERF          = 0x000000E8u32; // Actual Performance Frequency Clock Count.
+    public const MSR_SYSENTER_CS    = 0x00000174u32; // SysEnter CS.
+    public const MSR_SYSENTER_ESP   = 0x00000175u32; // SysEnter ESP.
+    public const MSR_SYSENTER_EIP   = 0x00000176u32; // SysEnter EIP.
+    public const MSR_PAT            = 0x00000277u32; // PAT
+    public const MSR_EFER           = 0xC0000080u64; // Extended Feature Enables register.
+    public const MSR_STAR           = 0xC0000081u64; // System Call Target Address.
+    public const MSR_LSTAR          = 0xC0000082u64; // X64 System Call Target Address.
+    public const MSR_CSTAR          = 0xC0000083u64;
+    public const MSR_FMASK          = 0xC0000084u64; // System Call Flag Mask.
+    public const MSR_FSBASE         = 0xC0000100u64; // Map of base address of FS.
+    public const MSR_GSBASE         = 0xC0000101u64; // Map of base address of GS.
+    public const MSR_KERNEL_GSBASE  = 0xC0000102u64; // Swap Target of base address of GS.
+
+    public const EFER_SCE           = 1u64 << 0;  // SysCall Flag.
+    public const EFER_LME           = 1u64 << 8;  // Long Mode Flag.
+    public const EFER_LMA           = 1u64 << 10; // Long Mode Active Flag.
+    public const EFER_NXE           = 1u64 << 11; // Execute Disable Flag.
+    public const EFER_SVME          = 1u64 << 12; // Secure Virtual Machine Flag.
+    public const EFER_LMSLE         = 1u64 << 13; // Long Mode Segment Limit Flag.
+    public const EFER_FFXSR         = 1u64 << 14; // Fast FXSAVE/FXRSTOR Flag.
+    public const EFER_TCE           = 1u64 << 15; // Translation Cache Extension Flag.
+
+    public const DR7_BREAKPOINT_DR0_LOCAL   = 1u32 << 0;
+    public const DR7_BREAKPOINT_DR0_GLOBAL  = 1u32 << 1;
+    public const DR7_BREAKPOINT_DR1_LOCAL   = 1u32 << 2;
+    public const DR7_BREAKPOINT_DR1_GLOBAL  = 1u32 << 3;
+    public const DR7_BREAKPOINT_DR2_LOCAL   = 1u32 << 4;
+    public const DR7_BREAKPOINT_DR2_GLOBAL  = 1u32 << 5;
+    public const DR7_BREAKPOINT_DR3_LOCAL   = 1u32 << 6;
+    public const DR7_BREAKPOINT_DR3_GLOBAL  = 1u32 << 7;
+
+    public const DR7_BREAKPOINT_CONDITION_EXECUTE       = 0u32;
+    public const DR7_BREAKPOINT_CONDITION_WRITE         = 1u32;
+    public const DR7_BREAKPOINT_CONDITION_READ_WRITE_IO = 2u32;
+    public const DR7_BREAKPOINT_CONDITION_READ_WRITE    = 3u32;
+
+    public const SELECTOR_NULL          = 0x0000u16;
+    public const SELECTOR_R0_CODE       = 0x0008u16;
+    public const SELECTOR_R0_DATA       = 0x0010u16;
+    public const SELECTOR_R3_CODE       = 0x0018u16;
+    public const SELECTOR_R3_DATA       = 0x0020u16;
+    public const SELECTOR_SYSTEM_TSS    = 0x0028u16;
+
+    public const PAGE_PRESENT       = 0x001u64;
+    public const PAGE_WRITEABLE     = 0x002u64;
+    public const PAGE_USER          = 0x004u64;
+    public const PAGE_WRITETHROUGH  = 0x008u64;
+    public const PAGE_CACHEDISABLE  = 0x010u64;
+    public const PAGE_ACCESSED      = 0x020u64;
+    public const PAGE_LARGE         = 0x080u64;
+    public const PAGE_GLOBAL        = 0x100u64;
+    public const PAGE_COW           = 0x200u64;
+    public const PAGE_PAGED         = 0x400u64;
+    public const PAGE_NX            = 0x8000000000000000u64;
+
+    public const PML_ENTRY_SIZE     = 8usize;
+
+    public const PAGE_SIZE_4K       = 0x1000u64;
+    public const PAGE_SIZE_2M       = 0x200000u64;
+    public const PAGE_SIZE_1G       = 0x40000000u64;
+    public const PAGE_SIZE_512G     = 0x20000000000u64;
+}
+

@@ -28,6 +28,7 @@
 | `-e doc` | Generates documentation | |
 | `-e dep` | Generates dependency information | |
 | `-e meta` | Generates type information | Default, needed to link metadata. |
+| `-e asm-header` | Generates assembly header for types and constants | This tool may be experimental. Only some files would require that option (like native assembly sources) |
 
 ### Experimental
 
