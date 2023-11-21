@@ -39,13 +39,15 @@ namespace weave::bugcheck
             fmt::println(stderr, "\"");
         }
 
-#if __has_include(<stacktrace>)
+#if defined(__cpp_lib_stacktrace)
         fmt::println(stderr, "stacktrace:");
 
         for (std::stacktrace_entry const& entry : std::stacktrace::current())
         {
             fmt::println(stderr, "{}", std::to_string(entry));
         }
+#else
+        fmt::println(stderr, "stacktrace: not available");
 #endif
 
 
