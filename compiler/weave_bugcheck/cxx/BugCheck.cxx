@@ -1,5 +1,9 @@
 #include "weave/BugCheck.hxx"
 
+#if __has_include(<stacktrace>)
+#include <stacktrace>
+#endif
+
 namespace weave::bugcheck
 {
     // ReSharper disable once CppDFAConstantFunctionResult
@@ -7,7 +11,7 @@ namespace weave::bugcheck
         std::source_location const& location,
         std::string_view condition)
     {
-        return BugcheckFailedArgs(location, condition, "<none>", fmt::make_format_args());
+        return BugcheckFailedArgs(location, condition, "", fmt::make_format_args());
     }
 
     // ReSharper disable once CppDFAConstantFunctionResult
@@ -25,11 +29,25 @@ namespace weave::bugcheck
         std::string_view format,
         fmt::format_args args)
     {
-        fmt::println(stderr, "{}({}): assertion failed: {}", location.file_name(), location.line(), condition);
+        fmt::println(stderr, "=== bugcheck ===");
+        fmt::println(stderr, "{}:{}:{}: {}", location.file_name(), location.line(), location.column(), condition);
 
-        fmt::print(stderr, "message: \"");
-        fmt::vprint(stderr, fmt::string_view{format.data(), format.size()}, args);
-        fmt::println(stderr, "\"");
+        if (not format.empty())
+        {
+            fmt::print(stderr, "\"");
+            fmt::vprint(stderr, fmt::string_view{format.data(), format.size()}, args);
+            fmt::println(stderr, "\"");
+        }
+
+#if __has_include(<stacktrace>)
+        fmt::println(stderr, "stacktrace:");
+
+        for (std::stacktrace_entry const& entry : std::stacktrace::current())
+        {
+            fmt::println(stderr, "{}", std::to_string(entry));
+        }
+#endif
+
 
 #if !defined(NDEBUG)
         return true;
