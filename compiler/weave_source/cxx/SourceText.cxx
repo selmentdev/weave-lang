@@ -7,7 +7,7 @@ namespace weave::source
     SourceText::SourceText(std::string&& content)
         : _content{std::move(content)}
     {
-        WEAVE_ASSERT(unicode::UTF8ValidateString(this->_content));
+        WEAVE_ASSERT(unicode::Validate(this->_content));
 
         // Even empty source has one line starting at '0'
         this->_lines.emplace_back(0);

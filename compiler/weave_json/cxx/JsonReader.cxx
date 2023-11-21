@@ -435,7 +435,7 @@ namespace weave::json::impl
             }
 
             const char* it = first;
-            if (char32_t codepoint; unicode::UTF8Decode(codepoint, it, last) == unicode::UnicodeConversionResult::Success)
+            if (char32_t codepoint; unicode::Decode(codepoint, it, last) == unicode::ConversionResult::Success)
             {
                 // Valid unicode character.
                 sink.append(first, static_cast<size_t>(it - first));

@@ -1,6 +1,4 @@
 #include "weave/Unicode.hxx"
-#include <cstddef>
-#include <cstdint>
 
 namespace weave::unicode::impl
 {
@@ -77,147 +75,11 @@ namespace weave::unicode::impl
     {
         return static_cast<int8_t>(byte) < -64;
     }
-    
 }
 
 namespace weave::unicode
 {
-    bool UTF8IsLegal(const uint8_t* it, size_t length)
-    {
-        uint8_t c;
-
-        const uint8_t* end = it + length;
-
-        switch (length)
-        {
-        default:
-            return false;
-
-        case 4: // NOLINT(bugprone-branch-clone)
-            if (((c = (*--end)) < 0x80u) or (c > 0xBFu))
-            {
-                return false;
-            }
-
-            [[fallthrough]];
-
-        case 3:
-            if (((c = (*--end)) < 0x80u) or (c > 0xBFu))
-            {
-                return false;
-            }
-
-            [[fallthrough]];
-
-        case 2:
-            if (((c = (*--end)) < 0x80u) or (c > 0xBFu))
-            {
-                return false;
-            }
-
-            switch (*it)
-            {
-            case 0xE0u:
-                if (c < 0xA0u)
-                {
-                    return false;
-                }
-
-                break;
-
-            case 0xEDu:
-                if (c > 0x9Fu)
-                {
-                    return false;
-                }
-
-                break;
-
-            case 0xF0:
-                if (c < 0x90u)
-                {
-                    return false;
-                }
-
-                break;
-
-            case 0xF4:
-                if (c > 0x8Fu)
-                {
-                    return false;
-                }
-
-                break;
-
-            default:
-                if (c < 0x80)
-                {
-                    return false;
-                }
-
-                break;
-            }
-
-            [[fallthrough]];
-
-        case 1:
-            if ((*it >= 0x80u) and (*it < 0xC2))
-            {
-                return false;
-            }
-        }
-
-        if (*it > 0xF4)
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    bool UTF8IsLegal(const uint8_t* first, const uint8_t* last)
-    {
-        size_t const length = impl::UTF8_CHAR_WIDTH[*first];
-
-        if (length > static_cast<size_t>(last - first))
-        {
-            return false;
-        }
-
-        return UTF8IsLegal(first, length);
-    }
-
-    size_t UTF8SequenceSize(const uint8_t* first, const uint8_t* last)
-    {
-        size_t const length = impl::UTF8_CHAR_WIDTH[*first];
-
-        if ((length <= static_cast<size_t>(last - first)) and UTF8IsLegal(first, length))
-        {
-            return length;
-        }
-
-        return 0u;
-    }
-
-    bool UTF8ValidateString(const uint8_t* first, const uint8_t* last)
-    {
-        while (first < last)
-        {
-            size_t const skip = UTF8SequenceSize(first, last);
-
-            if (skip == 0)
-            {
-                // Malformed UTF8 sequence.
-                break;
-            }
-
-            first += skip;
-        }
-
-        return first == last;
-    }
-
-    bool UTF32IsValidCodepoint(char32_t value) noexcept
+    bool IsValidCodePoint(char32_t value)
     {
         if (value <= impl::UNICODE_MAX)
         {
@@ -227,7 +89,7 @@ namespace weave::unicode
         return false;
     }
 
-    char32_t UTF32SanitizeCodepoint(char32_t value) noexcept
+    char32_t SanitizeCodepoint(char32_t value)
     {
         if (value <= impl::UNICODE_MAX)
         {
@@ -241,8 +103,11 @@ namespace weave::unicode
 
         return impl::UNICODE_REPLACEMENT_CHARACTER;
     }
+}
 
-    UnicodeConversionResult UTF8Decode(char32_t& codepoint, const uint8_t*& first, const uint8_t* last)
+namespace weave::unicode
+{
+    ConversionResult Decode(char32_t& result, const uint8_t*& first, const uint8_t* last)
     {
         if (first < last)
         {
@@ -250,8 +115,8 @@ namespace weave::unicode
 
             if (lead <= 0x7Fu)
             {
-                codepoint = lead;
-                return UnicodeConversionResult::Success;
+                result = lead;
+                return ConversionResult::Success;
             }
 
             size_t const width = impl::UTF8_CHAR_WIDTH[lead];
@@ -259,8 +124,8 @@ namespace weave::unicode
             if (width == 0)
             {
                 // Lead byte is not valid.
-                codepoint = impl::UNICODE_REPLACEMENT_CHARACTER;
-                return UnicodeConversionResult::SourceIllegal;
+                result = impl::UNICODE_REPLACEMENT_CHARACTER;
+                return ConversionResult::SourceIllegal;
             }
 
             uint32_t ch = impl::UTF8FirstByte(lead, width);
@@ -275,8 +140,8 @@ namespace weave::unicode
                 {
                     // Invalid byte sequence.
                     --first;
-                    codepoint = impl::UNICODE_REPLACEMENT_CHARACTER;
-                    return UnicodeConversionResult::SourceIllegal;
+                    result = impl::UNICODE_REPLACEMENT_CHARACTER;
+                    return ConversionResult::SourceIllegal;
                 }
 
                 ch = impl::UTF8AccumulateContinuationByte(ch, next);
@@ -286,7 +151,7 @@ namespace weave::unicode
             {
                 // Byte sequence was legal, but source exhausted. Restore iterator and return.
                 first -= consumed;
-                return UnicodeConversionResult::SourceExhausted;
+                return ConversionResult::SourceExhausted;
             }
 
             // ch -= Private::UTF8_CODEPOINT_OFFSETS[width];
@@ -294,22 +159,22 @@ namespace weave::unicode
             if (impl::UTF16IsSurrogatePair(ch) or (ch > impl::UNICODE_MAX))
             {
                 // Byte sequence was valid UTF8 sequence, but encoded invalid codepoint.
-                codepoint = impl::UNICODE_REPLACEMENT_CHARACTER;
-                return UnicodeConversionResult::SourceIllegal;
+                result = impl::UNICODE_REPLACEMENT_CHARACTER;
+                return ConversionResult::SourceIllegal;
             }
 
-            codepoint = ch;
-            return UnicodeConversionResult::Success;
+            result = ch;
+            return ConversionResult::Success;
         }
 
-        return UnicodeConversionResult::SourceExhausted;
+        return ConversionResult::SourceExhausted;
     }
 
-    UnicodeConversionResult UTF8Encode(uint8_t*& first, uint8_t* last, char32_t codepoint)
+    ConversionResult Encode(uint8_t*& first, uint8_t* last, char32_t codepoint)
     {
-        if (not UTF32IsValidCodepoint(codepoint))
+        if (not IsValidCodePoint(codepoint))
         {
-            return UnicodeConversionResult::SourceIllegal;
+            return ConversionResult::SourceIllegal;
         }
 
         if (codepoint == 0u)
@@ -318,7 +183,7 @@ namespace weave::unicode
             {
                 (*first++) = static_cast<uint8_t>(0b1100'0000u);
                 (*first++) = static_cast<uint8_t>(0b1000'0000u);
-                return UnicodeConversionResult::Success;
+                return ConversionResult::Success;
             }
         }
 
@@ -327,7 +192,7 @@ namespace weave::unicode
             if (first < last)
             {
                 (*first++) = static_cast<uint8_t>(codepoint);
-                return UnicodeConversionResult::Success;
+                return ConversionResult::Success;
             }
         }
 
@@ -337,7 +202,7 @@ namespace weave::unicode
             {
                 (*first++) = static_cast<uint8_t>(0b1100'0000u | (0b0001'1111u & (codepoint >> 6u)));
                 (*first++) = static_cast<uint8_t>(0b1000'0000u | (0b0011'1111u & (codepoint)));
-                return UnicodeConversionResult::Success;
+                return ConversionResult::Success;
             }
         }
 
@@ -348,7 +213,7 @@ namespace weave::unicode
                 (*first++) = static_cast<uint8_t>(0b1110'0000u | (0b0000'1111u & (codepoint >> 12u)));
                 (*first++) = static_cast<uint8_t>(0b1000'0000u | (0b0011'1111u & (codepoint >> 6u)));
                 (*first++) = static_cast<uint8_t>(0b1000'0000u | (0b0011'1111u & (codepoint)));
-                return UnicodeConversionResult::Success;
+                return ConversionResult::Success;
             }
         }
 
@@ -360,10 +225,450 @@ namespace weave::unicode
                 (*first++) = static_cast<uint8_t>(0b1000'0000u | (0b0011'1111u & (codepoint >> 12u)));
                 (*first++) = static_cast<uint8_t>(0b1000'0000u | (0b0011'1111u & (codepoint >> 6u)));
                 (*first++) = static_cast<uint8_t>(0b1000'0000u | (0b0011'1111u & (codepoint)));
-                return UnicodeConversionResult::Success;
+                return ConversionResult::Success;
             }
         }
 
-        return UnicodeConversionResult::TargetExhausted;
+        return ConversionResult::TargetExhausted;
+    }
+
+    ConversionResult Decode(char32_t& result, const char16_t*& first, const char16_t* last)
+    {
+        if (first < last)
+        {
+            // Consume first element.
+            uint32_t const ch = (*first++);
+
+            if (impl::UTF16IsLowSurrogatePair(ch))
+            {
+                // High surrogate expected here
+                result = impl::UNICODE_REPLACEMENT_CHARACTER;
+                return ConversionResult::SourceIllegal;
+            }
+
+            if (impl::UTF16IsHighSurrogatePair(ch))
+            {
+                if (first < last)
+                {
+                    uint32_t const next = *first;
+
+                    if (impl::UTF16IsLowSurrogatePair(next))
+                    {
+                        ++first;
+                        result = impl::UTF16CombineSurrogatePair(ch, next);
+                        return ConversionResult::Success;
+                    }
+                    else
+                    {
+                        // Consume only high surrogate pair and emit replacement.
+                        result = impl::UNICODE_REPLACEMENT_CHARACTER;
+                        return ConversionResult::SourceIllegal;
+                    }
+                }
+                else
+                {
+                    // Tried to decode surrogate pair, but source exhausted prematurely.
+                    result = impl::UNICODE_REPLACEMENT_CHARACTER;
+                    return ConversionResult::SourceExhausted;
+                }
+            }
+
+            // Trivial case
+            result = ch;
+            return ConversionResult::Success;
+        }
+
+        // Not enough source.
+        result = impl::UNICODE_REPLACEMENT_CHARACTER;
+        return ConversionResult::SourceExhausted;
+    }
+
+    ConversionResult Encode(char16_t*& first, char16_t* last, char32_t codepoint)
+    {
+        if (codepoint <= impl::UNICODE_MAX_BMP)
+        {
+            if (first < last)
+            {
+                if (impl::UTF16IsSurrogatePair(codepoint))
+                {
+                    // Surrogate pair range.
+                    (*first++) = impl::UNICODE_REPLACEMENT_CHARACTER;
+                    return ConversionResult::SourceIllegal;
+                }
+
+                // Trivial case
+                (*first++) = static_cast<char16_t>(codepoint);
+                return ConversionResult::Success;
+            }
+
+            return ConversionResult::TargetExhausted;
+        }
+
+        if (codepoint <= impl::UNICODE_MAX)
+        {
+            if ((first + 1) < last)
+            {
+                // Surrogate pair
+                codepoint -= impl::UTF16_SURROGATE_BASE;
+
+                // High surrogate.
+                (*first++) = static_cast<char16_t>(impl::UTF16_SURROGATE_HIGH_FIRST + (codepoint >> impl::UTF16_SURROGATE_SHIFT));
+
+                // Low surrogate.
+                (*first++) = static_cast<char16_t>(impl::UTF16_SURROGATE_LOW_FIRST + (codepoint & impl::UTF16_SURROGATE_MASK));
+                return ConversionResult::Success;
+            }
+
+            return ConversionResult::TargetExhausted;
+        }
+
+        if (first < last)
+        {
+            // Invalid range.
+            (*first++) = impl::UNICODE_REPLACEMENT_CHARACTER;
+            return ConversionResult::SourceIllegal;
+        }
+
+        return ConversionResult::TargetExhausted;
+    }
+
+    ConversionResult Decode(char32_t& result, const char32_t*& first, const char32_t* last)
+    {
+        if (first < last)
+        {
+            char32_t const codepoint = (*first++);
+
+            if (impl::UTF16IsSurrogatePair(codepoint))
+            {
+                // Byte sequence was valid UTF8 sequence, but encoded invalid codepoint.
+                result = impl::UNICODE_REPLACEMENT_CHARACTER;
+                return ConversionResult::SourceIllegal;
+            }
+
+            result = codepoint;
+            return ConversionResult::Success;
+        }
+
+        result = impl::UNICODE_REPLACEMENT_CHARACTER;
+        return ConversionResult::SourceExhausted;
+    }
+
+    ConversionResult Encode(char32_t*& first, char32_t* last, char32_t codepoint)
+    {
+        if (not IsValidCodePoint(codepoint))
+        {
+            return ConversionResult::SourceIllegal;
+        }
+
+        if (first < last)
+        {
+            (*first++) = codepoint;
+            return ConversionResult::Success;
+        }
+
+        return ConversionResult::TargetExhausted;
+    }
+}
+
+namespace weave::unicode
+{
+    ConversionResult Convert(
+        const uint8_t*& sourceFirst,
+        const uint8_t* sourceLast,
+        char32_t*& destinationFirst,
+        char32_t* destinationLast,
+        ConversionType conversionType)
+    {
+        ConversionResult result = ConversionResult::Success;
+
+        while (sourceFirst < sourceLast)
+        {
+            const uint8_t* source = sourceFirst;
+            char32_t* destination = destinationFirst;
+
+            char32_t codepoint;
+            result = Decode(codepoint, source, sourceLast);
+
+            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            {
+                break;
+            }
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            result = Encode(destination, destinationLast, codepoint);
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            sourceFirst = source;
+            destinationFirst = destination;
+        }
+
+        return result;
+    }
+
+    ConversionResult Convert(
+        const char32_t*& sourceFirst,
+        const char32_t* sourceLast,
+        uint8_t*& destinationFirst,
+        uint8_t* destinationLast,
+        ConversionType conversionType)
+    {
+        ConversionResult result = ConversionResult::Success;
+
+        while (sourceFirst < sourceLast)
+        {
+            const char32_t* source = sourceFirst;
+            uint8_t* destination = destinationFirst;
+
+            char32_t codepoint;
+            result = Decode(codepoint, source, sourceLast);
+
+            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            {
+                break;
+            }
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            result = Encode(destination, destinationLast, codepoint);
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            sourceFirst = source;
+            destinationFirst = destination;
+        }
+
+        return result;
+    }
+
+    ConversionResult Convert(
+        const uint8_t*& sourceFirst,
+        const uint8_t* sourceLast,
+        char16_t*& destinationFirst,
+        char16_t* destinationLast,
+        ConversionType conversionType)
+    {
+        ConversionResult result = ConversionResult::Success;
+
+        while (sourceFirst < sourceLast)
+        {
+            const uint8_t* source = sourceFirst;
+            char16_t* destination = destinationFirst;
+
+            char32_t codepoint;
+            result = Decode(codepoint, source, sourceLast);
+
+            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            {
+                break;
+            }
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            result = Encode(destination, destinationLast, codepoint);
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            sourceFirst = source;
+            destinationFirst = destination;
+        }
+
+        return result;
+    }
+
+    ConversionResult Convert(
+        const char16_t*& sourceFirst,
+        const char16_t* sourceLast,
+        uint8_t*& destinationFirst,
+        uint8_t* destinationLast,
+        ConversionType conversionType)
+    {
+        ConversionResult result = ConversionResult::Success;
+
+        while (sourceFirst < sourceLast)
+        {
+            const char16_t* source = sourceFirst;
+            uint8_t* destination = destinationFirst;
+
+            char32_t codepoint;
+            result = Decode(codepoint, source, sourceLast);
+
+            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            {
+                break;
+            }
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            result = Encode(destination, destinationLast, codepoint);
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            sourceFirst = source;
+            destinationFirst = destination;
+        }
+
+        return result;
+    }
+
+    ConversionResult Convert(
+        const char32_t*& sourceFirst,
+        const char32_t* sourceLast,
+        char16_t*& destinationFirst,
+        char16_t* destinationLast,
+        ConversionType conversionType)
+    {
+        ConversionResult result = ConversionResult::Success;
+
+        while (sourceFirst < sourceLast)
+        {
+            const char32_t* source = sourceFirst;
+            char16_t* destination = destinationFirst;
+
+            char32_t codepoint;
+            result = Decode(codepoint, source, sourceLast);
+
+            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            {
+                break;
+            }
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            result = Encode(destination, destinationLast, codepoint);
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            sourceFirst = source;
+            destinationFirst = destination;
+        }
+
+        return result;
+    }
+
+    ConversionResult Convert(
+        const char16_t*& sourceFirst,
+        const char16_t* sourceLast,
+        char32_t*& destinationFirst,
+        char32_t* destinationLast,
+        ConversionType conversionType)
+    {
+        ConversionResult result = ConversionResult::Success;
+
+        while (sourceFirst < sourceLast)
+        {
+            const char16_t* source = sourceFirst;
+            char32_t* destination = destinationFirst;
+
+            char32_t codepoint;
+            result = Decode(codepoint, source, sourceLast);
+
+            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            {
+                break;
+            }
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            result = Encode(destination, destinationLast, codepoint);
+
+            if (result != ConversionResult::Success)
+            {
+                break;
+            }
+
+            sourceFirst = source;
+            destinationFirst = destination;
+        }
+
+        return result;
+    }
+}
+
+namespace weave::unicode
+{
+    bool Validate(
+        const uint8_t* first,
+        const uint8_t* last)
+    {
+        char32_t ch;
+
+        while (first < last)
+        {
+            if (Decode(ch, first, last) != ConversionResult::Success)
+            {
+                return false;
+            }
+        }
+
+        return first == last;
+    }
+
+    bool Validate(
+        const char16_t* first,
+        const char16_t* last)
+    {
+        char32_t ch;
+
+        while (first < last)
+        {
+            if (Decode(ch, first, last) != ConversionResult::Success)
+            {
+                return false;
+            }
+        }
+
+        return first == last;
+    }
+
+    bool Validate(
+        const char32_t* first,
+        const char32_t* last)
+    {
+        char32_t ch;
+
+        while (first < last)
+        {
+            if (Decode(ch, first, last) != ConversionResult::Success)
+            {
+                return false;
+            }
+        }
+
+        return first == last;
     }
 }

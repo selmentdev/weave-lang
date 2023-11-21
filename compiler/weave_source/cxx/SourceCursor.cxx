@@ -7,7 +7,7 @@ namespace weave::source
     {
         this->_current = this->_next;
 
-        if (unicode::UTF8Decode(this->_value, this->_next, this->_last) != unicode::UnicodeConversionResult::Success)
+        if (unicode::Decode(this->_value, this->_next, this->_last) != unicode::ConversionResult::Success)
         {
             this->_value = Invalid;
         }

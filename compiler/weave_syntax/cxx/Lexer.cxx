@@ -1190,7 +1190,7 @@ namespace weave::syntax
     {
         std::array<char, 8> buffer; // NOLINT(cppcoreguidelines-pro-type-member-init, hicpp-member-init)
 
-        if (char* it = buffer.data(); unicode::UTF8Encode(it, it + buffer.size(), c) == unicode::UnicodeConversionResult::Success)
+        if (char* it = buffer.data(); unicode::Encode(it, it + buffer.size(), c) == unicode::ConversionResult::Success)
         {
             this->_token_value.append(buffer.data(), it);
             return true;

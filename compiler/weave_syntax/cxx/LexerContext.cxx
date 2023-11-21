@@ -26,9 +26,9 @@ namespace weave::syntax
                 const char* first = s.data();
                 const char* const last = first + s.size();
 
-                [[maybe_unused]] unicode::UnicodeConversionResult const status = unicode::UTF8Decode(value, first, last);
+                [[maybe_unused]] unicode::ConversionResult const status = unicode::Decode(value, first, last);
 
-                WEAVE_ASSERT(status == unicode::UnicodeConversionResult::Success);
+                WEAVE_ASSERT(status == unicode::ConversionResult::Success);
                 WEAVE_ASSERT(first == last);
                 WEAVE_ASSERT(first[0] == '\0');
 
