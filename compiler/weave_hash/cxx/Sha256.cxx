@@ -25,11 +25,6 @@ namespace weave::hash::sha256_impl
 
     static constexpr std::byte Padding[64] = {std::byte{0x80}};
 
-    constexpr uint32_t RotateRight(uint32_t value, size_t count)
-    {
-        return (value >> count) | (value << (32 - count));
-    }
-
     constexpr uint32_t Ch(uint32_t x, uint32_t y, uint32_t z)
     {
         return ((x & y) ^ (~x & z));
@@ -42,22 +37,22 @@ namespace weave::hash::sha256_impl
 
     constexpr uint32_t Sigma1(uint32_t x)
     {
-        return RotateRight(x, 2) ^ RotateRight(x, 13) ^ RotateRight(x, 22);
+        return bitwise::RotateRight(x, 2) ^ bitwise::RotateRight(x, 13) ^ bitwise::RotateRight(x, 22);
     }
 
     constexpr uint32_t Sigma2(uint32_t x)
     {
-        return RotateRight(x, 6) ^ RotateRight(x, 11) ^ RotateRight(x, 25);
+        return bitwise::RotateRight(x, 6) ^ bitwise::RotateRight(x, 11) ^ bitwise::RotateRight(x, 25);
     }
 
     constexpr uint32_t Sigma3(uint32_t x)
     {
-        return RotateRight(x, 7) ^ RotateRight(x, 18) ^ (x >> 3);
+        return bitwise::RotateRight(x, 7) ^ bitwise::RotateRight(x, 18) ^ (x >> 3);
     }
 
     constexpr uint32_t Sigma4(uint32_t x)
     {
-        return RotateRight(x, 17) ^ RotateRight(x, 19) ^ (x >> 10);
+        return bitwise::RotateRight(x, 17) ^ bitwise::RotateRight(x, 19) ^ (x >> 10);
     }
 
     void Transform(Sha256& context)

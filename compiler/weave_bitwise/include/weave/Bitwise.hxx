@@ -2,6 +2,7 @@
 #include <bit>
 #include <cstddef>
 #include <cstdint>
+#include <limits>
 
 namespace weave::bitwise
 {
@@ -169,5 +170,54 @@ namespace weave::bitwise
         requires(std::is_integral_v<T>)
     {
         to_little_endian_array(static_cast<T*>(output), input, count);
+    }
+}
+
+namespace weave::bitwise
+{
+    template <typename T>
+    [[nodiscard]] constexpr T RotateRight(T value, int bits)
+    requires(std::is_unsigned_v<T>);
+
+    template <typename T>
+    [[nodiscard]] constexpr T RotateLeft(T value, int bits)
+        requires(std::is_unsigned_v<T>)
+    {
+        unsigned int const digits = std::numeric_limits<T>::digits;
+
+        bits = bits % digits;
+
+        if (!bits)
+        {
+            return value;
+        }
+
+        if (bits < 0)
+        {
+            return RotateRight(value, -bits);
+        }
+
+        return (value << bits) | (value >> (digits - bits));
+    }
+
+    template <typename T>
+    [[nodiscard]] constexpr T RotateRight(T value, int bits)
+        requires(std::is_unsigned_v<T>)
+    {
+        unsigned int const digits = std::numeric_limits<T>::digits;
+
+        bits = bits % digits;
+
+        if (!bits)
+        {
+            return value;
+        }
+
+        if (bits < 0)
+        {
+            return RotateLeft(value, -bits);
+        }
+
+        return (value >> bits) | (value << (digits - bits));
     }
 }
