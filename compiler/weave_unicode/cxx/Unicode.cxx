@@ -23,6 +23,14 @@ namespace weave::unicode::impl
         4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // F
     };
 
+    inline constexpr char32_t UTF8_MAX_ENCODED_VALUE_FOR_SIZE[5]{
+        0u,
+        0x0000'0080u,
+        0x0000'0800u,
+        0x0001'0000u,
+        0x0011'0000u,
+    };
+
     inline constexpr size_t UTF8_MAX_WIDTH = 4u;
     inline constexpr uint8_t UTF8_CONTINUATION_MASK = 0b0011'1111u;
 
@@ -134,7 +142,7 @@ namespace weave::unicode
 
             for (; (consumed < width) and (first < last); ++consumed)
             {
-                uint8_t const next = static_cast<uint8_t>(*first++);
+                uint8_t const next = *first++;
 
                 if (not impl::UTF8IsContinuationByte(next))
                 {
@@ -151,7 +159,21 @@ namespace weave::unicode
             {
                 // Byte sequence was legal, but source exhausted. Restore iterator and return.
                 first -= consumed;
+                result = impl::UNICODE_REPLACEMENT_CHARACTER;
                 return ConversionResult::SourceExhausted;
+            }
+
+            char32_t const valid_range_start = impl::UTF8_MAX_ENCODED_VALUE_FOR_SIZE[width - 1];
+            char32_t const valid_range_end = impl::UTF8_MAX_ENCODED_VALUE_FOR_SIZE[width];
+
+            bool const is_valid_range = (valid_range_start <= ch) and (ch < valid_range_end);
+
+            if (not is_valid_range)
+            {
+                // Encoded character could be encoded using fewer bytes. Overlong sequences are not allowed.
+                first -= consumed;
+                result = impl::UNICODE_REPLACEMENT_CHARACTER;
+                return ConversionResult::SourceIllegal;
             }
 
             // ch -= Private::UTF8_CODEPOINT_OFFSETS[width];
@@ -389,12 +411,18 @@ namespace weave::unicode
             char32_t codepoint;
             result = Decode(codepoint, source, sourceLast);
 
-            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            if (conversionType == ConversionType::None)
             {
-                break;
-            }
+                if (result != ConversionResult::Success)
+                {
+                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
+                    result = ConversionResult::Success;
 
-            if (result != ConversionResult::Success)
+                    // Retry with next byte.
+                    source = sourceFirst + 1;
+                }
+            }
+            else if (result != ConversionResult::Success)
             {
                 break;
             }
@@ -430,12 +458,18 @@ namespace weave::unicode
             char32_t codepoint;
             result = Decode(codepoint, source, sourceLast);
 
-            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            if (conversionType == ConversionType::None)
             {
-                break;
-            }
+                if (result != ConversionResult::Success)
+                {
+                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
+                    result = ConversionResult::Success;
 
-            if (result != ConversionResult::Success)
+                    // Retry with next byte.
+                    source = sourceFirst + 1;
+                }
+            }
+            else if (result != ConversionResult::Success)
             {
                 break;
             }
@@ -471,12 +505,18 @@ namespace weave::unicode
             char32_t codepoint;
             result = Decode(codepoint, source, sourceLast);
 
-            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            if (conversionType == ConversionType::None)
             {
-                break;
-            }
+                if (result != ConversionResult::Success)
+                {
+                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
+                    result = ConversionResult::Success;
 
-            if (result != ConversionResult::Success)
+                    // Retry with next byte.
+                    source = sourceFirst + 1;
+                }
+            }
+            else if (result != ConversionResult::Success)
             {
                 break;
             }
@@ -512,12 +552,18 @@ namespace weave::unicode
             char32_t codepoint;
             result = Decode(codepoint, source, sourceLast);
 
-            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            if (conversionType == ConversionType::None)
             {
-                break;
-            }
+                if (result != ConversionResult::Success)
+                {
+                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
+                    result = ConversionResult::Success;
 
-            if (result != ConversionResult::Success)
+                    // Retry with next byte.
+                    source = sourceFirst + 1;
+                }
+            }
+            else if (result != ConversionResult::Success)
             {
                 break;
             }
@@ -553,12 +599,18 @@ namespace weave::unicode
             char32_t codepoint;
             result = Decode(codepoint, source, sourceLast);
 
-            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            if (conversionType == ConversionType::None)
             {
-                break;
-            }
+                if (result != ConversionResult::Success)
+                {
+                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
+                    result = ConversionResult::Success;
 
-            if (result != ConversionResult::Success)
+                    // Retry with next byte.
+                    source = sourceFirst + 1;
+                }
+            }
+            else if (result != ConversionResult::Success)
             {
                 break;
             }
@@ -594,12 +646,18 @@ namespace weave::unicode
             char32_t codepoint;
             result = Decode(codepoint, source, sourceLast);
 
-            if ((result == ConversionResult::SourceIllegal) and (conversionType == ConversionType::Strict))
+            if (conversionType == ConversionType::None)
             {
-                break;
-            }
+                if (result != ConversionResult::Success)
+                {
+                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
+                    result = ConversionResult::Success;
 
-            if (result != ConversionResult::Success)
+                    // Retry with next byte.
+                    source = sourceFirst + 1;
+                }
+            }
+            else if (result != ConversionResult::Success)
             {
                 break;
             }

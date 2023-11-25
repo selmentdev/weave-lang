@@ -1,3 +1,4 @@
-target_sources(weave_unicode PRIVATE
-    Unicode.cxx
+target_sources(weave_unicode
+    PRIVATE
+        Unicode.cxx
 )

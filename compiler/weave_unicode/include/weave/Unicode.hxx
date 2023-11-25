@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <string>
+#include <expected>
 
 namespace weave::unicode
 {
@@ -283,7 +284,7 @@ namespace weave::unicode
 
 namespace weave::unicode
 {
-    template <typename CharFrom, typename CharTo>
+    template <typename CharTo, typename CharFrom>
     ConversionResult Convert(
         std::basic_string<CharTo>& destination,
         std::basic_string_view<CharFrom> source,
@@ -330,6 +331,20 @@ namespace weave::unicode
 
         // Empty source
         return ConversionResult::Success;
+    }
+
+    template <typename CharTo, typename CharFrom>
+    std::expected<std::basic_string<CharTo>, ConversionResult> Convert(std::basic_string_view<CharFrom> source, ConversionType conversionType)
+    {
+        std::basic_string<CharTo> destination{};
+        ConversionResult const result = Convert<CharTo, CharFrom>(destination, source, conversionType);
+
+        if (result == ConversionResult::Success)
+        {
+            return destination;
+        }
+
+        return std::unexpected(result);
     }
 }
 

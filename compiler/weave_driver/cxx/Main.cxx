@@ -227,8 +227,79 @@ namespace weave
     };
 }
 
+namespace weave::endian
+{
+    constexpr uint16_t LoadUnaligned16(std::byte const* buffer)
+    {
+        if (std::is_constant_evaluated())
+        {
+            return static_cast<uint16_t>(
+                (static_cast<uint8_t>(buffer[0]) << 0) |
+                (static_cast<uint8_t>(buffer[1]) << 8));
+        }
+        else
+        {
+            uint16_t result;
+            memcpy(&result, buffer, sizeof(result));
+            return result;
+        }
+    }
+
+    constexpr uint32_t LoadUnaligned32(std::byte const* buffer)
+    {
+        if (std::is_constant_evaluated())
+        {
+            return static_cast<uint32_t>(
+                (static_cast<uint8_t>(buffer[0]) << 0) |
+                (static_cast<uint8_t>(buffer[1]) << 8) |
+                (static_cast<uint8_t>(buffer[2]) << 16) |
+                (static_cast<uint8_t>(buffer[3]) << 24));
+        }
+        else
+        {
+            uint32_t result;
+            memcpy(&result, buffer, sizeof(result));
+            return result;
+        }
+    }
+
+    template <std::endian E, typename T>
+    auto Load(std::byte const* source) -> T
+        requires(std::is_integral_v<T>)
+    {
+        std::byte buffer[sizeof(T)];
+        std::memcpy(buffer, source, sizeof(T));
+
+        if constexpr (E != std::endian::native)
+        {
+            return std::byteswap(std::bit_cast<T>(buffer));
+        }
+        else
+        {
+            return std::bit_cast<T>(buffer);
+        }
+    }
+
+    template <std::endian E, typename T>
+    auto Store(std::byte* destination, T const& source)
+        requires(std::is_integral_v<T>)
+    {
+        if constexpr (E != std::endian::native)
+        {
+            T const swapped = std::byteswap(source);
+            std::memcpy(destination, &swapped, sizeof(T));
+        }
+        else
+        {
+            std::memcpy(destination, &source, sizeof(T));
+        }
+    }
+
+}
+
 int main(int argc, const char* argv[])
 {
+    WEAVE_ASSERT(argc == 0);
     using namespace weave;
 
     commandline::CommandLineBuilder builder{};
@@ -260,7 +331,6 @@ int main(int argc, const char* argv[])
         "verbose",
         "v",
         "Use verbose output");
-
 
     if (auto matched = builder.Parse(argc, argv); matched.has_value())
     {

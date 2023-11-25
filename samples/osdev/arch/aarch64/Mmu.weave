@@ -1,0 +1,64 @@
+/*
+// How to represent bit fields?
+
+typedef struct arch_mmu_pte_invalid_t {
+    uint64_t type : 2;
+    uint64_t __reserved_0 : 62;
+} arch_mmu_pte_invalid_t;
+
+typedef struct arch_mmu_pte_reserved_t {
+    uint64_t type : 2;
+    uint64_t __reserved_0 : 62;
+} arch_mmu_pte_reserved_t;
+
+typedef struct arch_mmu_block_pte_4kib_t {
+    uint64_t type : 2;
+    uint64_t lower_attributes : 10;
+    uint64_t address : 36;
+    uint64_t __reserved_0 : 4;
+    uint64_t upper_attributes : 12;
+} arch_mmu_block_pte_4kib_t;
+
+typedef struct arch_mmu_block_pte_16kib_t {
+    uint64_t type : 2;
+    uint64_t lower_attributes : 10;
+    uint64_t __reserved_0 : 2;
+    uint64_t address : 34;
+    uint64_t __reserved_1 : 4;
+    uint64_t upper_attributes : 12;
+} arch_mmu_block_pte_16kib_t;
+
+typedef struct arch_mmu_block_pte_64kib_t {
+    uint64_t type : 2;
+    uint64_t lower_attributes : 10;
+    uint64_t __reserved_0 : 4;
+    uint64_t address : 32;
+    uint64_t __reserved_1 : 4;
+    uint64_t upper_attributes : 12;
+} arch_mmu_block_pte_64kib_t;
+
+typedef struct arch_mmu_table_pte_t {
+    uint64_t __must_be_one : 2;
+    uint64_t address : 46;
+    uint64_t __reserved_0 : 4;
+    uint64_t __ignored_0 : 7;
+    uint64_t pxn_table : 1;
+    uint64_t xn_table : 1;
+    uint64_t ap_table : 2;
+    uint64_t ns_table : 1;
+} arch_mmu_table_pte_t;
+
+typedef struct arch_mmu_pte_t {
+    union {
+        uint64_t as_uint64;
+        arch_mmu_pte_invalid_t invalid;
+        arch_mmu_pte_reserved_t reserved;
+        arch_mmu_block_pte_4kib_t block_4kib;
+        arch_mmu_block_pte_16kib_t block_16kib;
+        arch_mmu_block_pte_64kib_t block_64kib;
+        arch_mmu_table_pte_t table;
+    };
+} arch_mmu_pte_t;
+OS_STATIC_ASSERT(sizeof(arch_mmu_pte_t) == 8);
+
+*/
