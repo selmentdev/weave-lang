@@ -58,7 +58,11 @@ namespace weave::hash::sha256_impl
     void Transform(Sha256& context)
     {
         std::array<uint32_t, 64> w;
-        bitwise::ToBigEndianFromBuffer(w.data(), context.buffer.data(), 16);
+
+        for (size_t i = 0; i < 16; ++i)
+        {
+            w[i] = bitwise::LoadUnalignedBigEndian<uint32_t>(&context.buffer[sizeof(uint32_t) * i]);
+        }
 
         for (size_t i = 16; i < 64; ++i)
         {
@@ -162,12 +166,16 @@ namespace weave::hash
 
         Sha256Update(context, sha256_impl::Padding, paddingSize);
 
-        *reinterpret_cast<uint64_t*>(context.buffer.data() + 56) = bitwise::ToBigEndian(total_size);
+        bitwise::StoreUnalignedBigEndian(&context.buffer[56], total_size);
 
         sha256_impl::Transform(context);
 
         std::array<uint8_t, 32> digest;
-        bitwise::ToBigEndianToBuffer(digest.data(), context.state.data(), 8);
+
+        for (size_t i = 0; i < 8; ++i)
+        {
+            bitwise::StoreUnalignedBigEndian(&digest[i * sizeof(uint32_t)], context.state[i]);
+        }
 
         return digest;
     }

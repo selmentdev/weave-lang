@@ -7,7 +7,7 @@ namespace weave::hash
 {
     struct Sha256 final
     {
-        std::array<uint8_t, 64> buffer;
+        std::array<std::byte, 64> buffer;
         std::array<uint32_t, 8> state;
         uint64_t count;
         size_t size;

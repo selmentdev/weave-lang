@@ -63,114 +63,6 @@ namespace weave::bitwise
         uintptr_t const address = std::bit_cast<uintptr_t>(ptr);
         return (address & (alignment - 1)) == 0;
     }
-
-    template <typename T>
-    constexpr T ToBigEndian(T value)
-        requires(std::is_integral_v<T>)
-    {
-        if constexpr (std::endian::native == std::endian::little)
-        {
-            return std::byteswap(value);
-        }
-        else
-        {
-            return value;
-        }
-    }
-
-    template <typename T>
-    constexpr T ToLittleEndian(T value)
-        requires(std::is_integral_v<T>)
-    {
-        if constexpr (std::endian::native == std::endian::big)
-        {
-            return std::byteswap(value);
-        }
-        else
-        {
-            return value;
-        }
-    }
-
-    template <typename T>
-    constexpr void ToBigEndianArray(T* buffer, size_t count)
-        requires(std::is_integral_v<T>)
-    {
-        if constexpr (std::endian::native == std::endian::little)
-        {
-            for (size_t i = 0; i < count; ++i)
-            {
-                buffer[i] = std::byteswap(buffer[i]);
-            }
-        }
-    }
-
-    template <typename T>
-    constexpr void ToLittleEndianArray(T* buffer, size_t count)
-        requires(std::is_integral_v<T>)
-    {
-        if constexpr (std::endian::native == std::endian::big)
-        {
-            for (size_t i = 0; i < count; ++i)
-            {
-                buffer[i] = std::byteswap(buffer[i]);
-            }
-        }
-    }
-
-    template <typename T>
-    constexpr void ToBigEndianArray(T* output, T const* input, size_t count)
-        requires(std::is_integral_v<T>)
-    {
-        if constexpr (std::endian::native == std::endian::little)
-        {
-            for (size_t i = 0; i < count; ++i)
-            {
-                output[i] = std::byteswap(input[i]);
-            }
-        }
-    }
-
-    template <typename T>
-    constexpr void ToLittleEndianArray(T* output, T const* input, size_t count)
-        requires(std::is_integral_v<T>)
-    {
-        if constexpr (std::endian::native == std::endian::big)
-        {
-            for (size_t i = 0; i < count; ++i)
-            {
-                output[i] = std::byteswap(input[i]);
-            }
-        }
-    }
-
-    template <typename T>
-    constexpr void ToBigEndianFromBuffer(T* output, void const* input, size_t count)
-        requires(std::is_integral_v<T>)
-    {
-        ToBigEndianArray(output, static_cast<T const*>(input), count);
-    }
-
-    template <typename T>
-    constexpr void ToLittleEndianFromBuffer(T* output, void const* input, size_t count)
-        requires(std::is_integral_v<T>)
-    {
-        to_little_endian_array(output, static_cast<T const*>(input), count);
-    }
-
-    template <typename T>
-    constexpr void ToBigEndianToBuffer(void* output, T const* input, size_t count)
-        requires(std::is_integral_v<T>)
-    {
-        ToBigEndianArray(static_cast<T*>(output), input, count);
-    }
-
-    template <typename T>
-    constexpr void ToLittleEndianToBuffer(void* output, T const* input, size_t count)
-        requires(std::is_integral_v<T>)
-    {
-        to_little_endian_array(static_cast<T*>(output), input, count);
-    }
 }
 
 namespace weave::bitwise
@@ -219,5 +111,111 @@ namespace weave::bitwise
         }
 
         return (value >> bits) | (value << (digits - bits));
+    }
+}
+
+namespace weave::bitwise
+{
+    template <typename T>
+    constexpr T ToBigEndian(T value)
+        requires(std::is_integral_v<T>)
+    {
+        if constexpr (std::endian::native == std::endian::little)
+        {
+            return std::byteswap(value);
+        }
+        else
+        {
+            return value;
+        }
+    }
+
+    template <typename T>
+    constexpr T ToLittleEndian(T value)
+        requires(std::is_integral_v<T>)
+    {
+        if constexpr (std::endian::native == std::endian::big)
+        {
+            return std::byteswap(value);
+        }
+        else
+        {
+            return value;
+        }
+    }    
+}
+
+namespace weave::bitwise
+{
+    template <typename T>
+    T LoadUnaligned(void const* source)
+        requires(std::is_trivially_copyable_v<T>)
+    {
+        T result;
+        memcpy(&result, source, sizeof(T));
+        return result;
+    }
+
+    template <typename T>
+    void StoreUnaligned(void* destination, T value)
+        requires(std::is_trivially_copyable_v<T>)
+    {
+        memcpy(destination, &value, sizeof(T));
+    }
+}
+
+// NOTE: there is no typed functions - laod & store are supported by language directly.
+namespace weave::bitwise
+{
+    template <typename T>
+    T LoadUnalignedLittleEndian(void const* source)
+    {
+        if constexpr (std::endian::native == std::endian::little)
+        {
+            return LoadUnaligned<T>(source);
+        }
+        else
+        {
+            return std::byteswap(LoadUnaligned<T>(source));
+        }
+    }
+
+    template <typename T>
+    void StoreUnalignedLittleEndian(void* destination, T value)
+    {
+        if constexpr (std::endian::native == std::endian::little)
+        {
+            StoreUnaligned<T>(destination, value);
+        }
+        else
+        {
+            StoreUnaligned<T>(destination, std::byteswap(value));
+        }
+    }
+
+    template <typename T>
+    T LoadUnalignedBigEndian(void const* source)
+    {
+        if constexpr (std::endian::native == std::endian::big)
+        {
+            return LoadUnaligned<T>(source);
+        }
+        else
+        {
+            return std::byteswap(LoadUnaligned<T>(source));
+        }
+    }
+
+    template <typename T>
+    void StoreUnalignedBigEndian(void* destination, T value)
+    {
+        if constexpr (std::endian::native == std::endian::big)
+        {
+            StoreUnaligned<T>(destination, value);
+        }
+        else
+        {
+            StoreUnaligned<T>(destination, std::byteswap(value));
+        }
     }
 }
