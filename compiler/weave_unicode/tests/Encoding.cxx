@@ -38,7 +38,6 @@ TEST_CASE("UTF8 Tests")
             std::u8string_view source{std::data(bytes), std::size(bytes)};
             {
                 std::u32string destination{};
-                std::u32string_view expected = U"κόσμε";
                 CHECK(Convert(destination, source, ConversionType::None) == ConversionResult::Success);
                 REQUIRE(destination.size() == 5);
                 REQUIRE(destination[0] == 0x03BA);
