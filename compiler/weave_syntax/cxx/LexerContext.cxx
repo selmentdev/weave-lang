@@ -2,6 +2,26 @@
 #include "weave/syntax/Lexer.hxx"
 #include "weave/Unicode.hxx"
 
+namespace weave::syntax::impl
+{
+    constexpr bool TokenKindCanStoreValue(TokenKind value)
+    {
+        switch (value)  // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case TokenKind::FloatLiteral:
+        case TokenKind::IntegerLiteral:
+        case TokenKind::StringLiteral:
+        case TokenKind::CharacterLiteral:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
+}
+
 namespace weave::syntax
 {
     Token* LexerContext::Lex(Lexer& lexer)
@@ -99,6 +119,8 @@ namespace weave::syntax
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia)
     {
+        WEAVE_ASSERT(impl::TokenKindCanStoreValue(kind) == false);
+
         return this->Create(
             kind,
             source,
@@ -116,6 +138,7 @@ namespace weave::syntax
     {
         WEAVE_ASSERT(leadingTrivia.size() < std::numeric_limits<uint16_t>::max());
         WEAVE_ASSERT(trailingTrivia.size() < std::numeric_limits<uint16_t>::max());
+        WEAVE_ASSERT(impl::TokenKindCanStoreValue(kind) == true);
 
         Trivia const* trivia = nullptr;
 
