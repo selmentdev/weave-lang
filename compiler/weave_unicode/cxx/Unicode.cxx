@@ -415,9 +415,6 @@ namespace weave::unicode
             {
                 if (result != ConversionResult::Success)
                 {
-                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
-                    result = ConversionResult::Success;
-
                     // Retry with next byte.
                     source = sourceFirst + 1;
                 }
@@ -462,9 +459,6 @@ namespace weave::unicode
             {
                 if (result != ConversionResult::Success)
                 {
-                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
-                    result = ConversionResult::Success;
-
                     // Retry with next byte.
                     source = sourceFirst + 1;
                 }
@@ -509,9 +503,6 @@ namespace weave::unicode
             {
                 if (result != ConversionResult::Success)
                 {
-                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
-                    result = ConversionResult::Success;
-
                     // Retry with next byte.
                     source = sourceFirst + 1;
                 }
@@ -556,9 +547,6 @@ namespace weave::unicode
             {
                 if (result != ConversionResult::Success)
                 {
-                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
-                    result = ConversionResult::Success;
-
                     // Retry with next byte.
                     source = sourceFirst + 1;
                 }
@@ -603,9 +591,6 @@ namespace weave::unicode
             {
                 if (result != ConversionResult::Success)
                 {
-                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
-                    result = ConversionResult::Success;
-
                     // Retry with next byte.
                     source = sourceFirst + 1;
                 }
@@ -650,9 +635,6 @@ namespace weave::unicode
             {
                 if (result != ConversionResult::Success)
                 {
-                    // Relaxed conversion rules allow to emit replacement character instead of invalid bytes.
-                    result = ConversionResult::Success;
-
                     // Retry with next byte.
                     source = sourceFirst + 1;
                 }
