@@ -299,7 +299,6 @@ namespace weave::endian
 
 int main(int argc, const char* argv[])
 {
-    WEAVE_ASSERT(argc == 0);
     using namespace weave;
 
     commandline::CommandLineBuilder builder{};
