@@ -6,16 +6,6 @@
 
 namespace weave::tokenizer
 {
-    struct LexerToken final
-    {
-        TokenKind Kind;
-        source::SourceSpan Span;
-
-        std::string_view Prefix{};
-        std::string_view Value{};
-        std::string_view Suffix{};
-    };
-
     class Tokenizer final
     {
     private:
@@ -92,49 +82,6 @@ namespace weave::tokenizer
 
     public:
         bool Lex();
-
-    private:
-        static constexpr bool AppendDecCharacter(uint64_t& result, char32_t c)
-        {
-            if ((U'0' <= c) and (c <= U'9'))
-            {
-                uint64_t const digit = (c - U'0');
-
-                result *= 10;
-                result += digit;
-                return true;
-            }
-
-            return false;
-        }
-
-        static constexpr bool AppendHexCharacter(uint64_t& result, char32_t c)
-        {
-            uint64_t digit = 16;
-
-            if ((U'0' <= c) and (c <= U'9'))
-            {
-                digit = (c - U'0');
-            }
-            else if ((U'a' <= c) and (c <= U'f'))
-            {
-                digit = (c - U'a') + 10;
-            }
-            else if ((U'A' <= c) and (c <= U'F'))
-            {
-                digit = (c - U'A') + 10;
-            }
-
-            bool const valid = digit < 16;
-
-            if (valid)
-            {
-                result <<= 4u;
-                result |= digit;
-            }
-
-            return valid;
-        }
 
     private:
         struct SingleInteger final

@@ -4,6 +4,51 @@
 
 #include <array>
 
+namespace weave::tokenizer::impl
+{
+    constexpr bool AppendDecCharacter(uint64_t& result, char32_t c)
+    {
+        if ((U'0' <= c) and (c <= U'9'))
+        {
+            uint64_t const digit = (c - U'0');
+
+            result *= 10;
+            result += digit;
+            return true;
+        }
+
+        return false;
+    }
+
+    constexpr bool AppendHexCharacter(uint64_t& result, char32_t c)
+    {
+        uint64_t digit = 16;
+
+        if ((U'0' <= c) and (c <= U'9'))
+        {
+            digit = (c - U'0');
+        }
+        else if ((U'a' <= c) and (c <= U'f'))
+        {
+            digit = (c - U'a') + 10;
+        }
+        else if ((U'A' <= c) and (c <= U'F'))
+        {
+            digit = (c - U'A') + 10;
+        }
+
+        bool const valid = digit < 16;
+
+        if (valid)
+        {
+            result <<= 4u;
+            result |= digit;
+        }
+
+        return valid;
+    }
+}
+
 namespace weave::tokenizer
 {
     bool Tokenizer::Lex()
@@ -1084,7 +1129,7 @@ namespace weave::tokenizer
 
         while (true)
         {
-            if (not AppendDecCharacter(result, this->_cursor.Peek()))
+            if (not impl::AppendDecCharacter(result, this->_cursor.Peek()))
             {
                 break;
             }
@@ -1102,7 +1147,7 @@ namespace weave::tokenizer
 
         while (true)
         {
-            if (not AppendHexCharacter(result, this->_cursor.Peek()))
+            if (not impl::AppendHexCharacter(result, this->_cursor.Peek()))
             {
                 break;
             }
@@ -1120,7 +1165,7 @@ namespace weave::tokenizer
 
         for (; count < maxLength; ++count)
         {
-            if (not AppendDecCharacter(result, this->_cursor.Peek()))
+            if (not impl::AppendDecCharacter(result, this->_cursor.Peek()))
             {
                 break;
             }
@@ -1137,7 +1182,7 @@ namespace weave::tokenizer
 
         for (; count < maxLength; ++count)
         {
-            if (not AppendHexCharacter(result, this->_cursor.Peek()))
+            if (not impl::AppendHexCharacter(result, this->_cursor.Peek()))
             {
                 break;
             }
