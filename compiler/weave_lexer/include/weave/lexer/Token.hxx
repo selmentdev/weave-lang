@@ -9,7 +9,7 @@
 // Design:
 //
 // - SyntaxContext - a place to hold state, allocations etc.
-// -
+// -*
 
 namespace weave::lexer
 {
@@ -79,24 +79,6 @@ namespace weave::lexer
         Decimal128,
     };
 
-    struct IntegerLiteralValue final
-    {
-        NumberLiteralPrefixKind Prefix{};
-        IntegerLiteralSuffixKind Suffix{};
-
-        // FIXME: This should be a big integer type.
-        std::string_view Value{};
-    };
-
-    struct FloatLiteralValue final
-    {
-        NumberLiteralPrefixKind Prefix{};
-        FloatLiteralSuffixKind Suffix{};
-
-        // FIXME: This should be a big float type.
-        std::string_view Value{};
-    };
-
     enum class StringPrefixKind
     {
         Default, // ""
@@ -113,167 +95,240 @@ namespace weave::lexer
         Utf32, // U''
     };
 
-    struct StringLiteralValue final
-    {
-        StringPrefixKind Prefix{};
-        std::string_view Value{};
-    };
-
-    struct CharacterLiteralValue final
-    {
-        CharacterPrefixKind Prefix{};
-        char32_t Value{};
-    };
-
-    struct Identifier final
-    {
-        std::string_view Value;
-    };
-
-    struct Token final
+    class Token
     {
     private:
-        TokenKind _kind{};
-        source::SourceSpan _source{};
-        TriviaRange const* _trivia{};
-        void const* _data{};
+        TokenKind _kind;
+        source::SourceSpan _source;
+        TriviaRange const* _trivia;
 
     public:
-        Token(TokenKind kind, source::SourceSpan const& source)
-            : _kind{kind}
-            , _source{source}
-        {
-        }
-
-        Token(TokenKind kind, source::SourceSpan const& source, TriviaRange const* trivia)
+        constexpr Token(TokenKind kind, source::SourceSpan const& source, TriviaRange const* trivia)
             : _kind{kind}
             , _source{source}
             , _trivia{trivia}
         {
         }
 
-        Token(source::SourceSpan const& source, TriviaRange const* trivia, IntegerLiteralValue const* value)
-            : _kind{TokenKind::IntegerLiteral}
-            , _source{source}
-            , _trivia{trivia}
-            , _data{value}
-        {
-        }
-
-        Token(source::SourceSpan const& source, TriviaRange const* trivia, FloatLiteralValue const* value)
-            : _kind{TokenKind::FloatLiteral}
-            , _source{source}
-            , _trivia{trivia}
-            , _data{value}
-        {
-        }
-
-        Token(source::SourceSpan const& source, TriviaRange const* trivia, StringLiteralValue const* value)
-            : _kind{TokenKind::StringLiteral}
-            , _source{source}
-            , _trivia{trivia}
-            , _data{value}
-        {
-        }
-
-        Token(source::SourceSpan const& source, TriviaRange const* trivia, CharacterLiteralValue const* value)
-            : _kind{TokenKind::CharacterLiteral}
-            , _source{source}
-            , _trivia{trivia}
-            , _data{value}
-        {
-        }
-
-        Token(source::SourceSpan const& source, TriviaRange const* trivia, Identifier const* value)
-            : _kind{TokenKind::Identifier}
-            , _source{source}
-            , _trivia{trivia}
-            , _data{value}
-        {
-        }
-
-        [[nodiscard]] TokenKind GetKind() const
+    public:
+        [[nodiscard]] constexpr TokenKind GetKind() const
         {
             return this->_kind;
         }
 
-        [[nodiscard]] source::SourceSpan const& GetSource() const
+        [[nodiscard]] constexpr source::SourceSpan const& GetSourceSpan() const
         {
             return this->_source;
         }
 
-        [[nodiscard]] std::span<Trivia const> GetLeadingTrivia() const
+        [[nodiscard]] constexpr std::span<Trivia const> GetLeadingTrivia() const
         {
-            return this->_trivia->Leading;
-        }
-
-        [[nodiscard]] std::span<Trivia const> GetTrailingTrivia() const
-        {
-            return this->_trivia->Trailing;
-        }
-
-        [[nodiscard]] constexpr IntegerLiteralValue const* TryGetIntegerValue() const
-        {
-            if (this->_kind == TokenKind::IntegerLiteral)
+            if (this->_trivia != nullptr)
             {
-                return static_cast<IntegerLiteralValue const*>(this->_data);
+                return this->_trivia->Leading;
+            }
+
+            return {};
+        }
+
+        [[nodiscard]] constexpr std::span<Trivia const> GetTrailingTrivia() const
+        {
+            if (this->_trivia != nullptr)
+            {
+                return this->_trivia->Trailing;
+            }
+
+            return {};
+        }
+
+    public:
+        [[nodiscard]] constexpr bool Is(TokenKind kind) const
+        {
+            return this->_kind == kind;
+        }
+
+        template <typename T>
+        [[nodiscard]] constexpr T const* TryCast() const
+        {
+            if (this->_kind == T::Kind)
+            {
+                return static_cast<T const*>(this);
             }
 
             return nullptr;
         }
+    };
 
-        [[nodiscard]] constexpr FloatLiteralValue const* TryGetFloatValue() const
+    class IntegerLiteralToken final : public Token
+    {
+    public:
+        static constexpr TokenKind Kind = TokenKind::IntegerLiteral;
+
+    private:
+        NumberLiteralPrefixKind _prefix;
+        IntegerLiteralSuffixKind _suffix;
+        std::string_view _value;
+
+    public:
+        constexpr IntegerLiteralToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            NumberLiteralPrefixKind prefix,
+            IntegerLiteralSuffixKind suffix,
+            std::string_view value)
+            : Token{TokenKind::IntegerLiteral, source, trivia}
+            , _prefix{prefix}
+            , _suffix{suffix}
+            , _value{value}
         {
-            if (this->_kind == TokenKind::FloatLiteral)
-            {
-                return static_cast<FloatLiteralValue const*>(this->_data);
-            }
-
-            return nullptr;
         }
 
-        [[nodiscard]] constexpr StringLiteralValue const* TryGetStringValue() const
+    public:
+        [[nodiscard]] constexpr NumberLiteralPrefixKind GetPrefix() const
         {
-            if (this->_kind == TokenKind::StringLiteral)
-            {
-                return static_cast<StringLiteralValue const*>(this->_data);
-            }
-
-            return nullptr;
+            return this->_prefix;
         }
 
-        [[nodiscard]] constexpr CharacterLiteralValue const* TryGetCharacterValue() const
+        [[nodiscard]] constexpr IntegerLiteralSuffixKind GetSuffix() const
         {
-            if (this->_kind == TokenKind::CharacterLiteral)
-            {
-                return static_cast<CharacterLiteralValue const*>(this->_data);
-            }
-
-            return nullptr;
+            return this->_suffix;
         }
 
-        [[nodiscard]] IntegerLiteralValue const& GetIntegerValue() const
+        [[nodiscard]] constexpr std::string_view GetValue() const
         {
-            WEAVE_ASSERT(this->_kind == TokenKind::IntegerLiteral);
-            return *static_cast<IntegerLiteralValue const*>(this->_data);
+            return this->_value;
+        }
+    };
+
+    class FloatLiteralToken final : public Token
+    {
+    public:
+        static constexpr TokenKind Kind = TokenKind::FloatLiteral;
+
+    private:
+        NumberLiteralPrefixKind _prefix;
+        FloatLiteralSuffixKind _suffix;
+        std::string_view _value;
+
+    public:
+        constexpr FloatLiteralToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            NumberLiteralPrefixKind prefix,
+            FloatLiteralSuffixKind suffix,
+            std::string_view value)
+            : Token{TokenKind::FloatLiteral, source, trivia}
+            , _prefix{prefix}
+            , _suffix{suffix}
+            , _value{value}
+        {
         }
 
-        [[nodiscard]] FloatLiteralValue const& GetFloatValue() const
+    public:
+        [[nodiscard]] constexpr NumberLiteralPrefixKind GetPrefix() const
         {
-            WEAVE_ASSERT(this->_kind == TokenKind::FloatLiteral);
-            return *static_cast<FloatLiteralValue const*>(this->_data);
+            return this->_prefix;
         }
 
-        [[nodiscard]] StringLiteralValue const& GetStringValue() const
+        [[nodiscard]] constexpr FloatLiteralSuffixKind GetSuffix() const
         {
-            WEAVE_ASSERT(this->_kind == TokenKind::StringLiteral);
-            return *static_cast<StringLiteralValue const*>(this->_data);
+            return this->_suffix;
         }
 
-        [[nodiscard]] CharacterLiteralValue const& GetCharacterValue() const
+        [[nodiscard]] constexpr std::string_view GetValue() const
         {
-            WEAVE_ASSERT(this->_kind == TokenKind::CharacterLiteral);
-            return *static_cast<CharacterLiteralValue const*>(this->_data);
+            return this->_value;
+        }
+    };
+
+    class StringLiteralToken final : public Token
+    {
+    public:
+        static constexpr TokenKind Kind = TokenKind::StringLiteral;
+
+    private:
+        StringPrefixKind _prefix;
+        std::string_view _value;
+
+    public:
+        constexpr StringLiteralToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            StringPrefixKind prefix,
+            std::string_view value)
+            : Token{TokenKind::StringLiteral, source, trivia}
+            , _prefix{prefix}
+            , _value{value}
+        {
+        }
+
+    public:
+        [[nodiscard]] constexpr StringPrefixKind GetPrefix() const
+        {
+            return this->_prefix;
+        }
+
+        [[nodiscard]] constexpr std::string_view GetValue() const
+        {
+            return this->_value;
+        }
+    };
+
+    class CharacterLiteralToken final : public Token
+    {
+    public:
+        static constexpr TokenKind Kind = TokenKind::CharacterLiteral;
+
+    private:
+        CharacterPrefixKind _prefix;
+        char32_t _value;
+
+    public:
+        constexpr CharacterLiteralToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            CharacterPrefixKind prefix,
+            char32_t value)
+            : Token{TokenKind::CharacterLiteral, source, trivia}
+            , _prefix{prefix}
+            , _value{value}
+        {
+        }
+
+    public:
+        [[nodiscard]] constexpr CharacterPrefixKind GetPrefix() const
+        {
+            return this->_prefix;
+        }
+
+        [[nodiscard]] constexpr char32_t GetValue() const
+        {
+            return this->_value;
+        }
+    };
+
+    class IdentifierToken final : public Token
+    {
+    public:
+        static constexpr TokenKind Kind = TokenKind::Identifier;
+
+    private:
+        std::string_view _identifier;
+
+    public:
+        constexpr IdentifierToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            std::string_view identifier)
+            : Token{TokenKind::Identifier, source, trivia}
+            , _identifier{identifier}
+        {
+        }
+
+    public:
+        [[nodiscard]] constexpr std::string_view GetIdentifier() const
+        {
+            return this->_identifier;
         }
     };
 }

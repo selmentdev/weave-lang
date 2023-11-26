@@ -105,7 +105,8 @@ namespace weave::lexer
     {
         return this->Tokens.Emplace(
             kind,
-            source);
+            source,
+            &this->_empty_trivia);
     }
 
     Token* LexerContext::Create(
@@ -130,38 +131,41 @@ namespace weave::lexer
         TokenKind kind,
         source::SourceSpan const& source)
     {
-        return this->MissingTokens.Emplace(
+        return this->Tokens.Emplace(
             kind,
-            source);
+            source,
+            &this->_empty_trivia);
     }
 
-    Token* LexerContext::CreateCharacter(
+    CharacterLiteralToken* LexerContext::CreateCharacter(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
         CharacterPrefixKind prefix,
         char32_t value)
     {
-        return this->Tokens.Emplace(
+        return this->CharacterLiterals.Emplace(
             source,
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
-            this->CharacterLiterals.Emplace(prefix, value));
+            prefix,
+            value);
     }
 
-    Token* LexerContext::CreateString(
+    StringLiteralToken* LexerContext::CreateString(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
         StringPrefixKind prefix,
         std::string_view value)
     {
-        return this->Tokens.Emplace(
+        return this->StringLiterals.Emplace(
             source,
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
-            this->StringLiterals.Emplace(prefix, value));
+            prefix,
+            value);
     }
 
-    Token* LexerContext::CreateFloat(
+    FloatLiteralToken* LexerContext::CreateFloat(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
@@ -169,13 +173,15 @@ namespace weave::lexer
         std::string_view value,
         FloatLiteralSuffixKind suffix)
     {
-        return this->Tokens.Emplace(
+        return this->FloatLiterals.Emplace(
             source,
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
-            this->FloatLiterals.Emplace(prefix, suffix, value));
+            prefix,
+            suffix,
+            value);
     }
 
-    Token* LexerContext::CreateInteger(
+    IntegerLiteralToken* LexerContext::CreateInteger(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
@@ -183,22 +189,24 @@ namespace weave::lexer
         std::string_view value,
         IntegerLiteralSuffixKind suffix)
     {
-        return this->Tokens.Emplace(
+        return this->IntegerLiterals.Emplace(
             source,
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
-            this->IntegerLiterals.Emplace(prefix, suffix, value));
+            prefix,
+            suffix,
+            value);
     }
 
-    Token* LexerContext::CreateIdentifier(
+    IdentifierToken* LexerContext::CreateIdentifier(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
         std::string_view value)
     {
-        return this->Tokens.Emplace(
+        return this->Identifiers.Emplace(
             source,
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
-            this->Identifiers.Emplace(value));
+            value);
     }
 
     void LexerContext::QueryMemoryUsage(size_t& allocated, size_t& reserved) const
@@ -207,7 +215,6 @@ namespace weave::lexer
         reserved = 0;
 
         this->Tokens.QueryMemoryUsage(allocated, reserved);
-        this->MissingTokens.QueryMemoryUsage(allocated, reserved);
         this->TriviaRanges.QueryMemoryUsage(allocated, reserved);
         this->Trivias.QueryMemoryUsage(allocated, reserved);
         this->CharacterLiterals.QueryMemoryUsage(allocated, reserved);
@@ -226,12 +233,6 @@ namespace weave::lexer
             size_t reserved = 0;
             this->Tokens.QueryMemoryUsage(allocated, reserved);
             fmt::println("Tokens:               allocated = {}, reserved = {}", allocated, reserved);
-        }
-        {
-            size_t allocated = 0;
-            size_t reserved = 0;
-            this->MissingTokens.QueryMemoryUsage(allocated, reserved);
-            fmt::println("MissingTokens:        allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;

@@ -12,17 +12,14 @@ namespace weave::lexer
         // Regular tokens, produced during parsing.
         memory::TypedLinearAllocator<Token> Tokens{16u << 10u};
 
-        // Additional missing tokens, added for tree validation.
-        memory::TypedLinearAllocator<Token> MissingTokens{};
-
         // Trivias allocated for tokens.
         memory::TypedLinearAllocator<TriviaRange> TriviaRanges{};
         memory::TypedLinearAllocator<Trivia> Trivias{};
-        memory::TypedLinearAllocator<CharacterLiteralValue> CharacterLiterals{};
-        memory::TypedLinearAllocator<StringLiteralValue> StringLiterals{};
-        memory::TypedLinearAllocator<FloatLiteralValue> FloatLiterals{};
-        memory::TypedLinearAllocator<IntegerLiteralValue> IntegerLiterals{};
-        memory::TypedLinearAllocator<Identifier> Identifiers{};
+        memory::TypedLinearAllocator<CharacterLiteralToken> CharacterLiterals{};
+        memory::TypedLinearAllocator<StringLiteralToken> StringLiterals{};
+        memory::TypedLinearAllocator<FloatLiteralToken> FloatLiterals{};
+        memory::TypedLinearAllocator<IntegerLiteralToken> IntegerLiterals{};
+        memory::TypedLinearAllocator<IdentifierToken> Identifiers{};
 
         stringpool::StringPool Strings{};
 
@@ -50,21 +47,21 @@ namespace weave::lexer
             TokenKind kind,
             source::SourceSpan const& source);
 
-        Token* CreateCharacter(
+        CharacterLiteralToken* CreateCharacter(
             source::SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia,
             CharacterPrefixKind prefix,
             char32_t value);
 
-        Token* CreateString(
+        StringLiteralToken* CreateString(
             source::SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia,
             StringPrefixKind prefix,
             std::string_view value);
 
-        Token* CreateFloat(
+        FloatLiteralToken* CreateFloat(
             source::SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia,
@@ -72,7 +69,7 @@ namespace weave::lexer
             std::string_view value,
             FloatLiteralSuffixKind suffix);
 
-        Token* CreateInteger(
+        IntegerLiteralToken* CreateInteger(
             source::SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia,
@@ -80,7 +77,7 @@ namespace weave::lexer
             std::string_view value,
             IntegerLiteralSuffixKind suffix);
 
-        Token* CreateIdentifier(
+        IdentifierToken* CreateIdentifier(
             source::SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia,
