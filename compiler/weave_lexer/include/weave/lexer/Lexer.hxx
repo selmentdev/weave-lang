@@ -1,10 +1,10 @@
 #pragma once
-#include "weave/syntax/Token.hxx"
+#include "weave/lexer/Token.hxx"
 #include "weave/source/Diagnostic.hxx"
 #include "weave/source/SourceCursor.hxx"
 #include "weave/source/SourceText.hxx"
 
-namespace weave::syntax
+namespace weave::lexer
 {
     struct LexerToken final
     {

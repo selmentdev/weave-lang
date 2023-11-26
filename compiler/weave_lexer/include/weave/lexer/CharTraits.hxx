@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace weave::syntax
+namespace weave::lexer
 {
     class CharTraits final
     {

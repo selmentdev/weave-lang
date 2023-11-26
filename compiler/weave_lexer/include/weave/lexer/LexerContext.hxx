@@ -1,9 +1,9 @@
 #pragma once
 #include "weave/memory/TypedLinearAllocator.hxx"
 #include "weave/stringpool/StringPool.hxx"
-#include "weave/syntax/Token.hxx"
+#include "weave/lexer/Token.hxx"
 
-namespace weave::syntax
+namespace weave::lexer
 {
     class Lexer;
 

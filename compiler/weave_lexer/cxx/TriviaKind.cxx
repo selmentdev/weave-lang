@@ -1,15 +1,15 @@
-#include "weave/syntax/TriviaKind.hxx"
+#include "weave/lexer/TriviaKind.hxx"
 #include "weave/BugCheck.hxx"
 
 #include <utility>
 
-namespace weave::syntax
+namespace weave::lexer
 {
     std::string_view TriviaKindTraits::GetName(TriviaKind value)
     {
         static constexpr std::string_view lookup[]{
 #define WEAVE_TRIVIA(name, spelling) #name,
-#include "weave/syntax/TriviaKind.inl"
+#include "weave/lexer/TriviaKind.inl"
         };
 
         size_t const index = std::to_underlying(value);
@@ -21,7 +21,7 @@ namespace weave::syntax
     {
         static constexpr std::string_view lookup[]{
 #define WEAVE_TRIVIA(name, spelling) spelling,
-#include "weave/syntax/TriviaKind.inl"
+#include "weave/lexer/TriviaKind.inl"
         };
 
         size_t const index = std::to_underlying(value);

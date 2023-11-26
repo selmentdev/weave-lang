@@ -1,4 +1,4 @@
-#include "weave/syntax/TokenKind.hxx"
+#include "weave/lexer/TokenKind.hxx"
 #include "weave/BugCheck.hxx"
 #include "weave/hash/Fnv1a.hxx"
 
@@ -6,13 +6,13 @@
 #include <array>
 #include <algorithm>
 
-namespace weave::syntax
+namespace weave::lexer
 {
     std::string_view TokenKindTraits::GetName(TokenKind value)
     {
         static constexpr std::string_view lookup[]{
 #define WEAVE_TOKEN(name, spelling) #name,
-#include "weave/syntax/TokenKind.inl"
+#include "weave/lexer/TokenKind.inl"
         };
 
         size_t const index = std::to_underlying(value);
@@ -24,7 +24,7 @@ namespace weave::syntax
     {
         static constexpr std::string_view lookup[]{
 #define WEAVE_TOKEN(name, spelling) spelling,
-#include "weave/syntax/TokenKind.inl"
+#include "weave/lexer/TokenKind.inl"
         };
 
         size_t const index = std::to_underlying(value);
@@ -37,7 +37,7 @@ namespace weave::syntax
         static constexpr bool lookup[]{
 #define WEAVE_TOKEN(name, spelling) false,
 #define WEAVE_TOKEN_PUNCTUATION(name, spelling) true,
-#include "weave/syntax/TokenKind.inl"
+#include "weave/lexer/TokenKind.inl"
         };
 
         size_t const index = std::to_underlying(value);
@@ -49,8 +49,8 @@ namespace weave::syntax
     {
         switch (value) // NOLINT(clang-diagnostic-switch-enum)
         {
-#define WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(name, spelling, matching) case TokenKind::name:
-#include "weave/syntax/TokenKind.inl"
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(token, matching) case TokenKind::token:
+#include "weave/lexer/TokenKind.inl"
             return true;
 
         default:
@@ -64,8 +64,8 @@ namespace weave::syntax
     {
         switch (value) // NOLINT(clang-diagnostic-switch-enum)
         {
-#define WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(name, spelling, matching) case TokenKind::name:
-#include "weave/syntax/TokenKind.inl"
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(token, matching) case TokenKind::token:
+#include "weave/lexer/TokenKind.inl"
             return true;
 
         default:
@@ -80,7 +80,7 @@ namespace weave::syntax
         static constexpr bool lookup[]{
 #define WEAVE_TOKEN(name, spelling) false,
 #define WEAVE_TOKEN_LITERAL(name, spelling) true,
-#include "weave/syntax/TokenKind.inl"
+#include "weave/lexer/TokenKind.inl"
         };
 
         size_t const index = std::to_underlying(value);
@@ -93,7 +93,7 @@ namespace weave::syntax
         static constexpr bool lookup[]{
 #define WEAVE_TOKEN(name, spelling) false,
 #define WEAVE_TOKEN_KEYWORD(name, spelling) true,
-#include "weave/syntax/TokenKind.inl"
+#include "weave/lexer/TokenKind.inl"
         };
 
         size_t const index = std::to_underlying(value);
@@ -106,7 +106,7 @@ namespace weave::syntax
         static constexpr bool lookup[]{
 #define WEAVE_TOKEN(name, spelling) false,
 #define WEAVE_TOKEN_TYPE_KEYWORD(name, spelling) true,
-#include "weave/syntax/TokenKind.inl"
+#include "weave/lexer/TokenKind.inl"
         };
 
         size_t const index = std::to_underlying(value);
@@ -118,10 +118,10 @@ namespace weave::syntax
     {
         switch (value) // NOLINT(clang-diagnostic-switch-enum)
         {
-#define WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(name, spelling, matching) \
-    case TokenKind::name: \
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(token, matching) \
+    case TokenKind::token: \
         return TokenKind::matching;
-#include "weave/syntax/TokenKind.inl"
+#include "weave/lexer/TokenKind.inl"
 
         default:
             break;
@@ -134,10 +134,10 @@ namespace weave::syntax
     {
         switch (value)  // NOLINT(clang-diagnostic-switch-enum)
         {
-#define WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(name, spelling, matching) \
-    case TokenKind::name: \
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(token, matching) \
+    case TokenKind::token: \
         return TokenKind::matching;
-#include "weave/syntax/TokenKind.inl"
+#include "weave/lexer/TokenKind.inl"
 
         default:
             break;
@@ -159,7 +159,7 @@ namespace weave::syntax
         {
             std::array<Entry, 291> items{{
 #define WEAVE_TOKEN_KEYWORD(name, spelling) Entry{hash::Fnv1a64::FromString(spelling), spelling, TokenKind::name},
-#include "weave/syntax/TokenKind.inl"
+#include "weave/lexer/TokenKind.inl"
             }};
 
             std::sort(std::begin(items), std::end(items), [](Entry const& lhs, Entry const& rhs)

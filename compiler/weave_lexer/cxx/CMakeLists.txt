@@ -1,0 +1,9 @@
+target_sources(weave_lexer
+    PRIVATE
+        "CharTraits.cxx"
+        "Lexer.cxx"
+        "LexerContext.cxx"
+        "Token.cxx"
+        "TokenKind.cxx"
+        "TriviaKind.cxx"
+)

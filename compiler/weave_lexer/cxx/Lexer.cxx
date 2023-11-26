@@ -1,10 +1,10 @@
-#include "weave/syntax/Lexer.hxx"
+#include "weave/lexer/Lexer.hxx"
 #include "weave/Unicode.hxx"
-#include "weave/syntax/CharTraits.hxx"
+#include "weave/lexer/CharTraits.hxx"
 
 #include <array>
 
-namespace weave::syntax
+namespace weave::lexer
 {
     bool Lexer::Lex()
     {

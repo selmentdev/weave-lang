@@ -7,11 +7,11 @@
 #endif
 
 #ifndef WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING
-#define WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(name, spelling, matching) WEAVE_TOKEN_PUNCTUATION(name, spelling)
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(token, matching)
 #endif
 
 #ifndef WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING
-#define WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(name, spelling, matching) WEAVE_TOKEN_PUNCTUATION(name, spelling)
+#define WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(token, matching)
 #endif
 
 #ifndef WEAVE_TOKEN_LITERAL
@@ -82,20 +82,23 @@ WEAVE_TOKEN_PUNCTUATION(SemicolonToken,                     ";")
 WEAVE_TOKEN_PUNCTUATION(SlashEqualsToken,                   "/=")
 WEAVE_TOKEN_PUNCTUATION(SlashToken,                         "/")
 WEAVE_TOKEN_PUNCTUATION(TildeToken,                         "~")
+WEAVE_TOKEN_PUNCTUATION(OpenBraceToken,                     "{")
+WEAVE_TOKEN_PUNCTUATION(OpenBracketToken,                   "[")
+WEAVE_TOKEN_PUNCTUATION(OpenParenToken,                     "[")
+WEAVE_TOKEN_PUNCTUATION(CloseBraceToken,                    "}")
+WEAVE_TOKEN_PUNCTUATION(CloseBracketToken,                  "]")
+WEAVE_TOKEN_PUNCTUATION(CloseParenToken,                    ")")
 
-WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(OpenBraceToken,       "{", CloseBraceToken)
-WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(OpenBracketToken,     "[", CloseBracketToken)
-WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(OpenParenToken,       "[", CloseParenToken)
+WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(OpenBraceToken,       CloseBraceToken)
+WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(OpenBracketToken,     CloseBracketToken)
+WEAVE_TOKEN_PUNCTUATION_GROUP_OPENING(OpenParenToken,       CloseParenToken)
 
-WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(CloseBraceToken,      "}", OpenBraceToken)
-WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(CloseBracketToken,    "]", OpenBracketToken)
-WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(CloseParenToken,      ")", OpenParenToken)
+WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(CloseBraceToken,      OpenBraceToken)
+WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(CloseBracketToken,    OpenBracketToken)
+WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(CloseParenToken,      OpenParenToken)
 
 WEAVE_TOKEN_LITERAL(CharacterLiteral,                       "[literal:character]")
 WEAVE_TOKEN_LITERAL(StringLiteral,                          "[literal:string]")
-WEAVE_TOKEN_LITERAL(Utf8StringLiteral,                      "[literal:utf8-string]")
-WEAVE_TOKEN_LITERAL(Utf16StringLiteral,                     "[literal:utf16-string]")
-WEAVE_TOKEN_LITERAL(Utf32StringLiteral,                     "[literal:utf32-string]")
 WEAVE_TOKEN_LITERAL(IntegerLiteral,                         "[literal:integer]")
 WEAVE_TOKEN_LITERAL(FloatLiteral,                           "[literal:float]")
 

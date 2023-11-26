@@ -1,8 +1,8 @@
-#include "weave/syntax/LexerContext.hxx"
-#include "weave/syntax/Lexer.hxx"
+#include "weave/lexer/LexerContext.hxx"
+#include "weave/lexer/Lexer.hxx"
 #include "weave/Unicode.hxx"
 
-namespace weave::syntax
+namespace weave::lexer
 {
     Token* LexerContext::Lex(Lexer& lexer)
     {

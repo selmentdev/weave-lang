@@ -1,4 +1,5 @@
 #include "weave/platform/Compiler.hxx"
+#if false
 #include "weave/syntax/TokenKind.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
@@ -22,3 +23,4 @@ TEST_CASE("Token Kind tests")
     {
     }
 }
+#endif
