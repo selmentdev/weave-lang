@@ -1,12 +1,12 @@
-#include "weave/lexer/Lexer.hxx"
+#include "weave/tokenizer/Tokenizer.hxx"
 #include "weave/Unicode.hxx"
-#include "weave/lexer/CharTraits.hxx"
+#include "weave/tokenizer/CharTraits.hxx"
 
 #include <array>
 
-namespace weave::lexer
+namespace weave::tokenizer
 {
-    bool Lexer::Lex()
+    bool Tokenizer::Lex()
     {
         this->TryReadTrivia(this->_token_leading_trivia, true);
 
@@ -17,7 +17,7 @@ namespace weave::lexer
         return lexed;
     }
 
-    bool Lexer::TryReadToken()
+    bool Tokenizer::TryReadToken()
     {
         this->_cursor.Start();
         this->_token_value.clear();
@@ -96,7 +96,7 @@ namespace weave::lexer
         return false;
     }
 
-    void Lexer::TryReadTrivia(std::vector<Trivia>& builder, bool leading)
+    void Tokenizer::TryReadTrivia(std::vector<Trivia>& builder, bool leading)
     {
         builder.clear();
 
@@ -142,7 +142,7 @@ namespace weave::lexer
         }
     }
 
-    bool Lexer::TryReadRawIdentifier()
+    bool Tokenizer::TryReadRawIdentifier()
     {
         source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
@@ -161,7 +161,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadRawStringLiteral()
+    bool Tokenizer::TryReadRawStringLiteral()
     {
         source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
@@ -232,7 +232,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadDefaultStringLiteral()
+    bool Tokenizer::TryReadDefaultStringLiteral()
     {
         size_t consumed{};
         if (this->TryReadStringOrCharacterLiteralCore(U'"', consumed))
@@ -243,7 +243,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadStringPrefix()
+    bool Tokenizer::TryReadStringPrefix()
     {
         if (this->_cursor.First(U'u'))
         {
@@ -274,7 +274,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadStringLiteral()
+    bool Tokenizer::TryReadStringLiteral()
     {
         source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
@@ -299,7 +299,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadCharacterLiteral()
+    bool Tokenizer::TryReadCharacterLiteral()
     {
         size_t consumed{};
 
@@ -320,7 +320,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadNumericLiteral()
+    bool Tokenizer::TryReadNumericLiteral()
     {
         if (not CharTraits::IsDecimalDigit(this->_cursor.Peek()))
         {
@@ -453,7 +453,7 @@ namespace weave::lexer
         return true;
     }
 
-    bool Lexer::TryReadPunctuation()
+    bool Tokenizer::TryReadPunctuation()
     {
         switch (this->_cursor.Peek())
         {
@@ -872,7 +872,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadEndOfLine()
+    bool Tokenizer::TryReadEndOfLine()
     {
         if (this->_cursor.First(U'\n'))
         {
@@ -894,12 +894,12 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadWhitespace()
+    bool Tokenizer::TryReadWhitespace()
     {
         return this->_cursor.SkipIf(CharTraits::IsWhitespace);
     }
 
-    TriviaKind Lexer::TryReadSingleLineComment()
+    TriviaKind Tokenizer::TryReadSingleLineComment()
     {
         // Starts with '///' or '//!'
         bool const documentation = (this->_cursor.Peek() == U'/') or (this->_cursor.Peek() == U'!');
@@ -920,7 +920,7 @@ namespace weave::lexer
             : TriviaKind::SingleLineComment;
     }
 
-    TriviaKind Lexer::TryReadMultiLineComment()
+    TriviaKind Tokenizer::TryReadMultiLineComment()
     {
         // Starts with '/**' or '/*!'
         bool const documentation = (this->_cursor.Peek() == U'*') or (this->_cursor.Peek() == U'!');
@@ -967,7 +967,7 @@ namespace weave::lexer
             : TriviaKind::MultiLineComment;
     }
 
-    TriviaKind Lexer::TryReadComment()
+    TriviaKind Tokenizer::TryReadComment()
     {
         source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
@@ -988,7 +988,7 @@ namespace weave::lexer
         return TriviaKind::Error;
     }
 
-    bool Lexer::TryReadIdentifier()
+    bool Tokenizer::TryReadIdentifier()
     {
         if (CharTraits::IsIdentifierStart(this->_cursor.Peek()))
         {
@@ -1004,7 +1004,7 @@ namespace weave::lexer
         return false;
     }
 
-    Lexer::SingleInteger Lexer::TryReadSingleInteger(int base)
+    Tokenizer::SingleInteger Tokenizer::TryReadSingleInteger(int base)
     {
         source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
@@ -1078,7 +1078,7 @@ namespace weave::lexer
         return result;
     }
 
-    size_t Lexer::TryReadDecNumber(uint64_t& result)
+    size_t Tokenizer::TryReadDecNumber(uint64_t& result)
     {
         size_t count{};
 
@@ -1096,7 +1096,7 @@ namespace weave::lexer
         return count;
     }
 
-    size_t Lexer::TryReadHexNumber(uint64_t& result)
+    size_t Tokenizer::TryReadHexNumber(uint64_t& result)
     {
         size_t count{};
 
@@ -1114,7 +1114,7 @@ namespace weave::lexer
         return count;
     }
 
-    size_t Lexer::TryReadDecNumber(uint64_t& result, size_t maxLength)
+    size_t Tokenizer::TryReadDecNumber(uint64_t& result, size_t maxLength)
     {
         size_t count{};
 
@@ -1131,7 +1131,7 @@ namespace weave::lexer
         return count;
     }
 
-    size_t Lexer::TryReadHexNumber(uint64_t& result, size_t maxLength)
+    size_t Tokenizer::TryReadHexNumber(uint64_t& result, size_t maxLength)
     {
         size_t count{};
 
@@ -1148,7 +1148,7 @@ namespace weave::lexer
         return count;
     }
 
-    bool Lexer::TryReadHexEscapeSequence()
+    bool Tokenizer::TryReadHexEscapeSequence()
     {
         source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
@@ -1186,7 +1186,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryAppendUnicodeCodepoint(char32_t c)
+    bool Tokenizer::TryAppendUnicodeCodepoint(char32_t c)
     {
         std::array<char, 8> buffer; // NOLINT(cppcoreguidelines-pro-type-member-init, hicpp-member-init)
 
@@ -1199,7 +1199,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadTrivialEscapeSequence()
+    bool Tokenizer::TryReadTrivialEscapeSequence()
     {
         int const matched = [c = this->_cursor.Peek()]() -> int
         {
@@ -1261,7 +1261,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadUnicodeEscapeSequence()
+    bool Tokenizer::TryReadUnicodeEscapeSequence()
     {
         source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
@@ -1314,7 +1314,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadEscapeSequence()
+    bool Tokenizer::TryReadEscapeSequence()
     {
         if (this->TryReadHexEscapeSequence())
         {
@@ -1334,7 +1334,7 @@ namespace weave::lexer
         return false;
     }
 
-    bool Lexer::TryReadStringOrCharacterLiteralCore(char32_t specifier, size_t& consumed)
+    bool Tokenizer::TryReadStringOrCharacterLiteralCore(char32_t specifier, size_t& consumed)
     {
         if (not this->_cursor.First(specifier))
         {
@@ -1405,7 +1405,7 @@ namespace weave::lexer
         return terminated;
     }
 
-    int Lexer::TryReadNumberLiteralPrefixWithRadix()
+    int Tokenizer::TryReadNumberLiteralPrefixWithRadix()
     {
         source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 
@@ -1446,7 +1446,7 @@ namespace weave::lexer
         return 10;
     }
 
-    void Lexer::TryReadNumberValueType()
+    void Tokenizer::TryReadNumberValueType()
     {
         source::SourcePosition const start = this->_cursor.GetCurrentPosition();
 

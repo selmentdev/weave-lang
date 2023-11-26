@@ -8,11 +8,11 @@
 #include "weave/Session.hxx"
 #include "weave/core/String.hxx"
 #include "weave/CommandLine.hxx"
-#include "weave/lexer/Token.hxx"
+#include "weave/tokenizer/Token.hxx"
 #include "weave/filesystem/FileSystem.hxx"
 #include "weave/source/Diagnostic.hxx"
-#include "weave/lexer/Lexer.hxx"
-#include "weave/lexer/LexerContext.hxx"
+#include "weave/tokenizer/Tokenizer.hxx"
+#include "weave/tokenizer/TokenizerContext.hxx"
 #include "weave/time/Instant.hxx"
 
 namespace weave
@@ -391,11 +391,11 @@ int main(int argc, const char* argv[])
 
         if (auto file = filesystem::ReadTextFile(files.front()); file.has_value())
         {
-            std::vector<lexer::Token*> tokens{};
+            std::vector<tokenizer::Token*> tokens{};
             source::DiagnosticSink diagnostic{"<source>"};
             source::SourceText text{std::move(*file)};
-            lexer::LexerContext context{};
-            lexer::Lexer lexer{diagnostic, text, lexer::TriviaMode::All};
+            tokenizer::TokenizerContext context{};
+            tokenizer::Tokenizer lexer{diagnostic, text, tokenizer::TriviaMode::All};
 
             time::Instant const started = time::Instant::Now();
 
@@ -405,15 +405,15 @@ int main(int argc, const char* argv[])
                 {
                     source::LineSpan const loc = text.GetLineSpan(t.Source);
                     fmt::println("ll: {}, {}:{}-{}:{}: {}",
-                        lexer::TriviaKindTraits::GetName(t.Kind),
+                        tokenizer::TriviaKindTraits::GetName(t.Kind),
                         loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
                         t.Source.End.Offset - t.Source.Start.Offset);
                 }
                 {
                     source::LineSpan const loc = text.GetLineSpan(lexer.GetSpan());
                     fmt::println("kk: {} ('{}'): '{}' '{}' '{}', {}:{}-{}:{}: {}",
-                        lexer::TokenKindTraits::GetName(lexer.GetKind()),
-                        lexer::TokenKindTraits::GetSpelling(lexer.GetKind()),
+                        tokenizer::TokenKindTraits::GetName(lexer.GetKind()),
+                        tokenizer::TokenKindTraits::GetSpelling(lexer.GetKind()),
                         lexer.GetPrefix(), lexer.GetValue(), lexer.GetSuffix(),
                         loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
                         lexer.GetSpan().End.Offset - lexer.GetSpan().Start.Offset);
@@ -422,12 +422,12 @@ int main(int argc, const char* argv[])
                 {
                     source::LineSpan const loc = text.GetLineSpan(t.Source);
                     fmt::println("tt: {}, {}:{}-{}:{}: {}",
-                        lexer::TriviaKindTraits::GetName(t.Kind),
+                        tokenizer::TriviaKindTraits::GetName(t.Kind),
                         loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
                         t.Source.End.Offset - t.Source.Start.Offset);
                 }
 
-                if (lexer.GetKind() == lexer::TokenKind::EndOfFile)
+                if (lexer.GetKind() == tokenizer::TokenKind::EndOfFile)
                 {
                     break;
                 }

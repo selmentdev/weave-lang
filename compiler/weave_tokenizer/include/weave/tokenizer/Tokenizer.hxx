@@ -1,10 +1,10 @@
 #pragma once
-#include "weave/lexer/Token.hxx"
+#include "weave/tokenizer/Token.hxx"
 #include "weave/source/Diagnostic.hxx"
 #include "weave/source/SourceCursor.hxx"
 #include "weave/source/SourceText.hxx"
 
-namespace weave::lexer
+namespace weave::tokenizer
 {
     struct LexerToken final
     {
@@ -16,7 +16,7 @@ namespace weave::lexer
         std::string_view Suffix{};
     };
 
-    class Lexer final
+    class Tokenizer final
     {
     private:
         source::DiagnosticSink& _diagnostic;
@@ -33,7 +33,7 @@ namespace weave::lexer
         TokenKind _token_kind{TokenKind::Error};
 
     public:
-        explicit Lexer(
+        explicit Tokenizer(
             source::DiagnosticSink& diagnostic,
             source::SourceText const& source,
             TriviaMode triviaMode)

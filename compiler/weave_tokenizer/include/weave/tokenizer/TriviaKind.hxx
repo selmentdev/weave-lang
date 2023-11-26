@@ -2,12 +2,12 @@
 
 #include <string_view>
 
-namespace weave::lexer
+namespace weave::tokenizer
 {
     enum class TriviaKind
     {
 #define WEAVE_TRIVIA(name, spelling) name,
-#include "weave/lexer/TriviaKind.inl"
+#include "weave/tokenizer/TriviaKind.inl"
     };
 
     class TriviaKindTraits final

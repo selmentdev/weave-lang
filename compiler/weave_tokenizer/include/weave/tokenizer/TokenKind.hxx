@@ -2,12 +2,12 @@
 #include <string_view>
 #include <optional>
 
-namespace weave::lexer
+namespace weave::tokenizer
 {
     enum class TokenKind
     {
 #define WEAVE_TOKEN(name, ...) name,
-#include "weave/lexer/TokenKind.inl"
+#include "weave/tokenizer/TokenKind.inl"
     };
 
     class TokenKindTraits final

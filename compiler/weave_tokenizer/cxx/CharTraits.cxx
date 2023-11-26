@@ -1,6 +1,6 @@
-#include "weave/lexer/CharTraits.hxx"
+#include "weave/tokenizer/CharTraits.hxx"
 
-namespace weave::lexer
+namespace weave::tokenizer
 {
     bool CharTraits::IsIdentifierStart(char32_t c)
     {

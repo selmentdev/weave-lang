@@ -1,8 +1,8 @@
 #pragma once
 #include "weave/BugCheck.hxx"
 #include "weave/source/Source.hxx"
-#include "weave/lexer/TokenKind.hxx"
-#include "weave/lexer/TriviaKind.hxx"
+#include "weave/tokenizer/TokenKind.hxx"
+#include "weave/tokenizer/TriviaKind.hxx"
 
 #include <span>
 
@@ -11,7 +11,7 @@
 // - SyntaxContext - a place to hold state, allocations etc.
 // -*
 
-namespace weave::lexer
+namespace weave::tokenizer
 {
     enum class TriviaMode
     {

@@ -1,8 +1,8 @@
-target_sources(weave_lexer
+target_sources(weave_tokenizer
     PRIVATE
         "CharTraits.cxx"
-        "Lexer.cxx"
-        "LexerContext.cxx"
+        "Tokenizer.cxx"
+        "TokenizerContext.cxx"
         "Token.cxx"
         "TokenKind.cxx"
         "TriviaKind.cxx"

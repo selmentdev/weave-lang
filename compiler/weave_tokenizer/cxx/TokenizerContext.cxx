@@ -1,10 +1,10 @@
-#include "weave/lexer/LexerContext.hxx"
-#include "weave/lexer/Lexer.hxx"
+#include "weave/tokenizer/TokenizerContext.hxx"
+#include "weave/tokenizer/Tokenizer.hxx"
 #include "weave/Unicode.hxx"
 
-namespace weave::lexer
+namespace weave::tokenizer
 {
-    Token* LexerContext::Lex(Lexer& lexer)
+    Token* TokenizerContext::Lex(Tokenizer& lexer)
     {
         if (lexer.Lex())
         {
@@ -84,7 +84,7 @@ namespace weave::lexer
             lexer.GetSpan());
     }
 
-    TriviaRange* LexerContext::CreateTriviaRange(std::span<Trivia const> leading, std::span<Trivia const> trailing)
+    TriviaRange* TokenizerContext::CreateTriviaRange(std::span<Trivia const> leading, std::span<Trivia const> trailing)
     {
         if (leading.empty() and trailing.empty())
         {
@@ -99,7 +99,7 @@ namespace weave::lexer
         return this->TriviaRanges.Emplace(result);
     }
 
-    Token* LexerContext::Create(
+    Token* TokenizerContext::Create(
         TokenKind kind,
         source::SourceSpan const& source)
     {
@@ -109,7 +109,7 @@ namespace weave::lexer
             &this->_empty_trivia);
     }
 
-    Token* LexerContext::Create(
+    Token* TokenizerContext::Create(
         TokenKind kind,
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
@@ -127,7 +127,7 @@ namespace weave::lexer
             this->CreateTriviaRange(leadingTrivia, trailingTrivia));
     }
 
-    Token* LexerContext::CreateMissing(
+    Token* TokenizerContext::CreateMissing(
         TokenKind kind,
         source::SourceSpan const& source)
     {
@@ -137,7 +137,7 @@ namespace weave::lexer
             &this->_empty_trivia);
     }
 
-    CharacterLiteralToken* LexerContext::CreateCharacter(
+    CharacterLiteralToken* TokenizerContext::CreateCharacter(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
@@ -151,7 +151,7 @@ namespace weave::lexer
             value);
     }
 
-    StringLiteralToken* LexerContext::CreateString(
+    StringLiteralToken* TokenizerContext::CreateString(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
@@ -165,7 +165,7 @@ namespace weave::lexer
             value);
     }
 
-    FloatLiteralToken* LexerContext::CreateFloat(
+    FloatLiteralToken* TokenizerContext::CreateFloat(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
@@ -181,7 +181,7 @@ namespace weave::lexer
             value);
     }
 
-    IntegerLiteralToken* LexerContext::CreateInteger(
+    IntegerLiteralToken* TokenizerContext::CreateInteger(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
@@ -197,7 +197,7 @@ namespace weave::lexer
             value);
     }
 
-    IdentifierToken* LexerContext::CreateIdentifier(
+    IdentifierToken* TokenizerContext::CreateIdentifier(
         source::SourceSpan const& source,
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia,
@@ -209,7 +209,7 @@ namespace weave::lexer
             value);
     }
 
-    void LexerContext::QueryMemoryUsage(size_t& allocated, size_t& reserved) const
+    void TokenizerContext::QueryMemoryUsage(size_t& allocated, size_t& reserved) const
     {
         allocated = 0;
         reserved = 0;
@@ -226,7 +226,7 @@ namespace weave::lexer
         this->Strings.QueryMemoryUsage(allocated, reserved);
     }
 
-    void LexerContext::DumpMemoryUsage() const
+    void TokenizerContext::DumpMemoryUsage() const
     {
         {
             size_t allocated = 0;

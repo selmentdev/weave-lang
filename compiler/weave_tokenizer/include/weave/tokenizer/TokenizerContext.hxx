@@ -1,13 +1,13 @@
 #pragma once
 #include "weave/memory/TypedLinearAllocator.hxx"
 #include "weave/stringpool/StringPool.hxx"
-#include "weave/lexer/Token.hxx"
+#include "weave/tokenizer/Token.hxx"
 
-namespace weave::lexer
+namespace weave::tokenizer
 {
-    class Lexer;
+    class Tokenizer;
 
-    struct LexerContext
+    struct TokenizerContext
     {
         // Regular tokens, produced during parsing.
         memory::TypedLinearAllocator<Token> Tokens{16u << 10u};
@@ -23,7 +23,7 @@ namespace weave::lexer
 
         stringpool::StringPool Strings{};
 
-        Token* Lex(Lexer& lexer);
+        Token* Lex(Tokenizer& lexer);
 
     private:
         TriviaRange _empty_trivia{};

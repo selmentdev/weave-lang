@@ -1,0 +1,14 @@
+add_library(weave_tokenizer STATIC)
+
+target_include_directories(weave_tokenizer PUBLIC "include")
+
+target_link_libraries(weave_tokenizer PUBLIC weave_bugcheck)
+target_link_libraries(weave_tokenizer PUBLIC weave_unicode)
+target_link_libraries(weave_tokenizer PUBLIC weave_source)
+target_link_libraries(weave_tokenizer PUBLIC weave_hash)
+target_link_libraries(weave_tokenizer PUBLIC weave_stringpool)
+target_link_libraries(weave_tokenizer PUBLIC weave_memory)
+
+WEAVE_CXX_FORTIFY_CODE(weave_tokenizer)
+
+add_subdirectory(cxx)
