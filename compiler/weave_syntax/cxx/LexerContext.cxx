@@ -2,26 +2,6 @@
 #include "weave/syntax/Lexer.hxx"
 #include "weave/Unicode.hxx"
 
-namespace weave::syntax::impl
-{
-    constexpr bool TokenKindCanStoreValue(TokenKind value)
-    {
-        switch (value)  // NOLINT(clang-diagnostic-switch-enum)
-        {
-        case TokenKind::FloatLiteral:
-        case TokenKind::IntegerLiteral:
-        case TokenKind::StringLiteral:
-        case TokenKind::CharacterLiteral:
-            return true;
-
-        default:
-            break;
-        }
-
-        return false;
-    }
-}
-
 namespace weave::syntax
 {
     Token* LexerContext::Lex(Lexer& lexer)
@@ -104,6 +84,21 @@ namespace weave::syntax
             lexer.GetSpan());
     }
 
+    TriviaRange* LexerContext::CreateTriviaRange(std::span<Trivia const> leading, std::span<Trivia const> trailing)
+    {
+        if (leading.empty() and trailing.empty())
+        {
+            return &this->_empty_trivia;
+        }
+
+        TriviaRange const result{
+            .Leading = this->Trivias.EmplaceArray(leading),
+            .Trailing = this->Trivias.EmplaceArray(trailing),
+        };
+
+        return this->TriviaRanges.Emplace(result);
+    }
+
     Token* LexerContext::Create(
         TokenKind kind,
         source::SourceSpan const& source)
@@ -119,41 +114,16 @@ namespace weave::syntax
         std::span<Trivia const> leadingTrivia,
         std::span<Trivia const> trailingTrivia)
     {
-        WEAVE_ASSERT(impl::TokenKindCanStoreValue(kind) == false);
-
-        return this->Create(
-            kind,
-            source,
-            this->Trivias.EmplaceArray(leadingTrivia),
-            this->Trivias.EmplaceArray(trailingTrivia),
-            nullptr);
-    }
-
-    Token* LexerContext::Create(
-        TokenKind kind,
-        source::SourceSpan const& source,
-        std::span<Trivia const> leadingTrivia,
-        std::span<Trivia const> trailingTrivia,
-        void* value)
-    {
-        WEAVE_ASSERT(leadingTrivia.size() < std::numeric_limits<uint16_t>::max());
-        WEAVE_ASSERT(trailingTrivia.size() < std::numeric_limits<uint16_t>::max());
-        WEAVE_ASSERT(impl::TokenKindCanStoreValue(kind) == true);
-
-        Trivia const* trivia = nullptr;
-
-        if (size_t const count = leadingTrivia.size() + trailingTrivia.size(); count != 0)
-        {
-            trivia = this->Trivias.EmplaceArrayCombined(leadingTrivia, trailingTrivia).data();
-        }
+        WEAVE_ASSERT(kind != TokenKind::Identifier);
+        WEAVE_ASSERT(kind != TokenKind::IntegerLiteral);
+        WEAVE_ASSERT(kind != TokenKind::FloatLiteral);
+        WEAVE_ASSERT(kind != TokenKind::StringLiteral);
+        WEAVE_ASSERT(kind != TokenKind::CharacterLiteral);
 
         return this->Tokens.Emplace(
             kind,
             source,
-            trivia,
-            static_cast<uint16_t>(leadingTrivia.size()),
-            static_cast<uint16_t>(trailingTrivia.size()),
-            value);
+            this->CreateTriviaRange(leadingTrivia, trailingTrivia));
     }
 
     Token* LexerContext::CreateMissing(
@@ -172,13 +142,10 @@ namespace weave::syntax
         CharacterPrefixKind prefix,
         char32_t value)
     {
-        Token* result = this->Create(
-            TokenKind::CharacterLiteral,
+        return this->Tokens.Emplace(
             source,
-            leadingTrivia,
-            trailingTrivia,
+            this->CreateTriviaRange(leadingTrivia, trailingTrivia),
             this->CharacterLiterals.Emplace(prefix, value));
-        return result;
     }
 
     Token* LexerContext::CreateString(
@@ -188,13 +155,10 @@ namespace weave::syntax
         StringPrefixKind prefix,
         std::string_view value)
     {
-        Token* result = this->Create(
-            TokenKind::StringLiteral,
+        return this->Tokens.Emplace(
             source,
-            leadingTrivia,
-            trailingTrivia,
-            this->StringLiterals.Emplace(prefix, this->Strings.Get(value)));
-        return result;
+            this->CreateTriviaRange(leadingTrivia, trailingTrivia),
+            this->StringLiterals.Emplace(prefix, value));
     }
 
     Token* LexerContext::CreateFloat(
@@ -205,13 +169,10 @@ namespace weave::syntax
         std::string_view value,
         FloatLiteralSuffixKind suffix)
     {
-        Token* result = this->Create(
-            TokenKind::FloatLiteral,
+        return this->Tokens.Emplace(
             source,
-            leadingTrivia,
-            trailingTrivia,
-            this->FloatLiterals.Emplace(prefix, suffix, this->Strings.Get(value)));
-        return result;
+            this->CreateTriviaRange(leadingTrivia, trailingTrivia),
+            this->FloatLiterals.Emplace(prefix, suffix, value));
     }
 
     Token* LexerContext::CreateInteger(
@@ -222,13 +183,10 @@ namespace weave::syntax
         std::string_view value,
         IntegerLiteralSuffixKind suffix)
     {
-        Token* result = this->Create(
-            TokenKind::IntegerLiteral,
+        return this->Tokens.Emplace(
             source,
-            leadingTrivia,
-            trailingTrivia,
-            this->IntegerLiterals.Emplace(prefix, suffix, this->Strings.Get(value)));
-        return result;
+            this->CreateTriviaRange(leadingTrivia, trailingTrivia),
+            this->IntegerLiterals.Emplace(prefix, suffix, value));
     }
 
     Token* LexerContext::CreateIdentifier(
@@ -237,13 +195,10 @@ namespace weave::syntax
         std::span<Trivia const> trailingTrivia,
         std::string_view value)
     {
-        Token* result = this->Create(
-            TokenKind::Identifier,
+        return this->Tokens.Emplace(
             source,
-            leadingTrivia,
-            trailingTrivia,
-            this->Identifiers.Emplace(this->Strings.Get(value)));
-        return result;
+            this->CreateTriviaRange(leadingTrivia, trailingTrivia),
+            this->Identifiers.Emplace(value));
     }
 
     void LexerContext::QueryMemoryUsage(size_t& allocated, size_t& reserved) const
@@ -253,6 +208,7 @@ namespace weave::syntax
 
         this->Tokens.QueryMemoryUsage(allocated, reserved);
         this->MissingTokens.QueryMemoryUsage(allocated, reserved);
+        this->TriviaRanges.QueryMemoryUsage(allocated, reserved);
         this->Trivias.QueryMemoryUsage(allocated, reserved);
         this->CharacterLiterals.QueryMemoryUsage(allocated, reserved);
         this->StringLiterals.QueryMemoryUsage(allocated, reserved);
@@ -276,6 +232,12 @@ namespace weave::syntax
             size_t reserved = 0;
             this->MissingTokens.QueryMemoryUsage(allocated, reserved);
             fmt::println("MissingTokens:        allocated = {}, reserved = {}", allocated, reserved);
+        }
+        {
+            size_t allocated = 0;
+            size_t reserved = 0;
+            this->TriviaRanges.QueryMemoryUsage(allocated, reserved);
+            fmt::println("TriviaRanges:         allocated = {}, reserved = {}", allocated, reserved);
         }
         {
             size_t allocated = 0;

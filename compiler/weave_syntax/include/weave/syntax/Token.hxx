@@ -26,6 +26,12 @@ namespace weave::syntax
         source::SourceSpan Source{};
     };
 
+    struct TriviaRange final
+    {
+        std::span<Trivia const> Leading{};
+        std::span<Trivia const> Trailing{};
+    };
+
     enum class NumberLiteralPrefixKind
     {
         Default,
@@ -129,34 +135,60 @@ namespace weave::syntax
     private:
         TokenKind _kind{};
         source::SourceSpan _source{};
-        uint16_t _leading_trivia_count{};
-        uint16_t _trailing_trivia_count{};
-        Trivia const* _trivia{};
-        void* _value{};
+        TriviaRange const* _trivia{};
+        void const* _data{};
 
     public:
-        Token(TokenKind kind, source::SourceSpan source)
+        Token(TokenKind kind, source::SourceSpan const& source)
             : _kind{kind}
             , _source{source}
         {
         }
 
-        Token(TokenKind kind, source::SourceSpan source, Trivia const* trivia, uint16_t leading_trivia_count, uint16_t trailing_trivia_count)
+        Token(TokenKind kind, source::SourceSpan const& source, TriviaRange const* trivia)
             : _kind{kind}
             , _source{source}
-            , _leading_trivia_count{leading_trivia_count}
-            , _trailing_trivia_count{trailing_trivia_count}
             , _trivia{trivia}
         {
         }
 
-        Token(TokenKind kind, source::SourceSpan source, Trivia const* trivia, uint16_t leading_trivia_count, uint16_t trailing_trivia_count, void* value)
-            : _kind{kind}
+        Token(source::SourceSpan const& source, TriviaRange const* trivia, IntegerLiteralValue const* value)
+            : _kind{TokenKind::IntegerLiteral}
             , _source{source}
-            , _leading_trivia_count{leading_trivia_count}
-            , _trailing_trivia_count{trailing_trivia_count}
             , _trivia{trivia}
-            , _value{value}
+            , _data{value}
+        {
+        }
+
+        Token(source::SourceSpan const& source, TriviaRange const* trivia, FloatLiteralValue const* value)
+            : _kind{TokenKind::FloatLiteral}
+            , _source{source}
+            , _trivia{trivia}
+            , _data{value}
+        {
+        }
+
+        Token(source::SourceSpan const& source, TriviaRange const* trivia, StringLiteralValue const* value)
+            : _kind{TokenKind::StringLiteral}
+            , _source{source}
+            , _trivia{trivia}
+            , _data{value}
+        {
+        }
+
+        Token(source::SourceSpan const& source, TriviaRange const* trivia, CharacterLiteralValue const* value)
+            : _kind{TokenKind::CharacterLiteral}
+            , _source{source}
+            , _trivia{trivia}
+            , _data{value}
+        {
+        }
+
+        Token(source::SourceSpan const& source, TriviaRange const* trivia, Identifier const* value)
+            : _kind{TokenKind::Identifier}
+            , _source{source}
+            , _trivia{trivia}
+            , _data{value}
         {
         }
 
@@ -172,19 +204,19 @@ namespace weave::syntax
 
         [[nodiscard]] std::span<Trivia const> GetLeadingTrivia() const
         {
-            return std::span{this->_trivia, this->_leading_trivia_count};
+            return this->_trivia->Leading;
         }
 
         [[nodiscard]] std::span<Trivia const> GetTrailingTrivia() const
         {
-            return std::span{this->_trivia + this->_leading_trivia_count, this->_trailing_trivia_count};
+            return this->_trivia->Trailing;
         }
 
         [[nodiscard]] constexpr IntegerLiteralValue const* TryGetIntegerValue() const
         {
             if (this->_kind == TokenKind::IntegerLiteral)
             {
-                return static_cast<IntegerLiteralValue const*>(this->_value);
+                return static_cast<IntegerLiteralValue const*>(this->_data);
             }
 
             return nullptr;
@@ -194,7 +226,7 @@ namespace weave::syntax
         {
             if (this->_kind == TokenKind::FloatLiteral)
             {
-                return static_cast<FloatLiteralValue const*>(this->_value);
+                return static_cast<FloatLiteralValue const*>(this->_data);
             }
 
             return nullptr;
@@ -204,7 +236,7 @@ namespace weave::syntax
         {
             if (this->_kind == TokenKind::StringLiteral)
             {
-                return static_cast<StringLiteralValue const*>(this->_value);
+                return static_cast<StringLiteralValue const*>(this->_data);
             }
 
             return nullptr;
@@ -214,7 +246,7 @@ namespace weave::syntax
         {
             if (this->_kind == TokenKind::CharacterLiteral)
             {
-                return static_cast<CharacterLiteralValue const*>(this->_value);
+                return static_cast<CharacterLiteralValue const*>(this->_data);
             }
 
             return nullptr;
@@ -223,25 +255,25 @@ namespace weave::syntax
         [[nodiscard]] IntegerLiteralValue const& GetIntegerValue() const
         {
             WEAVE_ASSERT(this->_kind == TokenKind::IntegerLiteral);
-            return *static_cast<IntegerLiteralValue const*>(this->_value);
+            return *static_cast<IntegerLiteralValue const*>(this->_data);
         }
 
         [[nodiscard]] FloatLiteralValue const& GetFloatValue() const
         {
             WEAVE_ASSERT(this->_kind == TokenKind::FloatLiteral);
-            return *static_cast<FloatLiteralValue const*>(this->_value);
+            return *static_cast<FloatLiteralValue const*>(this->_data);
         }
 
         [[nodiscard]] StringLiteralValue const& GetStringValue() const
         {
             WEAVE_ASSERT(this->_kind == TokenKind::StringLiteral);
-            return *static_cast<StringLiteralValue const*>(this->_value);
+            return *static_cast<StringLiteralValue const*>(this->_data);
         }
 
         [[nodiscard]] CharacterLiteralValue const& GetCharacterValue() const
         {
             WEAVE_ASSERT(this->_kind == TokenKind::CharacterLiteral);
-            return *static_cast<CharacterLiteralValue const*>(this->_value);
+            return *static_cast<CharacterLiteralValue const*>(this->_data);
         }
     };
 }

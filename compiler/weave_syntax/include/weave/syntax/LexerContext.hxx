@@ -16,6 +16,7 @@ namespace weave::syntax
         memory::TypedLinearAllocator<Token> MissingTokens{};
 
         // Trivias allocated for tokens.
+        memory::TypedLinearAllocator<TriviaRange> TriviaRanges{};
         memory::TypedLinearAllocator<Trivia> Trivias{};
         memory::TypedLinearAllocator<CharacterLiteralValue> CharacterLiterals{};
         memory::TypedLinearAllocator<StringLiteralValue> StringLiterals{};
@@ -27,6 +28,14 @@ namespace weave::syntax
 
         Token* Lex(Lexer& lexer);
 
+    private:
+        TriviaRange _empty_trivia{};
+
+        TriviaRange* CreateTriviaRange(
+            std::span<Trivia const> leading,
+            std::span<Trivia const> trailing);
+
+    public:
         Token* Create(
             TokenKind kind,
             source::SourceSpan const& source);
@@ -36,13 +45,6 @@ namespace weave::syntax
             source::SourceSpan const& source,
             std::span<Trivia const> leadingTrivia,
             std::span<Trivia const> trailingTrivia);
-
-        Token* Create(
-            TokenKind kind,
-            source::SourceSpan const& source,
-            std::span<Trivia const> leadingTrivia,
-            std::span<Trivia const> trailingTrivia,
-            void* value);
 
         Token* CreateMissing(
             TokenKind kind,
