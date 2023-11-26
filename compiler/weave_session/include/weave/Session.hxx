@@ -9,57 +9,32 @@
 
 namespace weave::session
 {
+    struct SanitizersSpec final
+    {
+        bool AddressSanitizer{};
+        bool ThreadSanitizer{};
+        bool MemorySanitizer{};
+        bool LeakSanitizer{};
+    };
+
     class CodeGeneratorOptions final
     {
+    private:
+        bool ApplyOptionFromCommandLine(std::string_view name, std::optional<std::string_view> const& value);
+
     public:
         static CodeGeneratorOptions FromCommandLine(
             errors::Handler& handler,
             commandline::CommandLineParseResult const& command_line);
 
     public:
-        bool CheckedFromString(std::optional<std::string_view> const& value)
-        {
-            if (value)
-            {
-                if (*value == "true")
-                {
-                    this->Checked = true;
-                    return true;
-                }
-
-                if (*value == "false")
-                {
-                    this->Checked = false;
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        bool DebugFromString(std::optional<std::string_view> const& value)
-        {
-            if (value)
-            {
-                if (*value == "true")
-                {
-                    this->Debug = true;
-                    return true;
-                }
-
-                if (*value == "false")
-                {
-                    this->Debug = false;
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-    public:
         bool Checked = false;
         bool Debug = false;
+        uint32_t OptimizationLevel = 0;
+        SanitizersSpec Sanitizers{};
+
+    public:
+        void DebugPrint();
     };
 
     class ExperimentalOptions final

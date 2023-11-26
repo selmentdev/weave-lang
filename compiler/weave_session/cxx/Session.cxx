@@ -2,6 +2,8 @@
 
 #include <array>
 #include <span>
+#include <charconv>
+#include "weave/core/String.hxx"
 
 namespace weave::session::impl
 {
@@ -41,44 +43,94 @@ namespace weave::session::impl
         return false;
     }
 
-
-}
-
-namespace weave::session
-{
-}
-
-namespace weave::session
-{
-    template <typename O>
-    using OptionSetter = bool (O::*)(std::optional<std::string_view> const& value);
-
-    template <typename O>
-    struct Option
+    template <typename T>
+    bool ParseInteger(T& result, std::optional<std::string_view> const& value)
+        requires(std::is_integral_v<T>)
     {
-        std::string_view name;
-        std::string_view description;
-        OptionSetter<O> setter;
-    };
-
-    static constexpr Option<CodeGeneratorOptions> g_CodeGeneratorOptions[]{
-        // clang-format off
-        {"checked", "Enables checked build", &CodeGeneratorOptions::CheckedFromString},
-        {"debug", "Enables debug symbol info", &CodeGeneratorOptions::DebugFromString},
-        // clang-format on
-    };
-
-    template <typename O>
-    bool ApplyOption(std::span<Option<O> const> options, O& result, std::string_view name, std::optional<std::string_view> value)
-    {
-        auto it = std::find_if(options.begin(), options.end(), [&](Option<O> const& option)
-            {
-                return option.name == name;
-            });
-
-        if (it != options.end())
+        if (value.has_value())
         {
-            return (result.*(it->setter))(value);
+            const char* first = value->data();
+            const char* last = first + value->size();
+
+            auto [end, err] = std::from_chars(first, last, result);
+
+            return (end == last) and (err == std::errc{});
+        }
+
+        return false;
+    }
+
+    template <typename T>
+    bool ParseFloat(T& result, std::optional<std::string_view> const& value)
+        requires(std::is_floating_point_v<T>)
+    {
+        if (value.has_value())
+        {
+            const char* first = value->data();
+            const char* last = first + value->size();
+
+            auto [end, err] = std::from_chars(first, last, result);
+
+            return (end == last) and (err == std::errc{});
+        }
+
+        return false;
+    }
+
+    bool ParseSanitizersSpec(SanitizersSpec& result, std::optional<std::string_view> const& value)
+    {
+        result = {};
+
+        for (std::string const& item : core::Split(*value, ','))
+        {
+            if (item == "address")
+            {
+                result.AddressSanitizer = true;
+            }
+            else if (item == "thread")
+            {
+                result.ThreadSanitizer = true;
+            }
+            else if (item == "memory")
+            {
+                result.MemorySanitizer = true;
+            }
+            else if (item == "leak")
+            {
+                result.MemorySanitizer = true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
+namespace weave::session
+{
+    bool CodeGeneratorOptions::ApplyOptionFromCommandLine(std::string_view name, std::optional<std::string_view> const& value)
+    {
+        if (name == "debug")
+        {
+            return impl::ParseBoolean(this->Debug, value);
+        }
+
+        if (name == "checked")
+        {
+            return impl::ParseBoolean(this->Checked, value);
+        }
+
+        if (name == "opt")
+        {
+            return impl::ParseInteger(this->OptimizationLevel, value);
+        }
+
+        if (name == "sanitizers")
+        {
+            return impl::ParseSanitizersSpec(this->Sanitizers, value);
         }
 
         return false;
@@ -95,7 +147,7 @@ namespace weave::session
             std::string_view name{};
             auto const& value = impl::SplitNameValue(item, name);
 
-            if (!ApplyOption(std::span<Option<CodeGeneratorOptions> const>{g_CodeGeneratorOptions}, result, name, value))
+            if (not result.ApplyOptionFromCommandLine(name, value))
             {
                 if (value.has_value())
                 {
@@ -111,6 +163,17 @@ namespace weave::session
         return result;
     }
 
+
+    void CodeGeneratorOptions::DebugPrint()
+    {
+        fmt::println(stderr, "Checked                                 : {}", this->Checked);
+        fmt::println(stderr, "Debug                                   : {}", this->Debug);
+        fmt::println(stderr, "OptimizationLevel                       : {}", this->OptimizationLevel);
+        fmt::println(stderr, "Sanitizers.AddressSanitizer             : {}", this->Sanitizers.AddressSanitizer);
+        fmt::println(stderr, "Sanitizers.ThreadSanitizer              : {}", this->Sanitizers.ThreadSanitizer);
+        fmt::println(stderr, "Sanitizers.MemorySanitizer              : {}", this->Sanitizers.MemorySanitizer);
+        fmt::println(stderr, "Sanitizers.LeakSanitizer                : {}", this->Sanitizers.LeakSanitizer);
+    }
 
     ExperimentalOptions ExperimentalOptions::FromCommandLine(
         errors::Handler& handler,
