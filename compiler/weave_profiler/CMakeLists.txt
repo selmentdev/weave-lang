@@ -1,0 +1,12 @@
+add_library(weave_profiler STATIC)
+
+target_include_directories(weave_profiler PUBLIC include)
+
+target_link_libraries(weave_profiler PUBLIC weave_platform)
+target_link_libraries(weave_profiler PUBLIC weave_time)
+target_link_libraries(weave_profiler PUBLIC weave_memory)
+target_link_libraries(weave_profiler PUBLIC weave_filesystem)
+
+WEAVE_CXX_FORTIFY_CODE(weave_profiler)
+
+add_subdirectory(cxx)

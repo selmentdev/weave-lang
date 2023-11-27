@@ -47,3 +47,16 @@ namespace weave::filesystem
         }
     };
 }
+
+namespace weave::filesystem
+{
+    inline std::expected<void, FileSystemError> Write(FileWriter& writer, std::string_view value)
+    {
+        if (auto processed = writer.Write(std::as_bytes(std::span{value})); not processed)
+        {
+            return std::unexpected(processed.error());
+        }
+
+        return {};
+    }
+}
