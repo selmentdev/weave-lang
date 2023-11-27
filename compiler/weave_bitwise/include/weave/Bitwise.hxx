@@ -1,4 +1,5 @@
 #pragma once
+#include "weave/platform/Compiler.hxx"
 #include <bit>
 #include <cstddef>
 #include <cstdint>
@@ -151,16 +152,24 @@ namespace weave::bitwise
     T LoadUnaligned(void const* source)
         requires(std::is_trivially_copyable_v<T>)
     {
+#if WEAVE_FEATURE_UNALIGNED_ACCESS
+        return *static_cast<T const*>(source);
+#else
         T result;
         memcpy(&result, source, sizeof(T));
         return result;
+#endif
     }
 
     template <typename T>
     void StoreUnaligned(void* destination, T value)
         requires(std::is_trivially_copyable_v<T>)
     {
+#if WEAVE_FEATURE_UNALIGNED_ACCESS
+        *static_cast<T*>(destination) = value;
+#else
         memcpy(destination, &value, sizeof(T));
+#endif
     }
 }
 
