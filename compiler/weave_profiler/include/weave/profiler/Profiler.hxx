@@ -10,21 +10,40 @@
 
 namespace weave::profiler
 {
-    struct InstantEvent final
+    struct Event
     {
+    public:
         const char* Category{};
         const char* Name{};
-        time::Duration Timestamp{};
+        time::Instant Timestamp{};
         uintptr_t ThreadId{};
+
+    public:
+        Event(const char* category, const char* name, time::Instant const& timestamp, uintptr_t thread_id)
+            : Category{category}
+            , Name{name}
+            , Timestamp{timestamp}
+            , ThreadId{thread_id}
+        {
+        }
     };
 
-    struct CompleteEvent final
+    struct InstantEvent final : public Event
     {
-        const char* Category{};
-        const char* Name{};
-        time::Duration Started{};
-        time::Duration Finished{};
-        uintptr_t ThreadId{};
+        InstantEvent(const char* category, const char* name, time::Instant const& timestamp, uintptr_t thread_id)
+            : Event{category, name, timestamp, thread_id}
+        {
+        }
+    };
+
+    struct CompleteEvent final : public Event
+    {
+        time::Duration Duration{};
+
+        CompleteEvent(const char* category, const char* name, time::Instant const& timestamp, uintptr_t thread_id)
+            : Event{category, name, timestamp, thread_id}
+        {
+        }
     };
 
     class Profiler
@@ -32,7 +51,6 @@ namespace weave::profiler
     private:
         memory::TypedLinearAllocator<InstantEvent> _events{};
         memory::TypedLinearAllocator<CompleteEvent> _complete_events{};
-        time::Instant _started{};
 
     public:
         Profiler();

@@ -15,6 +15,11 @@ namespace weave::time
             return Duration{current.Value - this->Value};
         }
 
+        [[nodiscard]] Duration SinceEpoch() const
+        {
+            return Duration{this->Value};
+        }
+
         [[nodiscard]] constexpr auto operator<=>(Instant const& other) const = default;
     };
 }

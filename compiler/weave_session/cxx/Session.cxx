@@ -22,7 +22,9 @@ namespace weave::session::impl
             return std::nullopt;
         }
     }
+}
 
+namespace weave::session
     bool ParseBoolean(bool& result, std::optional<std::string_view> const& value)
     {
         if (value.has_value())

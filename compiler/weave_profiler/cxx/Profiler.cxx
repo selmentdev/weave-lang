@@ -9,7 +9,7 @@ namespace weave::profiler::impl
             R"__({{ "cat": "{}", "name": "{}", "ph": "i", "ts": {}, "pid": 1, "tid": {} }},)__",
             e.Category,
             e.Name,
-            e.Timestamp.AsMicroseconds(),
+            e.Timestamp.SinceEpoch().AsMicroseconds(),
             e.ThreadId);
     }
 
@@ -20,32 +20,28 @@ namespace weave::profiler::impl
             R"__({{ "cat": "{}", "name": "{}", "ph": "X", "ts": {}, "dur": {}, "pid": 1, "tid": {} }},)__",
             e.Category,
             e.Name,
-            e.Started.AsMicroseconds(),
-            (e.Finished - e.Started).AsMicroseconds(),
+            e.Timestamp.SinceEpoch().AsMicroseconds(),
+            e.Duration.AsMicroseconds(),
             e.ThreadId);
     }
 }
 
 namespace weave::profiler
 {
-    Profiler::Profiler()
-    {
-        this->_started = time::Instant::Now();
-    }
+    Profiler::Profiler() = default;
 
     CompleteEvent* Profiler::Start(const char* category, const char* name)
     {
         return this->_complete_events.Emplace(
             category,
             name,
-            this->_started.QueryElapsed(),
-            time::Duration{},
+            time::Instant::Now(),
             2137);
     }
 
     void Profiler::Stop(CompleteEvent* e)
     {
-        e->Finished = this->_started.QueryElapsed();
+        e->Duration = e->Timestamp.QueryElapsed();
     }
 
     void Profiler::Event(const char* category, const char* name)
@@ -53,7 +49,7 @@ namespace weave::profiler
         (void)this->_events.Emplace(
             category,
             name,
-            this->_started.QueryElapsed(),
+            time::Instant::Now(),
             2137);
     }
 
