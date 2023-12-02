@@ -70,7 +70,7 @@ namespace weave::bitwise
 {
     template <typename T>
     [[nodiscard]] constexpr T RotateRight(T value, int bits)
-    requires(std::is_unsigned_v<T>);
+        requires(std::is_unsigned_v<T>);
 
     template <typename T>
     [[nodiscard]] constexpr T RotateLeft(T value, int bits)
@@ -118,6 +118,77 @@ namespace weave::bitwise
 namespace weave::bitwise
 {
     template <typename T>
+    [[nodiscard]] constexpr int BitCountLeadingZeros(T value)
+        requires(std::is_unsigned_v<T>)
+    {
+        return std::countl_zero(value);
+    }
+
+    template <typename T>
+    [[nodiscard]] constexpr int BitCountLeadingOnes(T value)
+        requires(std::is_unsigned_v<T>)
+    {
+        return std::countl_one(value);
+    }
+
+    template <typename T>
+    [[nodiscard]] constexpr int BitCountTrailingZeros(T value)
+        requires(std::is_unsigned_v<T>)
+    {
+        return std::countr_zero(value);
+    }
+
+    template <typename T>
+    [[nodiscard]] constexpr int BitCountTrailingOnes(T value)
+        requires(std::is_unsigned_v<T>)
+    {
+        return std::countr_one(value);
+    }
+
+    template <std::unsigned_integral T>
+    [[nodiscard]] constexpr int BitCount(T value) noexcept
+    {
+        return std::popcount(value);
+    }
+
+    template <std::unsigned_integral T>
+    [[nodiscard]] constexpr size_t BitWidth(T value) noexcept
+    {
+        return std::bit_width(value);
+    }
+
+    template <std::unsigned_integral T>
+    [[nodiscard]] constexpr bool IsPowerOf2(T value) noexcept
+    {
+        return (value != 0) && ((value & (value - 1)) == 0);
+    }
+
+    template <std::unsigned_integral T>
+    [[nodiscard]] constexpr T BitCeil(T value) noexcept
+    {
+        if (value == 0)
+        {
+            return 1;
+        }
+
+        return static_cast<T>(T{1} << (std::numeric_limits<T>::digits - BitCountLeadingZeros(static_cast<T>(value - 1))));
+    }
+
+    template <std::unsigned_integral T>
+    [[nodiscard]] constexpr T BitFloor(T value) noexcept
+    {
+        if (value == 0)
+        {
+            return 0;
+        }
+
+        return static_cast<T>(T{1} << (std::numeric_limits<T>::digits - 1 - BitCountLeadingZeros(value)));
+    }
+}
+
+namespace weave::bitwise
+{
+    template <typename T>
     constexpr T ToBigEndian(T value)
         requires(std::is_integral_v<T>)
     {
@@ -143,7 +214,7 @@ namespace weave::bitwise
         {
             return value;
         }
-    }    
+    }
 }
 
 namespace weave::bitwise

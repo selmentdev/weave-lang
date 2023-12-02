@@ -32,7 +32,7 @@ TEST_CASE("Cryptography Sha256")
     SECTION("foobar")
     {
         Sha256Initialize(context);
-        Sha256Update(context, reinterpret_cast<std::byte const*>("foobar"), 6);
+        Sha256Update(context, std::as_bytes(std::span{std::string_view{"foobar"}}));
         auto const hash = Sha256Finalize(context);
 
         constexpr uint8_t expected[]{
@@ -52,7 +52,7 @@ TEST_CASE("Cryptography Sha256")
             0x74, 0xe5, 0x92, 0xc2, 0xfa, 0x38, 0x3d, 0x4a, 0x39, 0x60, 0x71, 0x4c, 0xae, 0xf0, 0xc4, 0xf2};
 
         Sha256Initialize(context);
-        Sha256Update(context, reinterpret_cast<std::byte const*>(source), std::size(source));
+        Sha256Update(context, std::as_bytes(std::span{source}));
         auto const hash = Sha256Finalize(context);
 
         constexpr uint8_t expected[]{

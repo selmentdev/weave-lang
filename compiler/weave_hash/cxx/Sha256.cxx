@@ -127,19 +127,18 @@ namespace weave::hash
         context.size = 0;
     }
 
-    void Sha256Update(Sha256& context, std::byte const* buffer, size_t length)
+    void Sha256Update(Sha256& context, std::span<std::byte const> buffer)
     {
-        while (length > 0)
+        while (not buffer.empty())
         {
-            size_t const n = std::min(length, 64 - context.size);
+            size_t const n = std::min(buffer.size(), 64 - context.size);
 
-            std::memcpy(&context.buffer[context.size], buffer, n);
+            std::memcpy(&context.buffer[context.size], buffer.data(), n);
 
             context.size += n;
             context.count += n;
 
-            length -= n;
-            buffer += n;
+            buffer = buffer.subspan(n);
 
             if (context.size == 64)
             {
@@ -164,7 +163,7 @@ namespace weave::hash
             paddingSize = 64 + 56 - context.size;
         }
 
-        Sha256Update(context, sha256_impl::Padding, paddingSize);
+        Sha256Update(context, std::span{sha256_impl::Padding, paddingSize});
 
         bitwise::StoreUnalignedBigEndian(&context.buffer[56], total_size);
 
@@ -180,11 +179,11 @@ namespace weave::hash
         return digest;
     }
 
-    auto Sha256FromBuffer(std::byte const* buffer, size_t length) -> std::array<uint8_t, 32>
+    auto Sha256FromBuffer(std::span<std::byte const> buffer) -> std::array<uint8_t, 32>
     {
         Sha256 context;
         Sha256Initialize(context);
-        Sha256Update(context, buffer, length);
+        Sha256Update(context, buffer);
         return Sha256Finalize(context);
     }
 
@@ -192,7 +191,7 @@ namespace weave::hash
     {
         Sha256 context;
         Sha256Initialize(context);
-        Sha256Update(context, reinterpret_cast<std::byte const*>(value.data()), value.size());
+        Sha256Update(context, std::as_bytes(std::span{value}));
         return Sha256Finalize(context);
     }
 }
