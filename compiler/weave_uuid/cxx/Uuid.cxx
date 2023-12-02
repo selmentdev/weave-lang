@@ -1,6 +1,8 @@
 #include "weave/Uuid.hxx"
 #include "weave/hash/Sha256.hxx"
 
+#include <utility>
+
 namespace weave::uuid::impl
 {
     [[nodiscard]] constexpr char ToDigit(size_t value)

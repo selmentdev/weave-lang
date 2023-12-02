@@ -145,26 +145,30 @@ namespace weave::bitwise
         return std::countr_one(value);
     }
 
-    template <std::unsigned_integral T>
-    [[nodiscard]] constexpr int BitCount(T value) noexcept
+    template <typename T>
+    [[nodiscard]] constexpr int BitCount(T value)
+        requires(std::is_unsigned_v<T>)
     {
         return std::popcount(value);
     }
 
-    template <std::unsigned_integral T>
-    [[nodiscard]] constexpr size_t BitWidth(T value) noexcept
+    template <typename T>
+    [[nodiscard]] constexpr size_t BitWidth(T value)
+        requires(std::is_unsigned_v<T>)
     {
         return std::bit_width(value);
     }
 
-    template <std::unsigned_integral T>
-    [[nodiscard]] constexpr bool IsPowerOf2(T value) noexcept
+    template <typename T>
+    [[nodiscard]] constexpr bool IsPowerOf2(T value)
+        requires(std::is_unsigned_v<T>)
     {
         return (value != 0) && ((value & (value - 1)) == 0);
     }
 
-    template <std::unsigned_integral T>
-    [[nodiscard]] constexpr T BitCeil(T value) noexcept
+    template <typename T>
+    [[nodiscard]] constexpr T BitCeil(T value)
+        requires(std::is_unsigned_v<T>)
     {
         if (value == 0)
         {
@@ -174,8 +178,9 @@ namespace weave::bitwise
         return static_cast<T>(T{1} << (std::numeric_limits<T>::digits - BitCountLeadingZeros(static_cast<T>(value - 1))));
     }
 
-    template <std::unsigned_integral T>
-    [[nodiscard]] constexpr T BitFloor(T value) noexcept
+    template <typename T>
+    [[nodiscard]] constexpr T BitFloor(T value)
+        requires(std::is_unsigned_v<T>)
     {
         if (value == 0)
         {
