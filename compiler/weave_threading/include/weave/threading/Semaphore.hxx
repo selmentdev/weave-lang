@@ -9,6 +9,8 @@ namespace weave::threading::impl
     {
 #if defined(WIN32)
         void* Native[1];
+#elif defined(__linux__)
+        void* Native[4];
 #else
 #error "Not implemented"
 #endif

@@ -1,6 +1,8 @@
 #pragma once
 #include "weave/time/Duration.hxx"
 
+#include <cstddef>
+
 namespace weave::threading::impl
 {
     inline constexpr size_t YieldThreadTreshold = 0xFF;

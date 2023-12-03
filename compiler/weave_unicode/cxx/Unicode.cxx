@@ -122,8 +122,6 @@ namespace weave::unicode
 {
     ConversionResult Decode(char32_t& result, const uint8_t*& first, const uint8_t* last)
     {
-        WEAVE_ASSERT(first < last);
-
         uint32_t state{};
         uint32_t codepoint{};
 

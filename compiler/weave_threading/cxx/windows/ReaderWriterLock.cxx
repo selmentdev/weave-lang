@@ -5,7 +5,7 @@
 namespace weave::threading
 {
     static_assert(sizeof(impl::NativeReaderWriterLock) >= sizeof(impl::PlatformReaderWriterLock));
-    static_assert(alignof(impl::NativeReaderWriterLock) >= sizeof(impl::PlatformReaderWriterLock));
+    static_assert(alignof(impl::NativeReaderWriterLock) >= alignof(impl::PlatformReaderWriterLock));
 
     impl::PlatformReaderWriterLock& ReaderWriterLock::AsPlatform()
     {
