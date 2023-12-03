@@ -6,7 +6,7 @@ namespace weave::filesystem::path
 {
     inline void AddDirectorySeparator(std::string& path)
     {
-        if (path.empty() or (path.back() != '/'))
+        if (path.empty() or ((path.back() != '/') and (path.back() != '\\')))
         {
             path.push_back('/');
         }
@@ -14,7 +14,7 @@ namespace weave::filesystem::path
 
     inline void RemoveDirectorySeparator(std::string& path)
     {
-        if (not path.empty() and (path.back() == '/'))
+        if (not path.empty() and ((path.back() == '/') or (path.back() == '\\')))
         {
             path.pop_back();
         }

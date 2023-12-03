@@ -38,10 +38,10 @@ namespace weave::filesystem
     class DirectoryEnumerator
     {
     private:
-        impl::NativeDirectoryEnumerator _native;
-        std::string _root;
-        FileType _type;
-        std::string_view _name;
+        impl::NativeDirectoryEnumerator _native{};
+        std::string _root{};
+        FileType _type{};
+        std::string _name{};
 
     private:
         impl::PlatformDirectoryEnumerator& AsPlatform()

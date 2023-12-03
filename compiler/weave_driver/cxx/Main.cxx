@@ -20,10 +20,11 @@
 #include "weave/threading/CriticalSection.hxx"
 #include "weave/threading/Thread.hxx"
 #include "weave/threading/Runnable.hxx"
-#include "weave/filesystem/Path.hxx"
+#include "weave/filesystem/FileHandle.hxx"
 #include "weave/filesystem/DirectoryEnumerator.hxx"
-
-
+#include "weave/filesystem/FileWriter.hxx"
+#include "weave/profiler/Profiler.hxx"
+#include "weave/threading/Yield.hxx"
 
 class Tazg : public weave::threading::Runnable
 {
@@ -62,7 +63,7 @@ void Enumerate(weave::filesystem::DirectoryEnumerator enumerator)
 int main(int argc, const char* argv[])
 {
     {
-        weave::filesystem::DirectoryEnumerator enumerator{"/home/selmentdev/repos/weave-lang"};
+        weave::filesystem::DirectoryEnumerator enumerator{"d:\\"};
 
         for (size_t i = 0; (i < 3) and enumerator.MoveNext(); ++i)
         {
@@ -90,6 +91,36 @@ int main(int argc, const char* argv[])
     }
 
     fmt::println("resource: {}", resource);
+
+#if defined(WIN32)
+    {
+        using namespace weave;
+        if (auto handle = filesystem::FileHandle::Create("d:/profile.json", filesystem::FileMode::CreateAlways, filesystem::FileAccess::ReadWrite, {}))
+        {
+            filesystem::FileWriter writer{*handle};
+
+            profiler::Profiler profiler{};
+            {
+                profiler::EventScope e{profiler, "Timeline", "Duration 1"};
+                profiler.Event("General", "Event 1");
+                threading::Sleep(time::Duration::FromMilliseconds(100));
+                profiler::EventScope b{profiler, "Timeline", "Duration 2 (inner)"};
+                threading::Sleep(time::Duration::FromMilliseconds(150));
+                profiler.Event("General", "Event 2");
+                threading::YieldThread(threading::YieldTarget::AnyThreadOnAnyProcessor);
+                threading::YieldThread(threading::YieldTarget::AnyThreadOnSameProcessor);
+                threading::YieldThread(threading::YieldTarget::SameOrHigherPriorityOnAnyProcessor);
+                threading::Sleep(time::Duration::FromMilliseconds(150));
+
+                profiler.Event("General", "Event 4");
+                threading::Sleep(time::Duration::FromMilliseconds(200));
+                profiler.Event("General", "Event 3");
+                threading::Sleep(time::Duration::FromMilliseconds(200));
+            }
+            profiler.Serialize(writer);
+        }
+    }
+#endif
 
     using namespace weave;
 
