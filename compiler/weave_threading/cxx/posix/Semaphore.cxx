@@ -99,7 +99,7 @@ namespace weave::threading
         else
         {
             int const error = errno;
-            
+
             if (error == EAGAIN || error == EINTR)
             {
                 return false;

@@ -32,10 +32,10 @@ namespace weave::threading
     bool ConditionVariable::TryWait(CriticalSection& lock, time::Duration const& timeout)
     {
         return SleepConditionVariableSRW(
-            &this->AsPlatform().Native,
-            &lock.AsPlatform().Native,
-            impl::ValidateTimeoutDuration(timeout),
-            0) != FALSE;
+                   &this->AsPlatform().Native,
+                   &lock.AsPlatform().Native,
+                   impl::ValidateTimeoutDuration(timeout),
+                   0) != FALSE;
     }
 
     void ConditionVariable::Notify()

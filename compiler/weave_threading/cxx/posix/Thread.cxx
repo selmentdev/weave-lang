@@ -44,6 +44,9 @@ namespace weave::threading::impl
 
 namespace weave::threading
 {
+    static_assert(sizeof(impl::NativeThread) >= sizeof(impl::PlatformThread));
+    static_assert(alignof(impl::NativeThread) >= alignof(impl::PlatformThread));
+
     ThreadId GetThisThreadId()
     {
         return ThreadId{std::bit_cast<void*>(pthread_self())};
@@ -158,6 +161,11 @@ namespace weave::threading
     {
         if (this->IsJoinable())
         {
+            if (this->GetId() == threading::GetThisThreadId())
+            {
+                WEAVE_BUGCHECK("Trying do destroy thread from itself");
+            }
+
             this->Join();
         }
     }

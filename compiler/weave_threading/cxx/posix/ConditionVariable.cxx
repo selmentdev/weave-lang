@@ -46,9 +46,9 @@ namespace weave::threading
         while (true)
         {
             int const rc = pthread_cond_timedwait(
-                   &this->AsPlatform().Native,
-                   &lock.AsPlatform().Native,
-                   &ts);
+                &this->AsPlatform().Native,
+                &lock.AsPlatform().Native,
+                &ts);
 
             if (rc == 0)
             {

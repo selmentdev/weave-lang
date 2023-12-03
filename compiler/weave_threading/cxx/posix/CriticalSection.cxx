@@ -30,7 +30,7 @@ namespace weave::threading
         {
             WEAVE_BUGCHECK("pthread_mutex_init (rc: {}, `{}`)", rc, strerror(rc));
         }
-        
+
         if (int const rc = pthread_mutexattr_destroy(&attr); rc != 0)
         {
             WEAVE_BUGCHECK("pthread_mutexattr_destroy (rc: {}, `{}`)", rc, strerror(rc));

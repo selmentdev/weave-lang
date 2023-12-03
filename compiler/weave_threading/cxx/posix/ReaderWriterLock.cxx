@@ -80,7 +80,7 @@ namespace weave::threading
 
     void ReaderWriterLock::LeaveWrite()
     {
-        if (int const rc  = pthread_rwlock_unlock(&this->AsPlatform().Native); rc != 0)
+        if (int const rc = pthread_rwlock_unlock(&this->AsPlatform().Native); rc != 0)
         {
             WEAVE_BUGCHECK("pthread_rwlock_unlock (rc: {}, `{}`)", rc, strerror(rc));
         }

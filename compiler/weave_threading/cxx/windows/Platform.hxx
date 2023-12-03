@@ -38,7 +38,7 @@ namespace weave::threading::impl
     {
         HANDLE Handle;
         DWORD Id;
-    }
+    };
 }
 
 namespace weave::threading::impl
