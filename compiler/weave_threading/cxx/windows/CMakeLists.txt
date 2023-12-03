@@ -1,0 +1,8 @@
+target_sources(weave_threading
+    PRIVATE
+        "ConditionVariable.cxx"
+        "CriticalSection.cxx"
+        "ReaderWriterLock.cxx"
+        "Semaphore.cxx"
+        "Yield.cxx"
+)

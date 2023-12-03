@@ -14,6 +14,7 @@ target_link_libraries(weave_driver PUBLIC weave_time)
 target_link_libraries(weave_driver PUBLIC weave_tokenizer)
 target_link_libraries(weave_driver PUBLIC weave_profiler)
 target_link_libraries(weave_driver PUBLIC weave_uuid)
+target_link_libraries(weave_driver PUBLIC weave_threading)
 
 set_target_properties(weave_driver PROPERTIES OUTPUT_NAME "weave-driver")
 
