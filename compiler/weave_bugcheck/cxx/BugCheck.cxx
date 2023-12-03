@@ -61,14 +61,14 @@ namespace weave::bugcheck
 
 namespace weave::bugcheck
 {
-    bool BugCheck(
+    void BugCheck(
         std::source_location const& location,
         std::string_view message)
     {
-        return BugCheckArgs(location, "{}", fmt::make_format_args(message));
+        BugCheckArgs(location, "{}", fmt::make_format_args(message));
     }
 
-    bool BugCheckArgs(
+    void BugCheckArgs(
         std::source_location const& location,
         std::string_view format,
         fmt::format_args args)
@@ -94,11 +94,6 @@ namespace weave::bugcheck
         fmt::println(stderr, "stacktrace: not available");
 #endif
 
-
-#if !defined(NDEBUG)
-        return true;
-#else
         std::abort();
-#endif
     }
 }

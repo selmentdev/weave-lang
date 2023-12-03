@@ -33,6 +33,12 @@ namespace weave::threading::impl
     {
         CONDITION_VARIABLE Native;
     };
+
+    struct PlatformThread final
+    {
+        HANDLE Handle;
+        DWORD Id;
+    }
 }
 
 namespace weave::threading::impl

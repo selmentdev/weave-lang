@@ -1,3 +1,8 @@
+target_sources(weave_threading
+    PRIVATE
+        "Runnable.cxx"
+)
+
 if (LINUX)
 add_subdirectory(posix)
 endif()

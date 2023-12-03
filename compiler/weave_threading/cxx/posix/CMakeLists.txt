@@ -5,4 +5,5 @@ target_sources(weave_threading
         "ReaderWriterLock.cxx"
         "Semaphore.cxx"
         "Yield.cxx"
+        "Thread.cxx"
 )

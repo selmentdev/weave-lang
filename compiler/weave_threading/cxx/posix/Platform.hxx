@@ -34,6 +34,11 @@ namespace weave::threading::impl
     {
         pthread_cond_t Native;
     };
+
+    struct PlatformThread final
+    {
+        pthread_t Native;
+    };
 }
 
 namespace weave::threading::impl

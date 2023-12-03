@@ -16,8 +16,60 @@
 #include "weave/time/Instant.hxx"
 #include "weave/Session.hxx"
 
+#include "weave/threading/CriticalSection.hxx"
+#include "weave/threading/Thread.hxx"
+#include "weave/threading/Runnable.hxx"
+
+
+
+class Tazg : public weave::threading::Runnable
+{
+private:
+    weave::threading::CriticalSection& _lock;
+    int& _resource;
+public:
+    Tazg(weave::threading::CriticalSection& lock, int& resource)
+        : _lock(lock)
+        , _resource(resource)
+    {
+    }
+protected:
+    void Execute() override
+    {
+        fmt::println("Tazg::Run()");
+
+        for (size_t i = 0; i < 1000000; ++i)
+        {
+            _lock.Enter();
+            ++_resource;
+            _lock.Leave();
+        }
+    }
+};
+
+
 int main(int argc, const char* argv[])
 {
+        int resource = 0;
+    {
+        weave::threading::CriticalSection cs{};
+
+        Tazg t1{cs, resource};
+        weave::threading::Thread thread1{weave::threading::ThreadStart{.Callback = &t1}};
+
+        Tazg t2{cs, resource};
+        weave::threading::Thread thread2{weave::threading::ThreadStart{.Callback = &t1}};
+
+        for (size_t i = 0; i < 1000000; ++i)
+        {
+            cs.Enter();
+            ++resource;
+            cs.Leave();
+        }
+    }
+
+    fmt::println("resource: {}", resource);
+
     using namespace weave;
 
     commandline::CommandLineBuilder builder{};
