@@ -1,39 +1,59 @@
 #include "weave/Unicode.hxx"
+#include "weave/BugCheck.hxx"
+
+namespace weave::unicode::impl
+{
+    // https://bjoern.hoehrmann.de/utf-8/decoder/dfa/
+
+    constexpr uint32_t UTF8_ACCEPT = 0;
+    constexpr uint32_t UTF8_REJECT = 12;
+
+    constexpr uint8_t utf8d[] = {
+        // clang-format off
+        // The first part of the table maps bytes to character classes that
+        // to reduce the size of the transition table and create bitmasks.
+         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+         1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+         9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,
+         7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,
+         7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,
+         8,  8,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,
+         2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,
+        10,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  4,  3,  3,
+        11,  6,  6,  6,  5,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,
+
+        // The second part is a transition table that maps a combination
+        // of a state of the automaton and a character class to a state.
+         0, 12, 24, 36, 60, 96, 84, 12, 12, 12, 48, 72, 12, 12, 12, 12,
+        12, 12, 12, 12, 12, 12, 12, 12, 12,  0, 12, 12, 12, 12, 12,  0,
+        12,  0, 12, 12, 12, 24, 12, 12, 12, 12, 12, 24, 12, 24, 12, 12,
+        12, 12, 12, 12, 12, 12, 12, 24, 12, 12, 12, 12, 12, 24, 12, 12,
+        12, 12, 12, 12, 12, 24, 12, 12, 12, 12, 12, 12, 12, 12, 12, 36,
+        12, 36, 12, 12, 12, 36, 12, 12, 12, 12, 12, 36, 12, 36, 12, 12,
+        12, 36, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+        // clang-format on
+    };
+
+    constexpr void DecodeUTF8(uint32_t& state, uint32_t& codep, uint32_t byte)
+    {
+        uint32_t const type = utf8d[byte];
+
+        codep = (state != UTF8_ACCEPT) ? (byte & 0x3fu) | (codep << 6) : (0xff >> type) & (byte);
+
+        state = utf8d[256 + state + type];
+    }
+}
 
 namespace weave::unicode::impl
 {
     // https://tools.ietf.org/html/rfc3629
-    inline constexpr uint8_t UTF8_CHAR_WIDTH[256]{
-        // 1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 0
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 1
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 2
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 3
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 4
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 5
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 6
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 7
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 8
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 9
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // A
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // B
-        0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, // C
-        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, // D
-        3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, // E
-        4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // F
-    };
-
-    inline constexpr char32_t UTF8_MAX_ENCODED_VALUE_FOR_SIZE[5]{
-        0u,
-        0x0000'0080u,
-        0x0000'0800u,
-        0x0001'0000u,
-        0x0011'0000u,
-    };
-
-    inline constexpr size_t UTF8_MAX_WIDTH = 4u;
-    inline constexpr uint8_t UTF8_CONTINUATION_MASK = 0b0011'1111u;
-
     inline constexpr size_t UTF16_SURROGATE_SHIFT = 10u;
     inline constexpr uint32_t UTF16_SURROGATE_MASK = (1u << UTF16_SURROGATE_SHIFT) - 1u;
     inline constexpr uint32_t UTF16_SURROGATE_BASE = 0x1'0000u;
@@ -67,21 +87,6 @@ namespace weave::unicode::impl
     constexpr uint32_t UTF16CombineSurrogatePair(uint32_t high, uint32_t low)
     {
         return ((high - UTF16_SURROGATE_HIGH_FIRST) << UTF16_SURROGATE_SHIFT) + (low - UTF16_SURROGATE_LOW_FIRST) + UTF16_SURROGATE_BASE;
-    }
-
-    constexpr uint32_t UTF8FirstByte(uint8_t byte, size_t width)
-    {
-        return (byte & (0b0111'1111u >> width));
-    }
-
-    constexpr uint32_t UTF8AccumulateContinuationByte(uint32_t ch, uint8_t byte)
-    {
-        return (ch << 6) | (byte & UTF8_CONTINUATION_MASK);
-    }
-
-    constexpr bool UTF8IsContinuationByte(uint8_t byte)
-    {
-        return static_cast<int8_t>(byte) < -64;
     }
 }
 
@@ -117,78 +122,31 @@ namespace weave::unicode
 {
     ConversionResult Decode(char32_t& result, const uint8_t*& first, const uint8_t* last)
     {
-        if (first < last)
+        WEAVE_ASSERT(first < last);
+
+        uint32_t state{};
+        uint32_t codepoint{};
+
+        while (first != last)
         {
-            uint8_t const lead = *first++;
+            impl::DecodeUTF8(state, codepoint, *first++);
 
-            if (lead <= 0x7Fu)
+            switch (state)
             {
-                result = lead;
+            case impl::UTF8_ACCEPT:
+                result = static_cast<char32_t>(codepoint);
                 return ConversionResult::Success;
-            }
 
-            size_t const width = impl::UTF8_CHAR_WIDTH[lead];
-
-            if (width == 0)
-            {
-                // Lead byte is not valid.
+            case impl::UTF8_REJECT:
                 result = impl::UNICODE_REPLACEMENT_CHARACTER;
                 return ConversionResult::SourceIllegal;
+
+            default:
+                break;
             }
-
-            uint32_t ch = impl::UTF8FirstByte(lead, width);
-
-            size_t consumed = 1;
-
-            for (; (consumed < width) and (first < last); ++consumed)
-            {
-                uint8_t const next = *first++;
-
-                if (not impl::UTF8IsContinuationByte(next))
-                {
-                    // Invalid byte sequence.
-                    --first;
-                    result = impl::UNICODE_REPLACEMENT_CHARACTER;
-                    return ConversionResult::SourceIllegal;
-                }
-
-                ch = impl::UTF8AccumulateContinuationByte(ch, next);
-            }
-
-            if (consumed != width)
-            {
-                // Byte sequence was legal, but source exhausted. Restore iterator and return.
-                first -= consumed;
-                result = impl::UNICODE_REPLACEMENT_CHARACTER;
-                return ConversionResult::SourceExhausted;
-            }
-
-            char32_t const valid_range_start = impl::UTF8_MAX_ENCODED_VALUE_FOR_SIZE[width - 1];
-            char32_t const valid_range_end = impl::UTF8_MAX_ENCODED_VALUE_FOR_SIZE[width];
-
-            bool const is_valid_range = (valid_range_start <= ch) and (ch < valid_range_end);
-
-            if (not is_valid_range)
-            {
-                // Encoded character could be encoded using fewer bytes. Overlong sequences are not allowed.
-                first -= consumed;
-                result = impl::UNICODE_REPLACEMENT_CHARACTER;
-                return ConversionResult::SourceIllegal;
-            }
-
-            // ch -= Private::UTF8_CODEPOINT_OFFSETS[width];
-
-            if (impl::UTF16IsSurrogatePair(ch) or (ch > impl::UNICODE_MAX))
-            {
-                // Byte sequence was valid UTF8 sequence, but encoded invalid codepoint.
-                result = impl::UNICODE_REPLACEMENT_CHARACTER;
-                return ConversionResult::SourceIllegal;
-            }
-
-            result = ch;
-            return ConversionResult::Success;
         }
 
+        result = impl::UNICODE_REPLACEMENT_CHARACTER;
         return ConversionResult::SourceExhausted;
     }
 

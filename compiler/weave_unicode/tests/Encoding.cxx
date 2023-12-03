@@ -40,21 +40,21 @@ TEST_CASE("UTF8 Tests")
                 std::u32string destination{};
                 CHECK(Convert(destination, source, ConversionType::None) == ConversionResult::Success);
                 REQUIRE(destination.size() == 5);
-                REQUIRE(destination[0] == 0x03BA);
-                REQUIRE(destination[1] == 0x1F79);
-                REQUIRE(destination[2] == 0x03C3);
-                REQUIRE(destination[3] == 0x03BC);
-                REQUIRE(destination[4] == 0x03B5);
+                CHECK(destination[0] == 0x03BA);
+                CHECK(destination[1] == 0x1F79);
+                CHECK(destination[2] == 0x03C3);
+                CHECK(destination[3] == 0x03BC);
+                CHECK(destination[4] == 0x03B5);
             }
             {
                 std::u32string destination{};
                 CHECK(Convert(destination, source, ConversionType::Strict) == ConversionResult::Success);
                 REQUIRE(destination.size() == 5);
-                REQUIRE(destination[0] == 0x03BA);
-                REQUIRE(destination[1] == 0x1F79);
-                REQUIRE(destination[2] == 0x03C3);
-                REQUIRE(destination[3] == 0x03BC);
-                REQUIRE(destination[4] == 0x03B5);
+                CHECK(destination[0] == 0x03BA);
+                CHECK(destination[1] == 0x1F79);
+                CHECK(destination[2] == 0x03C3);
+                CHECK(destination[3] == 0x03BC);
+                CHECK(destination[4] == 0x03B5);
             }
         }
 
@@ -669,7 +669,7 @@ TEST_CASE("UTF8 Tests")
             }
             {
                 std::u32string destination{};
-                CHECK(Convert(destination, source, ConversionType::Strict) == ConversionResult::SourceExhausted);
+                CHECK(Convert(destination, source, ConversionType::Strict) == ConversionResult::SourceIllegal);
                 CHECK(destination.empty());
             }
         }
@@ -686,7 +686,7 @@ TEST_CASE("UTF8 Tests")
             }
             {
                 std::u32string destination{};
-                CHECK(Convert(destination, source, ConversionType::Strict) == ConversionResult::SourceExhausted);
+                CHECK(Convert(destination, source, ConversionType::Strict) == ConversionResult::SourceIllegal);
                 CHECK(destination.empty());
             }
         }
