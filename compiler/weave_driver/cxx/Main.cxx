@@ -15,10 +15,13 @@
 #include "weave/tokenizer/TokenizerContext.hxx"
 #include "weave/time/Instant.hxx"
 #include "weave/Session.hxx"
+#include "weave/platform/StringBuffer.hxx"
 
 #include "weave/threading/CriticalSection.hxx"
 #include "weave/threading/Thread.hxx"
 #include "weave/threading/Runnable.hxx"
+#include "weave/filesystem/Path.hxx"
+#include "weave/filesystem/DirectoryEnumerator.hxx"
 
 
 
@@ -47,9 +50,27 @@ protected:
     }
 };
 
+void Enumerate(weave::filesystem::DirectoryEnumerator enumerator)
+{
+    while (enumerator.MoveNext())
+    {
+        fmt::println("{}: {}", std::to_underlying(enumerator.GetFileType()), enumerator.GetPath());
+    }
+}
+
 
 int main(int argc, const char* argv[])
 {
+    {
+        weave::filesystem::DirectoryEnumerator enumerator{"/home/selmentdev/repos/weave-lang"};
+
+        for (size_t i = 0; (i < 3) and enumerator.MoveNext(); ++i)
+        {
+            fmt::println("{}: {}", std::to_underlying(enumerator.GetFileType()), enumerator.GetPath());
+        }
+
+        Enumerate(std::move(enumerator));
+    }
         int resource = 0;
     {
         weave::threading::CriticalSection cs{};
