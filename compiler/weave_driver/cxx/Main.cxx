@@ -26,6 +26,8 @@
 #include "weave/profiler/Profiler.hxx"
 #include "weave/threading/Yield.hxx"
 
+#include <atomic>
+
 namespace weave::tasking
 {
     struct TaskHandle
