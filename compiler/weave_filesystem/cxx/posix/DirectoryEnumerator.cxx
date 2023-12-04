@@ -56,13 +56,11 @@ namespace weave::filesystem
     DirectoryEnumerator::DirectoryEnumerator(std::string_view path)
         : _root{path}
     {
-        this->AsPlatform().Handle = opendir(this->_root.c_str());
+        this->AsPlatform().Handle = nullptr;
     }
 
     DirectoryEnumerator::DirectoryEnumerator(DirectoryEnumerator&& other)
         : _root{std::exchange(other._root, {})}
-        , _type{std::exchange(other._type, {})}
-        , _name{std::exchange(other._name, {})}
     {
         this->AsPlatform().Handle = std::exchange(other.AsPlatform().Handle, nullptr);
     }
@@ -78,8 +76,6 @@ namespace weave::filesystem
 
             this->_native = std::exchange(other._native, {});
             this->_root = std::exchange(other._root, {});
-            this->_type = std::exchange(other._type, {});
-            this->_name = std::exchange(other._name, {});
         }
 
         return (*this);
@@ -93,22 +89,42 @@ namespace weave::filesystem
         }
     }
 
-    bool DirectoryEnumerator::MoveNext()
+    std::optional<std::expected<DirectoryEntry, FileSystemError>> DirectoryEnumerator::Next()
     {
-        if (this->AsPlatform().Handle != nullptr)
+        if (this->AsPlatform().Handle == nullptr)
         {
-            if (dirent* current = readdir(this->AsPlatform().Handle); current != nullptr)
+            DIR* handle = opendir(this->_root.c_str());
+
+            if (handle != nullptr)
             {
-                this->_name = current->d_name;
-                this->_type = impl::ConvertToFileType(current->d_type);
-                return true;
+                this->AsPlatform().Handle = handle;
             }
             else
             {
-                return false;
+                return std::unexpected(impl::TranslateError(errno);
             }
         }
 
-        return false;
+
+        if (this->AsPlatform().Handle != nullptr)
+        {
+            auto& error = errno;
+
+            error = 0;
+
+            if (dirent* current = readdir(this->AsPlatform().Handle); current != nullptr)
+            {
+                return DirectoryEntry{
+                    .Path = current->d_name,
+                    .Type = impl::ConvertToFileType(current->d_type),
+                };
+            }
+            else if (error == 0)
+            {
+                return std::unexpected(impl::TranslateError(error);
+            }
+        }
+
+        return std::nullopt;
     }
 }

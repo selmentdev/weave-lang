@@ -2,6 +2,7 @@
 #include "weave/filesystem/DirectoryEnumerator.hxx"
 #include "weave/BugCheck.hxx"
 #include "weave/platform/windows/String.hxx"
+#include "Error.hxx"
 
 #include <optional>
 #include <utility>
@@ -45,8 +46,6 @@ namespace weave::filesystem
 
     DirectoryEnumerator::DirectoryEnumerator(DirectoryEnumerator&& other)
         : _root{std::exchange(other._root, {})}
-        , _type{std::exchange(other._type, {})}
-        , _name{std::exchange(other._name, {})}
     {
         this->AsPlatform().Handle = std::exchange(other.AsPlatform().Handle, nullptr);
     }
@@ -62,8 +61,6 @@ namespace weave::filesystem
 
             this->_native = std::exchange(other._native, {});
             this->_root = std::exchange(other._root, {});
-            this->_type = std::exchange(other._type, {});
-            this->_name = std::exchange(other._name, {});
         }
 
         return (*this);
@@ -106,14 +103,14 @@ namespace weave::filesystem
         return {};
     }
 
-    bool DirectoryEnumerator::MoveNext()
+    std::optional<std::expected<DirectoryEntry, FileSystemError>> DirectoryEnumerator::Next()
     {
+        DWORD dwLastError = 0;
         WIN32_FIND_DATAW current;
-        HANDLE& handle = this->AsPlatform().Handle;
 
         bool success = false;
 
-        if (handle == nullptr)
+        if (this->AsPlatform().Handle == nullptr)
         {
             if (auto&& converted = WidenString(this->_root))
             {
@@ -121,31 +118,56 @@ namespace weave::filesystem
 
                 if (not wpath.empty())
                 {
-                    if (wchar_t const last = wpath.back(); last != L'/' and last != L'\\')
+                    if (wchar_t const last = wpath.back(); (last != L'/') and (last != L'\\'))
                     {
                         wpath += L'/';
                     }
 
                     wpath += L'*';
-                    handle = FindFirstFileW(wpath.c_str(), &current);
+
+                    HANDLE const handle = FindFirstFileW(wpath.c_str(), &current);
 
                     success = (handle != INVALID_HANDLE_VALUE);
+
+                    if (success)
+                    {
+                        this->AsPlatform().Handle = handle;
+                    }
+                    else
+                    {
+                        dwLastError = GetLastError();
+                        return std::unexpected(impl::TranslateErrorCode(dwLastError));
+                    }
                 }
             }
         }
-        else if (FindNextFileW(handle, &current) != FALSE)
+        else
         {
-            success = true;
+            if (FindNextFileW(this->AsPlatform().Handle, &current) != FALSE)
+            {
+                success = true;
+            }
+            else
+            {
+                dwLastError = GetLastError();
+                return std::unexpected(impl::TranslateErrorCode(dwLastError));
+            }
         }
 
         if (success)
         {
             platform::StringBuffer<char, 512> narrow{};
             platform::NarrowString(narrow, current.cFileName);
-            this->_name.assign(narrow.AsView());
-            this->_type = impl::ConvertToFileType(current.dwFileAttributes);
+
+            std::string path{this->_root};
+            path::Append(path, narrow.AsView());
+
+            return DirectoryEntry{
+                .Path = std::move(path),
+                .Type = impl::ConvertToFileType(current.dwFileAttributes),
+            };
         }
 
-        return success;
+        return std::nullopt;
     }
 }

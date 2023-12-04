@@ -1,6 +1,10 @@
 #pragma once
+#include "weave/filesystem/FileSystemError.hxx"
 #include "weave/filesystem/Path.hxx"
+
+#include <expected>
 #include <string>
+#include <optional>
 #include <string_view>
 
 namespace weave::filesystem::impl
@@ -35,13 +39,17 @@ namespace weave::filesystem
 
 namespace weave::filesystem
 {
+    struct DirectoryEntry
+    {
+        std::string Path;
+        FileType Type;
+    };
+
     class DirectoryEnumerator
     {
     private:
         impl::NativeDirectoryEnumerator _native{};
         std::string _root{};
-        FileType _type{};
-        std::string _name{};
 
     private:
         impl::PlatformDirectoryEnumerator& AsPlatform()
@@ -58,21 +66,6 @@ namespace weave::filesystem
         DirectoryEnumerator(DirectoryEnumerator const&) = delete;
         DirectoryEnumerator& operator=(DirectoryEnumerator const&) = delete;
         
-        std::string GetPath() const;
-        FileType GetFileType() const;
-
-        bool MoveNext();
+        [[nodiscard]] std::optional<std::expected<DirectoryEntry, FileSystemError>> Next();
     };
-
-    inline std::string DirectoryEnumerator::GetPath() const
-    {
-        std::string result{this->_root};
-        path::Append(result, this->_name);
-        return result;
-    }
-
-    inline FileType DirectoryEnumerator::GetFileType() const
-    {
-        return this->_type;
-    }
 }

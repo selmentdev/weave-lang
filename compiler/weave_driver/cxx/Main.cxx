@@ -26,17 +26,120 @@
 #include "weave/profiler/Profiler.hxx"
 #include "weave/threading/Yield.hxx"
 
+namespace weave::tasking
+{
+    struct TaskHandle
+    {
+        void* Native;
+
+        [[nodiscard]] constexpr auto operator<=>(TaskHandle const&) const = default;
+    };
+}
+
+namespace weave::tasking::impl
+{
+    enum class TaskState
+    {
+        Initialized,
+        Dispatched,
+        Executing,
+        Completed,
+    };
+
+    struct Task
+    {
+        std::atomic_size_t Waiters{0};
+        TaskHandle Parent{};
+        TaskState State{TaskState::Completed};
+        threading::Runnable* Callback;
+
+        void InitializeBarrier(TaskHandle parent)
+        {
+            WEAVE_ASSERT(this->Waiters == 0);
+            WEAVE_ASSERT(this->State == TaskState::Completed);
+
+            this->Waiters = 1;
+            this->Callback = nullptr;
+            this->Parent = parent;
+            this->State = TaskState::Initialized;
+
+            if (Task* task = static_cast<Task*>(parent.Native))
+            {
+                ++task->Waiters;
+            }
+        }
+
+        void InitializeRunnable(threading::Runnable* runnable, TaskHandle parent) noexcept
+        {
+            WEAVE_ASSERT(this->Waiters == 0);
+            WEAVE_ASSERT(this->State == TaskState::Completed);
+
+            this->Waiters = 1;
+            this->Callback = runnable;
+            this->Parent = parent;
+            this->State = TaskState::Initialized;
+
+            if (Task* task = static_cast<Task*>(parent.Native))
+            {
+                ++task->Waiters;
+            }
+        }
+
+        void Finish() noexcept
+        {
+            if (--this->Waiters == 0)
+            {
+                WEAVE_ASSERT(this->State == TaskState::Executing);
+                this->State = TaskState::Completed;
+
+                if (Task* task = static_cast<Task*>(this->Parent.Native))
+                {
+                    task->Finish();
+                }
+            }
+        }
+
+        void Dispatched() noexcept
+        {
+            WEAVE_ASSERT(this->State == TaskState::Initialized);
+            this->State = TaskState::Dispatched;
+        }
+
+        void Execute() noexcept
+        {
+            WEAVE_ASSERT(this->State == TaskState::Dispatched);
+            this->State = TaskState::Executing;
+
+            if (threading::Runnable* const runnable = this->Callback; runnable != nullptr)
+            {
+                runnable->Run();
+            }
+
+            this->Finish();
+        }
+
+        bool IsFinished() const noexcept
+        {
+            return this->Waiters == 0;
+        }
+    };
+
+    static_assert(std::is_trivially_destructible_v<Task>);
+}
+
 class Tazg : public weave::threading::Runnable
 {
 private:
     weave::threading::CriticalSection& _lock;
     int& _resource;
+
 public:
     Tazg(weave::threading::CriticalSection& lock, int& resource)
         : _lock(lock)
         , _resource(resource)
     {
     }
+
 protected:
     void Execute() override
     {
@@ -51,28 +154,53 @@ protected:
     }
 };
 
-void Enumerate(weave::filesystem::DirectoryEnumerator enumerator)
+namespace xxx
 {
-    while (enumerator.MoveNext())
-    {
-        fmt::println("{}: {}", std::to_underlying(enumerator.GetFileType()), enumerator.GetPath());
-    }
-}
 
+    using namespace weave;
+
+    void Enumerate(filesystem::DirectoryEnumerator enumerator)
+    {
+        while (auto it = enumerator.Next())
+        {
+            if (*it)
+            {
+                fmt::println("{}: {}", std::to_underlying((*it)->Type), (*it)->Path);
+            }
+            else
+            {
+                fmt::println("error: {}", std::to_underlying(it->error()));
+                break;
+            }
+        }
+    }
+
+}
 
 int main(int argc, const char* argv[])
 {
     {
+#if defined(WIN32)
         weave::filesystem::DirectoryEnumerator enumerator{"d:\\"};
+#else
+        weave::filesystem::DirectoryEnumerator enumerator{"/home/selmentdev/repos/weave-lang"};
+#endif
 
-        for (size_t i = 0; (i < 3) and enumerator.MoveNext(); ++i)
+        for (size_t i = 0; i < 3; ++i)
         {
-            fmt::println("{}: {}", std::to_underlying(enumerator.GetFileType()), enumerator.GetPath());
+            if (auto it = enumerator.Next(); it.has_value() and it->has_value())
+            {
+                fmt::println("{}: {}", std::to_underlying((*it)->Type), (*it)->Path);
+            }
+            else
+            {
+                break;
+            }
         }
 
-        Enumerate(std::move(enumerator));
+        xxx::Enumerate(std::move(enumerator));
     }
-        int resource = 0;
+    int resource = 0;
     {
         weave::threading::CriticalSection cs{};
 
