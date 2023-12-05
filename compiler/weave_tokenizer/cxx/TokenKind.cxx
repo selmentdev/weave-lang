@@ -132,7 +132,7 @@ namespace weave::tokenizer
 
     TokenKind TokenKindTraits::GetClosingGroupSymbol(TokenKind value)
     {
-        switch (value)  // NOLINT(clang-diagnostic-switch-enum)
+        switch (value) // NOLINT(clang-diagnostic-switch-enum)
         {
 #define WEAVE_TOKEN_PUNCTUATION_GROUP_CLOSING(token, matching) \
     case TokenKind::token: \
@@ -193,7 +193,7 @@ namespace weave::tokenizer
                 return e.Hash < h;
             });
 
-        while((it != end) and (it->Hash == hash))
+        while ((it != end) and (it->Hash == hash))
         {
             if (it->Spelling == value)
             {

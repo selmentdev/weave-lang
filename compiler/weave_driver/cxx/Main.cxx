@@ -25,6 +25,7 @@
 #include "weave/filesystem/FileWriter.hxx"
 #include "weave/profiler/Profiler.hxx"
 #include "weave/threading/Yield.hxx"
+#include "weave/time/DateTime.hxx"
 
 #include <atomic>
 
@@ -181,6 +182,8 @@ namespace xxx
 
 int main(int argc, const char* argv[])
 {
+    fmt::println("Started: {}", weave::time::DateTime::Now());
+
     {
 #if defined(WIN32)
         weave::filesystem::DirectoryEnumerator enumerator{"d:\\"};
@@ -196,6 +199,7 @@ int main(int argc, const char* argv[])
             }
             else
             {
+                fmt::println("error: {}", std::to_underlying(it->error()));
                 break;
             }
         }

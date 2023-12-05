@@ -42,25 +42,32 @@ namespace weave::filesystem
     DirectoryEnumerator::DirectoryEnumerator(std::string_view path)
         : _root{path}
     {
+        new (&this->AsPlatform()) impl::PlatformDirectoryEnumerator();
     }
 
     DirectoryEnumerator::DirectoryEnumerator(DirectoryEnumerator&& other)
         : _root{std::exchange(other._root, {})}
     {
-        this->AsPlatform().Handle = std::exchange(other.AsPlatform().Handle, nullptr);
+        new (&this->AsPlatform()) impl::PlatformDirectoryEnumerator(other.AsPlatform());
+        other.AsPlatform() = {};
     }
 
     DirectoryEnumerator& DirectoryEnumerator::operator=(DirectoryEnumerator&& other)
     {
         if (this != std::addressof(other))
         {
-            if (this->AsPlatform().Handle != nullptr)
+            impl::PlatformDirectoryEnumerator& self = this->AsPlatform();
+
+            if (self.Handle != nullptr)
             {
-                CloseHandle(this->AsPlatform().Handle);
+                if (FindClose(self.Handle) == FALSE)
+                {
+                    WEAVE_BUGCHECK("Failed to close directory enumerator");
+                }
             }
 
-            this->_native = std::exchange(other._native, {});
             this->_root = std::exchange(other._root, {});
+            self = std::exchange(other.AsPlatform(), {});
         }
 
         return (*this);
@@ -68,15 +75,18 @@ namespace weave::filesystem
 
     DirectoryEnumerator::~DirectoryEnumerator()
     {
-        if (HANDLE const handle = this->AsPlatform().Handle; handle != nullptr)
+        impl::PlatformDirectoryEnumerator& self = this->AsPlatform();
+
+        if (self.Handle != nullptr)
         {
-            if (FindClose(handle) == FALSE)
+            if (FindClose(self.Handle) == FALSE)
             {
                 WEAVE_BUGCHECK("Failed to close directory enumerator");
             }
         }
-    }
 
+        this->AsPlatform().~PlatformDirectoryEnumerator();
+    }
 
     std::optional<std::wstring> WidenString(std::string_view value)
     {
@@ -103,14 +113,27 @@ namespace weave::filesystem
         return {};
     }
 
+    static DirectoryEntry FromNative(std::string_view root, WIN32_FIND_DATAW const& wfd)
+    {
+        platform::StringBuffer<char, 512> narrow{};
+        platform::NarrowString(narrow, wfd.cFileName);
+
+        std::string path{root};
+        path::Append(path, narrow.AsView());
+
+        return DirectoryEntry{
+            .Path = std::move(path),
+            .Type = impl::ConvertToFileType(wfd.dwFileAttributes),
+        };
+    }
+
     std::optional<std::expected<DirectoryEntry, FileSystemError>> DirectoryEnumerator::Next()
     {
-        DWORD dwLastError = 0;
-        WIN32_FIND_DATAW current;
+        impl::PlatformDirectoryEnumerator& state = this->AsPlatform();
 
-        bool success = false;
+        WIN32_FIND_DATAW wfd;
 
-        if (this->AsPlatform().Handle == nullptr)
+        if (state.Handle == nullptr)
         {
             if (auto&& converted = WidenString(this->_root))
             {
@@ -125,49 +148,41 @@ namespace weave::filesystem
 
                     wpath += L'*';
 
-                    HANDLE const handle = FindFirstFileW(wpath.c_str(), &current);
-
-                    success = (handle != INVALID_HANDLE_VALUE);
-
-                    if (success)
+                    if (HANDLE const handle = FindFirstFileW(wpath.c_str(), &wfd); handle != INVALID_HANDLE_VALUE)
                     {
-                        this->AsPlatform().Handle = handle;
+                        state.Handle = handle;
+
+                        return FromNative(this->_root, wfd);
+                    }
+
+                    if (DWORD const dwError = GetLastError(); dwError == ERROR_FILE_NOT_FOUND)
+                    {
+                        return std::nullopt;
                     }
                     else
                     {
-                        dwLastError = GetLastError();
-                        return std::unexpected(impl::TranslateErrorCode(dwLastError));
+                        return std::unexpected(impl::TranslateErrorCode(dwError));
                     }
                 }
             }
+
+            // Could not convert root string.
+            return std::unexpected(FileSystemError::InvalidParameter);
+        }
+
+        if (FindNextFileW(state.Handle, &wfd) != FALSE)
+        {
+            return FromNative(this->_root, wfd);
+        }
+
+        if (DWORD const dwError = GetLastError(); dwError == ERROR_NO_MORE_FILES)
+        {
+            return std::nullopt;
         }
         else
         {
-            if (FindNextFileW(this->AsPlatform().Handle, &current) != FALSE)
-            {
-                success = true;
-            }
-            else
-            {
-                dwLastError = GetLastError();
-                return std::unexpected(impl::TranslateErrorCode(dwLastError));
-            }
+            return std::unexpected(impl::TranslateErrorCode(dwError));
         }
-
-        if (success)
-        {
-            platform::StringBuffer<char, 512> narrow{};
-            platform::NarrowString(narrow, current.cFileName);
-
-            std::string path{this->_root};
-            path::Append(path, narrow.AsView());
-
-            return DirectoryEntry{
-                .Path = std::move(path),
-                .Type = impl::ConvertToFileType(current.dwFileAttributes),
-            };
-        }
-
-        return std::nullopt;
     }
 }
+
