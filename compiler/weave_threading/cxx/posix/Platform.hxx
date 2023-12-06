@@ -45,26 +45,27 @@ namespace weave::threading::impl
 {
     constexpr void AddDuration(timespec& self, time::Duration const& value) noexcept
     {
-        int64_t const nanoseconds = value.AsNanoseconds();
+        int64_t const nanoseconds = value.ToNanoseconds();
 
-        self.tv_sec += nanoseconds / time::Duration::NanosecondsInSecond;
-        self.tv_nsec += static_cast<long>(nanoseconds % time::Duration::NanosecondsInSecond);
+        self.tv_sec += nanoseconds / time::impl::NanosecondsInSecond;
+        self.tv_nsec += static_cast<long>(nanoseconds % time::impl::NanosecondsInSecond);
 
-        if (self.tv_nsec >= time::Duration::NanosecondsInSecond)
+        if (self.tv_nsec >= time::impl::NanosecondsInSecond)
         {
             ++self.tv_sec;
-            self.tv_nsec -= time::Duration::NanosecondsInSecond;
+            self.tv_nsec -= time::impl::NanosecondsInSecond;
         }
         else if (self.tv_nsec < 0)
         {
             --self.tv_sec;
-            self.tv_nsec += time::Duration::NanosecondsInSecond;
+            self.tv_nsec += time::impl::NanosecondsInSecond;
         }
     }
 
+    // TODO: Rewrite this in terms of time::Duration and conversion to timespec
     inline void ValidateTimeoutDuration(timespec& self, time::Duration const& value) noexcept
     {
-        if (value.Value < 0)
+        if (value.Seconds < 0)
         {
             WEAVE_BUGCHECK("Duration timeout out of range");
         }

@@ -48,8 +48,8 @@ namespace weave::time::impl
         };
 
 #elif defined(__linux__)
-        return value;
-#error "Not implemented"
+        // TODO: Merge with time::GetTimeZoneBias()
+        return Duration{};
 #else
 #error "Not implemented"
 #endif

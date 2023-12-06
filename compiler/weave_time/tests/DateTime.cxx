@@ -66,4 +66,22 @@ TEST_CASE("DateTime Tests")
         CHECK(members.DayOfYear == 317);
         CHECK(members.DayOfWeek == 1);
     }
+
+    SECTION("Unix Epoch")
+    {
+        DateTime const epoch = *FromMembers(DateTimeMembers{
+            .Year = 1970,
+            .Month = 1,
+            .Day = 1,
+            .Hour = 0,
+            .Minute = 0,
+            .Second = 0,
+            .Millisecond = 0,
+            .Microsecond = 0,
+        });
+
+        CHECK(epoch.Inner.Seconds == 62135596800);
+        CHECK(epoch.Inner.Nanoseconds == 0);
+        CHECK(epoch.Kind == DateTimeKind::Unknown);
+    }
 }

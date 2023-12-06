@@ -27,7 +27,7 @@ namespace weave::threading
 
     void Sleep(time::Duration const& timeout)
     {
-        usleep(static_cast<useconds_t>(timeout.AsMicroseconds()));
+        usleep(static_cast<useconds_t>(timeout.ToMicroseconds()));
     }
 
     void Pause()

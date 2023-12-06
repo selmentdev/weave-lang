@@ -22,6 +22,7 @@ WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::time::impl
 {
+#if defined(WIN32)
     static int64_t QueryInstantFrequency()
     {
         static std::atomic<int64_t> cache{};
@@ -43,7 +44,8 @@ namespace weave::time::impl
         result = std::bit_cast<int64_t>(value);
         cache.store(result, std::memory_order::relaxed);
         return result;
-    }    
+    }
+#endif
 }
 
 namespace weave::time
@@ -92,7 +94,12 @@ namespace weave::time
         [[maybe_unused]] int const result = clock_gettime(CLOCK_MONOTONIC, &ts);
         WEAVE_ASSERT(result == 0);
 
-        return {.Value = (static_cast<int64_t>(ts.tv_sec) * Duration::NanosecondsInSecond) + static_cast<int64_t>(ts.tv_nsec)};
+        return Instant{
+            .Inner = {
+                .Seconds = ts.tv_sec,
+                .Nanoseconds = ts.tv_nsec,
+            },
+        };
 
 #endif
 

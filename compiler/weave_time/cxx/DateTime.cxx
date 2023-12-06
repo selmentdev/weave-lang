@@ -10,11 +10,21 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 #include <Windows.h>
 #endif
 
+#if defined(__linux__)
+#include <sys/time.h>
+#endif
+
 WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::time::impl
 {
+#if defined(WIN32)
     inline constexpr int64_t DateTimeEpochAdjust = 504911231999999999;
+#elif defined(__linux__)
+    inline constexpr int64_t DateTimeEpochAdjust = 62135596800;
+#else
+#error "Not implemented"
+#endif
 
     inline constexpr int64_t TicksPerSecond = NanosecondsInSecond / 100;
 
@@ -86,12 +96,27 @@ namespace weave::time::impl
 
         return std::nullopt;
     }
+
+#if defined(__linux__)
+
+    static int64_t GetTimeZoneBias()
+    {
+        time_t seconds = 0;
+        tm tmGMT{};
+        tm tmLocal{}; 
+        gmtime_r(&seconds, &tmGMT);
+        localtime_r(&seconds, &tmLocal);
+        return mktime(&tmGMT) - mktime(&tmLocal);
+    };
+
+#endif
 }
 
 namespace weave::time
 {
     DateTime DateTime::Now()
     {
+#if defined(WIN32)
         SYSTEMTIME st;
         GetLocalTime(&st);
 
@@ -107,10 +132,30 @@ namespace weave::time
             },
             .Kind = DateTimeKind::Local,
         };
+#elif defined(__linux__)
+        // TODO: adjust for local time
+        struct timespec ts;
+
+        [[maybe_unused]] int const result = clock_gettime(CLOCK_REALTIME, &ts);
+        WEAVE_ASSERT(result == 0);
+
+        int64_t const bias = impl::GetTimeZoneBias();
+
+        return DateTime{
+            .Inner = {
+                .Seconds = ts.tv_sec - bias + impl::DateTimeEpochAdjust,
+                .Nanoseconds = static_cast<int32_t>(ts.tv_nsec),
+            },
+            .Kind = DateTimeKind::Local,
+        };
+#else
+#error "Not implemented"
+#endif
     }
 
     DateTime DateTime::UtcNow()
     {
+#if defined(WIN32)
         FILETIME ft;
         GetSystemTimePreciseAsFileTime(&ft);
 
@@ -123,6 +168,23 @@ namespace weave::time
             },
             .Kind = DateTimeKind::Utc,
         };
+#elif defined(__linux__)
+        struct timespec ts;
+
+        // Get local time
+        [[maybe_unused]] int const result = clock_gettime(CLOCK_REALTIME, &ts);
+        WEAVE_ASSERT(result == 0);
+
+        return DateTime{
+            .Inner = {
+                .Seconds = ts.tv_sec + impl::DateTimeEpochAdjust,
+                .Nanoseconds = static_cast<int32_t>(ts.tv_nsec),
+            },
+            .Kind = DateTimeKind::Utc,
+        };
+#else
+#error "Not implemented"
+#endif
     }
 
     DateTimeMembers ToMembers(DateTime const& self)
