@@ -9,7 +9,7 @@ namespace weave::profiler::impl
             R"__({{ "cat": "{}", "name": "{}", "ph": "i", "ts": {}, "pid": 1, "tid": {} }},)__",
             e.Category,
             e.Name,
-            e.Timestamp.SinceEpoch().AsMicroseconds(),
+            e.Timestamp.SinceEpoch().ToMicroseconds(),
             e.ThreadId);
     }
 
@@ -20,8 +20,8 @@ namespace weave::profiler::impl
             R"__({{ "cat": "{}", "name": "{}", "ph": "X", "ts": {}, "dur": {}, "pid": 1, "tid": {} }},)__",
             e.Category,
             e.Name,
-            e.Timestamp.SinceEpoch().AsMicroseconds(),
-            e.Duration.AsMicroseconds(),
+            e.Timestamp.SinceEpoch().ToMicroseconds(),
+            e.Duration.ToMicroseconds(),
             e.ThreadId);
     }
 }

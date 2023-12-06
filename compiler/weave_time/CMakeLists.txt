@@ -8,3 +8,4 @@ target_link_libraries(weave_time PUBLIC weave_bugcheck)
 WEAVE_CXX_FORTIFY_CODE(weave_time)
 
 add_subdirectory(cxx)
+add_subdirectory(tests)

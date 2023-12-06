@@ -182,11 +182,20 @@ namespace xxx
 
 int main(int argc, const char* argv[])
 {
-    fmt::println("Started: {}", weave::time::DateTime::Now());
-
+    {
+        fmt::println("Zero: {}", weave::time::Duration{INT64_MAX});
+        fmt::println("Min: {}", weave::time::DateTime{{0}});
+        fmt::println("Max: {}", weave::time::DateTime{{std::numeric_limits<int64_t>::max()}});
+        fmt::println("Started: {:d}", weave::time::DateTime::Now());
+        fmt::println("Started: {:t}", weave::time::DateTime::Now());
+        fmt::println("Started: {:D}", weave::time::DateTime::Now());
+        fmt::println("Started: {:T}", weave::time::DateTime::Now());
+        fmt::println("Started: {:F}", weave::time::DateTime::Now());
+        fmt::println("Started: {}", weave::time::DateTime::Now());
+    }
     {
 #if defined(WIN32)
-        weave::filesystem::DirectoryEnumerator enumerator{"d:\\"};
+        weave::filesystem::DirectoryEnumerator enumerator{R"(d:\repos\weave-lang)"};
 #else
         weave::filesystem::DirectoryEnumerator enumerator{"/home/selmentdev/repos/weave-lang"};
 #endif
@@ -404,7 +413,7 @@ int main(int argc, const char* argv[])
             context.QueryMemoryUsage(allocated, reserved);
             context.DumpMemoryUsage();
 
-            fmt::println("lexed in {} ms", timeout.AsMilliseconds());
+            fmt::println("lexed in {} ms", timeout.ToMilliseconds());
             fmt::println("allocated: {}, reserved: {}", allocated, reserved);
         }
         else

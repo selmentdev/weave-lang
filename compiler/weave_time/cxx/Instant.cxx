@@ -20,34 +20,64 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 
 WEAVE_EXTERNAL_HEADERS_END
 
+namespace weave::time::impl
+{
+    static int64_t QueryInstantFrequency()
+    {
+        static std::atomic<int64_t> cache{};
+
+        int64_t result = cache.load(std::memory_order::relaxed);
+
+        if (result != 0)
+        {
+            return result;
+        }
+
+        // Implementation detail:
+        //  QPC Frequency is stored in KUSER_SHARED_DATA.
+        //  This function just performs read from that struct on all known platforms.
+        LARGE_INTEGER value;
+        [[maybe_unused]] BOOL const success = QueryPerformanceFrequency(&value);
+        WEAVE_ASSERT(success != FALSE);
+
+        result = std::bit_cast<int64_t>(value);
+        cache.store(result, std::memory_order::relaxed);
+        return result;
+    }    
+}
+
 namespace weave::time
 {
     Instant Instant::Now()
     {
 #if defined(WIN32)
-
-        static constexpr int64_t QpcFrequency = 10'000'000;
+        static constexpr int64_t CommonQpcFrequency = 10'000'000;
 
         LARGE_INTEGER counter;
         [[maybe_unused]] BOOL const qpcResult = QueryPerformanceCounter(&counter);
         WEAVE_ASSERT(qpcResult != FALSE);
 
-        // Implementation detail:
-        //  QPC Frequency is stored in KUSER_SHARED_DATA.
-        //  This function just performs read from that struct on all known platforms.
-        LARGE_INTEGER frequency;
-        [[maybe_unused]] BOOL const qpfResult = QueryPerformanceFrequency(&frequency);
-        WEAVE_ASSERT(qpfResult != FALSE);
+        int64_t const value = std::bit_cast<int64_t>(counter);
 
-        if (frequency.QuadPart == QpcFrequency)
+        if (int64_t const frequency = impl::QueryInstantFrequency(); frequency == CommonQpcFrequency)
         {
-            // 10 MHz frequency is common for known PCs.
-            // This way we optimize this part without division.
-            return {.Value = counter.QuadPart * (Duration::NanosecondsInSecond / QpcFrequency)};
+            return Instant{
+                .Inner = {
+                    .Seconds = value / CommonQpcFrequency,
+                    .Nanoseconds = static_cast<int32_t>((value % CommonQpcFrequency) * 100),
+                },
+            };
         }
-
-        // This platform uses some uncommon QPC frequency.
-        return {.Value = (counter.QuadPart / frequency.QuadPart)};
+        else
+        {
+            int64_t const nanosecond_conversion = impl::NanosecondsInSecond / frequency;
+            return Instant{
+                .Inner = {
+                    .Seconds = value / frequency,
+                    .Nanoseconds = static_cast<int32_t>((value % frequency) * nanosecond_conversion),
+                },
+            };
+        }
 
 #elif defined(__linux__)
 

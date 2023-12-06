@@ -1,5 +1,5 @@
 add_executable(weave_unicode_tests
-    Encoding.cxx
+    "Encoding.cxx"
 )
 
 target_link_libraries(weave_unicode_tests PUBLIC weave_unicode)

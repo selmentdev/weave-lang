@@ -45,7 +45,7 @@ namespace weave::threading::impl
 {
     inline DWORD ValidateTimeoutDuration(time::Duration const& value)
     {
-        int64_t const milliseconds = value.AsMilliseconds();
+        int64_t const milliseconds = value.ToMilliseconds();
 
         WEAVE_ASSERT((milliseconds >= 0) and (milliseconds <= std::numeric_limits<int32_t>::max()));
 

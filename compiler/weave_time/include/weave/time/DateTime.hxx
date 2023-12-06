@@ -1,7 +1,5 @@
 #pragma once
-#include <cstdint>
-#include <compare>
-#include <fmt/format.h>
+#include "weave/time/Duration.hxx"
 
 namespace weave::time
 {
@@ -28,143 +26,58 @@ namespace weave::time
         int32_t DayOfWeek;
     };
 
-    struct TimeSpanMembers final
+    enum class DateTimeKind : uint32_t
     {
-        bool Negative;
-        int32_t Days;
-        int32_t Hours;
-        int32_t Minutes;
-        int32_t Seconds;
-        int32_t Milliseconds;
-        int32_t Microseconds;
+        Unknown,
+        Local,
+        Utc,
     };
-}
 
-namespace weave::time
-{
-    struct DateTime final
+    struct DateTime
     {
-        int64_t Ticks;
+        Duration Inner;
+        DateTimeKind Kind;
 
-        [[nodiscard]] constexpr auto operator<=>(DateTime const&) const = default;
+        [[nodiscard]] friend constexpr auto operator<=>(DateTime const& self, DateTime const& other) = default;
 
         [[nodiscard]] static DateTime Now();
 
         [[nodiscard]] static DateTime UtcNow();
     };
 
-    struct TimeSpan final
-    {
-        int64_t Ticks;
+    [[nodiscard]] DateTimeMembers ToMembers(DateTime const& self);
 
-        [[nodiscard]] constexpr auto operator<=>(TimeSpan const&) const = default;
-    };
-
-    [[nodiscard]] DateTime FromMembers(DateTimeMembers const& members);
-
-    [[nodiscard]] DateTimeMembers ToMembers(DateTime value);
-
-    [[nodiscard]] TimeSpan FromMembers(TimeSpanMembers const& members);
-
-    [[nodiscard]] TimeSpanMembers ToMembers(TimeSpan value);
+    [[nodiscard]] std::optional<DateTime> FromMembers(DateTimeMembers const& members);
 
     [[nodiscard]] bool ToString(std::string& result, DateTimeMembers const& value, std::string_view format);
 
-    [[nodiscard]] bool ToString(std::string& result, TimeSpanMembers const& value, std::string_view format);
-}
-
-namespace weave::time
-{
-    [[nodiscard]] constexpr DateTime operator+(DateTime const& self, TimeSpan const& other)
+    [[nodiscard]] constexpr DateTime operator+(DateTime const& self, Duration const& other)
     {
-        return DateTime{self.Ticks + other.Ticks};
+        return DateTime{self.Inner + other, self.Kind};
     }
 
-    [[nodiscard]] constexpr DateTime operator-(DateTime const& self, TimeSpan const& other)
+    [[nodiscard]] constexpr DateTime operator-(DateTime const& self, Duration const& other)
     {
-        return {.Ticks = self.Ticks - other.Ticks};
+        return DateTime{self.Inner - other, self.Kind};
     }
 
-    [[nodiscard]] constexpr TimeSpan operator-(DateTime const& self, DateTime const& other)
+    [[nodiscard]] constexpr Duration operator-(DateTime const& self, DateTime const& other)
     {
-        return {.Ticks = self.Ticks - other.Ticks};
+        return self.Inner - other.Inner;
     }
 
-    [[nodiscard]] constexpr TimeSpan operator+(TimeSpan const& self, TimeSpan const& other)
+    [[nodiscard]] constexpr DateTime& operator+=(DateTime& self, Duration const& other)
     {
-        return {.Ticks = self.Ticks + other.Ticks};
-    }
-
-    [[nodiscard]] constexpr TimeSpan operator-(TimeSpan const& self, TimeSpan const& other)
-    {
-        return {.Ticks = self.Ticks - other.Ticks};
-    }
-
-    [[nodiscard]] constexpr DateTime& operator+=(DateTime& self, TimeSpan const& other)
-    {
-        self.Ticks += other.Ticks;
+        self.Inner += other;
         return self;
     }
 
-    [[nodiscard]] constexpr DateTime& operator-=(DateTime& self, TimeSpan const& other)
+    [[nodiscard]] constexpr DateTime& operator-=(DateTime& self, Duration const& other)
     {
-        self.Ticks -= other.Ticks;
-        return self;
-    }
-
-    [[nodiscard]] constexpr TimeSpan& operator+=(TimeSpan& self, TimeSpan const& other)
-    {
-        self.Ticks += other.Ticks;
-        return self;
-    }
-
-    [[nodiscard]] constexpr TimeSpan& operator-=(TimeSpan& self, TimeSpan const& other)
-    {
-        self.Ticks -= other.Ticks;
+        self.Inner -= other;
         return self;
     }
 }
-
-template <>
-struct fmt::formatter<weave::time::TimeSpanMembers>
-{
-    constexpr auto parse(auto& context)
-    {
-        return context.begin();
-    }
-
-    constexpr auto format(weave::time::TimeSpanMembers const& value, auto& context)
-    {
-        auto out = context.out();
-
-        if (value.Negative)
-        {
-            (*out++) = '-';
-        }
-
-        if (value.Days != 0)
-        {
-            out = fmt::format_to(out, "{}.", value.Days);
-        }
-
-        out = fmt::format_to(out, "{:02}:{:02}:{:02}.{:03}",
-            value.Hours,
-            value.Minutes,
-            value.Seconds,
-            value.Milliseconds);
-
-        return out;
-    }
-};
-
-template <>
-struct fmt::formatter<weave::time::TimeSpan> : fmt::formatter<weave::time::TimeSpanMembers>
-{
-    constexpr auto format(weave::time::TimeSpan const& value, auto& context)
-    {
-        return fmt::formatter<weave::time::TimeSpanMembers>::format(weave::time::ToMembers(value), context);
-    }
-};
 
 template <>
 struct fmt::formatter<weave::time::DateTimeMembers>
