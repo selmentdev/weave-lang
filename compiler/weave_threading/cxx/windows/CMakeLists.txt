@@ -3,6 +3,7 @@ target_sources(weave_threading
         "ConditionVariable.cxx"
         "CriticalSection.cxx"
         "ReaderWriterLock.cxx"
+        "RecursiveCriticalSection.cxx"
         "Semaphore.cxx"
         "Yield.cxx"
         "Thread.cxx"

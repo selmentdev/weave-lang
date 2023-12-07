@@ -20,6 +20,11 @@ namespace weave::threading::impl
         pthread_mutex_t Native;
     };
 
+    struct PlatformRecursiveCriticalSection final
+    {
+        pthread_mutex_t Native;
+    };
+
     struct PlatformReaderWriterLock final
     {
         pthread_rwlock_t Native;

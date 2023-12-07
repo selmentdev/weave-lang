@@ -19,6 +19,11 @@ namespace weave::threading::impl
         SRWLOCK Native;
     };
 
+    struct PlatformRecursiveCriticalSection final
+    {
+        CRITICAL_SECTION Native;
+    };
+
     struct PlatformReaderWriterLock final
     {
         SRWLOCK Native;

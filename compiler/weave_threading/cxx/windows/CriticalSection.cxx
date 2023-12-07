@@ -31,6 +31,6 @@ namespace weave::threading
 
     void CriticalSection::Leave()
     {
-        return ReleaseSRWLockExclusive(&this->AsPlatform().Native);
+        ReleaseSRWLockExclusive(&this->AsPlatform().Native);
     }
 }
