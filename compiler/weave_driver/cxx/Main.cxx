@@ -26,6 +26,7 @@
 #include "weave/profiler/Profiler.hxx"
 #include "weave/threading/Yield.hxx"
 #include "weave/time/DateTime.hxx"
+#include "weave/time/DateTimeOffset.hxx"
 #include "weave/bugcheck/Assert.hxx"
 
 #include <atomic>
@@ -189,6 +190,9 @@ int main(int argc, const char* argv[])
         fmt::println("Max: {}", weave::time::DateTime{{std::numeric_limits<int64_t>::max()}});
         fmt::println("Now:    {}", weave::time::DateTime::Now());
         fmt::println("UtcNow: {}", weave::time::DateTime::UtcNow());
+        fmt::println("Now:    {}", weave::time::DateTimeOffset::Now());
+        fmt::println("Now:    {}", weave::time::DateTimeOffset::Now().ToLocal());
+        fmt::println("Now:    {}", weave::time::DateTimeOffset::Now().ToUtc());
         fmt::println("Started: {:t}", weave::time::DateTime::Now());
         fmt::println("Started: {:D}", weave::time::DateTime::Now());
         fmt::println("Started: {:T}", weave::time::DateTime::Now());

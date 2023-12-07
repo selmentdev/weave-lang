@@ -11,10 +11,9 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 
 WEAVE_EXTERNAL_HEADERS_END
 
-
-namespace weave::time::impl
+namespace weave::time
 {
-    static Duration GetLocalTimeZoneBias()
+    Duration DateTimeOffset::GetCurrentTimeZoneBias()
     {
 #if defined(WIN32)
 
@@ -48,21 +47,27 @@ namespace weave::time::impl
         };
 
 #elif defined(__linux__)
-        // TODO: Merge with time::GetTimeZoneBias()
-        return Duration{};
+
+        time_t seconds = 0;
+        tm tmGMT{};
+        tm tmLocal{}; 
+        gmtime_r(&seconds, &tmGMT);
+        localtime_r(&seconds, &tmLocal);
+
+        return Duration{
+            .Seconds = mktime(&tmGMT) - mktime(&tmLocal),
+            .Nanoseconds = 0,
+        };
 #else
 #error "Not implemented"
 #endif
     }
-}
 
-namespace weave::time
-{
     DateTimeOffset DateTimeOffset::Now()
     {
         return DateTimeOffset{
             .Local = DateTime::Now(),
-            .Bias = impl::GetLocalTimeZoneBias(),
+            .Bias = DateTimeOffset::GetCurrentTimeZoneBias(),
         };
     }
 }

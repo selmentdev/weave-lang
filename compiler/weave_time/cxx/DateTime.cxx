@@ -1,5 +1,6 @@
 #include "weave/time/DateTime.hxx"
 #include "weave/bugcheck/Assert.hxx"
+#include "weave/time/DateTimeOffset.hxx"
 
 #include <array>
 
@@ -96,20 +97,6 @@ namespace weave::time::impl
 
         return std::nullopt;
     }
-
-#if defined(__linux__)
-
-    static int64_t GetTimeZoneBias()
-    {
-        time_t seconds = 0;
-        tm tmGMT{};
-        tm tmLocal{}; 
-        gmtime_r(&seconds, &tmGMT);
-        localtime_r(&seconds, &tmLocal);
-        return mktime(&tmGMT) - mktime(&tmLocal);
-    };
-
-#endif
 }
 
 namespace weave::time
@@ -133,13 +120,12 @@ namespace weave::time
             .Kind = DateTimeKind::Local,
         };
 #elif defined(__linux__)
-        // TODO: adjust for local time
         struct timespec ts;
 
         [[maybe_unused]] int const result = clock_gettime(CLOCK_REALTIME, &ts);
         WEAVE_ASSERT(result == 0);
 
-        int64_t const bias = impl::GetTimeZoneBias();
+        int64_t const bias = DateTimeOffset::GetCurrentTimeZoneBias().Seconds;
 
         return DateTime{
             .Inner = {
