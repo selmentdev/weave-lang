@@ -1,7 +1,7 @@
 #pragma once
 #include "weave/platform/Compiler.hxx"
 #include "weave/time/Duration.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/BugCheck.hxx"
 
 #include <limits>
 

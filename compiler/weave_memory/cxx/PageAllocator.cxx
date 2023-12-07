@@ -1,7 +1,7 @@
 #include "weave/platform/Compiler.hxx"
 #include "weave/memory/PageAllocator.hxx"
 #include "weave/Bitwise.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
 

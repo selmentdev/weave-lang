@@ -1,6 +1,6 @@
 #include "weave/platform/Compiler.hxx"
 #include "weave/filesystem/DirectoryEnumerator.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/BugCheck.hxx"
 #include "Error.hxx"
 
 #include <utility>

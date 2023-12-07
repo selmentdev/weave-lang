@@ -1,4 +1,4 @@
-#include "weave/bugcheck/BugCheck.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 #if __has_include(<stacktrace>)
 #include <stacktrace>
@@ -6,20 +6,31 @@
 
 namespace weave::bugcheck
 {
-    void BugCheck(
+    // ReSharper disable once CppDFAConstantFunctionResult
+    bool AssertionFailed(
         std::source_location const& location,
-        std::string_view message)
+        std::string_view condition)
     {
-        BugCheckArgs(location, "{}", fmt::make_format_args(message));
+        return AssertionFailedArgs(location, condition, "", fmt::make_format_args());
     }
 
-    void BugCheckArgs(
+    // ReSharper disable once CppDFAConstantFunctionResult
+    bool AssertionFailed(
         std::source_location const& location,
+        std::string_view condition,
+        std::string_view message)
+    {
+        return AssertionFailedArgs(location, condition, "{}", fmt::make_format_args(message));
+    }
+
+    bool AssertionFailedArgs(
+        std::source_location const& location,
+        std::string_view condition,
         std::string_view format,
         fmt::format_args args)
     {
-        fmt::println(stderr, "=== bugcheck ===");
-        fmt::println(stderr, "{}:{}:{}", location.file_name(), location.line(), location.column());
+        fmt::println(stderr, "=== assert ===");
+        fmt::println(stderr, "{}:{}:{}: {}", location.file_name(), location.line(), location.column(), condition);
 
         if (not format.empty())
         {
@@ -39,6 +50,11 @@ namespace weave::bugcheck
         fmt::println(stderr, "stacktrace: not available");
 #endif
 
+
+#if !defined(NDEBUG)
+        return true;
+#else
         std::abort();
+#endif
     }
 }

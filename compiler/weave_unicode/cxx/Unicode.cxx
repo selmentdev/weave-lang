@@ -1,5 +1,4 @@
 #include "weave/Unicode.hxx"
-#include "weave/BugCheck.hxx"
 
 namespace weave::unicode::impl
 {

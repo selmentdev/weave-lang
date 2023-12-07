@@ -1,5 +1,5 @@
 #include "weave/platform/Compiler.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/Assert.hxx"
 #include "weave/time/Instant.hxx"
 #include "weave/time/Duration.hxx"
 

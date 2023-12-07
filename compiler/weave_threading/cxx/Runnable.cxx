@@ -1,5 +1,5 @@
 #include "weave/threading/Runnable.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/BugCheck.hxx"
 
 namespace weave::threading
 {

@@ -1,3 +1,5 @@
-target_sources(weave_bugcheck PRIVATE
-    BugCheck.cxx
+target_sources(weave_bugcheck
+    PRIVATE
+        "BugCheck.cxx"
+        "Assert.cxx"
 )

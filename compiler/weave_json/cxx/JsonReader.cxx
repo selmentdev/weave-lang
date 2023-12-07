@@ -1,6 +1,6 @@
 #include "weave/json/JsonReader.hxx"
 #include "weave/Unicode.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 
 // Json Grammar

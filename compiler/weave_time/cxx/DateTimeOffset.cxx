@@ -1,6 +1,6 @@
 #include "weave/time/DateTimeOffset.hxx"
 #include "weave/platform/Compiler.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/BugCheck.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
 

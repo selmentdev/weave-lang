@@ -1,5 +1,5 @@
 #include "weave/tokenizer/TokenKind.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/Assert.hxx"
 #include "weave/hash/Fnv1a.hxx"
 
 #include <utility>

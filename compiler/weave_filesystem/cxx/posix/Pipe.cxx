@@ -1,5 +1,5 @@
 #include "weave/filesystem/Pipe.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 #include "Error.hxx"
 
@@ -54,7 +54,6 @@ namespace weave::filesystem
             buffer.data(),
             buffer.size());
             
-        fmt::println("pipe read: {}", processed);
         if (processed < 0)
         {
             return std::unexpected(impl::TranslateErrno(errno));
@@ -73,7 +72,6 @@ namespace weave::filesystem
             buffer.data(),
             buffer.size());
             
-        fmt::println("pipe write: {}", processed);
         if (processed < 0)
         {
             return std::unexpected(impl::TranslateErrno(errno));
@@ -90,13 +88,8 @@ namespace weave::filesystem
 
         if (ioctl(static_cast<int>(reinterpret_cast<intptr_t>(this->_read)), FIONREAD, &n_available) == 0)
         {
-            fmt::println("bytes avail {}", n_available);
-            fflush(stdout);
             return static_cast<size_t>(n_available);
         }
-
-        fmt::println("bytes avail failed");
-        fflush(stdout);
 
         return std::unexpected(impl::TranslateErrno(errno));
     }

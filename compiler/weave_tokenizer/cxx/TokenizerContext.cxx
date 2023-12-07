@@ -1,6 +1,7 @@
 #include "weave/tokenizer/TokenizerContext.hxx"
 #include "weave/tokenizer/Tokenizer.hxx"
 #include "weave/Unicode.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 namespace weave::tokenizer
 {

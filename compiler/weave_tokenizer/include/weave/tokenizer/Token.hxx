@@ -1,5 +1,4 @@
 #pragma once
-#include "weave/BugCheck.hxx"
 #include "weave/source/Source.hxx"
 #include "weave/tokenizer/TokenKind.hxx"
 #include "weave/tokenizer/TriviaKind.hxx"

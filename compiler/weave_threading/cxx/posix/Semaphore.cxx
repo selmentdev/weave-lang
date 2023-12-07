@@ -1,5 +1,5 @@
 #include "weave/threading/Semaphore.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/BugCheck.hxx"
 
 #include "Platform.hxx"
 

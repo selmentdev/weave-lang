@@ -1,5 +1,5 @@
 #include "weave/syntax/SyntaxKind.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 #include <utility>
 #include <array>

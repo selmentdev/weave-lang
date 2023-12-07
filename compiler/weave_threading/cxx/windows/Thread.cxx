@@ -1,6 +1,6 @@
 #include "weave/threading/Thread.hxx"
 #include "weave/threading/Runnable.hxx"
-
+#include "weave/bugcheck/BugCheck.hxx"
 #include "weave/platform/windows/String.hxx"
 
 #include "Platform.hxx"

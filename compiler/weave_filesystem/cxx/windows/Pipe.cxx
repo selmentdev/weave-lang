@@ -1,5 +1,5 @@
 #include "weave/filesystem/Pipe.hxx"
-#include "weave/bugcheck.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 #include "Error.hxx"
 

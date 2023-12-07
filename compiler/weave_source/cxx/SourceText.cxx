@@ -1,6 +1,6 @@
 #include "weave/source/SourceText.hxx"
 #include "weave/Unicode.hxx"
-#include "weave/BugCheck.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 namespace weave::source
 {
