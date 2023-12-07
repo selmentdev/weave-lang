@@ -13,6 +13,7 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 #elif defined(__linux__)
 
 #include <sys/mman.h>
+#include <time.h>
 
 #else
 #error Not implemented
@@ -66,7 +67,7 @@ namespace weave::time
             return Instant{
                 .Inner = {
                     .Seconds = value / CommonQpcFrequency,
-                    .Nanoseconds = static_cast<int32_t>((value % CommonQpcFrequency) * 100),
+                    .Nanoseconds = (value % CommonQpcFrequency) * 100,
                 },
             };
         }
@@ -76,7 +77,7 @@ namespace weave::time
             return Instant{
                 .Inner = {
                     .Seconds = value / frequency,
-                    .Nanoseconds = static_cast<int32_t>((value % frequency) * nanosecond_conversion),
+                    .Nanoseconds = (value % frequency) * nanosecond_conversion,
                 },
             };
         }
@@ -85,7 +86,7 @@ namespace weave::time
 
 #if defined(HAVE_CLOCK_GETTIME_NSEC_NP)
 
-        return {.Value = clock_gettime_nsec_np(CLOCK_UPTIME_RAW)};
+        return { .Inner = Duration::FromNanoseconds(clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW)) };
 
 #else
 

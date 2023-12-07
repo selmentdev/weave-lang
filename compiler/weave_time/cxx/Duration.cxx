@@ -3,7 +3,7 @@
 
 namespace weave::time
 {
-    Duration Duration::New(int64_t seconds, int32_t nanoseconds)
+    Duration Duration::New(int64_t seconds, int64_t nanoseconds)
     {
         if (seconds > 0)
         {
@@ -44,7 +44,7 @@ namespace weave::time
         d /= 24;
         int64_t const days = d;
 
-        int32_t t = copy.Nanoseconds;
+        int64_t t = copy.Nanoseconds;
 
         int32_t const nanoseconds = t % 1'000;
         t /= 1'000;

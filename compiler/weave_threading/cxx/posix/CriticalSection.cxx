@@ -14,7 +14,7 @@ namespace weave::threading
 
     CriticalSection::CriticalSection()
     {
-        if (int const rc = pthread_mutex_init(&this->AsPlatform().Native, &attr); rc != 0)
+        if (int const rc = pthread_mutex_init(&this->AsPlatform().Native, nullptr); rc != 0)
         {
             WEAVE_BUGCHECK("pthread_mutex_init (rc: {}, `{}`)", rc, strerror(rc));
         }

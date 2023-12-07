@@ -9,7 +9,7 @@ namespace weave::threading::impl
 #if defined(WIN32)
         void* Native[5];
 #elif defined(__linux__)
-        void* Native[1];
+        void* Native[6];
 #else
 #error "Not implemented"
 #endif

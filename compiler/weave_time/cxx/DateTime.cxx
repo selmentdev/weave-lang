@@ -128,7 +128,7 @@ namespace weave::time
         return DateTime{
             .Inner = {
                 .Seconds = (ticks / impl::TicksPerSecond),
-                .Nanoseconds = static_cast<int32_t>((ticks % impl::TicksPerSecond) * 100),
+                .Nanoseconds = (ticks % impl::TicksPerSecond) * 100,
             },
             .Kind = DateTimeKind::Local,
         };
@@ -144,7 +144,7 @@ namespace weave::time
         return DateTime{
             .Inner = {
                 .Seconds = ts.tv_sec - bias + impl::DateTimeEpochAdjust,
-                .Nanoseconds = static_cast<int32_t>(ts.tv_nsec),
+                .Nanoseconds = ts.tv_nsec,
             },
             .Kind = DateTimeKind::Local,
         };
@@ -164,7 +164,7 @@ namespace weave::time
         return DateTime{
             .Inner = {
                 .Seconds = (ticks / impl::TicksPerSecond),
-                .Nanoseconds = static_cast<int32_t>((ticks % impl::TicksPerSecond) * 100),
+                .Nanoseconds = (ticks % impl::TicksPerSecond) * 100,
             },
             .Kind = DateTimeKind::Utc,
         };
@@ -178,7 +178,7 @@ namespace weave::time
         return DateTime{
             .Inner = {
                 .Seconds = ts.tv_sec + impl::DateTimeEpochAdjust,
-                .Nanoseconds = static_cast<int32_t>(ts.tv_nsec),
+                .Nanoseconds = ts.tv_nsec,
             },
             .Kind = DateTimeKind::Utc,
         };

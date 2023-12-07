@@ -33,11 +33,11 @@ namespace weave::time
     struct Duration
     {
         int64_t Seconds;
-        int32_t Nanoseconds;
+        int64_t Nanoseconds;
 
         [[nodiscard]] friend constexpr auto operator<=>(Duration const& self, Duration const& other) = default;
 
-        [[nodiscard]] static Duration New(int64_t seconds, int32_t nanoseconds);
+        [[nodiscard]] static Duration New(int64_t seconds, int64_t nanoseconds);
 
         [[nodiscard]] constexpr int64_t ToNanoseconds() const
         {
@@ -79,7 +79,7 @@ namespace weave::time
     {
         Duration result{
             .Seconds = value / 1'000,
-            .Nanoseconds = static_cast<int32_t>((value % 1'000) * 1'000'000),
+            .Nanoseconds = (value % 1'000) * 1'000'000,
         };
 
         Normalize(result);
@@ -90,7 +90,7 @@ namespace weave::time
     {
         Duration result{
             .Seconds = value / 1'000'000,
-            .Nanoseconds = static_cast<int32_t>((value % 1'000'000) * 1'000),
+            .Nanoseconds = (value % 1'000'000) * 1'000,
         };
 
         Normalize(result);
@@ -101,7 +101,7 @@ namespace weave::time
     {
         Duration result{
             .Seconds = value / 1'000'000'000,
-            .Nanoseconds = static_cast<int32_t>(value % 1'000'000'000),
+            .Nanoseconds = value % 1'000'000'000,
         };
 
         Normalize(result);

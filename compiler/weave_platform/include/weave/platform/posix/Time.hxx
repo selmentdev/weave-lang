@@ -18,7 +18,7 @@ namespace weave::platform::posix
     inline constexpr int64_t NanosecondsPerSecond = 1'000 * MicrosecondsPerSecond;
 
     inline constexpr int64_t DateTimeEpochAdjust = 11644473600;
-
+#if false
     [[nodiscard]] constexpr int64_t IntoTicks(timeval const& self)
     {
         return (((static_cast<int64_t>(self.tv_sec) + DateTimeEpochAdjust) * MicrosecondsPerSecond) + static_cast<int64_t>(self.tv_usec)) * 10;
@@ -116,4 +116,5 @@ namespace weave::platform::posix
     {
         return (value.tv_sec * NanosecondsPerSecond) + value.tv_nsec;
     }
+#endif
 }
