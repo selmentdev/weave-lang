@@ -71,7 +71,7 @@ namespace weave::filesystem
         return static_cast<int>(reinterpret_cast<intptr_t>(handle));
     }
 
-    std::expected<FileHandle, FileSystemError> FileHandle::Create(std::string_view path, FileMode mode, FileAccess access, FileOptions options)
+    std::expected<FileHandle, platform::SystemError> FileHandle::Create(std::string_view path, FileMode mode, FileAccess access, FileOptions options)
     {
         int const flags = TranslateToOpenFlags(mode, access, options, false);
 
@@ -118,7 +118,7 @@ namespace weave::filesystem
         return (stat64(std::string{path}.c_str(), &st) == 0) and S_ISREG(st.st_mode);
     }
 
-    std::expected<void, FileSystemError> FileHandle::Close()
+    std::expected<void, platform::SystemError> FileHandle::Close()
     {
         assert(this->_handle != nullptr);
 
@@ -130,7 +130,7 @@ namespace weave::filesystem
         return std::unexpected(impl::TranslateErrno(errno));
     }
 
-    std::expected<int64_t, FileSystemError> FileHandle::GetLength() const
+    std::expected<int64_t, platform::SystemError> FileHandle::GetLength() const
     {
         assert(this->_handle != nullptr);
 
@@ -144,7 +144,7 @@ namespace weave::filesystem
         return std::unexpected(impl::TranslateErrno(errno));
     }
 
-    std::expected<void, FileSystemError> FileHandle::SetLength(int64_t length)
+    std::expected<void, platform::SystemError> FileHandle::SetLength(int64_t length)
     {
         assert(this->_handle != nullptr);
 
@@ -156,7 +156,7 @@ namespace weave::filesystem
         return std::unexpected(impl::TranslateErrno(errno));
     }
 
-    std::expected<size_t, FileSystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
+    std::expected<size_t, platform::SystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
     {
         assert(this->_handle != nullptr);
         int const fd = ToFileDescriptor(this->_handle);
@@ -186,7 +186,7 @@ namespace weave::filesystem
         return processed;
     }
 
-    std::expected<size_t, FileSystemError> FileHandle::Write(std::span<std::byte const> buffer, int64_t position)
+    std::expected<size_t, platform::SystemError> FileHandle::Write(std::span<std::byte const> buffer, int64_t position)
     {
         assert(this->_handle != nullptr);
         int const fd = ToFileDescriptor(this->_handle);

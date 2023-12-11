@@ -32,14 +32,14 @@ namespace weave::filesystem
         ~FileWriter();
 
     private:
-        std::expected<void, FileSystemError> FlushBuffer();
+        std::expected<void, platform::SystemError> FlushBuffer();
 
     public:
-        std::expected<void, FileSystemError> Flush();
+        std::expected<void, platform::SystemError> Flush();
 
-        std::expected<size_t, FileSystemError> Write(void const* buffer, size_t size);
+        std::expected<size_t, platform::SystemError> Write(void const* buffer, size_t size);
 
-        std::expected<size_t, FileSystemError> Write(std::span<std::byte const> buffer);
+        std::expected<size_t, platform::SystemError> Write(std::span<std::byte const> buffer);
 
         [[nodiscard]] int64_t GetPosition() const
         {
@@ -50,7 +50,7 @@ namespace weave::filesystem
 
 namespace weave::filesystem
 {
-    inline std::expected<void, FileSystemError> Write(FileWriter& writer, std::string_view value)
+    inline std::expected<void, platform::SystemError> Write(FileWriter& writer, std::string_view value)
     {
         if (auto processed = writer.Write(std::as_bytes(std::span{value})); not processed)
         {

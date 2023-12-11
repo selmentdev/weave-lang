@@ -6,7 +6,7 @@
 #include <span>
 #include <utility>
 
-#include "weave/filesystem/FileSystemError.hxx"
+#include "weave/platform/SystemError.hxx"
 
 namespace weave::filesystem
 {
@@ -66,14 +66,14 @@ namespace weave::filesystem
         }
 
     public:
-        static std::expected<Pipe, FileSystemError> Create();
+        static std::expected<Pipe, platform::SystemError> Create();
 
     public:
-        std::expected<size_t, FileSystemError> Read(std::span<std::byte> buffer);
+        std::expected<size_t, platform::SystemError> Read(std::span<std::byte> buffer);
 
-        std::expected<size_t, FileSystemError> Write(std::span<std::byte const> buffer);
+        std::expected<size_t, platform::SystemError> Write(std::span<std::byte const> buffer);
 
-        [[nodiscard]] std::expected<size_t, FileSystemError> BytesAvailable() const;
+        [[nodiscard]] std::expected<size_t, platform::SystemError> BytesAvailable() const;
 
     public:
         void CloseRead();
@@ -87,9 +87,9 @@ namespace weave::filesystem
         }
     };
 
-    std::expected<size_t, FileSystemError> Read(Pipe& self, std::vector<std::byte>& buffer);
+    std::expected<size_t, platform::SystemError> Read(Pipe& self, std::vector<std::byte>& buffer);
 
-    std::expected<size_t, FileSystemError> Read(Pipe& self, std::string& buffer);
+    std::expected<size_t, platform::SystemError> Read(Pipe& self, std::string& buffer);
 
-    std::expected<size_t, FileSystemError> Write(Pipe& self, std::string_view buffer);
+    std::expected<size_t, platform::SystemError> Write(Pipe& self, std::string_view buffer);
 }

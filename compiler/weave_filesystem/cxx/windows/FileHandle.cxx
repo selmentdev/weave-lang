@@ -1,7 +1,6 @@
 #include "weave/platform/compiler.hxx"
 #include "weave/platform/windows/string.hxx"
 #include "weave/filesystem/FileHandle.hxx"
-#include "Error.hxx"
 
 #include <bit>
 
@@ -14,7 +13,7 @@ WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::filesystem
 {
-    std::expected<FileHandle, FileSystemError> FileHandle::Create(std::string_view path, FileMode mode, FileAccess access, FileOptions options)
+    std::expected<FileHandle, platform::SystemError> FileHandle::Create(std::string_view path, FileMode mode, FileAccess access, FileOptions options)
     {
         DWORD dwMode = 0;
 
@@ -125,10 +124,10 @@ namespace weave::filesystem
                 return FileHandle{result};
             }
 
-            return std::unexpected(impl::TranslateErrorCode(GetLastError()));
+            return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
 
-        return std::unexpected(FileSystemError::InvalidPath);
+        return std::unexpected(platform::SystemError::NoSuchFileOrDirectory);
     }
 
     bool FileHandle::Exists(std::string_view path)
@@ -148,7 +147,7 @@ namespace weave::filesystem
         return false;
     }
 
-    std::expected<void, FileSystemError> FileHandle::Close()
+    std::expected<void, platform::SystemError> FileHandle::Close()
     {
         assert(this->_handle != nullptr);
 
@@ -156,38 +155,38 @@ namespace weave::filesystem
 
         if (!CloseHandle(handle))
         {
-            return std::unexpected(impl::TranslateErrorCode(GetLastError()));
+            return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
 
         return {};
     }
 
-    std::expected<void, FileSystemError> FileHandle::Flush()
+    std::expected<void, platform::SystemError> FileHandle::Flush()
     {
         assert(this->_handle != nullptr);
 
         if (!FlushFileBuffers(this->_handle))
         {
-            return std::unexpected(impl::TranslateErrorCode(GetLastError()));
+            return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
 
         return {};
     }
 
-    std::expected<int64_t, FileSystemError> FileHandle::GetLength() const
+    std::expected<int64_t, platform::SystemError> FileHandle::GetLength() const
     {
         assert(this->_handle != nullptr);
 
         LARGE_INTEGER li{};
         if (!GetFileSizeEx(this->_handle, &li))
         {
-            return std::unexpected(impl::TranslateErrorCode(GetLastError()));
+            return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
 
         return li.QuadPart;
     }
 
-    std::expected<void, FileSystemError> FileHandle::SetLength(int64_t length)
+    std::expected<void, platform::SystemError> FileHandle::SetLength(int64_t length)
     {
         assert(this->_handle != nullptr);
 
@@ -202,7 +201,7 @@ namespace weave::filesystem
 
         if (result == FALSE)
         {
-            return std::unexpected(impl::TranslateErrorCode(GetLastError()));
+            return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
 
         return {};
@@ -234,7 +233,7 @@ namespace weave::filesystem
 
     constexpr size_t DefaultBufferSize = 1u << 20u;
 
-    std::expected<size_t, FileSystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
+    std::expected<size_t, platform::SystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
     {
         assert(this->_handle != nullptr);
 
@@ -258,12 +257,12 @@ namespace weave::filesystem
 
                 if (dwError != ERROR_IO_PENDING)
                 {
-                    return std::unexpected(impl::TranslateErrorCode(dwError));
+                    return std::unexpected(platform::impl::SystemErrorFromWin32Error(dwError));
                 }
 
                 if (GetOverlappedResult(this->_handle, &overlapped, &dwProcessed, TRUE) == FALSE)
                 {
-                    return std::unexpected(impl::TranslateErrorCode(GetLastError()));
+                    return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
                 }
             }
 
@@ -276,7 +275,7 @@ namespace weave::filesystem
         return processed;
     }
 
-    std::expected<size_t, FileSystemError> FileHandle::Write(std::span<std::byte const> buffer, int64_t position)
+    std::expected<size_t, platform::SystemError> FileHandle::Write(std::span<std::byte const> buffer, int64_t position)
     {
         assert(this->_handle != nullptr);
 
@@ -300,14 +299,14 @@ namespace weave::filesystem
 
                 if (dwError != ERROR_IO_PENDING)
                 {
-                    return std::unexpected(impl::TranslateErrorCode(dwError));
+                    return std::unexpected(platform::impl::SystemErrorFromWin32Error(dwError));
                 }
 
                 dwProcessed = 0;
 
                 if (GetOverlappedResult(this->_handle, &overlapped, &dwProcessed, TRUE) == FALSE)
                 {
-                    return std::unexpected(FileSystemError::WriteFailure);
+                    return std::unexpected(platform::SystemError::IoError);
                 }
             }
 

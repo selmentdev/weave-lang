@@ -2,7 +2,6 @@
 #include "weave/filesystem/DirectoryEnumerator.hxx"
 #include "weave/bugcheck/BugCheck.hxx"
 #include "weave/platform/windows/String.hxx"
-#include "Error.hxx"
 
 #include <optional>
 #include <utility>
@@ -127,7 +126,7 @@ namespace weave::filesystem
         };
     }
 
-    std::optional<std::expected<DirectoryEntry, FileSystemError>> DirectoryEnumerator::Next()
+    std::optional<std::expected<DirectoryEntry, platform::SystemError>> DirectoryEnumerator::Next()
     {
         impl::PlatformDirectoryEnumerator& state = this->AsPlatform();
 
@@ -161,13 +160,13 @@ namespace weave::filesystem
                     }
                     else
                     {
-                        return std::unexpected(impl::TranslateErrorCode(dwError));
+                        return std::unexpected(platform::impl::SystemErrorFromWin32Error(dwError));
                     }
                 }
             }
 
             // Could not convert root string.
-            return std::unexpected(FileSystemError::InvalidParameter);
+            return std::unexpected(platform::SystemError::InvalidArgument);
         }
 
         if (FindNextFileW(state.Handle, &wfd) != FALSE)
@@ -181,7 +180,7 @@ namespace weave::filesystem
         }
         else
         {
-            return std::unexpected(impl::TranslateErrorCode(dwError));
+            return std::unexpected(platform::impl::SystemErrorFromWin32Error(dwError));
         }
     }
 }

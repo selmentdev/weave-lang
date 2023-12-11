@@ -1,8 +1,8 @@
+#include "weave/platform/Compiler.hxx"
 #include "weave/platform/windows/string.hxx"
 #include "weave/filesystem/FileSystem.hxx"
 #include "weave/filesystem/FileHandle.hxx"
-
-#include "Error.hxx"
+#include "weave/platform/SystemError.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
 
@@ -13,7 +13,7 @@ WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::filesystem
 {
-    std::expected<std::string, FileSystemError> File::Copy(std::string_view existing, std::string_view destination, NameCollisionResolve collision)
+    std::expected<std::string, platform::SystemError> File::Copy(std::string_view existing, std::string_view destination, NameCollisionResolve collision)
     {
         platform::StringBuffer<wchar_t, MAX_PATH> wExisting{};
         platform::StringBuffer<wchar_t, MAX_PATH> wDestination{};
@@ -33,7 +33,7 @@ namespace weave::filesystem
                 }
                 else
                 {
-                    return std::unexpected(impl::TranslateErrorCode(dwError));
+                    return std::unexpected(platform::impl::SystemErrorFromWin32Error(dwError));
                 }
             }
             else
@@ -47,7 +47,7 @@ namespace weave::filesystem
                 {
                 case NameCollisionResolve::Fail:
                     {
-                        return std::unexpected(FileSystemError::FileExists);
+                        return std::unexpected(platform::SystemError::FileExists);
                     }
 
                 case NameCollisionResolve::GenerateUnique:
@@ -65,7 +65,7 @@ namespace weave::filesystem
 
                 default:
                     {
-                        return std::unexpected(FileSystemError::InvalidParameter);
+                        return std::unexpected(platform::SystemError::InvalidArgument);
                     }
                 }
             }
@@ -81,12 +81,12 @@ namespace weave::filesystem
 
             if (FAILED(CopyFile2(wExisting.GetBuffer(), wDestination.GetBuffer(), &params)))
             {
-                return std::unexpected(FileSystemError::FileExists);
+                return std::unexpected(platform::SystemError::FileExists);
             }
 
             return std::string{destination};
         }
 
-        return std::unexpected(FileSystemError::InvalidParameter);
+        return std::unexpected(platform::SystemError::InvalidArgument);
     }
 }

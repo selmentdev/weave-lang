@@ -1,5 +1,5 @@
 #pragma once
-#include "weave/filesystem/FileSystemError.hxx"
+#include "weave/platform/SystemError.hxx"
 
 #include <expected>
 #include <span>
@@ -9,13 +9,13 @@
 
 namespace weave::filesystem
 {
-    std::expected<std::string, FileSystemError> ReadTextFile(std::string_view path);
+    std::expected<std::string, platform::SystemError> ReadTextFile(std::string_view path);
 
-    std::expected<std::vector<std::byte>, FileSystemError> ReadBinaryFile(std::string_view path);
+    std::expected<std::vector<std::byte>, platform::SystemError> ReadBinaryFile(std::string_view path);
 
-    std::expected<void, FileSystemError> WriteTextFile(std::string_view path, std::string_view content);
+    std::expected<void, platform::SystemError> WriteTextFile(std::string_view path, std::string_view content);
 
-    std::expected<void, FileSystemError> WriteBinaryFile(std::string_view path, std::span<std::byte const> content);
+    std::expected<void, platform::SystemError> WriteBinaryFile(std::string_view path, std::span<std::byte const> content);
 }
 
 namespace weave::filesystem
@@ -30,7 +30,7 @@ namespace weave::filesystem
     class File
     {
     public:
-        static std::expected<std::string, FileSystemError> Copy(
+        static std::expected<std::string, platform::SystemError> Copy(
             std::string_view existing,
             std::string_view destination,
             NameCollisionResolve collision);

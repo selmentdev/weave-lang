@@ -1,5 +1,5 @@
 #pragma once
-#include "weave/filesystem/FileSystemError.hxx"
+#include "weave/platform/SystemError.hxx"
 
 #include <cstddef>
 #include <cstdint>
@@ -96,9 +96,9 @@ namespace weave::filesystem
         }
 
     public:
-        static std::expected<FileHandle, FileSystemError> Create(std::string_view path, FileMode mode, FileAccess access, FileOptions options);
+        static std::expected<FileHandle, platform::SystemError> Create(std::string_view path, FileMode mode, FileAccess access, FileOptions options);
 
-        static std::expected<FileHandle, FileSystemError> Create(std::string_view path, FileMode mode, FileAccess access)
+        static std::expected<FileHandle, platform::SystemError> Create(std::string_view path, FileMode mode, FileAccess access)
         {
             return Create(path, mode, access, {});
         }
@@ -106,16 +106,16 @@ namespace weave::filesystem
         static bool Exists(std::string_view path);
 
     public:
-        std::expected<void, FileSystemError> Close();
+        std::expected<void, platform::SystemError> Close();
 
-        std::expected<void, FileSystemError> Flush();
+        std::expected<void, platform::SystemError> Flush();
 
-        [[nodiscard]] std::expected<int64_t, FileSystemError> GetLength() const;
+        [[nodiscard]] std::expected<int64_t, platform::SystemError> GetLength() const;
 
-        std::expected<void, FileSystemError> SetLength(int64_t length);
+        std::expected<void, platform::SystemError> SetLength(int64_t length);
 
-        std::expected<size_t, FileSystemError> Read(std::span<std::byte> buffer, int64_t position);
+        std::expected<size_t, platform::SystemError> Read(std::span<std::byte> buffer, int64_t position);
 
-        std::expected<size_t, FileSystemError> Write(std::span<std::byte const> buffer, int64_t position);
+        std::expected<size_t, platform::SystemError> Write(std::span<std::byte const> buffer, int64_t position);
     };
 }

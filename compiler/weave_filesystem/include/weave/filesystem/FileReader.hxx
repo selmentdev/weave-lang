@@ -33,13 +33,13 @@ namespace weave::filesystem
         ~FileReader() = default;
 
     public:
-        std::expected<size_t, FileSystemError> Read(void* buffer, size_t size);
+        std::expected<size_t, platform::SystemError> Read(void* buffer, size_t size);
 
-        std::expected<void, FileSystemError> ReadExact(void* buffer, size_t size);
+        std::expected<void, platform::SystemError> ReadExact(void* buffer, size_t size);
 
-        std::expected<size_t, FileSystemError> Read(std::span<std::byte> buffer);
+        std::expected<size_t, platform::SystemError> Read(std::span<std::byte> buffer);
 
-        std::expected<void, FileSystemError> ReadExact(std::span<std::byte> buffer);
+        std::expected<void, platform::SystemError> ReadExact(std::span<std::byte> buffer);
 
         [[nodiscard]] int64_t GetPosition() const
         {

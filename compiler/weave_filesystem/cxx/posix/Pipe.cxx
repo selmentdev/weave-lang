@@ -30,7 +30,7 @@ namespace weave::filesystem
         }
     }
 
-    std::expected<Pipe, FileSystemError> Pipe::Create()
+    std::expected<Pipe, platform::SystemError> Pipe::Create()
     {
         int fd[2];
         if (pipe(fd) == 0)
@@ -44,7 +44,7 @@ namespace weave::filesystem
         return std::unexpected(impl::TranslateErrno(errno));
     }
 
-    std::expected<size_t, FileSystemError> Pipe::Read(std::span<std::byte> buffer)
+    std::expected<size_t, platform::SystemError> Pipe::Read(std::span<std::byte> buffer)
     {
         WEAVE_ASSERT(this->_read != nullptr);
         WEAVE_ASSERT(buffer.size() <= static_cast<size_t>(std::numeric_limits<int32_t>::max()));
@@ -62,7 +62,7 @@ namespace weave::filesystem
         return static_cast<size_t>(processed);
     }
 
-    std::expected<size_t, FileSystemError> Pipe::Write(std::span<std::byte const> buffer)
+    std::expected<size_t, platform::SystemError> Pipe::Write(std::span<std::byte const> buffer)
     {
         WEAVE_ASSERT(this->_write != nullptr);
         WEAVE_ASSERT(buffer.size() <= static_cast<size_t>(std::numeric_limits<int32_t>::max()));
@@ -80,7 +80,7 @@ namespace weave::filesystem
         return static_cast<size_t>(processed);
     }
 
-    std::expected<size_t, FileSystemError> Pipe::BytesAvailable() const
+    std::expected<size_t, platform::SystemError> Pipe::BytesAvailable() const
     {
         WEAVE_ASSERT(this->_read != nullptr);
 

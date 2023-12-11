@@ -58,18 +58,37 @@ TEST_CASE("UTF8 Tests")
             }
         }
 
+        SECTION("Emojis")
+        {
+            SECTION("U0001F30D")
+            {
+                constexpr std::u8string_view source{u8"\U0001F30D"};
+                constexpr std::u32string_view expected{U"\U0001F30D"};
+                {
+                    std::u32string destination{};
+                    CHECK(Convert(destination, source, ConversionType::None) == ConversionResult::Success);
+                    CHECK(destination == expected);
+                }
+                {
+                    std::u32string destination{};
+                    CHECK(Convert(destination, source, ConversionType::Strict) == ConversionResult::Success);
+                    CHECK(destination == expected);
+                }
+            }
+        }
+
         SECTION("Long string with emojis")
         {
-            std::u8string_view source{u8"Hello, world! 🌍🌎🌏, how are 🤟 you? 🤔 We are doing fine, thanks for asking. 🤗 I hope you are doing well too. 🤗"};
+            std::u8string_view source{u8"Hello, world! \U0001F30D\U0001F30E\U0001F30F, how are \U0001F91F you? \U0001F914 We are doing fine, thanks for asking. \U0001F917 I hope \U00002230 you are doing well too. \U0001F688"};
             {
                 std::u32string destination{};
                 CHECK(Convert(destination, source, ConversionType::None) == ConversionResult::Success);
-                CHECK(destination == U"Hello, world! 🌍🌎🌏, how are 🤟 you? 🤔 We are doing fine, thanks for asking. 🤗 I hope you are doing well too. 🤗");
+                CHECK(destination == U"Hello, world! \U0001F30D\U0001F30E\U0001F30F, how are \U0001F91F you? \U0001F914 We are doing fine, thanks for asking. \U0001F917 I hope \U00002230 you are doing well too. \U0001F688");
             }
             {
                 std::u32string destination{};
                 CHECK(Convert(destination, source, ConversionType::Strict) == ConversionResult::Success);
-                CHECK(destination == U"Hello, world! 🌍🌎🌏, how are 🤟 you? 🤔 We are doing fine, thanks for asking. 🤗 I hope you are doing well too. 🤗");
+                CHECK(destination == U"Hello, world! \U0001F30D\U0001F30E\U0001F30F, how are \U0001F91F you? \U0001F914 We are doing fine, thanks for asking. \U0001F917 I hope \U00002230 you are doing well too. \U0001F688");
             }
         }
     }

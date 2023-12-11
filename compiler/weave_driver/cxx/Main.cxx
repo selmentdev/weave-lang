@@ -188,11 +188,11 @@ int main(int argc, const char* argv[])
         fmt::println("Zero: {}", weave::time::Duration{INT64_MAX});
         fmt::println("Min: {}", weave::time::DateTime{{0}});
         fmt::println("Max: {}", weave::time::DateTime{{std::numeric_limits<int64_t>::max()}});
-        fmt::println("Now:    {}", weave::time::DateTime::Now());
-        fmt::println("UtcNow: {}", weave::time::DateTime::UtcNow());
-        fmt::println("Now:    {}", weave::time::DateTimeOffset::Now());
-        fmt::println("Now:    {}", weave::time::DateTimeOffset::Now().ToLocal());
-        fmt::println("Now:    {}", weave::time::DateTimeOffset::Now().ToUtc());
+        fmt::println("Now:       {}", weave::time::DateTime::Now());
+        fmt::println("UtcNow:    {}", weave::time::DateTime::UtcNow());
+        fmt::println("Now:       {}", weave::time::DateTimeOffset::Now());
+        fmt::println("Now.Local: {}", weave::time::DateTimeOffset::Now().ToLocal());
+        fmt::println("Now.Utc:   {}", weave::time::DateTimeOffset::Now().ToUtc());
         fmt::println("Started: {:t}", weave::time::DateTime::Now());
         fmt::println("Started: {:D}", weave::time::DateTime::Now());
         fmt::println("Started: {:T}", weave::time::DateTime::Now());

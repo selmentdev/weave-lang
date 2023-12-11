@@ -1,5 +1,5 @@
 #pragma once
-#include "weave/filesystem/FileSystemError.hxx"
+#include "weave/platform/SystemError.hxx"
 #include "weave/filesystem/Path.hxx"
 
 #include <expected>
@@ -66,6 +66,6 @@ namespace weave::filesystem
         DirectoryEnumerator(DirectoryEnumerator const&) = delete;
         DirectoryEnumerator& operator=(DirectoryEnumerator const&) = delete;
         
-        [[nodiscard]] std::optional<std::expected<DirectoryEntry, FileSystemError>> Next();
+        [[nodiscard]] std::optional<std::expected<DirectoryEntry, platform::SystemError>> Next();
     };
 }

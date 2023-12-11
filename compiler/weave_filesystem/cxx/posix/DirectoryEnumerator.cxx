@@ -90,7 +90,7 @@ namespace weave::filesystem
         }
     }
 
-    std::optional<std::expected<DirectoryEntry, FileSystemError>> DirectoryEnumerator::Next()
+    std::optional<std::expected<DirectoryEntry, platform::SystemError>> DirectoryEnumerator::Next()
     {
         if (this->AsPlatform().Handle == nullptr)
         {

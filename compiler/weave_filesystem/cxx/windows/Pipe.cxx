@@ -1,8 +1,6 @@
 #include "weave/filesystem/Pipe.hxx"
 #include "weave/bugcheck/Assert.hxx"
 
-#include "Error.hxx"
-
 WEAVE_EXTERNAL_HEADERS_BEGIN
 
 #define NOMINMAX
@@ -30,7 +28,7 @@ namespace weave::filesystem
         }
     }
 
-    std::expected<Pipe, FileSystemError> Pipe::Create()
+    std::expected<Pipe, platform::SystemError> Pipe::Create()
     {
         SECURITY_ATTRIBUTES sa{
             .nLength = sizeof(SECURITY_ATTRIBUTES),
@@ -43,13 +41,13 @@ namespace weave::filesystem
 
         if (!CreatePipe(&read, &write, &sa, 0))
         {
-            return std::unexpected(impl::TranslateErrorCode(GetLastError()));
+            return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
 
         return Pipe{read, write};
     }
 
-    std::expected<size_t, FileSystemError> Pipe::Read(std::span<std::byte> buffer)
+    std::expected<size_t, platform::SystemError> Pipe::Read(std::span<std::byte> buffer)
     {
         WEAVE_ASSERT(this->_read != nullptr);
         WEAVE_ASSERT(buffer.size() <= static_cast<size_t>(std::numeric_limits<int32_t>::max()));
@@ -68,10 +66,10 @@ namespace weave::filesystem
             return 0;
         }
 
-        return std::unexpected(impl::TranslateErrorCode(dwError));
+        return std::unexpected(platform::impl::SystemErrorFromWin32Error(dwError));
     }
 
-    std::expected<size_t, FileSystemError> Pipe::Write(std::span<std::byte const> buffer)
+    std::expected<size_t, platform::SystemError> Pipe::Write(std::span<std::byte const> buffer)
     {
         WEAVE_ASSERT(this->_write != nullptr);
         WEAVE_ASSERT(buffer.size() <= static_cast<size_t>(std::numeric_limits<int32_t>::max()));
@@ -90,10 +88,10 @@ namespace weave::filesystem
             return 0;
         }
 
-        return std::unexpected(impl::TranslateErrorCode(dwError));
+        return std::unexpected(platform::impl::SystemErrorFromWin32Error(dwError));
     }
 
-    std::expected<size_t, FileSystemError> Pipe::BytesAvailable() const
+    std::expected<size_t, platform::SystemError> Pipe::BytesAvailable() const
     {
         WEAVE_ASSERT(this->_read != nullptr);
 
@@ -102,6 +100,6 @@ namespace weave::filesystem
             return dwAvailable;
         }
 
-        return std::unexpected(impl::TranslateErrorCode(GetLastError()));
+        return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
     }
 }

@@ -16,7 +16,7 @@ namespace weave::filesystem
     {
     }
 
-    std::expected<size_t, FileSystemError> FileReader::Read(void* buffer, size_t size)
+    std::expected<size_t, platform::SystemError> FileReader::Read(void* buffer, size_t size)
     {
         if (size > this->_buffer_capacity)
         {
@@ -50,7 +50,7 @@ namespace weave::filesystem
                 {
                     if (*r == 0)
                     {
-                        return std::unexpected(FileSystemError::EndOfFile);
+                        return std::unexpected(platform::SystemError::EndOfFile);
                     }
 
                     // Update file position.
@@ -79,7 +79,7 @@ namespace weave::filesystem
         return processed;
     }
 
-    std::expected<void, FileSystemError> FileReader::ReadExact(void* buffer, size_t size)
+    std::expected<void, platform::SystemError> FileReader::ReadExact(void* buffer, size_t size)
     {
         if (auto r = this->Read(buffer, size))
         {
@@ -90,7 +90,7 @@ namespace weave::filesystem
             }
 
             // Partial read can result only with end of file.
-            return std::unexpected(FileSystemError::EndOfFile);
+            return std::unexpected(platform::SystemError::EndOfFile);
         }
         else
         {
@@ -99,12 +99,12 @@ namespace weave::filesystem
         }
     }
 
-    std::expected<size_t, FileSystemError> FileReader::Read(std::span<std::byte> buffer)
+    std::expected<size_t, platform::SystemError> FileReader::Read(std::span<std::byte> buffer)
     {
         return this->Read(buffer.data(), buffer.size());
     }
 
-    std::expected<void, FileSystemError> FileReader::ReadExact(std::span<std::byte> buffer)
+    std::expected<void, platform::SystemError> FileReader::ReadExact(std::span<std::byte> buffer)
     {
         return this->ReadExact(buffer.data(), buffer.size());
     }

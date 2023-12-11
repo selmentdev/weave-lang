@@ -1,5 +1,7 @@
-target_sources(weave_platform PRIVATE
-    StringBuffer.cxx
+target_sources(weave_platform
+    PRIVATE
+        "StringBuffer.cxx"
+        "SystemErrorFromErrno.cxx"
 )
 
 if (WIN32)

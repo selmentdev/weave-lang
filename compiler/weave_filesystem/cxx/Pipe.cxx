@@ -2,7 +2,7 @@
 
 namespace weave::filesystem
 {
-    std::expected<size_t, FileSystemError> Read(Pipe& self, std::vector<std::byte>& buffer)
+    std::expected<size_t, platform::SystemError> Read(Pipe& self, std::vector<std::byte>& buffer)
     {
         buffer.clear();
 
@@ -20,7 +20,7 @@ namespace weave::filesystem
         return available;
     }
 
-    std::expected<size_t, FileSystemError> Read(Pipe& self, std::string& buffer)
+    std::expected<size_t, platform::SystemError> Read(Pipe& self, std::string& buffer)
     {
         buffer.clear();
 
@@ -38,7 +38,7 @@ namespace weave::filesystem
         return available;
     }
 
-    std::expected<size_t, FileSystemError> Write(Pipe& self, std::string_view buffer)
+    std::expected<size_t, platform::SystemError> Write(Pipe& self, std::string_view buffer)
     {
         return self.Write(std::as_bytes(std::span{buffer}));
     }

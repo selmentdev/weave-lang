@@ -19,10 +19,10 @@ namespace weave::filesystem
 
     FileWriter::~FileWriter()
     {
-        (void)this->FlushBuffer();
+        (void)this->Flush();
     }
 
-    std::expected<void, FileSystemError> FileWriter::FlushBuffer()
+    std::expected<void, platform::SystemError> FileWriter::FlushBuffer()
     {
         if (this->_buffer_position > 0)
         {
@@ -43,29 +43,21 @@ namespace weave::filesystem
         return {};
     }
 
-    std::expected<void, FileSystemError> FileWriter::Flush()
+    std::expected<void, platform::SystemError> FileWriter::Flush()
     {
         if (auto processed = this->FlushBuffer())
         {
             // Flushed internal writer buffer.
 
-            if (auto flushed = this->_handle.Flush())
-            {
-                // Flushed file system buffers.
-                return {};
-            }
-            else
-            {
-                return std::unexpected(flushed.error());
-            }
+            return this->_handle.Flush();
         }
         else
         {
-            return std::unexpected(processed.error());
+            return processed;
         }
     }
 
-    std::expected<size_t, FileSystemError> FileWriter::Write(void const* buffer, size_t size)
+    std::expected<size_t, platform::SystemError> FileWriter::Write(void const* buffer, size_t size)
     {
         if (size >= this->_buffer_capacity)
         {
@@ -116,7 +108,7 @@ namespace weave::filesystem
         }
     }
 
-    std::expected<size_t, FileSystemError> FileWriter::Write(std::span<std::byte const> buffer)
+    std::expected<size_t, platform::SystemError> FileWriter::Write(std::span<std::byte const> buffer)
     {
         return this->Write(buffer.data(), buffer.size());
     }
