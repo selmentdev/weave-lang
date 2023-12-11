@@ -1,6 +1,5 @@
 #include "weave/filesystem/FileHandle.hxx"
-
-#include "Error.hxx"
+#include "weave/platform/SystemError.hxx"
 
 #include <cassert>
 #include <cerrno>
@@ -91,7 +90,7 @@ namespace weave::filesystem
                 if (failed)
                 {
                     close(fd);
-                    return std::unexpected(impl::TranslateErrno(error));
+                    return std::unexpected(platform::impl::SystemErrorFromErrno(error));
                 }
             }
 
@@ -102,14 +101,14 @@ namespace weave::filesystem
                     int error = errno;
                     close(fd);
 
-                    return std::unexpected(impl::TranslateErrno(error));
+                    return std::unexpected(platform::impl::SystemErrorFromErrno(error));
                 }
             }
 
             return FileHandle{reinterpret_cast<void*>(fd)};
         }
 
-        return std::unexpected(impl::TranslateErrno(errno));
+        return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
     }
 
     bool FileHandle::Exists(std::string_view path)
@@ -127,7 +126,7 @@ namespace weave::filesystem
             return {};
         }
 
-        return std::unexpected(impl::TranslateErrno(errno));
+        return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
     }
 
     std::expected<int64_t, platform::SystemError> FileHandle::GetLength() const
@@ -141,7 +140,7 @@ namespace weave::filesystem
             return st.st_size;
         }
 
-        return std::unexpected(impl::TranslateErrno(errno));
+        return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
     }
 
     std::expected<void, platform::SystemError> FileHandle::SetLength(int64_t length)
@@ -153,7 +152,7 @@ namespace weave::filesystem
             return {};
         }
 
-        return std::unexpected(impl::TranslateErrno(errno));
+        return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
     }
 
     std::expected<size_t, platform::SystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
@@ -172,7 +171,7 @@ namespace weave::filesystem
 
             if (result < 0)
             {
-                return std::unexpected(impl::TranslateErrno(errno));
+                return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
             }
 
             if (result == 0)
@@ -202,7 +201,7 @@ namespace weave::filesystem
 
             if (result < 0)
             {
-                return std::unexpected(impl::TranslateErrno(errno));
+                return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
             }
 
             if (result == 0)

@@ -1,7 +1,7 @@
 #include "weave/platform/Compiler.hxx"
 #include "weave/filesystem/DirectoryEnumerator.hxx"
 #include "weave/bugcheck/BugCheck.hxx"
-#include "Error.hxx"
+#include "weave/platform/SystemError.hxx"
 
 #include <utility>
 
@@ -102,7 +102,7 @@ namespace weave::filesystem
             }
             else
             {
-                return std::unexpected(impl::TranslateErrno(errno));
+                return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
             }
         }
 
@@ -122,7 +122,7 @@ namespace weave::filesystem
             }
             else if (error == 0)
             {
-                return std::unexpected(impl::TranslateErrno(error));
+                return std::unexpected(platform::impl::SystemErrorFromErrno(error));
             }
         }
 

@@ -1,7 +1,7 @@
 #include "weave/filesystem/Pipe.hxx"
 #include "weave/bugcheck/Assert.hxx"
 
-#include "Error.hxx"
+#include "weave/platform/SystemError.hxx"
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
 
@@ -41,7 +41,7 @@ namespace weave::filesystem
             };
         }
 
-        return std::unexpected(impl::TranslateErrno(errno));
+        return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
     }
 
     std::expected<size_t, platform::SystemError> Pipe::Read(std::span<std::byte> buffer)
@@ -56,7 +56,7 @@ namespace weave::filesystem
             
         if (processed < 0)
         {
-            return std::unexpected(impl::TranslateErrno(errno));
+            return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
         }
         
         return static_cast<size_t>(processed);
@@ -74,7 +74,7 @@ namespace weave::filesystem
             
         if (processed < 0)
         {
-            return std::unexpected(impl::TranslateErrno(errno));
+            return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
         }
 
         return static_cast<size_t>(processed);
@@ -91,6 +91,6 @@ namespace weave::filesystem
             return static_cast<size_t>(n_available);
         }
 
-        return std::unexpected(impl::TranslateErrno(errno));
+        return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
     }
 }

@@ -187,11 +187,15 @@ namespace weave::platform::impl
         case EPERM:
             return SystemError::OperationNotPermitted;
 
+#if defined (EOPNOTSUPP) && (EOPNOTSUPP != ENOTSUP)
         case EOPNOTSUPP:
             return SystemError::OperationNotSupported;
+#endif
 
+#if defined(WOULDBLOCK) && (WOULDBLOCK != EAGAIN)
         case EWOULDBLOCK:
             return SystemError::OperationWouldBlock;
+#endif
 
         case EOWNERDEAD:
             return SystemError::OwnerDead;
