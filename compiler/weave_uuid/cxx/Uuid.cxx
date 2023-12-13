@@ -29,12 +29,12 @@ namespace weave::uuid::impl
 
         if ((value >= 'a') and (value <= 'f'))
         {
-            return static_cast<unsigned char>(value - 'a');
+            return static_cast<unsigned char>(value - 'a') + 10;
         }
 
         if ((value >= 'A') and (value <= 'F'))
         {
-            return static_cast<unsigned char>(value - 'A');
+            return static_cast<unsigned char>(value - 'A') + 10;
         }
 
         return -1;

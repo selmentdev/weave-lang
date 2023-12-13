@@ -98,3 +98,90 @@ TEST_CASE("Uuid from namespace")
 
     CHECK(derived2 == Uuid{{0x78, 0xe8, 0xf3, 0x98, 0x0d, 0x2d, 0x1e, 0xaa, 0x20, 0xe1, 0x27, 0xb7, 0x6a, 0x4e, 0xee, 0x23}});
 }
+
+TEST_CASE("Uuid to string")
+{
+    using namespace weave::uuid;
+
+    constexpr Uuid uuid{{0x9a, 0xa9, 0xa4, 0x5d, 0x1f, 0x61, 0x60, 0x3e, 0x7e, 0x2f, 0x79, 0x5a, 0xe1, 0xfe, 0xa9, 0xe9}};
+
+    SECTION("Default")
+    {
+        std::string const result = fmt::format("{}", uuid);
+
+        CHECK(result == "{9aa9a45d-1f61-603e-7e2f-795ae1fea9e9}");
+    }
+
+    SECTION("Format: None")
+    {
+        std::string const result = fmt::format("{:n}", uuid);
+
+        CHECK(result == "9aa9a45d1f61603e7e2f795ae1fea9e9");
+    }
+
+    SECTION("Format: Dashes")
+    {
+        std::string const result = fmt::format("{:d}", uuid);
+
+        CHECK(result == "9aa9a45d-1f61-603e-7e2f-795ae1fea9e9");
+    }
+
+    SECTION("Format: Braces")
+    {
+        std::string const result = fmt::format("{:b}", uuid);
+
+        CHECK(result == "{9aa9a45d1f61603e7e2f795ae1fea9e9}");
+    }
+
+    SECTION("Format: BracesDashes")
+    {
+        std::string const result = fmt::format("{:f}", uuid);
+
+        CHECK(result == "{9aa9a45d-1f61-603e-7e2f-795ae1fea9e9}");
+    }
+}
+
+TEST_CASE("Uuid from string")
+{
+    using namespace weave::uuid;
+
+    SECTION("Default")
+    {
+        std::optional<Uuid> const result = TryFromChars("{9aa9a45d-1f61-603e-7e2f-795ae1fea9e9}");
+
+        REQUIRE(result.has_value());
+        CHECK(result == Uuid{{0x9a, 0xa9, 0xa4, 0x5d, 0x1f, 0x61, 0x60, 0x3e, 0x7e, 0x2f, 0x79, 0x5a, 0xe1, 0xfe, 0xa9, 0xe9}});
+    }
+
+    SECTION("Format: None")
+    {
+        std::optional<Uuid> const result = TryFromChars("9aa9a45d1f61603e7e2f795ae1fea9e9");
+
+        REQUIRE(result.has_value());
+        CHECK(result == Uuid{{0x9a, 0xa9, 0xa4, 0x5d, 0x1f, 0x61, 0x60, 0x3e, 0x7e, 0x2f, 0x79, 0x5a, 0xe1, 0xfe, 0xa9, 0xe9}});
+    }
+
+    SECTION("Format: Dashes")
+    {
+        std::optional<Uuid> const result = TryFromChars("9aa9a45d-1f61-603e-7e2f-795ae1fea9e9");
+
+        REQUIRE(result.has_value());
+        CHECK(result == Uuid{{0x9a, 0xa9, 0xa4, 0x5d, 0x1f, 0x61, 0x60, 0x3e, 0x7e, 0x2f, 0x79, 0x5a, 0xe1, 0xfe, 0xa9, 0xe9}});
+    }
+
+    SECTION("Format: Braces")
+    {
+        std::optional<Uuid> const result = TryFromChars("{9aa9a45d1f61603e7e2f795ae1fea9e9}");
+
+        REQUIRE(result.has_value());
+        CHECK(result == Uuid{{0x9a, 0xa9, 0xa4, 0x5d, 0x1f, 0x61, 0x60, 0x3e, 0x7e, 0x2f, 0x79, 0x5a, 0xe1, 0xfe, 0xa9, 0xe9}});
+    }
+
+    SECTION("Format: BracesDashes")
+    {
+        std::optional<Uuid> const result = TryFromChars("{9aa9a45d-1f61-603e-7e2f-795ae1fea9e9}");
+
+        REQUIRE(result.has_value());
+        CHECK(result == Uuid{{0x9a, 0xa9, 0xa4, 0x5d, 0x1f, 0x61, 0x60, 0x3e, 0x7e, 0x2f, 0x79, 0x5a, 0xe1, 0xfe, 0xa9, 0xe9}});
+    }
+}
