@@ -5,4 +5,5 @@ target_sources(weave_session
         "ExperimentalOptions.cxx"
         "Options.cxx"
         "SanitizersSpec.cxx"
+        "EmitOptions.cxx"
 )

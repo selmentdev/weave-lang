@@ -15,6 +15,7 @@
 #include "weave/time/Instant.hxx"
 #include "weave/session/CodeGeneratorOptions.hxx"
 #include "weave/session/ExperimentalOptions.hxx"
+#include "weave/session/EmitOptions.hxx"
 #include "weave/platform/StringBuffer.hxx"
 
 #include "weave/threading/CriticalSection.hxx"
@@ -326,6 +327,9 @@ int main(int argc, const char* argv[])
 
         session::ExperimentalOptions experimental{};
         session::FromCommandLine(experimental, handler, matched->GetValues("experimental"));
+
+        session::EmitOptions emit{};
+        session::FromCommandLine(emit, handler, matched->GetValues("emit"));
 
         for (auto const& message : handler.GetMessages())
         {
