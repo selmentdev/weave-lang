@@ -5,7 +5,6 @@
 #include <charconv>
 #include <cstdlib>
 
-#include "weave/Session.hxx"
 #include "weave/core/String.hxx"
 #include "weave/CommandLine.hxx"
 #include "weave/tokenizer/Token.hxx"
@@ -14,7 +13,8 @@
 #include "weave/tokenizer/Tokenizer.hxx"
 #include "weave/tokenizer/TokenizerContext.hxx"
 #include "weave/time/Instant.hxx"
-#include "weave/Session.hxx"
+#include "weave/session/CodeGeneratorOptions.hxx"
+#include "weave/session/ExperimentalOptions.hxx"
 #include "weave/platform/StringBuffer.hxx"
 
 #include "weave/threading/CriticalSection.hxx"
@@ -303,7 +303,8 @@ int main(int argc, const char* argv[])
         "v",
         "Use verbose output");
 
-    if (auto matched = builder.Parse(argc, argv); matched.has_value())
+    // Skip the first argument - it's the path to executable.
+    if (auto matched = builder.Parse(argc - 1, argv + 1); matched.has_value())
     {
         if (matched->HasFlag("help"))
         {
@@ -320,20 +321,21 @@ int main(int argc, const char* argv[])
         }
 
         weave::errors::Handler handler{};
-        auto cmd = weave::session::CodeGeneratorOptions::FromCommandLine(handler, *matched);
+        session::CodeGeneratorOptions codegen{};
+        session::FromCommandLine(codegen, handler, matched->GetValues("codegen"));
+
+        session::ExperimentalOptions experimental{};
+        session::FromCommandLine(experimental, handler, matched->GetValues("experimental"));
 
         for (auto const& message : handler.GetMessages())
         {
             fmt::println(stderr, "codegen errors: {}", message.Value);
         }
 
-        fmt::println("cmd.debug: {}", cmd.Debug);
+        fmt::println("cmd.debug: {}", codegen.Debug);
 
 
         auto const& result = matched.value();
-
-        session::CodeGeneratorOptions codegen = session::CodeGeneratorOptions::FromCommandLine(handler, *matched);
-        codegen.DebugPrint();
 
         auto const& files = result.GetPositional();
 
