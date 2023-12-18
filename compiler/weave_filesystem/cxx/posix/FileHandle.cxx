@@ -9,8 +9,13 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-namespace weave::filesystem
+namespace weave::filesystem::impl
 {
+    struct PlatformFileHandle final
+    {
+        int FileDescriptor;
+    };
+
     int TranslateToOpenFlags(FileMode mode, FileAccess access, FileOptions options, bool failForSymlinks)
     {
         int result{};
@@ -64,17 +69,35 @@ namespace weave::filesystem
 
         return result;
     }
+}
 
-    static int ToFileDescriptor(void* handle)
+namespace weave::filesystem
+{
+    inline impl::PlatformFileHandle& FileHandle::AsPlatform()
     {
-        return static_cast<int>(reinterpret_cast<intptr_t>(handle));
+        return *reinterpret_cast<impl::PlatformFileHandle*>(&this->_native);
+    }
+
+    inline impl::PlatformFileHandle const& FileHandle::AsPlatform() const
+    {
+        return *reinterpret_cast<impl::PlatformFileHandle const*>(&this->_native);
+    }
+
+    void FileHandle::CloseIgnoreErrors() noexcept
+    {
+        if (this->AsPlatform().FileDescriptor >= 0)
+        {
+            // Ignore errors.
+            (void)this->Close();
+        }
     }
 
     std::expected<FileHandle, platform::SystemError> FileHandle::Create(std::string_view path, FileMode mode, FileAccess access, FileOptions options)
     {
-        int const flags = TranslateToOpenFlags(mode, access, options, false);
+        int const flags = impl::TranslateToOpenFlags(mode, access, options, false);
 
         int const fd = open(std::string{path}.c_str(), flags, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+
         if (fd != -1)
         {
             if (flock(fd, LOCK_EX | LOCK_NB) == -1)
@@ -105,7 +128,9 @@ namespace weave::filesystem
                 }
             }
 
-            return FileHandle{reinterpret_cast<void*>(fd)};
+            return FileHandle{std::bit_cast<impl::NativeFileHandle>(impl::PlatformFileHandle{
+                .FileDescriptor = fd,
+            })};
         }
 
         return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
@@ -113,15 +138,18 @@ namespace weave::filesystem
 
     bool FileHandle::Exists(std::string_view path)
     {
+        // clang-format off
         struct stat64 st{};
+        // clang-format on
         return (stat64(std::string{path}.c_str(), &st) == 0) and S_ISREG(st.st_mode);
     }
 
     std::expected<void, platform::SystemError> FileHandle::Close()
     {
-        assert(this->_handle != nullptr);
+        impl::PlatformFileHandle& native = this->AsPlatform();
+        assert(native.FileDescriptor >= 0);
 
-        if (close(ToFileDescriptor(this->_handle)) == 0)
+        if (close(native.FileDescriptor) == 0)
         {
             return {};
         }
@@ -131,11 +159,14 @@ namespace weave::filesystem
 
     std::expected<int64_t, platform::SystemError> FileHandle::GetLength() const
     {
-        assert(this->_handle != nullptr);
+        impl::PlatformFileHandle& native = this->AsPlatform();
+        assert(native.FileDescriptor >= 0);
 
+        // clang-format off
         struct stat64 st{};
+        // clang-format on
 
-        if (fstat64(ToFileDescriptor(this->_handle), &st) == 0)
+        if (fstat64(native.FileDescriptor, &st) == 0)
         {
             return st.st_size;
         }
@@ -145,9 +176,10 @@ namespace weave::filesystem
 
     std::expected<void, platform::SystemError> FileHandle::SetLength(int64_t length)
     {
-        assert(this->_handle != nullptr);
+        impl::PlatformFileHandle& native = this->AsPlatform();
+        assert(native.FileDescriptor >= 0);
 
-        if (ftruncate64(ToFileDescriptor(this->_handle), length) == 0)
+        if (ftruncate64(native.FileDescriptor, length) == 0)
         {
             return {};
         }
@@ -157,14 +189,14 @@ namespace weave::filesystem
 
     std::expected<size_t, platform::SystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
     {
-        assert(this->_handle != nullptr);
-        int const fd = ToFileDescriptor(this->_handle);
+        impl::PlatformFileHandle& native = this->AsPlatform();
+        assert(native.FileDescriptor >= 0);
 
         size_t processed = 0;
         while (processed < buffer.size())
         {
             ssize_t const result = pread64(
-                fd,
+                native.FileDescriptor,
                 buffer.data() + processed,
                 buffer.size() - processed,
                 position + processed);
@@ -187,14 +219,14 @@ namespace weave::filesystem
 
     std::expected<size_t, platform::SystemError> FileHandle::Write(std::span<std::byte const> buffer, int64_t position)
     {
-        assert(this->_handle != nullptr);
-        int const fd = ToFileDescriptor(this->_handle);
+        impl::PlatformFileHandle& native = this->AsPlatform();
+        assert(native.FileDescriptor >= 0);
 
         size_t processed = 0;
         while (processed < buffer.size())
         {
             ssize_t const result = pwrite64(
-                fd,
+                native.FileDescriptor,
                 buffer.data() + processed,
                 buffer.size() - processed,
                 position + processed);

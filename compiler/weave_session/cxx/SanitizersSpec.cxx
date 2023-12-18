@@ -25,6 +25,10 @@ namespace weave::session
             {
                 result.MemorySanitizer = true;
             }
+            else if (item == "undefined")
+            {
+                result.UndefinedBehaviorSanitizer = true;
+            }
             else
             {
                 return false;

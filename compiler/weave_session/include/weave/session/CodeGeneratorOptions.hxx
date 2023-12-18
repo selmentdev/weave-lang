@@ -10,6 +10,9 @@ namespace weave::session
         bool SetOption(std::string_view name, std::optional<std::string_view> value) override;
 
     public:
+        void Dump();
+
+    public:
         bool Checked = false;
         bool Debug = false;
         uint32_t OptimizationLevel = 0;

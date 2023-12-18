@@ -8,6 +8,22 @@
 #include <span>
 #include <utility>
 
+namespace weave::filesystem::impl
+{
+    struct PlatformFileHandle;
+
+    struct NativeFileHandle final
+    {
+#if defined(WIN32)
+        void* Native[1];
+#elif defined(__linux__)
+        void* Native[1];
+#else
+#error "Not implemented."
+#endif
+    };
+}
+
 namespace weave::filesystem
 {
     enum class FileMode
@@ -50,21 +66,29 @@ namespace weave::filesystem
     class FileHandle final
     {
     private:
-        void* _handle{};
+        impl::NativeFileHandle _native;
 
     private:
-        explicit FileHandle(void* handle)
-            : _handle{handle}
+        impl::PlatformFileHandle& AsPlatform();
+        impl::PlatformFileHandle const& AsPlatform() const;
+
+        void CloseIgnoreErrors();
+
+    public:
+        explicit FileHandle(impl::NativeFileHandle native)
+            : _native{native}
         {
         }
 
-    public:
-        FileHandle() = delete;
+        FileHandle()
+            : _native{}
+        {
+        }
 
         FileHandle(FileHandle const&) = delete;
 
         FileHandle(FileHandle&& other) noexcept
-            : _handle{std::exchange(other._handle, nullptr)}
+            : _native{std::exchange(other._native, {})}
         {
         }
 
@@ -74,13 +98,9 @@ namespace weave::filesystem
         {
             if (this != std::addressof(other))
             {
-                if (this->_handle != nullptr)
-                {
-                    // Ignore errors.
-                    (void)this->Close();
-                }
+                this->CloseIgnoreErrors();
 
-                this->_handle = std::exchange(other._handle, nullptr);
+                this->_native = std::exchange(other._native, {});
             }
 
             return *this;
@@ -88,11 +108,7 @@ namespace weave::filesystem
 
         ~FileHandle()
         {
-            if (this->_handle != nullptr)
-            {
-                // Ignore errors.
-                (void)this->Close();
-            }
+            this->CloseIgnoreErrors();
         }
 
     public:

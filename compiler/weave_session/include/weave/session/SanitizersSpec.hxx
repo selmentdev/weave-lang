@@ -10,6 +10,7 @@ namespace weave::session
         bool ThreadSanitizer{};
         bool MemorySanitizer{};
         bool LeakSanitizer{};
+        bool UndefinedBehaviorSanitizer{};
 
         [[nodiscard]] static bool Parse(SanitizersSpec& result, std::optional<std::string_view> const& value);
     };

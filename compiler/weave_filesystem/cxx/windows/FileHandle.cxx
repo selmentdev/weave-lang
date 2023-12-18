@@ -11,8 +11,39 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 
 WEAVE_EXTERNAL_HEADERS_END
 
+namespace weave::filesystem::impl
+{
+    struct PlatformFileHandle
+    {
+        HANDLE Handle;
+    };
+
+}
+
 namespace weave::filesystem
 {
+    static_assert(sizeof(impl::NativeFileHandle) >= sizeof(impl::PlatformFileHandle));
+    static_assert(alignof(impl::NativeFileHandle) >= alignof(impl::PlatformFileHandle));
+
+    inline impl::PlatformFileHandle& FileHandle::AsPlatform()
+    {
+        return *reinterpret_cast<impl::PlatformFileHandle*>(&this->_native);
+    }
+
+    inline impl::PlatformFileHandle const& FileHandle::AsPlatform() const
+    {
+        return *reinterpret_cast<impl::PlatformFileHandle const*>(&this->_native);
+    }
+
+    void FileHandle::CloseIgnoreErrors()
+    {
+        if (this->AsPlatform().Handle != nullptr)
+        {
+            // Ignore errors.
+            (void)this->Close();
+        }
+    }
+
     std::expected<FileHandle, platform::SystemError> FileHandle::Create(std::string_view path, FileMode mode, FileAccess access, FileOptions options)
     {
         DWORD dwMode = 0;
@@ -27,7 +58,6 @@ namespace weave::filesystem
             dwMode = CREATE_ALWAYS;
             break;
 
-        default:
         case FileMode::OpenExisting:
             dwMode = OPEN_EXISTING;
             break;
@@ -121,7 +151,10 @@ namespace weave::filesystem
 
             if (result != INVALID_HANDLE_VALUE)
             {
-                return FileHandle{result};
+                return FileHandle{
+                    std::bit_cast<impl::NativeFileHandle>(impl::PlatformFileHandle{
+                        .Handle = result,
+                    })};
             }
 
             return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
@@ -149,9 +182,10 @@ namespace weave::filesystem
 
     std::expected<void, platform::SystemError> FileHandle::Close()
     {
-        assert(this->_handle != nullptr);
+        impl::PlatformFileHandle& native = this->AsPlatform();
+        assert(native.Handle != nullptr);
 
-        void* handle = std::exchange(this->_handle, nullptr);
+        HANDLE const handle = std::exchange(native.Handle, {});
 
         if (!CloseHandle(handle))
         {
@@ -163,9 +197,10 @@ namespace weave::filesystem
 
     std::expected<void, platform::SystemError> FileHandle::Flush()
     {
-        assert(this->_handle != nullptr);
+        impl::PlatformFileHandle const& native = this->AsPlatform();
+        assert(native.Handle != nullptr);
 
-        if (!FlushFileBuffers(this->_handle))
+        if (!FlushFileBuffers(native.Handle))
         {
             return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
@@ -175,10 +210,11 @@ namespace weave::filesystem
 
     std::expected<int64_t, platform::SystemError> FileHandle::GetLength() const
     {
-        assert(this->_handle != nullptr);
+        impl::PlatformFileHandle const& native = this->AsPlatform();
+        assert(native.Handle != nullptr);
 
         LARGE_INTEGER li{};
-        if (!GetFileSizeEx(this->_handle, &li))
+        if (!GetFileSizeEx(native.Handle, &li))
         {
             return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
@@ -188,15 +224,16 @@ namespace weave::filesystem
 
     std::expected<void, platform::SystemError> FileHandle::SetLength(int64_t length)
     {
-        assert(this->_handle != nullptr);
+        impl::PlatformFileHandle const& native = this->AsPlatform();
+        assert(native.Handle != nullptr);
 
         LARGE_INTEGER const li = std::bit_cast<LARGE_INTEGER>(length);
 
-        BOOL result = SetFilePointerEx(this->_handle, li, nullptr, FILE_BEGIN);
+        BOOL result = SetFilePointerEx(native.Handle, li, nullptr, FILE_BEGIN);
 
         if (result != FALSE)
         {
-            result = SetEndOfFile(this->_handle);
+            result = SetEndOfFile(native.Handle);
         }
 
         if (result == FALSE)
@@ -235,7 +272,8 @@ namespace weave::filesystem
 
     std::expected<size_t, platform::SystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
     {
-        assert(this->_handle != nullptr);
+        impl::PlatformFileHandle const& native = this->AsPlatform();
+        assert(native.Handle != nullptr);
 
         size_t processed = 0;
 
@@ -246,7 +284,7 @@ namespace weave::filesystem
             DWORD const dwRequested = static_cast<DWORD>(std::min<size_t>(DefaultBufferSize, buffer.size()));
             DWORD dwProcessed = 0;
 
-            if (ReadFile(this->_handle, buffer.data(), dwRequested, &dwProcessed, &overlapped) == FALSE)
+            if (ReadFile(native.Handle, buffer.data(), dwRequested, &dwProcessed, &overlapped) == FALSE)
             {
                 DWORD const dwError = GetLastError();
 
@@ -260,7 +298,7 @@ namespace weave::filesystem
                     return std::unexpected(platform::impl::SystemErrorFromWin32Error(dwError));
                 }
 
-                if (GetOverlappedResult(this->_handle, &overlapped, &dwProcessed, TRUE) == FALSE)
+                if (GetOverlappedResult(native.Handle, &overlapped, &dwProcessed, TRUE) == FALSE)
                 {
                     return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
                 }
@@ -277,7 +315,8 @@ namespace weave::filesystem
 
     std::expected<size_t, platform::SystemError> FileHandle::Write(std::span<std::byte const> buffer, int64_t position)
     {
-        assert(this->_handle != nullptr);
+        impl::PlatformFileHandle const& native = this->AsPlatform();
+        assert(native.Handle != nullptr);
 
         size_t processed = 0;
 
@@ -288,7 +327,7 @@ namespace weave::filesystem
             DWORD const dwRequested = static_cast<DWORD>(std::min<size_t>(DefaultBufferSize, buffer.size()));
             DWORD dwProcessed{};
 
-            if (WriteFile(this->_handle, buffer.data(), dwRequested, &dwProcessed, &overlapped) == FALSE)
+            if (WriteFile(native.Handle, buffer.data(), dwRequested, &dwProcessed, &overlapped) == FALSE)
             {
                 DWORD const dwError = ::GetLastError();
 
@@ -304,7 +343,7 @@ namespace weave::filesystem
 
                 dwProcessed = 0;
 
-                if (GetOverlappedResult(this->_handle, &overlapped, &dwProcessed, TRUE) == FALSE)
+                if (GetOverlappedResult(native.Handle, &overlapped, &dwProcessed, TRUE) == FALSE)
                 {
                     return std::unexpected(platform::SystemError::IoError);
                 }

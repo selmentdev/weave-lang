@@ -26,4 +26,17 @@ namespace weave::session
 
         return false;
     }
+
+    void CodeGeneratorOptions::Dump()
+    {
+        fmt::println("CodeGeneratorOptions:");
+        fmt::println("  Debug: {}", this->Debug);
+        fmt::println("  Checked: {}", this->Checked);
+        fmt::println("  OptimizationLevel: {}", this->OptimizationLevel);
+        fmt::println("  Sanitizers.AddressSanitizer: {}", this->Sanitizers.AddressSanitizer);
+        fmt::println("  Sanitizers.ThreadSanitizer: {}", this->Sanitizers.ThreadSanitizer);
+        fmt::println("  Sanitizers.MemorySanitizer: {}", this->Sanitizers.MemorySanitizer);
+        fmt::println("  Sanitizers.LeakSanitizer: {}", this->Sanitizers.LeakSanitizer);
+        fmt::println("  Sanitizers.UndefinedBehaviorSanitizer: {}", this->Sanitizers.UndefinedBehaviorSanitizer);
+    }
 }

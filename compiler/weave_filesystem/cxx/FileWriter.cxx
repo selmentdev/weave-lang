@@ -48,7 +48,6 @@ namespace weave::filesystem
         if (auto processed = this->FlushBuffer())
         {
             // Flushed internal writer buffer.
-
             return this->_handle.Flush();
         }
         else
@@ -86,6 +85,7 @@ namespace weave::filesystem
             // Buffer is large enough, copy to internal buffer, flush if necessary.
             if (this->_buffer_position + size > this->_buffer_capacity)
             {
+                // Flush and copy to internal buffer.
                 if (auto r = this->FlushBuffer())
                 {
                     std::memcpy(this->_buffer.get(), buffer, size);
@@ -100,6 +100,7 @@ namespace weave::filesystem
             }
             else
             {
+                // Copy to internal buffer.
                 std::memcpy(this->_buffer.get() + this->_buffer_position, buffer, size);
                 this->_buffer_position += size;
 
