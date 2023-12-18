@@ -3,6 +3,8 @@
 #include "weave/bugcheck/BugCheck.hxx"
 #include "weave/platform/SystemError.hxx"
 
+#include "Common.hxx"
+
 #include <utility>
 
 WEAVE_EXTERNAL_HEADERS_BEGIN
@@ -17,39 +19,6 @@ namespace weave::filesystem::impl
     {
         DIR* Handle;
     };
-
-    inline FileType ConvertToFileType(unsigned d_type)
-    {
-        switch (d_type)
-        {
-        case DT_UNKNOWN:
-            return FileType::Unknown;
-
-        case DT_FIFO:
-            return FileType::NamedPipe;
-
-        case DT_CHR:
-            return FileType::CharacterDevice;
-
-        case DT_DIR:
-            return FileType::Directory;
-
-        case DT_BLK:
-            return FileType::BlockDevice;
-
-        case DT_REG:
-            return FileType::File;
-
-        case DT_LNK:
-            return FileType::SymbolicLink;
-
-        case DT_SOCK:
-            return FileType::Socket;
-
-        default:
-            WEAVE_BUGCHECK("Unknown file type (d_type: {})", d_type);
-        }
-    }
 }
 
 namespace weave::filesystem

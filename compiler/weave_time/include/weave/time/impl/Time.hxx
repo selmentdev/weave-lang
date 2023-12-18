@@ -1,4 +1,5 @@
 #pragma once
+#include "weave/platform/Compiler.hxx"
 
 #if defined(WIN32)
 

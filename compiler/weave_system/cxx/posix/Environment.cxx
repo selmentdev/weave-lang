@@ -1,5 +1,7 @@
 #include "weave/system/Environment.hxx"
 
+#include <utility>
+
 namespace weave::system::environment
 {
     bool GetVariable(std::string& result, std::string_view name)

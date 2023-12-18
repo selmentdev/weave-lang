@@ -82,6 +82,7 @@ TEST_CASE("Path - NormalizeDirectorySeparators")
         REQUIRE(path == "path/to/file.txt");
     }
 
+#if defined(WIN32)
     SECTION("Windows-style path separators")
     {
         std::string path = "path\\to\\file.txt";
@@ -99,6 +100,7 @@ TEST_CASE("Path - NormalizeDirectorySeparators")
 
         REQUIRE(path == "path/to/file.txt");
     }
+#endif
 
     SECTION("Collapsing separators")
     {
