@@ -2,11 +2,11 @@
 #include "weave/platform/Compiler.hxx"
 #include "weave/platform/SystemError.hxx"
 
+#include "weave/platform/windows/PlatformHeaders.hxx"
+
 WEAVE_EXTERNAL_HEADERS_BEGIN
 
-#define NOMINMAX
 #include <winsock2.h>
-#include <windows.h>
 
 WEAVE_EXTERNAL_HEADERS_END
 

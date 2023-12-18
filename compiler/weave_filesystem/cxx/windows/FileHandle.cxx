@@ -4,12 +4,7 @@
 
 #include <bit>
 
-WEAVE_EXTERNAL_HEADERS_BEGIN
-
-#define NOMINMAX
-#include <windows.h>
-
-WEAVE_EXTERNAL_HEADERS_END
+#include "weave/platform/windows/PlatformHeaders.hxx"
 
 namespace weave::filesystem::impl
 {
@@ -124,9 +119,9 @@ namespace weave::filesystem
             dwFlags |= FILE_FLAG_NO_BUFFERING;
         }
 
-        platform::StringBuffer<wchar_t, MAX_PATH> wpath{};
+        platform::windows::win32_FilePathW wpath{};
 
-        if (platform::WidenString(wpath, path))
+        if (platform::windows::win32_WidenString(wpath, path))
         {
             SECURITY_ATTRIBUTES sa{
                 .nLength = sizeof(SECURITY_ATTRIBUTES),
@@ -143,7 +138,7 @@ namespace weave::filesystem
             };
 
             HANDLE const result = CreateFile2(
-                wpath.GetBuffer(),
+                wpath.data(),
                 dwAccess,
                 dwShare,
                 dwMode,
@@ -165,11 +160,11 @@ namespace weave::filesystem
 
     bool FileHandle::Exists(std::string_view path)
     {
-        platform::StringBuffer<wchar_t, MAX_PATH> wpath{};
+        platform::windows::win32_FilePathW wpath{};
 
-        if (platform::WidenString(wpath, path))
+        if (platform::windows::win32_WidenString(wpath, path))
         {
-            DWORD const dwAttributes = GetFileAttributesW(wpath.GetBuffer());
+            DWORD const dwAttributes = GetFileAttributesW(wpath.data());
 
             if (dwAttributes != INVALID_FILE_ATTRIBUTES)
             {

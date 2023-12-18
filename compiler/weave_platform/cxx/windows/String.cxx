@@ -1,25 +1,13 @@
-#include "weave/platform/compiler.hxx"
+#include "weave/platform/Compiler.hxx"
 
-#include "weave/platform/windows/string.hxx"
+#include "weave/platform/windows/String.hxx"
+#include "weave/platform/windows/PlatformHeaders.hxx"
 
-WEAVE_EXTERNAL_HEADERS_BEGIN
-
-#define NOMINMAX
-#include <Windows.h>
-
-WEAVE_EXTERNAL_HEADERS_END
-
-namespace weave::platform
+namespace weave::platform::windows
 {
-    bool WidenStringImpl(
-        void* context,
-        void (*reserve)(void*, size_t),
-        std::span<wchar_t> (*get)(void*),
-        void (*trim)(void*, size_t),
-        std::string_view value)
+    bool win32_WidenString(std::wstring& result, std::string_view value) noexcept
     {
-        assert(value.length() < static_cast<size_t>(std::numeric_limits<int32_t>::max()));
-        int const length = static_cast<int>(value.length());
+        int const length = static_cast<int>(value.size());
 
         if (length > 0)
         {
@@ -33,53 +21,39 @@ namespace weave::platform
 
             if (required == 0)
             {
-                trim(context, 0);
+                result.clear();
                 return false;
             }
 
-            reserve(context, static_cast<size_t>(required) + 1);
-            std::span<wchar_t> const writable = get(context);
+            result.resize_and_overwrite(static_cast<size_t>(required), [&](wchar_t* ptr, size_t size) -> size_t
+                {
+                    int const processed = MultiByteToWideChar(
+                        CP_UTF8,
+                        0,
+                        value.data(),
+                        static_cast<int>(value.size()),
+                        ptr,
+                        static_cast<int>(size));
 
-            int const processed = MultiByteToWideChar(
-                CP_UTF8,
-                0,
-                value.data(),
-                length,
-                writable.data(),
-                static_cast<int>(writable.size()));
-
-            assert(processed == required);
-            if (processed == required)
-            {
-                trim(context, static_cast<size_t>(processed));
-                return true;
-            }
-
-            trim(context, 0);
-            return false;
+                    assert(required == processed);
+                    return static_cast<size_t>(processed);
+                });
+            return true;
         }
 
-        trim(context, 0);
+        result.clear();
         return true;
     }
 
-    bool NarrowStringImpl(
-        void* context,
-        void (*reserve)(void*, size_t),
-        std::span<char> (*get)(void*),
-        void (*trim)(void*, size_t),
-        std::wstring_view value)
+    bool win32_NarrowString(std::string& result, std::wstring_view value) noexcept
     {
-        assert(value.length() < static_cast<size_t>(std::numeric_limits<int32_t>::max()));
-        int const length = static_cast<int>(value.length());
-
-        if (length > 0)
+        if (not value.empty())
         {
             int const required = WideCharToMultiByte(
                 CP_UTF8,
                 0,
                 value.data(),
-                length,
+                static_cast<int>(value.size()),
                 nullptr,
                 0,
                 nullptr,
@@ -87,35 +61,29 @@ namespace weave::platform
 
             if (required == 0)
             {
-                trim(context, 0);
+                result.clear();
                 return false;
             }
 
-            reserve(context, static_cast<size_t>(required) + 1);
-            std::span<char> const writable = get(context);
+            result.resize_and_overwrite(static_cast<size_t>(required), [&](char* ptr, size_t size) -> size_t
+                {
+                    int const processed = WideCharToMultiByte(
+                        CP_UTF8,
+                        0,
+                        value.data(),
+                        static_cast<int>(value.size()),
+                        ptr,
+                        static_cast<int>(size),
+                        nullptr,
+                        nullptr);
 
-            int const processed = WideCharToMultiByte(
-                CP_UTF8,
-                0,
-                value.data(),
-                length,
-                writable.data(),
-                static_cast<int>(writable.size()),
-                nullptr,
-                nullptr);
-
-            assert(processed == required);
-            if (processed == required)
-            {
-                trim(context, static_cast<size_t>(processed));
-                return true;
-            }
-
-            trim(context, 0);
-            return false;
+                    assert(required == processed);
+                    return static_cast<size_t>(processed);
+                });
+            return true;
         }
 
-        trim(context, 0);
+        result.clear();
         return true;
     }
 }

@@ -6,12 +6,7 @@
 #include <optional>
 #include <utility>
 
-WEAVE_EXTERNAL_HEADERS_BEGIN
-
-#define NOMINMAX
-#include <Windows.h>
-
-WEAVE_EXTERNAL_HEADERS_END
+#include "weave/platform/windows/PlatformHeaders.hxx"
 
 namespace weave::filesystem::impl
 {
@@ -87,38 +82,13 @@ namespace weave::filesystem
         this->AsPlatform().~PlatformDirectoryEnumerator();
     }
 
-    std::optional<std::wstring> WidenString(std::string_view value)
-    {
-        std::wstring result;
-        if (platform::WidenStringImpl(
-                &result,
-                [](void* context, size_t const size)
-                {
-                    static_cast<std::wstring*>(context)->resize(size);
-                },
-                [](void* context) -> std::span<wchar_t>
-                {
-                    return std::span{*static_cast<std::wstring*>(context)};
-                },
-                [](void* context, size_t const size)
-                {
-                    static_cast<std::wstring*>(context)->resize(size);
-                },
-                value))
-        {
-            return result;
-        }
-
-        return {};
-    }
-
     static DirectoryEntry FromNative(std::string_view root, WIN32_FIND_DATAW const& wfd)
     {
-        platform::StringBuffer<char, 512> narrow{};
-        platform::NarrowString(narrow, wfd.cFileName);
+        platform::windows::win32_string_buffer<char, 512> narrow{};
+        platform::windows::win32_NarrowString(narrow, wfd.cFileName);
 
         std::string path{root};
-        path::Push(path, narrow.AsView());
+        path::Push(path, narrow.as_view());
 
         return DirectoryEntry{
             .Path = std::move(path),
@@ -134,10 +104,9 @@ namespace weave::filesystem
 
         if (state.Handle == nullptr)
         {
-            if (auto&& converted = WidenString(this->_root))
+            std::wstring wpath{};
+            if (auto&& converted = platform::windows::win32_WidenString(wpath, this->_root))
             {
-                std::wstring wpath = std::move(*converted);
-
                 if (not wpath.empty())
                 {
                     if (wchar_t const last = wpath.back(); (last != L'/') and (last != L'\\'))

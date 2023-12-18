@@ -6,6 +6,10 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELWITHDEBINFO TRUE)
 set(CMAKE_OPTIMIZE_DEPENDENCIES_RELEASE TRUE)
 set(CMAKE_OPTIMIZE_DEPENDENCIES_RELWITHDEBINFO TRUE)
 
+#if (MSVC)
+#    add_compile_options("$<$<CONFIG:RELWITHDEBINFO>:/GA /GT /Ob3 ?Oi /Gw /Gy /GL /O2 /GS- /sdl- /guart:cf>")
+#endif()
+
 enable_testing()
 
 project(weave-lang VERSION 1.0.0.0)

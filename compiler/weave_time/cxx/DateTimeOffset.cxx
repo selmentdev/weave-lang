@@ -2,14 +2,9 @@
 #include "weave/platform/Compiler.hxx"
 #include "weave/bugcheck/BugCheck.hxx"
 
-WEAVE_EXTERNAL_HEADERS_BEGIN
-
 #if defined(WIN32)
-#define NOMINMAX
-#include <Windows.h>
+#include "weave/platform/windows/PlatformHeaders.hxx"
 #endif
-
-WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::time
 {

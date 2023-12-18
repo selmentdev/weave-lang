@@ -4,18 +4,17 @@
 
 #include <array>
 
-WEAVE_EXTERNAL_HEADERS_BEGIN
-
 #if defined(WIN32)
-#define NOMINMAX
-#include <Windows.h>
-#endif
 
-#if defined(__linux__)
+#include "weave/platform/windows/PlatformHeaders.hxx"
+
+#elif defined(__linux__)
+WEAVE_EXTERNAL_HEADERS_BEGIN
 #include <sys/time.h>
-#endif
-
 WEAVE_EXTERNAL_HEADERS_END
+#else
+#error "Not implemented"
+#endif
 
 namespace weave::time::impl
 {

@@ -103,10 +103,10 @@ namespace weave::threading
         {
             if (start.Name)
             {
-                platform::StringBuffer<wchar_t, 128> wname{};
-                platform::WidenString(wname, *start.Name);
+                platform::windows::win32_string_buffer<wchar_t, 128> wname{};
+                platform::windows::win32_WidenString(wname, *start.Name);
 
-                SetThreadDescription(this->AsPlatform().Handle, wname.GetBuffer());
+                SetThreadDescription(this->AsPlatform().Handle, wname.data());
             }
 
             if (start.Priority)

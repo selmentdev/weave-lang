@@ -16,7 +16,6 @@
 #include "weave/session/CodeGeneratorOptions.hxx"
 #include "weave/session/ExperimentalOptions.hxx"
 #include "weave/session/EmitOptions.hxx"
-#include "weave/platform/StringBuffer.hxx"
 
 #include "weave/threading/CriticalSection.hxx"
 #include "weave/threading/Thread.hxx"
@@ -29,6 +28,7 @@
 #include "weave/time/DateTime.hxx"
 #include "weave/time/DateTimeOffset.hxx"
 #include "weave/bugcheck/Assert.hxx"
+#include "weave/system/Environment.hxx"
 
 #include <atomic>
 
@@ -186,6 +186,11 @@ namespace xxx
 int main(int argc, const char* argv[])
 {
     {
+        fmt::println("PATH:                 '{}'", weave::system::environment::GetVariable("PATH").value_or("<not-found>"));
+        fmt::println("HOME:                 '{}'", weave::system::environment::GetVariable("HOME").value_or("<not-found>"));
+        fmt::println("OS:                   '{}'", weave::system::environment::GetVariable("OS").value_or("<not-found>"));
+        fmt::println("TEMP:                 '{}'", weave::system::environment::GetVariable("TEMP").value_or("<not-found>"));
+        fmt::println("NUMBER_OF_PROCESSORS: '{}'", weave::system::environment::GetVariable("NUMBER_OF_PROCESSORS").value_or("<not-found>"));
         fmt::println("Zero: {}", weave::time::Duration{INT64_MAX});
         fmt::println("Min: {}", weave::time::DateTime{{0}});
         fmt::println("Max: {}", weave::time::DateTime{{std::numeric_limits<int64_t>::max()}});

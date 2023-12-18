@@ -4,12 +4,7 @@
 
 #include <fmt/format.h>
 
-WEAVE_EXTERNAL_HEADERS_BEGIN
-
-#define NOMINMAX
-#include <Windows.h>
-
-WEAVE_EXTERNAL_HEADERS_END
+#include "weave/platform/windows/PlatformHeaders.hxx"
 
 namespace weave::system::impl
 {
@@ -86,11 +81,11 @@ namespace weave::system
         std::string& output,
         std::string& error)
     {
-        platform::StringBuffer<wchar_t, 512> wide_path{};
-        platform::StringBuffer<wchar_t, 512> wide_command_line{};
-        platform::StringBuffer<wchar_t, 512> wide_working_directory{};
+        platform::windows::win32_string_buffer<wchar_t, 512> wide_path{};
+        platform::windows::win32_string_buffer<wchar_t, 512> wide_command_line{};
+        platform::windows::win32_string_buffer<wchar_t, 512> wide_working_directory{};
 
-        if (not platform::WidenString(wide_path, path))
+        if (not platform::windows::win32_WidenString(wide_path, path))
         {
             return std::nullopt;
         }
@@ -100,12 +95,12 @@ namespace weave::system
             ? fmt::format("\"{}\" {}", path, args)
             : fmt::format("\"{}\"", path);
 
-        if (not platform::WidenString(wide_command_line, command_line))
+        if (not platform::windows::win32_WidenString(wide_command_line, command_line))
         {
             return std::nullopt;
         }
 
-        if (not platform::WidenString(wide_working_directory, working_directory ? working_directory : ""))
+        if (not platform::windows::win32_WidenString(wide_working_directory, working_directory ? working_directory : ""))
         {
             return std::nullopt;
         }
@@ -156,14 +151,14 @@ namespace weave::system
         PROCESS_INFORMATION pi{};
 
         if (CreateProcessW(
-                path != nullptr ? wide_path.GetBuffer() : nullptr,
-                args != nullptr ? wide_command_line.GetBuffer() : nullptr,
+                path != nullptr ? wide_path.data() : nullptr,
+                args != nullptr ? wide_command_line.data() : nullptr,
                 &sa,
                 &sa,
                 TRUE,
                 flags,
                 nullptr,
-                working_directory != nullptr ? wide_working_directory.GetBuffer() : nullptr,
+                working_directory != nullptr ? wide_working_directory.data() : nullptr,
                 &si,
                 &pi) != FALSE)
         {

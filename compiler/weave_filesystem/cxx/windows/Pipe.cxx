@@ -1,12 +1,7 @@
 #include "weave/filesystem/Pipe.hxx"
 #include "weave/bugcheck/Assert.hxx"
 
-WEAVE_EXTERNAL_HEADERS_BEGIN
-
-#define NOMINMAX
-#include <Windows.h>
-
-WEAVE_EXTERNAL_HEADERS_END
+#include "weave/platform/windows/PlatformHeaders.hxx"
 
 namespace weave::filesystem
 {

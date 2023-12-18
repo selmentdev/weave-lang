@@ -3,23 +3,22 @@
 #include "weave/time/Instant.hxx"
 #include "weave/time/Duration.hxx"
 
-WEAVE_EXTERNAL_HEADERS_BEGIN
 
 #if defined(WIN32)
 
-#define NOMINMAX
-#include <Windows.h>
+#include "weave/platform/windows/PlatformHeaders.hxx"
 
 #elif defined(__linux__)
 
+WEAVE_EXTERNAL_HEADERS_BEGIN
 #include <sys/mman.h>
 #include <time.h>
+WEAVE_EXTERNAL_HEADERS_END
 
 #else
 #error Not implemented
 #endif
 
-WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::time::impl
 {

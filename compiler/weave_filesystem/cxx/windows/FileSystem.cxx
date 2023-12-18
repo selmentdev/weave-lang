@@ -4,26 +4,21 @@
 #include "weave/filesystem/FileHandle.hxx"
 #include "weave/platform/SystemError.hxx"
 
-WEAVE_EXTERNAL_HEADERS_BEGIN
-
-#define NOMINMAX
-#include <windows.h>
-
-WEAVE_EXTERNAL_HEADERS_END
+#include "weave/platform/windows/PlatformHeaders.hxx"
 
 namespace weave::filesystem
 {
     std::expected<std::string, platform::SystemError> File::Copy(std::string_view existing, std::string_view destination, NameCollisionResolve collision)
     {
-        platform::StringBuffer<wchar_t, MAX_PATH> wExisting{};
-        platform::StringBuffer<wchar_t, MAX_PATH> wDestination{};
+        platform::windows::win32_FilePathW wExisting{};
+        platform::windows::win32_FilePathW wDestination{};
 
-        if (platform::WidenString(wExisting, existing) and platform::WidenString(wDestination, destination))
+        if (platform::windows::win32_WidenString(wExisting, existing) and platform::windows::win32_WidenString(wDestination, destination))
         {
             bool exists;
             bool fail;
 
-            if (DWORD const dwAttributes = GetFileAttributesW(wDestination.GetBuffer()); dwAttributes == INVALID_FILE_ATTRIBUTES)
+            if (DWORD const dwAttributes = GetFileAttributesW(wDestination.data()); dwAttributes == INVALID_FILE_ATTRIBUTES)
             {
                 DWORD const dwError = GetLastError();
 
@@ -79,7 +74,7 @@ namespace weave::filesystem
                 .dwCopyFlags = static_cast<DWORD>(fail ? COPY_FILE_FAIL_IF_EXISTS : 0),
             };
 
-            if (FAILED(CopyFile2(wExisting.GetBuffer(), wDestination.GetBuffer(), &params)))
+            if (FAILED(CopyFile2(wExisting.data(), wDestination.data(), &params)))
             {
                 return std::unexpected(platform::SystemError::FileExists);
             }
