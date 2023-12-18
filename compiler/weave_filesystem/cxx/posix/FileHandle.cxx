@@ -13,7 +13,8 @@ namespace weave::filesystem::impl
 {
     struct PlatformFileHandle final
     {
-        int FileDescriptor;
+        int FileDescriptor{};
+	int Padding{};
     };
 
     int TranslateToOpenFlags(FileMode mode, FileAccess access, FileOptions options, bool failForSymlinks)
@@ -83,7 +84,7 @@ namespace weave::filesystem
         return *reinterpret_cast<impl::PlatformFileHandle const*>(&this->_native);
     }
 
-    void FileHandle::CloseIgnoreErrors() noexcept
+    void FileHandle::CloseIgnoreErrors()
     {
         if (this->AsPlatform().FileDescriptor >= 0)
         {
@@ -102,7 +103,7 @@ namespace weave::filesystem
         {
             if (flock(fd, LOCK_EX | LOCK_NB) == -1)
             {
-                int error = errno;
+                int const error = errno;
                 bool failed{ false };
 
                 if ((error == EAGAIN) or (error == EWOULDBLOCK))
@@ -159,7 +160,7 @@ namespace weave::filesystem
 
     std::expected<int64_t, platform::SystemError> FileHandle::GetLength() const
     {
-        impl::PlatformFileHandle& native = this->AsPlatform();
+        impl::PlatformFileHandle const& native = this->AsPlatform();
         assert(native.FileDescriptor >= 0);
 
         // clang-format off
@@ -192,8 +193,8 @@ namespace weave::filesystem
         impl::PlatformFileHandle& native = this->AsPlatform();
         assert(native.FileDescriptor >= 0);
 
-        size_t processed = 0;
-        while (processed < buffer.size())
+        ssize_t processed = 0;
+        while (processed < std::ssize(buffer))
         {
             ssize_t const result = pread64(
                 native.FileDescriptor,
@@ -222,8 +223,8 @@ namespace weave::filesystem
         impl::PlatformFileHandle& native = this->AsPlatform();
         assert(native.FileDescriptor >= 0);
 
-        size_t processed = 0;
-        while (processed < buffer.size())
+        ssize_t processed = 0;
+        while (processed < std::ssize(buffer))
         {
             ssize_t const result = pwrite64(
                 native.FileDescriptor,
