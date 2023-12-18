@@ -28,6 +28,7 @@
 #include "weave/time/DateTime.hxx"
 #include "weave/time/DateTimeOffset.hxx"
 #include "weave/bugcheck/Assert.hxx"
+#include "weave/filesystem/FileInfo.hxx"
 #include "weave/system/Environment.hxx"
 
 #include <atomic>
@@ -217,6 +218,15 @@ int main(int argc, const char* argv[])
             if (auto it = enumerator.Next(); it.has_value() and it->has_value())
             {
                 fmt::println("{}: {}", std::to_underlying((*it)->Type), (*it)->Path);
+                if (auto info = weave::filesystem::FileInfo::FromPath((*it)->Path))
+                {
+                    fmt::println("  Size:           {}", info->Size);
+                    fmt::println("  CreationTime:   {}", info->CreationTime);
+                    fmt::println("  LastAccessTime: {}", info->LastAccessTime);
+                    fmt::println("  LastWriteTime:  {}", info->LastWriteTime);
+                    fmt::println("  Readonly:       {}", info->Readonly);
+                    fmt::println("  Type:           {}", std::to_underlying(info->Type));
+                }
             }
             else
             {

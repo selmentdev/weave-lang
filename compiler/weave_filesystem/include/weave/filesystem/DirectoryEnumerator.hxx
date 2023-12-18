@@ -1,6 +1,7 @@
 #pragma once
 #include "weave/platform/SystemError.hxx"
 #include "weave/filesystem/Path.hxx"
+#include "weave/filesystem/FileType.hxx"
 
 #include <expected>
 #include <string>
@@ -22,20 +23,6 @@ namespace weave::filesystem::impl
     };
 }
 
-namespace weave::filesystem
-{
-    enum class FileType
-    {
-        Unknown,
-        Directory,
-        File,
-        SymbolicLink,
-        BlockDevice,
-        CharacterDevice,
-        Socket,
-        NamedPipe,
-    };
-}
 
 namespace weave::filesystem
 {
@@ -65,7 +52,12 @@ namespace weave::filesystem
 
         DirectoryEnumerator(DirectoryEnumerator const&) = delete;
         DirectoryEnumerator& operator=(DirectoryEnumerator const&) = delete;
-        
+
         [[nodiscard]] std::optional<std::expected<DirectoryEntry, platform::SystemError>> Next();
+
+        std::string_view Root() const
+        {
+            return this->_root;
+        }
     };
 }

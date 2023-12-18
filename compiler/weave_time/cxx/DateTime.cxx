@@ -1,33 +1,12 @@
 #include "weave/time/DateTime.hxx"
 #include "weave/bugcheck/Assert.hxx"
 #include "weave/time/DateTimeOffset.hxx"
+#include "weave/time/impl/Time.hxx"
 
 #include <array>
 
-#if defined(WIN32)
-
-#include "weave/platform/windows/PlatformHeaders.hxx"
-
-#elif defined(__linux__)
-WEAVE_EXTERNAL_HEADERS_BEGIN
-#include <sys/time.h>
-WEAVE_EXTERNAL_HEADERS_END
-#else
-#error "Not implemented"
-#endif
-
 namespace weave::time::impl
 {
-#if defined(WIN32)
-    inline constexpr int64_t DateTimeEpochAdjust = 504911231999999999;
-#elif defined(__linux__)
-    inline constexpr int64_t DateTimeEpochAdjust = 62135596800;
-#else
-#error "Not implemented"
-#endif
-
-    inline constexpr int64_t TicksPerSecond = NanosecondsInSecond / 100;
-
     inline constexpr int64_t SecondsInMinute = 60;
     inline constexpr int64_t SecondsInHour = 60 * SecondsInMinute;
     inline constexpr int64_t SecondsInDay = 24 * SecondsInHour;
@@ -109,15 +88,7 @@ namespace weave::time
         FILETIME ft;
         SystemTimeToFileTime(&st, &ft);
 
-        int64_t const ticks = std::bit_cast<int64_t>(ft) + impl::DateTimeEpochAdjust;
-
-        return DateTime{
-            .Inner = {
-                .Seconds = (ticks / impl::TicksPerSecond),
-                .Nanoseconds = (ticks % impl::TicksPerSecond) * 100,
-            },
-            .Kind = DateTimeKind::Local,
-        };
+        return impl::FromNative(ft, DateTimeKind::Local);
 #elif defined(__linux__)
         struct timespec ts;
 
@@ -144,15 +115,7 @@ namespace weave::time
         FILETIME ft;
         GetSystemTimePreciseAsFileTime(&ft);
 
-        int64_t const ticks = std::bit_cast<int64_t>(ft) + impl::DateTimeEpochAdjust;
-
-        return DateTime{
-            .Inner = {
-                .Seconds = (ticks / impl::TicksPerSecond),
-                .Nanoseconds = (ticks % impl::TicksPerSecond) * 100,
-            },
-            .Kind = DateTimeKind::Utc,
-        };
+        return impl::FromNative(ft, DateTimeKind::Utc);
 #elif defined(__linux__)
         struct timespec ts;
 

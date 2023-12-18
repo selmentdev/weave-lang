@@ -7,6 +7,7 @@
 #include <utility>
 
 #include "weave/platform/windows/PlatformHeaders.hxx"
+#include "Common.hxx"
 
 namespace weave::filesystem::impl
 {
@@ -14,21 +15,6 @@ namespace weave::filesystem::impl
     {
         HANDLE Handle;
     };
-
-    inline FileType ConvertToFileType(DWORD attributes)
-    {
-        if ((attributes & FILE_ATTRIBUTE_REPARSE_POINT) != 0)
-        {
-            return FileType::SymbolicLink;
-        }
-
-        if ((attributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
-        {
-            return FileType::Directory;
-        }
-
-        return FileType::File;
-    }
 }
 
 namespace weave::filesystem
