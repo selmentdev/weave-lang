@@ -118,7 +118,7 @@ namespace weave::filesystem
         platform::NarrowString(narrow, wfd.cFileName);
 
         std::string path{root};
-        path::Append(path, narrow.AsView());
+        path::Push(path, narrow.AsView());
 
         return DirectoryEntry{
             .Path = std::move(path),
