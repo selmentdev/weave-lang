@@ -23,7 +23,7 @@ namespace weave::session::impl
 
 namespace weave::session
 {
-    bool FromCommandLine(
+    bool ParseOptions(
         Options& options,
         errors::Handler& handler,
         std::span<std::string_view const> values)

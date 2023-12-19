@@ -1,0 +1,9 @@
+using weave;
+using weave.fs;
+
+namespace weave.compiler {
+    using weave.extensions;
+
+    public class Compiler {
+    }
+}

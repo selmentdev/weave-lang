@@ -1,4 +1,9 @@
 target_sources(weave_syntax
     PRIVATE
-       "SyntaxKind.cxx"
+        "SyntaxKind.cxx"
+        "Parser.cxx"
+        "SyntaxNode.cxx"
+        "Declaration.cxx"
+        "Expression.cxx"
+        "Statement.cxx"
 )

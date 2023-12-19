@@ -6,30 +6,33 @@
 #define WEAVE_SYNTAX_ABSTRACT_NODE(name, spelling) WEAVE_SYNTAX_NODE(name, spelling)
 #endif
 
+#ifndef WEAVE_SYNTAX_CONCRETE_NODE
+#define WEAVE_SYNTAX_CONCRETE_NODE(name, spelling) WEAVE_SYNTAX_NODE(name, spelling)
+#endif
+
 #ifndef WEAVE_SYNTAX_DECLARATION
-#define WEAVE_SYNTAX_DECLARATION(name, spelling) WEAVE_SYNTAX_NODE(name, spelling)
+#define WEAVE_SYNTAX_DECLARATION(name, spelling) WEAVE_SYNTAX_CONCRETE_NODE(name, spelling)
 #endif
 
 #ifndef WEAVE_SYNTAX_EXPRESSION
-#define WEAVE_SYNTAX_EXPRESSION(name, spelling) WEAVE_SYNTAX_NODE(name, spelling)
+#define WEAVE_SYNTAX_EXPRESSION(name, spelling) WEAVE_SYNTAX_CONCRETE_NODE(name, spelling)
 #endif
 
 #ifndef WEAVE_SYNTAX_STATEMENT
-#define WEAVE_SYNTAX_STATEMENT(name, spelling) WEAVE_SYNTAX_NODE(name, spelling)
+#define WEAVE_SYNTAX_STATEMENT(name, spelling) WEAVE_SYNTAX_CONCRETE_NODE(name, spelling)
 #endif
 
 
 // clang-format off
 
-WEAVE_SYNTAX_NODE(CompilationUnit,                      "[syntax::compilation-unit]")
+WEAVE_SYNTAX_ABSTRACT_NODE(Declaration,                 "[syntax::declaration]")
+WEAVE_SYNTAX_ABSTRACT_NODE(Expression,                  "[syntax::expression]")
+WEAVE_SYNTAX_ABSTRACT_NODE(Statement,                   "[syntax::statement]")
 
-WEAVE_SYNTAX_ABSTRACT_NODE(DeclarationSyntax,           "[syntax::declaration]")
-WEAVE_SYNTAX_ABSTRACT_NODE(ExpressionSyntax,            "[syntax::expression]")
-WEAVE_SYNTAX_ABSTRACT_NODE(StatementSyntax,             "[syntax::statement]")
-
+WEAVE_SYNTAX_DECLARATION(CompilationUnitDeclaration,    "[declaration::compilation-unit]")
 WEAVE_SYNTAX_DECLARATION(MemberDeclaration,             "[declaration::member]")
-WEAVE_SYNTAX_DECLARATION(IncompleteMemberDeclaration,   "[declaration::incomplete-member]")
 WEAVE_SYNTAX_DECLARATION(StructDeclaration,             "[declaration::struct]")
+WEAVE_SYNTAX_DECLARATION(IncompleteMemberDeclaration,   "[declaration::incomplete-member]")
 WEAVE_SYNTAX_DECLARATION(NamespaceDeclaration,          "[declaration::namespace]")
 
 WEAVE_SYNTAX_EXPRESSION(NameExpression,                 "[expression::name]")
@@ -48,6 +51,7 @@ WEAVE_SYNTAX_STATEMENT(ElseStatement,                   "[statement::else]")
 
 #undef WEAVE_SYNTAX_NODE
 #undef WEAVE_SYNTAX_ABSTRACT_NODE
+#undef WEAVE_SYNTAX_CONCRETE_NODE
 #undef WEAVE_SYNTAX_DECLARATION
 #undef WEAVE_SYNTAX_EXPRESSION
 #undef WEAVE_SYNTAX_STATEMENT

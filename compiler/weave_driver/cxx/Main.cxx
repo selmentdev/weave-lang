@@ -30,6 +30,7 @@
 #include "weave/bugcheck/Assert.hxx"
 #include "weave/filesystem/FileInfo.hxx"
 #include "weave/system/Environment.hxx"
+#include "weave/syntax/Parser.hxx"
 
 #include <atomic>
 
@@ -330,7 +331,7 @@ int main(int argc, const char* argv[])
             for (auto const& option : builder.GetOptions())
             {
                 fmt::println("{}", commandline::FormatOption(option));
-                fmt::println("\t{}", option.Description);
+                fmt::println("    {}", option.Description);
                 fmt::println("");
             }
             return EXIT_SUCCESS;
@@ -338,13 +339,13 @@ int main(int argc, const char* argv[])
 
         weave::errors::Handler handler{};
         session::CodeGeneratorOptions codegen{};
-        session::FromCommandLine(codegen, handler, matched->GetValues("codegen"));
+        session::ParseOptions(codegen, handler, matched->GetValues("codegen"));
 
         session::ExperimentalOptions experimental{};
-        session::FromCommandLine(experimental, handler, matched->GetValues("experimental"));
+        session::ParseOptions(experimental, handler, matched->GetValues("experimental"));
 
         session::EmitOptions emit{};
-        session::FromCommandLine(emit, handler, matched->GetValues("emit"));
+        session::ParseOptions(emit, handler, matched->GetValues("emit"));
 
         for (auto const& message : handler.GetMessages())
         {
@@ -379,9 +380,26 @@ int main(int argc, const char* argv[])
             return EXIT_FAILURE;
         }
 
-
         if (auto file = filesystem::ReadTextFile(files.front()); file.has_value())
         {
+#if true
+            source::SourceText text{std::move(*file)};
+            source::DiagnosticSink diagnostic{"<source>"};
+
+            syntax::ParserContext context{};
+            syntax::Parser parser{diagnostic, text, context};
+            syntax::CompilationUnitDeclaration* cu = parser.Parse();
+
+            WEAVE_ASSERT(cu != nullptr);
+
+            std::vector<std::string> diag{};
+            source::FormatDiagnostics(diag, text, diagnostic, 1000);
+
+            for (std::string const& item : diag)
+            {
+                fmt::println(stderr, "{}", item);
+            }
+#else
             std::vector<tokenizer::Token*> tokens{};
             source::DiagnosticSink diagnostic{"<source>"};
             source::SourceText text{std::move(*file)};
@@ -427,13 +445,6 @@ int main(int argc, const char* argv[])
             time::Duration const timeout = started.QueryElapsed();
             context.Strings.Dump();
 
-            std::vector<std::string> diag{};
-            source::FormatDiagnostics(diag, text, diagnostic, 1000);
-
-            for (std::string const& item : diag)
-            {
-                fmt::println(stderr, "{}", item);
-            }
 
             size_t allocated{};
             size_t reserved{};
@@ -442,6 +453,7 @@ int main(int argc, const char* argv[])
 
             fmt::println("lexed in {} ms", timeout.ToMilliseconds());
             fmt::println("allocated: {}, reserved: {}", allocated, reserved);
+#endif
         }
         else
         {

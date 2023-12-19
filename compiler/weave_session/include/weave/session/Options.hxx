@@ -75,7 +75,7 @@ namespace weave::session
         virtual bool SetOption(std::string_view name, std::optional<std::string_view> value) = 0;
     };
 
-    bool FromCommandLine(
+    bool ParseOptions(
         Options& options,
         errors::Handler& handler,
         std::span<std::string_view const> values);
