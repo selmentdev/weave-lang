@@ -14,7 +14,7 @@ namespace weave::filesystem::impl
     struct PlatformFileHandle final
     {
         int FileDescriptor{};
-	int Padding{};
+        int Padding{};
     };
 
     int TranslateToOpenFlags(FileMode mode, FileAccess access, FileOptions options, bool failForSymlinks)
@@ -50,17 +50,17 @@ namespace weave::filesystem::impl
 
         switch (access)
         {
-            case FileAccess::Read:
-                result |= O_RDONLY;
-                break;
+        case FileAccess::Read:
+            result |= O_RDONLY;
+            break;
 
-            case FileAccess::Write:
-                result |= O_WRONLY;
-                break;
+        case FileAccess::Write:
+            result |= O_WRONLY;
+            break;
 
-            case FileAccess::ReadWrite:
-                result |= O_RDWR;
-                break;
+        case FileAccess::ReadWrite:
+            result |= O_RDWR;
+            break;
         }
 
         if (options.WriteThrough)
@@ -84,7 +84,33 @@ namespace weave::filesystem
         return *reinterpret_cast<impl::PlatformFileHandle const*>(&this->_native);
     }
 
-    void FileHandle::CloseIgnoreErrors()
+    FileHandle::FileHandle(impl::PlatformFileHandle const& native)
+    {
+        this->AsPlatform() = native;
+    }
+
+    FileHandle::FileHandle(FileHandle&& other) noexcept
+    {
+        this->AsPlatform() = std::exchange(other.AsPlatform(), {});
+    }
+
+    FileHandle& FileHandle::operator=(FileHandle&& other) noexcept
+    {
+        if (this != std::addressof(other))
+        {
+            if (this->AsPlatform().FileDescriptor >= 0)
+            {
+                // Ignore errors.
+                (void)this->Close();
+            }
+
+            this->AsPlatform() = std::exchange(other.AsPlatform(), {});
+        }
+
+        return *this;
+    }
+
+    FileHandle::~FileHandle()
     {
         if (this->AsPlatform().FileDescriptor >= 0)
         {
@@ -104,7 +130,7 @@ namespace weave::filesystem
             if (flock(fd, LOCK_EX | LOCK_NB) == -1)
             {
                 int const error = errno;
-                bool failed{ false };
+                bool failed{false};
 
                 if ((error == EAGAIN) or (error == EWOULDBLOCK))
                 {
@@ -129,9 +155,9 @@ namespace weave::filesystem
                 }
             }
 
-            return FileHandle{std::bit_cast<impl::NativeFileHandle>(impl::PlatformFileHandle{
+            return FileHandle{impl::PlatformFileHandle{
                 .FileDescriptor = fd,
-            })};
+            });
         }
 
         return std::unexpected(platform::impl::SystemErrorFromErrno(errno));

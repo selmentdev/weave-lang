@@ -5,6 +5,7 @@
 #include <bit>
 
 #include "weave/platform/windows/PlatformHeaders.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 namespace weave::filesystem::impl
 {
@@ -30,7 +31,33 @@ namespace weave::filesystem
         return *reinterpret_cast<impl::PlatformFileHandle const*>(&this->_native);
     }
 
-    void FileHandle::CloseIgnoreErrors()
+    FileHandle::FileHandle(impl::PlatformFileHandle const& native)
+    {
+        this->AsPlatform() = native;
+    }
+
+    FileHandle::FileHandle(FileHandle&& other) noexcept
+    {
+        this->AsPlatform() = std::exchange(other.AsPlatform(), {});
+    }
+
+    FileHandle& FileHandle::operator=(FileHandle&& other) noexcept
+    {
+        if (this != std::addressof(other))
+        {
+            if (this->AsPlatform().Handle != nullptr)
+            {
+                // Ignore errors.
+                (void)this->Close();
+            }
+
+            this->AsPlatform() = std::exchange(other.AsPlatform(), {});
+        }
+
+        return *this;
+    }
+
+    FileHandle::~FileHandle()
     {
         if (this->AsPlatform().Handle != nullptr)
         {
@@ -147,9 +174,9 @@ namespace weave::filesystem
             if (result != INVALID_HANDLE_VALUE)
             {
                 return FileHandle{
-                    std::bit_cast<impl::NativeFileHandle>(impl::PlatformFileHandle{
+                    impl::PlatformFileHandle{
                         .Handle = result,
-                    })};
+                    }};
             }
 
             return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
@@ -178,7 +205,7 @@ namespace weave::filesystem
     std::expected<void, platform::SystemError> FileHandle::Close()
     {
         impl::PlatformFileHandle& native = this->AsPlatform();
-        assert(native.Handle != nullptr);
+        WEAVE_ASSERT(native.Handle != nullptr);
 
         HANDLE const handle = std::exchange(native.Handle, {});
 
@@ -193,7 +220,7 @@ namespace weave::filesystem
     std::expected<void, platform::SystemError> FileHandle::Flush()
     {
         impl::PlatformFileHandle const& native = this->AsPlatform();
-        assert(native.Handle != nullptr);
+        WEAVE_ASSERT(native.Handle != nullptr);
 
         if (!FlushFileBuffers(native.Handle))
         {
@@ -206,7 +233,7 @@ namespace weave::filesystem
     std::expected<int64_t, platform::SystemError> FileHandle::GetLength() const
     {
         impl::PlatformFileHandle const& native = this->AsPlatform();
-        assert(native.Handle != nullptr);
+        WEAVE_ASSERT(native.Handle != nullptr);
 
         LARGE_INTEGER li{};
         if (!GetFileSizeEx(native.Handle, &li))
@@ -220,7 +247,7 @@ namespace weave::filesystem
     std::expected<void, platform::SystemError> FileHandle::SetLength(int64_t length)
     {
         impl::PlatformFileHandle const& native = this->AsPlatform();
-        assert(native.Handle != nullptr);
+        WEAVE_ASSERT(native.Handle != nullptr);
 
         LARGE_INTEGER const li = std::bit_cast<LARGE_INTEGER>(length);
 
@@ -268,7 +295,7 @@ namespace weave::filesystem
     std::expected<size_t, platform::SystemError> FileHandle::Read(std::span<std::byte> buffer, int64_t position)
     {
         impl::PlatformFileHandle const& native = this->AsPlatform();
-        assert(native.Handle != nullptr);
+        WEAVE_ASSERT(native.Handle != nullptr);
 
         size_t processed = 0;
 
@@ -311,7 +338,7 @@ namespace weave::filesystem
     std::expected<size_t, platform::SystemError> FileHandle::Write(std::span<std::byte const> buffer, int64_t position)
     {
         impl::PlatformFileHandle const& native = this->AsPlatform();
-        assert(native.Handle != nullptr);
+        WEAVE_ASSERT(native.Handle != nullptr);
 
         size_t processed = 0;
 

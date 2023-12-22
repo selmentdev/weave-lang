@@ -72,44 +72,14 @@ namespace weave::filesystem
         impl::PlatformFileHandle& AsPlatform();
         impl::PlatformFileHandle const& AsPlatform() const;
 
-        void CloseIgnoreErrors();
-
     public:
-        explicit FileHandle(impl::NativeFileHandle native)
-            : _native{native}
-        {
-        }
-
-        FileHandle()
-            : _native{}
-        {
-        }
-
+        explicit FileHandle(impl::PlatformFileHandle const& native);
+        FileHandle();
         FileHandle(FileHandle const&) = delete;
-
-        FileHandle(FileHandle&& other) noexcept
-            : _native{std::exchange(other._native, {})}
-        {
-        }
-
+        FileHandle(FileHandle&& other) noexcept;
         FileHandle& operator=(FileHandle const&) = delete;
-
-        FileHandle& operator=(FileHandle&& other) noexcept
-        {
-            if (this != std::addressof(other))
-            {
-                this->CloseIgnoreErrors();
-
-                this->_native = std::exchange(other._native, {});
-            }
-
-            return *this;
-        }
-
-        ~FileHandle()
-        {
-            this->CloseIgnoreErrors();
-        }
+        FileHandle& operator=(FileHandle&& other) noexcept;
+        ~FileHandle();
 
     public:
         static std::expected<FileHandle, platform::SystemError> Create(std::string_view path, FileMode mode, FileAccess access, FileOptions options);
