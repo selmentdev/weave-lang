@@ -2,6 +2,7 @@
 #include "weave/filesystem/FileHandle.hxx"
 
 #include <memory>
+#include <fmt/format.h>
 
 namespace weave::filesystem
 {
@@ -19,16 +20,22 @@ namespace weave::filesystem
                 }
                 else
                 {
+                    fmt::println("Unable to read");
+                    fflush(stdout);
                     return std::unexpected(read.error());
                 }
             }
             else
             {
+                fmt::println("Unable to get-length");
+                fflush(stdout);
                 return std::unexpected(expected.error());
             }
         }
         else
         {
+            fmt::println("Unable to open file");
+            fflush(stdout);
             return std::unexpected(handle.error());
         }
     }

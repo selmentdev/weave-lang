@@ -1,5 +1,6 @@
 #include "weave/filesystem/FileHandle.hxx"
 #include "weave/platform/SystemError.hxx"
+#include "weave/bugcheck/Assert.hxx"
 
 #include <cassert>
 #include <cerrno>
@@ -13,7 +14,7 @@ namespace weave::filesystem::impl
 {
     struct PlatformFileHandle final
     {
-        int FileDescriptor{};
+        int FileDescriptor{-1};
         int Padding{};
     };
 
@@ -86,12 +87,12 @@ namespace weave::filesystem
 
     FileHandle::FileHandle(impl::PlatformFileHandle const& native)
     {
-        this->AsPlatform() = native;
+        this->AsPlatform().FileDescriptor = native.FileDescriptor;
     }
 
     FileHandle::FileHandle(FileHandle&& other) noexcept
     {
-        this->AsPlatform() = std::exchange(other.AsPlatform(), {});
+        this->AsPlatform().FileDescriptor = std::exchange(other.AsPlatform().FileDescriptor, -1);
     }
 
     FileHandle& FileHandle::operator=(FileHandle&& other) noexcept
@@ -104,7 +105,7 @@ namespace weave::filesystem
                 (void)this->Close();
             }
 
-            this->AsPlatform() = std::exchange(other.AsPlatform(), {});
+            this->AsPlatform().FileDescriptor = std::exchange(other.AsPlatform().FileDescriptor, -1);
         }
 
         return *this;
@@ -157,7 +158,7 @@ namespace weave::filesystem
 
             return FileHandle{impl::PlatformFileHandle{
                 .FileDescriptor = fd,
-            });
+            }};
         }
 
         return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
@@ -174,9 +175,11 @@ namespace weave::filesystem
     std::expected<void, platform::SystemError> FileHandle::Close()
     {
         impl::PlatformFileHandle& native = this->AsPlatform();
-        assert(native.FileDescriptor >= 0);
+        WEAVE_ASSERT(native.FileDescriptor >= 0);
 
-        if (close(native.FileDescriptor) == 0)
+        int const fd = std::exchange(native.FileDescriptor, -1);
+
+        if (close(fd) == 0)
         {
             return {};
         }

@@ -149,7 +149,7 @@ int main(int argc, char** argv)
                 }
                 else
                 {
-                    fmt::println(stderr, "Failed to open file '{}' ('{}')", outputFilePath.string(), std::to_underlying(expected.error()));
+                    fmt::println(stderr, "Failed to open file '{}' ('{}')", errorFilePath.string(), std::to_underlying(expected.error()));
                     shouldWriteErrorFile = true;
                 }
 
