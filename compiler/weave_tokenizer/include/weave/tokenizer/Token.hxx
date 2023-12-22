@@ -94,16 +94,29 @@ namespace weave::tokenizer
         Utf32, // U''
     };
 
+    constexpr uint32_t TokenFlags_None = 0u;
+    constexpr uint32_t TokenFlags_Missing = 1u << 0u;
+
     class Token
     {
     private:
         TokenKind _kind;
+        uint32_t _flags;
         source::SourceSpan _source;
         TriviaRange const* _trivia;
 
     public:
         constexpr Token(TokenKind kind, source::SourceSpan const& source, TriviaRange const* trivia)
             : _kind{kind}
+            , _flags{TokenFlags_None}
+            , _source{source}
+            , _trivia{trivia}
+        {
+        }
+
+        constexpr Token(TokenKind kind, source::SourceSpan const& source, TriviaRange const* trivia, uint32_t flags)
+            : _kind{kind}
+            , _flags{flags}
             , _source{source}
             , _trivia{trivia}
         {
@@ -138,6 +151,11 @@ namespace weave::tokenizer
             }
 
             return {};
+        }
+
+        [[nodiscard]] constexpr bool IsMissing() const
+        {
+            return (this->_flags & TokenFlags_Missing) != 0;
         }
 
     public:
@@ -193,6 +211,20 @@ namespace weave::tokenizer
         {
         }
 
+        constexpr IntegerLiteralToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            NumberLiteralPrefixKind prefix,
+            IntegerLiteralSuffixKind suffix,
+            std::string_view value,
+            uint32_t flags)
+            : Token{TokenKind::IntegerLiteral, source, trivia, flags}
+            , _prefix{prefix}
+            , _suffix{suffix}
+            , _value{value}
+        {
+        }
+
     public:
         [[nodiscard]] constexpr NumberLiteralPrefixKind GetPrefix() const
         {
@@ -228,6 +260,20 @@ namespace weave::tokenizer
             FloatLiteralSuffixKind suffix,
             std::string_view value)
             : Token{TokenKind::FloatLiteral, source, trivia}
+            , _prefix{prefix}
+            , _suffix{suffix}
+            , _value{value}
+        {
+        }
+
+        constexpr FloatLiteralToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            NumberLiteralPrefixKind prefix,
+            FloatLiteralSuffixKind suffix,
+            std::string_view value,
+            uint32_t flags)
+            : Token{TokenKind::FloatLiteral, source, trivia, flags}
             , _prefix{prefix}
             , _suffix{suffix}
             , _value{value}
@@ -272,6 +318,18 @@ namespace weave::tokenizer
         {
         }
 
+        constexpr StringLiteralToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            StringPrefixKind prefix,
+            std::string_view value,
+            uint32_t flags)
+            : Token{TokenKind::StringLiteral, source, trivia, flags}
+            , _prefix{prefix}
+            , _value{value}
+        {
+        }
+
     public:
         [[nodiscard]] constexpr StringPrefixKind GetPrefix() const
         {
@@ -305,6 +363,18 @@ namespace weave::tokenizer
         {
         }
 
+        constexpr CharacterLiteralToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            CharacterPrefixKind prefix,
+            char32_t value,
+            uint32_t flags)
+            : Token{TokenKind::CharacterLiteral, source, trivia, flags}
+            , _prefix{prefix}
+            , _value{value}
+        {
+        }
+
     public:
         [[nodiscard]] constexpr CharacterPrefixKind GetPrefix() const
         {
@@ -331,6 +401,16 @@ namespace weave::tokenizer
             TriviaRange const* trivia,
             std::string_view identifier)
             : Token{TokenKind::Identifier, source, trivia}
+            , _identifier{identifier}
+        {
+        }
+
+        constexpr IdentifierToken(
+            source::SourceSpan const& source,
+            TriviaRange const* trivia,
+            std::string_view identifier,
+            uint32_t flags)
+            : Token{TokenKind::Identifier, source, trivia, flags}
             , _identifier{identifier}
         {
         }

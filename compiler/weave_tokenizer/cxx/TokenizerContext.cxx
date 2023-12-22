@@ -129,10 +129,52 @@ namespace weave::tokenizer
         TokenKind kind,
         source::SourceSpan const& source)
     {
+        if (kind == TokenKind::CharacterLiteral)
+        {
+            return this->CharacterLiterals.Emplace(
+                source,
+                &this->_empty_trivia,
+                CharacterPrefixKind::Default,
+                char32_t{},
+                TokenFlags_Missing);
+        }
+
+        if (kind == TokenKind::FloatLiteral)
+        {
+            return this->FloatLiterals.Emplace(
+                source,
+                &this->_empty_trivia,
+                NumberLiteralPrefixKind::Default,
+                FloatLiteralSuffixKind::Default,
+                std::string_view{},
+                TokenFlags_Missing);
+        }
+
+        if (kind == TokenKind::IntegerLiteral)
+        {
+            return this->IntegerLiterals.Emplace(
+                source,
+                &this->_empty_trivia,
+                NumberLiteralPrefixKind::Default,
+                IntegerLiteralSuffixKind::Default,
+                std::string_view{},
+                TokenFlags_Missing);
+        }
+
+        if (kind == TokenKind::Identifier)
+        {
+            return this->Identifiers.Emplace(
+                source,
+                &this->_empty_trivia,
+                std::string_view{},
+                TokenFlags_Missing);
+        }
+
         return this->Tokens.Emplace(
             kind,
             source,
-            &this->_empty_trivia);
+            &this->_empty_trivia,
+            TokenFlags_Missing);
     }
 
     CharacterLiteralToken* TokenizerContext::CreateCharacter(
