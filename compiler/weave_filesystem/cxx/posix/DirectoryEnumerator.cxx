@@ -89,7 +89,7 @@ namespace weave::filesystem
                     .Type = impl::ConvertToFileType(current->d_type),
                 };
             }
-            else if (error == 0)
+            else if (error != 0)
             {
                 return std::unexpected(platform::impl::SystemErrorFromErrno(error));
             }
