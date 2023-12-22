@@ -68,7 +68,7 @@ int main(int argc, char** argv)
         {
             for (auto const& option : parser.GetOptions())
             {
-                //fmt::println("    {:>2} {} {}", option.ShortName, option.Name, option.Hint);
+                // fmt::println("    {:>2} {} {}", option.ShortName, option.Name, option.Hint);
 
                 fmt::println("    {}", weave::commandline::FormatOption(option));
 
@@ -117,18 +117,26 @@ int main(int argc, char** argv)
                 std::filesystem::path errorFilePath = entry.path();
                 errorFilePath.replace_extension(".error");
 
+                bool shouldWriteOutputFile = false;
+                bool shouldWriteErrorFile = false;
                 // Try to read output and error files
                 if (auto const expected = weave::filesystem::ReadTextFile(outputFilePath.string()))
                 {
                     if (*expected != output)
                     {
                         fmt::println("output file content does not match");
-                        weave::filesystem::WriteTextFile(outputFilePath.string(), output);
+                        shouldWriteOutputFile = true;
                     }
                 }
                 else
                 {
                     fmt::println(stderr, "Failed to open file '{}' ('{}')", outputFilePath.string(), std::to_underlying(expected.error()));
+                    shouldWriteOutputFile = true;
+                }
+
+                if (shouldWriteOutputFile)
+                {
+                    weave::filesystem::WriteTextFile(outputFilePath.string(), output);
                 }
 
                 if (auto const expected = weave::filesystem::ReadTextFile(errorFilePath.string()))
@@ -136,12 +144,18 @@ int main(int argc, char** argv)
                     if (*expected != error)
                     {
                         fmt::println("output file content does not match");
-                        weave::filesystem::WriteTextFile(errorFilePath.string(), error);
+                        shouldWriteErrorFile = true;
                     }
                 }
                 else
                 {
                     fmt::println(stderr, "Failed to open file '{}' ('{}')", outputFilePath.string(), std::to_underlying(expected.error()));
+                    shouldWriteErrorFile = true;
+                }
+
+                if (shouldWriteErrorFile)
+                {
+                    weave::filesystem::WriteTextFile(errorFilePath.string(), error);
                 }
             }
             else

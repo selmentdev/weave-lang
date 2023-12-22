@@ -4,6 +4,7 @@ using weave.fs;
 namespace weave.compiler {
     using weave.extensions;
 
-    public class Compiler {
-    }
+    struct Compiler {
+        // These are comments for compiler implementation.
+    };
 }

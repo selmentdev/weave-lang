@@ -52,13 +52,13 @@ namespace weave::syntax
     class SimpleNameExpression : public NameExpression
     {
     public:
-        explicit constexpr SimpleNameExpression(SyntaxKind kind, tokenizer::Token* identifier)
+        explicit constexpr SimpleNameExpression(SyntaxKind kind, tokenizer::IdentifierToken* identifier)
             : NameExpression{kind}
             , IdentifierToken{identifier}
         {
         }
 
-        tokenizer::Token* IdentifierToken{};
+        tokenizer::IdentifierToken* IdentifierToken{};
     };
 
     class IdentifierNameExpression final : public SimpleNameExpression
@@ -75,7 +75,7 @@ namespace weave::syntax
         }
 
     public:
-        explicit constexpr IdentifierNameExpression(tokenizer::Token* identifier)
+        explicit constexpr IdentifierNameExpression(tokenizer::IdentifierToken* identifier)
             : SimpleNameExpression{SyntaxKind::IdentifierNameExpression, identifier}
         {
         }
@@ -95,7 +95,7 @@ namespace weave::syntax
         }
 
     public:
-        explicit constexpr GenericNameExpression(tokenizer::Token* identifier)
+        explicit constexpr GenericNameExpression(tokenizer::IdentifierToken* identifier)
             : SimpleNameExpression{SyntaxKind::GenericNameExpression, identifier}
         {
         }

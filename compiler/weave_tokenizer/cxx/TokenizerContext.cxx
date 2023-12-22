@@ -27,11 +27,8 @@ namespace weave::tokenizer
                 const char* first = s.data();
                 const char* const last = first + s.size();
 
-                [[maybe_unused]] unicode::ConversionResult const status = unicode::Decode(value, first, last);
-
-                WEAVE_ASSERT(status == unicode::ConversionResult::Success);
-                WEAVE_ASSERT(first == last);
-                WEAVE_ASSERT(first[0] == '\0');
+                // Ignore decoding errors - they will be reported by the tokenizer.
+                (void)unicode::Decode(value, first, last);
 
                 return this->CreateCharacter(
                     lexer.GetSpan(),
@@ -163,7 +160,7 @@ namespace weave::tokenizer
             source,
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
             prefix,
-            value);
+            this->Strings.Get(value));
     }
 
     FloatLiteralToken* TokenizerContext::CreateFloat(
@@ -179,7 +176,7 @@ namespace weave::tokenizer
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
             prefix,
             suffix,
-            value);
+            this->Strings.Get(value));
     }
 
     IntegerLiteralToken* TokenizerContext::CreateInteger(
@@ -195,7 +192,7 @@ namespace weave::tokenizer
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
             prefix,
             suffix,
-            value);
+            this->Strings.Get(value));
     }
 
     IdentifierToken* TokenizerContext::CreateIdentifier(
@@ -207,7 +204,7 @@ namespace weave::tokenizer
         return this->Identifiers.Emplace(
             source,
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
-            value);
+            this->Strings.Get(value));
     }
 
     void TokenizerContext::QueryMemoryUsage(size_t& allocated, size_t& reserved) const

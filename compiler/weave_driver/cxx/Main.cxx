@@ -31,6 +31,7 @@
 #include "weave/filesystem/FileInfo.hxx"
 #include "weave/system/Environment.hxx"
 #include "weave/syntax/Parser.hxx"
+#include "weave/syntax/Visitor.hxx"
 
 #include <atomic>
 
@@ -182,11 +183,11 @@ namespace xxx
             }
         }
     }
-
 }
 
 int main(int argc, const char* argv[])
 {
+    auto started = weave::time::Instant::Now();
     {
         fmt::println("PATH:                 '{}'", weave::system::environment::GetVariable("PATH").value_or("<not-found>"));
         fmt::println("HOME:                 '{}'", weave::system::environment::GetVariable("HOME").value_or("<not-found>"));
@@ -258,7 +259,7 @@ int main(int argc, const char* argv[])
 
     fmt::println("resource: {}", resource);
 
-#if defined(WIN32)
+#if defined(WIN32) && false
     {
         using namespace weave;
         if (auto handle = filesystem::FileHandle::Create("d:/profile.json", filesystem::FileMode::CreateAlways, filesystem::FileAccess::ReadWrite, {}))
@@ -380,6 +381,7 @@ int main(int argc, const char* argv[])
             return EXIT_FAILURE;
         }
 
+        auto parsing_timing = time::Instant::Now();
         if (auto file = filesystem::ReadTextFile(files.front()); file.has_value())
         {
 #if true
@@ -388,9 +390,100 @@ int main(int argc, const char* argv[])
 
             syntax::ParserContext context{};
             syntax::Parser parser{diagnostic, text, context};
-            syntax::CompilationUnitDeclaration* cu = parser.Parse();
+            [[maybe_unused]] syntax::CompilationUnitDeclaration* cu = parser.Parse();
 
             WEAVE_ASSERT(cu != nullptr);
+
+            struct V final : weave::syntax::SyntaxVisitor<V, std::string>
+            {
+                std::string VisitDefault(syntax::SyntaxNode* node)
+                {
+                    return std::string{syntax::SyntaxKindTraits::GetSpelling(node->Kind())};
+                }
+
+                std::string VisitCompilationUnitDeclaration(weave::syntax::CompilationUnitDeclaration* node) override
+                {
+                    SyntaxVisitor::VisitCompilationUnitDeclaration(node);
+
+                    return "CompilationUnit (overridden)";
+                }
+            };
+
+            struct W final : weave::syntax::SyntaxWalker
+            {
+                V v{};
+
+                void PrintIndent()
+                {
+                    fmt::print("{}", std::string(this->Depth * 2, ' '));
+                }
+
+                void VisitCompilationUnitDeclaration(weave::syntax::CompilationUnitDeclaration* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitCompilationUnitDeclaration(node);
+                }
+
+                void VisitStructDeclaration(syntax::StructDeclaration* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitStructDeclaration(node);
+                }
+
+                void VisitNamespaceDeclaration(syntax::NamespaceDeclaration* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitNamespaceDeclaration(node);
+                }
+
+                void VisitUsingStatement(syntax::UsingStatement* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitUsingStatement(node);
+                }
+
+                void VisitQualifiedNameExpression(syntax::QualifiedNameExpression* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitQualifiedNameExpression(node);
+                }
+
+                void VisitSimpleNameExpression(syntax::SimpleNameExpression* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}: {}", v.Visit(node) , node->IdentifierToken->GetIdentifier());
+
+                    SyntaxWalker::VisitSimpleNameExpression(node);
+                }
+
+                void VisitGenericNameExpression(syntax::GenericNameExpression* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitGenericNameExpression(node);
+                }
+
+                void VisitIdentifierNameExpression(syntax::IdentifierNameExpression* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}: {}", v.Visit(node), node->IdentifierToken->GetIdentifier());
+
+                    SyntaxWalker::VisitIdentifierNameExpression(node);
+                }
+            };
+            W w{};
+            w.Visit(cu);
 
             std::vector<std::string> diag{};
             source::FormatDiagnostics(diag, text, diagnostic, 1000);
@@ -399,6 +492,7 @@ int main(int argc, const char* argv[])
             {
                 fmt::println(stderr, "{}", item);
             }
+
 #else
             std::vector<tokenizer::Token*> tokens{};
             source::DiagnosticSink diagnostic{"<source>"};
@@ -459,12 +553,17 @@ int main(int argc, const char* argv[])
         {
             fmt::println(stderr, "Failed to open file: {}", files.front());
         }
+
+        fmt::println("parsing took: {}", parsing_timing.QueryElapsed());
     }
     else
     {
         fmt::println(stderr, "{}", matched.error());
         return EXIT_FAILURE;
     }
+
+    fmt::println("Elapsed: {}", started.QueryElapsed());
+    fflush(stdout);    
 
     return 0;
 }

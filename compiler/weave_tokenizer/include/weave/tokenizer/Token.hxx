@@ -156,6 +156,17 @@ namespace weave::tokenizer
 
             return nullptr;
         }
+
+        template <typename T>
+        [[nodiscard]] constexpr T* TryCast()
+        {
+            if (this->_kind == T::Kind)
+            {
+                return static_cast<T*>(this);
+            }
+
+            return nullptr;
+        }
     };
 
     class IntegerLiteralToken final : public Token

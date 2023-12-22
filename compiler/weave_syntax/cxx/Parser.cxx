@@ -125,6 +125,14 @@ namespace weave::syntax
 
             if (not incomplete.empty())
             {
+                for (tokenizer::Token const* tk : incomplete)
+                {
+                    this->_diagnostic.AddError(
+                        tk->GetSourceSpan(),
+                        fmt::format("unexpected token '{}'",
+                            tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
+                }
+
                 auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
                 IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
                 members.emplace_back(node);
@@ -150,17 +158,36 @@ namespace weave::syntax
             {
                 members.emplace_back(this->ParseStructDeclaration());
             }
-
-            if (this->Current() == current)
+            else
             {
-                incomplete.emplace_back(current);
+                // Cannot parse token.
+                incomplete.push_back(current);
 
-                if (this->Next() == current)
+                // Advance past token.
+                this->Next();
+
+                if (this->Current() == current)
                 {
                     // Cannot advance parsing.
                     break;
                 }
             }
+        }
+
+        if (not incomplete.empty())
+        {
+            for (tokenizer::Token const* tk : incomplete)
+            {
+                this->_diagnostic.AddError(
+                    tk->GetSourceSpan(),
+                    fmt::format("unexpected token '{}'",
+                        tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
+            }
+
+            auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
+            IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
+            members.emplace_back(node);
+            incomplete.clear();
         }
     }
 
@@ -219,14 +246,15 @@ namespace weave::syntax
 
     IdentifierNameExpression* Parser::ParseIdentifierNameExpression()
     {
-        tokenizer::Token* tkIdentifier = this->Match(tokenizer::TokenKind::Identifier);
+        tokenizer::Token* tkRaw = this->Match(tokenizer::TokenKind::Identifier);
+        tokenizer::IdentifierToken* tkIdentifier = tkRaw->TryCast<tokenizer::IdentifierToken>();
         return this->_context.NodesAllocator.Emplace<IdentifierNameExpression>(tkIdentifier);
     }
 
     NameExpression* Parser::ParseQualifiedName()
     {
         tokenizer::Token* tkLeftIdentifier = this->Match(tokenizer::TokenKind::Identifier);
-        NameExpression* exprLeft = this->_context.NodesAllocator.Emplace<IdentifierNameExpression>(tkLeftIdentifier);
+        NameExpression* exprLeft = this->_context.NodesAllocator.Emplace<IdentifierNameExpression>(static_cast<tokenizer::IdentifierToken*>(tkLeftIdentifier));
 
         do
         {
@@ -238,7 +266,7 @@ namespace weave::syntax
                 this->Next();
                 this->Next();
 
-                SimpleNameExpression* exprRight = this->_context.NodesAllocator.Emplace<IdentifierNameExpression>(tkRightIdentifier);
+                SimpleNameExpression* exprRight = this->_context.NodesAllocator.Emplace<IdentifierNameExpression>(static_cast<tokenizer::IdentifierToken*>(tkRightIdentifier));
 
                 exprLeft = this->_context.NodesAllocator.Emplace<QualifiedNameExpression>(exprLeft, tkDot, exprRight);
             }

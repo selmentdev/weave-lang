@@ -1,1 +1,1125 @@
-Too many files specified
+error: fractional part must not start with '_'
+        --> <source>:13:2
+         |
+      13 | 0._3
+         |  ^^^
+error: fractional part must not start with '_'
+        --> <source>:14:2
+         |
+      14 | 0._3_
+         |  ^^^^
+error: fractional part must not start with '_'
+        --> <source>:15:2
+         |
+      15 | 0._3_e
+         |  ^^^^
+error: fractional part must not start with '_'
+        --> <source>:16:2
+         |
+      16 | 0._3_e10
+         |  ^^^^
+error: fractional part must not start with '_'
+        --> <source>:17:2
+         |
+      17 | 0._3_e10_f32
+         |  ^^^^
+error: expected at least one digit in exponent
+        --> <source>:19:1
+         |
+      19 | 0.3_e_
+         | ^^^^^
+error: expected at least one digit in exponent
+        --> <source>:20:1
+         |
+      20 | 0.3_e_ struct
+         | ^^^^^
+error: expected at least one digit in exponent
+        --> <source>:28:1
+         |
+      28 | 10e_+_10_f32
+         | ^^^
+error: expected at least one digit in exponent
+        --> <source>:31:1
+         |
+      31 | 10_e+_f32
+         | ^^^^^
+error: binary float literals are not supported
+        --> <source>:35:1
+         |
+      35 | 0b10.0f32
+         | ^^^^^^^^^
+error: invalid digit for base 2 literal
+        --> <source>:41:4
+         |
+      41 | 0b121
+         |    ^
+error: invalid digit for base 2 literal
+        --> <source>:42:8
+         |
+      42 | 0b10_10301
+         |        ^
+error: invalid digit for base 2 literal
+        --> <source>:43:3
+         |
+      43 | 0b30
+         |   ^
+error: invalid digit for base 2 literal
+        --> <source>:44:3
+         |
+      44 | 0b41
+         |   ^
+error: invalid digit for base 2 literal
+        --> <source>:45:3
+         |
+      45 | 0b5
+         |   ^
+error: invalid digit for base 2 literal
+        --> <source>:46:3
+         |
+      46 | 0b6
+         |   ^
+error: invalid digit for base 2 literal
+        --> <source>:47:3
+         |
+      47 | 0b7
+         |   ^
+error: invalid digit for base 2 literal
+        --> <source>:48:3
+         |
+      48 | 0b8
+         |   ^
+error: invalid digit for base 2 literal
+        --> <source>:49:3
+         |
+      49 | 0b9
+         |   ^
+error: octal float literals are not supported
+        --> <source>:50:1
+         |
+      50 | 0o1.0
+         | ^^^^^
+error: octal float literals are not supported
+        --> <source>:52:1
+         |
+      52 | 0o3.0f32
+         | ^^^^^^^^
+error: expected at least one digit in value
+        --> <source>:53:1
+         |
+      53 | 0x.3f32
+         | ^^
+error: octal float literals are not supported
+        --> <source>:55:1
+         |
+      55 | 0o4e4
+         | ^^^^^
+error: octal float literals are not supported
+        --> <source>:56:1
+         |
+      56 | 0o5.0e5
+         | ^^^^^^^
+error: octal float literals are not supported
+        --> <source>:57:1
+         |
+      57 | 0o6e6f32
+         | ^^^^^^^^
+error: octal float literals are not supported
+        --> <source>:58:1
+         |
+      58 | 0o7.0e7f64
+         | ^^^^^^^^^^
+error: hexadecimal floating literal requires exponent
+        --> <source>:59:1
+         |
+      59 | 0x8.0e+9
+         | ^^^^^^
+error: hexadecimal floating literal requires exponent
+        --> <source>:60:1
+         |
+      60 | 0x9.0e-9
+         | ^^^^^^
+error: expected at least one digit in value
+        --> <source>:62:1
+         |
+      62 | 0o
+         | ^^
+error: expected at least one digit in exponent
+        --> <source>:63:1
+         |
+      63 | 1e+
+         | ^^^
+error: hexadecimal floating literal requires exponent
+        --> <source>:65:1
+         |
+      65 | 0x539.0
+         | ^^^^^^^
+error: expected at least one digit in value
+        --> <source>:66:1
+         |
+      66 | 0x
+         | ^^
+error: expected at least one digit in value
+        --> <source>:67:1
+         |
+      67 | 0xu32
+         | ^^
+error: expected at least one digit in value
+        --> <source>:68:1
+         |
+      68 | 0ou32
+         | ^^
+error: expected at least one digit in value
+        --> <source>:69:1
+         |
+      69 | 0bu32
+         | ^^
+error: expected at least one digit in value
+        --> <source>:70:1
+         |
+      70 | 0b
+         | ^^
+error: octal float literals are not supported
+        --> <source>:72:1
+         |
+      72 | 0o123.456
+         | ^^^^^^^^^
+error: binary float literals are not supported
+        --> <source>:74:1
+         |
+      74 | 0b111.101
+         | ^^^^^^^^^
+error: invalid digit for base 8 literal
+        --> <source>:75:4
+         |
+      75 | 0o18
+         |    ^
+error: invalid digit for base 8 literal
+        --> <source>:76:8
+         |
+      76 | 0o1234_9_5670
+         |        ^
+error: invalid base prefix for hexadecimal number literal
+        --> <source>:80:1
+         |
+      80 | 0XYZ
+         | ^^
+error: expected at least one digit in value
+        --> <source>:80:1
+         |
+      80 | 0XYZ
+         | ^^
+error: invalid base prefix for octal number literal
+        --> <source>:81:1
+         |
+      81 | 0OPQ
+         | ^^
+error: expected at least one digit in value
+        --> <source>:81:1
+         |
+      81 | 0OPQ
+         | ^^
+error: expected at least one digit in exponent
+        --> <source>:81:1
+         |
+      81 | 0OPQ
+         | ^^^
+error: invalid base prefix for binary number literal
+        --> <source>:82:1
+         |
+      82 | 0BCD
+         | ^^
+error: expected at least one digit in value
+        --> <source>:82:1
+         |
+      82 | 0BCD
+         | ^^
+error: invalid base prefix for hexadecimal number literal
+        --> <source>:83:1
+         |
+      83 | 0XABCDEF
+         | ^^
+error: invalid base prefix for octal number literal
+        --> <source>:84:1
+         |
+      84 | 0O755
+         | ^^
+error: invalid base prefix for binary number literal
+        --> <source>:85:1
+         |
+      85 | 0B10101010
+         | ^^
+error: invalid base prefix for hexadecimal number literal
+        --> <source>:86:1
+         |
+      86 | 0XABC_DEF
+         | ^^
+error: invalid base prefix for octal number literal
+        --> <source>:87:1
+         |
+      87 | 0O7_55
+         | ^^
+error: invalid base prefix for binary number literal
+        --> <source>:88:1
+         |
+      88 | 0B1010_1010
+         | ^^
+error: invalid base prefix for hexadecimal number literal
+        --> <source>:89:1
+         |
+      89 | 0XABC_DEF_u64
+         | ^^
+error: invalid base prefix for octal number literal
+        --> <source>:90:1
+         |
+      90 | 0O7_55_u32
+         | ^^
+error: invalid base prefix for binary number literal
+        --> <source>:91:1
+         |
+      91 | 0B1010_1010_u8
+         | ^^
+error: invalid base prefix for hexadecimal number literal
+        --> <source>:92:1
+         |
+      92 | 0XABCDEFu64
+         | ^^
+error: invalid base prefix for octal number literal
+        --> <source>:93:1
+         |
+      93 | 0O755u32
+         | ^^
+error: invalid base prefix for binary number literal
+        --> <source>:94:1
+         |
+      94 | 0B10101010u8
+         | ^^
+error: invalid base prefix for hexadecimal number literal
+        --> <source>:95:1
+         |
+      95 | 0XABCDEFf64
+         | ^^
+error: binary float literals are not supported
+        --> <source>:108:1
+         |
+     108 | 0b1111.1111
+         | ^^^^^^^^^^^
+error: binary float literals are not supported
+        --> <source>:109:1
+         |
+     109 | 0b1111e+111
+         | ^^^^^^^^^^^
+error: binary float literals are not supported
+        --> <source>:110:1
+         |
+     110 | 0b1111.111e+111
+         | ^^^^^^^^^^^^^^^
+error: hexadecimal floating literal requires exponent
+        --> <source>:116:1
+         |
+     116 | 0x1111.1111
+         | ^^^^^^^^^^^
+error: binary float literals are not supported
+        --> <source>:119:1
+         |
+     119 | 0b1111_1111.101e+101
+         | ^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:1:1
+         |
+       1 | 0
+         | ^
+error: unexpected token '.'
+        --> <source>:2:1
+         |
+       2 | .2137
+         | ^
+error: unexpected token '[literal:integer]'
+        --> <source>:2:2
+         |
+       2 | .2137
+         |  ^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:3:1
+         |
+       3 | 3.3.
+         | ^^^
+error: unexpected token '.'
+        --> <source>:3:4
+         |
+       3 | 3.3.
+         |    ^
+error: unexpected token '[literal:float]'
+        --> <source>:4:1
+         |
+       4 | 3.3.3
+         | ^^^
+error: unexpected token '.'
+        --> <source>:4:4
+         |
+       4 | 3.3.3
+         |    ^
+error: unexpected token '[literal:integer]'
+        --> <source>:4:5
+         |
+       4 | 3.3.3
+         |     ^
+error: unexpected token '[literal:float]'
+        --> <source>:5:1
+         |
+       5 | 3.3.3.
+         | ^^^
+error: unexpected token '.'
+        --> <source>:5:4
+         |
+       5 | 3.3.3.
+         |    ^
+error: unexpected token '[literal:integer]'
+        --> <source>:5:5
+         |
+       5 | 3.3.3.
+         |     ^
+error: unexpected token '.'
+        --> <source>:5:6
+         |
+       5 | 3.3.3.
+         |      ^
+error: unexpected token '[literal:float]'
+        --> <source>:6:1
+         |
+       6 | 3.3.3.3
+         | ^^^
+error: unexpected token '.'
+        --> <source>:6:4
+         |
+       6 | 3.3.3.3
+         |    ^
+error: unexpected token '[literal:float]'
+        --> <source>:6:5
+         |
+       6 | 3.3.3.3
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:7:1
+         |
+       7 | _0.3
+         | ^^
+error: unexpected token '.'
+        --> <source>:7:3
+         |
+       7 | _0.3
+         |   ^
+error: unexpected token '[literal:integer]'
+        --> <source>:7:4
+         |
+       7 | _0.3
+         |    ^
+error: unexpected token '[literal:integer]'
+        --> <source>:8:1
+         |
+       8 | 3.G
+         | ^
+error: unexpected token '.'
+        --> <source>:8:2
+         |
+       8 | 3.G
+         |  ^
+error: unexpected token '[token::identifier]'
+        --> <source>:8:3
+         |
+       8 | 3.G
+         |   ^
+error: unexpected token '[literal:float]'
+        --> <source>:9:1
+         |
+       9 | 0.2137
+         | ^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:10:1
+         |
+      10 | 0.
+         | ^
+error: unexpected token '.'
+        --> <source>:10:2
+         |
+      10 | 0.
+         |  ^
+error: unexpected token '[literal:integer]'
+        --> <source>:11:1
+         |
+      11 | 9x
+         | ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:12:1
+         |
+      12 | 0._
+         | ^
+error: unexpected token '.'
+        --> <source>:12:2
+         |
+      12 | 0._
+         |  ^
+error: unexpected token '[token::identifier]'
+        --> <source>:12:3
+         |
+      12 | 0._
+         |   ^
+error: unexpected token '[literal:float]'
+        --> <source>:13:1
+         |
+      13 | 0._3
+         | ^
+error: unexpected token '.'
+        --> <source>:13:2
+         |
+      13 | 0._3
+         |  ^
+error: unexpected token '[token::identifier]'
+        --> <source>:13:3
+         |
+      13 | 0._3
+         |   ^^
+error: unexpected token '[literal:float]'
+        --> <source>:14:1
+         |
+      14 | 0._3_
+         | ^
+error: unexpected token '.'
+        --> <source>:14:2
+         |
+      14 | 0._3_
+         |  ^
+error: unexpected token '[token::identifier]'
+        --> <source>:14:3
+         |
+      14 | 0._3_
+         |   ^^^
+error: unexpected token '[literal:float]'
+        --> <source>:15:1
+         |
+      15 | 0._3_e
+         | ^
+error: unexpected token '.'
+        --> <source>:15:2
+         |
+      15 | 0._3_e
+         |  ^
+error: unexpected token '[token::identifier]'
+        --> <source>:15:3
+         |
+      15 | 0._3_e
+         |   ^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:16:1
+         |
+      16 | 0._3_e10
+         | ^
+error: unexpected token '.'
+        --> <source>:16:2
+         |
+      16 | 0._3_e10
+         |  ^
+error: unexpected token '[token::identifier]'
+        --> <source>:16:3
+         |
+      16 | 0._3_e10
+         |   ^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:17:1
+         |
+      17 | 0._3_e10_f32
+         | ^
+error: unexpected token '.'
+        --> <source>:17:2
+         |
+      17 | 0._3_e10_f32
+         |  ^
+error: unexpected token '[token::identifier]'
+        --> <source>:17:3
+         |
+      17 | 0._3_e10_f32
+         |   ^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:18:1
+         |
+      18 | 0.3_
+         | ^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:19:1
+         |
+      19 | 0.3_e_
+         | ^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:20:1
+         |
+      20 | 0.3_e_ struct
+         | ^^^^^^
+error: unexpected token '[literal:float]', expected '[token::identifier]'
+        --> <source>:21:1
+         |
+      21 | 0.3_e10_
+         | ^^^^^^^^
+error: unexpected token '[literal:float]', expected '{'
+        --> <source>:21:1
+         |
+      21 | 0.3_e10_
+         | ^^^^^^^^
+error: unexpected token '[literal:float]', expected '}'
+        --> <source>:21:1
+         |
+      21 | 0.3_e10_
+         | ^^^^^^^^
+error: unexpected token '[literal:float]', expected ';'
+        --> <source>:21:1
+         |
+      21 | 0.3_e10_
+         | ^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:21:1
+         |
+      21 | 0.3_e10_
+         | ^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:22:1
+         |
+      22 | 0.3_e10_f32
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:23:1
+         |
+      23 | 0e10
+         | ^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:24:1
+         |
+      24 | 1e10
+         | ^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:25:1
+         |
+      25 | 1e+10
+         | ^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:26:1
+         |
+      26 | 1e-10
+         | ^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:27:1
+         |
+      27 | 0x_1_p-10
+         | ^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:28:1
+         |
+      28 | 10e_+_10_f32
+         | ^^^^
+error: unexpected token '+'
+        --> <source>:28:5
+         |
+      28 | 10e_+_10_f32
+         |     ^
+error: unexpected token '[token::identifier]'
+        --> <source>:28:6
+         |
+      28 | 10e_+_10_f32
+         |      ^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:29:1
+         |
+      29 | 10e+_10_f32
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:30:1
+         |
+      30 | 10_e+_10_f32
+         | ^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:31:1
+         |
+      31 | 10_e+_f32
+         | ^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:32:1
+         |
+      32 | 10u123
+         | ^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:33:1
+         |
+      33 | 10.0f123
+         | ^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:34:1
+         |
+      34 | 0b10f32
+         | ^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:35:1
+         |
+      35 | 0b10.0f32
+         | ^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:36:1
+         |
+      36 | 999340282366920938463463374607431768211455999
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:37:1
+         |
+      37 | 9900000000000000000000000000999999999999999999999999999999
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:38:1
+         |
+      38 | 0b111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:39:1
+         |
+      39 | 0o37777777777777777777777777777777777777777770
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:40:1
+         |
+      40 | 0xffffffffffffffffffffffffffffffff0
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:41:1
+         |
+      41 | 0b121
+         | ^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:42:1
+         |
+      42 | 0b10_10301
+         | ^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:43:1
+         |
+      43 | 0b30
+         | ^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:44:1
+         |
+      44 | 0b41
+         | ^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:45:1
+         |
+      45 | 0b5
+         | ^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:46:1
+         |
+      46 | 0b6
+         | ^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:47:1
+         |
+      47 | 0b7
+         | ^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:48:1
+         |
+      48 | 0b8
+         | ^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:49:1
+         |
+      49 | 0b9
+         | ^^^
+error: unexpected token '[literal:float]'
+        --> <source>:50:1
+         |
+      50 | 0o1.0
+         | ^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:51:1
+         |
+      51 | 0o2f32
+         | ^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:52:1
+         |
+      52 | 0o3.0f32
+         | ^^^^^^^^
+error: unexpected token '.'
+        --> <source>:53:1
+         |
+      53 | 0x.3f32
+         | ^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:53:4
+         |
+      53 | 0x.3f32
+         |    ^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:54:1
+         |
+      54 | 0xe3f32
+         | ^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:55:1
+         |
+      55 | 0o4e4
+         | ^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:56:1
+         |
+      56 | 0o5.0e5
+         | ^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:57:1
+         |
+      57 | 0o6e6f32
+         | ^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:58:1
+         |
+      58 | 0o7.0e7f64
+         | ^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:59:1
+         |
+      59 | 0x8.0e+9
+         | ^^^^^^
+error: unexpected token '+'
+        --> <source>:59:7
+         |
+      59 | 0x8.0e+9
+         |       ^
+error: unexpected token '[literal:integer]'
+        --> <source>:59:8
+         |
+      59 | 0x8.0e+9
+         |        ^
+error: unexpected token '[literal:float]'
+        --> <source>:60:1
+         |
+      60 | 0x9.0e-9
+         | ^^^^^^
+error: unexpected token '-'
+        --> <source>:60:7
+         |
+      60 | 0x9.0e-9
+         |       ^
+error: unexpected token '[literal:integer]'
+        --> <source>:60:8
+         |
+      60 | 0x9.0e-9
+         |        ^
+error: unexpected token '[literal:integer]'
+        --> <source>:61:1
+         |
+      61 | 0xdeadc0dedeadbeefusize
+         | ^^^^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:62:1
+         |
+      62 | 0o
+         | ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:63:1
+         |
+      63 | 1e+
+         | ^^^
+error: unexpected token '[literal:float]'
+        --> <source>:64:1
+         |
+      64 | 1e+2
+         | ^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:65:1
+         |
+      65 | 0x539.0
+         | ^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:66:1
+         |
+      66 | 0x
+         | ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:67:1
+         |
+      67 | 0xu32
+         | ^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:68:1
+         |
+      68 | 0ou32
+         | ^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:69:1
+         |
+      69 | 0bu32
+         | ^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:70:1
+         |
+      70 | 0b
+         | ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:71:1
+         |
+      71 | 0o123f64
+         | ^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:72:1
+         |
+      72 | 0o123.456
+         | ^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:73:1
+         |
+      73 | 0b101f64
+         | ^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:74:1
+         |
+      74 | 0b111.101
+         | ^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:75:1
+         |
+      75 | 0o18
+         | ^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:76:1
+         |
+      76 | 0o1234_9_5670
+         | ^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:77:1
+         |
+      77 | 123X1a3
+         | ^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:78:1
+         |
+      78 | 456O123
+         | ^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:79:1
+         |
+      79 | 789B101
+         | ^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:80:1
+         |
+      80 | 0XYZ
+         | ^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:81:1
+         |
+      81 | 0OPQ
+         | ^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:82:1
+         |
+      82 | 0BCD
+         | ^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:83:1
+         |
+      83 | 0XABCDEF
+         | ^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:84:1
+         |
+      84 | 0O755
+         | ^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:85:1
+         |
+      85 | 0B10101010
+         | ^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:86:1
+         |
+      86 | 0XABC_DEF
+         | ^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:87:1
+         |
+      87 | 0O7_55
+         | ^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:88:1
+         |
+      88 | 0B1010_1010
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:89:1
+         |
+      89 | 0XABC_DEF_u64
+         | ^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:90:1
+         |
+      90 | 0O7_55_u32
+         | ^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:91:1
+         |
+      91 | 0B1010_1010_u8
+         | ^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:92:1
+         |
+      92 | 0XABCDEFu64
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:93:1
+         |
+      93 | 0O755u32
+         | ^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:94:1
+         |
+      94 | 0B10101010u8
+         | ^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:95:1
+         |
+      95 | 0XABCDEFf64
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:96:1
+         |
+      96 | 0xABCDEFf64
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:97:1
+         |
+      97 | 1.0E7f64
+         | ^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:98:1
+         |
+      98 | 0xffffffff
+         | ^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:99:1
+         |
+      99 | 4294967295
+         | ^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:100:1
+         |
+     100 | 0xffffffffffffffff
+         | ^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:101:1
+         |
+     101 | 18446744073709551615
+         | ^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '-'
+        --> <source>:102:1
+         |
+     102 | -2147483648i32
+         | ^
+error: unexpected token '[literal:integer]'
+        --> <source>:102:2
+         |
+     102 | -2147483648i32
+         |  ^^^^^^^^^^^^^
+error: unexpected token '-'
+        --> <source>:103:1
+         |
+     103 | -3.40282356e+38_f32
+         | ^
+error: unexpected token '[literal:float]'
+        --> <source>:103:2
+         |
+     103 | -3.40282356e+38_f32
+         |  ^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:104:1
+         |
+     104 | 3.40282356e+38_f32
+         | ^^^^^^^^^^^^^^^^^^
+error: unexpected token '-'
+        --> <source>:105:1
+         |
+     105 | -1.7976931348623158e+308_f64
+         | ^
+error: unexpected token '[literal:float]'
+        --> <source>:105:2
+         |
+     105 | -1.7976931348623158e+308_f64
+         |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:106:1
+         |
+     106 | 1.7976931348623158e+308_f64
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:107:1
+         |
+     107 | 0b1111
+         | ^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:108:1
+         |
+     108 | 0b1111.1111
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:109:1
+         |
+     109 | 0b1111e+111
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:110:1
+         |
+     110 | 0b1111.111e+111
+         | ^^^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:111:1
+         |
+     111 | 1111
+         | ^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:112:1
+         |
+     112 | 1111.1111
+         | ^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:113:1
+         |
+     113 | 1111e+111
+         | ^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:114:1
+         |
+     114 | 1111.111e+111
+         | ^^^^^^^^^^^^^
+error: unexpected token '[literal:integer]'
+        --> <source>:115:1
+         |
+     115 | 0x1111
+         | ^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:116:1
+         |
+     116 | 0x1111.1111
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:117:1
+         |
+     117 | 0x1111p+111
+         | ^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:118:1
+         |
+     118 | 0x1111.111p+111
+         | ^^^^^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:119:1
+         |
+     119 | 0b1111_1111.101e+101
+         | ^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[literal:float]'
+        --> <source>:120:1
+         |
+     120 | 21.37m32
+         | ^^^^^^^^

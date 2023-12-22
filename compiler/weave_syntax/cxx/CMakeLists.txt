@@ -6,4 +6,5 @@ target_sources(weave_syntax
         "Declaration.cxx"
         "Expression.cxx"
         "Statement.cxx"
+        "Visitor.cxx"
 )
