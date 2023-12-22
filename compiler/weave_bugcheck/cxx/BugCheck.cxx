@@ -39,6 +39,9 @@ namespace weave::bugcheck
         fmt::println(stderr, "stacktrace: not available");
 #endif
 
+        fflush(stdout);
+        fflush(stderr);
+
         std::abort();
     }
 }

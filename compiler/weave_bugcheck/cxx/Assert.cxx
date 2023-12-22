@@ -50,7 +50,8 @@ namespace weave::bugcheck
         fmt::println(stderr, "stacktrace: not available");
 #endif
 
-
+        fflush(stdout);
+        fflush(stderr);
 #if !defined(NDEBUG)
         return true;
 #else
