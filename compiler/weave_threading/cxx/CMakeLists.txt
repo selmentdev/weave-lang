@@ -1,6 +1,7 @@
 target_sources(weave_threading
     PRIVATE
         "Runnable.cxx"
+        "Task.cxx"
 )
 
 if (LINUX)

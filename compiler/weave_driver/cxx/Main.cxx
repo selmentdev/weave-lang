@@ -187,108 +187,6 @@ namespace xxx
 
 int main(int argc, const char* argv[])
 {
-    auto started = weave::time::Instant::Now();
-    {
-        fmt::println("PATH:                 '{}'", weave::system::environment::GetVariable("PATH").value_or("<not-found>"));
-        fmt::println("HOME:                 '{}'", weave::system::environment::GetVariable("HOME").value_or("<not-found>"));
-        fmt::println("OS:                   '{}'", weave::system::environment::GetVariable("OS").value_or("<not-found>"));
-        fmt::println("TEMP:                 '{}'", weave::system::environment::GetVariable("TEMP").value_or("<not-found>"));
-        fmt::println("NUMBER_OF_PROCESSORS: '{}'", weave::system::environment::GetVariable("NUMBER_OF_PROCESSORS").value_or("<not-found>"));
-        fmt::println("Zero: {}", weave::time::Duration{INT64_MAX});
-        fmt::println("Min: {}", weave::time::DateTime{{0}});
-        fmt::println("Max: {}", weave::time::DateTime{{std::numeric_limits<int64_t>::max()}});
-        fmt::println("Now:       {}", weave::time::DateTime::Now());
-        fmt::println("UtcNow:    {}", weave::time::DateTime::UtcNow());
-        fmt::println("Now:       {}", weave::time::DateTimeOffset::Now());
-        fmt::println("Now.Local: {}", weave::time::DateTimeOffset::Now().ToLocal());
-        fmt::println("Now.Utc:   {}", weave::time::DateTimeOffset::Now().ToUtc());
-        fmt::println("Started: {:t}", weave::time::DateTime::Now());
-        fmt::println("Started: {:D}", weave::time::DateTime::Now());
-        fmt::println("Started: {:T}", weave::time::DateTime::Now());
-        fmt::println("Started: {:F}", weave::time::DateTime::Now());
-        fmt::println("Started: {}", weave::time::DateTime::Now());
-    }
-    {
-#if defined(WIN32)
-        weave::filesystem::DirectoryEnumerator enumerator{R"(d:\repos\weave-lang)"};
-#else
-        weave::filesystem::DirectoryEnumerator enumerator{"/home/selmentdev/repos/weave-lang"};
-#endif
-
-        for (size_t i = 0; i < 3; ++i)
-        {
-            if (auto it = enumerator.Next(); it.has_value() and it->has_value())
-            {
-                fmt::println("{}: {}", std::to_underlying((*it)->Type), (*it)->Path);
-                if (auto info = weave::filesystem::FileInfo::FromPath((*it)->Path))
-                {
-                    fmt::println("  Size:           {}", info->Size);
-                    fmt::println("  CreationTime:   {}", info->CreationTime);
-                    fmt::println("  LastAccessTime: {}", info->LastAccessTime);
-                    fmt::println("  LastWriteTime:  {}", info->LastWriteTime);
-                    fmt::println("  Readonly:       {}", info->Readonly);
-                    fmt::println("  Type:           {}", std::to_underlying(info->Type));
-                }
-            }
-            else
-            {
-                fmt::println("error: {}", std::to_underlying(it->error()));
-                break;
-            }
-        }
-
-        xxx::Enumerate(std::move(enumerator));
-    }
-    int resource = 0;
-    {
-        weave::threading::CriticalSection cs{};
-
-        Tazg t1{cs, resource};
-        weave::threading::Thread thread1{weave::threading::ThreadStart{.Callback = &t1}};
-
-        Tazg t2{cs, resource};
-        weave::threading::Thread thread2{weave::threading::ThreadStart{.Callback = &t1}};
-
-        for (size_t i = 0; i < 1000000; ++i)
-        {
-            cs.Enter();
-            ++resource;
-            cs.Leave();
-        }
-    }
-
-    fmt::println("resource: {}", resource);
-
-#if defined(WIN32) && false
-    {
-        using namespace weave;
-        if (auto handle = filesystem::FileHandle::Create("d:/profile.json", filesystem::FileMode::CreateAlways, filesystem::FileAccess::ReadWrite, {}))
-        {
-            filesystem::FileWriter writer{*handle};
-
-            profiler::Profiler profiler{};
-            {
-                profiler::EventScope e{profiler, "Timeline", "Duration 1"};
-                profiler.Event("General", "Event 1");
-                threading::Sleep(time::Duration::FromMilliseconds(100));
-                profiler::EventScope b{profiler, "Timeline", "Duration 2 (inner)"};
-                threading::Sleep(time::Duration::FromMilliseconds(150));
-                profiler.Event("General", "Event 2");
-                threading::YieldThread(threading::YieldTarget::AnyThreadOnAnyProcessor);
-                threading::YieldThread(threading::YieldTarget::AnyThreadOnSameProcessor);
-                threading::YieldThread(threading::YieldTarget::SameOrHigherPriorityOnAnyProcessor);
-                threading::Sleep(time::Duration::FromMilliseconds(150));
-
-                profiler.Event("General", "Event 4");
-                threading::Sleep(time::Duration::FromMilliseconds(200));
-                profiler.Event("General", "Event 3");
-                threading::Sleep(time::Duration::FromMilliseconds(200));
-            }
-            profiler.Serialize(writer);
-        }
-    }
-#endif
-
     using namespace weave;
 
     commandline::CommandLineBuilder builder{};
@@ -384,7 +282,6 @@ int main(int argc, const char* argv[])
         auto parsing_timing = time::Instant::Now();
         if (auto file = filesystem::ReadTextFile(files.front()); file.has_value())
         {
-#if true
             source::SourceText text{std::move(*file)};
             source::DiagnosticSink diagnostic{"<source>"};
 
@@ -481,6 +378,24 @@ int main(int argc, const char* argv[])
 
                     SyntaxWalker::VisitIdentifierNameExpression(node);
                 }
+
+                void VisitIncompleteMemberDeclaration(syntax::IncompleteMemberDeclaration* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    ++Depth;
+
+                    for (auto tk : node->Tokens)
+                    {
+                        PrintIndent();
+                        fmt::println("{}", tokenizer::TokenKindTraits::GetName(tk->GetKind()));
+                    }
+
+                    --Depth;
+
+                    SyntaxWalker::VisitIncompleteMemberDeclaration(node);
+                }
             };
             W w{};
             w.Visit(cu);
@@ -492,62 +407,6 @@ int main(int argc, const char* argv[])
             {
                 fmt::println(stderr, "{}", item);
             }
-
-#else
-            std::vector<tokenizer::Token*> tokens{};
-            source::DiagnosticSink diagnostic{"<source>"};
-            source::SourceText text{std::move(*file)};
-            tokenizer::TokenizerContext context{};
-            tokenizer::Tokenizer lexer{diagnostic, text, tokenizer::TriviaMode::All};
-
-            time::Instant const started = time::Instant::Now();
-
-            while (lexer.Lex())
-            {
-                for (auto const& t : lexer.GetLeadingTrivia())
-                {
-                    source::LineSpan const loc = text.GetLineSpan(t.Source);
-                    fmt::println("ll: {}, {}:{}-{}:{}: {}",
-                        tokenizer::TriviaKindTraits::GetName(t.Kind),
-                        loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
-                        t.Source.End.Offset - t.Source.Start.Offset);
-                }
-                {
-                    source::LineSpan const loc = text.GetLineSpan(lexer.GetSpan());
-                    fmt::println("kk: {} ('{}'): '{}' '{}' '{}', {}:{}-{}:{}: {}",
-                        tokenizer::TokenKindTraits::GetName(lexer.GetKind()),
-                        tokenizer::TokenKindTraits::GetSpelling(lexer.GetKind()),
-                        lexer.GetPrefix(), lexer.GetValue(), lexer.GetSuffix(),
-                        loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
-                        lexer.GetSpan().End.Offset - lexer.GetSpan().Start.Offset);
-                }
-                for (auto const& t : lexer.GetTrailingTrivia())
-                {
-                    source::LineSpan const loc = text.GetLineSpan(t.Source);
-                    fmt::println("tt: {}, {}:{}-{}:{}: {}",
-                        tokenizer::TriviaKindTraits::GetName(t.Kind),
-                        loc.Start.Line, loc.Start.Column, loc.End.Line, loc.End.Column,
-                        t.Source.End.Offset - t.Source.Start.Offset);
-                }
-
-                if (lexer.GetKind() == tokenizer::TokenKind::EndOfFile)
-                {
-                    break;
-                }
-            }
-
-            time::Duration const timeout = started.QueryElapsed();
-            context.Strings.Dump();
-
-
-            size_t allocated{};
-            size_t reserved{};
-            context.QueryMemoryUsage(allocated, reserved);
-            context.DumpMemoryUsage();
-
-            fmt::println("lexed in {} ms", timeout.ToMilliseconds());
-            fmt::println("allocated: {}, reserved: {}", allocated, reserved);
-#endif
         }
         else
         {

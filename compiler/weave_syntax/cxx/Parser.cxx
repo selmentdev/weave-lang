@@ -123,28 +123,44 @@ namespace weave::syntax
                 break;
             }
 
-            if (not incomplete.empty())
-            {
-                for (tokenizer::Token const* tk : incomplete)
-                {
-                    this->_diagnostic.AddError(
-                        tk->GetSourceSpan(),
-                        fmt::format("unexpected token '{}'",
-                            tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
-                }
-
-                auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-                IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-                members.emplace_back(node);
-                incomplete.clear();
-            }
-
             if (current->Is(tokenizer::TokenKind::NamespaceKeyword))
             {
+                if (not incomplete.empty())
+                {
+                    for (tokenizer::Token const* tk : incomplete)
+                    {
+                        this->_diagnostic.AddError(
+                            tk->GetSourceSpan(),
+                            fmt::format("unexpected token '{}'",
+                                tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
+                    }
+
+                    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
+                    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
+                    members.emplace_back(node);
+                    incomplete.clear();
+                }
+
                 members.emplace_back(this->ParseNamespaceDeclaration());
             }
             else if (current->Is(tokenizer::TokenKind::UsingKeyword))
             {
+                if (not incomplete.empty())
+                {
+                    for (tokenizer::Token const* tk : incomplete)
+                    {
+                        this->_diagnostic.AddError(
+                            tk->GetSourceSpan(),
+                            fmt::format("unexpected token '{}'",
+                                tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
+                    }
+
+                    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
+                    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
+                    members.emplace_back(node);
+                    incomplete.clear();
+                }
+
                 if (not members.empty())
                 {
                     this->_diagnostic.AddError(
@@ -156,6 +172,22 @@ namespace weave::syntax
             }
             else if (current->Is(tokenizer::TokenKind::StructKeyword))
             {
+                if (not incomplete.empty())
+                {
+                    for (tokenizer::Token const* tk : incomplete)
+                    {
+                        this->_diagnostic.AddError(
+                            tk->GetSourceSpan(),
+                            fmt::format("unexpected token '{}'",
+                                tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
+                    }
+
+                    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
+                    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
+                    members.emplace_back(node);
+                    incomplete.clear();
+                }
+
                 members.emplace_back(this->ParseStructDeclaration());
             }
             else
@@ -218,13 +250,87 @@ namespace weave::syntax
     {
         tokenizer::Token* tkStruct = this->Match(tokenizer::TokenKind::StructKeyword);
         NameExpression* exprName = this->ParseQualifiedName();
+
+        std::vector<tokenizer::Token*> incomplete{};
+        std::vector<MemberDeclaration*> members{};
+
+        if (tokenizer::Token* tkExclamation = this->TryMatch(tokenizer::TokenKind::ExclamationToken))
+        {
+            tokenizer::Token* tkGenericStart = this->Match(tokenizer::TokenKind::OpenBracketToken);
+
+            // Ignore everything between `![` and `]`.
+            while (not this->Current()->Is(tokenizer::TokenKind::CloseBracketToken))
+            {
+                tokenizer::Token* current = this->Next();
+                incomplete.push_back(current);
+                if (current == this->Current())
+                {
+                    break;
+                }
+            }
+
+            if (not incomplete.empty())
+            {
+                auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
+                IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
+                members.emplace_back(node);
+                incomplete.clear();
+            }
+
+            tokenizer::Token* tkGenericEnd = this->Match(tokenizer::TokenKind::CloseBracketToken);
+
+            (void)tkExclamation;
+            (void)tkGenericStart;
+            (void)tkGenericEnd;
+        }
+
+        // Ignore everything between struct and `{`.
+        while (not this->Current()->Is(tokenizer::TokenKind::OpenBraceToken))
+        {
+            tokenizer::Token* current = this->Next();
+            incomplete.push_back(current);
+            if (current == this->Current())
+            {
+                break;
+            }
+        }
+
+        if (not incomplete.empty())
+        {
+            auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
+            IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
+            members.emplace_back(node);
+            incomplete.clear();
+        }
+
+
         tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
+
+        while (not this->Current()->Is(tokenizer::TokenKind::CloseBraceToken))
+        {
+            tokenizer::Token* current = this->Next();
+            incomplete.push_back(current);
+            if (current == this->Current())
+            {
+                break;
+            }
+        }
+
+        if (not incomplete.empty())
+        {
+            auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
+            IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
+            members.emplace_back(node);
+            incomplete.clear();
+        }
+
         tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
         tokenizer::Token* tkSemicolon = this->Match(tokenizer::TokenKind::SemicolonToken);
 
         StructDeclaration* result = this->_context.NodesAllocator.Emplace<StructDeclaration>();
         result->StructKeyword = tkStruct;
         result->Name = exprName;
+        result->Members = this->_context.NodesAllocator.EmplaceArray<MemberDeclaration*>(members);
         result->OpenBraceToken = tkOpenBrace;
         result->CloseBraceToken = tkCloseBrace;
         result->SemicolonToken = tkSemicolon;
