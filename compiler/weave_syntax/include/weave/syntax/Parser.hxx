@@ -1,8 +1,8 @@
 #pragma once
 #include "weave/tokenizer/Tokenizer.hxx"
 #include "weave/tokenizer/TokenizerContext.hxx"
-
 #include "weave/syntax/SyntaxNode.hxx"
+#include "weave/syntax/Modifiers.hxx"
 
 namespace weave::syntax
 {
@@ -52,9 +52,17 @@ namespace weave::syntax
             std::vector<UsingStatement*>& usings,
             std::vector<MemberDeclaration*>& members);
 
+        void ParseFieldModifier(bitwise::Flags<FieldModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
+
+        void ParseStructModifier(bitwise::Flags<StructModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
+        void ParseExtendModifier(bitwise::Flags<ExtendModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
+        void ParseConceptModifier(bitwise::Flags<ConceptModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
+
         NamespaceDeclaration* ParseNamespaceDeclaration();
 
-        StructDeclaration* ParseStructDeclaration();
+        StructDeclaration* ParseStructDeclaration(bitwise::Flags<StructModifier> modifiers);
+
+        ExtendDeclaration* ParseExtendDeclaration(bitwise::Flags<ExtendModifier> modifiers);
 
         UsingStatement* ParseUsingStatement();
 

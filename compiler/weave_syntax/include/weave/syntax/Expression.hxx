@@ -11,7 +11,31 @@ namespace weave::syntax
         {
         }
     };
+}
 
+/// Name Expressions
+///
+/// ```
+/// name
+///     : qualified_name
+///     | simple_name
+///     ;
+///
+/// qualified_name
+///     : name '.' name
+///     ;
+/// simple_name
+///     : identifier_name
+///     | generic_name
+///     ;
+///
+/// generic_name
+///     : identifier_name '![' type_argument_list ']'
+///     ;
+/// ```
+
+namespace weave::syntax
+{
     class NameExpression : public Expression
     {
     public:
@@ -99,5 +123,7 @@ namespace weave::syntax
             : SimpleNameExpression{SyntaxKind::GenericNameExpression, identifier}
         {
         }
+
+        //TypeParameterList* Parameters;
     };
 }

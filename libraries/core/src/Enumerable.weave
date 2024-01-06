@@ -1,0 +1,14 @@
+namespace core
+{
+    public concept Enumerator![type T]
+    {
+        public function MoveNext(self: Self) -> bool;
+
+        public function Current(self: ref Self) -> ref T;
+    }
+
+    public concept Enumerable![type T]
+    {
+        public function GetEnumerator(self: ref Self) -> Enumerator![T];
+    }
+}

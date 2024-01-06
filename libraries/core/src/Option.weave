@@ -1,0 +1,36 @@
+using core.diagnostic {
+    bugcheck;
+}
+
+namespace core
+{
+    public enum Option![type T]
+    {
+        Some(T),
+        None,
+    }
+}
+
+namespace core
+{
+    public extend Option![type T]
+    {
+        public function ValueOrDefault(self: ref Self, defaultValue: ref T) -> ref T
+        {
+            return match self
+            {
+                Some(value) => value,
+                None => defaultValue,
+            }
+        }
+
+        public function Value(self: ref Self) -> ref T
+        {
+            return match self
+            {
+                Some(value) => value,
+                None => bugcheck("Option is None"),
+            }
+        }
+    }
+}

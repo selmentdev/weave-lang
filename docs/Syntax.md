@@ -138,3 +138,28 @@ public struct Vector4 {
     }
 }
 ```
+
+### Unsafe and builtings
+
+#### Unsafe operations
+```
+// Bit casting operation between types of same size
+let x : int32 = 0x12345678;
+
+// Convert int32 to float32 without changing bits
+let y : float32 = unsafe!["bit_cast", float32](x);
+```
+
+### Builtin operations
+
+```
+if builtin!["is_compiletime"] {
+    builtin!["breakpoint"];     // evaluates to breakpoint instruction
+}
+
+let file = builtin!["file"];    // evaluates to current file name
+let line = builtin!["line"];    // evaluates to current line number
+
+let le = 0x1234u16;
+let be = builtin!["byte_swap", uint16](le); // evaluates to 0x3412u16
+```

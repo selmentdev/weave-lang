@@ -4,6 +4,10 @@
 #include "weave/syntax/Expression.hxx"
 #include "weave/syntax/Statement.hxx"
 
+#include "weave/bitwise/Flag.hxx"
+
+#include <array>
+
 namespace weave::syntax
 {
     Parser::Parser(
@@ -107,6 +111,104 @@ namespace weave::syntax
         return result;
     }
 
+    void ReportDuplicatedModifier(
+        source::DiagnosticSink& diagnostic,
+        tokenizer::Token const* previous, tokenizer::Token const* current)
+    {
+        diagnostic.AddError(
+            current->GetSourceSpan(),
+            fmt::format("duplicate modifier '{}'",
+                tokenizer::TokenKindTraits::GetSpelling(current->GetKind())));
+
+        diagnostic.AddHint(
+            previous->GetSourceSpan(),
+            fmt::format("modifier '{}' previously specified here",
+                tokenizer::TokenKindTraits::GetSpelling(previous->GetKind())));
+    }
+
+    template <typename KeyT, size_t N>
+    void ParseModifiers(
+        source::DiagnosticSink& diagnostic,
+        bitwise::Flags<KeyT>& modifiers,
+        std::array<std::pair<KeyT, tokenizer::TokenKind>, N> const& mapping,
+        std::vector<tokenizer::Token*>& tokens)
+    {
+        std::array<tokenizer::Token const*, N> previous{};
+
+        modifiers = {};
+
+        for (auto it = tokens.begin(); it != tokens.end();)
+        {
+            tokenizer::Token const* token = *it;
+
+            for (size_t i = 0; i < N; ++i)
+            {
+                auto const [modifier, kind] = mapping[i];
+
+                if (token->Is(kind))
+                {
+                    if (previous[i])
+                    {
+                        ReportDuplicatedModifier(diagnostic, previous[i], token);
+                    }
+                    else
+                    {
+                        previous[i] = token;
+                        modifiers |= modifier;
+                    }
+                }
+            }
+        }
+    }
+
+    void Parser::ParseFieldModifier(bitwise::Flags<FieldModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
+    {
+        static constexpr std::array mapping{
+            std::pair{FieldModifier::Public, tokenizer::TokenKind::PublicKeyword},
+            std::pair{FieldModifier::Private, tokenizer::TokenKind::PrivateKeyword},
+            std::pair{FieldModifier::Internal, tokenizer::TokenKind::InternalKeyword},
+            std::pair{FieldModifier::Readonly, tokenizer::TokenKind::ReadonlyKeyword},
+        };
+
+        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
+    }
+
+    void Parser::ParseStructModifier(bitwise::Flags<StructModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
+    {
+        static constexpr std::array mapping{
+            std::pair{StructModifier::Public, tokenizer::TokenKind::PublicKeyword},
+            std::pair{StructModifier::Private, tokenizer::TokenKind::PrivateKeyword},
+            std::pair{StructModifier::Internal, tokenizer::TokenKind::InternalKeyword},
+            std::pair{StructModifier::Partial, tokenizer::TokenKind::PartialKeyword},
+        };
+
+        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
+    }
+
+    void Parser::ParseExtendModifier(bitwise::Flags<ExtendModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
+    {
+        static constexpr std::array mapping{
+            std::pair{ExtendModifier::Public, tokenizer::TokenKind::PublicKeyword},
+            std::pair{ExtendModifier::Private, tokenizer::TokenKind::PrivateKeyword},
+            std::pair{ExtendModifier::Internal, tokenizer::TokenKind::InternalKeyword},
+            std::pair{ExtendModifier::Unsafe, tokenizer::TokenKind::UnsafeKeyword},
+        };
+
+        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
+    }
+
+    void Parser::ParseConceptModifier(bitwise::Flags<ConceptModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
+    {
+        static constexpr std::array mapping{
+            std::pair{ConceptModifier::Public, tokenizer::TokenKind::PublicKeyword},
+            std::pair{ConceptModifier::Private, tokenizer::TokenKind::PrivateKeyword},
+            std::pair{ConceptModifier::Internal, tokenizer::TokenKind::InternalKeyword},
+            std::pair{ConceptModifier::Unsafe, tokenizer::TokenKind::UnsafeKeyword},
+        };
+
+        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);        
+    }
+
     void Parser::ParseNamespaceBody(std::vector<UsingStatement*>& usings, std::vector<MemberDeclaration*>& members)
     {
         std::vector<tokenizer::Token*> incomplete{};
@@ -172,6 +274,10 @@ namespace weave::syntax
             }
             else if (current->Is(tokenizer::TokenKind::StructKeyword))
             {
+                bitwise::Flags<StructModifier> modifiers{};
+
+                ParseStructModifier(modifiers, incomplete);
+
                 if (not incomplete.empty())
                 {
                     for (tokenizer::Token const* tk : incomplete)
@@ -188,7 +294,8 @@ namespace weave::syntax
                     incomplete.clear();
                 }
 
-                members.emplace_back(this->ParseStructDeclaration());
+                StructDeclaration* parsed = this->ParseStructDeclaration(modifiers);
+                members.emplace_back(parsed);
             }
             else
             {
@@ -246,7 +353,7 @@ namespace weave::syntax
         return result;
     }
 
-    StructDeclaration* Parser::ParseStructDeclaration()
+    StructDeclaration* Parser::ParseStructDeclaration(bitwise::Flags<StructModifier> modifiers)
     {
         tokenizer::Token* tkStruct = this->Match(tokenizer::TokenKind::StructKeyword);
         NameExpression* exprName = this->ParseQualifiedName();
@@ -328,6 +435,7 @@ namespace weave::syntax
         tokenizer::Token* tkSemicolon = this->Match(tokenizer::TokenKind::SemicolonToken);
 
         StructDeclaration* result = this->_context.NodesAllocator.Emplace<StructDeclaration>();
+        result->Modifiers = modifiers;
         result->StructKeyword = tkStruct;
         result->Name = exprName;
         result->Members = this->_context.NodesAllocator.EmplaceArray<MemberDeclaration*>(members);
