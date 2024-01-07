@@ -1,0 +1,115 @@
+cmd.debug: false
+---
+file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\Namespace.source
+___
+CompilationUnit (overridden)
+  [statement::using]
+    [expression::identifier-name]: weave
+  [statement::using]
+    [expression::qualified-name]
+      [expression::identifier-name]: weave
+      [expression::identifier-name]: fs
+  [declaration::namespace]
+    [expression::qualified-name]
+      [expression::identifier-name]: weave
+      [expression::identifier-name]: compiler
+    [statement::using]
+      [expression::qualified-name]
+        [expression::identifier-name]: weave
+        [expression::identifier-name]: extensions
+    [declaration::incomplete-member]
+      StaticKeyword
+      FinalKeyword
+    [declaration::struct]
+      [expression::identifier-name]: Compiler
+  [declaration::namespace]
+    [expression::identifier-name]: core
+    [declaration::struct]
+      [expression::identifier-name]: Vector
+      [declaration::incomplete-member]
+        Identifier
+        ColonToken
+        TypeKeyword
+        CommaToken
+        Identifier
+        ColonToken
+        UIntSizeKeyword
+      [declaration::incomplete-member]
+        PrivateKeyword
+        FieldKeyword
+        Identifier
+        ColonToken
+        OpenBracketToken
+        Identifier
+        SemicolonToken
+        Identifier
+        CloseBracketToken
+        EqualsToken
+        Identifier
+        SemicolonToken
+        PrivateKeyword
+        FieldKeyword
+        Identifier
+        ColonToken
+        UIntSizeKeyword
+        EqualsToken
+        IntegerLiteral
+        SemicolonToken
+        PublicKeyword
+        PropertyKeyword
+        OpenParenToken
+        SelfKeyword
+        CloseParenToken
+        Identifier
+        OpenParenToken
+        CloseParenToken
+        MinusGreaterThanToken
+        UIntSizeKeyword
+        OpenBraceToken
+        ReturnKeyword
+        SelfKeyword
+        DotToken
+        Identifier
+        SemicolonToken
+    [declaration::incomplete-member]
+      PublicKeyword
+      FunctionKeyword
+      OpenParenToken
+      SelfKeyword
+      CloseParenToken
+      Identifier
+      OpenParenToken
+      ValueKeyword
+      ColonToken
+      Identifier
+      CloseParenToken
+      MinusGreaterThanToken
+      Identifier
+      Identifier
+      ColonToken
+      OpenParenToken
+      SelfKeyword
+      DotToken
+      Identifier
+      LessThanToken
+      Identifier
+      CloseParenToken
+      OpenBraceToken
+      SelfKeyword
+      DotToken
+      Identifier
+      OpenBracketToken
+      SelfKeyword
+      DotToken
+      Identifier
+      CloseBracketToken
+      EqualsToken
+      ValueKeyword
+      SemicolonToken
+      SelfKeyword
+      DotToken
+      Identifier
+      PlusEqualsToken
+      IntegerLiteral
+      SemicolonToken
+parsing took: 00:00:00.002

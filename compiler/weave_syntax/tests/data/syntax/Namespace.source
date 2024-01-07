@@ -1,10 +1,73 @@
 using weave;
 using weave.fs;
 
+namespace weave
+{
+    public struct Vector4 {
+    }
+
+    public concept Addable { }
+
+    public extend Vector4 { }
+}
+
 namespace weave.compiler {
     using weave.extensions;
 
-    struct Compiler {
+    public static final struct Compiler {
         // These are comments for compiler implementation.
+
+        //field Code : string = "21.37";
     };
+}
+
+namespace core {
+    public struct Vector![T: type, Capacity: usize] {
+        private field _data: [T; Capacity] = uninitialized;
+
+        private field _length: usize = 0;
+
+        public property (self) length() -> usize {
+            return self._length;
+        }
+
+        public function (self) push(value: T) -> void
+            before: (self._length < Capacity)
+        {
+            self._data[self._length] = value;
+            self._length += 1;
+        }
+    }
+}
+
+namespace std::numerics 
+{
+    public struct Vector2![T: type] {
+        public field x: T = uninitialized;
+        public field y: T = uninitialized;
+
+        public function (self) add(other: vector2![T]) -> vector2![T]
+            where T : Addable
+        {
+            return vector2![T] {
+                x: self.x + other.x,
+                y: self.y + other.y,
+            };
+        }
+    }
+}
+
+namespace std::numerics
+{
+    public function CheckedAdd![T: Addable](a: T, b: T) -> Option![T] {
+        if a > 0 && b > 0 && a > T::MaxValue - b {
+            return None;
+        }
+
+        if a < 0 && b < 0 && a < T::MinValue - b {
+            return None;
+        }
+
+        return Some(a + b);
+    }
 }

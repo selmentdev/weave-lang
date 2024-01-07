@@ -1,0 +1,13 @@
+function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+    let ll = left & 0xFFFFFFFFu64;
+    let lu = left >> 32u64;
+    let rl = right & 0xFFFFFFFFu64;
+    let ru = right >> 32u64;
+    let ll_rl = ll * rl;
+    let ll_ru = ll * ru;
+    let lu_rl = lu * rl;
+    let lu_ru = lu * ru;
+    let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+    lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+    return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+}

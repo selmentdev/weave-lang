@@ -908,11 +908,6 @@ error: unexpected token 'params'
          |
      181 | params
          | ^^^^^^
-error: unexpected token 'partial'
-        --> <source>:182:1
-         |
-     182 | partial
-         | ^^^^^^^
 error: unexpected token 'pragma'
         --> <source>:183:1
          |
@@ -922,11 +917,6 @@ error: unexpected token 'precise'
         --> <source>:184:1
          |
      184 | precise
-         | ^^^^^^^
-error: unexpected token 'private'
-        --> <source>:185:1
-         |
-     185 | private
          | ^^^^^^^
 error: unexpected token 'property'
         --> <source>:186:1
@@ -938,11 +928,6 @@ error: unexpected token 'protected'
          |
      187 | protected
          | ^^^^^^^^^
-error: unexpected token 'public'
-        --> <source>:188:1
-         |
-     188 | public
-         | ^^^^^^
 error: unexpected token 'pure'
         --> <source>:189:1
          |
@@ -1083,325 +1068,10 @@ error: unexpected token 'super', expected '[token::identifier]'
          |
      217 | super
          | ^^^^^
-error: unexpected token 'super', expected '{'
-        --> <source>:217:1
+hint: unexpected semicolon
+        --> <source>:281:1
          |
-     217 | super
-         | ^^^^^
-error: unexpected token 'super', expected '}'
-        --> <source>:217:1
-         |
-     217 | super
-         | ^^^^^
-error: unexpected token 'super', expected ';'
-        --> <source>:217:1
-         |
-     217 | super
-         | ^^^^^
-error: unexpected token 'super'
-        --> <source>:217:1
-         |
-     217 | super
-         | ^^^^^
-error: unexpected token 'suspend'
-        --> <source>:218:1
-         |
-     218 | suspend
-         | ^^^^^^^
-error: unexpected token 'switch'
-        --> <source>:219:1
-         |
-     219 | switch
-         | ^^^^^^
-error: unexpected token 'synchronized'
-        --> <source>:220:1
-         |
-     220 | synchronized
-         | ^^^^^^^^^^^^
-error: unexpected token 'tailcall'
-        --> <source>:221:1
-         |
-     221 | tailcall
-         | ^^^^^^^^
-error: unexpected token 'template'
-        --> <source>:222:1
-         |
-     222 | template
-         | ^^^^^^^^
-error: unexpected token 'test'
-        --> <source>:223:1
-         |
-     223 | test
-         | ^^^^
-error: unexpected token 'this'
-        --> <source>:224:1
-         |
-     224 | this
-         | ^^^^
-error: unexpected token 'threadlocal'
-        --> <source>:225:1
-         |
-     225 | threadlocal
-         | ^^^^^^^^^^^
-error: unexpected token 'trait'
-        --> <source>:226:1
-         |
-     226 | trait
-         | ^^^^^
-error: unexpected token 'transfer'
-        --> <source>:227:1
-         |
-     227 | transfer
-         | ^^^^^^^^
-error: unexpected token 'true'
-        --> <source>:228:1
-         |
-     228 | true
-         | ^^^^
-error: unexpected token 'try'
-        --> <source>:229:1
-         |
-     229 | try
-         | ^^^
-error: unexpected token 'tuple'
-        --> <source>:230:1
-         |
-     230 | tuple
-         | ^^^^^
-error: unexpected token 'type'
-        --> <source>:231:1
-         |
-     231 | type
-         | ^^^^
-error: unexpected token 'typeof'
-        --> <source>:232:1
-         |
-     232 | typeof
-         | ^^^^^^
-error: unexpected token 'unaligned'
-        --> <source>:233:1
-         |
-     233 | unaligned
-         | ^^^^^^^^^
-error: unexpected token 'unbox'
-        --> <source>:234:1
-         |
-     234 | unbox
-         | ^^^^^
-error: unexpected token 'unchecked'
-        --> <source>:235:1
-         |
-     235 | unchecked
-         | ^^^^^^^^^
-error: unexpected token 'undefined'
-        --> <source>:236:1
-         |
-     236 | undefined
-         | ^^^^^^^^^
-error: unexpected token 'uniform'
-        --> <source>:237:1
-         |
-     237 | uniform
-         | ^^^^^^^
-error: unexpected token 'union'
-        --> <source>:238:1
-         |
-     238 | union
-         | ^^^^^
-error: unexpected token 'unlikely'
-        --> <source>:239:1
-         |
-     239 | unlikely
-         | ^^^^^^^^
-error: unexpected token 'unmanaged'
-        --> <source>:240:1
-         |
-     240 | unmanaged
-         | ^^^^^^^^^
-error: unexpected token 'unreachable'
-        --> <source>:241:1
-         |
-     241 | unreachable
-         | ^^^^^^^^^^^
-error: unexpected token 'unsafe'
-        --> <source>:242:1
-         |
-     242 | unsafe
-         | ^^^^^^
-error: unexpected token 'unsized'
-        --> <source>:243:1
-         |
-     243 | unsized
-         | ^^^^^^^
-error: using statement must precede all other elements defined in namespace
-        --> <source>:244:1
-         |
-     244 | using
-         | ^^^^^
-error: unexpected token 'uuidof', expected '[token::identifier]'
-        --> <source>:245:1
-         |
-     245 | uuidof
-         | ^^^^^^
-error: unexpected token 'uuidof', expected ';'
-        --> <source>:245:1
-         |
-     245 | uuidof
-         | ^^^^^^
-error: unexpected token 'uuidof'
-        --> <source>:245:1
-         |
-     245 | uuidof
-         | ^^^^^^
-error: unexpected token 'value'
-        --> <source>:246:1
-         |
-     246 | value
-         | ^^^^^
-error: unexpected token 'var'
-        --> <source>:247:1
-         |
-     247 | var
-         | ^^^
-error: unexpected token 'vector'
-        --> <source>:248:1
-         |
-     248 | vector
-         | ^^^^^^
-error: unexpected token 'vendor'
-        --> <source>:249:1
-         |
-     249 | vendor
-         | ^^^^^^
-error: unexpected token 'version'
-        --> <source>:250:1
-         |
-     250 | version
-         | ^^^^^^^
-error: unexpected token 'virtual'
-        --> <source>:251:1
-         |
-     251 | virtual
-         | ^^^^^^^
-error: unexpected token 'volatile'
-        --> <source>:252:1
-         |
-     252 | volatile
-         | ^^^^^^^^
-error: unexpected token 'vtable'
-        --> <source>:253:1
-         |
-     253 | vtable
-         | ^^^^^^
-error: unexpected token 'when'
-        --> <source>:254:1
-         |
-     254 | when
-         | ^^^^
-error: unexpected token 'where'
-        --> <source>:255:1
-         |
-     255 | where
-         | ^^^^^
-error: unexpected token 'while'
-        --> <source>:256:1
-         |
-     256 | while
-         | ^^^^^
-error: unexpected token 'with'
-        --> <source>:257:1
-         |
-     257 | with
-         | ^^^^
-error: unexpected token 'yield'
-        --> <source>:258:1
-         |
-     258 | yield
-         | ^^^^^
-error: unexpected token '~'
-        --> <source>:259:1
-         |
-     259 | ~
-         | ^
-error: unexpected token '!='
-        --> <source>:260:1
-         |
-     260 | !=
-         | ^^
-error: unexpected token '!'
-        --> <source>:261:1
-         |
-     261 | !
-         | ^
-error: unexpected token '+='
-        --> <source>:262:1
-         |
-     262 | +=
-         | ^^
-error: unexpected token '++'
-        --> <source>:263:1
-         |
-     263 | ++
-         | ^^
-error: unexpected token '+'
-        --> <source>:264:1
-         |
-     264 | +
-         | ^
-error: unexpected token '-='
-        --> <source>:265:1
-         |
-     265 | -=
-         | ^^
-error: unexpected token '--'
-        --> <source>:266:1
-         |
-     266 | --
-         | ^^
-error: unexpected token '->'
-        --> <source>:267:1
-         |
-     267 | ->
-         | ^^
-error: unexpected token '-'
-        --> <source>:268:1
-         |
-     268 | -
-         | ^
-error: unexpected token '*='
-        --> <source>:269:1
-         |
-     269 | *=
-         | ^^
-error: unexpected token '*'
-        --> <source>:270:1
-         |
-     270 | *
-         | ^
-error: unexpected token '/='
-        --> <source>:271:1
-         |
-     271 | /=
-         | ^^
-error: unexpected token '/'
-        --> <source>:272:1
-         |
-     272 | /
-         | ^
-error: unexpected token '['
-        --> <source>:273:1
-         |
-     273 | (
-         | ^
-error: unexpected token ')'
-        --> <source>:274:1
-         |
-     274 | )
-         | ^
-error: unexpected token '{'
-        --> <source>:275:1
-         |
-     275 | {
+     281 | ;
          | ^
 error: unexpected token '['
         --> <source>:277:1
@@ -1422,11 +1092,6 @@ error: unexpected token ':'
         --> <source>:280:1
          |
      280 | :
-         | ^
-error: unexpected token ';'
-        --> <source>:281:1
-         |
-     281 | ;
          | ^
 error: unexpected token '@'
         --> <source>:282:1
@@ -1643,3 +1308,8 @@ error: unexpected token '[literal:string]'
          |
      320 | r##" r#"inner\nraw\nstring"# "##
          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: unexpected token '[token::end-of-file]', expected '}'
+        --> <source>:321:1
+         |
+     321 | 
+         | ^

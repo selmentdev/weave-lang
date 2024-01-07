@@ -1,0 +1,610 @@
+error: unexpected token 'function'
+        --> <source>:1:1
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         | ^^^^^^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:1:10
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |          ^^^^^^^^
+error: unexpected token '['
+        --> <source>:1:18
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                  ^
+error: unexpected token '[token::identifier]'
+        --> <source>:1:19
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                   ^^^^
+error: unexpected token ':'
+        --> <source>:1:23
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                       ^
+error: unexpected token '[token::identifier]'
+        --> <source>:1:25
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                         ^^^
+error: unexpected token ','
+        --> <source>:1:28
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                            ^
+error: unexpected token '[token::identifier]'
+        --> <source>:1:30
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                              ^^^^^
+error: unexpected token ':'
+        --> <source>:1:35
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                   ^
+error: unexpected token '[token::identifier]'
+        --> <source>:1:37
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                     ^^^
+error: unexpected token ','
+        --> <source>:1:40
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                        ^
+error: unexpected token '[token::identifier]'
+        --> <source>:1:42
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                          ^^^^^
+error: unexpected token ':'
+        --> <source>:1:47
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                               ^
+error: unexpected token 'out'
+        --> <source>:1:49
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                                 ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:1:53
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                                     ^^^
+error: unexpected token ')'
+        --> <source>:1:56
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                                        ^
+error: unexpected token '->'
+        --> <source>:1:58
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                                          ^^
+error: unexpected token '[token::identifier]'
+        --> <source>:1:61
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                                             ^^^
+error: unexpected token '{'
+        --> <source>:1:65
+         |
+       1 | function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+         |                                                                 ^
+error: unexpected token 'let'
+        --> <source>:2:5
+         |
+       2 |     let ll = left & 0xFFFFFFFFu64;
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:2:9
+         |
+       2 |     let ll = left & 0xFFFFFFFFu64;
+         |         ^^
+error: unexpected token '='
+        --> <source>:2:12
+         |
+       2 |     let ll = left & 0xFFFFFFFFu64;
+         |            ^
+error: unexpected token '[token::identifier]'
+        --> <source>:2:14
+         |
+       2 |     let ll = left & 0xFFFFFFFFu64;
+         |              ^^^^
+error: unexpected token '&'
+        --> <source>:2:19
+         |
+       2 |     let ll = left & 0xFFFFFFFFu64;
+         |                   ^
+error: unexpected token '[literal:integer]'
+        --> <source>:2:21
+         |
+       2 |     let ll = left & 0xFFFFFFFFu64;
+         |                     ^^^^^^^^^^^^^
+error: unexpected token ';'
+        --> <source>:2:34
+         |
+       2 |     let ll = left & 0xFFFFFFFFu64;
+         |                                  ^
+error: unexpected token 'let'
+        --> <source>:3:5
+         |
+       3 |     let lu = left >> 32u64;
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:3:9
+         |
+       3 |     let lu = left >> 32u64;
+         |         ^^
+error: unexpected token '='
+        --> <source>:3:12
+         |
+       3 |     let lu = left >> 32u64;
+         |            ^
+error: unexpected token '[token::identifier]'
+        --> <source>:3:14
+         |
+       3 |     let lu = left >> 32u64;
+         |              ^^^^
+error: unexpected token '>>'
+        --> <source>:3:19
+         |
+       3 |     let lu = left >> 32u64;
+         |                   ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:3:22
+         |
+       3 |     let lu = left >> 32u64;
+         |                      ^^^^^
+error: unexpected token ';'
+        --> <source>:3:27
+         |
+       3 |     let lu = left >> 32u64;
+         |                           ^
+error: unexpected token 'let'
+        --> <source>:4:5
+         |
+       4 |     let rl = right & 0xFFFFFFFFu64;
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:4:9
+         |
+       4 |     let rl = right & 0xFFFFFFFFu64;
+         |         ^^
+error: unexpected token '='
+        --> <source>:4:12
+         |
+       4 |     let rl = right & 0xFFFFFFFFu64;
+         |            ^
+error: unexpected token '[token::identifier]'
+        --> <source>:4:14
+         |
+       4 |     let rl = right & 0xFFFFFFFFu64;
+         |              ^^^^^
+error: unexpected token '&'
+        --> <source>:4:20
+         |
+       4 |     let rl = right & 0xFFFFFFFFu64;
+         |                    ^
+error: unexpected token '[literal:integer]'
+        --> <source>:4:22
+         |
+       4 |     let rl = right & 0xFFFFFFFFu64;
+         |                      ^^^^^^^^^^^^^
+error: unexpected token ';'
+        --> <source>:4:35
+         |
+       4 |     let rl = right & 0xFFFFFFFFu64;
+         |                                   ^
+error: unexpected token 'let'
+        --> <source>:5:5
+         |
+       5 |     let ru = right >> 32u64;
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:5:9
+         |
+       5 |     let ru = right >> 32u64;
+         |         ^^
+error: unexpected token '='
+        --> <source>:5:12
+         |
+       5 |     let ru = right >> 32u64;
+         |            ^
+error: unexpected token '[token::identifier]'
+        --> <source>:5:14
+         |
+       5 |     let ru = right >> 32u64;
+         |              ^^^^^
+error: unexpected token '>>'
+        --> <source>:5:20
+         |
+       5 |     let ru = right >> 32u64;
+         |                    ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:5:23
+         |
+       5 |     let ru = right >> 32u64;
+         |                       ^^^^^
+error: unexpected token ';'
+        --> <source>:5:28
+         |
+       5 |     let ru = right >> 32u64;
+         |                            ^
+error: unexpected token 'let'
+        --> <source>:6:5
+         |
+       6 |     let ll_rl = ll * rl;
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:6:9
+         |
+       6 |     let ll_rl = ll * rl;
+         |         ^^^^^
+error: unexpected token '='
+        --> <source>:6:15
+         |
+       6 |     let ll_rl = ll * rl;
+         |               ^
+error: unexpected token '[token::identifier]'
+        --> <source>:6:17
+         |
+       6 |     let ll_rl = ll * rl;
+         |                 ^^
+error: unexpected token '*'
+        --> <source>:6:20
+         |
+       6 |     let ll_rl = ll * rl;
+         |                    ^
+error: unexpected token '[token::identifier]'
+        --> <source>:6:22
+         |
+       6 |     let ll_rl = ll * rl;
+         |                      ^^
+error: unexpected token ';'
+        --> <source>:6:24
+         |
+       6 |     let ll_rl = ll * rl;
+         |                        ^
+error: unexpected token 'let'
+        --> <source>:7:5
+         |
+       7 |     let ll_ru = ll * ru;
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:7:9
+         |
+       7 |     let ll_ru = ll * ru;
+         |         ^^^^^
+error: unexpected token '='
+        --> <source>:7:15
+         |
+       7 |     let ll_ru = ll * ru;
+         |               ^
+error: unexpected token '[token::identifier]'
+        --> <source>:7:17
+         |
+       7 |     let ll_ru = ll * ru;
+         |                 ^^
+error: unexpected token '*'
+        --> <source>:7:20
+         |
+       7 |     let ll_ru = ll * ru;
+         |                    ^
+error: unexpected token '[token::identifier]'
+        --> <source>:7:22
+         |
+       7 |     let ll_ru = ll * ru;
+         |                      ^^
+error: unexpected token ';'
+        --> <source>:7:24
+         |
+       7 |     let ll_ru = ll * ru;
+         |                        ^
+error: unexpected token 'let'
+        --> <source>:8:5
+         |
+       8 |     let lu_rl = lu * rl;
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:8:9
+         |
+       8 |     let lu_rl = lu * rl;
+         |         ^^^^^
+error: unexpected token '='
+        --> <source>:8:15
+         |
+       8 |     let lu_rl = lu * rl;
+         |               ^
+error: unexpected token '[token::identifier]'
+        --> <source>:8:17
+         |
+       8 |     let lu_rl = lu * rl;
+         |                 ^^
+error: unexpected token '*'
+        --> <source>:8:20
+         |
+       8 |     let lu_rl = lu * rl;
+         |                    ^
+error: unexpected token '[token::identifier]'
+        --> <source>:8:22
+         |
+       8 |     let lu_rl = lu * rl;
+         |                      ^^
+error: unexpected token ';'
+        --> <source>:8:24
+         |
+       8 |     let lu_rl = lu * rl;
+         |                        ^
+error: unexpected token 'let'
+        --> <source>:9:5
+         |
+       9 |     let lu_ru = lu * ru;
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:9:9
+         |
+       9 |     let lu_ru = lu * ru;
+         |         ^^^^^
+error: unexpected token '='
+        --> <source>:9:15
+         |
+       9 |     let lu_ru = lu * ru;
+         |               ^
+error: unexpected token '[token::identifier]'
+        --> <source>:9:17
+         |
+       9 |     let lu_ru = lu * ru;
+         |                 ^^
+error: unexpected token '*'
+        --> <source>:9:20
+         |
+       9 |     let lu_ru = lu * ru;
+         |                    ^
+error: unexpected token '[token::identifier]'
+        --> <source>:9:22
+         |
+       9 |     let lu_ru = lu * ru;
+         |                      ^^
+error: unexpected token ';'
+        --> <source>:9:24
+         |
+       9 |     let lu_ru = lu * ru;
+         |                        ^
+error: unexpected token 'let'
+        --> <source>:10:5
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |     ^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:10:9
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |         ^
+error: unexpected token '='
+        --> <source>:10:11
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |           ^
+error: unexpected token '['
+        --> <source>:10:13
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |             ^
+error: unexpected token '[token::identifier]'
+        --> <source>:10:14
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |              ^^^^^
+error: unexpected token '>>'
+        --> <source>:10:20
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                    ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:10:23
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                       ^^^^^
+error: unexpected token ')'
+        --> <source>:10:28
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                            ^
+error: unexpected token '+'
+        --> <source>:10:30
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                              ^
+error: unexpected token '[token::identifier]'
+        --> <source>:10:32
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                                ^^^^^
+error: unexpected token '+'
+        --> <source>:10:38
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                                      ^
+error: unexpected token '['
+        --> <source>:10:40
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                                        ^
+error: unexpected token '[token::identifier]'
+        --> <source>:10:41
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                                         ^^^^^
+error: unexpected token '&'
+        --> <source>:10:47
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                                               ^
+error: unexpected token '[literal:integer]'
+        --> <source>:10:49
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                                                 ^^^^^^^^^^^^^
+error: unexpected token ')'
+        --> <source>:10:62
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                                                              ^
+error: unexpected token ';'
+        --> <source>:10:63
+         |
+      10 |     let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
+         |                                                               ^
+error: unexpected token '[token::identifier]'
+        --> <source>:11:5
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |     ^^^^^
+error: unexpected token '='
+        --> <source>:11:11
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |           ^
+error: unexpected token '['
+        --> <source>:11:13
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |             ^
+error: unexpected token '[token::identifier]'
+        --> <source>:11:14
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |              ^^^^^
+error: unexpected token '&'
+        --> <source>:11:20
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                    ^
+error: unexpected token '[literal:integer]'
+        --> <source>:11:22
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                      ^^^^^^^^^^^^^
+error: unexpected token ')'
+        --> <source>:11:35
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                                   ^
+error: unexpected token '|'
+        --> <source>:11:37
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                                     ^
+error: unexpected token '['
+        --> <source>:11:39
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                                       ^
+error: unexpected token '[token::identifier]'
+        --> <source>:11:40
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                                        ^
+error: unexpected token '<<'
+        --> <source>:11:42
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                                          ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:11:45
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                                             ^^^^^
+error: unexpected token ')'
+        --> <source>:11:50
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                                                  ^
+error: unexpected token ';'
+        --> <source>:11:51
+         |
+      11 |     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
+         |                                                   ^
+error: unexpected token 'return'
+        --> <source>:12:5
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |     ^^^^^^
+error: unexpected token '['
+        --> <source>:12:12
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |            ^
+error: unexpected token '[token::identifier]'
+        --> <source>:12:13
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |             ^
+error: unexpected token '>>'
+        --> <source>:12:15
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |               ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:12:18
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                  ^^^^^
+error: unexpected token ')'
+        --> <source>:12:23
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                       ^
+error: unexpected token '+'
+        --> <source>:12:25
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                         ^
+error: unexpected token '['
+        --> <source>:12:27
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                           ^
+error: unexpected token '[token::identifier]'
+        --> <source>:12:28
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                            ^^^^^
+error: unexpected token '>>'
+        --> <source>:12:34
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                                  ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:12:37
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                                     ^^^^^
+error: unexpected token ')'
+        --> <source>:12:42
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                                          ^
+error: unexpected token '+'
+        --> <source>:12:44
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                                            ^
+error: unexpected token '[token::identifier]'
+        --> <source>:12:46
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                                              ^^^^^
+error: unexpected token ';'
+        --> <source>:12:51
+         |
+      12 |     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
+         |                                                   ^
+error: unexpected token '}', expected '[token::end-of-file]'
+        --> <source>:13:1
+         |
+      13 | }
+         | ^

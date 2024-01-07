@@ -1,0 +1,10 @@
+cmd.debug: false
+---
+file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\IncompleteNamespace5.source
+___
+CompilationUnit (overridden)
+  [declaration::namespace]
+    [expression::identifier-name]: X
+    [declaration::incomplete-member]
+      SemicolonToken
+parsing took: 00:00:00.000

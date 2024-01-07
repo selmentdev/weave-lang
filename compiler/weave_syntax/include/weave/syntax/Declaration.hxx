@@ -156,8 +156,45 @@ namespace weave::syntax
         }
 
     public:
+        explicit constexpr ExtendDeclaration()
+            : MemberDeclaration{SyntaxKind::ExtendDeclaration}
+        {
+        }
+
+    public:
+        bitwise::Flags<ExtendModifier> Modifiers{};
         tokenizer::Token* ExtendKeyword{};
         NameExpression* Name{};
+        tokenizer::Token* OpenBraceToken{};
+        std::span<MemberDeclaration*> Members{};
+        tokenizer::Token* CloseBraceToken{};
+    };
+
+    class ConceptDeclaration : public MemberDeclaration
+    {
+    public:
+        static constexpr bool ClassOf(SyntaxKind kind)
+        {
+            return kind == SyntaxKind::ConceptDeclaration;
+        }
+
+        static constexpr bool ClassOf(MemberDeclaration const* n)
+        {
+            return ClassOf(n->Kind());
+        }
+
+    public:
+        explicit constexpr ConceptDeclaration()
+            : MemberDeclaration{SyntaxKind::ConceptDeclaration}
+        {
+        }
+
+    public:
+        bitwise::Flags<ConceptModifier> Modifiers{};
+        tokenizer::Token* ConceptKeyword{};
+        NameExpression* Name{};
+        tokenizer::Token* AsKeyword{};
+        NameExpression* Base{};
         tokenizer::Token* OpenBraceToken{};
         std::span<MemberDeclaration*> Members{};
         tokenizer::Token* CloseBraceToken{};
@@ -219,6 +256,49 @@ namespace weave::syntax
     ///     ;
     /// ```
 
+    class GenericParameterDeclaration : public Declaration
+    {
+    };
+
+    class GenericParameterTypeDeclaration : public GenericParameterDeclaration
+    {
+    public:
+        tokenizer::Token* TypeToken{};
+        IdentifierNameExpression* Name{};
+        tokenizer::Token* ColonToken{};
+        NameExpression* ConstraintExpression{};
+        tokenizer::Token* EqualsToken{};
+        Expression* Initializer{};
+    };
+
+    class GenericParameterConstDeclaration : public GenericParameterDeclaration
+    {
+    public:
+        tokenizer::Token* ConstToken{};
+        IdentifierNameExpression* Name{};
+        tokenizer::Token* ColonToken{};
+        NameExpression* Type{};
+        tokenizer::Token* EqualsToken{};
+        Expression* Initializer{};
+    };
+
+    class ParameterDeclaration : public Declaration
+    {
+    };
+
+    class FormalParameterDeclaration : public ParameterDeclaration
+    {
+    };
+
+    class SelfParameterDeclaration : public ParameterDeclaration
+    {
+        
+    };
+
+    class VariadicParameterDeclaration : public ParameterDeclaration
+    {
+    };
+
     /// ```
     /// function_constraint_type
     ///     : 'where' identifier ':' type ('+' type)*
@@ -259,8 +339,20 @@ namespace weave::syntax
         }
 
     public:
-        tokenizer::Token* FunctionKeyword{};
         bitwise::Flags<FunctionModifier> Modifiers{};
+        tokenizer::Token* FunctionKeyword{};
+        IdentifierNameExpression* Name{};
+        tokenizer::Token* BeginParametersToken{};
+        std::span<GenericParameterDeclaration*> GenericParameters{};
+        tokenizer::Token* EndParametersToken{};
+
+        tokenizer::Token* BeginFormalParameters{};
+        SelfParameterDeclaration* SelfParameter{};
+        std::span<FormalParameterDeclaration*> FormalParameters{};
+        VariadicParameterDeclaration* VariadicParameter{};
+        tokenizer::Token* EndFormalParameters{};
+        tokenizer::Token* ArrowToken{};
+        NameExpression* ReturnType{};
     };
 
     class ConstantDeclaration : public MemberDeclaration

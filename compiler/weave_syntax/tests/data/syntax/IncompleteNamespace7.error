@@ -1,0 +1,5 @@
+error: unexpected token '[token::end-of-file]', expected '}'
+        --> <source>:6:1
+         |
+       6 | 
+         | ^

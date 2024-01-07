@@ -1,0 +1,44 @@
+cmd.debug: false
+---
+file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Trivia.source
+___
+CompilationUnit (overridden)
+  [declaration::incomplete-member]
+    PublicKeyword
+    FunctionKeyword
+    Identifier
+    OpenParenToken
+    SelfKeyword
+    ColonToken
+    ThisKeyword
+    MutableKeyword
+    Identifier
+    CommaToken
+    Identifier
+    ColonToken
+    OutKeyword
+    Identifier
+    CloseParenToken
+    OpenBraceToken
+    IfKeyword
+    LetKeyword
+    Identifier
+    OpenParenToken
+    Identifier
+    CloseParenToken
+    EqualsToken
+    SelfKeyword
+    DotToken
+    Identifier
+    OpenParenToken
+    CloseParenToken
+    OpenBraceToken
+    Identifier
+    EqualsToken
+    Identifier
+    DotToken
+    Identifier
+    OpenParenToken
+    Identifier
+    CloseParenToken
+parsing took: 00:00:00.001

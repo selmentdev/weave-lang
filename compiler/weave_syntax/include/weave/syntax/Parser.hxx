@@ -64,6 +64,8 @@ namespace weave::syntax
 
         ExtendDeclaration* ParseExtendDeclaration(bitwise::Flags<ExtendModifier> modifiers);
 
+        ConceptDeclaration* ParseConceptDeclaration(bitwise::Flags<ConceptModifier> modifiers);
+
         UsingStatement* ParseUsingStatement();
 
         IdentifierNameExpression* ParseIdentifierNameExpression();

@@ -35,6 +35,13 @@
 
 #include <atomic>
 
+#if defined(WIN32)
+WEAVE_EXTERNAL_HEADERS_BEGIN
+#include <Windows.h>
+#include <psapi.h>
+WEAVE_EXTERNAL_HEADERS_END
+#endif
+
 int main(int argc, const char* argv[])
 {
     using namespace weave;
@@ -181,6 +188,22 @@ int main(int argc, const char* argv[])
                     SyntaxWalker::VisitStructDeclaration(node);
                 }
 
+                void VisitExtendDeclaration(syntax::ExtendDeclaration* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitExtendDeclaration(node);
+                }
+
+                void VisitConceptDeclaration(syntax::ConceptDeclaration* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitConceptDeclaration(node);
+                }
+
                 void VisitNamespaceDeclaration(syntax::NamespaceDeclaration* node) override
                 {
                     PrintIndent();
@@ -271,7 +294,25 @@ int main(int argc, const char* argv[])
         return EXIT_FAILURE;
     }
 
-    fflush(stdout);    
+#if defined(WIN32)
+    HANDLE hProcess = GetCurrentProcess();
+    PROCESS_MEMORY_COUNTERS pmc{sizeof(pmc)};
+
+    if (GetProcessMemoryInfo(hProcess, &pmc, sizeof(pmc)))
+    {
+        fmt::println("PageFaultCount: {}", pmc.PageFaultCount);
+        fmt::println("PeakWorkingSetSize: {}",pmc.PeakWorkingSetSize);
+        fmt::println("WorkingSetSize: {}", pmc.WorkingSetSize);
+        fmt::println("QuotaPeakPagedPoolUsage: {}", pmc.QuotaPeakPagedPoolUsage);
+        fmt::println("QuotaPagedPoolUsage: {}", pmc.QuotaPagedPoolUsage);
+        fmt::println("QuotaPeakNonPagedPoolUsage: {}", pmc.QuotaPeakNonPagedPoolUsage);
+        fmt::println("QuotaNonPagedPoolUsage: {}", pmc.QuotaNonPagedPoolUsage);
+        fmt::println("PagefileUsage: {}", pmc.PagefileUsage);
+        fmt::println("PeakPagefileUsage: {}", pmc.PeakPagefileUsage);
+    }
+#endif
+
+    fflush(stdout);
 
     return 0;
 }

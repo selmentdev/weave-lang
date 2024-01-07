@@ -74,4 +74,33 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    
+    void SyntaxWalker::VisitConceptDeclaration(ConceptDeclaration* node)
+    {
+        ++this->Depth;
+
+        this->Visit(node->Name);
+
+        for (auto m : node->Members)
+        {
+            this->Visit(m);
+        }
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::VisitExtendDeclaration(ExtendDeclaration* node)
+    {
+        ++this->Depth;
+
+        this->Visit(node->Name);
+
+        for (auto m : node->Members)
+        {
+            this->Visit(m);
+        }
+
+        --this->Depth;
+    }
 }

@@ -59,5 +59,9 @@ namespace weave::syntax
         void VisitQualifiedNameExpression(QualifiedNameExpression* node) override;
 
         void VisitStructDeclaration(StructDeclaration* node) override;
+
+        void VisitConceptDeclaration(ConceptDeclaration* node) override;
+
+        void VisitExtendDeclaration(ExtendDeclaration* node) override;
     };
 }

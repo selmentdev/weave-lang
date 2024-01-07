@@ -1,0 +1,10 @@
+hint: unexpected semicolon
+        --> <source>:1:15
+         |
+       1 | namespace X { ;
+         |               ^
+error: unexpected token '[token::end-of-file]', expected '}'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^

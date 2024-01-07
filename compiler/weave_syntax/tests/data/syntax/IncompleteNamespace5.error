@@ -1,0 +1,15 @@
+error: unexpected token ';', expected '{'
+        --> <source>:1:13
+         |
+       1 | namespace X ;
+         |             ^
+error: unexpected token ';'
+        --> <source>:1:13
+         |
+       1 | namespace X ;
+         |             ^
+error: unexpected token '[token::end-of-file]', expected '}'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^

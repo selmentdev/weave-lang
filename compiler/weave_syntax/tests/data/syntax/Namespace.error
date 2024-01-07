@@ -1,0 +1,215 @@
+error: unexpected token 'static'
+        --> <source>:7:12
+         |
+       7 |     public static final struct Compiler {
+         |            ^^^^^^
+error: unexpected token 'final'
+        --> <source>:7:19
+         |
+       7 |     public static final struct Compiler {
+         |                   ^^^^^
+error: unexpected token 'public'
+        --> <source>:24:9
+         |
+      24 |         public function (self) push(value: T) -> void
+         |         ^^^^^^
+error: unexpected token 'function'
+        --> <source>:24:16
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                ^^^^^^^^
+error: unexpected token '['
+        --> <source>:24:25
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                         ^
+error: unexpected token 'self'
+        --> <source>:24:26
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                          ^^^^
+error: unexpected token ')'
+        --> <source>:24:30
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                              ^
+error: unexpected token '[token::identifier]'
+        --> <source>:24:32
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                                ^^^^
+error: unexpected token '['
+        --> <source>:24:36
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                                    ^
+error: unexpected token 'value'
+        --> <source>:24:37
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                                     ^^^^^
+error: unexpected token ':'
+        --> <source>:24:42
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                                          ^
+error: unexpected token '[token::identifier]'
+        --> <source>:24:44
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                                            ^
+error: unexpected token ')'
+        --> <source>:24:45
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                                             ^
+error: unexpected token '->'
+        --> <source>:24:47
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                                               ^^
+error: unexpected token '[token::identifier]'
+        --> <source>:24:50
+         |
+      24 |         public function (self) push(value: T) -> void
+         |                                                  ^^^^
+error: unexpected token '[token::identifier]'
+        --> <source>:25:13
+         |
+      25 |             before: (self._length < Capacity)
+         |             ^^^^^^
+error: unexpected token ':'
+        --> <source>:25:19
+         |
+      25 |             before: (self._length < Capacity)
+         |                   ^
+error: unexpected token '['
+        --> <source>:25:21
+         |
+      25 |             before: (self._length < Capacity)
+         |                     ^
+error: unexpected token 'self'
+        --> <source>:25:22
+         |
+      25 |             before: (self._length < Capacity)
+         |                      ^^^^
+error: unexpected token '.'
+        --> <source>:25:26
+         |
+      25 |             before: (self._length < Capacity)
+         |                          ^
+error: unexpected token '[token::identifier]'
+        --> <source>:25:27
+         |
+      25 |             before: (self._length < Capacity)
+         |                           ^^^^^^^
+error: unexpected token '<'
+        --> <source>:25:35
+         |
+      25 |             before: (self._length < Capacity)
+         |                                   ^
+error: unexpected token '[token::identifier]'
+        --> <source>:25:37
+         |
+      25 |             before: (self._length < Capacity)
+         |                                     ^^^^^^^^
+error: unexpected token ')'
+        --> <source>:25:45
+         |
+      25 |             before: (self._length < Capacity)
+         |                                             ^
+error: unexpected token '{'
+        --> <source>:26:9
+         |
+      26 |         {
+         |         ^
+error: unexpected token 'self'
+        --> <source>:27:13
+         |
+      27 |             self._data[self._length] = value;
+         |             ^^^^
+error: unexpected token '.'
+        --> <source>:27:17
+         |
+      27 |             self._data[self._length] = value;
+         |                 ^
+error: unexpected token '[token::identifier]'
+        --> <source>:27:18
+         |
+      27 |             self._data[self._length] = value;
+         |                  ^^^^^
+error: unexpected token '['
+        --> <source>:27:23
+         |
+      27 |             self._data[self._length] = value;
+         |                       ^
+error: unexpected token 'self'
+        --> <source>:27:24
+         |
+      27 |             self._data[self._length] = value;
+         |                        ^^^^
+error: unexpected token '.'
+        --> <source>:27:28
+         |
+      27 |             self._data[self._length] = value;
+         |                            ^
+error: unexpected token '[token::identifier]'
+        --> <source>:27:29
+         |
+      27 |             self._data[self._length] = value;
+         |                             ^^^^^^^
+error: unexpected token ']'
+        --> <source>:27:36
+         |
+      27 |             self._data[self._length] = value;
+         |                                    ^
+error: unexpected token '='
+        --> <source>:27:38
+         |
+      27 |             self._data[self._length] = value;
+         |                                      ^
+error: unexpected token 'value'
+        --> <source>:27:40
+         |
+      27 |             self._data[self._length] = value;
+         |                                        ^^^^^
+error: unexpected token ';'
+        --> <source>:27:45
+         |
+      27 |             self._data[self._length] = value;
+         |                                             ^
+error: unexpected token 'self'
+        --> <source>:28:13
+         |
+      28 |             self._length += 1;
+         |             ^^^^
+error: unexpected token '.'
+        --> <source>:28:17
+         |
+      28 |             self._length += 1;
+         |                 ^
+error: unexpected token '[token::identifier]'
+        --> <source>:28:18
+         |
+      28 |             self._length += 1;
+         |                  ^^^^^^^
+error: unexpected token '+='
+        --> <source>:28:26
+         |
+      28 |             self._length += 1;
+         |                          ^^
+error: unexpected token '[literal:integer]'
+        --> <source>:28:29
+         |
+      28 |             self._length += 1;
+         |                             ^
+error: unexpected token ';'
+        --> <source>:28:30
+         |
+      28 |             self._length += 1;
+         |                              ^
+error: unexpected token '}', expected '[token::end-of-file]'
+        --> <source>:30:5
+         |
+      30 |     }
+         |     ^

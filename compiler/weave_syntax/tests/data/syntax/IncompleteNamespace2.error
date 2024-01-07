@@ -1,0 +1,10 @@
+error: unexpected token '[token::end-of-file]', expected '{'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^
+error: unexpected token '[token::end-of-file]', expected '}'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^
