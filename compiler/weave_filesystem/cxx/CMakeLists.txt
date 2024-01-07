@@ -5,6 +5,7 @@ target_sources(weave_filesystem
         "FileWriter.cxx"
         "Pipe.cxx"
         "Path.cxx"
+        "Utilities.cxx"
 )
 
 if (WIN32)
