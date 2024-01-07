@@ -1,4 +1,3 @@
-cmd.debug: false
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Tokens.source
 ___
@@ -10,30 +9,30 @@ CompilationUnit (overridden)
     Char32Keyword
     Char8Keyword
     Decimal128Keyword
-    Identifier
-    Identifier
+    decimal32
+    decimal64
     Float16Keyword
     Float32Keyword
     Float64Keyword
     Int128Keyword
     Int16Keyword
-    Identifier
+    int256
     Int32Keyword
     Int64Keyword
     Int8Keyword
-    Identifier
+    iptr
     IntSizeKeyword
-    Identifier
-    Identifier
+    object
+    string
     UInt128Keyword
     UInt16Keyword
-    Identifier
+    uint256
     UInt32Keyword
     UInt64Keyword
     UInt8Keyword
-    Identifier
+    uptr
     UIntSizeKeyword
-    Identifier
+    void
     ByteKeyword
     AndKeyword
     AndEqualKeyword
@@ -46,13 +45,13 @@ CompilationUnit (overridden)
     BitAndKeyword
     BitOrKeyword
     BitComplKeyword
-    Identifier
-    Identifier
-    Identifier
-    Identifier
-    Identifier
-    Identifier
-    Identifier
+    __column__
+    __file__
+    __function__
+    __function_pretty__
+    __line__
+    __module__
+    __source_location__
     AbstractKeyword
     AddKeyword
     AddressOfKeyword
@@ -86,86 +85,87 @@ CompilationUnit (overridden)
     ClassKeyword
     ColumnMajorKeyword
     CompileKeyword
-    ConceptKeyword
-    ConstKeyword
-    Identifier
-    ContinueKeyword
-    ContravariantKeyword
-    CovariantKeyword
-    DebugKeyword
-    DefaultKeyword
-    DeferKeyword
-    DelegateKeyword
-    DeleteKeyword
-    DeprecatedKeyword
-    Identifier
-    DiscardKeyword
-    DoKeyword
-    DropKeyword
-    DynamicKeyword
-    EagerKeyword
-    ElseKeyword
-    EnumKeyword
-    EventKeyword
-    ExceptKeyword
-    ExplicitKeyword
-    ExportKeyword
-    ExpressionKeyword
-    ExtensionKeyword
-    ExternKeyword
-    FalseKeyword
-    FieldKeyword
-    FileKeyword
-    FinalKeyword
-    FinallyKeyword
-    FixedKeyword
-    ForKeyword
-    ForceKeyword
-    ForeachKeyword
-    FractionKeyword
-    FragmentKeyword
-    FriendKeyword
-    FromKeyword
-    FunctionKeyword
-    GenericKeyword
-    GetKeyword
-    GlobalKeyword
-    GotoKeyword
-    GroupSharedKeyword
-    IfKeyword
-    ImmutableKeyword
-    ImplementationKeyword
-    ImplicitKeyword
-    ImportKeyword
-    InKeyword
-    InheritKeyword
-    InjectKeyword
-    InlineKeyword
-    InOutKeyword
-    InterfaceKeyword
-    InternalKeyword
-    InvariantKeyword
-    IsKeyword
-    LazyKeyword
-    LetKeyword
-    LikelyKeyword
-    LinkSectionKeyword
-    LockKeyword
-    LoopKeyword
-    MacroKeyword
-    ManagerKeyword
-    MatchKeyword
-    MatrixKeyword
-    MemberKeyword
-    MetaKeyword
-    MixinKeyword
-    ModuleKeyword
-    MoveKeyword
-    MutableKeyword
-    NameOfKeyword
-  [declaration::namespace]
+  [declaration::concept]
     [expression::identifier-name]: 
+    [declaration::const]
+      [expression::identifier-name]: ctor
     [declaration::incomplete-member]
+      ContinueKeyword
+      ContravariantKeyword
+      CovariantKeyword
+      DebugKeyword
+      DefaultKeyword
+      DeferKeyword
+      DelegateKeyword
+      DeleteKeyword
+      DeprecatedKeyword
+      dtor
+      DiscardKeyword
+      DoKeyword
+      DropKeyword
+      DynamicKeyword
+      EagerKeyword
+      ElseKeyword
+      EnumKeyword
+      EventKeyword
+      ExceptKeyword
+      ExplicitKeyword
+      ExportKeyword
+      ExpressionKeyword
+      ExtensionKeyword
+      FalseKeyword
+      FieldKeyword
+      FileKeyword
+      FinalKeyword
+      FinallyKeyword
+      FixedKeyword
+      ForKeyword
+      ForceKeyword
+      ForeachKeyword
+      FractionKeyword
+      FragmentKeyword
+      FriendKeyword
+      FromKeyword
+    [declaration::function]
+      [expression::identifier-name]: 
+      [expression::identifier-name]: 
+    [declaration::incomplete-member]
+      GenericKeyword
+      GetKeyword
+      GlobalKeyword
+      GotoKeyword
+      GroupSharedKeyword
+      IfKeyword
+      ImmutableKeyword
+      ImplementationKeyword
+      ImplicitKeyword
+      ImportKeyword
+      InKeyword
+      InheritKeyword
+      InjectKeyword
+      InlineKeyword
+      InOutKeyword
+      InterfaceKeyword
+      InvariantKeyword
+      IsKeyword
+      LazyKeyword
+      LetKeyword
+      LikelyKeyword
+      LinkSectionKeyword
+      LockKeyword
+      LoopKeyword
+      MacroKeyword
+      ManagerKeyword
+      MatchKeyword
+      MatrixKeyword
+      MemberKeyword
+      MetaKeyword
+      MixinKeyword
+      ModuleKeyword
+      MoveKeyword
+      MutableKeyword
+      NameOfKeyword
+      NamespaceKeyword
       NativeKeyword
       NewKeyword
       NoAliasKeyword
@@ -187,13 +187,13 @@ CompilationUnit (overridden)
       PackedKeyword
       ParallelKeyword
       ParamsKeyword
+      PartialKeyword
       PragmaKeyword
       PreciseKeyword
       PropertyKeyword
       ProtectedKeyword
       PureKeyword
       RaiseKeyword
-      ReadonlyKeyword
       RecordKeyword
       RecursiveKeyword
       RefKeyword
@@ -218,113 +218,123 @@ CompilationUnit (overridden)
       SliceKeyword
       StackallocKeyword
       StaticKeyword
-    [declaration::struct]
+      StructKeyword
+      SuperKeyword
+      SuspendKeyword
+      SwitchKeyword
+      SynchronizedKeyword
+      TailCallKeyword
+      TemplateKeyword
+      TestKeyword
+      ThisKeyword
+      ThreadLocalKeyword
+      TraitKeyword
+      TransferKeyword
+      TrueKeyword
+      TryKeyword
+      TupleKeyword
+      TypeKeyword
+      TypeofKeyword
+      UnalignedKeyword
+      UnboxKeyword
+      UncheckedKeyword
+      UndefinedKeyword
+      UniformKeyword
+      UnionKeyword
+      UnlikelyKeyword
+      UnmanagedKeyword
+      UnreachableKeyword
+      UnsafeKeyword
+      UnsizedKeyword
+      UsingKeyword
+      UuidOfKeyword
+      ValueKeyword
+    [declaration::field]
       [expression::identifier-name]: 
-      [declaration::incomplete-member]
-        SuperKeyword
-        SuspendKeyword
-        SwitchKeyword
-        SynchronizedKeyword
-        TailCallKeyword
-        TemplateKeyword
-        TestKeyword
-        ThisKeyword
-        ThreadLocalKeyword
-        TraitKeyword
-        TransferKeyword
-        TrueKeyword
-        TryKeyword
-        TupleKeyword
-        TypeKeyword
-        TypeofKeyword
-        UnalignedKeyword
-        UnboxKeyword
-        UncheckedKeyword
-        UndefinedKeyword
-        UniformKeyword
-        UnionKeyword
-        UnlikelyKeyword
-        UnmanagedKeyword
-        UnreachableKeyword
-        UnsafeKeyword
-        UnsizedKeyword
-        UsingKeyword
-        UuidOfKeyword
-        ValueKeyword
-        VarKeyword
-        VectorKeyword
-        VendorKeyword
-        VersionKeyword
-        VirtualKeyword
-        VolatileKeyword
-        VtableKeyword
-        WhenKeyword
-        WhereKeyword
-        WhileKeyword
-        WithKeyword
-        YieldKeyword
-        TildeToken
-        ExclamationEqualsToken
-        ExclamationToken
-        PlusEqualsToken
-        PlusPlusToken
-        PlusToken
-        MinusEqualsToken
-        MinusMinusToken
-        MinusGreaterThanToken
-        MinusToken
-        AsteriskEqualsToken
-        AsteriskToken
-        SlashEqualsToken
-        SlashToken
-        OpenParenToken
-        CloseParenToken
     [declaration::incomplete-member]
-      OpenBracketToken
-      CloseBracketToken
-      ColonColonToken
-      ColonToken
-      AtToken
-      DollarToken
-      PercentEqualsToken
-      PercentToken
-      CaretToken
-      EqualsToken
-      CaretToken
-      AmpersandAmpersandToken
-      AmpersandEqualsToken
-      AmpersandToken
-      EqualsEqualsToken
-      EqualsGreaterThanToken
-      EqualsToken
-      BackslashToken
-      BackslashToken
-      BarBarToken
-      BarEqualsToken
-      BarToken
-      CommaToken
-      LessThanEqualsToken
-      LessThanLessThanEqualsToken
-      LessThanLessThanToken
-      LessThanLessThanToken
-      LessThanToken
-      GreaterThanGreaterThanToken
-      GreaterThanToken
-      LessThanToken
-      GreaterThanEqualsToken
-      GreaterThanGreaterThanEqualsToken
-      GreaterThanGreaterThanToken
-      GreaterThanToken
-      QuestionQuestionToken
-      QuestionToken
-      DotDotDotToken
-      DotDotToken
-      DotToken
-      Identifier
-      Identifier
-      Identifier
-      Identifier
-      StringLiteral
-      StringLiteral
-      StringLiteral
-parsing took: 00:00:00.008
+      VectorKeyword
+      VendorKeyword
+      VersionKeyword
+      VirtualKeyword
+      VolatileKeyword
+      VtableKeyword
+      WhenKeyword
+      WhereKeyword
+      WhileKeyword
+      WithKeyword
+      YieldKeyword
+      TildeToken
+      ExclamationEqualsToken
+      ExclamationToken
+      PlusEqualsToken
+      PlusPlusToken
+      PlusToken
+      MinusEqualsToken
+      MinusMinusToken
+      MinusGreaterThanToken
+      MinusToken
+      AsteriskEqualsToken
+      AsteriskToken
+      SlashEqualsToken
+      SlashToken
+      OpenParenToken
+      CloseParenToken
+      OpenBraceToken
+  [declaration::incomplete-member]
+    OpenBracketToken
+    CloseBracketToken
+    ColonColonToken
+    ColonToken
+    AtToken
+    DollarToken
+    PercentEqualsToken
+    PercentToken
+    CaretToken
+    EqualsToken
+    CaretToken
+    AmpersandAmpersandToken
+    AmpersandEqualsToken
+    AmpersandToken
+    EqualsEqualsToken
+    EqualsGreaterThanToken
+    EqualsToken
+    BackslashToken
+    BackslashToken
+    BarBarToken
+    BarEqualsToken
+    BarToken
+    CommaToken
+    LessThanEqualsToken
+    LessThanLessThanEqualsToken
+    LessThanLessThanToken
+    LessThanLessThanToken
+    LessThanToken
+    GreaterThanGreaterThanToken
+    GreaterThanToken
+    LessThanToken
+    GreaterThanEqualsToken
+    GreaterThanGreaterThanEqualsToken
+    GreaterThanGreaterThanToken
+    GreaterThanToken
+    QuestionQuestionToken
+    QuestionToken
+    DotDotDotToken
+    DotDotToken
+    DotToken
+    _
+    class
+    enum
+    struct
+    "raw string \t"
+    "raw string \n"
+    " r#"inner\nraw\nstring"# "
+parsing took: 00:00:00.010
+PageFaultCount: 1550
+PeakWorkingSetSize: 5.789 MiB (6070272)
+WorkingSetSize: 4.422 MiB (4636672)
+QuotaPeakPagedPoolUsage: 211.125 KiB (216192)
+QuotaPagedPoolUsage: 207.250 KiB (212224)
+QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+QuotaNonPagedPoolUsage: 5.172 KiB (5296)
+PagefileUsage: 1.605 MiB (1683456)
+PeakPagefileUsage: 2.258 MiB (2367488)

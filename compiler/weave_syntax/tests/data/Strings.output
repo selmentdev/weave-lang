@@ -1,74 +1,91 @@
-cmd.debug: false
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Strings.source
 ___
 CompilationUnit (overridden)
   [declaration::incomplete-member]
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    CharacterLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    StringLiteral
-    Identifier
+    "test"
+    "test"
+    "test"
+    "test"
+    "test"
+    "test"
+    65533
+    32
+    32
+    32
+    128514
+    10084
+    127757
+    1
+    18
+    291
+    4660
+    74565
+    65533
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    117
+    ""
+    " "
+    "	"
+    "
+
+"
+    "
+"
+    ""
+    ""
+    ""
+    ">>r#"test"#<<"
+    "here's a long string"# "# "##; "
+    "abc"
+    "abc"
+    "abc"#
+r#""
+    "
+"
+    ""
+    " string literal goes on
+and on
+
+
+r"
+    r
     HashToken
     TildeToken
-    StringLiteral
+    "#"
     TildeToken
     HashToken
 parsing took: 00:00:00.004
+PageFaultCount: 1451
+PeakWorkingSetSize: 5.410 MiB (5672960)
+WorkingSetSize: 4.316 MiB (4526080)
+QuotaPeakPagedPoolUsage: 207.617 KiB (212600)
+QuotaPagedPoolUsage: 207.156 KiB (212128)
+QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+QuotaNonPagedPoolUsage: 5.172 KiB (5296)
+PagefileUsage: 760.000 KiB (778240)
+PeakPagefileUsage: 1.891 MiB (1982464)

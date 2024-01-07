@@ -1,3 +1,5 @@
+function before() -> void {}
+
 function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
     let ll = left & 0xFFFFFFFFu64;
     let lu = left >> 32u64;
@@ -11,3 +13,5 @@ function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
     lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
     return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
 }
+
+function after() -> void {}

@@ -1,128 +1,127 @@
-cmd.debug: false
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\Function.source
 ___
 CompilationUnit (overridden)
+  [declaration::function]
+    [expression::identifier-name]: before
+    [expression::identifier-name]: void
+  [declaration::function]
+    [expression::identifier-name]: mul_high
+    [expression::identifier-name]: left
   [declaration::incomplete-member]
-    FunctionKeyword
-    Identifier
-    OpenParenToken
-    Identifier
     ColonToken
-    Identifier
+    u64
     CommaToken
-    Identifier
+    right
     ColonToken
-    Identifier
+    u64
     CommaToken
-    Identifier
+    lower
     ColonToken
     OutKeyword
-    Identifier
+    u64
     CloseParenToken
     MinusGreaterThanToken
-    Identifier
+    u64
     OpenBraceToken
     LetKeyword
-    Identifier
+    ll
     EqualsToken
-    Identifier
+    left
     AmpersandToken
-    IntegerLiteral
-    SemicolonToken
+    FFFFFFFF
     LetKeyword
-    Identifier
+    lu
     EqualsToken
-    Identifier
+    left
     GreaterThanGreaterThanToken
-    IntegerLiteral
-    SemicolonToken
+    32
     LetKeyword
-    Identifier
+    rl
     EqualsToken
-    Identifier
+    right
     AmpersandToken
-    IntegerLiteral
-    SemicolonToken
+    FFFFFFFF
     LetKeyword
-    Identifier
+    ru
     EqualsToken
-    Identifier
+    right
     GreaterThanGreaterThanToken
-    IntegerLiteral
-    SemicolonToken
+    32
     LetKeyword
-    Identifier
+    ll_rl
     EqualsToken
-    Identifier
+    ll
     AsteriskToken
-    Identifier
-    SemicolonToken
+    rl
     LetKeyword
-    Identifier
+    ll_ru
     EqualsToken
-    Identifier
+    ll
     AsteriskToken
-    Identifier
-    SemicolonToken
+    ru
     LetKeyword
-    Identifier
+    lu_rl
     EqualsToken
-    Identifier
+    lu
     AsteriskToken
-    Identifier
-    SemicolonToken
+    rl
     LetKeyword
-    Identifier
+    lu_ru
     EqualsToken
-    Identifier
+    lu
     AsteriskToken
-    Identifier
-    SemicolonToken
+    ru
     LetKeyword
-    Identifier
+    m
     EqualsToken
     OpenParenToken
-    Identifier
+    ll_rl
     GreaterThanGreaterThanToken
-    IntegerLiteral
+    32
     CloseParenToken
     PlusToken
-    Identifier
+    ll_ru
     PlusToken
     OpenParenToken
-    Identifier
+    lu_rl
     AmpersandToken
-    IntegerLiteral
+    FFFFFFFF
     CloseParenToken
-    SemicolonToken
-    Identifier
+    lower
     EqualsToken
     OpenParenToken
-    Identifier
+    ll_rl
     AmpersandToken
-    IntegerLiteral
+    FFFFFFFF
     CloseParenToken
     BarToken
     OpenParenToken
-    Identifier
+    m
     LessThanLessThanToken
-    IntegerLiteral
+    32
     CloseParenToken
-    SemicolonToken
     ReturnKeyword
     OpenParenToken
-    Identifier
+    m
     GreaterThanGreaterThanToken
-    IntegerLiteral
+    32
     CloseParenToken
     PlusToken
     OpenParenToken
-    Identifier
+    lu_rl
     GreaterThanGreaterThanToken
-    IntegerLiteral
+    32
     CloseParenToken
     PlusToken
-    Identifier
-    SemicolonToken
+    lu_ru
 parsing took: 00:00:00.004
+PageFaultCount: 1433
+PeakWorkingSetSize: 5.344 MiB (5603328)
+WorkingSetSize: 4.324 MiB (4534272)
+QuotaPeakPagedPoolUsage: 207.617 KiB (212600)
+QuotaPagedPoolUsage: 207.156 KiB (212128)
+QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+QuotaNonPagedPoolUsage: 5.172 KiB (5296)
+PagefileUsage: 752.000 KiB (770048)
+PeakPagefileUsage: 1.812 MiB (1900544)

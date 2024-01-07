@@ -3,7 +3,7 @@ error: unexpected token ';', expected '{'
          |
        1 | namespace X ;
          |             ^
-error: unexpected token ';'
+hint: unexpected semicolon
         --> <source>:1:13
          |
        1 | namespace X ;

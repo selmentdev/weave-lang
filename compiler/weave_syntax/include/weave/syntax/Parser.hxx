@@ -60,6 +60,7 @@ namespace weave::syntax
         void ParseStructModifier(bitwise::Flags<StructModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
         void ParseExtendModifier(bitwise::Flags<ExtendModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
         void ParseConceptModifier(bitwise::Flags<ConceptModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
+        void ParseFormalParameterModifier(bitwise::Flags<FormalParameterModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
 
         void ReportIncompleteMember(
             std::vector<tokenizer::Token*>& tokens,
@@ -72,6 +73,11 @@ namespace weave::syntax
         ExtendDeclaration* ParseExtendDeclaration(bitwise::Flags<ExtendModifier> modifiers);
 
         ConceptDeclaration* ParseConceptDeclaration(bitwise::Flags<ConceptModifier> modifiers);
+
+        void ParseParenthesizedFunctionParameters(
+            SelfParameterDeclaration*& selfParameter,
+            std::vector<FormalParameterDeclaration*>& formalParameters,
+            VariadicParameterDeclaration*& variadicParameter);
 
         FunctionDeclaration* ParseFunctionDeclaration(bitwise::Flags<FunctionModifier> modifiers);
 

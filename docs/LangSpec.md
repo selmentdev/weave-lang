@@ -57,6 +57,45 @@ public function Add![type T](lhs: T, rhs: T) -> T
 }
 ```
 
+### Function params
+
+Function parameters are defined by list of arguments. Each argument is defined by name, type and optional default value.
+
+
+| Modifier | Direction | Mutability | Semantics | Ownership | Initialization |
+| -------- | --------- | ---------- | --------- | --------- | -------------- |
+| 'ref'    | both      | readwrite  | reference | shared    | by caller      |
+| 'out'    | output    | writeonly  | reference | unique    | by callee      |
+| 'in'     | input     | readonly   | reference | shared    | by callee      |
+| 'copy'   | input     | readwrite  | value     | unique    | by callee      |
+| 'move'   | input     | readwrite  | value     | unique    | by callee      |
+| 'params' | input     | readonly   | array     | shared    | by callee      |
+
+Grammar:
+
+```
+funciton_param_modifier
+    : 'in'
+    | 'out'
+    | 'ref'
+    | 'copy'
+    | 'move'
+    | 'params'
+    ;
+
+function_param
+    : identifier ':' (function_param_modifier)* type
+    ;
+
+function_params
+    : function_param (',' function_param)*
+    ;
+
+parenthesized_function_params
+    : '(' function_params? ')'
+    ;
+```
+
 ## Extend blocks
 
 Extend blocks are used to extend existing types with new functionality.

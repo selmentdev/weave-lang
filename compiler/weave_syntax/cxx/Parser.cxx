@@ -256,6 +256,19 @@ namespace weave::syntax
         ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
     }
 
+    void Parser::ParseFormalParameterModifier(bitwise::Flags<FormalParameterModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
+    {
+        static constexpr std::array mapping{
+            std::pair{FormalParameterModifier::In, tokenizer::TokenKind::InKeyword},
+            std::pair{FormalParameterModifier::Out, tokenizer::TokenKind::OutKeyword},
+            std::pair{FormalParameterModifier::Ref, tokenizer::TokenKind::RefKeyword},
+            std::pair{FormalParameterModifier::Copy, tokenizer::TokenKind::ValueKeyword},
+            std::pair{FormalParameterModifier::Move, tokenizer::TokenKind::MoveKeyword},
+        };
+
+        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
+    }
+
     void Parser::ParseNamespaceBody(std::vector<UsingStatement*>& usings, std::vector<MemberDeclaration*>& members)
     {
         std::vector<tokenizer::Token*> incomplete{};
@@ -345,6 +358,16 @@ namespace weave::syntax
 
                 members.emplace_back(this->ParseFieldDeclaration(modifiers));
             }
+            else if (current->Is(tokenizer::TokenKind::ConstKeyword))
+            {
+                bitwise::Flags<FieldModifier> modifiers{};
+                ParseFieldModifier(modifiers, incomplete);
+
+                this->ReportIncompleteMember(incomplete, members);
+
+                members.emplace_back(this->ParseConstDeclaration(modifiers));
+            }
+            else
             {
                 // Cannot parse token.
                 incomplete.push_back(current);
@@ -397,6 +420,15 @@ namespace weave::syntax
                 this->ReportIncompleteMember(incomplete, members);
 
                 members.emplace_back(this->ParseFieldDeclaration(modifiers));
+            }
+            else if (current->Is(tokenizer::TokenKind::ConstKeyword))
+            {
+                bitwise::Flags<FieldModifier> modifiers{};
+                ParseFieldModifier(modifiers, incomplete);
+
+                this->ReportIncompleteMember(incomplete, members);
+
+                members.emplace_back(this->ParseConstDeclaration(modifiers));
             }
             else
             {
@@ -516,6 +548,36 @@ namespace weave::syntax
         return result;
     }
 
+
+
+    void Parser::ParseParenthesizedFunctionParameters(SelfParameterDeclaration*& selfParameter, std::vector<FormalParameterDeclaration*>& formalParameters, VariadicParameterDeclaration*& variadicParameter)
+    {
+        (void)selfParameter;
+        (void)formalParameters;
+        (void)variadicParameter;
+
+        [[maybe_unused]] tokenizer::Token* tkOpenParen = this->Match(tokenizer::TokenKind::OpenParenToken);
+
+        while (tokenizer::Token* current = this->Current())
+        {
+            if (current->Is(tokenizer::TokenKind::CloseParenToken))
+            {
+                break;
+            }
+
+            if (current->Is(tokenizer::TokenKind::EndOfFile))
+            {
+                break;
+            }
+
+            // Possible cases:
+            // ```
+
+        }
+
+        [[maybe_unused]] tokenizer::Token* tkCloseParen = this->TryMatch(tokenizer::TokenKind::CloseParenToken);
+    }
+
     FunctionDeclaration* Parser::ParseFunctionDeclaration(bitwise::Flags<FunctionModifier> modifiers)
     {
         tokenizer::Token* tkFunction = this->Match(tokenizer::TokenKind::FunctionKeyword);
@@ -586,7 +648,7 @@ namespace weave::syntax
 
     ConstantDeclaration* Parser::ParseConstDeclaration(bitwise::Flags<FieldModifier> modifiers)
     {
-        tokenizer::Token* tkVar = this->Match(tokenizer::TokenKind::VarKeyword);
+        tokenizer::Token* tkVar = this->Match(tokenizer::TokenKind::ConstKeyword);
         IdentifierNameExpression* exprName = this->ParseIdentifierNameExpression();
 
         tokenizer::Token* tkColon = this->TryMatch(tokenizer::TokenKind::ColonToken);

@@ -242,6 +242,7 @@ namespace weave::syntax
     /// ```
     /// const_declaration
     ///     : field_modifier* 'const' field_name (':' type)? '=' initializer_expression ';'
+    /// ```
     class ConstantDeclaration : public MemberDeclaration
     {
     public:
@@ -333,17 +334,44 @@ namespace weave::syntax
     {
     };
 
+    /// ```
+    /// formaL_parameter_modifier
+    ///     : 'in'
+    ///     | 'out'
+    ///     | 'ref'
+    ///     | 'params'
+    ///     | 'self'
+    ///     ;
+    ///
+    /// formal_parameter
+    ///     : 
+    /// ```
     class FormalParameterDeclaration : public ParameterDeclaration
     {
+    public:
+        bitwise::Flags<FormalParameterModifier> Modifiers{};
+        
+        IdentifierNameExpression* Name{};
+        tokenizer::Token* ColonToken{};
+        NameExpression* Type{};
     };
 
     class SelfParameterDeclaration : public ParameterDeclaration
     {
-        
+    public:
+        bitwise::Flags<FormalParameterModifier> Modifiers{};
+        tokenizer::Token* SelfToken{};
     };
 
     class VariadicParameterDeclaration : public ParameterDeclaration
     {
+    public:
+        bitwise::Flags<FormalParameterModifier> Modifiers{};
+
+        IdentifierNameExpression* Name{};
+        tokenizer::Token* ColonToken{};
+        tokenizer::Token* ParamsToken{};
+        NameExpression* Type{};
     };
 
     /// ```

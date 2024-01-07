@@ -1,23 +1,28 @@
-error: unexpected token 'public'
-        --> <source>:2:1
+error: unexpected token 'self', expected ')'
+        --> <source>:3:5
          |
-       2 | public function TryReadTrivia(
-         | ^^^^^^
-error: unexpected token 'function'
-        --> <source>:2:8
+       3 |     self: this mutable Lexer,   // Comment for argument 'self'
+         |     ^^^^
+error: unexpected token 'self', expected '->'
+        --> <source>:3:5
          |
-       2 | public function TryReadTrivia(
-         |        ^^^^^^^^
-error: unexpected token '[token::identifier]'
-        --> <source>:2:17
+       3 |     self: this mutable Lexer,   // Comment for argument 'self'
+         |     ^^^^
+error: unexpected token 'self', expected '[token::identifier]'
+        --> <source>:3:5
          |
-       2 | public function TryReadTrivia(
-         |                 ^^^^^^^^^^^^^
-error: unexpected token '['
-        --> <source>:2:30
+       3 |     self: this mutable Lexer,   // Comment for argument 'self'
+         |     ^^^^
+error: unexpected token 'self', expected '{'
+        --> <source>:3:5
          |
-       2 | public function TryReadTrivia(
-         |                              ^
+       3 |     self: this mutable Lexer,   // Comment for argument 'self'
+         |     ^^^^
+error: unexpected token 'self', expected '}'
+        --> <source>:3:5
+         |
+       3 |     self: this mutable Lexer,   // Comment for argument 'self'
+         |     ^^^^
 error: unexpected token 'self'
         --> <source>:3:5
          |

@@ -63,5 +63,11 @@ namespace weave::syntax
         void VisitConceptDeclaration(ConceptDeclaration* node) override;
 
         void VisitExtendDeclaration(ExtendDeclaration* node) override;
+
+        void VisitFunctionDeclaration(FunctionDeclaration* node) override;
+
+        void VisitFieldDeclaration(FieldDeclaration* node) override;
+
+        void VisitConstantDeclaration(ConstantDeclaration* node) override;
     };
 }

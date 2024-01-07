@@ -92,6 +92,17 @@ namespace weave::syntax
         Native = 1u << 6u,
     };
 
+    /*
+    | Modifier | Direction | Mutability | Semantics | Ownership | Initialization |
+    | -------- | --------- | ---------- | --------- | --------- | -------------- |
+    | 'ref'    | both      | readwrite  | reference | shared    | by caller      |
+    | 'out'    | output    | writeonly  | reference | unique    | by callee      |
+    | 'in'     | input     | readonly   | reference | shared    | by callee      |
+    | 'copy'   | input     | readwrite  | value     | unique    | by callee      |
+    | 'move'   | input     | readwrite  | value     | unique    | by callee      |
+    | 'params' | input     | readonly   | array     | shared    | by callee      |
+    */
+
     /// ```
     /// formal_parameter_modifier
     ///     : 'ref'
@@ -103,10 +114,12 @@ namespace weave::syntax
     enum class FormalParameterModifier : uint8_t
     {
         None = 0u,
-        Ref = 1u << 0u,
-        Out = 1u << 1u,
-        In = 1u << 2u,
-        Const = 1u << 3u,
+        In = 1u << 0u,          // Immutable reference
+        Out = 1u << 1u,         // Output reference
+        Ref = 1u << 2u,         // Mutable reference
+        Copy = 1u << 3u,
         Move = 1u << 4u,
+        Params = 1u << 5u,      // Variadic params packed into implicit slice array of type
     };
+
 }

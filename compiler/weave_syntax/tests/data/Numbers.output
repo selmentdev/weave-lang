@@ -1,169 +1,174 @@
-cmd.debug: false
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Numbers.source
 ___
 CompilationUnit (overridden)
   [declaration::incomplete-member]
-    IntegerLiteral
+    0
     DotToken
-    IntegerLiteral
-    FloatLiteral
+    2137
+    3.3
     DotToken
-    FloatLiteral
+    3.3
     DotToken
-    IntegerLiteral
-    FloatLiteral
+    3
+    3.3
     DotToken
-    IntegerLiteral
+    3
     DotToken
-    FloatLiteral
+    3.3
     DotToken
-    FloatLiteral
-    Identifier
+    3.3
+    _0
     DotToken
-    IntegerLiteral
-    IntegerLiteral
+    3
+    3
     DotToken
-    Identifier
-    FloatLiteral
-    IntegerLiteral
+    G
+    0.2137
+    0
     DotToken
-    IntegerLiteral
-    IntegerLiteral
+    9
+    0
     DotToken
-    Identifier
-    FloatLiteral
+    _
+    0
     DotToken
-    Identifier
-    FloatLiteral
+    _3
+    0
     DotToken
-    Identifier
-    FloatLiteral
+    _3_
+    0
     DotToken
-    Identifier
-    FloatLiteral
+    _3_e
+    0
     DotToken
-    Identifier
-    FloatLiteral
+    _3_e10
+    0
     DotToken
-    Identifier
-    FloatLiteral
-    FloatLiteral
-    FloatLiteral
+    _3_e10_f32
+    0.3
+    0.3
+    0.3
   [declaration::struct]
     [expression::identifier-name]: 
     [declaration::incomplete-member]
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      IntegerLiteral
+      0.3e10
+      0.3e10
+      0e10
+      1e10
+      1e+10
+      1e-10
+      1p-10
+      10
       PlusToken
-      Identifier
-      FloatLiteral
-      FloatLiteral
-      IntegerLiteral
-      IntegerLiteral
-      FloatLiteral
-      IntegerLiteral
-      FloatLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      FloatLiteral
-      IntegerLiteral
-      FloatLiteral
+      _10_f32
+      10e+10
+      10e+10
+      10
+      10
+      10.0
+      10
+      10.0
+      999340282366920938463463374607431768211455999
+      9900000000000000000000000000999999999999999999999999999999
+      111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110
+      37777777777777777777777777777777777777777770
+      ffffffffffffffffffffffffffffffff0
+      121
+      1010301
+      30
+      41
+      5
+      6
+      7
+      8
+      9
+      1.0
+      2
+      3.0
       DotToken
-      IntegerLiteral
-      IntegerLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
+      3
+      e3f32
+      44
+      5.05
+      66
+      7.07
+      8.0e
       PlusToken
-      IntegerLiteral
-      FloatLiteral
+      9
+      9.0e
       MinusToken
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      FloatLiteral
-      FloatLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      FloatLiteral
-      IntegerLiteral
-      FloatLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      FloatLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
-      IntegerLiteral
+      9
+      deadc0dedeadbeef
+      
+      1
+      1e+2
+      539.0
+      
+      
+      
+      
+      
+      123
+      123.456
+      101
+      111.101
+      18
+      123495670
+      123
+      456
+      789
+      
+      
+      
+      ABCDEF
+      755
+      10101010
+      ABCDEF
+      755
+      10101010
+      ABCDEF
+      755
+      10101010
+      ABCDEF
+      755
+      10101010
+      ABCDEFf64
+      ABCDEFf64
+      1.0e7
+      ffffffff
+      4294967295
+      ffffffffffffffff
+      18446744073709551615
       MinusToken
-      IntegerLiteral
+      2147483648
       MinusToken
-      FloatLiteral
-      FloatLiteral
+      3.40282356e+38
+      3.40282356e+38
       MinusToken
-      FloatLiteral
-      FloatLiteral
-      IntegerLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      IntegerLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      IntegerLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      FloatLiteral
-      EndOfFile
-    [declaration::incomplete-member]
-      EndOfFile
-parsing took: 00:00:00.004
+      1.7976931348623158e+308
+      1.7976931348623158e+308
+      1111
+      1111.1111
+      1111+111
+      1111.111+111
+      1111
+      1111.1111
+      1111e+111
+      1111.111e+111
+      1111
+      1111.1111
+      1111p+111
+      1111.111p+111
+      11111111.101+101
+      21.37
+parsing took: 00:00:00.006
+PageFaultCount: 1615
+PeakWorkingSetSize: 5.922 MiB (6209536)
+WorkingSetSize: 4.688 MiB (4915200)
+QuotaPeakPagedPoolUsage: 209.664 KiB (214696)
+QuotaPagedPoolUsage: 208.336 KiB (213336)
+QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+QuotaNonPagedPoolUsage: 5.305 KiB (5432)
+PagefileUsage: 1.543 MiB (1617920)
+PeakPagefileUsage: 2.078 MiB (2179072)

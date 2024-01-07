@@ -23,6 +23,10 @@ namespace helpers
         weave::source::LineSpan Span{};
     };
 
+    // IDEA:
+    // 1. Parse source code into AST.
+    // 2. Validate expected diagnostic messages.
+    // 3. Walk AST linearly and validate expected structure.
 
     void Validate(
         std::string_view source,

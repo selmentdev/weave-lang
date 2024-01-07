@@ -3,21 +3,38 @@ using weave.fs;
 
 namespace weave
 {
-    public struct Vector4 {
+    public const Version : weave.core.u32 = uninitialized;
+    public var Global : i32 = uninitialized;
+
+    public function Main()
+    {
     }
 
-    public concept Addable { }
+    public struct Vector4
+    {
+        public var X: f32;
+        public var Y: f32;
+        public var Z: f32;
+        public var W: f32;
 
-    public extend Vector4 { }
+        public function From() -> Vector4 { }
+    }
+
+    public concept Addable
+    {
+        public function Add() -> Self { }
+    }
+
+    public extend Vector4
+    {
+        public function New() -> Vector4 { }
+    }
 }
 
 namespace weave.compiler {
     using weave.extensions;
 
-    public static final struct Compiler {
-        // These are comments for compiler implementation.
-
-        //field Code : string = "21.37";
+    public struct Compiler {
     };
 }
 

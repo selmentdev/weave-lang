@@ -1,10 +1,16 @@
-cmd.debug: false
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\IncompleteNamespace5.source
 ___
 CompilationUnit (overridden)
   [declaration::namespace]
     [expression::identifier-name]: X
-    [declaration::incomplete-member]
-      SemicolonToken
 parsing took: 00:00:00.000
+PageFaultCount: 1371
+PeakWorkingSetSize: 5.102 MiB (5349376)
+WorkingSetSize: 4.688 MiB (4915200)
+QuotaPeakPagedPoolUsage: 207.430 KiB (212408)
+QuotaPagedPoolUsage: 207.156 KiB (212128)
+QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+QuotaNonPagedPoolUsage: 5.172 KiB (5296)
+PagefileUsage: 1.457 MiB (1527808)
+PeakPagefileUsage: 1.586 MiB (1662976)

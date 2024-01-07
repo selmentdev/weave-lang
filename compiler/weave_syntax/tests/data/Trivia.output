@@ -1,44 +1,51 @@
-cmd.debug: false
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Trivia.source
 ___
 CompilationUnit (overridden)
+  [declaration::function]
+    [expression::identifier-name]: TryReadTrivia
+    [expression::identifier-name]: 
   [declaration::incomplete-member]
-    PublicKeyword
-    FunctionKeyword
-    Identifier
-    OpenParenToken
     SelfKeyword
     ColonToken
     ThisKeyword
     MutableKeyword
-    Identifier
+    Lexer
     CommaToken
-    Identifier
+    trivia
     ColonToken
     OutKeyword
-    Identifier
+    Trivia
     CloseParenToken
     OpenBraceToken
     IfKeyword
     LetKeyword
-    Identifier
+    Some
     OpenParenToken
-    Identifier
+    comment
     CloseParenToken
     EqualsToken
     SelfKeyword
     DotToken
-    Identifier
+    TryReadComment
     OpenParenToken
     CloseParenToken
     OpenBraceToken
-    Identifier
+    trivia
     EqualsToken
-    Identifier
+    Trivia
     DotToken
-    Identifier
+    Comment
     OpenParenToken
-    Identifier
+    comment
     CloseParenToken
 parsing took: 00:00:00.001
+PageFaultCount: 1391
+PeakWorkingSetSize: 5.172 MiB (5423104)
+WorkingSetSize: 4.289 MiB (4497408)
+QuotaPeakPagedPoolUsage: 207.617 KiB (212600)
+QuotaPagedPoolUsage: 207.156 KiB (212128)
+QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+QuotaNonPagedPoolUsage: 5.172 KiB (5296)
+PagefileUsage: 728.000 KiB (745472)
+PeakPagefileUsage: 1.648 MiB (1728512)

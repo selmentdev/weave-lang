@@ -75,7 +75,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    
+
     void SyntaxWalker::VisitConceptDeclaration(ConceptDeclaration* node)
     {
         ++this->Depth;
@@ -99,6 +99,57 @@ namespace weave::syntax
         for (auto m : node->Members)
         {
             this->Visit(m);
+        }
+
+        --this->Depth;
+    }
+    void SyntaxWalker::VisitFunctionDeclaration(FunctionDeclaration* node)
+    {
+        ++this->Depth;
+
+        this->Visit(node->Name);
+
+        if (node->ReturnType)
+        {
+            this->Visit(node->ReturnType);
+        }
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::VisitFieldDeclaration(FieldDeclaration* node)
+    {
+        ++this->Depth;
+
+        this->Visit(node->Name);
+
+        if (node->Type != nullptr)
+        {
+            this->Visit(node->Type);
+        }
+
+        if (node->Initializer != nullptr)
+        {
+            this->Visit(node->Initializer);
+        }
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::VisitConstantDeclaration(ConstantDeclaration* node)
+    {
+        ++this->Depth;
+
+        this->Visit(node->Name);
+
+        if (node->Type != nullptr)
+        {
+            this->Visit(node->Type);
+        }
+
+        if (node->Initializer != nullptr)
+        {
+            this->Visit(node->Initializer);
         }
 
         --this->Depth;

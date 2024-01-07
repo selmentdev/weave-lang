@@ -1,4 +1,3 @@
-cmd.debug: false
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\IncompleteNamespace3.source
 ___
@@ -6,3 +5,12 @@ CompilationUnit (overridden)
   [declaration::namespace]
     [expression::identifier-name]: X
 parsing took: 00:00:00.000
+PageFaultCount: 1371
+PeakWorkingSetSize: 5.094 MiB (5341184)
+WorkingSetSize: 4.680 MiB (4907008)
+QuotaPeakPagedPoolUsage: 207.336 KiB (212312)
+QuotaPagedPoolUsage: 207.156 KiB (212128)
+QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+QuotaNonPagedPoolUsage: 5.172 KiB (5296)
+PagefileUsage: 1.465 MiB (1536000)
+PeakPagefileUsage: 1.605 MiB (1683456)

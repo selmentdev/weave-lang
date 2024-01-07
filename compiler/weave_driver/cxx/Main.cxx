@@ -237,6 +237,30 @@ int main(int argc, const char* argv[])
                     SyntaxWalker::VisitConceptDeclaration(node);
                 }
 
+                void VisitFunctionDeclaration(syntax::FunctionDeclaration* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitFunctionDeclaration(node);
+                }
+
+                void VisitFieldDeclaration(syntax::FieldDeclaration* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitFieldDeclaration(node);
+                }
+
+                void VisitConstantDeclaration(syntax::ConstantDeclaration* node) override
+                {
+                    PrintIndent();
+                    fmt::println("{}", v.Visit(node));
+
+                    SyntaxWalker::VisitConstantDeclaration(node);
+                }
+
                 void VisitNamespaceDeclaration(syntax::NamespaceDeclaration* node) override
                 {
                     PrintIndent();
@@ -295,7 +319,31 @@ int main(int argc, const char* argv[])
                     for (auto tk : node->Tokens)
                     {
                         PrintIndent();
-                        fmt::println("{}", tokenizer::TokenKindTraits::GetName(tk->GetKind()));
+
+                        if (auto id = tk->TryCast<tokenizer::IdentifierToken>())
+                        {
+                            fmt::println("{}", id->GetIdentifier());
+                        }
+                        else if (auto str = tk->TryCast<tokenizer::StringLiteralToken>())
+                        {
+                            fmt::println("\"{}\"", str->GetValue());
+                        }
+                        else if (auto chr = tk->TryCast<tokenizer::CharacterLiteralToken>())
+                        {
+                            fmt::println("{}", static_cast<uint32_t>(chr->GetValue()));
+                        }
+                        else if (auto num = tk->TryCast<tokenizer::IntegerLiteralToken>())
+                        {
+                            fmt::println("{}", num->GetValue());
+                        }
+                        else if (auto flt = tk->TryCast<tokenizer::FloatLiteralToken>())
+                        {
+                            fmt::println("{}", flt->GetValue());
+                        }
+                        else
+                        {
+                            fmt::println("{}", tokenizer::TokenKindTraits::GetName(tk->GetKind()));
+                        }
                     }
 
                     --Depth;
