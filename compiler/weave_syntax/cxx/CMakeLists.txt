@@ -4,6 +4,7 @@ target_sources(weave_syntax
         "SyntaxKind2.cxx"
         "Parser.cxx"
         "SyntaxNode.cxx"
+        "SyntaxToken.cxx"
         "Declaration.cxx"
         "Expression.cxx"
         "Statement.cxx"

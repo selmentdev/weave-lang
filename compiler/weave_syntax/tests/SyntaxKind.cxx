@@ -7,48 +7,49 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 
 WEAVE_EXTERNAL_HEADERS_END
 
-TEST_CASE("SyntaxKind Tests")
+TEST_CASE("SyntaxKind Tests - SyntaxKindTraits::IsTrivia")
 {
     using namespace weave::syntax2;
-
-    SECTION("SyntaxKindTraits::IsTrivia")
-    {
 #define WEAVE_SYNTAX(name, value, spelling) \
     CHECK_FALSE(SyntaxKindTraits::IsTrivia(SyntaxKind::name));
 #define WEAVE_SYNTAX_TRIVIA(name, value, spelling) \
     CHECK(SyntaxKindTraits::IsTrivia(SyntaxKind::name));
 #include "weave/syntax2/SyntaxKind.inl"
-    }
+}
 
-    SECTION("SyntaxKindTraits::IsToken")
-    {
+TEST_CASE("SyntaxKind Tests - SyntaxKindTraits::IsToken")
+{
+    using namespace weave::syntax2;
 #define WEAVE_SYNTAX(name, value, spelling) \
     CHECK_FALSE(SyntaxKindTraits::IsToken(SyntaxKind::name));
 #define WEAVE_SYNTAX_TOKEN(name, value, spelling) \
     CHECK(SyntaxKindTraits::IsToken(SyntaxKind::name));
 #include "weave/syntax2/SyntaxKind.inl"
-    }
+}
 
-    SECTION("SyntaxKindTraits::IsBaseKeyword")
-    {
+TEST_CASE("SyntaxKind Tests - SyntaxKindTraits::IsBaseKeyword")
+{
+    using namespace weave::syntax2;
 #define WEAVE_SYNTAX(name, value, spelling) \
     CHECK_FALSE(SyntaxKindTraits::IsBaseKeyword(SyntaxKind::name));
 #define WEAVE_SYNTAX_KEYWORD(name, value, spelling) \
     CHECK(SyntaxKindTraits::IsBaseKeyword(SyntaxKind::name));
 #include "weave/syntax2/SyntaxKind.inl"
-    }
+}
 
-    SECTION("SyntaxKindTraits::IsTypeKeyword")
-    {
+TEST_CASE("SyntaxKind Tests - SyntaxKindTraits::IsTypeKeyword")
+{
+    using namespace weave::syntax2;
 #define WEAVE_SYNTAX(name, value, spelling) \
     CHECK_FALSE(SyntaxKindTraits::IsTypeKeyword(SyntaxKind::name));
 #define WEAVE_SYNTAX_TYPE_KEYWORD(name, value, spelling) \
     CHECK(SyntaxKindTraits::IsTypeKeyword(SyntaxKind::name));
 #include "weave/syntax2/SyntaxKind.inl"
-    }
+}
 
-    SECTION("SyntaxKindTraits::IsKeyword")
-    {
+TEST_CASE("SyntaxKind Tests - SyntaxKindTraits::IsKeyword")
+{
+    using namespace weave::syntax2;
 #define WEAVE_SYNTAX(name, value, spelling) \
     CHECK_FALSE(SyntaxKindTraits::IsKeyword(SyntaxKind::name));
 #define WEAVE_SYNTAX_TYPE_KEYWORD(name, value, spelling) \
@@ -56,28 +57,30 @@ TEST_CASE("SyntaxKind Tests")
 #define WEAVE_SYNTAX_KEYWORD(name, value, spelling) \
     CHECK(SyntaxKindTraits::IsKeyword(SyntaxKind::name));
 #include "weave/syntax2/SyntaxKind.inl"
-    }
+}
 
-    SECTION("SyntaxKindTraits::GetName")
-    {
+TEST_CASE("SyntaxKind Tests - SyntaxKindTraits::GetName")
+{
+    using namespace weave::syntax2;
 #define WEAVE_SYNTAX(name, value, spelling) \
     CHECK(SyntaxKindTraits::GetName(SyntaxKind::name) == #name);
 #include "weave/syntax2/SyntaxKind.inl"
-    }
+}
 
-    SECTION("SyntaxKindTraits::GetSpelling")
-    {
+TEST_CASE("SyntaxKind Tests - SyntaxKindTraits::GetSpelling")
+{
+    using namespace weave::syntax2;
 #define WEAVE_SYNTAX(name, value, spelling) \
     CHECK(SyntaxKindTraits::GetSpelling(SyntaxKind::name) == spelling);
 #include "weave/syntax2/SyntaxKind.inl"
-    }
+}
 
-    SECTION("SyntaxKindTraits::TryMapIdentifierToKeyword")
-    {
+TEST_CASE("SyntaxKind Tests - SyntaxKindTraits::TryMapIdentifierToKeyword")
+{
+    using namespace weave::syntax2;
 #define WEAVE_SYNTAX(name, value, spelling) \
     CHECK_FALSE(SyntaxKindTraits::TryMapIdentifierToKeyword(spelling).has_value());
 #define WEAVE_SYNTAX_KEYWORD(name, value, spelling) \
     CHECK(SyntaxKindTraits::TryMapIdentifierToKeyword(spelling).value_or(SyntaxKind::None) == SyntaxKind::name);
 #include "weave/syntax2/SyntaxKind.inl"
-    }
 }
