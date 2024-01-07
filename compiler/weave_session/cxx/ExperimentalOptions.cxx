@@ -6,23 +6,23 @@ namespace weave::session::impl
     {
         if (value)
         {
-        if (*value == "tokens")
-        {
-            result = PrintFormat::Tokens;
-            return true;
-        }
+            if (*value == "tokens")
+            {
+                result = PrintFormat::Tokens;
+                return true;
+            }
 
-        if (*value == "ast")
-        {
-            result = PrintFormat::AST;
-            return true;
-        }
+            if (*value == "ast")
+            {
+                result = PrintFormat::AST;
+                return true;
+            }
         }
 
         return false;
     }
 }
-    
+
 namespace weave::session
 {
     bool ExperimentalOptions::SetOption(std::string_view name, std::optional<std::string_view> value)
@@ -33,5 +33,11 @@ namespace weave::session
         }
 
         return false;
+    }
+
+    void ExperimentalOptions::Dump()
+    {
+        fmt::println("ExperimentalOptions:");
+        fmt::println("  Format: {}", this->Format);
     }
 }

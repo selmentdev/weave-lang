@@ -35,4 +35,13 @@ namespace weave::session
 
         return false;
     }
+
+    void EmitOptions::Dump()
+    {
+        fmt::println("EmitOptions:");
+        fmt::println("  Documentation: {}", this->Documentation);
+        fmt::println("  DependencyGraph: {}", this->DependencyGraph);
+        fmt::println("  Metadata: {}", this->Metadata);
+        fmt::println("  AssemblyHeaders: {}", this->AssemblyHeaders);
+    }
 }

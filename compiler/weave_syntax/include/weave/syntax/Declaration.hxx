@@ -205,7 +205,7 @@ namespace weave::syntax
     ///     : identifier
     ///     ;
     /// field_declaration
-    ///     : field_modifier* 'var' field_name ':' type ';'
+    ///     : field_modifier* 'var' field_name (':' type)? ('=' initializer_expression)? ';'
     ///     ;
     /// ```
     class FieldDeclaration : public MemberDeclaration
@@ -222,7 +222,54 @@ namespace weave::syntax
         }
 
     public:
+        explicit constexpr FieldDeclaration()
+            : MemberDeclaration{SyntaxKind::FieldDeclaration}
+        {
+        }
+
+    public:
         bitwise::Flags<FieldModifier> Modifiers{};
+        tokenizer::Token* VarToken{};
+        IdentifierNameExpression* Name{};
+        tokenizer::Token* ColonToken{};
+        NameExpression* Type{};
+        tokenizer::Token* EqualsToken{};
+        Expression* Initializer{};
+        tokenizer::Token* SemicolonToken{};
+    };
+    
+
+    /// ```
+    /// const_declaration
+    ///     : field_modifier* 'const' field_name (':' type)? '=' initializer_expression ';'
+    class ConstantDeclaration : public MemberDeclaration
+    {
+    public:
+        static constexpr bool ClassOf(SyntaxKind kind)
+        {
+            return kind == SyntaxKind::FieldDeclaration;
+        }
+
+        static constexpr bool ClassOf(MemberDeclaration const* n)
+        {
+            return ClassOf(n->Kind());
+        }
+
+    public:
+        explicit constexpr ConstantDeclaration()
+            : MemberDeclaration{SyntaxKind::ConstantDeclaration}
+        {
+        }
+
+    public:
+        bitwise::Flags<FieldModifier> Modifiers{};
+        tokenizer::Token* VarToken{};
+        IdentifierNameExpression* Name{};
+        tokenizer::Token* ColonToken{};
+        NameExpression* Type{};
+        tokenizer::Token* EqualsToken{};
+        Expression* Initializer{};
+        tokenizer::Token* SemicolonToken{};
     };
 
     /// ```
@@ -339,6 +386,12 @@ namespace weave::syntax
         }
 
     public:
+        explicit constexpr FunctionDeclaration()
+            : MemberDeclaration{SyntaxKind::FunctionDeclaration}
+        {
+        }
+
+    public:
         bitwise::Flags<FunctionModifier> Modifiers{};
         tokenizer::Token* FunctionKeyword{};
         IdentifierNameExpression* Name{};
@@ -353,9 +406,5 @@ namespace weave::syntax
         tokenizer::Token* EndFormalParameters{};
         tokenizer::Token* ArrowToken{};
         NameExpression* ReturnType{};
-    };
-
-    class ConstantDeclaration : public MemberDeclaration
-    {
     };
 }

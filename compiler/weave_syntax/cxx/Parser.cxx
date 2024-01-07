@@ -126,6 +126,27 @@ namespace weave::syntax
                 tokenizer::TokenKindTraits::GetSpelling(previous->GetKind())));
     }
 
+    void Parser::ReportIncompleteMember(
+        std::vector<tokenizer::Token*>& tokens,
+        std::vector<MemberDeclaration*>& members)
+    {
+        if (not tokens.empty())
+        {
+            for (tokenizer::Token const* tk : tokens)
+            {
+                this->_diagnostic.AddError(
+                    tk->GetSourceSpan(),
+                    fmt::format("unexpected token '{}'",
+                        tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
+            }
+
+            auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(tokens);
+            IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
+            members.emplace_back(node);
+            tokens.clear();
+        }
+    }
+
     template <typename KeyT, size_t N>
     void ParseModifiers(
         source::DiagnosticSink& diagnostic,
@@ -179,6 +200,21 @@ namespace weave::syntax
             std::pair{FieldModifier::Private, tokenizer::TokenKind::PrivateKeyword},
             std::pair{FieldModifier::Internal, tokenizer::TokenKind::InternalKeyword},
             std::pair{FieldModifier::Readonly, tokenizer::TokenKind::ReadonlyKeyword},
+        };
+
+        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
+    }
+
+    void Parser::ParseFunctionModifier(bitwise::Flags<FunctionModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
+    {
+        static constexpr std::array mapping{
+            std::pair{FunctionModifier::Public, tokenizer::TokenKind::PublicKeyword},
+            std::pair{FunctionModifier::Private, tokenizer::TokenKind::PrivateKeyword},
+            std::pair{FunctionModifier::Internal, tokenizer::TokenKind::InternalKeyword},
+            std::pair{FunctionModifier::Unsafe, tokenizer::TokenKind::UnsafeKeyword},
+            std::pair{FunctionModifier::Async, tokenizer::TokenKind::AsyncKeyword},
+            std::pair{FunctionModifier::Extern, tokenizer::TokenKind::ExternKeyword},
+            std::pair{FunctionModifier::Native, tokenizer::TokenKind::NativeKeyword},
         };
 
         ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
@@ -247,41 +283,13 @@ namespace weave::syntax
 
             if (current->Is(tokenizer::TokenKind::NamespaceKeyword))
             {
-                if (not incomplete.empty())
-                {
-                    for (tokenizer::Token const* tk : incomplete)
-                    {
-                        this->_diagnostic.AddError(
-                            tk->GetSourceSpan(),
-                            fmt::format("unexpected token '{}'",
-                                tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
-                    }
-
-                    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-                    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-                    members.emplace_back(node);
-                    incomplete.clear();
-                }
+                this->ReportIncompleteMember(incomplete, members);
 
                 members.emplace_back(this->ParseNamespaceDeclaration());
             }
             else if (current->Is(tokenizer::TokenKind::UsingKeyword))
             {
-                if (not incomplete.empty())
-                {
-                    for (tokenizer::Token const* tk : incomplete)
-                    {
-                        this->_diagnostic.AddError(
-                            tk->GetSourceSpan(),
-                            fmt::format("unexpected token '{}'",
-                                tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
-                    }
-
-                    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-                    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-                    members.emplace_back(node);
-                    incomplete.clear();
-                }
+                this->ReportIncompleteMember(incomplete, members);
 
                 if (not members.empty())
                 {
@@ -295,76 +303,48 @@ namespace weave::syntax
             else if (current->Is(tokenizer::TokenKind::StructKeyword))
             {
                 bitwise::Flags<StructModifier> modifiers{};
-
                 ParseStructModifier(modifiers, incomplete);
 
-                if (not incomplete.empty())
-                {
-                    for (tokenizer::Token const* tk : incomplete)
-                    {
-                        this->_diagnostic.AddError(
-                            tk->GetSourceSpan(),
-                            fmt::format("unexpected token '{}'",
-                                tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
-                    }
-
-                    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-                    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-                    members.emplace_back(node);
-                    incomplete.clear();
-                }
+                this->ReportIncompleteMember(incomplete, members);
 
                 members.emplace_back(this->ParseStructDeclaration(modifiers));
             }
             else if (current->Is(tokenizer::TokenKind::ConceptKeyword))
             {
                 bitwise::Flags<ConceptModifier> modifiers{};
-
                 ParseConceptModifier(modifiers, incomplete);
 
-                if (not incomplete.empty())
-                {
-                    for (tokenizer::Token const* tk : incomplete)
-                    {
-                        this->_diagnostic.AddError(
-                            tk->GetSourceSpan(),
-                            fmt::format("unexpected token '{}'",
-                                tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
-                    }
-
-                    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-                    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-                    members.emplace_back(node);
-                    incomplete.clear();
-                }
+                this->ReportIncompleteMember(incomplete, members);
 
                 members.emplace_back(this->ParseConceptDeclaration(modifiers));
             }
             else if (current->Is(tokenizer::TokenKind::ExtendKeyword))
             {
                 bitwise::Flags<ExtendModifier> modifiers{};
-
                 ParseExtendModifier(modifiers, incomplete);
 
-                if (not incomplete.empty())
-                {
-                    for (tokenizer::Token const* tk : incomplete)
-                    {
-                        this->_diagnostic.AddError(
-                            tk->GetSourceSpan(),
-                            fmt::format("unexpected token '{}'",
-                                tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
-                    }
-
-                    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-                    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-                    members.emplace_back(node);
-                    incomplete.clear();
-                }
+                this->ReportIncompleteMember(incomplete, members);
 
                 members.emplace_back(this->ParseExtendDeclaration(modifiers));
             }
-            else
+            else if (current->Is(tokenizer::TokenKind::FunctionKeyword))
+            {
+                bitwise::Flags<FunctionModifier> modifiers{};
+                ParseFunctionModifier(modifiers, incomplete);
+
+                this->ReportIncompleteMember(incomplete, members);
+
+                members.emplace_back(this->ParseFunctionDeclaration(modifiers));
+            }
+            else if (current->Is(tokenizer::TokenKind::VarKeyword))
+            {
+                bitwise::Flags<FieldModifier> modifiers{};
+                ParseFieldModifier(modifiers, incomplete);
+
+                this->ReportIncompleteMember(incomplete, members);
+
+                members.emplace_back(this->ParseFieldDeclaration(modifiers));
+            }
             {
                 // Cannot parse token.
                 incomplete.push_back(current);
@@ -374,27 +354,68 @@ namespace weave::syntax
 
                 if (this->Current() == current)
                 {
+                    // shouldn't this be handled by EOF token?
                     // Cannot advance parsing.
                     break;
                 }
             }
         }
 
-        if (not incomplete.empty())
+        this->ReportIncompleteMember(incomplete, members);
+    }
+
+    void Parser::ParseEntitytBody(std::vector<MemberDeclaration*>& members)
+    {
+        std::vector<tokenizer::Token*> incomplete{};
+
+        while (tokenizer::Token* current = this->Current())
         {
-            for (tokenizer::Token const* tk : incomplete)
+            if (current->Is(tokenizer::TokenKind::CloseBraceToken))
             {
-                this->_diagnostic.AddError(
-                    tk->GetSourceSpan(),
-                    fmt::format("unexpected token '{}'",
-                        tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
+                break;
             }
 
-            auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-            IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-            members.emplace_back(node);
-            incomplete.clear();
+            if (current->Is(tokenizer::TokenKind::EndOfFile))
+            {
+                break;
+            }
+
+            if (current->Is(tokenizer::TokenKind::FunctionKeyword))
+            {
+                bitwise::Flags<FunctionModifier> modifiers{};
+                ParseFunctionModifier(modifiers, incomplete);
+
+                this->ReportIncompleteMember(incomplete, members);
+
+                members.emplace_back(this->ParseFunctionDeclaration(modifiers));
+            }
+            else if (current->Is(tokenizer::TokenKind::VarKeyword))
+            {
+                bitwise::Flags<FieldModifier> modifiers{};
+                ParseFieldModifier(modifiers, incomplete);
+
+                this->ReportIncompleteMember(incomplete, members);
+
+                members.emplace_back(this->ParseFieldDeclaration(modifiers));
+            }
+            else
+            {
+                // Cannot parse token.
+                incomplete.push_back(current);
+
+                // Advance past token.
+                this->Next();
+
+                // if (this->Current() == current)
+                //{
+                //     // shouldn't this be handled by EOF token?
+                //     // Cannot advance parsing.
+                //     break;
+                // }
+            }
         }
+
+        this->ReportIncompleteMember(incomplete, members);
     }
 
     NamespaceDeclaration* Parser::ParseNamespaceDeclaration()
@@ -425,78 +446,11 @@ namespace weave::syntax
         tokenizer::Token* tkStruct = this->Match(tokenizer::TokenKind::StructKeyword);
         NameExpression* exprName = this->ParseQualifiedName();
 
-        std::vector<tokenizer::Token*> incomplete{};
         std::vector<MemberDeclaration*> members{};
-
-        if (tokenizer::Token* tkExclamation = this->TryMatch(tokenizer::TokenKind::ExclamationToken))
-        {
-            tokenizer::Token* tkGenericStart = this->Match(tokenizer::TokenKind::OpenBracketToken);
-
-            // Ignore everything between `![` and `]`.
-            while (not this->Current()->Is(tokenizer::TokenKind::CloseBracketToken))
-            {
-                tokenizer::Token* current = this->Next();
-                incomplete.push_back(current);
-                if (current == this->Current())
-                {
-                    break;
-                }
-            }
-
-            if (not incomplete.empty())
-            {
-                auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-                IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-                members.emplace_back(node);
-                incomplete.clear();
-            }
-
-            tokenizer::Token* tkGenericEnd = this->Match(tokenizer::TokenKind::CloseBracketToken);
-
-            (void)tkExclamation;
-            (void)tkGenericStart;
-            (void)tkGenericEnd;
-        }
-
-        // Ignore everything between struct and `{`.
-        while (not this->Current()->Is(tokenizer::TokenKind::OpenBraceToken))
-        {
-            tokenizer::Token* current = this->Next();
-            incomplete.push_back(current);
-            if (current == this->Current())
-            {
-                break;
-            }
-        }
-
-        if (not incomplete.empty())
-        {
-            auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-            IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-            members.emplace_back(node);
-            incomplete.clear();
-        }
-
 
         tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
 
-        while (not this->Current()->Is(tokenizer::TokenKind::CloseBraceToken))
-        {
-            tokenizer::Token* current = this->Next();
-            incomplete.push_back(current);
-            if (current == this->Current())
-            {
-                break;
-            }
-        }
-
-        if (not incomplete.empty())
-        {
-            auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-            IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-            members.emplace_back(node);
-            incomplete.clear();
-        }
+        this->ParseEntitytBody(members);
 
         tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
         tokenizer::Token* tkSemicolon = this->TryMatch(tokenizer::TokenKind::SemicolonToken);
@@ -522,23 +476,7 @@ namespace weave::syntax
 
         tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
 
-        //while (not this->Current()->Is(tokenizer::TokenKind::CloseBraceToken))
-        //{
-        //    tokenizer::Token* current = this->Next();
-        //    incomplete.push_back(current);
-        //    if (current == this->Current())
-        //    {
-        //        break;
-        //    }
-        //}
-        //
-        //if (not incomplete.empty())
-        //{
-        //    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-        //    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-        //    members.emplace_back(node);
-        //    incomplete.clear();
-        //}
+        this->ParseEntitytBody(members);
 
         tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
         [[maybe_unused]] tokenizer::Token* tkSemicolon = this->TryMatch(tokenizer::TokenKind::SemicolonToken);
@@ -563,23 +501,7 @@ namespace weave::syntax
 
         tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
 
-        //while (not this->Current()->Is(tokenizer::TokenKind::CloseBraceToken))
-        //{
-        //    tokenizer::Token* current = this->Next();
-        //    incomplete.push_back(current);
-        //    if (current == this->Current())
-        //    {
-        //        break;
-        //    }
-        //}
-        //
-        //if (not incomplete.empty())
-        //{
-        //    auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(incomplete);
-        //    IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-        //    members.emplace_back(node);
-        //    incomplete.clear();
-        //}
+        this->ParseEntitytBody(members);
 
         tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
         [[maybe_unused]] tokenizer::Token* tkSemicolon = this->TryMatch(tokenizer::TokenKind::SemicolonToken);
@@ -591,6 +513,112 @@ namespace weave::syntax
         result->Members = this->_context.NodesAllocator.EmplaceArray<MemberDeclaration*>(members);
         result->OpenBraceToken = tkOpenBrace;
         result->CloseBraceToken = tkCloseBrace;
+        return result;
+    }
+
+    FunctionDeclaration* Parser::ParseFunctionDeclaration(bitwise::Flags<FunctionModifier> modifiers)
+    {
+        tokenizer::Token* tkFunction = this->Match(tokenizer::TokenKind::FunctionKeyword);
+        IdentifierNameExpression* exprName = this->ParseIdentifierNameExpression();
+
+        tokenizer::Token* tkOpenParen = this->Match(tokenizer::TokenKind::OpenParenToken);
+        tokenizer::Token* tkCloseParen = this->Match(tokenizer::TokenKind::CloseParenToken);
+        tokenizer::Token* tkArrow = this->Match(tokenizer::TokenKind::MinusGreaterThanToken);
+        NameExpression* exprReturnType = this->ParseQualifiedName();
+        [[maybe_unused]] tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
+        [[maybe_unused]] tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
+
+        FunctionDeclaration* result = this->_context.NodesAllocator.Emplace<FunctionDeclaration>();
+        result->Modifiers = modifiers;
+        result->FunctionKeyword = tkFunction;
+        result->Name = exprName;
+        // result->BeginParametersToken{};
+        // result->GenericParameters{};
+        // result->EndParametersToken{};
+
+        result->BeginFormalParameters = tkOpenParen;
+        // result->SelfParameter{};
+        // result->FormalParameters{};
+        // result->VariadicParameter{};
+        result->EndFormalParameters = tkCloseParen;
+        result->ArrowToken = tkArrow;
+        result->ReturnType = exprReturnType;
+        return result;
+    }
+
+    FieldDeclaration* Parser::ParseFieldDeclaration(bitwise::Flags<FieldModifier> modifiers)
+    {
+        tokenizer::Token* tkVar = this->Match(tokenizer::TokenKind::VarKeyword);
+        IdentifierNameExpression* exprName = this->ParseIdentifierNameExpression();
+
+        tokenizer::Token* tkColon = this->TryMatch(tokenizer::TokenKind::ColonToken);
+
+        NameExpression* exprType = nullptr;
+
+        if (tkColon != nullptr)
+        {
+            exprType = this->ParseQualifiedName();
+        }
+
+        Expression* exprValue = nullptr;
+
+        tokenizer::Token* tkEquals = this->TryMatch(tokenizer::TokenKind::EqualsToken);
+
+        if (tkEquals != nullptr)
+        {
+            // expression here
+            exprValue = this->ParseQualifiedName();
+        }
+
+        tokenizer::Token* tkSemicolon = this->Match(tokenizer::TokenKind::SemicolonToken);
+
+        FieldDeclaration* result = this->_context.NodesAllocator.Emplace<FieldDeclaration>();
+        result->Modifiers = modifiers;
+        result->VarToken = tkVar;
+        result->Name = exprName;
+        result->ColonToken = tkColon;
+        result->Type = exprType;
+        result->EqualsToken = tkEquals;
+        result->Initializer = exprValue;
+        result->SemicolonToken = tkSemicolon;
+        return result;
+    }
+
+    ConstantDeclaration* Parser::ParseConstDeclaration(bitwise::Flags<FieldModifier> modifiers)
+    {
+        tokenizer::Token* tkVar = this->Match(tokenizer::TokenKind::VarKeyword);
+        IdentifierNameExpression* exprName = this->ParseIdentifierNameExpression();
+
+        tokenizer::Token* tkColon = this->TryMatch(tokenizer::TokenKind::ColonToken);
+
+        NameExpression* exprType = nullptr;
+
+        if (tkColon != nullptr)
+        {
+            exprType = this->ParseQualifiedName();
+        }
+
+        Expression* exprValue = nullptr;
+
+        tokenizer::Token* tkEquals = this->TryMatch(tokenizer::TokenKind::EqualsToken);
+
+        if (tkEquals != nullptr)
+        {
+            // expression here
+            exprValue = this->ParseQualifiedName();
+        }
+
+        tokenizer::Token* tkSemicolon = this->Match(tokenizer::TokenKind::SemicolonToken);
+
+        ConstantDeclaration* result = this->_context.NodesAllocator.Emplace<ConstantDeclaration>();
+        result->Modifiers = modifiers;
+        result->VarToken = tkVar;
+        result->Name = exprName;
+        result->ColonToken = tkColon;
+        result->Type = exprType;
+        result->EqualsToken = tkEquals;
+        result->Initializer = exprValue;
+        result->SemicolonToken = tkSemicolon;
         return result;
     }
 

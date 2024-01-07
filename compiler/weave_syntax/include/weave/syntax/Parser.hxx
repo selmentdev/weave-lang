@@ -52,11 +52,18 @@ namespace weave::syntax
             std::vector<UsingStatement*>& usings,
             std::vector<MemberDeclaration*>& members);
 
-        void ParseFieldModifier(bitwise::Flags<FieldModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
+        void ParseEntitytBody(
+            std::vector<MemberDeclaration*>& members);
 
+        void ParseFieldModifier(bitwise::Flags<FieldModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
+        void ParseFunctionModifier(bitwise::Flags<FunctionModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
         void ParseStructModifier(bitwise::Flags<StructModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
         void ParseExtendModifier(bitwise::Flags<ExtendModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
         void ParseConceptModifier(bitwise::Flags<ConceptModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
+
+        void ReportIncompleteMember(
+            std::vector<tokenizer::Token*>& tokens,
+            std::vector<MemberDeclaration*>& members);
 
         NamespaceDeclaration* ParseNamespaceDeclaration();
 
@@ -65,6 +72,12 @@ namespace weave::syntax
         ExtendDeclaration* ParseExtendDeclaration(bitwise::Flags<ExtendModifier> modifiers);
 
         ConceptDeclaration* ParseConceptDeclaration(bitwise::Flags<ConceptModifier> modifiers);
+
+        FunctionDeclaration* ParseFunctionDeclaration(bitwise::Flags<FunctionModifier> modifiers);
+
+        FieldDeclaration* ParseFieldDeclaration(bitwise::Flags<FieldModifier> modifiers);
+
+        ConstantDeclaration* ParseConstDeclaration(bitwise::Flags<FieldModifier> modifiers);
 
         UsingStatement* ParseUsingStatement();
 

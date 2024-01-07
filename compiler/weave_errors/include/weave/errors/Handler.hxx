@@ -34,5 +34,15 @@ namespace weave::errors
         {
             return this->_messages;
         }
+
+        [[nodiscard]] bool HasErrors() const
+        {
+            return this->_errors > 0;
+        }
+
+        [[nodiscard]] bool HasWarnings() const
+        {
+            return this->_warnings > 0;
+        }
     };
 }

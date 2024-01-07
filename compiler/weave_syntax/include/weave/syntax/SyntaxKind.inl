@@ -36,6 +36,7 @@ WEAVE_SYNTAX_DECLARATION(ExtendDeclaration,                     "[declaration::e
 WEAVE_SYNTAX_DECLARATION(ConceptDeclaration,                    "[declaration::concept]")
 WEAVE_SYNTAX_DECLARATION(FunctionDeclaration,                   "[declaration::function]")
 WEAVE_SYNTAX_DECLARATION(FieldDeclaration,                      "[declaration::field]")
+WEAVE_SYNTAX_DECLARATION(ConstantDeclaration,                      "[declaration::const]")
 WEAVE_SYNTAX_DECLARATION(IncompleteMemberDeclaration,           "[declaration::incomplete-member]")
 WEAVE_SYNTAX_DECLARATION(NamespaceDeclaration,                  "[declaration::namespace]")
 WEAVE_SYNTAX_DECLARATION(GenericParameterTypeDeclaration,       "[declaration::generic-parameter-type]")

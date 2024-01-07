@@ -9,6 +9,9 @@ namespace weave::session
         bool SetOption(std::string_view name, std::optional<std::string_view> value) override;
 
     public:
+        void Dump();
+
+    public:
         bool Documentation = false;
         bool DependencyGraph = false;
         bool Metadata = false;

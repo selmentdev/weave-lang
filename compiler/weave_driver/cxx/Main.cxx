@@ -33,6 +33,8 @@
 #include "weave/syntax/Parser.hxx"
 #include "weave/syntax/Visitor.hxx"
 
+#include "weave/filesystem/Utilities.hxx"
+
 #include <atomic>
 
 #if defined(WIN32)
@@ -41,6 +43,29 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 #include <psapi.h>
 WEAVE_EXTERNAL_HEADERS_END
 #endif
+
+namespace weave::driver
+{
+    struct Driver
+    {
+    public:
+        session::CodeGeneratorOptions CodeGenerator;
+        session::ExperimentalOptions Experimental;
+        session::EmitOptions Emit;
+
+        /// \brief The path to source file or directory.
+        std::string SourcePath;
+
+        /// \brief The path to output directory.
+        std::string OutputPath;
+
+        /// \brief The path to intermediate directory.
+        std::string IntermediatePath;
+
+        /// \brief The name of the module.
+        std::string ModuleName;
+    };
+}
 
 int main(int argc, const char* argv[])
 {
@@ -93,22 +118,30 @@ int main(int argc, const char* argv[])
             return EXIT_SUCCESS;
         }
 
-        weave::errors::Handler handler{};
-        session::CodeGeneratorOptions codegen{};
-        session::ParseOptions(codegen, handler, matched->GetValues("codegen"));
+        errors::Handler handler{};
+        driver::Driver driver{};
 
-        session::ExperimentalOptions experimental{};
-        session::ParseOptions(experimental, handler, matched->GetValues("experimental"));
-
-        session::EmitOptions emit{};
-        session::ParseOptions(emit, handler, matched->GetValues("emit"));
+        session::ParseOptions(driver.CodeGenerator, handler, matched->GetValues("codegen"));
+        session::ParseOptions(driver.Experimental, handler, matched->GetValues("experimental"));
+        session::ParseOptions(driver.Emit, handler, matched->GetValues("emit"));
 
         for (auto const& message : handler.GetMessages())
         {
-            fmt::println(stderr, "codegen errors: {}", message.Value);
+            fmt::println(stderr, "{}", message.Value);
         }
 
-        fmt::println("cmd.debug: {}", codegen.Debug);
+        if (handler.HasErrors())
+        {
+            fmt::println(stderr, "aborting due to previous errors");
+            return EXIT_FAILURE;
+        }
+
+        if (matched->HasFlag("verbose"))
+        {
+            driver.CodeGenerator.Dump();
+            driver.Experimental.Dump();
+            driver.Emit.Dump();
+        }
 
 
         auto const& result = matched.value();
@@ -300,15 +333,15 @@ int main(int argc, const char* argv[])
 
     if (GetProcessMemoryInfo(hProcess, &pmc, sizeof(pmc)))
     {
-        fmt::println("PageFaultCount: {}", pmc.PageFaultCount);
-        fmt::println("PeakWorkingSetSize: {}",pmc.PeakWorkingSetSize);
-        fmt::println("WorkingSetSize: {}", pmc.WorkingSetSize);
-        fmt::println("QuotaPeakPagedPoolUsage: {}", pmc.QuotaPeakPagedPoolUsage);
-        fmt::println("QuotaPagedPoolUsage: {}", pmc.QuotaPagedPoolUsage);
-        fmt::println("QuotaPeakNonPagedPoolUsage: {}", pmc.QuotaPeakNonPagedPoolUsage);
-        fmt::println("QuotaNonPagedPoolUsage: {}", pmc.QuotaNonPagedPoolUsage);
-        fmt::println("PagefileUsage: {}", pmc.PagefileUsage);
-        fmt::println("PeakPagefileUsage: {}", pmc.PeakPagefileUsage);
+        fmt::println("PageFaultCount: {}",                  pmc.PageFaultCount);
+        fmt::println("PeakWorkingSetSize: {} ({})",         filesystem::FormatBinarySize(pmc.PeakWorkingSetSize), pmc.PeakWorkingSetSize);
+        fmt::println("WorkingSetSize: {} ({})",             filesystem::FormatBinarySize(pmc.WorkingSetSize), pmc.WorkingSetSize);
+        fmt::println("QuotaPeakPagedPoolUsage: {} ({})",    filesystem::FormatBinarySize(pmc.QuotaPeakPagedPoolUsage), pmc.QuotaPeakPagedPoolUsage);
+        fmt::println("QuotaPagedPoolUsage: {} ({})",        filesystem::FormatBinarySize(pmc.QuotaPagedPoolUsage), pmc.QuotaPagedPoolUsage);
+        fmt::println("QuotaPeakNonPagedPoolUsage: {} ({})", filesystem::FormatBinarySize(pmc.QuotaPeakNonPagedPoolUsage), pmc.QuotaPeakNonPagedPoolUsage);
+        fmt::println("QuotaNonPagedPoolUsage: {} ({})",     filesystem::FormatBinarySize(pmc.QuotaNonPagedPoolUsage), pmc.QuotaNonPagedPoolUsage);
+        fmt::println("PagefileUsage: {} ({})",              filesystem::FormatBinarySize(pmc.PagefileUsage), pmc.PagefileUsage);
+        fmt::println("PeakPagefileUsage: {} ({})",          filesystem::FormatBinarySize(pmc.PeakPagefileUsage), pmc.PeakPagefileUsage);
     }
 #endif
 
