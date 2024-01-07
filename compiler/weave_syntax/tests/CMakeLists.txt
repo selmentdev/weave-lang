@@ -1,6 +1,6 @@
 add_executable(weave_syntax_tests
     Main.cxx
-    TokenKind.cxx
+    SyntaxKind.cxx
 )
 
 target_link_libraries(weave_syntax_tests PUBLIC weave_syntax)
