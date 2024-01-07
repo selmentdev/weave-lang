@@ -2,6 +2,7 @@
 #include "weave/source/Source.hxx"
 #include "weave/tokenizer/TokenKind.hxx"
 #include "weave/tokenizer/TriviaKind.hxx"
+#include "weave/bitwise/Flag.hxx"
 
 #include <span>
 
@@ -94,27 +95,30 @@ namespace weave::tokenizer
         Utf32, // U''
     };
 
-    constexpr uint32_t TokenFlags_None = 0u;
-    constexpr uint32_t TokenFlags_Missing = 1u << 0u;
+    enum class TokenFlags : uint32_t
+    {
+        None = 0u,
+        Missing = 1u << 0u,
+    };
 
     class Token
     {
     private:
         TokenKind _kind;
-        uint32_t _flags;
+        bitwise::Flags<TokenFlags> _flags;
         source::SourceSpan _source;
         TriviaRange const* _trivia;
 
     public:
         constexpr Token(TokenKind kind, source::SourceSpan const& source, TriviaRange const* trivia)
             : _kind{kind}
-            , _flags{TokenFlags_None}
+            , _flags{TokenFlags::None}
             , _source{source}
             , _trivia{trivia}
         {
         }
 
-        constexpr Token(TokenKind kind, source::SourceSpan const& source, TriviaRange const* trivia, uint32_t flags)
+        constexpr Token(TokenKind kind, source::SourceSpan const& source, TriviaRange const* trivia, bitwise::Flags<TokenFlags> flags)
             : _kind{kind}
             , _flags{flags}
             , _source{source}
@@ -155,7 +159,7 @@ namespace weave::tokenizer
 
         [[nodiscard]] constexpr bool IsMissing() const
         {
-            return (this->_flags & TokenFlags_Missing) != 0;
+            return this->_flags.Any(TokenFlags::Missing);
         }
 
     public:
@@ -217,7 +221,7 @@ namespace weave::tokenizer
             NumberLiteralPrefixKind prefix,
             IntegerLiteralSuffixKind suffix,
             std::string_view value,
-            uint32_t flags)
+            bitwise::Flags<TokenFlags> flags)
             : Token{TokenKind::IntegerLiteral, source, trivia, flags}
             , _prefix{prefix}
             , _suffix{suffix}
@@ -272,7 +276,7 @@ namespace weave::tokenizer
             NumberLiteralPrefixKind prefix,
             FloatLiteralSuffixKind suffix,
             std::string_view value,
-            uint32_t flags)
+            bitwise::Flags<TokenFlags> flags)
             : Token{TokenKind::FloatLiteral, source, trivia, flags}
             , _prefix{prefix}
             , _suffix{suffix}
@@ -323,7 +327,7 @@ namespace weave::tokenizer
             TriviaRange const* trivia,
             StringPrefixKind prefix,
             std::string_view value,
-            uint32_t flags)
+            bitwise::Flags<TokenFlags> flags)
             : Token{TokenKind::StringLiteral, source, trivia, flags}
             , _prefix{prefix}
             , _value{value}
@@ -368,7 +372,7 @@ namespace weave::tokenizer
             TriviaRange const* trivia,
             CharacterPrefixKind prefix,
             char32_t value,
-            uint32_t flags)
+            bitwise::Flags<TokenFlags> flags)
             : Token{TokenKind::CharacterLiteral, source, trivia, flags}
             , _prefix{prefix}
             , _value{value}
@@ -409,7 +413,7 @@ namespace weave::tokenizer
             source::SourceSpan const& source,
             TriviaRange const* trivia,
             std::string_view identifier,
-            uint32_t flags)
+            bitwise::Flags<TokenFlags> flags)
             : Token{TokenKind::Identifier, source, trivia, flags}
             , _identifier{identifier}
         {

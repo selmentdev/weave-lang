@@ -136,7 +136,7 @@ namespace weave::tokenizer
                 &this->_empty_trivia,
                 CharacterPrefixKind::Default,
                 char32_t{},
-                TokenFlags_Missing);
+                TokenFlags::Missing);
         }
 
         if (kind == TokenKind::FloatLiteral)
@@ -147,7 +147,7 @@ namespace weave::tokenizer
                 NumberLiteralPrefixKind::Default,
                 FloatLiteralSuffixKind::Default,
                 std::string_view{},
-                TokenFlags_Missing);
+                TokenFlags::Missing);
         }
 
         if (kind == TokenKind::IntegerLiteral)
@@ -158,7 +158,7 @@ namespace weave::tokenizer
                 NumberLiteralPrefixKind::Default,
                 IntegerLiteralSuffixKind::Default,
                 std::string_view{},
-                TokenFlags_Missing);
+                TokenFlags::Missing);
         }
 
         if (kind == TokenKind::Identifier)
@@ -167,14 +167,14 @@ namespace weave::tokenizer
                 source,
                 &this->_empty_trivia,
                 std::string_view{},
-                TokenFlags_Missing);
+                TokenFlags::Missing);
         }
 
         return this->Tokens.Emplace(
             kind,
             source,
             &this->_empty_trivia,
-            TokenFlags_Missing);
+            TokenFlags::Missing);
     }
 
     CharacterLiteralToken* TokenizerContext::CreateCharacter(
