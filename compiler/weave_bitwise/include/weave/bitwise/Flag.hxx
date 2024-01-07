@@ -7,95 +7,96 @@ namespace weave::bitwise
         requires(std::is_enum_v<EnumT>)
     struct Flags
     {
-        using Type = std::underlying_type_t<EnumT>;
+    public:
+        using UnderlyingType = std::underlying_type_t<EnumT>;
+        using ValueType = EnumT;
 
-        Type m_value;
+    private:
+        ValueType _value{};
 
-        constexpr Flags() noexcept = default;
+    public:
+        constexpr Flags() = default;
 
-        constexpr Flags(EnumT value) noexcept
-
-            : m_value(static_cast<Type>(value))
+        constexpr Flags(ValueType value)
+            : _value{value}
         {
         }
 
-        constexpr Flags(Type value) noexcept
+        constexpr Flags(UnderlyingType value)
 
-            : m_value(value)
+            : _value{static_cast<ValueType>(value)}
         {
         }
 
-        [[nodiscard]] constexpr operator EnumT() const noexcept
+        [[nodiscard]] constexpr operator ValueType() const
         {
-            return static_cast<EnumT>(m_value);
+            return static_cast<ValueType>(this->_value);
         }
 
-        [[nodiscard]] constexpr operator Type() const noexcept
+        [[nodiscard]] explicit constexpr operator UnderlyingType() const
         {
-            return m_value;
+            return this->_value;
         }
 
-        [[nodiscard]] constexpr Flags operator|(Flags other) const noexcept
+        [[nodiscard]] constexpr Flags operator|(Flags other) const
         {
-            return Flags(m_value | other.m_value);
+            return Flags{static_cast<ValueType>(std::to_underlying(this->_value) | std::to_underlying(other._value))};
         }
 
-        [[nodiscard]] constexpr Flags operator&(Flags other) const noexcept
+        [[nodiscard]] constexpr Flags operator&(Flags other) const
         {
-            return Flags(m_value & other.m_value);
+            return Flags{static_cast<ValueType>(std::to_underlying(this->_value) & std::to_underlying(other._value))};
         }
 
-        [[nodiscard]] constexpr Flags operator^(Flags other) const noexcept
+        [[nodiscard]] constexpr Flags operator^(Flags other) const
         {
-            return Flags(m_value ^ other.m_value);
+            return Flags{static_cast<ValueType>(std::to_underlying(this->_value) ^ std::to_underlying(other._value))};
         }
 
-        [[nodiscard]] constexpr Flags operator~() const noexcept
+        [[nodiscard]] constexpr Flags operator~() const
         {
-            return Flags(~m_value);
+            return Flags{static_cast<ValueType>(~std::to_underlying(this->_value))};
         }
 
-        constexpr Flags& operator|=(Flags other) noexcept
+        constexpr Flags& operator|=(Flags other)
         {
-            m_value |= other.m_value;
+            this->_value = static_cast<ValueType>(std::to_underlying(this->_value) | std::to_underlying(other._value));
             return *this;
         }
 
-        constexpr Flags& operator&=(Flags other) noexcept
+        constexpr Flags& operator&=(Flags other)
         {
-            m_value &= other.m_value;
+            this->_value = static_cast<ValueType>(std::to_underlying(this->_value) & std::to_underlying(other._value));
             return *this;
         }
 
-        constexpr Flags& operator^=(Flags other) noexcept
+        constexpr Flags& operator^=(Flags other)
         {
-            m_value ^= other.m_value;
+            this->_value = static_cast<ValueType>(std::to_underlying(this->_value) ^ std::to_underlying(other._value));
             return *this;
         }
 
-        [[nodiscard]] constexpr bool operator!() const noexcept
+        [[nodiscard]] constexpr bool operator!() const
         {
-            return !m_value;
+            return this->_value == ValueType{};
         }
 
         [[nodiscard]] constexpr auto operator<=>(Flags const& other) const = default;
 
 
-        [[nodiscard]] constexpr bool All(Flags other) const noexcept
+        [[nodiscard]] constexpr bool All(Flags other) const
         {
-            return (m_value & other.m_value) == other.m_value;
+            return static_cast<ValueType>(std::to_underlying(this->_value) & std::to_underlying(other._value)) == other._value;
         }
 
-        [[nodiscard]] constexpr bool Any(Flags other) const noexcept
+        [[nodiscard]] constexpr bool Any(Flags other) const
         {
-            return (m_value & other.m_value) != 0;
+            return static_cast<ValueType>(std::to_underlying(this->_value) & std::to_underlying(other._value)) != ValueType{};
         }
 
-        [[nodiscard]] constexpr bool None(Flags other) const noexcept
+        [[nodiscard]] constexpr bool None(Flags other) const
         {
-            return (m_value & other.m_value) == 0;
+            return static_cast<ValueType>(std::to_underlying(this->_value) & std::to_underlying(other._value)) == ValueType{};
         }
-
-
     };
 }
