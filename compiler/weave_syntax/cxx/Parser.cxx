@@ -706,6 +706,7 @@ namespace weave::syntax
 
     NameExpression* Parser::ParseQualifiedName()
     {
+        // TODO: Introduce matching based on token type to reduce casting. Static analysis doesn't know about type checking here.
         tokenizer::Token* tkLeftIdentifier = this->Match(tokenizer::TokenKind::Identifier);
         NameExpression* exprLeft = this->_context.NodesAllocator.Emplace<IdentifierNameExpression>(static_cast<tokenizer::IdentifierToken*>(tkLeftIdentifier));
 

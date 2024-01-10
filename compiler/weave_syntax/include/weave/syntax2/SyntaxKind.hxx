@@ -53,9 +53,16 @@ namespace weave::syntax2
     public:
         [[nodiscard]] static std::string_view GetName(SyntaxKind value);
 
+        [[nodiscard]] static std::string_view GetCategoryName(SyntaxKind value);
+
         [[nodiscard]] static std::string_view GetSpelling(SyntaxKind value);
 
         [[nodiscard]] static std::optional<SyntaxKind> TryMapIdentifierToKeyword(std::string_view value);
+
+        [[nodiscard]] static constexpr bool IsDocumentationTrivia(SyntaxKind value)
+        {
+            return (value == SyntaxKind::MultiLineDocumentationTrivia) or (value == SyntaxKind::SingleLineDocumentationTrivia);
+        }
 
         // [[nodiscard]] static bool IsDeclaration(SyntaxKind value);
 

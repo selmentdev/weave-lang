@@ -124,37 +124,5 @@ namespace weave::memory
 
             return {};
         }
-
-        [[nodiscard]] std::span<T> EmplaceArrayCombined(std::span<T const> source1, std::span<T const> source2) [[deprecated("Use something better than this")]]
-        {
-            size_t const count = source1.size() + source2.size();
-
-            if (count != 0)
-            {
-                Allocation const allocation = this->Allocate(Layout{
-                    .Size = sizeof(T) * count,
-                    .Alignment = alignof(T),
-                });
-
-                T* const result = reinterpret_cast<T*>(allocation.Address);
-
-                T* out = std::uninitialized_copy_n(
-                    source1.data(),
-                    source1.size(),
-                    result);
-
-                std::uninitialized_copy_n(
-                    source2.data(),
-                    source2.size(),
-                    out);
-
-                return std::span<T>{
-                    result,
-                    count,
-                };
-            }
-
-            return {};
-        }
     };
 }

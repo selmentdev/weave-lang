@@ -67,4 +67,217 @@ namespace weave::syntax2
             return this->Flags.Any(SyntaxTokenFlags::Missing);
         }
     };
+
+    enum class LiteralPrefixKind : uint8_t
+    {
+        Default, // default literal format
+
+        Utf8, // u8"" strings
+        Utf16, // u16"" strings
+        Utf32, // u32"" strings
+
+        Binary, // binary numbers / strings
+        Octal, // 0o octal numbers
+        Hexadecimal, // 0x hexadecimal numbers
+    };
+
+    struct IntegerLiteralSyntaxToken final : SyntaxToken
+    {
+        static constexpr bool InstanceOf(SyntaxKind kind)
+        {
+            return kind == SyntaxKind::IntegerLiteralToken;
+        }
+
+        static constexpr bool InstanceOf(SyntaxToken const* token)
+        {
+            return InstanceOf(token->Kind);
+        }
+
+        LiteralPrefixKind Prefix;
+        std::string_view Value;
+        std::string_view Suffix;
+
+        constexpr IntegerLiteralSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            LiteralPrefixKind prefix,
+            std::string_view value,
+            std::string_view suffix)
+            : SyntaxToken{SyntaxKind::IntegerLiteralToken, source, trivia}
+            , Prefix{prefix}
+            , Value{value}
+            , Suffix{suffix}
+        {
+        }
+
+        constexpr IntegerLiteralSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            LiteralPrefixKind prefix,
+            std::string_view value,
+            std::string_view suffix,
+            bitwise::Flags<SyntaxTokenFlags> flags)
+            : SyntaxToken{SyntaxKind::IntegerLiteralToken, source, trivia, flags}
+            , Prefix{prefix}
+            , Value{value}
+            , Suffix{suffix}
+        {
+        }
+    };
+
+    struct FloatLiteralSyntaxToken final : SyntaxToken
+    {
+        static constexpr bool InstanceOf(SyntaxKind kind)
+        {
+            return kind == SyntaxKind::FloatLiteralToken;
+        }
+
+        static constexpr bool InstanceOf(SyntaxToken const* token)
+        {
+            return InstanceOf(token->Kind);
+        }
+
+        LiteralPrefixKind Prefix;
+        std::string_view Value;
+        std::string_view Suffix;
+
+        constexpr FloatLiteralSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            LiteralPrefixKind prefix,
+            std::string_view value,
+            std::string_view suffix)
+            : SyntaxToken{SyntaxKind::FloatLiteralToken, source, trivia}
+            , Prefix{prefix}
+            , Value{value}
+            , Suffix{suffix}
+        {
+        }
+
+        constexpr FloatLiteralSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            LiteralPrefixKind prefix,
+            std::string_view value,
+            std::string_view suffix,
+            bitwise::Flags<SyntaxTokenFlags> flags)
+            : SyntaxToken{SyntaxKind::FloatLiteralToken, source, trivia, flags}
+            , Prefix{prefix}
+            , Value{value}
+            , Suffix{suffix}
+        {
+        }
+    };
+
+    struct StringLiteralSyntaxToken final : SyntaxToken
+    {
+        static constexpr bool InstanceOf(SyntaxKind kind)
+        {
+            return kind == SyntaxKind::StringLiteralToken;
+        }
+
+        static constexpr bool InstanceOf(SyntaxToken const* token)
+        {
+            return InstanceOf(token->Kind);
+        }
+
+        LiteralPrefixKind Prefix;
+        std::string_view Value;
+
+        constexpr StringLiteralSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            LiteralPrefixKind prefix,
+            std::string_view value)
+            : SyntaxToken{SyntaxKind::StringLiteralToken, source, trivia}
+            , Prefix{prefix}
+            , Value{value}
+        {
+        }
+
+        constexpr StringLiteralSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            LiteralPrefixKind prefix,
+            std::string_view value,
+            bitwise::Flags<SyntaxTokenFlags> flags)
+            : SyntaxToken{SyntaxKind::StringLiteralToken, source, trivia, flags}
+            , Prefix{prefix}
+            , Value{value}
+        {
+        }
+    };
+
+    struct CharacterLiteralSyntaxToken final : SyntaxToken
+    {
+        static constexpr bool InstanceOf(SyntaxKind kind)
+        {
+            return kind == SyntaxKind::CharacterLiteralToken;
+        }
+
+        static constexpr bool InstanceOf(SyntaxToken const* token)
+        {
+            return InstanceOf(token->Kind);
+        }
+
+        LiteralPrefixKind Prefix;
+        char32_t Value;
+
+        constexpr CharacterLiteralSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            LiteralPrefixKind prefix,
+            char32_t value)
+            : SyntaxToken{SyntaxKind::CharacterLiteralToken, source, trivia}
+            , Prefix{prefix}
+            , Value{value}
+        {
+        }
+
+        constexpr CharacterLiteralSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            LiteralPrefixKind prefix,
+            char32_t value,
+            bitwise::Flags<SyntaxTokenFlags> flags)
+            : SyntaxToken{SyntaxKind::CharacterLiteralToken, source, trivia, flags}
+            , Prefix{prefix}
+            , Value{value}
+        {
+        }
+    };
+
+    struct IdentifierSyntaxToken final : SyntaxToken
+    {
+        static constexpr bool InstanceOf(SyntaxKind kind)
+        {
+            return kind == SyntaxKind::IdentifierToken;
+        }
+
+        static constexpr bool InstanceOf(SyntaxToken const* token)
+        {
+            return InstanceOf(token->Kind);
+        }
+
+        std::string_view Identifier;
+
+        constexpr IdentifierSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            std::string_view identifier)
+            : SyntaxToken{SyntaxKind::IdentifierToken, source, trivia}
+            , Identifier{identifier}
+        {
+        }
+
+        constexpr IdentifierSyntaxToken(
+            source::SourceSpan const& source,
+            SyntaxTriviaRange const* trivia,
+            std::string_view identifier,
+            bitwise::Flags<SyntaxTokenFlags> flags)
+            : SyntaxToken{SyntaxKind::IdentifierToken, source, trivia, flags}
+            , Identifier{identifier}
+        {
+        }
+    };
 }

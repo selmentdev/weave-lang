@@ -35,6 +35,8 @@
 
 #include "weave/filesystem/Utilities.hxx"
 
+#include "weave/syntax2/Lexer.hxx"
+
 #include <atomic>
 
 #if defined(WIN32)
@@ -175,6 +177,32 @@ int main(int argc, const char* argv[])
             source::SourceText text{std::move(*file)};
             source::DiagnosticSink diagnostic{"<source>"};
 
+            syntax2::Lexer ll{diagnostic, text, syntax2::LexerTriviaMode::All};
+
+            syntax2::TokenInfo ti{};
+            while (ll.Lex(ti))
+            {
+                if (ti.Kind == syntax2::SyntaxKind::EndOfFile)
+                {
+                    break;
+                }
+
+                auto ps = text.GetLineSpan(ti.Source);
+                fmt::println(
+                    "LL2: {} {} {} `{}` `{}` `{}` `{}:{}-{}:{}`",
+                    syntax2::SyntaxKindTraits::GetCategoryName(ti.Kind),
+                    syntax2::SyntaxKindTraits::GetName(ti.Kind),
+                    syntax2::SyntaxKindTraits::GetSpelling(ti.Kind),
+                    text.GetText(ti.Source),
+                    ti.Value,
+                    ti.Suffix,
+                    ps.Start.Line,
+                    ps.Start.Column,
+                    ps.End.Line,
+                    ps.End.Column
+                    );
+            }
+
             syntax::ParserContext context{};
             syntax::Parser parser{diagnostic, text, context};
             [[maybe_unused]] syntax::CompilationUnitDeclaration* cu = parser.Parse();
@@ -288,7 +316,7 @@ int main(int argc, const char* argv[])
                 void VisitSimpleNameExpression(syntax::SimpleNameExpression* node) override
                 {
                     PrintIndent();
-                    fmt::println("{}: {}", v.Visit(node) , node->IdentifierToken->GetIdentifier());
+                    fmt::println("{}: {}", v.Visit(node), node->IdentifierToken->GetIdentifier());
 
                     SyntaxWalker::VisitSimpleNameExpression(node);
                 }

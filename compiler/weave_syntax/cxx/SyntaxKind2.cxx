@@ -9,21 +9,42 @@
 // Implements SyntaxKind to Name mapping
 namespace weave::syntax2
 {
-#define WEAVE_SYNTAX_BEGIN_GROUP(name, value)   constexpr std::string_view name##_NameLookup[] {
-#define WEAVE_SYNTAX(name, value, spelling)         #name,
-#define WEAVE_SYNTAX_END_GROUP(name, value)     };
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
+    constexpr std::string_view name##_NameLookup[] \
+    {
+#define WEAVE_SYNTAX(name, value, spelling) #name,
+#define WEAVE_SYNTAX_END_GROUP(name, value) \
+    } \
+    ;
 #include "weave/syntax2/SyntaxKind.inl"
 
     std::string_view SyntaxKindTraits::GetName(SyntaxKind value)
     {
         auto const as_integer = std::to_underlying(value);
 
-#define WEAVE_SYNTAX_BEGIN_GROUP(name, value)   { \
-    if ((SyntaxKindTraits::name##_First <= as_integer) and (as_integer <= SyntaxKindTraits::name##_Last)) \
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
     { \
-        return name##_NameLookup[as_integer - SyntaxKindTraits::name##_First]; \
-    } \
-}
+        if ((SyntaxKindTraits::name##_First <= as_integer) and (as_integer <= SyntaxKindTraits::name##_Last)) \
+        { \
+            return name##_NameLookup[as_integer - SyntaxKindTraits::name##_First]; \
+        } \
+    }
+#include "weave/syntax2/SyntaxKind.inl"
+
+        return "<unknown>";
+    }
+
+    std::string_view SyntaxKindTraits::GetCategoryName(SyntaxKind value)
+    {
+        auto const as_integer = std::to_underlying(value);
+
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
+    { \
+        if ((SyntaxKindTraits::name##_First <= as_integer) and (as_integer <= SyntaxKindTraits::name##_Last)) \
+        { \
+            return #name; \
+        } \
+    }
 #include "weave/syntax2/SyntaxKind.inl"
 
         return "<unknown>";
@@ -33,21 +54,26 @@ namespace weave::syntax2
 // Implements SyntaxKind to Spelling mapping
 namespace weave::syntax2
 {
-#define WEAVE_SYNTAX_BEGIN_GROUP(name, value)   constexpr std::string_view name##_SpellingLookup[] {
-#define WEAVE_SYNTAX(name, value, spelling)         spelling,
-#define WEAVE_SYNTAX_END_GROUP(name, value)     };
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
+    constexpr std::string_view name##_SpellingLookup[] \
+    {
+#define WEAVE_SYNTAX(name, value, spelling) spelling,
+#define WEAVE_SYNTAX_END_GROUP(name, value) \
+    } \
+    ;
 #include "weave/syntax2/SyntaxKind.inl"
 
     std::string_view SyntaxKindTraits::GetSpelling(SyntaxKind value)
     {
         auto const as_integer = std::to_underlying(value);
 
-#define WEAVE_SYNTAX_BEGIN_GROUP(name, value)   { \
-    if ((SyntaxKindTraits::name##_First <= as_integer) and (as_integer <= SyntaxKindTraits::name##_Last)) \
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
     { \
-        return name##_SpellingLookup[as_integer - SyntaxKindTraits::name##_First]; \
-    } \
-}
+        if ((SyntaxKindTraits::name##_First <= as_integer) and (as_integer <= SyntaxKindTraits::name##_Last)) \
+        { \
+            return name##_SpellingLookup[as_integer - SyntaxKindTraits::name##_First]; \
+        } \
+    }
 #include "weave/syntax2/SyntaxKind.inl"
 
         return "<unknown>";
@@ -66,7 +92,7 @@ namespace weave::syntax2
     struct KeywordMapping
     {
         std::array<KeywordMappingEntry, SyntaxKindTraits::Keyword_Count> Entries{{
-#define WEAVE_SYNTAX_KEYWORD(name, value, spelling) { spelling, SyntaxKind::name, hash::Fnv1a64::FromString(spelling) },
+#define WEAVE_SYNTAX_KEYWORD(name, value, spelling) {spelling, SyntaxKind::name, hash::Fnv1a64::FromString(spelling)},
 #include "weave/syntax2/SyntaxKind.inl"
         }};
 

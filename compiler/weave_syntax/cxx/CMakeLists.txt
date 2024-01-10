@@ -9,4 +9,7 @@ target_sources(weave_syntax
         "Expression.cxx"
         "Statement.cxx"
         "Visitor.cxx"
+        "CharTraits.cxx"
+        "Lexer.cxx"
+        "SyntaxFactory.cxx"
 )
