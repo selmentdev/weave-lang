@@ -568,6 +568,10 @@ namespace weave::syntax2
                 {
                     token.Kind = SyntaxKind::ExclamationEqualsToken;
                 }
+                else if (this->_cursor.First(U'('))
+                {
+                    token.Kind = SyntaxKind::ExclamationOpenParenToken;
+                }
                 else
                 {
                     token.Kind = SyntaxKind::ExclamationToken;

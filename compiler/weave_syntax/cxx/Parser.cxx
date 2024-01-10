@@ -733,3 +733,11 @@ namespace weave::syntax
         return exprLeft;
     }
 }
+
+#include "weave/syntax2/Parser.hxx"
+#include "weave/syntax2/SyntaxTree.hxx"
+
+namespace weave::syntax2
+{
+    
+}

@@ -50,6 +50,18 @@ namespace weave::syntax2
         {
             return IsBaseKeyword(value) or IsTypeKeyword(value);
         }
+
+        [[nodiscard]] static constexpr bool IsSyntaxNode(SyntaxKind kind)
+        {
+            auto const index = std::to_underlying(kind);
+            return (Node_First <= index) and (index <= Node_Last);
+        }
+
+        [[nodiscard]] static constexpr bool IsSyntaxToken(SyntaxKind kind)
+        {
+            return IsToken(kind) or IsKeyword(kind);
+        }
+
     public:
         [[nodiscard]] static std::string_view GetName(SyntaxKind value);
 

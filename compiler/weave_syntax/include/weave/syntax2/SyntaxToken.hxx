@@ -26,17 +26,21 @@ namespace weave::syntax2
 
     struct SyntaxToken : SyntaxNode
     {
+        source::SourceSpan Source;
+
         bitwise::Flags<SyntaxTokenFlags> Flags{};
         SyntaxTriviaRange const* Trivia;
 
         constexpr SyntaxToken(SyntaxKind kind, source::SourceSpan source, SyntaxTriviaRange const* trivia)
-            : SyntaxNode{kind, source}
+            : SyntaxNode{kind}
+            , Source{source}
             , Trivia{trivia}
         {
         }
 
         constexpr SyntaxToken(SyntaxKind kind, source::SourceSpan source, SyntaxTriviaRange const* trivia, bitwise::Flags<SyntaxTokenFlags> flags)
-            : SyntaxNode{kind, source}
+            : SyntaxNode{kind}
+            , Source{source}
             , Flags{flags}
             , Trivia{trivia}
         {

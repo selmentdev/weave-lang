@@ -26,6 +26,10 @@
 #define WEAVE_SYNTAX_TYPE_KEYWORD(name, value, spelling) WEAVE_SYNTAX(name, value, spelling)
 #endif
 
+#ifndef WEAVE_SYNTAX_NODE
+#define WEAVE_SYNTAX_NODE(name, value, spelling) WEAVE_SYNTAX(name, value, spelling)
+#endif
+
 // clang-format off
 
 WEAVE_SYNTAX_BEGIN_GROUP(Token,                                     1000)
@@ -412,6 +416,14 @@ WEAVE_SYNTAX_BEGIN_GROUP(Keyword,                                   4000)
     WEAVE_SYNTAX_KEYWORD(BuiltinKeyword,                            4265, "builtin")
 WEAVE_SYNTAX_END_GROUP(Keyword,                                     4265)
 
+WEAVE_SYNTAX_BEGIN_GROUP(Node,                                      10000)
+    WEAVE_SYNTAX_NODE(CompilationUnit,                              10000, "[node:compilation-unit]")
+    WEAVE_SYNTAX_NODE(UsingDirective,                               10001, "[node:using-directive]")
+    WEAVE_SYNTAX_NODE(MemberDeclaration,                            10002, "[node:member-declaration]")
+    WEAVE_SYNTAX_NODE(NamespaceDeclaration,                         10003, "[node:namespace-declaration]")
+WEAVE_SYNTAX_END_GROUP(Node,                                        10003)
+
+
 // clang-format on
 
 #ifdef WEAVE_SYNTAX_BEGIN_GROUP
@@ -440,4 +452,8 @@ WEAVE_SYNTAX_END_GROUP(Keyword,                                     4265)
 
 #ifdef WEAVE_SYNTAX_TYPE_KEYWORD
 #undef WEAVE_SYNTAX_TYPE_KEYWORD
+#endif
+
+#ifdef WEAVE_SYNTAX_NODE
+#undef WEAVE_SYNTAX_NODE
 #endif

@@ -155,3 +155,10 @@ namespace weave::syntax
         --this->Depth;
     }
 }
+
+
+#include "weave/syntax2/Visitor.hxx"
+
+namespace weave::syntax2
+{
+}
