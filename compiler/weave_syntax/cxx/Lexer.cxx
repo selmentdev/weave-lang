@@ -931,7 +931,14 @@ namespace weave::syntax
 
                 if (this->_cursor.First(U'?'))
                 {
-                    token.Kind = SyntaxKind::QuestionQuestionToken;
+                    if (this->_cursor.First(U'='))
+                    {
+                        token.Kind = SyntaxKind::QuestionQuestionEqualsToken;
+                    }
+                    else
+                    {
+                        token.Kind = SyntaxKind::QuestionQuestionToken;
+                    }
                 }
                 else
                 {

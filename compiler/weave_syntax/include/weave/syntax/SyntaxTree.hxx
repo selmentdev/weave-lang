@@ -226,6 +226,7 @@ namespace weave::syntax
         SyntaxToken const* VarKeyword{};
         NameSyntax const* Name{};
         TypeClauseSyntax const* Type{};
+        EqualsValueClauseSyntax const* Initializer{};
         SyntaxToken const* SemicolonToken{};
 
     public:
@@ -245,6 +246,7 @@ namespace weave::syntax
         SyntaxToken const* ConstKeyword{};
         NameSyntax const* Name{};
         TypeClauseSyntax const* Type{};
+        EqualsValueClauseSyntax const* Initializer{};
         SyntaxToken const* SemicolonToken{};
 
     public:
@@ -297,10 +299,50 @@ namespace weave::syntax
 
     class ArgumentSyntax : public SyntaxNode
     {
+        WEAVE_DEFINE_SYNTAX_NODE(ArgumentSyntax);
+
+    public:
+        // TODO: Figure out how to handle named arguments
+        SyntaxToken const* DirectionKindKeyword{};
+        ExpressionSyntax const* Expression{};
+
+    public:
+        explicit constexpr ArgumentSyntax()
+            : SyntaxNode{SyntaxKind::ArgumentSyntax}
+        {
+        }
     };
 
     class ArgumentListSyntax : public SyntaxNode
     {
+        WEAVE_DEFINE_SYNTAX_NODE(ArgumentListSyntax);
+
+    public:
+        SyntaxToken const* OpenParenToken{};
+        SeparatedSyntaxListView<ArgumentSyntax> Arguments{};
+        SyntaxToken const* CloseParenToken{};
+
+    public:
+        explicit constexpr ArgumentListSyntax()
+            : SyntaxNode{SyntaxKind::ArgumentListSyntax}
+        {
+        }
+    };
+
+    class BracketedArgumentListSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(BracketedArgumentListSyntax);
+
+    public:
+        SyntaxToken const* OpenBracketToken{};
+        SeparatedSyntaxListView<ArgumentSyntax> Arguments{};
+        SyntaxToken const* CloseBracketToken{};
+
+    public:
+        explicit constexpr BracketedArgumentListSyntax()
+            : SyntaxNode{SyntaxKind::BracketedArgumentListSyntax}
+        {
+        }
     };
 
     class ParameterSyntax : public SyntaxNode
@@ -401,6 +443,154 @@ namespace weave::syntax
         }
     };
 
+    class InvocationExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(InvocationExpressionSyntax);
+
+    public:
+        ExpressionSyntax const* Expression{};
+        ArgumentListSyntax const* ArgumentList{};
+
+    public:
+        explicit constexpr InvocationExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::InvocationExpressionSyntax}
+        {
+        }
+    };
+
+    class MemberAccessExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(MemberAccessExpressionSyntax);
+
+    public:
+        SyntaxKind OperationKind{};
+        ExpressionSyntax const* Expression{};
+        SyntaxToken const* OperatorToken{};
+        SimpleNameSyntax const* Name{};
+
+    public:
+        explicit constexpr MemberAccessExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::MemberAccessExpressionSyntax}
+        {
+        }
+    };
+
+    class ElementAccessExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ElementAccessExpressionSyntax);
+
+    public:
+        ExpressionSyntax const* Expression{};
+        BracketedArgumentListSyntax const* ArgumentList{};
+
+    public:
+        explicit constexpr ElementAccessExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::ElementAccessExpressionSyntax}
+        {
+        }
+    };
+
+    class ConditionalExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ConditionalExpressionSyntax);
+    };
+
+    class AssignmentExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(AssignmentExpressionSyntax);
+
+    public:
+        SyntaxKind Operation{};
+        NameSyntax const* Identifier{};
+        SyntaxToken const* OperatorToken{};
+        ExpressionSyntax const* Expression{};
+
+    public:
+        explicit constexpr AssignmentExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::AssignmentExpressionSyntax}
+        {
+        }
+    };
+
+    class BinaryExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(BinaryExpressionSyntax);
+
+    public:
+        SyntaxKind Operation{};
+        ExpressionSyntax const* Left{};
+        SyntaxToken const* OperatorToken{};
+        ExpressionSyntax const* Right{};
+
+    public:
+        explicit constexpr BinaryExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::BinaryExpressionSyntax}
+        {
+        }
+    };
+
+    class UnaryExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(UnaryExpressionSyntax);
+
+    public:
+        SyntaxKind Operation{};
+        SyntaxToken const* OperatorToken{};
+        ExpressionSyntax const* Operand{};
+
+    public:
+        explicit constexpr UnaryExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::UnaryExpressionSyntax}
+        {
+        }
+    };
+
+    class PostfixUnaryExpression final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(PostfixUnaryExpression);
+
+    public:
+        SyntaxKind Operation{};
+        ExpressionSyntax const* Operand{};
+        SyntaxToken const* OperatorToken{};
+
+    public:
+        explicit constexpr PostfixUnaryExpression()
+            : ExpressionSyntax{SyntaxKind::PostfixUnaryExpression}
+        {
+        }
+    };
+
+    class ParenthesizedExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ParenthesizedExpressionSyntax);
+
+    public:
+        SyntaxToken const* OpenParenToken{};
+        ExpressionSyntax const* Expression{};
+        SyntaxToken const* CloseParenToken{};
+
+    public:
+        explicit constexpr ParenthesizedExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::ParenthesizedExpressionSyntax}
+        {
+        }
+    };
+
+    class LiteralExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(LiteralExpressionSyntax);
+
+    public:
+        SyntaxToken const* LiteralToken{};
+
+    public:
+        explicit constexpr LiteralExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::LiteralExpressionSyntax}
+        {
+        }
+    };
+
     class TypeSyntax : public ExpressionSyntax
     {
     public:
@@ -491,6 +681,21 @@ namespace weave::syntax
     public:
         explicit constexpr TypeClauseSyntax()
             : SyntaxNode{SyntaxKind::TypeClauseSyntax}
+        {
+        }
+    };
+
+    class EqualsValueClauseSyntax : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(EqualsValueClauseSyntax);
+
+    public:
+        SyntaxToken const* EqualsToken{};
+        ExpressionSyntax const* Expression{};
+
+    public:
+        explicit constexpr EqualsValueClauseSyntax()
+            : SyntaxNode{SyntaxKind::EqualsValueClauseSyntax}
         {
         }
     };

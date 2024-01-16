@@ -38,6 +38,10 @@
 #define WEAVE_SYNTAX_NODE_ABSTRACT(name, value, spelling) WEAVE_SYNTAX_NODE(name, value, spelling)
 #endif
 
+#ifndef WEAVE_SYNTAX_EXPRESSION
+#define WEAVE_SYNTAX_EXPRESSION(name, value, spelling) WEAVE_SYNTAX(name, value, spelling)
+#endif
+
 
 // clang-format off
 
@@ -109,7 +113,8 @@ WEAVE_SYNTAX_BEGIN_GROUP(Token,                                     1000)
     WEAVE_SYNTAX_TOKEN(CloseBraceToken,                             1060, "}")
     WEAVE_SYNTAX_TOKEN(CloseBracketToken,                           1061, "]")
     WEAVE_SYNTAX_TOKEN(CloseParenToken,                             1062, ")")
-WEAVE_SYNTAX_END_GROUP(Token,                                       1062)
+    WEAVE_SYNTAX_TOKEN(QuestionQuestionEqualsToken,                 1063, "??=")
+WEAVE_SYNTAX_END_GROUP(Token,                                       1063)
 
 WEAVE_SYNTAX_BEGIN_GROUP(Trivia,                                    2000)
     WEAVE_SYNTAX_TRIVIA(WhitespaceTrivia,                           2000, "[trivia:whitespace]")
@@ -470,7 +475,88 @@ WEAVE_SYNTAX_BEGIN_GROUP(Node,                                      10000)
     WEAVE_SYNTAX_NODE_CONCRETE(TypeGenericParameterSyntax,          10037, "[node:type-generic-parameter]")
     WEAVE_SYNTAX_NODE_CONCRETE(ConstantGenericParameterSyntax,      10038, "[node:constant-generic-parameter]")
     WEAVE_SYNTAX_NODE_CONCRETE(TypeClauseSyntax,                    10039, "[node:type-clause]")
-WEAVE_SYNTAX_END_GROUP(Node,                                        10039)
+    WEAVE_SYNTAX_NODE_CONCRETE(AssignmentExpressionSyntax,          10040, "[node:assignment-expression]")
+    WEAVE_SYNTAX_NODE_CONCRETE(ParenthesizedExpressionSyntax,       10041, "[node:parenthesized-expression]")
+    WEAVE_SYNTAX_NODE_CONCRETE(LiteralExpressionSyntax,             10042, "[node:literal-expression]")
+    WEAVE_SYNTAX_NODE_CONCRETE(UnaryExpressionSyntax,               10043, "[node:unary-expression]")
+    WEAVE_SYNTAX_NODE_CONCRETE(BinaryExpressionSyntax,              10044, "[node:binary-expression]")
+    WEAVE_SYNTAX_NODE_CONCRETE(EqualsValueClauseSyntax,             10045, "[node:equals-value-clause]")
+    WEAVE_SYNTAX_NODE_CONCRETE(PostfixUnaryExpression,              10046, "[node:postfix-unary-expression]")
+    WEAVE_SYNTAX_NODE_CONCRETE(InvocationExpressionSyntax,          10047, "[node:invocation-expression]")
+    WEAVE_SYNTAX_NODE_CONCRETE(ConditionalExpressionSyntax,         10048, "[node:conditional-expression]")
+    WEAVE_SYNTAX_NODE_CONCRETE(MemberAccessExpressionSyntax,        10049, "[node:member-access-expression]")
+    WEAVE_SYNTAX_NODE_CONCRETE(BracketedArgumentListSyntax,         10050, "[node:bracketed-argument-list]")
+    WEAVE_SYNTAX_NODE_CONCRETE(ElementAccessExpressionSyntax,       10051, "[node:element-access-expression]")
+WEAVE_SYNTAX_END_GROUP(Node,                                        10051)
+
+WEAVE_SYNTAX_BEGIN_GROUP(Expression,                                11000)
+    // prefix unary expressions
+    WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    11000, "[expr:unary-plus]")
+    WEAVE_SYNTAX_EXPRESSION(UnaryMinusExpression,                   11001, "[expr:unary-minus]")
+    WEAVE_SYNTAX_EXPRESSION(BitwiseNotExpression,                   11002, "[expr:bitwise-not]")
+    WEAVE_SYNTAX_EXPRESSION(LogicalNotExpression,                   11003, "[expr:logical-not]")
+    WEAVE_SYNTAX_EXPRESSION(PreIncrementExpression,                 11004, "[expr:pre-increment]")
+    WEAVE_SYNTAX_EXPRESSION(PreDecrementExpression,                 11005, "[expr:pre-decrement]")
+    WEAVE_SYNTAX_EXPRESSION(AddressOfExpression,                    11006, "[expr:address-of]")
+    WEAVE_SYNTAX_EXPRESSION(DereferenceExpression,                  11007, "[expr:dereference]")
+
+    // postfix unary expressions
+    WEAVE_SYNTAX_EXPRESSION(PostIncrementExpression,                11008, "[expr:post-increment]")
+    WEAVE_SYNTAX_EXPRESSION(PostDecrementExpression,                11009, "[expr:post-decrement]")
+
+    // binary expressions
+    WEAVE_SYNTAX_EXPRESSION(CoalesceExpression,                     11010, "[expr:coalesce]")
+    WEAVE_SYNTAX_EXPRESSION(IsExpression,                           11011, "[expr:is]")
+    WEAVE_SYNTAX_EXPRESSION(AsExpression,                           11012, "[expr:as]")
+    WEAVE_SYNTAX_EXPRESSION(BitwiseOrExpression,                    11013, "[expr:bitwise-or]")
+    WEAVE_SYNTAX_EXPRESSION(ExclusiveOrExpression,                  11014, "[expr:exclusive-or]")
+    WEAVE_SYNTAX_EXPRESSION(BitwiseAndExpression,                   11015, "[expr:bitwise-and]")
+    WEAVE_SYNTAX_EXPRESSION(EqualsExpression,                       11016, "[expr:equals]")
+    WEAVE_SYNTAX_EXPRESSION(NotEqualsExpression,                    11017, "[expr:not-equals]")
+    WEAVE_SYNTAX_EXPRESSION(LessThanExpression,                     11018, "[expr:less-than]")
+    WEAVE_SYNTAX_EXPRESSION(LessThanOrEqualExpression,              11019, "[expr:less-than-or-equal]")
+    WEAVE_SYNTAX_EXPRESSION(GreaterThanExpression,                  11020, "[expr:greater-than]")
+    WEAVE_SYNTAX_EXPRESSION(GreaterThanOrEqualExpression,           11021, "[expr:greater-than-or-equal]")
+    WEAVE_SYNTAX_EXPRESSION(LeftShiftExpression,                    11022, "[expr:shift-left]")
+    WEAVE_SYNTAX_EXPRESSION(RightShiftExpression,                   11023, "[expr:shift-right]")
+    WEAVE_SYNTAX_EXPRESSION(AddExpression,                          11024, "[expr:add]")
+    WEAVE_SYNTAX_EXPRESSION(SubtractExpression,                     11025, "[expr:subtract]")
+    WEAVE_SYNTAX_EXPRESSION(MultiplyExpression,                     11026, "[expr:multiply]")
+    WEAVE_SYNTAX_EXPRESSION(DivideExpression,                       11027, "[expr:divide]")
+    WEAVE_SYNTAX_EXPRESSION(ModuloExpression,                       11028, "[expr:modulo]")
+    WEAVE_SYNTAX_EXPRESSION(LogicalAndExpression,                   11029, "[expr:logical-and]")
+    WEAVE_SYNTAX_EXPRESSION(LogicalOrExpression,                    11030, "[expr:logical-or]")
+    WEAVE_SYNTAX_EXPRESSION(SimpleMemberAccessExpression,           11031, "[expr:simple-member-access]")
+    WEAVE_SYNTAX_EXPRESSION(PointerMemberAccessExpression,          11032, "[expr:pointer-member-access]")
+
+    // assignment expressions
+    WEAVE_SYNTAX_EXPRESSION(OrAssignmentExpression,                 11033, "[expr:or-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(AndAssignmentExpression,                11034, "[expr:and-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(ExclusiveOrAssignmentExpression,        11035, "[expr:exclusive-or-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(LeftShiftAssignmentExpression,          11036, "[expr:left-shift-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(RightShiftAssignmentExpression,         11037, "[expr:right-shift-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(AddAssignmentExpression,                11038, "[expr:add-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(SubtractAssignmentExpression,           11039, "[expr:subtract-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(MultiplyAssignmentExpression,           11040, "[expr:multiply-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(DivideAssignmentExpression,             11041, "[expr:divide-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(ModuloAssignmentExpression,             11042, "[expr:modulo-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(SimpleAssignmentExpression,             11043, "[expr:simple-assignment]")
+    WEAVE_SYNTAX_EXPRESSION(CoalesceAssignmentExpression,           11044, "[expr:coalesce-assignment]")
+
+    // expressions
+    WEAVE_SYNTAX_EXPRESSION(ConditionalExpression,                  11045, "[expr:conditional]")
+    WEAVE_SYNTAX_EXPRESSION(ParenthesizedExpression,                11046, "[expr:parenthesized]")
+    WEAVE_SYNTAX_EXPRESSION(InvocationExpression,                   11047, "[expr:invocation]")
+
+    // primary expressions
+    WEAVE_SYNTAX_EXPRESSION(SelfExpression,                         11048, "[expr:self]")
+    WEAVE_SYNTAX_EXPRESSION(IntegerLiteralExpression,               11049, "[expr:integer-literal]")
+    WEAVE_SYNTAX_EXPRESSION(FloatLiteralExpression,                 11050, "[expr:float-literal]")
+    WEAVE_SYNTAX_EXPRESSION(StringLiteralExpression,                11051, "[expr:string-literal]")
+    WEAVE_SYNTAX_EXPRESSION(CharacterLiteralExpression,             11052, "[expr:character-literal]")
+    WEAVE_SYNTAX_EXPRESSION(TrueLiteralExpression,                  11053, "[expr:true-literal]")
+    WEAVE_SYNTAX_EXPRESSION(FalseLiteralExpression,                 11054, "[expr:false-literal]")
+WEAVE_SYNTAX_END_GROUP(Expression,                                  11055)
 
 
 // clang-format on
@@ -513,4 +599,8 @@ WEAVE_SYNTAX_END_GROUP(Node,                                        10039)
 
 #ifdef WEAVE_SYNTAX_NODE_ABSTRACT
 #undef WEAVE_SYNTAX_NODE_ABSTRACT
+#endif
+
+#ifdef WEAVE_SYNTAX_EXPRESSION
+#undef WEAVE_SYNTAX_EXPRESSION
 #endif

@@ -1,0 +1,372 @@
+#include "weave/syntax/SyntaxFacts.hxx"
+
+
+#include "weave/bugcheck/BugCheck.hxx"
+
+namespace weave::syntax
+{
+    bool SyntaxFacts::IsFunctionParameterModifier(SyntaxKind kind)
+    {
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::RefKeyword:
+        case SyntaxKind::OutKeyword:
+        case SyntaxKind::InKeyword:
+        case SyntaxKind::ValueKeyword:
+        case SyntaxKind::MoveKeyword:
+        case SyntaxKind::ParamsKeyword:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
+
+    bool SyntaxFacts::IsFunctionArgumentDirectionKind(SyntaxKind kind)
+    {
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::RefKeyword:
+        case SyntaxKind::OutKeyword:
+        case SyntaxKind::MoveKeyword:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
+
+    bool SyntaxFacts::IsMemberModifier(SyntaxKind kind)
+    {
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::PublicKeyword:
+        case SyntaxKind::PrivateKeyword:
+        case SyntaxKind::InternalKeyword:
+        case SyntaxKind::AsyncKeyword:
+        case SyntaxKind::UnsafeKeyword:
+        case SyntaxKind::CheckedKeyword:
+        case SyntaxKind::DiscardableKeyword:
+        case SyntaxKind::DynamicKeyword:
+        case SyntaxKind::ExplicitKeyword:
+        case SyntaxKind::ExportKeyword:
+        case SyntaxKind::ExternKeyword:
+        case SyntaxKind::FinalKeyword:
+        case SyntaxKind::FixedKeyword:
+        case SyntaxKind::ImplicitKeyword:
+        case SyntaxKind::InlineKeyword:
+        case SyntaxKind::NativeKeyword:
+        case SyntaxKind::OverrideKeyword:
+        case SyntaxKind::PartialKeyword:
+        case SyntaxKind::PreciseKeyword:
+        case SyntaxKind::PureKeyword:
+        case SyntaxKind::ReadonlyKeyword:
+        case SyntaxKind::RecursiveKeyword:
+        case SyntaxKind::RefKeyword:
+        case SyntaxKind::RestrictedKeyword:
+        case SyntaxKind::SynchronizedKeyword:
+        case SyntaxKind::TailCallKeyword:
+        case SyntaxKind::ThreadLocalKeyword:
+        case SyntaxKind::TransientKeyword:
+        case SyntaxKind::TrustedKeyword:
+        case SyntaxKind::UnalignedKeyword:
+        case SyntaxKind::UniformKeyword:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
+
+    SyntaxKind SyntaxFacts::GetPrefixUnaryExpression(SyntaxKind token)
+    {
+        switch (token) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::PlusToken:
+            return SyntaxKind::UnaryPlusExpression;
+
+        case SyntaxKind::MinusToken:
+            return SyntaxKind::UnaryMinusExpression;
+
+        case SyntaxKind::TildeToken:
+            return SyntaxKind::BitwiseNotExpression;
+
+        case SyntaxKind::ExclamationToken:
+            return SyntaxKind::LogicalNotExpression;
+
+        case SyntaxKind::PlusPlusToken:
+            return SyntaxKind::PreIncrementExpression;
+
+        case SyntaxKind::MinusMinusToken:
+            return SyntaxKind::PreDecrementExpression;
+
+        case SyntaxKind::AmpersandToken:
+            return SyntaxKind::AddressOfExpression;
+
+        case SyntaxKind::AsteriskToken:
+            return SyntaxKind::DereferenceExpression;
+
+        default:
+            break;
+        }
+
+        return SyntaxKind::None;
+    }
+    SyntaxKind SyntaxFacts::GetPostfixUnaryExpression(SyntaxKind token)
+    {
+        switch (token) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::PlusPlusToken:
+            return SyntaxKind::PostIncrementExpression;
+
+        case SyntaxKind::MinusMinusToken:
+            return SyntaxKind::PostDecrementExpression;
+
+        default:
+            break;
+        }
+
+        return SyntaxKind::None;
+    }
+
+    SyntaxKind SyntaxFacts::GetBinaryExpression(SyntaxKind token)
+    {
+        switch (token) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::QuestionQuestionToken:
+            return SyntaxKind::CoalesceExpression;
+        case SyntaxKind::IsKeyword:
+            return SyntaxKind::IsExpression;
+        case SyntaxKind::AsKeyword:
+            return SyntaxKind::AsExpression;
+        case SyntaxKind::BarToken:
+            return SyntaxKind::BitwiseOrExpression;
+        case SyntaxKind::CaretToken:
+            return SyntaxKind::ExclusiveOrExpression;
+        case SyntaxKind::AmpersandToken:
+            return SyntaxKind::BitwiseAndExpression;
+        case SyntaxKind::EqualsEqualsToken:
+            return SyntaxKind::EqualsExpression;
+        case SyntaxKind::ExclamationEqualsToken:
+            return SyntaxKind::NotEqualsExpression;
+        case SyntaxKind::LessThanToken:
+            return SyntaxKind::LessThanExpression;
+        case SyntaxKind::LessThanEqualsToken:
+            return SyntaxKind::LessThanOrEqualExpression;
+        case SyntaxKind::GreaterThanToken:
+            return SyntaxKind::GreaterThanExpression;
+        case SyntaxKind::GreaterThanEqualsToken:
+            return SyntaxKind::GreaterThanOrEqualExpression;
+        case SyntaxKind::LessThanLessThanToken:
+            return SyntaxKind::LeftShiftExpression;
+        case SyntaxKind::GreaterThanGreaterThanToken:
+            return SyntaxKind::RightShiftExpression;
+        case SyntaxKind::PlusToken:
+            return SyntaxKind::AddExpression;
+        case SyntaxKind::MinusToken:
+            return SyntaxKind::SubtractExpression;
+        case SyntaxKind::AsteriskToken:
+            return SyntaxKind::MultiplyExpression;
+        case SyntaxKind::SlashToken:
+            return SyntaxKind::DivideExpression;
+        case SyntaxKind::PercentToken:
+            return SyntaxKind::ModuloExpression;
+        case SyntaxKind::AmpersandAmpersandToken:
+            return SyntaxKind::LogicalAndExpression;
+        case SyntaxKind::BarBarToken:
+            return SyntaxKind::LogicalOrExpression;
+        default:
+            break;
+        }
+
+        return SyntaxKind::None;
+    }
+
+    SyntaxKind SyntaxFacts::GetAssignmentExpression(SyntaxKind token)
+    {
+        switch (token) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::BarEqualsToken:
+            return SyntaxKind::OrAssignmentExpression;
+        case SyntaxKind::AmpersandEqualsToken:
+            return SyntaxKind::AndAssignmentExpression;
+        case SyntaxKind::CaretEqualsToken:
+            return SyntaxKind::ExclusiveOrAssignmentExpression;
+        case SyntaxKind::LessThanLessThanEqualsToken:
+            return SyntaxKind::LeftShiftAssignmentExpression;
+        case SyntaxKind::GreaterThanGreaterThanEqualsToken:
+            return SyntaxKind::RightShiftAssignmentExpression;
+        case SyntaxKind::PlusEqualsToken:
+            return SyntaxKind::AddAssignmentExpression;
+        case SyntaxKind::MinusEqualsToken:
+            return SyntaxKind::SubtractAssignmentExpression;
+        case SyntaxKind::AsteriskEqualsToken:
+            return SyntaxKind::MultiplyAssignmentExpression;
+        case SyntaxKind::SlashEqualsToken:
+            return SyntaxKind::DivideAssignmentExpression;
+        case SyntaxKind::PercentEqualsToken:
+            return SyntaxKind::ModuloAssignmentExpression;
+        case SyntaxKind::EqualsToken:
+            return SyntaxKind::SimpleAssignmentExpression;
+        case SyntaxKind::QuestionQuestionEqualsToken:
+            return SyntaxKind::CoalesceAssignmentExpression;
+        default:
+            break;
+        }
+
+        return SyntaxKind::None;
+    }
+
+    bool SyntaxFacts::IsRightAssociative(SyntaxKind operation)
+    {
+        switch (operation) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::SimpleAssignmentExpression:
+        case SyntaxKind::AddAssignmentExpression:
+        case SyntaxKind::SubtractAssignmentExpression:
+        case SyntaxKind::MultiplyAssignmentExpression:
+        case SyntaxKind::DivideAssignmentExpression:
+        case SyntaxKind::ModuloAssignmentExpression:
+        case SyntaxKind::AndAssignmentExpression:
+        case SyntaxKind::ExclusiveOrAssignmentExpression:
+        case SyntaxKind::OrAssignmentExpression:
+        case SyntaxKind::LeftShiftAssignmentExpression:
+        case SyntaxKind::RightShiftAssignmentExpression:
+        case SyntaxKind::CoalesceAssignmentExpression:
+        case SyntaxKind::CoalesceExpression:
+            return true;
+        default:
+            break;
+        }
+        return false;
+    }
+
+    Precedence SyntaxFacts::GetPrecedence(SyntaxKind operation)
+    {
+        switch (operation) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        // case SyntaxKind::QueryExpression:
+        //     return Precedence::Expression;
+        // case SyntaxKind::ParenthesizedLambdaExpression:
+        // case SyntaxKind::SimpleLambdaExpression:
+        // case SyntaxKind::AnonymousMethodExpression:
+        //     return Precedence::Lambda;
+        case SyntaxKind::SimpleAssignmentExpression:
+        case SyntaxKind::AddAssignmentExpression:
+        case SyntaxKind::SubtractAssignmentExpression:
+        case SyntaxKind::MultiplyAssignmentExpression:
+        case SyntaxKind::DivideAssignmentExpression:
+        case SyntaxKind::ModuloAssignmentExpression:
+        case SyntaxKind::AndAssignmentExpression:
+        case SyntaxKind::ExclusiveOrAssignmentExpression:
+        case SyntaxKind::OrAssignmentExpression:
+        case SyntaxKind::LeftShiftAssignmentExpression:
+        case SyntaxKind::RightShiftAssignmentExpression:
+        case SyntaxKind::CoalesceAssignmentExpression:
+            return Precedence::Assignment;
+        case SyntaxKind::CoalesceExpression:
+            return Precedence::Coalescing;
+        case SyntaxKind::LogicalOrExpression:
+            return Precedence::ConditionalOr;
+        case SyntaxKind::LogicalAndExpression:
+            return Precedence::ConditionalAnd;
+        case SyntaxKind::BitwiseOrExpression:
+            return Precedence::LogicalOr;
+        case SyntaxKind::ExclusiveOrExpression:
+            return Precedence::LogicalXor;
+        case SyntaxKind::BitwiseAndExpression:
+            return Precedence::LogicalAnd;
+        case SyntaxKind::EqualsExpression:
+        case SyntaxKind::NotEqualsExpression:
+            return Precedence::Equality;
+        case SyntaxKind::LessThanExpression:
+        case SyntaxKind::LessThanOrEqualExpression:
+        case SyntaxKind::GreaterThanExpression:
+        case SyntaxKind::GreaterThanOrEqualExpression:
+        case SyntaxKind::IsExpression:
+        case SyntaxKind::AsExpression:
+            return Precedence::Relational;
+        // case SyntaxKind::SwitchExpression:
+        // case SyntaxKind::WithExpression:
+        //     return Precedence::Switch;
+        case SyntaxKind::LeftShiftExpression:
+        case SyntaxKind::RightShiftExpression:
+            return Precedence::Shift;
+        case SyntaxKind::AddExpression:
+        case SyntaxKind::SubtractExpression:
+            return Precedence::Additive;
+        case SyntaxKind::MultiplyExpression:
+        case SyntaxKind::DivideExpression:
+        case SyntaxKind::ModuloExpression:
+            return Precedence::Multiplicative;
+        case SyntaxKind::UnaryPlusExpression:
+        case SyntaxKind::UnaryMinusExpression:
+        case SyntaxKind::BitwiseNotExpression:
+        case SyntaxKind::LogicalNotExpression:
+        case SyntaxKind::PreIncrementExpression:
+        case SyntaxKind::PreDecrementExpression:
+            // TODO: Support for typeof, sizeof, nameof, addressof, await, checked, unchecked
+            return Precedence::Unary;
+        // case SyntaxKind::CastExpression:
+        //     return Precedence::Cast;
+        case SyntaxKind::DereferenceExpression:
+            return Precedence::Dereference;
+        case SyntaxKind::AddressOfExpression:
+            return Precedence::AddressOf;
+        case SyntaxKind::ConditionalExpression:
+            return Precedence::Expression;
+        case SyntaxKind::CharacterLiteralExpression:
+        case SyntaxKind::FalseLiteralExpression:
+        case SyntaxKind::GenericNameSyntax:
+        case SyntaxKind::IdentifierNameSyntax:
+        case SyntaxKind::InvocationExpression:
+        case SyntaxKind::IntegerLiteralExpression:
+        case SyntaxKind::FloatLiteralExpression:
+        case SyntaxKind::ParenthesizedExpression:
+        case SyntaxKind::PointerMemberAccessExpression:
+        case SyntaxKind::PostDecrementExpression:
+        case SyntaxKind::PostIncrementExpression:
+        case SyntaxKind::SimpleMemberAccessExpression:
+        case SyntaxKind::StringLiteralExpression:
+        case SyntaxKind::SelfExpression:
+        case SyntaxKind::TrueLiteralExpression:
+            // case SyntaxKind::CollectionExpression:
+            // case SyntaxKind::ConditionalAccessExpression:
+            // case SyntaxKind::DeclarationExpression:
+            // case SyntaxKind::DefaultExpression:
+            // case SyntaxKind::DefaultLiteralExpression:
+            // case SyntaxKind::ElementAccessExpression:
+            // TODO: Support for tuples
+            // TODO: Support for array expressions
+            // TODO: Support for stack allocated expressions (alloca)?
+            // TODO: Interpolated strings
+            // TODO: Null literal?
+            return Precedence::Primary;
+
+        default:
+            WEAVE_BUGCHECK("Unexpected precedence value");
+        }
+    }
+
+    bool SyntaxFacts::IsName(SyntaxKind kind)
+    {
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::IdentifierNameSyntax:
+        case SyntaxKind::GenericNameSyntax:
+        case SyntaxKind::QualifiedNameSyntax:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
+}

@@ -4,6 +4,7 @@ target_sources(weave_syntax
         "Lexer.cxx"
         "Parser.cxx"
         "SyntaxFactory.cxx"
+        "SyntaxFacts.cxx"
         "SyntaxKind.cxx"
         "SyntaxNode.cxx"
         "SyntaxToken.cxx"

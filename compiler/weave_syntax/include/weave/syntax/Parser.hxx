@@ -4,6 +4,7 @@
 #include "weave/syntax/SyntaxNode.hxx"
 #include "weave/syntax/SyntaxToken.hxx"
 #include "weave/syntax/SyntaxFactory.hxx"
+#include "weave/syntax/SyntaxFacts.hxx"
 
 namespace weave::syntax
 {
@@ -37,6 +38,7 @@ namespace weave::syntax
         struct ResetPoint
         {
             friend class Parser;
+
         private:
             size_t _index{};
 
@@ -49,7 +51,7 @@ namespace weave::syntax
 
         [[nodiscard]] constexpr ResetPoint GetResetPoint() const
         {
-            return ResetPoint{this->_index}; 
+            return ResetPoint{this->_index};
         }
 
         void Reset(ResetPoint const& resetPoint)
@@ -106,9 +108,19 @@ namespace weave::syntax
             std::span<AttributeListSyntax const*> attributes,
             std::span<SyntaxToken const*> modifiers);
 
+        TypeClauseSyntax const* ParseTypeClause();
+
         TypeClauseSyntax const* ParseOptionalTypeClause();
 
-        TypeClauseSyntax const* ParseTypeClause();
+        EqualsValueClauseSyntax const* ParseEqualsValueClause();
+
+        EqualsValueClauseSyntax const* ParseOptionalEqualsValueClause();
+
+        ArgumentSyntax const* ParseArgument();
+
+        ArgumentListSyntax const* ParseArgumentList();
+
+        BracketedArgumentListSyntax const* ParseBracketedArgumentList();
 
         ParameterSyntax const* ParseParameter(
             std::span<AttributeListSyntax const*> attributes,
@@ -129,6 +141,32 @@ namespace weave::syntax
         SimpleNameSyntax const* ParseSimpleName();
 
         IdentifierNameSyntax const* ParseIdentifierName();
+
+        ExpressionSyntax const* ParseExpression();
+
+        ExpressionSyntax const* ParseAssignmentExpression();
+
+        ExpressionSyntax const* ParseBinaryExpression(
+            Precedence parentPrecedence);
+
+        ExpressionSyntax const* ParseTerm(
+            Precedence precedence);
+
+        ExpressionSyntax const* ParsePostfixExpression(
+            ExpressionSyntax const* expression);
+
+        ExpressionSyntax const* ParseTermWithoutPostfix(
+            Precedence precedence);
+
+        ExpressionSyntax const* ParseParenthesizedExpression();
+
+        ExpressionSyntax const* ParseBooleanLiteral();
+
+        ExpressionSyntax const* ParseIntegerLiteral();
+
+        ExpressionSyntax const* ParseFloatLiteral();
+
+        ExpressionSyntax const* ParseStringLiteral();
 
         void ReportIncompleteMember(
             std::span<SyntaxToken const*> modifiers,

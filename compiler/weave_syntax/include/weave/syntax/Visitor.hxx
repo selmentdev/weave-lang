@@ -88,5 +88,18 @@ namespace weave::syntax
         void OnTypeClauseSyntax(TypeClauseSyntax const* node) override;
         void OnFieldDeclarationSyntax(FieldDeclarationSyntax const* node) override;
         void OnConstantDeclarationSyntax(ConstantDeclarationSyntax const* node) override;
+        void OnEqualsValueClauseSyntax(EqualsValueClauseSyntax const* node) override;
+        void OnLiteralExpressionSyntax(LiteralExpressionSyntax const* node) override;
+        void OnAssignmentExpressionSyntax(AssignmentExpressionSyntax const* node) override;
+        void OnBinaryExpressionSyntax(BinaryExpressionSyntax const* node) override;
+        void OnUnaryExpressionSyntax(UnaryExpressionSyntax const* node) override;
+        void OnPostfixUnaryExpression(PostfixUnaryExpression const* node) override;
+        void OnParenthesizedExpressionSyntax(ParenthesizedExpressionSyntax const* node) override;
+        void OnInvocationExpressionSyntax(InvocationExpressionSyntax const* node) override;
+        void OnMemberAccessExpressionSyntax(MemberAccessExpressionSyntax const* node) override;
+        void OnArgumentListSyntax(ArgumentListSyntax const* node) override;
+        void OnArgumentSyntax(ArgumentSyntax const* node) override;
+        void OnBracketedArgumentListSyntax(BracketedArgumentListSyntax const* node) override;
+        void OnElementAccessExpressionSyntax(ElementAccessExpressionSyntax const* node) override;
     };
 }

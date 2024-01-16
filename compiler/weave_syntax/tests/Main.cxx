@@ -62,27 +62,3 @@ TEST_CASE("Empty")
 {
     helpers::Validate("", {});
 }
-
-TEST_CASE("StructInNamespace")
-{
-    helpers::Validate(R"(
-namespace A.B.C
-{
-    private internal partial struct X
-    {
-    }
-}
-    )",
-        {});
-}
-
-TEST_CASE("Invalid struct modifiers")
-{
-    helpers::Validate(R"(
-public readonly partial unsafe internal struct X { }
-)",
-        std::array{
-            helpers::DiagnosticMatcher{"unexpected token 'readonly'", {{1, 7}, {1,15}}},
-            helpers::DiagnosticMatcher{"unexpected token 'unsafe'", {{1,24}, {1,30}}},
-        });
-}

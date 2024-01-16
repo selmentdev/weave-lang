@@ -190,6 +190,7 @@ namespace weave::syntax
         this->Dispatch(node->VarKeyword);
         this->Dispatch(node->Name);
         this->Dispatch(node->Type);
+        this->Dispatch(node->Initializer);
         this->Dispatch(node->SemicolonToken);
 
         --this->Depth;
@@ -204,7 +205,143 @@ namespace weave::syntax
         this->Dispatch(node->ConstKeyword);
         this->Dispatch(node->Name);
         this->Dispatch(node->Type);
+        this->Dispatch(node->Initializer);
         this->Dispatch(node->SemicolonToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnEqualsValueClauseSyntax(EqualsValueClauseSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->EqualsToken);
+        this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnLiteralExpressionSyntax(LiteralExpressionSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->LiteralToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnAssignmentExpressionSyntax(AssignmentExpressionSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Identifier);
+        this->Dispatch(node->OperatorToken);
+        this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnBinaryExpressionSyntax(BinaryExpressionSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Left);
+        this->Dispatch(node->OperatorToken);
+        this->Dispatch(node->Right);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnUnaryExpressionSyntax(UnaryExpressionSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->OperatorToken);
+        this->Dispatch(node->Operand);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnPostfixUnaryExpression(PostfixUnaryExpression const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Operand);
+        this->Dispatch(node->OperatorToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnParenthesizedExpressionSyntax(ParenthesizedExpressionSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnInvocationExpressionSyntax(InvocationExpressionSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->ArgumentList);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnMemberAccessExpressionSyntax(MemberAccessExpressionSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->OperatorToken);
+        this->Dispatch(node->Name);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnArgumentListSyntax(ArgumentListSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Arguments.GetNode());
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnArgumentSyntax(ArgumentSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->DirectionKindKeyword);
+        this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnBracketedArgumentListSyntax(BracketedArgumentListSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->OpenBracketToken);
+        this->Dispatch(node->Arguments.GetNode());
+        this->Dispatch(node->CloseBracketToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnElementAccessExpressionSyntax(ElementAccessExpressionSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->ArgumentList);
 
         --this->Depth;
     }

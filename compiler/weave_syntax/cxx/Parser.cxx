@@ -1,5 +1,8 @@
 #include "weave/syntax/Parser.hxx"
+
+#include "weave/bugcheck/BugCheck.hxx"
 #include "weave/syntax/SyntaxTree.hxx"
+#include "weave/syntax/SyntaxFacts.hxx"
 #include "weave/syntax/Lexer.hxx"
 
 namespace weave::syntax
@@ -220,49 +223,6 @@ namespace weave::syntax
         }
     }
 
-    constexpr bool IsMemberModifier(SyntaxKind kind)
-    {
-        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
-        {
-        case SyntaxKind::PublicKeyword:
-        case SyntaxKind::PrivateKeyword:
-        case SyntaxKind::InternalKeyword:
-        case SyntaxKind::AsyncKeyword:
-        case SyntaxKind::UnsafeKeyword:
-        case SyntaxKind::CheckedKeyword:
-        case SyntaxKind::DiscardableKeyword:
-        case SyntaxKind::DynamicKeyword:
-        case SyntaxKind::ExplicitKeyword:
-        case SyntaxKind::ExportKeyword:
-        case SyntaxKind::ExternKeyword:
-        case SyntaxKind::FinalKeyword:
-        case SyntaxKind::FixedKeyword:
-        case SyntaxKind::ImplicitKeyword:
-        case SyntaxKind::InlineKeyword:
-        case SyntaxKind::NativeKeyword:
-        case SyntaxKind::OverrideKeyword:
-        case SyntaxKind::PartialKeyword:
-        case SyntaxKind::PreciseKeyword:
-        case SyntaxKind::PureKeyword:
-        case SyntaxKind::ReadonlyKeyword:
-        case SyntaxKind::RecursiveKeyword:
-        case SyntaxKind::RefKeyword:
-        case SyntaxKind::RestrictedKeyword:
-        case SyntaxKind::SynchronizedKeyword:
-        case SyntaxKind::TailCallKeyword:
-        case SyntaxKind::ThreadLocalKeyword:
-        case SyntaxKind::TransientKeyword:
-        case SyntaxKind::TrustedKeyword:
-        case SyntaxKind::UnalignedKeyword:
-        case SyntaxKind::UniformKeyword:
-            return true;
-
-        default:
-            break;
-        }
-
-        return false;
-    }
 
     void Parser::ParseMemberModifiers(std::vector<SyntaxToken const*>& modifiers)
     {
@@ -270,7 +230,7 @@ namespace weave::syntax
 
         while (SyntaxToken const* current = this->Current())
         {
-            if (not IsMemberModifier(current->Kind))
+            if (not SyntaxFacts::IsMemberModifier(current->Kind))
             {
                 break;
             }
@@ -279,32 +239,13 @@ namespace weave::syntax
         }
     }
 
-    constexpr bool IsFunctionParameterModifier(SyntaxKind kind)
-    {
-        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
-        {
-        case SyntaxKind::RefKeyword:
-        case SyntaxKind::OutKeyword:
-        case SyntaxKind::InKeyword:
-        case SyntaxKind::ValueKeyword:
-        case SyntaxKind::MoveKeyword:
-        case SyntaxKind::ParamsKeyword:
-            return true;
-
-        default:
-            break;
-        }
-
-        return false;
-    }
-
     void Parser::ParseFunctionParameterModifiers(std::vector<SyntaxToken const*>& modifiers)
     {
         modifiers.clear();
 
         while (SyntaxToken const* current = this->Current())
         {
-            if (not IsFunctionParameterModifier(current->Kind))
+            if (not SyntaxFacts::IsFunctionParameterModifier(current->Kind))
             {
                 break;
             }
@@ -562,6 +503,104 @@ namespace weave::syntax
         return nullptr;
     }
 
+    EqualsValueClauseSyntax const* Parser::ParseEqualsValueClause()
+    {
+        SyntaxToken const* tokenEquals = this->Match(SyntaxKind::EqualsToken);
+        ExpressionSyntax const* expression = this->ParseExpression();
+
+        EqualsValueClauseSyntax* result = this->_factory->CreateNode<EqualsValueClauseSyntax>();
+        result->EqualsToken = tokenEquals;
+        result->Expression = expression;
+        return result;
+    }
+
+    EqualsValueClauseSyntax const* Parser::ParseOptionalEqualsValueClause()
+    {
+        if (this->Current()->Is(SyntaxKind::EqualsToken))
+        {
+            return this->ParseEqualsValueClause();
+        }
+
+        return nullptr;
+    }
+
+    ArgumentSyntax const* Parser::ParseArgument()
+    {
+        SyntaxToken const* tokenDirectionKind = nullptr;
+
+        if (SyntaxFacts::IsFunctionArgumentDirectionKind(this->Current()->Kind))
+        {
+            tokenDirectionKind = this->Next();
+        }
+
+        ExpressionSyntax const* expression = this->ParseExpression();
+
+        ArgumentSyntax* result = this->_factory->CreateNode<ArgumentSyntax>();
+        result->DirectionKindKeyword = tokenDirectionKind;
+        result->Expression = expression;
+        return result;
+    }
+
+    ArgumentListSyntax const* Parser::ParseArgumentList()
+    {
+        SyntaxToken const* tokenOpenParen = this->Match(SyntaxKind::OpenParenToken);
+
+        std::vector<SyntaxNode const*> nodes{};
+
+        while ((this->Current()->Kind != SyntaxKind::CloseParenToken) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
+        {
+            ArgumentSyntax const* argument = this->ParseArgument();
+            nodes.push_back(argument);
+
+            if (SyntaxToken const* comma = this->TryMatch(SyntaxKind::CommaToken))
+            {
+                nodes.push_back(comma);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        SyntaxToken const* tokenCloseParen = this->Match(SyntaxKind::CloseParenToken);
+
+        ArgumentListSyntax* result = this->_factory->CreateNode<ArgumentListSyntax>();
+        result->OpenParenToken = tokenOpenParen;
+        result->Arguments = SeparatedSyntaxListView<ArgumentSyntax>{this->_factory->CreateList(nodes)};
+        result->CloseParenToken = tokenCloseParen;
+        return result;
+    }
+
+    BracketedArgumentListSyntax const* Parser::ParseBracketedArgumentList()
+    {
+        SyntaxToken const* tokenOpenBracket = this->Match(SyntaxKind::OpenBracketToken);
+
+        std::vector<SyntaxNode const*> nodes{};
+
+        while ((this->Current()->Kind != SyntaxKind::CloseBracketToken) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
+        {
+            ArgumentSyntax const* argument = this->ParseArgument();
+            nodes.push_back(argument);
+
+            if (SyntaxToken const* comma = this->TryMatch(SyntaxKind::CommaToken))
+            {
+                nodes.push_back(comma);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        SyntaxToken const* tokenCloseBracket = this->Match(SyntaxKind::CloseBracketToken);
+
+        BracketedArgumentListSyntax* result = this->_factory->CreateNode<BracketedArgumentListSyntax>();
+        result->OpenBracketToken = tokenOpenBracket;
+        result->Arguments = SeparatedSyntaxListView<ArgumentSyntax>{this->_factory->CreateList(nodes)};
+        result->CloseBracketToken = tokenCloseBracket;
+        return result;
+    }
+
     ParameterSyntax const* Parser::ParseParameter(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
     {
         NameSyntax const* name = this->ParseIdentifierName();
@@ -582,11 +621,9 @@ namespace weave::syntax
         std::vector<SyntaxNode const*> nodes{};
         std::vector<SyntaxToken const*> modifiers{};
 
-        bool parseNext = true;
-
         std::vector<AttributeListSyntax const*> attributes{};
 
-        while (parseNext and (this->Current()->Kind != SyntaxKind::CloseParenToken) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
+        while ((this->Current()->Kind != SyntaxKind::CloseParenToken) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
         {
             this->ParseAttributesList(attributes);
 
@@ -601,7 +638,7 @@ namespace weave::syntax
             }
             else
             {
-                parseNext = false;
+                break;
             }
         }
 
@@ -609,8 +646,8 @@ namespace weave::syntax
 
         ParameterListSyntax* result = this->_factory->CreateNode<ParameterListSyntax>();
         result->OpenParenToken = tokenOpenParen;
-        result->CloseParenToken = tokenCloseParen;
         result->Parameters = SeparatedSyntaxListView<ParameterSyntax>{this->_factory->CreateList(nodes)};
+        result->CloseParenToken = tokenCloseParen;
         return result;
     }
 
@@ -621,6 +658,7 @@ namespace weave::syntax
         SyntaxToken const* tokenVar = this->Match(SyntaxKind::VarKeyword);
         NameSyntax const* name = this->ParseIdentifierName();
         TypeClauseSyntax const* typeClause = this->ParseOptionalTypeClause();
+        EqualsValueClauseSyntax const* initializer = this->ParseOptionalEqualsValueClause();
         SyntaxToken const* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
 
         FieldDeclarationSyntax* result = this->_factory->CreateNode<FieldDeclarationSyntax>();
@@ -629,6 +667,7 @@ namespace weave::syntax
         result->VarKeyword = tokenVar;
         result->Name = name;
         result->Type = typeClause;
+        result->Initializer = initializer;
         result->SemicolonToken = tokenSemicolon;
         return result;
     }
@@ -638,6 +677,7 @@ namespace weave::syntax
         SyntaxToken const* tokenConst = this->Match(SyntaxKind::ConstKeyword);
         NameSyntax const* name = this->ParseIdentifierName();
         TypeClauseSyntax const* typeClause = this->ParseOptionalTypeClause();
+        EqualsValueClauseSyntax const* initializer = this->ParseOptionalEqualsValueClause();
         SyntaxToken const* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
 
         ConstantDeclarationSyntax* result = this->_factory->CreateNode<ConstantDeclarationSyntax>();
@@ -646,6 +686,7 @@ namespace weave::syntax
         result->ConstKeyword = tokenConst;
         result->Name = name;
         result->Type = typeClause;
+        result->Initializer = initializer;
         result->SemicolonToken = tokenSemicolon;
         return result;
     }
@@ -691,6 +732,244 @@ namespace weave::syntax
         SyntaxToken const* identifier = this->Match(SyntaxKind::IdentifierToken);
         IdentifierNameSyntax* result = this->_factory->CreateNode<IdentifierNameSyntax>();
         result->Identifier = identifier;
+        return result;
+    }
+
+    ExpressionSyntax const* Parser::ParseExpression()
+    {
+        return this->ParseAssignmentExpression();
+    }
+
+    ExpressionSyntax const* Parser::ParseAssignmentExpression()
+    {
+        if (this->Current()->Is(SyntaxKind::IdentifierToken))
+        {
+            switch (this->Peek(1)->Kind) // NOLINT(clang-diagnostic-switch-enum)
+            {
+            case SyntaxKind::AmpersandEqualsToken:
+            case SyntaxKind::AsteriskEqualsToken:
+            case SyntaxKind::BarEqualsToken:
+            case SyntaxKind::CaretEqualsToken:
+            case SyntaxKind::EqualsToken:
+            case SyntaxKind::GreaterThanGreaterThanEqualsToken:
+            case SyntaxKind::LessThanLessThanEqualsToken:
+            case SyntaxKind::MinusEqualsToken:
+            case SyntaxKind::PercentEqualsToken:
+            case SyntaxKind::PlusEqualsToken:
+            case SyntaxKind::SlashEqualsToken:
+                {
+                    NameSyntax const* name = this->ParseIdentifierName();
+                    SyntaxToken const* tokenOperator = this->Next();
+                    ExpressionSyntax const* right = this->ParseAssignmentExpression();
+
+                    AssignmentExpressionSyntax* result = this->_factory->CreateNode<AssignmentExpressionSyntax>();
+                    result->Identifier = name;
+                    result->OperatorToken = tokenOperator;
+                    result->Expression = right;
+                    return result;
+                }
+
+            default:
+                break;
+            }
+        }
+
+        return this->ParseBinaryExpression(Precedence::Expression);
+    }
+
+    ExpressionSyntax const* Parser::ParseBinaryExpression(Precedence parentPrecedence)
+    {
+        // TODO: Handle postfix unary expressions.
+        ExpressionSyntax const* result = nullptr;
+
+        SyntaxKind const unaryOperation = SyntaxFacts::GetPrefixUnaryExpression(this->Current()->Kind);
+
+        if (unaryOperation != SyntaxKind::None)
+        {
+            Precedence const unaryPrecedence = SyntaxFacts::GetPrecedence(unaryOperation);
+
+            if ((unaryPrecedence != Precedence::Expression) && (unaryPrecedence >= parentPrecedence))
+            {
+                SyntaxToken const* operatorToken = this->Next();
+                ExpressionSyntax const* operand = this->ParseBinaryExpression(unaryPrecedence);
+
+                UnaryExpressionSyntax* left = this->_factory->CreateNode<UnaryExpressionSyntax>();
+                left->Operation = unaryOperation;
+                left->OperatorToken = operatorToken;
+                left->Operand = operand;
+
+                result = left;
+            }
+        }
+
+        if (result == nullptr)
+        {
+            result = this->ParseTerm(parentPrecedence);
+        }
+
+        while (true)
+        {
+            SyntaxKind const binaryOperation = SyntaxFacts::GetBinaryExpression(this->Current()->Kind);
+
+            if (binaryOperation == SyntaxKind::None)
+            {
+                break;
+            }
+
+            Precedence const binaryPrecedence = SyntaxFacts::GetPrecedence(binaryOperation);
+
+            if ((binaryPrecedence == Precedence::Expression) || (binaryPrecedence <= parentPrecedence))
+            {
+                break;
+            }
+
+            SyntaxToken const* operatorToken = this->Next();
+            ExpressionSyntax const* right = this->ParseBinaryExpression(binaryPrecedence);
+
+            BinaryExpressionSyntax* left = this->_factory->CreateNode<BinaryExpressionSyntax>();
+            left->Operation = binaryOperation;
+            left->Left = result;
+            left->OperatorToken = operatorToken;
+            left->Right = right;
+            result = left;
+        }
+
+        return result;
+    }
+
+    ExpressionSyntax const* Parser::ParseTerm(Precedence precedence)
+    {
+        return this->ParsePostfixExpression(
+            this->ParseTermWithoutPostfix(precedence));
+    }
+
+    ExpressionSyntax const* Parser::ParsePostfixExpression(ExpressionSyntax const* expression)
+    {
+        WEAVE_ASSERT(expression != nullptr);
+
+        while (true)
+        {
+            switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
+            {
+            case SyntaxKind::OpenParenToken:
+                {
+                    InvocationExpressionSyntax* result = this->_factory->CreateNode<InvocationExpressionSyntax>();
+                    result->Expression = expression;
+                    result->ArgumentList = this->ParseArgumentList();
+                    expression = result;
+                    continue;
+                }
+
+            case SyntaxKind::OpenBracketToken:
+                {
+                    ElementAccessExpressionSyntax* result = this->_factory->CreateNode<ElementAccessExpressionSyntax>();
+                    result->Expression = expression;
+                    result->ArgumentList = this->ParseBracketedArgumentList();
+                    expression = result;
+                    continue;
+                }
+
+            case SyntaxKind::DotToken:
+                {
+                    MemberAccessExpressionSyntax* result = this->_factory->CreateNode<MemberAccessExpressionSyntax>();
+                    result->OperationKind = SyntaxKind::SimpleMemberAccessExpression;
+                    result->Expression = expression;
+                    result->OperatorToken = this->Next();
+                    result->Name = this->ParseIdentifierName();
+                    expression = result;
+                    continue;
+                }
+
+            case SyntaxKind::PlusPlusToken:
+            case SyntaxKind::MinusMinusToken:
+                {
+                    PostfixUnaryExpression* result = this->_factory->CreateNode<PostfixUnaryExpression>();
+                    result->Operation = SyntaxFacts::GetPostfixUnaryExpression(this->Current()->Kind);
+                    result->Operand = expression;
+                    result->OperatorToken = this->Next();
+                    expression = result;
+                    continue;
+                }
+
+            default:
+                return expression;
+            }
+        }
+    }
+
+    ExpressionSyntax const* Parser::ParseTermWithoutPostfix(
+        Precedence precedence)
+    {
+        (void)precedence; // might be used in subexpression
+
+        switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::OpenParenToken:
+            return this->ParseParenthesizedExpression();
+
+        case SyntaxKind::TrueKeyword:
+        case SyntaxKind::FalseKeyword:
+            return this->ParseBooleanLiteral();
+
+        case SyntaxKind::IntegerLiteralToken:
+            return this->ParseIntegerLiteral();
+        case SyntaxKind::FloatLiteralToken:
+            return this->ParseFloatLiteral();
+
+        case SyntaxKind::IdentifierToken:
+            return this->ParseIdentifierName();
+
+        default:
+            // FIXME: Should be reported as missing identifier expression.
+            WEAVE_BUGCHECK("Unhandled primary expression");
+        }
+    }
+
+    ExpressionSyntax const* Parser::ParseParenthesizedExpression()
+    {
+        SyntaxToken const* tokenOpenParen = this->Match(SyntaxKind::OpenParenToken);
+        ExpressionSyntax const* expression = this->ParseExpression();
+        SyntaxToken const* tokenCloseParen = this->Match(SyntaxKind::CloseParenToken);
+
+        ParenthesizedExpressionSyntax* result = this->_factory->CreateNode<ParenthesizedExpressionSyntax>();
+        result->OpenParenToken = tokenOpenParen;
+        result->Expression = expression;
+        result->CloseParenToken = tokenCloseParen;
+        return result;
+    }
+
+    ExpressionSyntax const* Parser::ParseBooleanLiteral()
+    {
+        bool const isTrue = this->Current()->Is(SyntaxKind::TrueKeyword);
+
+        SyntaxToken const* literalToken = isTrue ? this->Match(SyntaxKind::TrueKeyword) : this->Match(SyntaxKind::FalseKeyword);
+
+        LiteralExpressionSyntax* result = this->_factory->CreateNode<LiteralExpressionSyntax>();
+        result->LiteralToken = literalToken;
+        return result;
+    }
+
+    ExpressionSyntax const* Parser::ParseIntegerLiteral()
+    {
+        SyntaxToken const* literalToken = this->Match(SyntaxKind::IntegerLiteralToken);
+        LiteralExpressionSyntax* result = this->_factory->CreateNode<LiteralExpressionSyntax>();
+        result->LiteralToken = literalToken;
+        return result;
+    }
+
+    ExpressionSyntax const* Parser::ParseFloatLiteral()
+    {
+        SyntaxToken const* literalToken = this->Match(SyntaxKind::FloatLiteralToken);
+        LiteralExpressionSyntax* result = this->_factory->CreateNode<LiteralExpressionSyntax>();
+        result->LiteralToken = literalToken;
+        return result;
+    }
+
+    ExpressionSyntax const* Parser::ParseStringLiteral()
+    {
+        SyntaxToken const* literalToken = this->Match(SyntaxKind::StringLiteralToken);
+        LiteralExpressionSyntax* result = this->_factory->CreateNode<LiteralExpressionSyntax>();
+        result->LiteralToken = literalToken;
         return result;
     }
 
