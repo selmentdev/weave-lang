@@ -347,7 +347,7 @@ namespace weave::syntax
 
     class ParameterSyntax : public SyntaxNode
     {
-        WEAVE_DEFINE_SYNTAX_NODE(ConceptDeclarationSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(ParameterSyntax);
 
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
@@ -364,7 +364,7 @@ namespace weave::syntax
 
     class ParameterListSyntax : public SyntaxNode
     {
-        WEAVE_DEFINE_SYNTAX_NODE(ConceptDeclarationSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(ParameterListSyntax);
 
     public:
         SyntaxToken const* OpenParenToken{};
@@ -602,7 +602,7 @@ namespace weave::syntax
 
     class PredefinedTypeSyntax : public TypeSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(ConceptDeclarationSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(PredefinedTypeSyntax);
 
     public:
         SyntaxToken const* Keyword{};

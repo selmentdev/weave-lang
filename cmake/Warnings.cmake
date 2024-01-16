@@ -40,6 +40,7 @@ function(weave_cxx_fortify_code target)
     else()
         target_compile_options(${target} PRIVATE
             -Wall
+            -Wno-trigraphs
         )
     endif()
 endfunction()
