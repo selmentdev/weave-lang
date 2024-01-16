@@ -244,7 +244,6 @@ namespace weave::syntax
         case SyntaxKind::PartialKeyword:
         case SyntaxKind::PreciseKeyword:
         case SyntaxKind::PureKeyword:
-        // case SyntaxKind::ConstKeyword:
         case SyntaxKind::ReadonlyKeyword:
         case SyntaxKind::RecursiveKeyword:
         case SyntaxKind::RefKeyword:
@@ -553,6 +552,16 @@ namespace weave::syntax
         return result;
     }
 
+    TypeClauseSyntax const* Parser::ParseOptionalTypeClause()
+    {
+        if (this->Current()->Is(SyntaxKind::ColonToken))
+        {
+            return this->ParseTypeClause();
+        }
+
+        return nullptr;
+    }
+
     ParameterSyntax const* Parser::ParseParameter(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
     {
         NameSyntax const* name = this->ParseIdentifierName();
@@ -605,65 +614,39 @@ namespace weave::syntax
         return result;
     }
 
-    FieldDeclarationSyntax const* Parser::ParseFieldDeclaration(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
+    FieldDeclarationSyntax const* Parser::ParseFieldDeclaration(
+        std::span<AttributeListSyntax const*> attributes,
+        std::span<SyntaxToken const*> modifiers)
     {
-        (void)attributes;
-        (void)modifiers;
-        [[maybe_unused]] SyntaxToken const* tokenVar = this->Match(SyntaxKind::VarKeyword);
-        [[maybe_unused]] NameSyntax const* name = this->ParseIdentifierName();
+        SyntaxToken const* tokenVar = this->Match(SyntaxKind::VarKeyword);
+        NameSyntax const* name = this->ParseIdentifierName();
+        TypeClauseSyntax const* typeClause = this->ParseOptionalTypeClause();
+        SyntaxToken const* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
 
-        [[maybe_unused]] SyntaxToken const* tokenColon = this->TryMatch(SyntaxKind::ColonToken);
-
-        [[maybe_unused]] NameSyntax const* type = nullptr;
-
-        if (tokenColon != nullptr)
-        {
-            type = this->ParseQualifiedName();
-        }
-
-        [[maybe_unused]] NameSyntax const* value = nullptr;
-
-        [[maybe_unused]] SyntaxToken const* tokenEquals = this->TryMatch(SyntaxKind::EqualsToken);
-
-        if (tokenEquals != nullptr)
-        {
-            value = this->ParseQualifiedName();
-        }
-
-        [[maybe_unused]] SyntaxToken const* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
-
-        FieldDeclarationSyntax const* result = this->_factory->CreateNode<FieldDeclarationSyntax>();
+        FieldDeclarationSyntax* result = this->_factory->CreateNode<FieldDeclarationSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->VarKeyword = tokenVar;
+        result->Name = name;
+        result->Type = typeClause;
+        result->SemicolonToken = tokenSemicolon;
         return result;
     }
 
     ConstantDeclarationSyntax const* Parser::ParseConstantDeclaration(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
     {
-        (void)attributes;
-        (void)modifiers;
-        [[maybe_unused]] SyntaxToken const* tokenVar = this->Match(SyntaxKind::ConstKeyword);
-        [[maybe_unused]] NameSyntax const* name = this->ParseIdentifierName();
+        SyntaxToken const* tokenConst = this->Match(SyntaxKind::ConstKeyword);
+        NameSyntax const* name = this->ParseIdentifierName();
+        TypeClauseSyntax const* typeClause = this->ParseOptionalTypeClause();
+        SyntaxToken const* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
 
-        [[maybe_unused]] SyntaxToken const* tokenColon = this->TryMatch(SyntaxKind::ColonToken);
-
-        [[maybe_unused]] NameSyntax const* type = nullptr;
-
-        if (tokenColon != nullptr)
-        {
-            type = this->ParseQualifiedName();
-        }
-
-        [[maybe_unused]] NameSyntax const* value = nullptr;
-
-        [[maybe_unused]] SyntaxToken const* tokenEquals = this->TryMatch(SyntaxKind::EqualsToken);
-
-        if (tokenEquals != nullptr)
-        {
-            value = this->ParseQualifiedName();
-        }
-
-        [[maybe_unused]] SyntaxToken const* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
-
-        ConstantDeclarationSyntax const* result = this->_factory->CreateNode<ConstantDeclarationSyntax>();
+        ConstantDeclarationSyntax* result = this->_factory->CreateNode<ConstantDeclarationSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->ConstKeyword = tokenConst;
+        result->Name = name;
+        result->Type = typeClause;
+        result->SemicolonToken = tokenSemicolon;
         return result;
     }
 

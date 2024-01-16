@@ -106,6 +106,8 @@ namespace weave::syntax
             std::span<AttributeListSyntax const*> attributes,
             std::span<SyntaxToken const*> modifiers);
 
+        TypeClauseSyntax const* ParseOptionalTypeClause();
+
         TypeClauseSyntax const* ParseTypeClause();
 
         ParameterSyntax const* ParseParameter(

@@ -180,4 +180,32 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnFieldDeclarationSyntax(FieldDeclarationSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->VarKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->Type);
+        this->Dispatch(node->SemicolonToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnConstantDeclarationSyntax(ConstantDeclarationSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->ConstKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->Type);
+        this->Dispatch(node->SemicolonToken);
+
+        --this->Depth;
+    }
 }

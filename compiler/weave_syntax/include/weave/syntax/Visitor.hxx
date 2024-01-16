@@ -86,5 +86,7 @@ namespace weave::syntax
         void OnParameterListSyntax(ParameterListSyntax const* node) override;
         void OnParameterSyntax(ParameterSyntax const* node) override;
         void OnTypeClauseSyntax(TypeClauseSyntax const* node) override;
+        void OnFieldDeclarationSyntax(FieldDeclarationSyntax const* node) override;
+        void OnConstantDeclarationSyntax(ConstantDeclarationSyntax const* node) override;
     };
 }

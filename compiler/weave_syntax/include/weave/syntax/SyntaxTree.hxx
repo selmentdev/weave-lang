@@ -221,6 +221,14 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(FieldDeclarationSyntax);
 
     public:
+        SyntaxListView<AttributeListSyntax> Attributes{};
+        SyntaxListView<SyntaxToken> Modifiers{};
+        SyntaxToken const* VarKeyword{};
+        NameSyntax const* Name{};
+        TypeClauseSyntax const* Type{};
+        SyntaxToken const* SemicolonToken{};
+
+    public:
         explicit constexpr FieldDeclarationSyntax()
             : MemberDeclarationSyntax{SyntaxKind::FieldDeclarationSyntax}
         {
@@ -230,6 +238,14 @@ namespace weave::syntax
     class ConstantDeclarationSyntax : public MemberDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ConstantDeclarationSyntax);
+
+    public:
+        SyntaxListView<AttributeListSyntax> Attributes{};
+        SyntaxListView<SyntaxToken> Modifiers{};
+        SyntaxToken const* ConstKeyword{};
+        NameSyntax const* Name{};
+        TypeClauseSyntax const* Type{};
+        SyntaxToken const* SemicolonToken{};
 
     public:
         explicit constexpr ConstantDeclarationSyntax()
