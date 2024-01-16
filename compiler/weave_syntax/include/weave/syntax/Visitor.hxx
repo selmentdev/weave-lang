@@ -1,73 +1,90 @@
 #pragma once
 #include "weave/syntax/SyntaxNode.hxx"
+#include "weave/syntax/SyntaxToken.hxx"
 #include "weave/bugcheck/BugCheck.hxx"
-
-#include "weave/syntax/Statement.hxx"
-#include "weave/syntax/Expression.hxx"
-#include "weave/syntax/Declaration.hxx"
+#include "weave/syntax/SyntaxTree.hxx"
 
 namespace weave::syntax
 {
-    template <typename VisitorType, typename ResultType, typename... ArgTypes>
+    template <typename VisitorT, typename ResultT, typename... ArgsT>
     class SyntaxVisitor
     {
     public:
         virtual ~SyntaxVisitor() = default;
 
     public:
-        ResultType Visit(SyntaxNode* node, ArgTypes&&... args)
+        virtual ResultT Dispatch(SyntaxNode const* node, ArgsT&&... args)
         {
-            switch (node->Kind())
+            if (node != nullptr)
             {
-#define WEAVE_SYNTAX_CONCRETE_NODE(name, spelling) \
+                if (SyntaxKindTraits::IsSyntaxToken(node->Kind))
+                {
+                    return this->OnToken(static_cast<SyntaxToken const*>(node), std::forward<ArgsT>(args)...);
+                }
+
+                switch (node->Kind)
+                {
+#define WEAVE_SYNTAX_NODE_CONCRETE(name, value, spelling) \
     case SyntaxKind::name: \
-        return static_cast<VisitorType*>(this)->Visit##name(static_cast<name*>(node), std::forward<ArgTypes>(args)...);
+        return this->On##name(static_cast<name const*>(node), std::forward<ArgsT>(args)...);
 #include "weave/syntax/SyntaxKind.inl"
 
-            default:
-                WEAVE_BUGCHECK("Unknown SyntaxKind");
+                default:
+                    WEAVE_BUGCHECK("Invalid node kind");
+                }
             }
+
+            return ResultT{};
         }
 
-        virtual ResultType VisitDefault([[maybe_unused]] SyntaxNode* node, [[maybe_unused]] ArgTypes&&... args)
+        virtual ResultT OnToken(SyntaxToken const* token, ArgsT&&... args)
         {
-            return ResultType{};
+            return static_cast<VisitorT*>(this)->OnDefault(token, std::forward<ArgsT>(args)...);
         }
 
-#define WEAVE_SYNTAX_CONCRETE_NODE(name, spelling) \
-    virtual ResultType Visit##name(name* node, ArgTypes&&... args) \
+        virtual ResultT OnTrivia(
+            [[maybe_unused]] SyntaxTrivia const* trivia,
+            [[maybe_unused]] ArgsT&&... args)
+        {
+        }
+
+        virtual ResultT OnDefault(
+            [[maybe_unused]] SyntaxNode const* node,
+            [[maybe_unused]] ArgsT&&... args)
+        {
+            return ResultT{};
+        }
+
+#define WEAVE_SYNTAX_NODE(name, value, spelling) \
+    virtual ResultT On##name(name const* node, ArgsT&&... args) \
     { \
-        return static_cast<VisitorType*>(this)->VisitDefault(node, std::forward<ArgTypes>(args)...); \
+        return static_cast<VisitorT*>(this)->OnDefault(node, std::forward<ArgsT>(args)...); \
     }
 #include "weave/syntax/SyntaxKind.inl"
     };
+}
 
+namespace weave::syntax
+{
     class SyntaxWalker : public SyntaxVisitor<SyntaxWalker, void>
     {
     public:
         size_t Depth = 0;
 
     public:
-        ~SyntaxWalker() override = 0;
-
-        void VisitCompilationUnitDeclaration(CompilationUnitDeclaration* node) override;
-
-        void VisitNamespaceDeclaration(NamespaceDeclaration* node) override;
-
-        void VisitUsingStatement(UsingStatement* node) override;
-
-        void VisitQualifiedNameExpression(QualifiedNameExpression* node) override;
-
-        void VisitStructDeclaration(StructDeclaration* node) override;
-
-        void VisitConceptDeclaration(ConceptDeclaration* node) override;
-
-        void VisitExtendDeclaration(ExtendDeclaration* node) override;
-
-        void VisitFunctionDeclaration(FunctionDeclaration* node) override;
-
-        void VisitFieldDeclaration(FieldDeclaration* node) override;
-
-        void VisitConstantDeclaration(ConstantDeclaration* node) override;
+        void OnCompilationUnitSyntax(CompilationUnitSyntax const* node) override;
+        void OnSyntaxList(SyntaxList const* node) override;
+        void OnNamespaceDeclarationSyntax(NamespaceDeclarationSyntax const* node) override;
+        void OnStructDeclarationSyntax(StructDeclarationSyntax const* node) override;
+        void OnConceptDeclarationSyntax(ConceptDeclarationSyntax const* node) override;
+        void OnExtendDeclarationSyntax(ExtendDeclarationSyntax const* node) override;
+        void OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax const* node) override;
+        void OnQualifiedNameSyntax(QualifiedNameSyntax const* node) override;
+        void OnFunctionDeclarationSyntax(FunctionDeclarationSyntax const* node) override;
+        void OnUsingDirectiveSyntax(UsingDirectiveSyntax const* node) override;
+        void OnIdentifierNameSyntax(IdentifierNameSyntax const* node) override;
+        void OnParameterListSyntax(ParameterListSyntax const* node) override;
+        void OnParameterSyntax(ParameterSyntax const* node) override;
+        void OnTypeClauseSyntax(TypeClauseSyntax const* node) override;
     };
 }

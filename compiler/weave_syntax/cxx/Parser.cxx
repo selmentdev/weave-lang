@@ -1,41 +1,35 @@
 #include "weave/syntax/Parser.hxx"
-
-#include "weave/syntax/Declaration.hxx"
-#include "weave/syntax/Expression.hxx"
-#include "weave/syntax/Statement.hxx"
-
-#include "weave/bitwise/Flag.hxx"
-
-#include <array>
+#include "weave/syntax/SyntaxTree.hxx"
+#include "weave/syntax/Lexer.hxx"
 
 namespace weave::syntax
 {
     Parser::Parser(
-        source::DiagnosticSink& diagnostic,
-        source::SourceText const& source,
-        ParserContext& context)
+        source::DiagnosticSink* diagnostic,
+        SyntaxFactory* factory,
+        source::SourceText const& source)
         : _diagnostic{diagnostic}
-        , _context{context}
+        , _factory{factory}
     {
-        tokenizer::Tokenizer tokenizer{this->_diagnostic, source, tokenizer::TriviaMode::All};
+        Lexer lexer{*this->_diagnostic, source, LexerTriviaMode::All};
 
-        while (tokenizer::Token* current = this->_context.TokenizerContext.Lex(tokenizer))
+        while (SyntaxToken const* token = lexer.Lex(*factory))
         {
-            this->_tokens.push_back(current);
+            this->_tokens.push_back(token);
 
-            if (current->Is(tokenizer::TokenKind::EndOfFile) or current->Is(tokenizer::TokenKind::Error))
+            if (token->Is(SyntaxKind::EndOfFileToken) or token->Is(SyntaxKind::None))
             {
                 break;
             }
         }
     }
 
-    CompilationUnitDeclaration* Parser::Parse()
+    CompilationUnitSyntax const* Parser::Parse()
     {
         return this->ParseCompilationUnit();
     }
 
-    tokenizer::Token* Parser::Peek(size_t offset) const
+    SyntaxToken const* Parser::Peek(size_t offset) const
     {
         size_t const index = this->_index + offset;
 
@@ -47,45 +41,47 @@ namespace weave::syntax
         return this->_tokens[index];
     }
 
-    tokenizer::Token* Parser::Current() const
+    SyntaxToken const* Parser::Current() const
     {
         return this->Peek(0);
     }
 
-    tokenizer::Token* Parser::Next()
+    SyntaxToken const* Parser::Next()
     {
-        tokenizer::Token* current = this->Current();
-        this->_index++;
+        SyntaxToken const* current = this->Current();
+        ++this->_index;
         return current;
     }
 
-    tokenizer::Token* Parser::Match(tokenizer::TokenKind kind)
+    SyntaxToken const* Parser::Match(SyntaxKind kind)
     {
         if (this->Current()->Is(kind))
         {
             return this->Next();
         }
 
-        this->_diagnostic.AddError(
-            this->Current()->GetSourceSpan(),
+        this->_diagnostic->AddError(
+            this->Current()->Source,
             fmt::format("unexpected token '{}', expected '{}'",
-                tokenizer::TokenKindTraits::GetSpelling(this->Current()->GetKind()),
-                tokenizer::TokenKindTraits::GetSpelling(kind)));
+                SyntaxKindTraits::GetSpelling(this->Current()->Kind),
+                SyntaxKindTraits::GetSpelling(kind)));
 
-        return this->_context.TokenizerContext.CreateMissing(kind, this->Current()->GetSourceSpan());
+        // return this->_factory->CreateMissingToken(kind, this->Current()->Source);
+        return this->SkipToken(kind);
     }
 
-    tokenizer::Token* Parser::MatchOptional(tokenizer::TokenKind kind)
+    SyntaxToken const* Parser::MatchOptional(SyntaxKind kind)
     {
         if (this->Current()->Is(kind))
         {
             return this->Next();
         }
 
-        return this->_context.TokenizerContext.CreateMissing(kind, this->Current()->GetSourceSpan());
+        // return this->_factory->CreateMissingToken(kind, this->Current()->Source);
+        return this->SkipToken(kind);
     }
 
-    tokenizer::Token* Parser::TryMatch(tokenizer::TokenKind kind)
+    SyntaxToken const* Parser::TryMatch(SyntaxKind kind)
     {
         if (this->Current()->Is(kind))
         {
@@ -95,634 +91,603 @@ namespace weave::syntax
         return nullptr;
     }
 
-    CompilationUnitDeclaration* Parser::ParseCompilationUnit()
+    SyntaxToken const* Parser::SkipToken(SyntaxKind kind, bool consume)
     {
-        std::vector<UsingStatement*> usings{};
-        std::vector<MemberDeclaration*> members{};
+        std::vector<SyntaxTrivia> leadingTrivia{};
 
-        ParseNamespaceBody(usings, members);
+        if (consume)
+        {
+            SyntaxToken const* bad = this->Next();
 
-        tokenizer::Token* eof = this->Match(tokenizer::TokenKind::EndOfFile);
+            // Copy leading trivia
+            for (SyntaxTrivia const& trivia : bad->GetLeadingTrivia())
+            {
+                leadingTrivia.push_back(trivia);
+            }
 
-        CompilationUnitDeclaration* result = this->_context.NodesAllocator.Emplace<CompilationUnitDeclaration>();
-        result->EndOfFile = eof;
-        result->Usings = this->_context.NodesAllocator.EmplaceArray<UsingStatement*>(usings);
-        result->Members = this->_context.NodesAllocator.EmplaceArray<MemberDeclaration*>(members);
+            // Push skipped token as trivia
+            leadingTrivia.push_back(SyntaxTrivia{
+                SyntaxKind::SkippedTokenTrivia,
+                bad->Source,
+            });
+
+            // Copy trailing trivia
+            for (SyntaxTrivia const& trivia : bad->GetTrailingTrivia())
+            {
+                leadingTrivia.push_back(trivia);
+            }
+        }
+
+        source::SourceSpan source = this->Current()->Source;
+        source.End = source.Start;
+        return this->_factory->CreateMissingToken(kind, source, leadingTrivia, {});
+    }
+
+    CompilationUnitSyntax const* Parser::ParseCompilationUnit()
+    {
+        std::vector<UsingDirectiveSyntax const*> usings{};
+        std::vector<MemberDeclarationSyntax const*> members{};
+
+        ParseNamespaceBody(nullptr, usings, members);
+        SyntaxToken const* tokenEndOfFile = this->Match(SyntaxKind::EndOfFileToken);
+
+        // FIXME: Any tokens left after parsing compilation unit should be reported as well.
+
+        CompilationUnitSyntax* result = this->_factory->CreateNode<CompilationUnitSyntax>();
+        result->AttributeLists = {};
+        result->Usings = SyntaxListView<UsingDirectiveSyntax>{this->_factory->CreateList(usings)};
+        result->Members = SyntaxListView<MemberDeclarationSyntax>{this->_factory->CreateList(members)};
+        result->EndOfFileToken = tokenEndOfFile;
         return result;
     }
 
-    void ReportDuplicatedModifier(
-        source::DiagnosticSink& diagnostic,
-        tokenizer::Token const* previous, tokenizer::Token const* current)
+    void Parser::ParseTypeBody(
+        std::vector<ConstraintSyntax const*>& constraints,
+        std::vector<MemberDeclarationSyntax const*>& members)
     {
-        diagnostic.AddError(
-            current->GetSourceSpan(),
-            fmt::format("duplicate modifier '{}'",
-                tokenizer::TokenKindTraits::GetSpelling(current->GetKind())));
+        (void)constraints;
+        std::vector<SyntaxToken const*> modifiers{};
+        std::vector<AttributeListSyntax const*> attributes{};
 
-        diagnostic.AddHint(
-            previous->GetSourceSpan(),
-            fmt::format("modifier '{}' previously specified here",
-                tokenizer::TokenKindTraits::GetSpelling(previous->GetKind())));
-    }
-
-    void Parser::ReportIncompleteMember(
-        std::vector<tokenizer::Token*>& tokens,
-        std::vector<MemberDeclaration*>& members)
-    {
-        if (not tokens.empty())
+        while (SyntaxToken const* current = this->Current())
         {
-            for (tokenizer::Token const* tk : tokens)
+            if (current->Is(SyntaxKind::CloseBraceToken))
             {
-                this->_diagnostic.AddError(
-                    tk->GetSourceSpan(),
-                    fmt::format("unexpected token '{}'",
-                        tokenizer::TokenKindTraits::GetSpelling(tk->GetKind())));
+                break;
             }
 
-            auto copyIncomplete = this->_context.NodesAllocator.EmplaceArray<tokenizer::Token*>(tokens);
-            IncompleteMemberDeclaration* node = this->_context.NodesAllocator.Emplace<IncompleteMemberDeclaration>(copyIncomplete);
-            members.emplace_back(node);
-            tokens.clear();
+            if (current->Is(SyntaxKind::EndOfFileToken))
+            {
+                break;
+            }
+
+            this->ParseAttributesList(attributes);
+
+            this->ParseMemberModifiers(modifiers);
+
+            auto* member = this->ParseMemberDeclaration(attributes, modifiers);
+            members.push_back(member);
         }
     }
 
-    template <typename KeyT, size_t N>
-    void ParseModifiers(
-        source::DiagnosticSink& diagnostic,
-        bitwise::Flags<KeyT>& modifiers,
-        std::array<std::pair<KeyT, tokenizer::TokenKind>, N> const& mapping,
-        std::vector<tokenizer::Token*>& tokens)
+    void Parser::ParseNamespaceBody(
+        SyntaxToken const* openBraceOrSemicolon,
+        std::vector<UsingDirectiveSyntax const*>& usings,
+        std::vector<MemberDeclarationSyntax const*>& members)
     {
-        std::array<tokenizer::Token const*, N> previous{};
+        bool global = (openBraceOrSemicolon == nullptr);
+        std::vector<SyntaxToken const*> modifiers{};
+        std::vector<AttributeListSyntax const*> attributes{};
 
-        modifiers = {};
-
-        for (auto it = tokens.begin(); it != tokens.end();)
+        while (SyntaxToken const* current = this->Current())
         {
-            tokenizer::Token const* token = *it;
-
-            bool removed = false;
-
-            for (size_t i = 0; i < N; ++i)
+            if (current->Is(SyntaxKind::CloseBraceToken))
             {
-                auto const [modifier, kind] = mapping[i];
-
-                if (token->Is(kind))
+                if (not global)
                 {
-                    if (previous[i])
-                    {
-                        ReportDuplicatedModifier(diagnostic, previous[i], token);
-                    }
-                    else
-                    {
-                        previous[i] = token;
-                        modifiers |= modifier;
-                    }
-
-                    it = tokens.erase(it);
-                    removed = true;
-                    break;
+                    return;
                 }
             }
-
-            if (not removed)
-            {
-                ++it;
-            }
-        }
-    }
-
-    void Parser::ParseFieldModifier(bitwise::Flags<FieldModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
-    {
-        static constexpr std::array mapping{
-            std::pair{FieldModifier::Public, tokenizer::TokenKind::PublicKeyword},
-            std::pair{FieldModifier::Private, tokenizer::TokenKind::PrivateKeyword},
-            std::pair{FieldModifier::Internal, tokenizer::TokenKind::InternalKeyword},
-            std::pair{FieldModifier::Readonly, tokenizer::TokenKind::ReadonlyKeyword},
-        };
-
-        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
-    }
-
-    void Parser::ParseFunctionModifier(bitwise::Flags<FunctionModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
-    {
-        static constexpr std::array mapping{
-            std::pair{FunctionModifier::Public, tokenizer::TokenKind::PublicKeyword},
-            std::pair{FunctionModifier::Private, tokenizer::TokenKind::PrivateKeyword},
-            std::pair{FunctionModifier::Internal, tokenizer::TokenKind::InternalKeyword},
-            std::pair{FunctionModifier::Unsafe, tokenizer::TokenKind::UnsafeKeyword},
-            std::pair{FunctionModifier::Async, tokenizer::TokenKind::AsyncKeyword},
-            std::pair{FunctionModifier::Extern, tokenizer::TokenKind::ExternKeyword},
-            std::pair{FunctionModifier::Native, tokenizer::TokenKind::NativeKeyword},
-        };
-
-        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
-    }
-
-    void Parser::ParseStructModifier(bitwise::Flags<StructModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
-    {
-        static constexpr std::array mapping{
-            std::pair{StructModifier::Public, tokenizer::TokenKind::PublicKeyword},
-            std::pair{StructModifier::Private, tokenizer::TokenKind::PrivateKeyword},
-            std::pair{StructModifier::Internal, tokenizer::TokenKind::InternalKeyword},
-            std::pair{StructModifier::Partial, tokenizer::TokenKind::PartialKeyword},
-        };
-
-        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
-    }
-
-    void Parser::ParseExtendModifier(bitwise::Flags<ExtendModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
-    {
-        static constexpr std::array mapping{
-            std::pair{ExtendModifier::Public, tokenizer::TokenKind::PublicKeyword},
-            std::pair{ExtendModifier::Private, tokenizer::TokenKind::PrivateKeyword},
-            std::pair{ExtendModifier::Internal, tokenizer::TokenKind::InternalKeyword},
-            std::pair{ExtendModifier::Unsafe, tokenizer::TokenKind::UnsafeKeyword},
-        };
-
-        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
-    }
-
-    void Parser::ParseConceptModifier(bitwise::Flags<ConceptModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
-    {
-        static constexpr std::array mapping{
-            std::pair{ConceptModifier::Public, tokenizer::TokenKind::PublicKeyword},
-            std::pair{ConceptModifier::Private, tokenizer::TokenKind::PrivateKeyword},
-            std::pair{ConceptModifier::Internal, tokenizer::TokenKind::InternalKeyword},
-            std::pair{ConceptModifier::Unsafe, tokenizer::TokenKind::UnsafeKeyword},
-        };
-
-        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
-    }
-
-    void Parser::ParseFormalParameterModifier(bitwise::Flags<FormalParameterModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const
-    {
-        static constexpr std::array mapping{
-            std::pair{FormalParameterModifier::In, tokenizer::TokenKind::InKeyword},
-            std::pair{FormalParameterModifier::Out, tokenizer::TokenKind::OutKeyword},
-            std::pair{FormalParameterModifier::Ref, tokenizer::TokenKind::RefKeyword},
-            std::pair{FormalParameterModifier::Copy, tokenizer::TokenKind::ValueKeyword},
-            std::pair{FormalParameterModifier::Move, tokenizer::TokenKind::MoveKeyword},
-        };
-
-        ParseModifiers(this->_diagnostic, modifiers, mapping, tokens);
-    }
-
-    void Parser::ParseNamespaceBody(std::vector<UsingStatement*>& usings, std::vector<MemberDeclaration*>& members)
-    {
-        std::vector<tokenizer::Token*> incomplete{};
-
-        while (tokenizer::Token* current = this->Current())
-        {
-            if (current->Is(tokenizer::TokenKind::CloseBraceToken))
+            else if (current->Is(SyntaxKind::EndOfFileToken))
             {
                 break;
             }
 
-            if (current->Is(tokenizer::TokenKind::EndOfFile))
+            this->ParseAttributesList(attributes);
+
+            this->ParseMemberModifiers(modifiers);
+
+            if (current->Is(SyntaxKind::NamespaceKeyword))
             {
-                break;
+                members.push_back(this->ParseNamespaceDeclaration(attributes, modifiers));
             }
-
-            if (current->Is(tokenizer::TokenKind::SemicolonToken))
+            else if (current->Is(SyntaxKind::UsingKeyword))
             {
-                this->_diagnostic.AddHint(
-                    current->GetSourceSpan(),
-                    "unexpected semicolon");
-                this->Next();
-                continue;
-            }
-
-            if (current->Is(tokenizer::TokenKind::NamespaceKeyword))
-            {
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseNamespaceDeclaration());
-            }
-            else if (current->Is(tokenizer::TokenKind::UsingKeyword))
-            {
-                this->ReportIncompleteMember(incomplete, members);
-
                 if (not members.empty())
                 {
-                    this->_diagnostic.AddError(
-                        current->GetSourceSpan(),
+                    this->_diagnostic->AddError(
+                        current->Source,
                         "using statement must precede all other elements defined in namespace");
                 }
 
-                usings.emplace_back(this->ParseUsingStatement());
-            }
-            else if (current->Is(tokenizer::TokenKind::StructKeyword))
-            {
-                bitwise::Flags<StructModifier> modifiers{};
-                ParseStructModifier(modifiers, incomplete);
-
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseStructDeclaration(modifiers));
-            }
-            else if (current->Is(tokenizer::TokenKind::ConceptKeyword))
-            {
-                bitwise::Flags<ConceptModifier> modifiers{};
-                ParseConceptModifier(modifiers, incomplete);
-
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseConceptDeclaration(modifiers));
-            }
-            else if (current->Is(tokenizer::TokenKind::ExtendKeyword))
-            {
-                bitwise::Flags<ExtendModifier> modifiers{};
-                ParseExtendModifier(modifiers, incomplete);
-
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseExtendDeclaration(modifiers));
-            }
-            else if (current->Is(tokenizer::TokenKind::FunctionKeyword))
-            {
-                bitwise::Flags<FunctionModifier> modifiers{};
-                ParseFunctionModifier(modifiers, incomplete);
-
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseFunctionDeclaration(modifiers));
-            }
-            else if (current->Is(tokenizer::TokenKind::VarKeyword))
-            {
-                bitwise::Flags<FieldModifier> modifiers{};
-                ParseFieldModifier(modifiers, incomplete);
-
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseFieldDeclaration(modifiers));
-            }
-            else if (current->Is(tokenizer::TokenKind::ConstKeyword))
-            {
-                bitwise::Flags<FieldModifier> modifiers{};
-                ParseFieldModifier(modifiers, incomplete);
-
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseConstDeclaration(modifiers));
+                usings.push_back(this->ParseUsingDirective());
             }
             else
             {
-                // Cannot parse token.
-                incomplete.push_back(current);
-
-                // Advance past token.
-                this->Next();
-
-                if (this->Current() == current)
-                {
-                    // shouldn't this be handled by EOF token?
-                    // Cannot advance parsing.
-                    break;
-                }
+                auto* member = this->ParseMemberDeclaration(attributes, modifiers);
+                members.push_back(member);
             }
         }
-
-        this->ReportIncompleteMember(incomplete, members);
     }
 
-    void Parser::ParseEntitytBody(std::vector<MemberDeclaration*>& members)
+    constexpr bool IsMemberModifier(SyntaxKind kind)
     {
-        std::vector<tokenizer::Token*> incomplete{};
-
-        while (tokenizer::Token* current = this->Current())
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
-            if (current->Is(tokenizer::TokenKind::CloseBraceToken))
+        case SyntaxKind::PublicKeyword:
+        case SyntaxKind::PrivateKeyword:
+        case SyntaxKind::InternalKeyword:
+        case SyntaxKind::AsyncKeyword:
+        case SyntaxKind::UnsafeKeyword:
+        case SyntaxKind::CheckedKeyword:
+        case SyntaxKind::DiscardableKeyword:
+        case SyntaxKind::DynamicKeyword:
+        case SyntaxKind::ExplicitKeyword:
+        case SyntaxKind::ExportKeyword:
+        case SyntaxKind::ExternKeyword:
+        case SyntaxKind::FinalKeyword:
+        case SyntaxKind::FixedKeyword:
+        case SyntaxKind::ImplicitKeyword:
+        case SyntaxKind::InlineKeyword:
+        case SyntaxKind::NativeKeyword:
+        case SyntaxKind::OverrideKeyword:
+        case SyntaxKind::PartialKeyword:
+        case SyntaxKind::PreciseKeyword:
+        case SyntaxKind::PureKeyword:
+        // case SyntaxKind::ConstKeyword:
+        case SyntaxKind::ReadonlyKeyword:
+        case SyntaxKind::RecursiveKeyword:
+        case SyntaxKind::RefKeyword:
+        case SyntaxKind::RestrictedKeyword:
+        case SyntaxKind::SynchronizedKeyword:
+        case SyntaxKind::TailCallKeyword:
+        case SyntaxKind::ThreadLocalKeyword:
+        case SyntaxKind::TransientKeyword:
+        case SyntaxKind::TrustedKeyword:
+        case SyntaxKind::UnalignedKeyword:
+        case SyntaxKind::UniformKeyword:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
+
+    void Parser::ParseMemberModifiers(std::vector<SyntaxToken const*>& modifiers)
+    {
+        modifiers.clear();
+
+        while (SyntaxToken const* current = this->Current())
+        {
+            if (not IsMemberModifier(current->Kind))
             {
                 break;
             }
 
-            if (current->Is(tokenizer::TokenKind::EndOfFile))
+            modifiers.push_back(this->Next());
+        }
+    }
+
+    constexpr bool IsFunctionParameterModifier(SyntaxKind kind)
+    {
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::RefKeyword:
+        case SyntaxKind::OutKeyword:
+        case SyntaxKind::InKeyword:
+        case SyntaxKind::ValueKeyword:
+        case SyntaxKind::MoveKeyword:
+        case SyntaxKind::ParamsKeyword:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
+
+    void Parser::ParseFunctionParameterModifiers(std::vector<SyntaxToken const*>& modifiers)
+    {
+        modifiers.clear();
+
+        while (SyntaxToken const* current = this->Current())
+        {
+            if (not IsFunctionParameterModifier(current->Kind))
             {
                 break;
             }
 
-            if (current->Is(tokenizer::TokenKind::FunctionKeyword))
+            modifiers.push_back(this->Next());
+        }
+    }
+
+    void Parser::ParseAttributesList(std::vector<AttributeListSyntax const*>& attributes)
+    {
+        attributes.clear();
+
+        while (AttributeListSyntax const* current = this->ParseAttributeList())
+        {
+            attributes.push_back(current);
+        }
+    }
+
+    MemberDeclarationSyntax const* Parser::ParseMemberDeclaration(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
+    {
+        SyntaxToken const* current = this->Current();
+
+        switch (current->Kind) // NOLINT(clang-diagnostic-switch)
+        {
+        case SyntaxKind::NamespaceKeyword:
+            return this->ParseNamespaceDeclaration(attributes, modifiers);
+
+        case SyntaxKind::StructKeyword:
+            return this->ParseStructDeclaration(attributes, modifiers);
+
+        case SyntaxKind::ConceptKeyword:
+            return this->ParseConceptDeclaration(attributes, modifiers);
+
+        case SyntaxKind::ExtendKeyword:
+            return this->ParseExtendDeclaration(attributes, modifiers);
+
+        case SyntaxKind::FunctionKeyword:
+            return this->ParseFunctionDeclaration(attributes, modifiers);
+
+        case SyntaxKind::VarKeyword:
+            return this->ParseFieldDeclaration(attributes, modifiers);
+
+        case SyntaxKind::ConstKeyword:
+            return this->ParseConstantDeclaration(attributes, modifiers);
+
+        default:
+            break;
+        }
+
+        // Member is incomplete.
+        SyntaxNode const* name = nullptr;
+        if (current->Is(SyntaxKind::IdentifierToken))
+        {
+            name = this->ParseIdentifierName();
+        }
+        else
+        {
+            name = this->Next();
+        }
+
+        // FIXME: Report this using function.
+        IncompleteDeclarationSyntax* result = this->_factory->CreateNode<IncompleteDeclarationSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->Type = name;
+        return result;
+    }
+
+    AttributeListSyntax const* Parser::ParseAttributeList()
+    {
+        /*while (SyntaxToken const* current = this->Current())
+        {
+            if (current->Is(SyntaxKind::CloseBracketToken))
             {
-                bitwise::Flags<FunctionModifier> modifiers{};
-                ParseFunctionModifier(modifiers, incomplete);
-
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseFunctionDeclaration(modifiers));
+                break;
             }
-            else if (current->Is(tokenizer::TokenKind::VarKeyword))
+        }*/
+
+        return nullptr;
+    }
+
+    NamespaceDeclarationSyntax const* Parser::ParseNamespaceDeclaration(
+        std::span<AttributeListSyntax const*> attributes,
+        std::span<SyntaxToken const*> modifiers)
+    {
+        SyntaxToken const* tokenNamespace = this->Match(SyntaxKind::NamespaceKeyword);
+        NameSyntax const* name = this->ParseQualifiedName();
+        SyntaxToken const* tokenOpenBrace = this->Match(SyntaxKind::OpenBraceToken);
+
+        std::vector<UsingDirectiveSyntax const*> usings{};
+        std::vector<MemberDeclarationSyntax const*> members{};
+
+        ParseNamespaceBody(tokenOpenBrace, usings, members);
+
+        SyntaxToken const* tokenCloseBrace = this->Match(SyntaxKind::CloseBraceToken);
+        SyntaxToken const* tokenSemicolon = this->TryMatch(SyntaxKind::SemicolonToken);
+
+        NamespaceDeclarationSyntax* result = this->_factory->CreateNode<NamespaceDeclarationSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->NamespaceKeyword = tokenNamespace;
+        result->Name = name;
+        result->OpenBraceToken = tokenOpenBrace;
+        result->Usings = SyntaxListView<UsingDirectiveSyntax>{this->_factory->CreateList(usings)};
+        result->Members = SyntaxListView<MemberDeclarationSyntax>{this->_factory->CreateList(members)};
+        result->CloseBraceToken = tokenCloseBrace;
+        result->SemicolonToken = tokenSemicolon;
+        return result;
+    }
+
+    StructDeclarationSyntax const* Parser::ParseStructDeclaration(
+        std::span<AttributeListSyntax const*> attributes,
+        std::span<SyntaxToken const*> modifiers)
+    {
+        SyntaxToken const* tokenStruct = this->Match(SyntaxKind::StructKeyword);
+        NameSyntax const* name = this->ParseSimpleName();
+        SyntaxToken const* tokenOpenBrace = this->Match(SyntaxKind::OpenBraceToken);
+
+        std::vector<ConstraintSyntax const*> constraints{};
+        std::vector<MemberDeclarationSyntax const*> members{};
+
+        this->ParseTypeBody(constraints, members);
+
+        SyntaxToken const* tokenCloseBrace = this->Match(SyntaxKind::CloseBraceToken);
+        SyntaxToken const* tokenSemicolon = this->TryMatch(SyntaxKind::SemicolonToken);
+
+        StructDeclarationSyntax* result = this->_factory->CreateNode<StructDeclarationSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->StructKeyword = tokenStruct;
+        result->Name = name;
+        result->OpenBraceToken = tokenOpenBrace;
+        result->Members = SyntaxListView<MemberDeclarationSyntax>{this->_factory->CreateList(members)};
+        result->CloseBraceToken = tokenCloseBrace;
+        result->SemicolonToken = tokenSemicolon;
+        return result;
+    }
+
+    ExtendDeclarationSyntax const* Parser::ParseExtendDeclaration(
+        std::span<AttributeListSyntax const*> attributes,
+        std::span<SyntaxToken const*> modifiers)
+    {
+        SyntaxToken const* tokenExtend = this->Match(SyntaxKind::ExtendKeyword);
+        NameSyntax const* name = this->ParseSimpleName();
+        SyntaxToken const* tokenOpenBrace = this->Match(SyntaxKind::OpenBraceToken);
+
+        std::vector<ConstraintSyntax const*> constraints{};
+        std::vector<MemberDeclarationSyntax const*> members{};
+
+        this->ParseTypeBody(constraints, members);
+
+        SyntaxToken const* tokenCloseBrace = this->Match(SyntaxKind::CloseBraceToken);
+        SyntaxToken const* tokenSemicolon = this->TryMatch(SyntaxKind::SemicolonToken);
+
+        ExtendDeclarationSyntax* result = this->_factory->CreateNode<ExtendDeclarationSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->ExtendKeyword = tokenExtend;
+        result->Name = name;
+        result->OpenBraceToken = tokenOpenBrace;
+        result->Members = SyntaxListView<MemberDeclarationSyntax>{this->_factory->CreateList(members)};
+        result->CloseBraceToken = tokenCloseBrace;
+        result->SemicolonToken = tokenSemicolon;
+        return result;
+    }
+
+    ConceptDeclarationSyntax const* Parser::ParseConceptDeclaration(
+        std::span<AttributeListSyntax const*> attributes,
+        std::span<SyntaxToken const*> modifiers)
+    {
+        SyntaxToken const* tokenConcept = this->Match(SyntaxKind::ConceptKeyword);
+        NameSyntax const* name = this->ParseSimpleName();
+        SyntaxToken const* tokenOpenBrace = this->Match(SyntaxKind::OpenBraceToken);
+
+        std::vector<ConstraintSyntax const*> constraints{};
+        std::vector<MemberDeclarationSyntax const*> members{};
+
+        this->ParseTypeBody(constraints, members);
+
+        SyntaxToken const* tokenCloseBrace = this->Match(SyntaxKind::CloseBraceToken);
+        SyntaxToken const* tokenSemicolon = this->TryMatch(SyntaxKind::SemicolonToken);
+
+        ConceptDeclarationSyntax* result = this->_factory->CreateNode<ConceptDeclarationSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->ConceptKeyword = tokenConcept;
+        result->Name = name;
+        result->OpenBraceToken = tokenOpenBrace;
+        result->Members = SyntaxListView<MemberDeclarationSyntax>{this->_factory->CreateList(members)};
+        result->CloseBraceToken = tokenCloseBrace;
+        result->SemicolonToken = tokenSemicolon;
+        return result;
+    }
+
+    UsingDirectiveSyntax const* Parser::ParseUsingDirective()
+    {
+        SyntaxToken const* tokenUsing = this->Match(SyntaxKind::UsingKeyword);
+        NameSyntax const* name = this->ParseQualifiedName();
+        SyntaxToken const* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
+
+        UsingDirectiveSyntax* result = this->_factory->CreateNode<UsingDirectiveSyntax>();
+        result->UsingKeyword = tokenUsing;
+        result->Name = name;
+        result->SemicolonToken = tokenSemicolon;
+        return result;
+    }
+
+    FunctionDeclarationSyntax const* Parser::ParseFunctionDeclaration(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
+    {
+        SyntaxToken const* tokenFunction = this->Match(SyntaxKind::FunctionKeyword);
+        NameSyntax const* name = this->ParseIdentifierName();
+        ParameterListSyntax const* parameters = this->ParseParameterList();
+        SyntaxToken const* tokenArrow = this->TryMatch(SyntaxKind::MinusGreaterThanToken);
+        NameSyntax const* returnType = nullptr;
+
+        if (tokenArrow != nullptr)
+        {
+            returnType = this->ParseQualifiedName();
+        }
+
+        [[maybe_unused]] SyntaxToken const* tokenOpenBrace = this->Match(SyntaxKind::OpenBraceToken);
+        [[maybe_unused]] SyntaxToken const* tokenCloseBrace = this->Match(SyntaxKind::CloseBraceToken);
+
+        FunctionDeclarationSyntax* result = this->_factory->CreateNode<FunctionDeclarationSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->FunctionKeyword = tokenFunction;
+        result->Name = name;
+        result->Parameters = parameters;
+        result->ArrowToken = tokenArrow;
+        result->ReturnType = returnType;
+        result->OpenBraceToken = tokenOpenBrace;
+        result->CloseBraceToken = tokenCloseBrace;
+        return result;
+    }
+
+    TypeClauseSyntax const* Parser::ParseTypeClause()
+    {
+        SyntaxToken const* tokenColon = this->Match(SyntaxKind::ColonToken);
+        NameSyntax const* type = this->ParseQualifiedName();
+
+        TypeClauseSyntax* result = this->_factory->CreateNode<TypeClauseSyntax>();
+        result->ColonToken = tokenColon;
+        result->Identifier = type;
+        return result;
+    }
+
+    ParameterSyntax const* Parser::ParseParameter(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
+    {
+        NameSyntax const* name = this->ParseIdentifierName();
+        TypeClauseSyntax const* typeClause = this->ParseTypeClause();
+
+        ParameterSyntax* result = this->_factory->CreateNode<ParameterSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->Identifier = name;
+        result->Type = typeClause;
+        return result;
+    }
+
+    ParameterListSyntax const* Parser::ParseParameterList()
+    {
+        SyntaxToken const* tokenOpenParen = this->Match(SyntaxKind::OpenParenToken);
+
+        std::vector<SyntaxNode const*> nodes{};
+        std::vector<SyntaxToken const*> modifiers{};
+
+        bool parseNext = true;
+
+        std::vector<AttributeListSyntax const*> attributes{};
+
+        while (parseNext and (this->Current()->Kind != SyntaxKind::CloseParenToken) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
+        {
+            this->ParseAttributesList(attributes);
+
+            this->ParseFunctionParameterModifiers(modifiers);
+
+            ParameterSyntax const* parameter = this->ParseParameter(attributes, modifiers);
+            nodes.push_back(parameter);
+
+            if (SyntaxToken const* comma = this->TryMatch(SyntaxKind::CommaToken))
             {
-                bitwise::Flags<FieldModifier> modifiers{};
-                ParseFieldModifier(modifiers, incomplete);
-
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseFieldDeclaration(modifiers));
-            }
-            else if (current->Is(tokenizer::TokenKind::ConstKeyword))
-            {
-                bitwise::Flags<FieldModifier> modifiers{};
-                ParseFieldModifier(modifiers, incomplete);
-
-                this->ReportIncompleteMember(incomplete, members);
-
-                members.emplace_back(this->ParseConstDeclaration(modifiers));
+                nodes.push_back(comma);
             }
             else
             {
-                // Cannot parse token.
-                incomplete.push_back(current);
-
-                // Advance past token.
-                this->Next();
-
-                // if (this->Current() == current)
-                //{
-                //     // shouldn't this be handled by EOF token?
-                //     // Cannot advance parsing.
-                //     break;
-                // }
+                parseNext = false;
             }
         }
 
-        this->ReportIncompleteMember(incomplete, members);
-    }
+        SyntaxToken const* tokenCloseParen = this->Match(SyntaxKind::CloseParenToken);
 
-    NamespaceDeclaration* Parser::ParseNamespaceDeclaration()
-    {
-        tokenizer::Token* tkNamespace = this->Match(tokenizer::TokenKind::NamespaceKeyword);
-        NameExpression* exprName = this->ParseQualifiedName();
-        tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
-
-        std::vector<UsingStatement*> usings{};
-        std::vector<MemberDeclaration*> members{};
-
-        ParseNamespaceBody(usings, members);
-
-        tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
-
-        NamespaceDeclaration* result = this->_context.NodesAllocator.Emplace<NamespaceDeclaration>();
-        result->NamespaceKeyword = tkNamespace;
-        result->Name = exprName;
-        result->OpenBraceToken = tkOpenBrace;
-        result->Usings = this->_context.NodesAllocator.EmplaceArray<UsingStatement*>(usings);
-        result->Members = this->_context.NodesAllocator.EmplaceArray<MemberDeclaration*>(members);
-        result->CloseBraceToken = tkCloseBrace;
+        ParameterListSyntax* result = this->_factory->CreateNode<ParameterListSyntax>();
+        result->OpenParenToken = tokenOpenParen;
+        result->CloseParenToken = tokenCloseParen;
+        result->Parameters = SeparatedSyntaxListView<ParameterSyntax>{this->_factory->CreateList(nodes)};
         return result;
     }
 
-    StructDeclaration* Parser::ParseStructDeclaration(bitwise::Flags<StructModifier> modifiers)
+    FieldDeclarationSyntax const* Parser::ParseFieldDeclaration(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
     {
-        tokenizer::Token* tkStruct = this->Match(tokenizer::TokenKind::StructKeyword);
-        NameExpression* exprName = this->ParseQualifiedName();
+        (void)attributes;
+        (void)modifiers;
+        [[maybe_unused]] SyntaxToken const* tokenVar = this->Match(SyntaxKind::VarKeyword);
+        [[maybe_unused]] NameSyntax const* name = this->ParseIdentifierName();
 
-        std::vector<MemberDeclaration*> members{};
+        [[maybe_unused]] SyntaxToken const* tokenColon = this->TryMatch(SyntaxKind::ColonToken);
 
-        tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
+        [[maybe_unused]] NameSyntax const* type = nullptr;
 
-        this->ParseEntitytBody(members);
-
-        tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
-        tokenizer::Token* tkSemicolon = this->TryMatch(tokenizer::TokenKind::SemicolonToken);
-
-        StructDeclaration* result = this->_context.NodesAllocator.Emplace<StructDeclaration>();
-        result->Modifiers = modifiers;
-        result->StructKeyword = tkStruct;
-        result->Name = exprName;
-        result->Members = this->_context.NodesAllocator.EmplaceArray<MemberDeclaration*>(members);
-        result->OpenBraceToken = tkOpenBrace;
-        result->CloseBraceToken = tkCloseBrace;
-        result->SemicolonToken = tkSemicolon;
-        return result;
-    }
-
-    ExtendDeclaration* Parser::ParseExtendDeclaration(bitwise::Flags<ExtendModifier> modifiers)
-    {
-        tokenizer::Token* tkExtend = this->Match(tokenizer::TokenKind::ExtendKeyword);
-        NameExpression* exprName = this->ParseQualifiedName();
-
-        std::vector<tokenizer::Token*> incomplete{};
-        std::vector<MemberDeclaration*> members{};
-
-        tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
-
-        this->ParseEntitytBody(members);
-
-        tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
-        [[maybe_unused]] tokenizer::Token* tkSemicolon = this->TryMatch(tokenizer::TokenKind::SemicolonToken);
-
-        ExtendDeclaration* result = this->_context.NodesAllocator.Emplace<ExtendDeclaration>();
-        result->Modifiers = modifiers;
-        result->ExtendKeyword = tkExtend;
-        result->Name = exprName;
-        result->Members = this->_context.NodesAllocator.EmplaceArray<MemberDeclaration*>(members);
-        result->OpenBraceToken = tkOpenBrace;
-        result->CloseBraceToken = tkCloseBrace;
-        return result;
-    }
-
-    ConceptDeclaration* Parser::ParseConceptDeclaration(bitwise::Flags<ConceptModifier> modifiers)
-    {
-        tokenizer::Token* tkConcept = this->Match(tokenizer::TokenKind::ConceptKeyword);
-        NameExpression* exprName = this->ParseQualifiedName();
-
-        std::vector<tokenizer::Token*> incomplete{};
-        std::vector<MemberDeclaration*> members{};
-
-        tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
-
-        this->ParseEntitytBody(members);
-
-        tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
-        [[maybe_unused]] tokenizer::Token* tkSemicolon = this->TryMatch(tokenizer::TokenKind::SemicolonToken);
-
-        ConceptDeclaration* result = this->_context.NodesAllocator.Emplace<ConceptDeclaration>();
-        result->Modifiers = modifiers;
-        result->ConceptKeyword = tkConcept;
-        result->Name = exprName;
-        result->Members = this->_context.NodesAllocator.EmplaceArray<MemberDeclaration*>(members);
-        result->OpenBraceToken = tkOpenBrace;
-        result->CloseBraceToken = tkCloseBrace;
-        return result;
-    }
-
-
-
-    void Parser::ParseParenthesizedFunctionParameters(SelfParameterDeclaration*& selfParameter, std::vector<FormalParameterDeclaration*>& formalParameters, VariadicParameterDeclaration*& variadicParameter)
-    {
-        (void)selfParameter;
-        (void)formalParameters;
-        (void)variadicParameter;
-
-        [[maybe_unused]] tokenizer::Token* tkOpenParen = this->Match(tokenizer::TokenKind::OpenParenToken);
-
-        while (tokenizer::Token* current = this->Current())
+        if (tokenColon != nullptr)
         {
-            if (current->Is(tokenizer::TokenKind::CloseParenToken))
-            {
-                break;
-            }
-
-            if (current->Is(tokenizer::TokenKind::EndOfFile))
-            {
-                break;
-            }
-
-            // Possible cases:
-            // ```
-
+            type = this->ParseQualifiedName();
         }
 
-        [[maybe_unused]] tokenizer::Token* tkCloseParen = this->TryMatch(tokenizer::TokenKind::CloseParenToken);
-    }
+        [[maybe_unused]] NameSyntax const* value = nullptr;
 
-    FunctionDeclaration* Parser::ParseFunctionDeclaration(bitwise::Flags<FunctionModifier> modifiers)
-    {
-        tokenizer::Token* tkFunction = this->Match(tokenizer::TokenKind::FunctionKeyword);
-        IdentifierNameExpression* exprName = this->ParseIdentifierNameExpression();
+        [[maybe_unused]] SyntaxToken const* tokenEquals = this->TryMatch(SyntaxKind::EqualsToken);
 
-        tokenizer::Token* tkOpenParen = this->Match(tokenizer::TokenKind::OpenParenToken);
-        tokenizer::Token* tkCloseParen = this->Match(tokenizer::TokenKind::CloseParenToken);
-        tokenizer::Token* tkArrow = this->Match(tokenizer::TokenKind::MinusGreaterThanToken);
-        NameExpression* exprReturnType = this->ParseQualifiedName();
-        [[maybe_unused]] tokenizer::Token* tkOpenBrace = this->Match(tokenizer::TokenKind::OpenBraceToken);
-        [[maybe_unused]] tokenizer::Token* tkCloseBrace = this->Match(tokenizer::TokenKind::CloseBraceToken);
+        if (tokenEquals != nullptr)
+        {
+            value = this->ParseQualifiedName();
+        }
 
-        FunctionDeclaration* result = this->_context.NodesAllocator.Emplace<FunctionDeclaration>();
-        result->Modifiers = modifiers;
-        result->FunctionKeyword = tkFunction;
-        result->Name = exprName;
-        // result->BeginParametersToken{};
-        // result->GenericParameters{};
-        // result->EndParametersToken{};
+        [[maybe_unused]] SyntaxToken const* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
 
-        result->BeginFormalParameters = tkOpenParen;
-        // result->SelfParameter{};
-        // result->FormalParameters{};
-        // result->VariadicParameter{};
-        result->EndFormalParameters = tkCloseParen;
-        result->ArrowToken = tkArrow;
-        result->ReturnType = exprReturnType;
+        FieldDeclarationSyntax const* result = this->_factory->CreateNode<FieldDeclarationSyntax>();
         return result;
     }
 
-    FieldDeclaration* Parser::ParseFieldDeclaration(bitwise::Flags<FieldModifier> modifiers)
+    ConstantDeclarationSyntax const* Parser::ParseConstantDeclaration(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
     {
-        tokenizer::Token* tkVar = this->Match(tokenizer::TokenKind::VarKeyword);
-        IdentifierNameExpression* exprName = this->ParseIdentifierNameExpression();
+        (void)attributes;
+        (void)modifiers;
+        [[maybe_unused]] SyntaxToken const* tokenVar = this->Match(SyntaxKind::ConstKeyword);
+        [[maybe_unused]] NameSyntax const* name = this->ParseIdentifierName();
 
-        tokenizer::Token* tkColon = this->TryMatch(tokenizer::TokenKind::ColonToken);
+        [[maybe_unused]] SyntaxToken const* tokenColon = this->TryMatch(SyntaxKind::ColonToken);
 
-        NameExpression* exprType = nullptr;
+        [[maybe_unused]] NameSyntax const* type = nullptr;
 
-        if (tkColon != nullptr)
+        if (tokenColon != nullptr)
         {
-            exprType = this->ParseQualifiedName();
+            type = this->ParseQualifiedName();
         }
 
-        Expression* exprValue = nullptr;
+        [[maybe_unused]] NameSyntax const* value = nullptr;
 
-        tokenizer::Token* tkEquals = this->TryMatch(tokenizer::TokenKind::EqualsToken);
+        [[maybe_unused]] SyntaxToken const* tokenEquals = this->TryMatch(SyntaxKind::EqualsToken);
 
-        if (tkEquals != nullptr)
+        if (tokenEquals != nullptr)
         {
-            // expression here
-            exprValue = this->ParseQualifiedName();
+            value = this->ParseQualifiedName();
         }
 
-        tokenizer::Token* tkSemicolon = this->Match(tokenizer::TokenKind::SemicolonToken);
+        [[maybe_unused]] SyntaxToken const* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
 
-        FieldDeclaration* result = this->_context.NodesAllocator.Emplace<FieldDeclaration>();
-        result->Modifiers = modifiers;
-        result->VarToken = tkVar;
-        result->Name = exprName;
-        result->ColonToken = tkColon;
-        result->Type = exprType;
-        result->EqualsToken = tkEquals;
-        result->Initializer = exprValue;
-        result->SemicolonToken = tkSemicolon;
+        ConstantDeclarationSyntax const* result = this->_factory->CreateNode<ConstantDeclarationSyntax>();
         return result;
     }
 
-    ConstantDeclaration* Parser::ParseConstDeclaration(bitwise::Flags<FieldModifier> modifiers)
+    NameSyntax const* Parser::ParseQualifiedName()
     {
-        tokenizer::Token* tkVar = this->Match(tokenizer::TokenKind::ConstKeyword);
-        IdentifierNameExpression* exprName = this->ParseIdentifierNameExpression();
-
-        tokenizer::Token* tkColon = this->TryMatch(tokenizer::TokenKind::ColonToken);
-
-        NameExpression* exprType = nullptr;
-
-        if (tkColon != nullptr)
-        {
-            exprType = this->ParseQualifiedName();
-        }
-
-        Expression* exprValue = nullptr;
-
-        tokenizer::Token* tkEquals = this->TryMatch(tokenizer::TokenKind::EqualsToken);
-
-        if (tkEquals != nullptr)
-        {
-            // expression here
-            exprValue = this->ParseQualifiedName();
-        }
-
-        tokenizer::Token* tkSemicolon = this->Match(tokenizer::TokenKind::SemicolonToken);
-
-        ConstantDeclaration* result = this->_context.NodesAllocator.Emplace<ConstantDeclaration>();
-        result->Modifiers = modifiers;
-        result->VarToken = tkVar;
-        result->Name = exprName;
-        result->ColonToken = tkColon;
-        result->Type = exprType;
-        result->EqualsToken = tkEquals;
-        result->Initializer = exprValue;
-        result->SemicolonToken = tkSemicolon;
-        return result;
-    }
-
-    UsingStatement* Parser::ParseUsingStatement()
-    {
-        tokenizer::Token* tkUsing = this->Match(tokenizer::TokenKind::UsingKeyword);
-        NameExpression* exprName = this->ParseQualifiedName();
-        tokenizer::Token* tkSemicolon = this->Match(tokenizer::TokenKind::SemicolonToken);
-
-        UsingStatement* result = this->_context.NodesAllocator.Emplace<UsingStatement>();
-        result->UsingKeyword = tkUsing;
-        result->Name = exprName;
-        result->Semicolon = tkSemicolon;
-        return result;
-    }
-
-    IdentifierNameExpression* Parser::ParseIdentifierNameExpression()
-    {
-        tokenizer::Token* tkRaw = this->Match(tokenizer::TokenKind::Identifier);
-        tokenizer::IdentifierToken* tkIdentifier = tkRaw->TryCast<tokenizer::IdentifierToken>();
-        return this->_context.NodesAllocator.Emplace<IdentifierNameExpression>(tkIdentifier);
-    }
-
-    NameExpression* Parser::ParseQualifiedName()
-    {
-        // TODO: Introduce matching based on token type to reduce casting. Static analysis doesn't know about type checking here.
-        tokenizer::Token* tkLeftIdentifier = this->Match(tokenizer::TokenKind::Identifier);
-        NameExpression* exprLeft = this->_context.NodesAllocator.Emplace<IdentifierNameExpression>(static_cast<tokenizer::IdentifierToken*>(tkLeftIdentifier));
+        NameSyntax const* left = this->ParseSimpleName();
 
         do
         {
-            tokenizer::Token* const tkDot = this->Current();
-            tokenizer::Token* const tkRightIdentifier = this->Peek(1);
+            SyntaxToken const* tokenDot = this->Peek(0);
+            SyntaxToken const* tokenRight = this->Peek(1);
 
-            if (tkDot->Is(tokenizer::TokenKind::DotToken) and tkRightIdentifier->Is(tokenizer::TokenKind::Identifier))
+            if ((tokenDot->Kind == SyntaxKind::DotToken) and (tokenRight->Kind == SyntaxKind::IdentifierToken))
             {
-                this->Next();
+                // Consume dot token.
                 this->Next();
 
-                SimpleNameExpression* exprRight = this->_context.NodesAllocator.Emplace<IdentifierNameExpression>(static_cast<tokenizer::IdentifierToken*>(tkRightIdentifier));
+                SimpleNameSyntax const* right = this->ParseSimpleName();
+                QualifiedNameSyntax* qualified = this->_factory->CreateNode<QualifiedNameSyntax>();
+                qualified->Left = left;
+                qualified->DotToken = tokenDot;
+                qualified->Right = right;
 
-                exprLeft = this->_context.NodesAllocator.Emplace<QualifiedNameExpression>(exprLeft, tkDot, exprRight);
+                left = qualified;
             }
             else
             {
@@ -730,14 +695,33 @@ namespace weave::syntax
             }
         } while (true);
 
-        return exprLeft;
+        return left;
     }
-}
 
-#include "weave/syntax2/Parser.hxx"
-#include "weave/syntax2/SyntaxTree.hxx"
+    SimpleNameSyntax const* Parser::ParseSimpleName()
+    {
+        return this->ParseIdentifierName();
+    }
 
-namespace weave::syntax2
-{
-    
+    IdentifierNameSyntax const* Parser::ParseIdentifierName()
+    {
+        SyntaxToken const* identifier = this->Match(SyntaxKind::IdentifierToken);
+        IdentifierNameSyntax* result = this->_factory->CreateNode<IdentifierNameSyntax>();
+        result->Identifier = identifier;
+        return result;
+    }
+
+    void Parser::ReportIncompleteMember(
+        std::span<SyntaxToken const*> modifiers,
+        std::span<AttributeListSyntax const*> attributes,
+        TypeSyntax const* type,
+        std::vector<MemberDeclarationSyntax const*>& members)
+    {
+        IncompleteDeclarationSyntax* result = this->_factory->CreateNode<IncompleteDeclarationSyntax>();
+        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        result->Type = type;
+        members.emplace_back(result);
+    }
+
 }

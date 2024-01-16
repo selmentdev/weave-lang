@@ -1,94 +1,137 @@
 #pragma once
-#include "weave/tokenizer/Tokenizer.hxx"
-#include "weave/tokenizer/TokenizerContext.hxx"
+#include "weave/source/SourceText.hxx"
+#include "weave/source/Diagnostic.hxx"
 #include "weave/syntax/SyntaxNode.hxx"
-#include "weave/syntax/Modifiers.hxx"
+#include "weave/syntax/SyntaxToken.hxx"
+#include "weave/syntax/SyntaxFactory.hxx"
 
 namespace weave::syntax
 {
-    class ParserContext final
-    {
-    public:
-        // Owns memory allocated by tokenizer.
-        tokenizer::TokenizerContext TokenizerContext{};
-
-        // Owns memory allocated by parser.
-        memory::LinearAllocator NodesAllocator{128u << 10u};
-    };
-
-    class Parser final
+    class Parser
     {
     private:
-        std::vector<tokenizer::Token*> _tokens{};
-        source::DiagnosticSink& _diagnostic;
+        source::DiagnosticSink* _diagnostic{};
+        SyntaxFactory* _factory{};
+        std::vector<SyntaxToken const*> _tokens{};
         size_t _index{};
-        ParserContext& _context;
 
     public:
         explicit Parser(
-            source::DiagnosticSink& diagnostic,
-            source::SourceText const& source,
-            ParserContext& context);
+            source::DiagnosticSink* diagnostic,
+            SyntaxFactory* factory,
+            source::SourceText const& source);
 
-        [[nodiscard]] CompilationUnitDeclaration* Parse();
-
-    private:
-        [[nodiscard]] tokenizer::Token* Peek(size_t offset) const;
-
-        [[nodiscard]] tokenizer::Token* Current() const;
-
-        tokenizer::Token* Next();
-
-        [[nodiscard]] tokenizer::Token* Match(tokenizer::TokenKind kind);
-
-        [[nodiscard]] tokenizer::Token* MatchOptional(tokenizer::TokenKind kind);
-
-        [[nodiscard]] tokenizer::Token* TryMatch(tokenizer::TokenKind kind);
+    public:
+        [[nodiscard]] CompilationUnitSyntax const* Parse();
 
     private:
-        CompilationUnitDeclaration* ParseCompilationUnit();
+        [[nodiscard]] SyntaxToken const* Peek(size_t offset) const;
+        [[nodiscard]] SyntaxToken const* Current() const;
+        SyntaxToken const* Next();
+        [[nodiscard]] SyntaxToken const* Match(SyntaxKind kind);
+        [[nodiscard]] SyntaxToken const* MatchOptional(SyntaxKind kind);
+        [[nodiscard]] SyntaxToken const* TryMatch(SyntaxKind kind);
+        [[nodiscard]] SyntaxToken const* SkipToken(SyntaxKind kind, bool consume = true);
+
+    private:
+        struct ResetPoint
+        {
+            friend class Parser;
+        private:
+            size_t _index{};
+
+        public:
+            explicit constexpr ResetPoint(size_t index)
+                : _index(index)
+            {
+            }
+        };
+
+        [[nodiscard]] constexpr ResetPoint GetResetPoint() const
+        {
+            return ResetPoint{this->_index}; 
+        }
+
+        void Reset(ResetPoint const& resetPoint)
+        {
+            this->_index = resetPoint._index;
+        }
+
+    private:
+        [[nodiscard]] CompilationUnitSyntax const* ParseCompilationUnit();
+
+        void ParseTypeBody(
+            std::vector<ConstraintSyntax const*>& constraints,
+            std::vector<MemberDeclarationSyntax const*>& members);
 
         void ParseNamespaceBody(
-            std::vector<UsingStatement*>& usings,
-            std::vector<MemberDeclaration*>& members);
+            SyntaxToken const* openBraceOrSemicolon,
+            std::vector<UsingDirectiveSyntax const*>& usings,
+            std::vector<MemberDeclarationSyntax const*>& members);
 
-        void ParseEntitytBody(
-            std::vector<MemberDeclaration*>& members);
+        void ParseMemberModifiers(
+            std::vector<SyntaxToken const*>& modifiers);
 
-        void ParseFieldModifier(bitwise::Flags<FieldModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
-        void ParseFunctionModifier(bitwise::Flags<FunctionModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
-        void ParseStructModifier(bitwise::Flags<StructModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
-        void ParseExtendModifier(bitwise::Flags<ExtendModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
-        void ParseConceptModifier(bitwise::Flags<ConceptModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
-        void ParseFormalParameterModifier(bitwise::Flags<FormalParameterModifier>& modifiers, std::vector<tokenizer::Token*>& tokens) const;
+        void ParseFunctionParameterModifiers(
+            std::vector<SyntaxToken const*>& modifiers);
+
+        void ParseAttributesList(
+            std::vector<AttributeListSyntax const*>& attributes);
+
+        MemberDeclarationSyntax const* ParseMemberDeclaration(
+            std::span<AttributeListSyntax const*> attributes,
+            std::span<SyntaxToken const*> modifiers);
+
+        AttributeListSyntax const* ParseAttributeList();
+
+        NamespaceDeclarationSyntax const* ParseNamespaceDeclaration(
+            std::span<AttributeListSyntax const*> attributes,
+            std::span<SyntaxToken const*> modifiers);
+
+        StructDeclarationSyntax const* ParseStructDeclaration(
+            std::span<AttributeListSyntax const*> attributes,
+            std::span<SyntaxToken const*> modifiers);
+
+        ExtendDeclarationSyntax const* ParseExtendDeclaration(
+            std::span<AttributeListSyntax const*> attributes,
+            std::span<SyntaxToken const*> modifiers);
+
+        ConceptDeclarationSyntax const* ParseConceptDeclaration(
+            std::span<AttributeListSyntax const*> attributes,
+            std::span<SyntaxToken const*> modifiers);
+
+        UsingDirectiveSyntax const* ParseUsingDirective();
+
+        FunctionDeclarationSyntax const* ParseFunctionDeclaration(
+            std::span<AttributeListSyntax const*> attributes,
+            std::span<SyntaxToken const*> modifiers);
+
+        TypeClauseSyntax const* ParseTypeClause();
+
+        ParameterSyntax const* ParseParameter(
+            std::span<AttributeListSyntax const*> attributes,
+            std::span<SyntaxToken const*> modifiers);
+
+        ParameterListSyntax const* ParseParameterList();
+
+        FieldDeclarationSyntax const* ParseFieldDeclaration(
+            std::span<AttributeListSyntax const*> attributes,
+            std::span<SyntaxToken const*> modifiers);
+
+        ConstantDeclarationSyntax const* ParseConstantDeclaration(
+            std::span<AttributeListSyntax const*> attributes,
+            std::span<SyntaxToken const*> modifiers);
+
+        NameSyntax const* ParseQualifiedName();
+
+        SimpleNameSyntax const* ParseSimpleName();
+
+        IdentifierNameSyntax const* ParseIdentifierName();
 
         void ReportIncompleteMember(
-            std::vector<tokenizer::Token*>& tokens,
-            std::vector<MemberDeclaration*>& members);
-
-        NamespaceDeclaration* ParseNamespaceDeclaration();
-
-        StructDeclaration* ParseStructDeclaration(bitwise::Flags<StructModifier> modifiers);
-
-        ExtendDeclaration* ParseExtendDeclaration(bitwise::Flags<ExtendModifier> modifiers);
-
-        ConceptDeclaration* ParseConceptDeclaration(bitwise::Flags<ConceptModifier> modifiers);
-
-        void ParseParenthesizedFunctionParameters(
-            SelfParameterDeclaration*& selfParameter,
-            std::vector<FormalParameterDeclaration*>& formalParameters,
-            VariadicParameterDeclaration*& variadicParameter);
-
-        FunctionDeclaration* ParseFunctionDeclaration(bitwise::Flags<FunctionModifier> modifiers);
-
-        FieldDeclaration* ParseFieldDeclaration(bitwise::Flags<FieldModifier> modifiers);
-
-        ConstantDeclaration* ParseConstDeclaration(bitwise::Flags<FieldModifier> modifiers);
-
-        UsingStatement* ParseUsingStatement();
-
-        IdentifierNameExpression* ParseIdentifierNameExpression();
-
-        NameExpression* ParseQualifiedName();
+            std::span<SyntaxToken const*> modifiers,
+            std::span<AttributeListSyntax const*> attributes,
+            TypeSyntax const* type,
+            std::vector<MemberDeclarationSyntax const*>& members);
     };
 }

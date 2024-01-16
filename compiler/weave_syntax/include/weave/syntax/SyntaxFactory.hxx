@@ -1,9 +1,9 @@
 #pragma once
 #include "weave/memory/TypedLinearAllocator.hxx"
 #include "weave/stringpool/StringPool.hxx"
-#include "weave/syntax2/SyntaxToken.hxx"
+#include "weave/syntax/SyntaxToken.hxx"
 
-namespace weave::syntax2
+namespace weave::syntax
 {
     class SyntaxFactory final
     {
@@ -30,6 +30,23 @@ namespace weave::syntax2
             return this->SyntaxNodeAllocator.Emplace<NodeT>(std::forward<ArgsT>(args)...);
         }
 
+        template <typename ContainerT>
+        SyntaxList* CreateList(ContainerT const& builder)
+        {
+            if (builder.empty())
+            {
+                return nullptr;
+            }
+
+            std::span<SyntaxNode const*> const elements = this->SyntaxNodeAllocator.EmplaceArray<SyntaxNode const*>(builder.size());
+            for (size_t i = 0; i < builder.size(); ++i)
+            {
+                elements[i] = static_cast<SyntaxNode const*>(builder[i]);
+            }
+
+            return this->CreateNode<SyntaxList>(elements);
+        }
+
     public:
         SyntaxTriviaRange const* CreateTriviaRange(
             std::span<SyntaxTrivia const> leading,
@@ -47,7 +64,9 @@ namespace weave::syntax2
 
         SyntaxToken* CreateMissingToken(
             SyntaxKind kind,
-            source::SourceSpan const& source);
+            source::SourceSpan const& source,
+            std::span<SyntaxTrivia const> leadingTrivia,
+            std::span<SyntaxTrivia const> trailingTrivia);
 
         CharacterLiteralSyntaxToken* CreateCharacterLiteralToken(
             source::SourceSpan const& source,
@@ -85,6 +104,4 @@ namespace weave::syntax2
             std::span<SyntaxTrivia const> trailingTrivia,
             std::string_view value);
     };
-
-    std::unique_ptr<SyntaxFactory> CreateSyntaxFactory();
 }

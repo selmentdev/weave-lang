@@ -2,163 +2,182 @@
 
 namespace weave::syntax
 {
-    SyntaxWalker::~SyntaxWalker()
-    {
-    }
-
-    void SyntaxWalker::VisitCompilationUnitDeclaration(CompilationUnitDeclaration* node)
+    void SyntaxWalker::OnCompilationUnitSyntax(CompilationUnitSyntax const* node)
     {
         ++this->Depth;
 
-        for (auto m : node->Usings)
-        {
-            this->Visit(m);
-        }
+        this->Dispatch(node->AttributeLists.GetNode());
+        this->Dispatch(node->Usings.GetNode());
+        this->Dispatch(node->Members.GetNode());
+        this->Dispatch(node->EndOfFileToken);
 
-        for (auto m : node->Members)
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnSyntaxList(SyntaxList const* node)
+    {
+        ++this->Depth;
+
+        size_t const count = node->GetCount();
+        SyntaxNode const** elements = node->GetElements();
+
+        for (size_t i = 0; i < count; ++i)
         {
-            this->Visit(m);
+            this->Dispatch(elements[i]);
         }
 
         --this->Depth;
     }
 
-    void SyntaxWalker::VisitNamespaceDeclaration(NamespaceDeclaration* node)
+    void SyntaxWalker::OnNamespaceDeclarationSyntax(NamespaceDeclarationSyntax const* node)
     {
         ++this->Depth;
 
-        this->Visit(node->Name);
-
-        for (auto m : node->Usings)
-        {
-            this->Visit(m);
-        }
-
-        for (auto n : node->Members)
-        {
-            this->Visit(n);
-        }
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->NamespaceKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->Usings.GetNode());
+        this->Dispatch(node->Members.GetNode());
+        this->Dispatch(node->CloseBraceToken);
+        this->Dispatch(node->SemicolonToken);
 
         --this->Depth;
     }
 
-    void SyntaxWalker::VisitUsingStatement(UsingStatement* node)
+    void SyntaxWalker::OnStructDeclarationSyntax(StructDeclarationSyntax const* node)
     {
         ++this->Depth;
 
-        this->Visit(node->Name);
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->StructKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->Members.GetNode());
+        this->Dispatch(node->CloseBraceToken);
+        this->Dispatch(node->SemicolonToken);
 
         --this->Depth;
     }
 
-    void SyntaxWalker::VisitQualifiedNameExpression(QualifiedNameExpression* node)
+    void SyntaxWalker::OnConceptDeclarationSyntax(ConceptDeclarationSyntax const* node)
     {
         ++this->Depth;
 
-        this->Visit(node->Left);
-        this->Visit(node->Right);
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->ConceptKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->Members.GetNode());
+        this->Dispatch(node->CloseBraceToken);
+        this->Dispatch(node->SemicolonToken);
 
         --this->Depth;
     }
 
-    void SyntaxWalker::VisitStructDeclaration(StructDeclaration* node)
+    void SyntaxWalker::OnExtendDeclarationSyntax(ExtendDeclarationSyntax const* node)
     {
         ++this->Depth;
 
-        this->Visit(node->Name);
-
-        for (auto m : node->Members)
-        {
-            this->Visit(m);
-        }
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->ExtendKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->Members.GetNode());
+        this->Dispatch(node->CloseBraceToken);
+        this->Dispatch(node->SemicolonToken);
 
         --this->Depth;
     }
 
-
-    void SyntaxWalker::VisitConceptDeclaration(ConceptDeclaration* node)
+    void SyntaxWalker::OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax const* node)
     {
         ++this->Depth;
 
-        this->Visit(node->Name);
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Type);
 
-        for (auto m : node->Members)
-        {
-            this->Visit(m);
-        }
+        --this->Depth;
+    }
+    void SyntaxWalker::OnQualifiedNameSyntax(QualifiedNameSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Left);
+        this->Dispatch(node->DotToken);
+        this->Dispatch(node->Right);
 
         --this->Depth;
     }
 
-    void SyntaxWalker::VisitExtendDeclaration(ExtendDeclaration* node)
+    void SyntaxWalker::OnFunctionDeclarationSyntax(FunctionDeclarationSyntax const* node)
     {
         ++this->Depth;
 
-        this->Visit(node->Name);
-
-        for (auto m : node->Members)
-        {
-            this->Visit(m);
-        }
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->FunctionKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->Parameters);
+        this->Dispatch(node->ArrowToken);
+        this->Dispatch(node->ReturnType);
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->CloseBraceToken);
 
         --this->Depth;
     }
-    void SyntaxWalker::VisitFunctionDeclaration(FunctionDeclaration* node)
+    void SyntaxWalker::OnUsingDirectiveSyntax(UsingDirectiveSyntax const* node)
     {
         ++this->Depth;
 
-        this->Visit(node->Name);
-
-        if (node->ReturnType)
-        {
-            this->Visit(node->ReturnType);
-        }
+        this->Dispatch(node->UsingKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->SemicolonToken);
 
         --this->Depth;
     }
-
-    void SyntaxWalker::VisitFieldDeclaration(FieldDeclaration* node)
+    void SyntaxWalker::OnIdentifierNameSyntax(IdentifierNameSyntax const* node)
     {
         ++this->Depth;
 
-        this->Visit(node->Name);
-
-        if (node->Type != nullptr)
-        {
-            this->Visit(node->Type);
-        }
-
-        if (node->Initializer != nullptr)
-        {
-            this->Visit(node->Initializer);
-        }
+        this->Dispatch(node->Identifier);
 
         --this->Depth;
     }
-
-    void SyntaxWalker::VisitConstantDeclaration(ConstantDeclaration* node)
+    void SyntaxWalker::OnParameterListSyntax(ParameterListSyntax const* node)
     {
         ++this->Depth;
 
-        this->Visit(node->Name);
-
-        if (node->Type != nullptr)
-        {
-            this->Visit(node->Type);
-        }
-
-        if (node->Initializer != nullptr)
-        {
-            this->Visit(node->Initializer);
-        }
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Parameters.GetNode());
+        this->Dispatch(node->CloseParenToken);
 
         --this->Depth;
     }
-}
+    void SyntaxWalker::OnParameterSyntax(ParameterSyntax const* node)
+    {
+        ++this->Depth;
 
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Identifier);
+        this->Dispatch(node->Type);
 
-#include "weave/syntax2/Visitor.hxx"
+        --this->Depth;
+    }
 
-namespace weave::syntax2
-{
+    void SyntaxWalker::OnTypeClauseSyntax(TypeClauseSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->ColonToken);
+        this->Dispatch(node->Identifier);
+
+        --this->Depth;
+    }
 }

@@ -1,93 +1,150 @@
 #include "weave/syntax/SyntaxKind.hxx"
+#include "weave/hash/Fnv1a.hxx"
 #include "weave/bugcheck/Assert.hxx"
 
 #include <utility>
 #include <array>
 #include <algorithm>
 
+// Implements SyntaxKind to Name mapping
 namespace weave::syntax
 {
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
+    constexpr std::string_view name##_NameLookup[] \
+    {
+#define WEAVE_SYNTAX(name, value, spelling) #name,
+#define WEAVE_SYNTAX_END_GROUP(name, value) \
+    } \
+    ;
+#include "weave/syntax/SyntaxKind.inl"
+
     std::string_view SyntaxKindTraits::GetName(SyntaxKind value)
     {
-        static constexpr std::string_view lookup[]{
-#define WEAVE_SYNTAX_NODE(name, spelling) #name,
-#include "weave/syntax/SyntaxKind.inl"
-        };
+        auto const as_integer = std::to_underlying(value);
 
-        size_t const index = std::to_underlying(value);
-        WEAVE_ASSERT(index < std::size(lookup));
-        return lookup[index];
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
+    { \
+        if ((SyntaxKindTraits::name##_First <= as_integer) and (as_integer <= SyntaxKindTraits::name##_Last)) \
+        { \
+            return name##_NameLookup[as_integer - SyntaxKindTraits::name##_First]; \
+        } \
     }
+#include "weave/syntax/SyntaxKind.inl"
+
+        return "<unknown>";
+    }
+
+    std::string_view SyntaxKindTraits::GetCategoryName(SyntaxKind value)
+    {
+        auto const as_integer = std::to_underlying(value);
+
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
+    { \
+        if ((SyntaxKindTraits::name##_First <= as_integer) and (as_integer <= SyntaxKindTraits::name##_Last)) \
+        { \
+            return #name; \
+        } \
+    }
+#include "weave/syntax/SyntaxKind.inl"
+
+        return "<unknown>";
+    }
+}
+
+// Implements SyntaxKind to Spelling mapping
+namespace weave::syntax
+{
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
+    constexpr std::string_view name##_SpellingLookup[] \
+    {
+#define WEAVE_SYNTAX(name, value, spelling) spelling,
+#define WEAVE_SYNTAX_END_GROUP(name, value) \
+    } \
+    ;
+#include "weave/syntax/SyntaxKind.inl"
 
     std::string_view SyntaxKindTraits::GetSpelling(SyntaxKind value)
     {
-        static constexpr std::string_view lookup[]{
-#define WEAVE_SYNTAX_NODE(name, spelling) spelling,
-#include "weave/syntax/SyntaxKind.inl"
-        };
+        auto const as_integer = std::to_underlying(value);
 
-        size_t const index = std::to_underlying(value);
-        WEAVE_ASSERT(index < std::size(lookup));
-        return lookup[index];
+#define WEAVE_SYNTAX_BEGIN_GROUP(name, value) \
+    { \
+        if ((SyntaxKindTraits::name##_First <= as_integer) and (as_integer <= SyntaxKindTraits::name##_Last)) \
+        { \
+            return name##_SpellingLookup[as_integer - SyntaxKindTraits::name##_First]; \
+        } \
     }
-
-    bool SyntaxKindTraits::IsAbstract(SyntaxKind value)
-    {
-        switch (value) // NOLINT(clang-diagnostic-switch-enum)
-        {
-#define WEAVE_SYNTAX_ABSTRACT_NODE(name, spelling) case SyntaxKind::name:
 #include "weave/syntax/SyntaxKind.inl"
-            return true;
 
-        default:
-            break;
+        return "<unknown>";
+    }
+}
+
+namespace weave::syntax
+{
+    struct KeywordMappingEntry
+    {
+        std::string_view Spelling;
+        SyntaxKind Kind;
+        uint64_t Hash;
+    };
+
+    struct KeywordMapping
+    {
+        std::array<KeywordMappingEntry, SyntaxKindTraits::Keyword_Count> Entries{{
+#define WEAVE_SYNTAX_KEYWORD(name, value, spelling) {spelling, SyntaxKind::name, hash::Fnv1a64::FromString(spelling)},
+#include "weave/syntax/SyntaxKind.inl"
+        }};
+
+        constexpr KeywordMapping()
+        {
+            std::sort(Entries.begin(), Entries.end(), [](KeywordMappingEntry const& lhs, KeywordMappingEntry const& rhs)
+                {
+                    if (lhs.Hash == rhs.Hash)
+                    {
+                        if (lhs.Spelling.size() == rhs.Spelling.size())
+                        {
+                            return lhs.Spelling < rhs.Spelling;
+                        }
+
+                        return lhs.Spelling.size() < rhs.Spelling.size();
+                    }
+
+                    return lhs.Hash < rhs.Hash;
+                });
         }
 
-        return false;
-    }
-
-    bool SyntaxKindTraits::IsDeclaration(SyntaxKind value)
-    {
-        switch (value) // NOLINT(clang-diagnostic-switch-enum)
+        [[nodiscard]] constexpr std::optional<SyntaxKind> TryMap(std::string_view value) const
         {
-#define WEAVE_SYNTAX_DECLARATION(name, spelling) case SyntaxKind::name:
-#include "weave/syntax/SyntaxKind.inl"
-            return true;
+            uint64_t const hash = hash::Fnv1a64::FromString(value);
 
-        default:
-            break;
+            auto const end = this->Entries.end();
+
+            auto it = std::lower_bound(
+                this->Entries.begin(),
+                this->Entries.end(),
+                hash,
+                [&](KeywordMappingEntry const& e, uint64_t h)
+                {
+                    return e.Hash < h;
+                });
+
+            while ((it != end) and (it->Hash == hash))
+            {
+                if (it->Spelling == value)
+                {
+                    return it->Kind;
+                }
+                ++it;
+            }
+
+            return {};
         }
+    };
 
-        return false;
-    }
-
-    bool SyntaxKindTraits::IsExpression(SyntaxKind value)
+    std::optional<SyntaxKind> SyntaxKindTraits::TryMapIdentifierToKeyword(std::string_view value)
     {
-        switch (value) // NOLINT(clang-diagnostic-switch-enum)
-        {
-#define WEAVE_SYNTAX_EXPRESSION(name, spelling) case SyntaxKind::name:
-#include "weave/syntax/SyntaxKind.inl"
-            return true;
-
-        default:
-            break;
-        }
-
-        return false;
-    }
-
-    bool SyntaxKindTraits::IsStatement(SyntaxKind value)
-    {
-        switch (value) // NOLINT(clang-diagnostic-switch-enum)
-        {
-#define WEAVE_SYNTAX_STATEMENT(name ,spelling) case SyntaxKind::name:
-#include "weave/syntax/SyntaxKind.inl"
-            return true;
-
-        default:
-            break;
-        }
-
-        return false;
+        static constexpr KeywordMapping c_KeywordsMapping{};
+        return c_KeywordsMapping.TryMap(value);
     }
 }

@@ -1,10 +1,10 @@
 #pragma once
-#include "weave/syntax2/SyntaxNode.hxx"
+#include "weave/syntax/SyntaxNode.hxx"
 #include "weave/bitwise/Flag.hxx"
 
 #include <span>
 
-namespace weave::syntax2
+namespace weave::syntax
 {
     struct SyntaxTrivia final
     {
@@ -87,14 +87,14 @@ namespace weave::syntax2
 
     struct IntegerLiteralSyntaxToken final : SyntaxToken
     {
-        static constexpr bool InstanceOf(SyntaxKind kind)
+        static constexpr bool ClassOf(SyntaxKind kind)
         {
             return kind == SyntaxKind::IntegerLiteralToken;
         }
 
-        static constexpr bool InstanceOf(SyntaxToken const* token)
+        static constexpr bool ClassOf(SyntaxNode const* token)
         {
-            return InstanceOf(token->Kind);
+            return ClassOf(token->Kind);
         }
 
         LiteralPrefixKind Prefix;
@@ -131,14 +131,14 @@ namespace weave::syntax2
 
     struct FloatLiteralSyntaxToken final : SyntaxToken
     {
-        static constexpr bool InstanceOf(SyntaxKind kind)
+        static constexpr bool ClassOf(SyntaxKind kind)
         {
             return kind == SyntaxKind::FloatLiteralToken;
         }
 
-        static constexpr bool InstanceOf(SyntaxToken const* token)
+        static constexpr bool ClassOf(SyntaxNode const* token)
         {
-            return InstanceOf(token->Kind);
+            return ClassOf(token->Kind);
         }
 
         LiteralPrefixKind Prefix;
@@ -175,14 +175,14 @@ namespace weave::syntax2
 
     struct StringLiteralSyntaxToken final : SyntaxToken
     {
-        static constexpr bool InstanceOf(SyntaxKind kind)
+        static constexpr bool ClassOf(SyntaxKind kind)
         {
             return kind == SyntaxKind::StringLiteralToken;
         }
 
-        static constexpr bool InstanceOf(SyntaxToken const* token)
+        static constexpr bool ClassOf(SyntaxNode const* token)
         {
-            return InstanceOf(token->Kind);
+            return ClassOf(token->Kind);
         }
 
         LiteralPrefixKind Prefix;
@@ -214,14 +214,14 @@ namespace weave::syntax2
 
     struct CharacterLiteralSyntaxToken final : SyntaxToken
     {
-        static constexpr bool InstanceOf(SyntaxKind kind)
+        static constexpr bool ClassOf(SyntaxKind kind)
         {
             return kind == SyntaxKind::CharacterLiteralToken;
         }
 
-        static constexpr bool InstanceOf(SyntaxToken const* token)
+        static constexpr bool ClassOf(SyntaxNode const* token)
         {
-            return InstanceOf(token->Kind);
+            return ClassOf(token->Kind);
         }
 
         LiteralPrefixKind Prefix;
@@ -253,14 +253,14 @@ namespace weave::syntax2
 
     struct IdentifierSyntaxToken final : SyntaxToken
     {
-        static constexpr bool InstanceOf(SyntaxKind kind)
+        static constexpr bool ClassOf(SyntaxKind kind)
         {
             return kind == SyntaxKind::IdentifierToken;
         }
 
-        static constexpr bool InstanceOf(SyntaxToken const* token)
+        static constexpr bool ClassOf(SyntaxNode const* token)
         {
-            return InstanceOf(token->Kind);
+            return ClassOf(token->Kind);
         }
 
         std::string_view Identifier;
@@ -284,4 +284,6 @@ namespace weave::syntax2
         {
         }
     };
+
+    using SyntaxTokenHandle = SyntaxToken const*;
 }

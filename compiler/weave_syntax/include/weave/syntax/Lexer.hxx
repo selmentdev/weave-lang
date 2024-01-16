@@ -1,10 +1,10 @@
 #pragma once
-#include "weave/syntax2/SyntaxToken.hxx"
+#include "weave/syntax/SyntaxToken.hxx"
 #include "weave/source/Diagnostic.hxx"
 #include "weave/source/SourceCursor.hxx"
 #include "weave/source/SourceText.hxx"
 
-namespace weave::syntax2
+namespace weave::syntax
 {
     class SyntaxFactory;
 

@@ -1,9 +1,0 @@
-target_sources(weave_tokenizer
-    PRIVATE
-        "CharTraits.cxx"
-        "Tokenizer.cxx"
-        "TokenizerContext.cxx"
-        "Token.cxx"
-        "TokenKind.cxx"
-        "TriviaKind.cxx"
-)

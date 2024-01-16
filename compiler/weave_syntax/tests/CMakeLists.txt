@@ -1,6 +1,7 @@
 add_executable(weave_syntax_tests
-    Main.cxx
-    SyntaxKind.cxx
+    "Main.cxx"
+    "SyntaxKind.cxx"
+    "Visitor.cxx"
 )
 
 target_link_libraries(weave_syntax_tests PUBLIC weave_syntax)

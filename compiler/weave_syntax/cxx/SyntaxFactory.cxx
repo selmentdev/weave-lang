@@ -1,7 +1,7 @@
-#include "weave/syntax2/SyntaxFactory.hxx"
+#include "weave/syntax/SyntaxFactory.hxx"
 #include "weave/bugcheck/Assert.hxx"
 
-namespace weave::syntax2
+namespace weave::syntax
 {
     SyntaxTriviaRange const SyntaxFactory::EmptyTriviaRange{};
 
@@ -58,13 +58,16 @@ namespace weave::syntax2
 
     SyntaxToken* SyntaxFactory::CreateMissingToken(
         SyntaxKind kind,
-        source::SourceSpan const& source)
+        source::SourceSpan const& source,
+        std::span<SyntaxTrivia const> leadingTrivia,
+        std::span<SyntaxTrivia const> trailingTrivia)
     {
+        SyntaxTriviaRange const* trivia = this->CreateTriviaRange(leadingTrivia, trailingTrivia);
         if (kind == SyntaxKind::CharacterLiteralToken)
         {
             return this->CharacterLiteralAllocator.Emplace(
                 source,
-                &EmptyTriviaRange,
+                trivia,
                 LiteralPrefixKind::Default,
                 char32_t{},
                 SyntaxTokenFlags::Missing);
@@ -74,7 +77,7 @@ namespace weave::syntax2
         {
             return this->FloatLiteralAllocator.Emplace(
                 source,
-                &EmptyTriviaRange,
+                trivia,
                 LiteralPrefixKind::Default,
                 std::string_view{},
                 std::string_view{},
@@ -85,7 +88,7 @@ namespace weave::syntax2
         {
             return this->IntegerLiteralAllocator.Emplace(
                 source,
-                &EmptyTriviaRange,
+                trivia,
                 LiteralPrefixKind::Default,
                 std::string_view{},
                 std::string_view{},
@@ -96,7 +99,7 @@ namespace weave::syntax2
         {
             return this->IdentifierAllocator.Emplace(
                 source,
-                &EmptyTriviaRange,
+                trivia,
                 std::string_view{},
                 SyntaxTokenFlags::Missing);
         }
@@ -104,7 +107,7 @@ namespace weave::syntax2
         return this->TokenAllocator.Emplace(
             kind,
             source,
-            &EmptyTriviaRange,
+            trivia,
             SyntaxTokenFlags::Missing);
     }
 
@@ -179,10 +182,4 @@ namespace weave::syntax2
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
             this->Strings.Get(value));
     }
-
-    std::unique_ptr<SyntaxFactory> CreateSyntaxFactory()
-    {
-        return std::make_unique<SyntaxFactory>();
-    }
-
 }

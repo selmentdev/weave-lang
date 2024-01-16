@@ -7,11 +7,8 @@
 
 #include "weave/core/String.hxx"
 #include "weave/CommandLine.hxx"
-#include "weave/tokenizer/Token.hxx"
 #include "weave/filesystem/FileSystem.hxx"
 #include "weave/source/Diagnostic.hxx"
-#include "weave/tokenizer/Tokenizer.hxx"
-#include "weave/tokenizer/TokenizerContext.hxx"
 #include "weave/time/Instant.hxx"
 #include "weave/session/CodeGeneratorOptions.hxx"
 #include "weave/session/ExperimentalOptions.hxx"
@@ -35,7 +32,9 @@
 
 #include "weave/filesystem/Utilities.hxx"
 
-#include "weave/syntax2/Lexer.hxx"
+#include "weave/syntax/Lexer.hxx"
+#include "weave/syntax/Parser.hxx"
+#include "weave/syntax/Visitor.hxx"
 
 #include <atomic>
 
@@ -176,211 +175,160 @@ int main(int argc, const char* argv[])
         {
             source::SourceText text{std::move(*file)};
             source::DiagnosticSink diagnostic{"<source>"};
+            syntax::SyntaxFactory factory{};
 
-            syntax2::Lexer ll{diagnostic, text, syntax2::LexerTriviaMode::All};
+            syntax::Parser pp{&diagnostic, &factory, text};
 
-            syntax2::TokenInfo ti{};
-            while (ll.Lex(ti))
+            class TokenPrintingWalker : public syntax::SyntaxWalker
             {
-                if (ti.Kind == syntax2::SyntaxKind::EndOfFile)
+            private:
+                source::SourceText const& _text;
+
+            public:
+                TokenPrintingWalker(source::SourceText const& text)
+                    : _text{text}
                 {
-                    break;
                 }
 
-                auto ps = text.GetLineSpan(ti.Source);
-                fmt::println(
-                    "LL2: {} {} {} `{}` `{}` `{}` `{}:{}-{}:{}`",
-                    syntax2::SyntaxKindTraits::GetCategoryName(ti.Kind),
-                    syntax2::SyntaxKindTraits::GetName(ti.Kind),
-                    syntax2::SyntaxKindTraits::GetSpelling(ti.Kind),
-                    text.GetText(ti.Source),
-                    ti.Value,
-                    ti.Suffix,
-                    ps.Start.Line,
-                    ps.Start.Column,
-                    ps.End.Line,
-                    ps.End.Column
-                    );
-            }
-
-            syntax::ParserContext context{};
-            syntax::Parser parser{diagnostic, text, context};
-            [[maybe_unused]] syntax::CompilationUnitDeclaration* cu = parser.Parse();
-
-            WEAVE_ASSERT(cu != nullptr);
-
-            struct V final : weave::syntax::SyntaxVisitor<V, std::string>
-            {
-                std::string VisitDefault(syntax::SyntaxNode* node)
+                void OnToken(syntax::SyntaxToken const* token) override
                 {
-                    return std::string{syntax::SyntaxKindTraits::GetSpelling(node->Kind())};
-                }
+                    for (auto tt : token->GetLeadingTrivia())
+                    {
+                        fmt::print("{}", _text.GetText(tt.Source));
+                    }
+                    
+                    fmt::print("{}", _text.GetText(token->Source));
 
-                std::string VisitCompilationUnitDeclaration(weave::syntax::CompilationUnitDeclaration* node) override
-                {
-                    SyntaxVisitor::VisitCompilationUnitDeclaration(node);
-
-                    return "CompilationUnit (overridden)";
+                    for (auto tt : token->GetTrailingTrivia())
+                    {
+                        fmt::print("{}", _text.GetText(tt.Source));
+                    }
                 }
             };
 
-            struct W final : weave::syntax::SyntaxWalker
+            class GX : public syntax::SyntaxWalker
             {
-                V v{};
-
-                void PrintIndent()
+            private:
+                void Indent()
                 {
-                    fmt::print("{}", std::string(this->Depth * 2, ' '));
+                    fmt::print("{:{}}", "", this->Depth * 4);
                 }
 
-                void VisitCompilationUnitDeclaration(weave::syntax::CompilationUnitDeclaration* node) override
+            public:
+                GX(source::SourceText& text)
+                    : _text{text}
                 {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
+                }
+                source::SourceText& _text;
 
-                    SyntaxWalker::VisitCompilationUnitDeclaration(node);
+            public:
+                void OnCompilationUnitSyntax(syntax::CompilationUnitSyntax const* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnCompilationUnitSyntax(node);
                 }
 
-                void VisitStructDeclaration(syntax::StructDeclaration* node) override
+                void OnNamespaceDeclarationSyntax(syntax::NamespaceDeclarationSyntax const* node) override
                 {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitStructDeclaration(node);
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnNamespaceDeclarationSyntax(node);
                 }
 
-                void VisitExtendDeclaration(syntax::ExtendDeclaration* node) override
+                void OnStructDeclarationSyntax(syntax::StructDeclarationSyntax const* node) override
                 {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitExtendDeclaration(node);
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnStructDeclarationSyntax(node);
                 }
 
-                void VisitConceptDeclaration(syntax::ConceptDeclaration* node) override
+                void OnConceptDeclarationSyntax(syntax::ConceptDeclarationSyntax const* node) override
                 {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitConceptDeclaration(node);
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnConceptDeclarationSyntax(node);
                 }
 
-                void VisitFunctionDeclaration(syntax::FunctionDeclaration* node) override
+                void OnExtendDeclarationSyntax(syntax::ExtendDeclarationSyntax const* node) override
                 {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitFunctionDeclaration(node);
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnExtendDeclarationSyntax(node);
                 }
 
-                void VisitFieldDeclaration(syntax::FieldDeclaration* node) override
+                void OnDefault(syntax::SyntaxNode const* node) override
                 {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitFieldDeclaration(node);
+                    Indent();
+                    fmt::println("{} {}", __func__, syntax::SyntaxKindTraits::GetSpelling(node->Kind));
+                    SyntaxWalker::OnDefault(node);
                 }
 
-                void VisitConstantDeclaration(syntax::ConstantDeclaration* node) override
+                void OnSyntaxList(syntax::SyntaxList const* node) override
                 {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitConstantDeclaration(node);
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnSyntaxList(node);
                 }
 
-                void VisitNamespaceDeclaration(syntax::NamespaceDeclaration* node) override
+                void OnToken(syntax::SyntaxToken const* token) override
                 {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitNamespaceDeclaration(node);
-                }
-
-                void VisitUsingStatement(syntax::UsingStatement* node) override
-                {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitUsingStatement(node);
-                }
-
-                void VisitQualifiedNameExpression(syntax::QualifiedNameExpression* node) override
-                {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitQualifiedNameExpression(node);
-                }
-
-                void VisitSimpleNameExpression(syntax::SimpleNameExpression* node) override
-                {
-                    PrintIndent();
-                    fmt::println("{}: {}", v.Visit(node), node->IdentifierToken->GetIdentifier());
-
-                    SyntaxWalker::VisitSimpleNameExpression(node);
-                }
-
-                void VisitGenericNameExpression(syntax::GenericNameExpression* node) override
-                {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    SyntaxWalker::VisitGenericNameExpression(node);
-                }
-
-                void VisitIdentifierNameExpression(syntax::IdentifierNameExpression* node) override
-                {
-                    PrintIndent();
-                    fmt::println("{}: {}", v.Visit(node), node->IdentifierToken->GetIdentifier());
-
-                    SyntaxWalker::VisitIdentifierNameExpression(node);
-                }
-
-                void VisitIncompleteMemberDeclaration(syntax::IncompleteMemberDeclaration* node) override
-                {
-                    PrintIndent();
-                    fmt::println("{}", v.Visit(node));
-
-                    ++Depth;
-
-                    for (auto tk : node->Tokens)
+#if false
+                    for (auto t : token->GetLeadingTrivia())
                     {
-                        PrintIndent();
-
-                        if (auto id = tk->TryCast<tokenizer::IdentifierToken>())
-                        {
-                            fmt::println("{}", id->GetIdentifier());
-                        }
-                        else if (auto str = tk->TryCast<tokenizer::StringLiteralToken>())
-                        {
-                            fmt::println("\"{}\"", str->GetValue());
-                        }
-                        else if (auto chr = tk->TryCast<tokenizer::CharacterLiteralToken>())
-                        {
-                            fmt::println("{}", static_cast<uint32_t>(chr->GetValue()));
-                        }
-                        else if (auto num = tk->TryCast<tokenizer::IntegerLiteralToken>())
-                        {
-                            fmt::println("{}", num->GetValue());
-                        }
-                        else if (auto flt = tk->TryCast<tokenizer::FloatLiteralToken>())
-                        {
-                            fmt::println("{}", flt->GetValue());
-                        }
-                        else
-                        {
-                            fmt::println("{}", tokenizer::TokenKindTraits::GetName(tk->GetKind()));
-                        }
+                        Indent();
+                        fmt::println("{}::LeadingTrivia `{}`", __func__, _text.GetText(t.Source));
                     }
 
-                    --Depth;
+                    Indent();
+                    fmt::println("{} `{}`", __func__, syntax::SyntaxKindTraits::GetName(token->Kind), _text.GetText(token->Source));
 
-                    SyntaxWalker::VisitIncompleteMemberDeclaration(node);
+                    for (auto t : token->GetLeadingTrivia())
+                    {
+                        Indent();
+                        fmt::println("{}::TrailingTrivia `{}`", __func__, _text.GetText(t.Source));
+                    }
+#else
+                    Indent();
+                    fmt::println("{} `{}`", __func__, _text.GetText(token->Source));
+#endif
                 }
+
+                void OnIncompleteDeclarationSyntax(syntax::IncompleteDeclarationSyntax const* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnIncompleteDeclarationSyntax(node);
+                }
+
+                void OnIdentifierNameSyntax(syntax::IdentifierNameSyntax const* node) override
+                {
+                    syntax::IdentifierSyntaxToken const* id = node->Identifier->TryCast<syntax::IdentifierSyntaxToken>();
+
+                    Indent();
+                    fmt::println("{} `{}`", __func__, id->Identifier);
+                    // SyntaxWalker::OnIdentifierNameSyntax(node);
+                }
+
+                // void OnQualifiedNameSyntax(syntax::QualifiedNameSyntax const* node) override
+                //{
+                //     Indent();
+                //     fmt::println("{} `.`", __func__);
+                //
+                //     SyntaxWalker::OnQualifiedNameSyntax(node);
+                // }
             };
-            W w{};
-            w.Visit(cu);
+
+            auto cu2 = pp.Parse();
+            fmt::println("-------");
+            {
+                TokenPrintingWalker printer{text};
+                printer.Dispatch(cu2);
+            }
+            fmt::println("-------");
+            GX gx{text};
+            gx.Dispatch(cu2);
+            fmt::println("-------");
 
             std::vector<std::string> diag{};
             source::FormatDiagnostics(diag, text, diagnostic, 1000);
@@ -409,15 +357,15 @@ int main(int argc, const char* argv[])
 
     if (GetProcessMemoryInfo(hProcess, &pmc, sizeof(pmc)))
     {
-        fmt::println("PageFaultCount: {}",                  pmc.PageFaultCount);
-        fmt::println("PeakWorkingSetSize: {} ({})",         filesystem::FormatBinarySize(pmc.PeakWorkingSetSize), pmc.PeakWorkingSetSize);
-        fmt::println("WorkingSetSize: {} ({})",             filesystem::FormatBinarySize(pmc.WorkingSetSize), pmc.WorkingSetSize);
-        fmt::println("QuotaPeakPagedPoolUsage: {} ({})",    filesystem::FormatBinarySize(pmc.QuotaPeakPagedPoolUsage), pmc.QuotaPeakPagedPoolUsage);
-        fmt::println("QuotaPagedPoolUsage: {} ({})",        filesystem::FormatBinarySize(pmc.QuotaPagedPoolUsage), pmc.QuotaPagedPoolUsage);
+        fmt::println("PageFaultCount: {}", pmc.PageFaultCount);
+        fmt::println("PeakWorkingSetSize: {} ({})", filesystem::FormatBinarySize(pmc.PeakWorkingSetSize), pmc.PeakWorkingSetSize);
+        fmt::println("WorkingSetSize: {} ({})", filesystem::FormatBinarySize(pmc.WorkingSetSize), pmc.WorkingSetSize);
+        fmt::println("QuotaPeakPagedPoolUsage: {} ({})", filesystem::FormatBinarySize(pmc.QuotaPeakPagedPoolUsage), pmc.QuotaPeakPagedPoolUsage);
+        fmt::println("QuotaPagedPoolUsage: {} ({})", filesystem::FormatBinarySize(pmc.QuotaPagedPoolUsage), pmc.QuotaPagedPoolUsage);
         fmt::println("QuotaPeakNonPagedPoolUsage: {} ({})", filesystem::FormatBinarySize(pmc.QuotaPeakNonPagedPoolUsage), pmc.QuotaPeakNonPagedPoolUsage);
-        fmt::println("QuotaNonPagedPoolUsage: {} ({})",     filesystem::FormatBinarySize(pmc.QuotaNonPagedPoolUsage), pmc.QuotaNonPagedPoolUsage);
-        fmt::println("PagefileUsage: {} ({})",              filesystem::FormatBinarySize(pmc.PagefileUsage), pmc.PagefileUsage);
-        fmt::println("PeakPagefileUsage: {} ({})",          filesystem::FormatBinarySize(pmc.PeakPagefileUsage), pmc.PeakPagefileUsage);
+        fmt::println("QuotaNonPagedPoolUsage: {} ({})", filesystem::FormatBinarySize(pmc.QuotaNonPagedPoolUsage), pmc.QuotaNonPagedPoolUsage);
+        fmt::println("PagefileUsage: {} ({})", filesystem::FormatBinarySize(pmc.PagefileUsage), pmc.PagefileUsage);
+        fmt::println("PeakPagefileUsage: {} ({})", filesystem::FormatBinarySize(pmc.PeakPagefileUsage), pmc.PeakPagefileUsage);
     }
 #endif
 

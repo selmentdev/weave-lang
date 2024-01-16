@@ -1,7 +1,7 @@
-#include "weave/syntax2/SyntaxToken.hxx"
+#include "weave/syntax/SyntaxToken.hxx"
 #include "weave/hash/Fnv1a.hxx"
 
-namespace weave::syntax2
+namespace weave::syntax
 {
     static_assert(sizeof(SyntaxTrivia) == 12);
     static_assert(std::is_trivially_destructible_v<SyntaxTrivia>);

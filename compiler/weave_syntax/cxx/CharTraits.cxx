@@ -1,6 +1,6 @@
-#include "weave/syntax2/CharTraits.hxx"
+#include "weave/syntax/CharTraits.hxx"
 
-namespace weave::syntax2
+namespace weave::syntax
 {
     bool CharTraits::IsIdentifierStart(char32_t c)
     {

@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace weave::tokenizer
+namespace weave::syntax
 {
     class CharTraits final
     {

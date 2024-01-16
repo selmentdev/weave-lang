@@ -1,5 +1,4 @@
 #include "weave/platform/Compiler.hxx"
-#include "weave/syntax/Declaration.hxx"
 #include "weave/syntax/Parser.hxx"
 
 #include <array>
@@ -35,10 +34,10 @@ namespace helpers
         using namespace weave;
         source::SourceText text{std::string{source}};
         source::DiagnosticSink diagnostic{"<source>"};
+        syntax::SyntaxFactory factory{};
 
-        syntax::ParserContext context{};
-        syntax::Parser parser{diagnostic, text, context};
-        [[maybe_unused]] syntax::CompilationUnitDeclaration* cu = parser.Parse();
+        syntax::Parser parser{&diagnostic, &factory, text};
+        [[maybe_unused]] syntax::CompilationUnitSyntax const* cu = parser.Parse();
 
         REQUIRE(diagnostic.Items.size() == expectedDiagnostics.size());
 

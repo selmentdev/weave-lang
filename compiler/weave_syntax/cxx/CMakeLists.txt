@@ -1,15 +1,11 @@
 target_sources(weave_syntax
     PRIVATE
-        "SyntaxKind.cxx"
-        "SyntaxKind2.cxx"
-        "Parser.cxx"
-        "SyntaxNode.cxx"
-        "SyntaxToken.cxx"
-        "Declaration.cxx"
-        "Expression.cxx"
-        "Statement.cxx"
-        "Visitor.cxx"
         "CharTraits.cxx"
         "Lexer.cxx"
+        "Parser.cxx"
         "SyntaxFactory.cxx"
+        "SyntaxKind.cxx"
+        "SyntaxNode.cxx"
+        "SyntaxToken.cxx"
+        "Visitor.cxx"
 )

@@ -1,11 +1,11 @@
-#include "weave/syntax2/Lexer.hxx"
-#include "weave/syntax2/CharTraits.hxx"
-#include "weave/syntax2/SyntaxFactory.hxx"
+#include "weave/syntax/Lexer.hxx"
+#include "weave/syntax/CharTraits.hxx"
+#include "weave/syntax/SyntaxFactory.hxx"
 #include "weave/Unicode.hxx"
 
 #include <array>
 
-namespace weave::syntax2::impl
+namespace weave::syntax::impl
 {
     constexpr bool AppendDecCharacter(uint64_t& result, char32_t c)
     {
@@ -50,7 +50,7 @@ namespace weave::syntax2::impl
     }
 }
 
-namespace weave::syntax2
+namespace weave::syntax
 {
     bool Lexer::Lex(TokenInfo& token)
     {
@@ -155,7 +155,7 @@ namespace weave::syntax2
 
         if (this->_cursor.IsEnd())
         {
-            token.Kind = SyntaxKind::EndOfFile;
+            token.Kind = SyntaxKind::EndOfFileToken;
             token.Source = this->_cursor.GetSpan();
             return true;
         }
@@ -1105,7 +1105,7 @@ namespace weave::syntax2
     }
 }
 
-namespace weave::syntax2
+namespace weave::syntax
 {
     LiteralPrefixKind Lexer::TryReadStringPrefix()
     {
