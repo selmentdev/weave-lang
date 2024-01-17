@@ -194,14 +194,41 @@ int main(int argc, const char* argv[])
                 {
                     for (auto tt : token->GetLeadingTrivia())
                     {
+                        if (tt.Kind == syntax::SyntaxKind::SkippedTokenTrivia)
+                        {
+                            fmt::print("\u001b[31m");
+                        }
+
                         fmt::print("{}", _text.GetText(tt.Source));
+
+                        if (tt.Kind == syntax::SyntaxKind::SkippedTokenTrivia)
+                        {
+                            fmt::print("\u001b[0m");
+                        }
                     }
-                    
-                    fmt::print("{}", _text.GetText(token->Source));
+
+                    if ((token->Kind == syntax::SyntaxKind::OpenBraceToken) or (token->Kind == syntax::SyntaxKind::CloseBraceToken))
+                    {
+                        fmt::print("{}", syntax::SyntaxKindTraits::GetSpelling(token->Kind));
+                    }
+                    else
+                    {
+                        fmt::print("{}", _text.GetText(token->Source));
+                    }
 
                     for (auto tt : token->GetTrailingTrivia())
                     {
+                        if (tt.Kind == syntax::SyntaxKind::SkippedTokenTrivia)
+                        {
+                            fmt::print("\u001b[31m");
+                        }
+
                         fmt::print("{}", _text.GetText(tt.Source));
+
+                        if (tt.Kind == syntax::SyntaxKind::SkippedTokenTrivia)
+                        {
+                            fmt::print("\u001b[0m");
+                        }
                     }
                 }
             };

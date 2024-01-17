@@ -369,4 +369,28 @@ namespace weave::syntax
 
         return false;
     }
+
+    bool SyntaxFacts::IsInvalidSubexpression(SyntaxKind kind)
+    {
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::BreakKeyword:
+        case SyntaxKind::ContinueKeyword:
+        case SyntaxKind::CaseKeyword:
+        case SyntaxKind::ReturnKeyword:
+        case SyntaxKind::WhileKeyword:
+        case SyntaxKind::DoKeyword:
+        case SyntaxKind::ForKeyword:
+        case SyntaxKind::SwitchKeyword:
+        case SyntaxKind::UsingKeyword:
+        case SyntaxKind::VarKeyword:
+        case SyntaxKind::LetKeyword:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
 }

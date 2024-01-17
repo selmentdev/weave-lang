@@ -46,6 +46,11 @@ namespace weave::source
         {
             return (this->Start.Offset <= other.Offset) and (other.Offset <= this->End.Offset);
         }
+
+        [[nodiscard]] constexpr SourceSpan WithZeroLength() const
+        {
+            return {this->Start, this->Start};
+        }
     };
 
     [[nodiscard]] constexpr SourceSpan Combine(SourceSpan const& s1, SourceSpan const& s2)

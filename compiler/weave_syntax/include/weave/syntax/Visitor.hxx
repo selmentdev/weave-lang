@@ -101,5 +101,13 @@ namespace weave::syntax
         void OnArgumentSyntax(ArgumentSyntax const* node) override;
         void OnBracketedArgumentListSyntax(BracketedArgumentListSyntax const* node) override;
         void OnElementAccessExpressionSyntax(ElementAccessExpressionSyntax const* node) override;
+
+        void OnBlockStatementSyntax(BlockStatementSyntax const* node) override;
+        void OnExpressionStatementSyntax(ExpressionStatementSyntax const* node) override;
+        void OnIfStatementSyntax(IfStatementSyntax const* node) override;
+        void OnReturnStatementSyntax(ReturnStatementSyntax const* node) override;
+        void OnElseClauseSyntax(ElseClauseSyntax const* node) override;
+        void OnVariableDeclarationSyntax(VariableDeclarationSyntax const* node) override;
+        void OnConditionalExpressionSyntax(ConditionalExpressionSyntax const* node) override;
     };
 }

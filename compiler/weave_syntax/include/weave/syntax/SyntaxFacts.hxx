@@ -45,5 +45,7 @@ namespace weave::syntax
         static Precedence GetPrecedence(SyntaxKind operation);
 
         static bool IsName(SyntaxKind kind);
+
+        static bool IsInvalidSubexpression(SyntaxKind kind);
     };
 }

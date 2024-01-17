@@ -126,8 +126,7 @@ namespace weave::syntax
         this->Dispatch(node->Parameters);
         this->Dispatch(node->ArrowToken);
         this->Dispatch(node->ReturnType);
-        this->Dispatch(node->OpenBraceToken);
-        this->Dispatch(node->CloseBraceToken);
+        this->Dispatch(node->Body);
 
         --this->Depth;
     }
@@ -234,9 +233,9 @@ namespace weave::syntax
     {
         ++this->Depth;
 
-        this->Dispatch(node->Identifier);
+        this->Dispatch(node->Left);
         this->Dispatch(node->OperatorToken);
-        this->Dispatch(node->Expression);
+        this->Dispatch(node->Right);
 
         --this->Depth;
     }
@@ -342,6 +341,85 @@ namespace weave::syntax
 
         this->Dispatch(node->Expression);
         this->Dispatch(node->ArgumentList);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnBlockStatementSyntax(BlockStatementSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->Statements.GetNode());
+        this->Dispatch(node->CloseBraceToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnExpressionStatementSyntax(ExpressionStatementSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->SemicolonToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnIfStatementSyntax(IfStatementSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->IfKeyword);
+        this->Dispatch(node->Condition);
+        this->Dispatch(node->ThenStatement);
+        this->Dispatch(node->ElseClause);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnReturnStatementSyntax(ReturnStatementSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->ReturnKeyword);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->SemicolonToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnElseClauseSyntax(ElseClauseSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->ElseKeyword);
+        this->Dispatch(node->Statement);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnVariableDeclarationSyntax(VariableDeclarationSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->VarKeyword);
+        this->Dispatch(node->Identifier);
+        this->Dispatch(node->TypeClause);
+        this->Dispatch(node->Initializer);
+        this->Dispatch(node->SemicolonToken);
+
+        --this->Depth;
+    }
+    void SyntaxWalker::OnConditionalExpressionSyntax(ConditionalExpressionSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->Condition);
+        this->Dispatch(node->QuestionToken);
+        this->Dispatch(node->WhenTrue);
+        this->Dispatch(node->ColonToken);
+        this->Dispatch(node->WhenFalse);
 
         --this->Depth;
     }

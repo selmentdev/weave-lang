@@ -118,8 +118,9 @@ namespace weave::syntax
         ParameterListSyntax const* Parameters{};
         SyntaxToken const* ArrowToken{};
         NameSyntax const* ReturnType{};
-        SyntaxToken const* OpenBraceToken{};
-        SyntaxToken const* CloseBraceToken{};
+
+        // TODO: Need to reppresent the body as an expression syntax / block syntax.
+        BlockStatementSyntax const* Body{};
 
     public:
         explicit constexpr FunctionDeclarationSyntax()
@@ -490,20 +491,15 @@ namespace weave::syntax
         }
     };
 
-    class ConditionalExpressionSyntax final : public ExpressionSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(ConditionalExpressionSyntax);
-    };
-
     class AssignmentExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(AssignmentExpressionSyntax);
 
     public:
         SyntaxKind Operation{};
-        NameSyntax const* Identifier{};
+        ExpressionSyntax const* Left{};
         SyntaxToken const* OperatorToken{};
-        ExpressionSyntax const* Expression{};
+        ExpressionSyntax const* Right{};
 
     public:
         explicit constexpr AssignmentExpressionSyntax()
@@ -591,6 +587,24 @@ namespace weave::syntax
         }
     };
 
+    class ConditionalExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ConditionalExpressionSyntax);
+
+    public:
+        ExpressionSyntax const* Condition{};
+        SyntaxToken const* QuestionToken{};
+        ExpressionSyntax const* WhenTrue{};
+        SyntaxToken const* ColonToken{};
+        ExpressionSyntax const* WhenFalse{};
+
+    public:
+        explicit constexpr ConditionalExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::ConditionalExpressionSyntax}
+        {
+        }
+    };
+
     class TypeSyntax : public ExpressionSyntax
     {
     public:
@@ -602,7 +616,7 @@ namespace weave::syntax
 
     class PredefinedTypeSyntax : public TypeSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(PredefinedTypeSyntax);
+        // WEAVE_DEFINE_SYNTAX_NODE(PredefinedTypeSyntax);
 
     public:
         SyntaxToken const* Keyword{};
@@ -700,8 +714,111 @@ namespace weave::syntax
         }
     };
 
-    // If-statement
-    // Else-clause
+    class StatementSyntax : public SyntaxNode
+    {
+    public:
+        explicit constexpr StatementSyntax(SyntaxKind kind)
+            : SyntaxNode{kind}
+        {
+        }
+    };
+
+    class VariableDeclarationSyntax : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(VariableDeclarationSyntax);
+
+    public:
+        SyntaxToken const* VarKeyword{};
+        IdentifierNameSyntax const* Identifier{};
+        TypeClauseSyntax const* TypeClause{};
+        EqualsValueClauseSyntax const* Initializer{};
+        SyntaxToken const* SemicolonToken{};
+
+    public:
+        explicit constexpr VariableDeclarationSyntax()
+            : StatementSyntax{SyntaxKind::VariableDeclarationSyntax}
+        {
+        }
+    };
+
+    class ReturnStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ReturnStatementSyntax);
+
+    public:
+        SyntaxToken const* ReturnKeyword{};
+        ExpressionSyntax const* Expression{};
+        SyntaxToken const* SemicolonToken{};
+
+    public:
+        explicit constexpr ReturnStatementSyntax()
+            : StatementSyntax{SyntaxKind::ReturnStatementSyntax}
+        {
+        }
+    };
+
+    class ExpressionStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ExpressionStatementSyntax);
+
+    public:
+        ExpressionSyntax const* Expression{};
+        SyntaxToken const* SemicolonToken{};
+
+    public:
+        explicit constexpr ExpressionStatementSyntax()
+            : StatementSyntax{SyntaxKind::ExpressionStatementSyntax}
+        {
+        }
+    };
+
+    class BlockStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(BlockStatementSyntax);
+
+    public:
+        SyntaxToken const* OpenBraceToken{};
+        SyntaxListView<StatementSyntax> Statements{};
+        SyntaxToken const* CloseBraceToken{};
+
+    public:
+        explicit constexpr BlockStatementSyntax()
+            : StatementSyntax{SyntaxKind::BlockStatementSyntax}
+        {
+        }
+    };
+
+    class IfStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(IfStatementSyntax);
+
+    public:
+        SyntaxToken const* IfKeyword{};
+        ExpressionSyntax const* Condition{};
+        StatementSyntax const* ThenStatement{};
+        ElseClauseSyntax const* ElseClause{};
+
+    public:
+        explicit constexpr IfStatementSyntax()
+            : StatementSyntax{SyntaxKind::IfStatementSyntax}
+        {
+        }
+    };
+
+    class ElseClauseSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ElseClauseSyntax);
+
+    public:
+        SyntaxToken const* ElseKeyword{};
+        BlockStatementSyntax const* Statement{};
+
+    public:
+        explicit constexpr ElseClauseSyntax()
+            : SyntaxNode{SyntaxKind::ElseClauseSyntax}
+        {
+        }
+    };
 
     // Switch-statement
     // Case-Label

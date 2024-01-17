@@ -558,6 +558,16 @@ WEAVE_SYNTAX_BEGIN_GROUP(Expression,                                11000)
     WEAVE_SYNTAX_EXPRESSION(FalseLiteralExpression,                 11054, "[expr:false-literal]")
 WEAVE_SYNTAX_END_GROUP(Expression,                                  11055)
 
+WEAVE_SYNTAX_BEGIN_GROUP(Statements,                                12000)
+    WEAVE_SYNTAX_NODE_ABSTRACT(StatementSyntax,                     12000, "[stmt:statement]")
+    WEAVE_SYNTAX_NODE_CONCRETE(VariableDeclarationSyntax,           12001, "[stmt:variable-declaration]")
+    WEAVE_SYNTAX_NODE_CONCRETE(ExpressionStatementSyntax,           12002, "[stmt:expression-statement]")
+    WEAVE_SYNTAX_NODE_CONCRETE(BlockStatementSyntax,                12003, "[stmt:block-statement]")
+    WEAVE_SYNTAX_NODE_CONCRETE(IfStatementSyntax,                   12004, "[stmt:if-statement]")
+    WEAVE_SYNTAX_NODE_CONCRETE(ElseClauseSyntax,                    12005, "[stmt:else-clause]")
+    WEAVE_SYNTAX_NODE_CONCRETE(ReturnStatementSyntax,               12006, "[stmt:return-statement]")
+WEAVE_SYNTAX_END_GROUP(Statements,                                  12006)
+
 
 // clang-format on
 

@@ -168,6 +168,22 @@ namespace weave::syntax
 
         ExpressionSyntax const* ParseStringLiteral();
 
+        StatementSyntax const* ParseStatement();
+
+        BlockStatementSyntax const* ParseBlockStatement();
+
+        StatementSyntax const* ParseVariableDeclaration();
+
+        StatementSyntax const* ParseIfStatement();
+
+        ElseClauseSyntax const* ParseOptionalElseClause();
+
+        StatementSyntax const* ParseReturnStatement();
+
+        ExpressionStatementSyntax const* ParseExpressionStatement();
+
+        IdentifierNameSyntax const* CreateMissingIdentifierName();
+
         void ReportIncompleteMember(
             std::span<SyntaxToken const*> modifiers,
             std::span<AttributeListSyntax const*> attributes,
