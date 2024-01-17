@@ -104,6 +104,10 @@ namespace weave::syntax
 
         UsingDirectiveSyntax const* ParseUsingDirective();
 
+        ReturnTypeClauseSyntax const* ParseReturnTypeClause();
+
+        ArrowExpressionClauseSyntax const* ParseArrowExpressionClause();
+
         FunctionDeclarationSyntax const* ParseFunctionDeclaration(
             std::span<AttributeListSyntax const*> attributes,
             std::span<SyntaxToken const*> modifiers);
@@ -142,12 +146,8 @@ namespace weave::syntax
 
         IdentifierNameSyntax const* ParseIdentifierName();
 
-        ExpressionSyntax const* ParseExpression();
-
-        ExpressionSyntax const* ParseAssignmentExpression();
-
-        ExpressionSyntax const* ParseBinaryExpression(
-            Precedence parentPrecedence);
+        ExpressionSyntax const* ParseExpression(
+            Precedence parentPrecedence = Precedence::Expression);
 
         ExpressionSyntax const* ParseTerm(
             Precedence precedence);
@@ -169,6 +169,9 @@ namespace weave::syntax
         ExpressionSyntax const* ParseStringLiteral();
 
         StatementSyntax const* ParseStatement();
+
+        StatementSyntax const* CreateMissingStatement(
+            std::span<SyntaxToken const*> tokens);
 
         BlockStatementSyntax const* ParseBlockStatement();
 

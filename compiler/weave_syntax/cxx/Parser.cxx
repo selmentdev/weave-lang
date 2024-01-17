@@ -38,7 +38,8 @@ namespace weave::syntax
 
         if (index >= this->_tokens.size())
         {
-            return this->_tokens.back();
+            // return this->_tokens.back();
+            return nullptr;
         }
 
         return this->_tokens[index];
@@ -70,7 +71,7 @@ namespace weave::syntax
                 SyntaxKindTraits::GetSpelling(kind)));
 
         // return this->_factory->CreateMissingToken(kind, this->Current()->Source);
-        return this->SkipToken(kind);
+        return this->SkipToken(kind, false);
     }
 
     SyntaxToken const* Parser::MatchOptional(SyntaxKind kind)
@@ -81,7 +82,7 @@ namespace weave::syntax
         }
 
         // return this->_factory->CreateMissingToken(kind, this->Current()->Source);
-        return this->SkipToken(kind);
+        return this->SkipToken(kind, false);
     }
 
     SyntaxToken const* Parser::TryMatch(SyntaxKind kind)
@@ -121,8 +122,7 @@ namespace weave::syntax
             }
         }
 
-        source::SourceSpan source = this->Current()->Source;
-        source.End = source.Start;
+        source::SourceSpan const source = this->Current()->Source.WithZeroLength();
         return this->_factory->CreateMissingToken(kind, source, leadingTrivia, {});
     }
 
@@ -295,7 +295,15 @@ namespace weave::syntax
             break;
         }
 
-        // Member is incomplete.
+        // Member is incomplete. We don't know what it is, so report it as incomplete unknown member.
+        // NOTE: We can do report this error with more details, but we don't have enough information right now.
+        this->_diagnostic->AddError(
+            current->Source,
+            fmt::format(
+                "unexpected token '{}', expected member declaration",
+                SyntaxKindTraits::GetSpelling(current->Kind)));
+
+        // Fixme: do we need to parse this as identifier?
         SyntaxNode const* name = nullptr;
         if (current->Is(SyntaxKind::IdentifierToken))
         {
@@ -311,6 +319,7 @@ namespace weave::syntax
         result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
         result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
         result->Type = name;
+
         return result;
     }
 
@@ -453,30 +462,54 @@ namespace weave::syntax
         return result;
     }
 
+    ReturnTypeClauseSyntax const* Parser::ParseReturnTypeClause()
+    {
+        ReturnTypeClauseSyntax* result = this->_factory->CreateNode<ReturnTypeClauseSyntax>();
+        result->ArrowToken = this->Match(SyntaxKind::MinusGreaterThanToken);
+        result->Type = this->ParseQualifiedName();
+        return result;
+    }
+
+    ArrowExpressionClauseSyntax const* Parser::ParseArrowExpressionClause()
+    {
+        ArrowExpressionClauseSyntax* result = this->_factory->CreateNode<ArrowExpressionClauseSyntax>();
+        result->ArrowToken = this->Match(SyntaxKind::EqualsGreaterThanToken);
+        result->Expression = this->ParseExpression();
+        return result;
+    }
+
     FunctionDeclarationSyntax const* Parser::ParseFunctionDeclaration(std::span<AttributeListSyntax const*> attributes, std::span<SyntaxToken const*> modifiers)
     {
-        SyntaxToken const* tokenFunction = this->Match(SyntaxKind::FunctionKeyword);
-        NameSyntax const* name = this->ParseIdentifierName();
-        ParameterListSyntax const* parameters = this->ParseParameterList();
-        SyntaxToken const* tokenArrow = this->TryMatch(SyntaxKind::MinusGreaterThanToken);
-        NameSyntax const* returnType = nullptr;
-
-        if (tokenArrow != nullptr)
-        {
-            returnType = this->ParseQualifiedName();
-        }
-
-        BlockStatementSyntax const* body = this->ParseBlockStatement();
-
         FunctionDeclarationSyntax* result = this->_factory->CreateNode<FunctionDeclarationSyntax>();
         result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
         result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
-        result->FunctionKeyword = tokenFunction;
-        result->Name = name;
-        result->Parameters = parameters;
-        result->ArrowToken = tokenArrow;
-        result->ReturnType = returnType;
-        result->Body = body;
+        result->FunctionKeyword = this->Match(SyntaxKind::FunctionKeyword);
+        result->Name = this->ParseIdentifierName();
+        result->Parameters = this->ParseParameterList();
+
+        if (this->Current()->Is(SyntaxKind::MinusGreaterThanToken))
+        {
+            result->ReturnType = this->ParseReturnTypeClause();
+        }
+
+        if (this->Current()->Is(SyntaxKind::OpenBraceToken))
+        {
+            result->Body = this->ParseBlockStatement();
+        }
+        else if (this->Current()->Is(SyntaxKind::EqualsGreaterThanToken))
+        {
+            result->ExpressionBody = this->ParseArrowExpressionClause();
+        }
+
+        if ((result->Body == nullptr) and (result->ExpressionBody == nullptr))
+        {
+            result->SemicolonToken = this->Match(SyntaxKind::SemicolonToken);
+        }
+        else
+        {
+            result->SemicolonToken = this->TryMatch(SyntaxKind::SemicolonToken);
+        }
+
         return result;
     }
 
@@ -733,57 +766,15 @@ namespace weave::syntax
         return result;
     }
 
-    ExpressionSyntax const* Parser::ParseExpression()
-    {
-        return this->ParseAssignmentExpression();
-    }
-
-    ExpressionSyntax const* Parser::ParseAssignmentExpression()
-    {
-#if false
-        if (this->Current()->Is(SyntaxKind::IdentifierToken))
-        {
-            switch (this->Peek(1)->Kind) // NOLINT(clang-diagnostic-switch-enum)
-            {
-            case SyntaxKind::AmpersandEqualsToken:
-            case SyntaxKind::AsteriskEqualsToken:
-            case SyntaxKind::BarEqualsToken:
-            case SyntaxKind::CaretEqualsToken:
-            case SyntaxKind::EqualsToken:
-            case SyntaxKind::GreaterThanGreaterThanEqualsToken:
-            case SyntaxKind::LessThanLessThanEqualsToken:
-            case SyntaxKind::MinusEqualsToken:
-            case SyntaxKind::PercentEqualsToken:
-            case SyntaxKind::PlusEqualsToken:
-            case SyntaxKind::SlashEqualsToken:
-                {
-                    NameSyntax const* name = this->ParseIdentifierName();
-                    SyntaxToken const* tokenOperator = this->Next();
-                    ExpressionSyntax const* right = this->ParseAssignmentExpression();
-
-                    AssignmentExpressionSyntax* result = this->_factory->CreateNode<AssignmentExpressionSyntax>();
-                    result->Identifier = name;
-                    result->OperatorToken = tokenOperator;
-                    result->Expression = right;
-                    return result;
-                }
-
-            default:
-                break;
-            }
-        }
-#endif
-        return this->ParseBinaryExpression(Precedence::Expression);
-    }
-
-    ExpressionSyntax const* Parser::ParseBinaryExpression(Precedence parentPrecedence)
+    ExpressionSyntax const* Parser::ParseExpression(Precedence parentPrecedence)
     {
         if (SyntaxFacts::IsInvalidSubexpression(this->Current()->Kind))
         {
+            SyntaxKind const kind = this->Current()->Kind;
             ExpressionSyntax const* result = CreateMissingIdentifierName();
             this->_diagnostic->AddError(
                 this->Current()->Source,
-                fmt::format("invalid expression term: {}", SyntaxKindTraits::GetSpelling(this->Current()->Kind)));
+                fmt::format("invalid expression term: {}", SyntaxKindTraits::GetSpelling(kind)));
             return result;
         }
 
@@ -798,7 +789,7 @@ namespace weave::syntax
             if ((unaryPrecedence != Precedence::Expression) && (unaryPrecedence >= parentPrecedence))
             {
                 SyntaxToken const* operatorToken = this->Next();
-                ExpressionSyntax const* operand = this->ParseBinaryExpression(unaryPrecedence);
+                ExpressionSyntax const* operand = this->ParseExpression(unaryPrecedence);
 
                 UnaryExpressionSyntax* left = this->_factory->CreateNode<UnaryExpressionSyntax>();
                 left->Operation = unaryOperation;
@@ -838,7 +829,7 @@ namespace weave::syntax
                 left->Operation = operation;
                 left->Left = result;
                 left->OperatorToken = this->Next();
-                left->Right = this->ParseBinaryExpression(precedence);
+                left->Right = this->ParseExpression(precedence);
                 result = left;
                 continue;
             }
@@ -847,12 +838,12 @@ namespace weave::syntax
             {
                 Precedence const precedence = SyntaxFacts::GetPrecedence(operation);
 
-                //if ((precedence == Precedence::Expression) || (precedence <= parentPrecedence))
+                // if ((precedence == Precedence::Expression) || (precedence <= parentPrecedence))
                 //{
-                //    break;
-                //}
+                //     break;
+                // }
 
-                
+
                 if (precedence < parentPrecedence)
                 {
                     // Check precedence
@@ -872,13 +863,13 @@ namespace weave::syntax
                 //       For example, we may store an AddAssignmentExpression as AssignmentExpressionSyntax, but
                 //       we can't right now cast it to node type based on syntax kind.
 
-                //if (Precedence leftPrecedence = SyntaxFacts::GetPrecedence(result->))
+                // if (Precedence leftPrecedence = SyntaxFacts::GetPrecedence(result->))
 
                 BinaryExpressionSyntax* left = this->_factory->CreateNode<BinaryExpressionSyntax>();
                 left->Operation = operation;
                 left->Left = result;
                 left->OperatorToken = this->Next();
-                left->Right = this->ParseBinaryExpression(precedence);
+                left->Right = this->ParseExpression(precedence);
                 result = left;
                 continue;
             }
@@ -923,9 +914,9 @@ namespace weave::syntax
         ConditionalExpressionSyntax* conditional = this->_factory->CreateNode<ConditionalExpressionSyntax>();
         conditional->Condition = result;
         conditional->QuestionToken = this->Match(SyntaxKind::QuestionToken);
-        conditional->WhenTrue = this->ParseBinaryExpression(Precedence::Conditional);
+        conditional->WhenTrue = this->ParseExpression(Precedence::Conditional);
         conditional->ColonToken = this->Match(SyntaxKind::ColonToken);
-        conditional->WhenFalse = this->ParseBinaryExpression(Precedence::Conditional);
+        conditional->WhenFalse = this->ParseExpression(Precedence::Conditional);
         return conditional;
 #endif
     }
@@ -1019,9 +1010,19 @@ namespace weave::syntax
         default:
             ExpressionSyntax const* missing = this->CreateMissingIdentifierName();
 
-            this->_diagnostic->AddError(
-                this->Current()->Source,
-                fmt::format("identifier expected but got {}", SyntaxKindTraits::GetSpelling(this->Current()->Kind)));
+            if (this->Current()->Kind == SyntaxKind::EndOfFileToken)
+            {
+                this->_diagnostic->AddError(
+                    this->Current()->Source,
+                    "expression expected");
+            }
+            else
+            {
+                this->_diagnostic->AddError(
+                    this->Current()->Source,
+                    fmt::format("identifier expected but got {}", SyntaxKindTraits::GetSpelling(this->Current()->Kind)));
+            }
+
 
             return missing;
         }
@@ -1092,6 +1093,13 @@ namespace weave::syntax
         case SyntaxKind::ReturnKeyword:
             return this->ParseReturnStatement();
 
+        case SyntaxKind::SemicolonToken:
+            {
+                EmptyStatementSyntax* result = this->_factory->CreateNode<EmptyStatementSyntax>();
+                result->SemicolonToken = this->Match(SyntaxKind::SemicolonToken);
+                return result;
+            }
+
         default:
             break;
         }
@@ -1113,8 +1121,12 @@ namespace weave::syntax
 
             if (this->Current() == startToken)
             {
-                // this->Next();
-                WEAVE_BUGCHECK("could not parse statement");
+                SyntaxToken const* skipped = this->Next();
+                this->_diagnostic->AddError(
+                    skipped->Source,
+                    fmt::format("unexpected token: '{}'", SyntaxKindTraits::GetSpelling(skipped->Kind)));
+
+                // FIXME: Skipped tokens should be represented somehow in syntax tree.
             }
         }
 

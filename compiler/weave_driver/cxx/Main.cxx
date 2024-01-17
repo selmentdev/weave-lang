@@ -68,6 +68,23 @@ namespace weave::driver
     };
 }
 
+class TreeLinearizer : public weave::syntax::SyntaxWalker
+{
+private:
+    std::vector<weave::syntax::SyntaxKind> _kinds{};
+
+public:
+    void OnDefault(weave::syntax::SyntaxNode const* node) override
+    {
+        this->_kinds.push_back(node->Kind);
+    }
+
+    std::span<weave::syntax::SyntaxKind const> GetKinds() const
+    {
+        return this->_kinds;
+    }
+};
+
 int main(int argc, const char* argv[])
 {
     using namespace weave;
@@ -194,17 +211,7 @@ int main(int argc, const char* argv[])
                 {
                     for (auto tt : token->GetLeadingTrivia())
                     {
-                        if (tt.Kind == syntax::SyntaxKind::SkippedTokenTrivia)
-                        {
-                            fmt::print("\u001b[31m");
-                        }
-
                         fmt::print("{}", _text.GetText(tt.Source));
-
-                        if (tt.Kind == syntax::SyntaxKind::SkippedTokenTrivia)
-                        {
-                            fmt::print("\u001b[0m");
-                        }
                     }
 
                     if ((token->Kind == syntax::SyntaxKind::OpenBraceToken) or (token->Kind == syntax::SyntaxKind::CloseBraceToken))
@@ -218,17 +225,7 @@ int main(int argc, const char* argv[])
 
                     for (auto tt : token->GetTrailingTrivia())
                     {
-                        if (tt.Kind == syntax::SyntaxKind::SkippedTokenTrivia)
-                        {
-                            fmt::print("\u001b[31m");
-                        }
-
                         fmt::print("{}", _text.GetText(tt.Source));
-
-                        if (tt.Kind == syntax::SyntaxKind::SkippedTokenTrivia)
-                        {
-                            fmt::print("\u001b[0m");
-                        }
                     }
                 }
             };
@@ -317,7 +314,10 @@ int main(int argc, const char* argv[])
                     }
 #else
                     Indent();
-                    fmt::println("{} `{}`", __func__, _text.GetText(token->Source));
+                    fmt::println("{} `{}` `{}`",
+                        __func__,
+                        _text.GetText(token->Source),
+                        weave::syntax::SyntaxKindTraits::GetSpelling(token->Kind));
 #endif
                 }
 
@@ -347,6 +347,15 @@ int main(int argc, const char* argv[])
             };
 
             auto cu2 = pp.Parse();
+            fmt::println("-------");
+            {
+                TreeLinearizer printer{};
+                printer.Dispatch(cu2);
+                for (auto k : printer.GetKinds())
+                {
+                    fmt::println("{}", syntax::SyntaxKindTraits::GetName(k));
+                }
+            }
             fmt::println("-------");
             {
                 TokenPrintingWalker printer{text};

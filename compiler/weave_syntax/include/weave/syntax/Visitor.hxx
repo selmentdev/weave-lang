@@ -109,5 +109,8 @@ namespace weave::syntax
         void OnElseClauseSyntax(ElseClauseSyntax const* node) override;
         void OnVariableDeclarationSyntax(VariableDeclarationSyntax const* node) override;
         void OnConditionalExpressionSyntax(ConditionalExpressionSyntax const* node) override;
+        void OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax const* node) override;
+        void OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax const* node) override;
+        void OnDelegateDeclarationSyntax(DelegateDeclarationSyntax const* node) override;
     };
 }

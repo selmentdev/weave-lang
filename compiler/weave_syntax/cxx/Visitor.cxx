@@ -124,9 +124,10 @@ namespace weave::syntax
         this->Dispatch(node->FunctionKeyword);
         this->Dispatch(node->Name);
         this->Dispatch(node->Parameters);
-        this->Dispatch(node->ArrowToken);
         this->Dispatch(node->ReturnType);
         this->Dispatch(node->Body);
+        this->Dispatch(node->ExpressionBody);
+        this->Dispatch(node->SemicolonToken);
 
         --this->Depth;
     }
@@ -411,6 +412,7 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
     void SyntaxWalker::OnConditionalExpressionSyntax(ConditionalExpressionSyntax const* node)
     {
         ++this->Depth;
@@ -420,6 +422,36 @@ namespace weave::syntax
         this->Dispatch(node->WhenTrue);
         this->Dispatch(node->ColonToken);
         this->Dispatch(node->WhenFalse);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->ArrowToken);
+        this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax const* node)
+    {
+        ++this->Depth;
+
+        this->Dispatch(node->ArrowToken);
+        this->Dispatch(node->Type);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnDelegateDeclarationSyntax(DelegateDeclarationSyntax const* node)
+    {
+        ++this->Depth;
+
+        (void)node;
+        //this->Dispatch(node->
 
         --this->Depth;
     }

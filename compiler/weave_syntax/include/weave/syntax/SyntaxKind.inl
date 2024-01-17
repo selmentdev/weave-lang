@@ -487,7 +487,9 @@ WEAVE_SYNTAX_BEGIN_GROUP(Node,                                      10000)
     WEAVE_SYNTAX_NODE_CONCRETE(MemberAccessExpressionSyntax,        10049, "[node:member-access-expression]")
     WEAVE_SYNTAX_NODE_CONCRETE(BracketedArgumentListSyntax,         10050, "[node:bracketed-argument-list]")
     WEAVE_SYNTAX_NODE_CONCRETE(ElementAccessExpressionSyntax,       10051, "[node:element-access-expression]")
-WEAVE_SYNTAX_END_GROUP(Node,                                        10051)
+    WEAVE_SYNTAX_NODE_CONCRETE(ArrowExpressionClauseSyntax,         10052, "[node:arrow-expression-clause]")
+    WEAVE_SYNTAX_NODE_CONCRETE(ReturnTypeClauseSyntax,              10053, "[node:return-type-clause]")
+WEAVE_SYNTAX_END_GROUP(Node,                                        10053)
 
 WEAVE_SYNTAX_BEGIN_GROUP(Expression,                                11000)
     // prefix unary expressions
@@ -556,7 +558,7 @@ WEAVE_SYNTAX_BEGIN_GROUP(Expression,                                11000)
     WEAVE_SYNTAX_EXPRESSION(CharacterLiteralExpression,             11052, "[expr:character-literal]")
     WEAVE_SYNTAX_EXPRESSION(TrueLiteralExpression,                  11053, "[expr:true-literal]")
     WEAVE_SYNTAX_EXPRESSION(FalseLiteralExpression,                 11054, "[expr:false-literal]")
-WEAVE_SYNTAX_END_GROUP(Expression,                                  11055)
+WEAVE_SYNTAX_END_GROUP(Expression,                                  11054)
 
 WEAVE_SYNTAX_BEGIN_GROUP(Statements,                                12000)
     WEAVE_SYNTAX_NODE_ABSTRACT(StatementSyntax,                     12000, "[stmt:statement]")
@@ -566,7 +568,8 @@ WEAVE_SYNTAX_BEGIN_GROUP(Statements,                                12000)
     WEAVE_SYNTAX_NODE_CONCRETE(IfStatementSyntax,                   12004, "[stmt:if-statement]")
     WEAVE_SYNTAX_NODE_CONCRETE(ElseClauseSyntax,                    12005, "[stmt:else-clause]")
     WEAVE_SYNTAX_NODE_CONCRETE(ReturnStatementSyntax,               12006, "[stmt:return-statement]")
-WEAVE_SYNTAX_END_GROUP(Statements,                                  12006)
+    WEAVE_SYNTAX_NODE_CONCRETE(EmptyStatementSyntax,                12007, "[stmt:empty-statement]")
+WEAVE_SYNTAX_END_GROUP(Statements,                                  12007)
 
 
 // clang-format on

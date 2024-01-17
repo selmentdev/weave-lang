@@ -1,4 +1,5 @@
 add_executable(weave_syntax_tests
+    "Lexer.cxx"
     "Main.cxx"
     "SyntaxKind.cxx"
     "Visitor.cxx"

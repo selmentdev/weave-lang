@@ -116,15 +116,29 @@ namespace weave::syntax
         SyntaxToken const* FunctionKeyword{};
         NameSyntax const* Name{};
         ParameterListSyntax const* Parameters{};
-        SyntaxToken const* ArrowToken{};
-        NameSyntax const* ReturnType{};
-
-        // TODO: Need to reppresent the body as an expression syntax / block syntax.
+        ReturnTypeClauseSyntax const* ReturnType{};
         BlockStatementSyntax const* Body{};
+        ArrowExpressionClauseSyntax const* ExpressionBody{};
+        SyntaxToken const* SemicolonToken{};
 
     public:
         explicit constexpr FunctionDeclarationSyntax()
             : MemberDeclarationSyntax{SyntaxKind::FunctionDeclarationSyntax}
+        {
+        }
+    };
+
+    class ReturnTypeClauseSyntax : public MemberDeclarationSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ReturnTypeClauseSyntax);
+
+    public:
+        SyntaxToken const* ArrowToken{};
+        NameSyntax const* Type{};
+
+    public:
+        explicit constexpr ReturnTypeClauseSyntax()
+            : MemberDeclarationSyntax{SyntaxKind::ReturnTypeClauseSyntax}
         {
         }
     };
@@ -723,6 +737,20 @@ namespace weave::syntax
         }
     };
 
+    class EmptyStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(EmptyStatementSyntax);
+
+    public:
+        SyntaxToken const* SemicolonToken{};
+
+    public:
+        explicit constexpr EmptyStatementSyntax()
+            : StatementSyntax{SyntaxKind::EmptyStatementSyntax}
+        {
+        }
+    };
+
     class VariableDeclarationSyntax : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(VariableDeclarationSyntax);
@@ -784,6 +812,21 @@ namespace weave::syntax
     public:
         explicit constexpr BlockStatementSyntax()
             : StatementSyntax{SyntaxKind::BlockStatementSyntax}
+        {
+        }
+    };
+
+    class ArrowExpressionClauseSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ArrowExpressionClauseSyntax);
+
+    public:
+        SyntaxToken const* ArrowToken{};
+        ExpressionSyntax const* Expression{};
+
+    public:
+        explicit constexpr ArrowExpressionClauseSyntax()
+            : SyntaxNode{SyntaxKind::ArrowExpressionClauseSyntax}
         {
         }
     };
