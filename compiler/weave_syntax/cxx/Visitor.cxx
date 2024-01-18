@@ -2,7 +2,7 @@
 
 namespace weave::syntax
 {
-    void SyntaxWalker::OnCompilationUnitSyntax(CompilationUnitSyntax const* node)
+    void SyntaxWalker::OnCompilationUnitSyntax(CompilationUnitSyntax* node)
     {
         ++this->Depth;
 
@@ -14,12 +14,12 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnSyntaxList(SyntaxList const* node)
+    void SyntaxWalker::OnSyntaxList(SyntaxList* node)
     {
         ++this->Depth;
 
         size_t const count = node->GetCount();
-        SyntaxNode const** elements = node->GetElements();
+        SyntaxNode** elements = node->GetElements();
 
         for (size_t i = 0; i < count; ++i)
         {
@@ -29,7 +29,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnNamespaceDeclarationSyntax(NamespaceDeclarationSyntax const* node)
+    void SyntaxWalker::OnNamespaceDeclarationSyntax(NamespaceDeclarationSyntax* node)
     {
         ++this->Depth;
 
@@ -46,7 +46,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnStructDeclarationSyntax(StructDeclarationSyntax const* node)
+    void SyntaxWalker::OnStructDeclarationSyntax(StructDeclarationSyntax* node)
     {
         ++this->Depth;
 
@@ -62,7 +62,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnConceptDeclarationSyntax(ConceptDeclarationSyntax const* node)
+    void SyntaxWalker::OnConceptDeclarationSyntax(ConceptDeclarationSyntax* node)
     {
         ++this->Depth;
 
@@ -78,7 +78,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnExtendDeclarationSyntax(ExtendDeclarationSyntax const* node)
+    void SyntaxWalker::OnExtendDeclarationSyntax(ExtendDeclarationSyntax* node)
     {
         ++this->Depth;
 
@@ -94,7 +94,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax const* node)
+    void SyntaxWalker::OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax* node)
     {
         ++this->Depth;
 
@@ -104,7 +104,7 @@ namespace weave::syntax
 
         --this->Depth;
     }
-    void SyntaxWalker::OnQualifiedNameSyntax(QualifiedNameSyntax const* node)
+    void SyntaxWalker::OnQualifiedNameSyntax(QualifiedNameSyntax* node)
     {
         ++this->Depth;
 
@@ -115,7 +115,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnFunctionDeclarationSyntax(FunctionDeclarationSyntax const* node)
+    void SyntaxWalker::OnFunctionDeclarationSyntax(FunctionDeclarationSyntax* node)
     {
         ++this->Depth;
 
@@ -131,7 +131,7 @@ namespace weave::syntax
 
         --this->Depth;
     }
-    void SyntaxWalker::OnUsingDirectiveSyntax(UsingDirectiveSyntax const* node)
+    void SyntaxWalker::OnUsingDirectiveSyntax(UsingDirectiveSyntax* node)
     {
         ++this->Depth;
 
@@ -141,7 +141,7 @@ namespace weave::syntax
 
         --this->Depth;
     }
-    void SyntaxWalker::OnIdentifierNameSyntax(IdentifierNameSyntax const* node)
+    void SyntaxWalker::OnIdentifierNameSyntax(IdentifierNameSyntax* node)
     {
         ++this->Depth;
 
@@ -149,7 +149,7 @@ namespace weave::syntax
 
         --this->Depth;
     }
-    void SyntaxWalker::OnParameterListSyntax(ParameterListSyntax const* node)
+    void SyntaxWalker::OnParameterListSyntax(ParameterListSyntax* node)
     {
         ++this->Depth;
 
@@ -159,7 +159,7 @@ namespace weave::syntax
 
         --this->Depth;
     }
-    void SyntaxWalker::OnParameterSyntax(ParameterSyntax const* node)
+    void SyntaxWalker::OnParameterSyntax(ParameterSyntax* node)
     {
         ++this->Depth;
 
@@ -171,7 +171,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnTypeClauseSyntax(TypeClauseSyntax const* node)
+    void SyntaxWalker::OnTypeClauseSyntax(TypeClauseSyntax* node)
     {
         ++this->Depth;
 
@@ -181,7 +181,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnFieldDeclarationSyntax(FieldDeclarationSyntax const* node)
+    void SyntaxWalker::OnFieldDeclarationSyntax(FieldDeclarationSyntax* node)
     {
         ++this->Depth;
 
@@ -196,7 +196,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnConstantDeclarationSyntax(ConstantDeclarationSyntax const* node)
+    void SyntaxWalker::OnConstantDeclarationSyntax(ConstantDeclarationSyntax* node)
     {
         ++this->Depth;
 
@@ -211,7 +211,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnEqualsValueClauseSyntax(EqualsValueClauseSyntax const* node)
+    void SyntaxWalker::OnEqualsValueClauseSyntax(EqualsValueClauseSyntax* node)
     {
         ++this->Depth;
 
@@ -221,7 +221,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnLiteralExpressionSyntax(LiteralExpressionSyntax const* node)
+    void SyntaxWalker::OnLiteralExpressionSyntax(LiteralExpressionSyntax* node)
     {
         ++this->Depth;
 
@@ -230,7 +230,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnAssignmentExpressionSyntax(AssignmentExpressionSyntax const* node)
+    void SyntaxWalker::OnAssignmentExpressionSyntax(AssignmentExpressionSyntax* node)
     {
         ++this->Depth;
 
@@ -241,7 +241,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnBinaryExpressionSyntax(BinaryExpressionSyntax const* node)
+    void SyntaxWalker::OnBinaryExpressionSyntax(BinaryExpressionSyntax* node)
     {
         ++this->Depth;
 
@@ -252,7 +252,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnUnaryExpressionSyntax(UnaryExpressionSyntax const* node)
+    void SyntaxWalker::OnUnaryExpressionSyntax(UnaryExpressionSyntax* node)
     {
         ++this->Depth;
 
@@ -262,7 +262,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnPostfixUnaryExpression(PostfixUnaryExpression const* node)
+    void SyntaxWalker::OnPostfixUnaryExpression(PostfixUnaryExpression* node)
     {
         ++this->Depth;
 
@@ -272,7 +272,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnParenthesizedExpressionSyntax(ParenthesizedExpressionSyntax const* node)
+    void SyntaxWalker::OnParenthesizedExpressionSyntax(ParenthesizedExpressionSyntax* node)
     {
         ++this->Depth;
 
@@ -283,7 +283,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnInvocationExpressionSyntax(InvocationExpressionSyntax const* node)
+    void SyntaxWalker::OnInvocationExpressionSyntax(InvocationExpressionSyntax* node)
     {
         ++this->Depth;
 
@@ -293,7 +293,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnMemberAccessExpressionSyntax(MemberAccessExpressionSyntax const* node)
+    void SyntaxWalker::OnMemberAccessExpressionSyntax(MemberAccessExpressionSyntax* node)
     {
         ++this->Depth;
 
@@ -304,7 +304,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnArgumentListSyntax(ArgumentListSyntax const* node)
+    void SyntaxWalker::OnArgumentListSyntax(ArgumentListSyntax* node)
     {
         ++this->Depth;
 
@@ -315,7 +315,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnArgumentSyntax(ArgumentSyntax const* node)
+    void SyntaxWalker::OnArgumentSyntax(ArgumentSyntax* node)
     {
         ++this->Depth;
 
@@ -325,7 +325,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnBracketedArgumentListSyntax(BracketedArgumentListSyntax const* node)
+    void SyntaxWalker::OnBracketedArgumentListSyntax(BracketedArgumentListSyntax* node)
     {
         ++this->Depth;
 
@@ -336,7 +336,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnElementAccessExpressionSyntax(ElementAccessExpressionSyntax const* node)
+    void SyntaxWalker::OnElementAccessExpressionSyntax(ElementAccessExpressionSyntax* node)
     {
         ++this->Depth;
 
@@ -346,7 +346,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnBlockStatementSyntax(BlockStatementSyntax const* node)
+    void SyntaxWalker::OnBlockStatementSyntax(BlockStatementSyntax* node)
     {
         ++this->Depth;
 
@@ -357,7 +357,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnExpressionStatementSyntax(ExpressionStatementSyntax const* node)
+    void SyntaxWalker::OnExpressionStatementSyntax(ExpressionStatementSyntax* node)
     {
         ++this->Depth;
 
@@ -367,7 +367,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnIfStatementSyntax(IfStatementSyntax const* node)
+    void SyntaxWalker::OnIfStatementSyntax(IfStatementSyntax* node)
     {
         ++this->Depth;
 
@@ -379,7 +379,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnReturnStatementSyntax(ReturnStatementSyntax const* node)
+    void SyntaxWalker::OnReturnStatementSyntax(ReturnStatementSyntax* node)
     {
         ++this->Depth;
 
@@ -390,7 +390,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnElseClauseSyntax(ElseClauseSyntax const* node)
+    void SyntaxWalker::OnElseClauseSyntax(ElseClauseSyntax* node)
     {
         ++this->Depth;
 
@@ -400,7 +400,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnVariableDeclarationSyntax(VariableDeclarationSyntax const* node)
+    void SyntaxWalker::OnVariableDeclarationSyntax(VariableDeclarationSyntax* node)
     {
         ++this->Depth;
 
@@ -413,7 +413,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnConditionalExpressionSyntax(ConditionalExpressionSyntax const* node)
+    void SyntaxWalker::OnConditionalExpressionSyntax(ConditionalExpressionSyntax* node)
     {
         ++this->Depth;
 
@@ -426,7 +426,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax const* node)
+    void SyntaxWalker::OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax* node)
     {
         ++this->Depth;
 
@@ -436,7 +436,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax const* node)
+    void SyntaxWalker::OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax* node)
     {
         ++this->Depth;
 
@@ -446,7 +446,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnDelegateDeclarationSyntax(DelegateDeclarationSyntax const* node)
+    void SyntaxWalker::OnDelegateDeclarationSyntax(DelegateDeclarationSyntax* node)
     {
         ++this->Depth;
 

@@ -47,5 +47,7 @@ namespace weave::syntax
         static bool IsName(SyntaxKind kind);
 
         static bool IsInvalidSubexpression(SyntaxKind kind);
+        static bool IsValidExpression(SyntaxKind kind);
+        static bool IsValidStatement(SyntaxKind kind);
     };
 }

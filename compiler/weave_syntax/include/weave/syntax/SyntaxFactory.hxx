@@ -38,10 +38,10 @@ namespace weave::syntax
                 return nullptr;
             }
 
-            std::span<SyntaxNode const*> const elements = this->SyntaxNodeAllocator.EmplaceArray<SyntaxNode const*>(builder.size());
+            std::span<SyntaxNode*> const elements = this->SyntaxNodeAllocator.EmplaceArray<SyntaxNode*>(builder.size());
             for (size_t i = 0; i < builder.size(); ++i)
             {
-                elements[i] = static_cast<SyntaxNode const*>(builder[i]);
+                elements[i] = static_cast<SyntaxNode*>(builder[i]);
             }
 
             return this->CreateNode<SyntaxList>(elements);

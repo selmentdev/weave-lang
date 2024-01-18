@@ -74,7 +74,7 @@ private:
     std::vector<weave::syntax::SyntaxKind> _kinds{};
 
 public:
-    void OnDefault(weave::syntax::SyntaxNode const* node) override
+    void OnDefault(weave::syntax::SyntaxNode* node) override
     {
         this->_kinds.push_back(node->Kind);
     }
@@ -207,7 +207,7 @@ int main(int argc, const char* argv[])
                 {
                 }
 
-                void OnToken(syntax::SyntaxToken const* token) override
+                void OnToken(syntax::SyntaxToken* token) override
                 {
                     for (auto tt : token->GetLeadingTrivia())
                     {
@@ -246,56 +246,56 @@ int main(int argc, const char* argv[])
                 source::SourceText& _text;
 
             public:
-                void OnCompilationUnitSyntax(syntax::CompilationUnitSyntax const* node) override
+                void OnCompilationUnitSyntax(syntax::CompilationUnitSyntax* node) override
                 {
                     Indent();
                     fmt::println("{}", __func__);
                     SyntaxWalker::OnCompilationUnitSyntax(node);
                 }
 
-                void OnNamespaceDeclarationSyntax(syntax::NamespaceDeclarationSyntax const* node) override
+                void OnNamespaceDeclarationSyntax(syntax::NamespaceDeclarationSyntax* node) override
                 {
                     Indent();
                     fmt::println("{}", __func__);
                     SyntaxWalker::OnNamespaceDeclarationSyntax(node);
                 }
 
-                void OnStructDeclarationSyntax(syntax::StructDeclarationSyntax const* node) override
+                void OnStructDeclarationSyntax(syntax::StructDeclarationSyntax* node) override
                 {
                     Indent();
                     fmt::println("{}", __func__);
                     SyntaxWalker::OnStructDeclarationSyntax(node);
                 }
 
-                void OnConceptDeclarationSyntax(syntax::ConceptDeclarationSyntax const* node) override
+                void OnConceptDeclarationSyntax(syntax::ConceptDeclarationSyntax* node) override
                 {
                     Indent();
                     fmt::println("{}", __func__);
                     SyntaxWalker::OnConceptDeclarationSyntax(node);
                 }
 
-                void OnExtendDeclarationSyntax(syntax::ExtendDeclarationSyntax const* node) override
+                void OnExtendDeclarationSyntax(syntax::ExtendDeclarationSyntax* node) override
                 {
                     Indent();
                     fmt::println("{}", __func__);
                     SyntaxWalker::OnExtendDeclarationSyntax(node);
                 }
 
-                void OnDefault(syntax::SyntaxNode const* node) override
+                void OnDefault(syntax::SyntaxNode* node) override
                 {
                     Indent();
                     fmt::println("{} {}", __func__, syntax::SyntaxKindTraits::GetSpelling(node->Kind));
                     SyntaxWalker::OnDefault(node);
                 }
 
-                void OnSyntaxList(syntax::SyntaxList const* node) override
+                void OnSyntaxList(syntax::SyntaxList* node) override
                 {
                     Indent();
                     fmt::println("{}", __func__);
                     SyntaxWalker::OnSyntaxList(node);
                 }
 
-                void OnToken(syntax::SyntaxToken const* token) override
+                void OnToken(syntax::SyntaxToken* token) override
                 {
 #if false
                     for (auto t : token->GetLeadingTrivia())
@@ -321,23 +321,23 @@ int main(int argc, const char* argv[])
 #endif
                 }
 
-                void OnIncompleteDeclarationSyntax(syntax::IncompleteDeclarationSyntax const* node) override
+                void OnIncompleteDeclarationSyntax(syntax::IncompleteDeclarationSyntax* node) override
                 {
                     Indent();
                     fmt::println("{}", __func__);
                     SyntaxWalker::OnIncompleteDeclarationSyntax(node);
                 }
 
-                void OnIdentifierNameSyntax(syntax::IdentifierNameSyntax const* node) override
+                void OnIdentifierNameSyntax(syntax::IdentifierNameSyntax* node) override
                 {
-                    syntax::IdentifierSyntaxToken const* id = node->Identifier->TryCast<syntax::IdentifierSyntaxToken>();
+                    syntax::IdentifierSyntaxToken* id = node->Identifier->TryCast<syntax::IdentifierSyntaxToken>();
 
                     Indent();
                     fmt::println("{} `{}`", __func__, id->Identifier);
                     // SyntaxWalker::OnIdentifierNameSyntax(node);
                 }
 
-                // void OnQualifiedNameSyntax(syntax::QualifiedNameSyntax const* node) override
+                // void OnQualifiedNameSyntax(syntax::QualifiedNameSyntax* node) override
                 //{
                 //     Indent();
                 //     fmt::println("{} `.`", __func__);

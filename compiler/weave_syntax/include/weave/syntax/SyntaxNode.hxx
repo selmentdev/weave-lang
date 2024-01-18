@@ -49,17 +49,17 @@ namespace weave::syntax
         }
 
     private:
-        std::span<SyntaxNode const*> _elements{};
+        std::span<SyntaxNode*> _elements{};
 
     public:
-        explicit constexpr SyntaxList(std::span<SyntaxNode const*> elements)
+        explicit constexpr SyntaxList(std::span<SyntaxNode*> elements)
             : SyntaxNode{SyntaxKind::SyntaxList}
             , _elements{elements}
         {
         }
 
     public:
-        [[nodiscard]] constexpr SyntaxNode const** GetElements() const
+        [[nodiscard]] constexpr SyntaxNode** GetElements() const
         {
             return this->_elements.data();
         }
@@ -69,7 +69,7 @@ namespace weave::syntax
             return this->_elements.size();
         }
 
-        [[nodiscard]] constexpr SyntaxNode const* Get(size_t index) const
+        [[nodiscard]] constexpr SyntaxNode* Get(size_t index) const
         {
             return this->_elements[index];
         }
@@ -83,18 +83,18 @@ namespace weave::syntax
     struct SyntaxListView
     {
     private:
-        SyntaxList const* _node;
+        SyntaxList* _node;
 
     public:
         SyntaxListView() = default;
 
-        explicit constexpr SyntaxListView(SyntaxList const* node)
+        explicit constexpr SyntaxListView(SyntaxList* node)
             : _node{node}
         {
         }
 
     public:
-        [[nodiscard]] constexpr SyntaxList const* GetNode() const
+        [[nodiscard]] constexpr SyntaxList* GetNode() const
         {
             return this->_node;
         }
@@ -109,14 +109,14 @@ namespace weave::syntax
             return this->_node->GetCount();
         }
 
-        [[nodiscard]] constexpr T const* GetElement(size_t index) const
+        [[nodiscard]] constexpr T* GetElement(size_t index) const
         {
             if (this->_node == nullptr)
             {
                 return nullptr;
             }
 
-            return static_cast<T const*>(this->_node->GetElements() + index);
+            return static_cast<T*>(this->_node->GetElements() + index);
         }
 
         template <typename OtherT>
@@ -130,18 +130,18 @@ namespace weave::syntax
     struct SeparatedSyntaxListView
     {
     private:
-        SyntaxList const* _node;
+        SyntaxList* _node;
 
     public:
         SeparatedSyntaxListView() = default;
 
-        explicit constexpr SeparatedSyntaxListView(SyntaxList const* node)
+        explicit constexpr SeparatedSyntaxListView(SyntaxList* node)
             : _node{node}
         {
         }
 
     public:
-        [[nodiscard]] constexpr SyntaxList const* GetNode() const
+        [[nodiscard]] constexpr SyntaxList* GetNode() const
         {
             return this->_node;
         }
@@ -161,14 +161,14 @@ namespace weave::syntax
             return (this->_node->GetCount() + 1) / 2;
         }
 
-        [[nodiscard]] constexpr T const* GetElement(size_t index) const
+        [[nodiscard]] constexpr T* GetElement(size_t index) const
         {
             if (this->_node == nullptr)
             {
                 return nullptr;
             }
 
-            return static_cast<T const*>(this->_node->Get(index * 2));
+            return static_cast<T*>(this->_node->Get(index * 2));
         }
     };
 }

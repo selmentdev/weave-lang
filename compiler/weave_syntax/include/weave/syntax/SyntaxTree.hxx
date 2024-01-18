@@ -42,7 +42,7 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        SyntaxNode const* Type{};
+        SyntaxNode* Type{};
 
     public:
         explicit constexpr IncompleteDeclarationSyntax()
@@ -56,9 +56,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(UsingDirectiveSyntax);
 
     public:
-        SyntaxToken const* UsingKeyword{};
-        NameSyntax const* Name{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* UsingKeyword{};
+        NameSyntax* Name{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr UsingDirectiveSyntax()
@@ -75,7 +75,7 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> AttributeLists{};
         SyntaxListView<UsingDirectiveSyntax> Usings{};
         SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken const* EndOfFileToken{};
+        SyntaxToken* EndOfFileToken{};
 
     public:
         explicit constexpr CompilationUnitSyntax()
@@ -91,13 +91,13 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        SyntaxToken const* NamespaceKeyword{};
-        NameSyntax const* Name{};
-        SyntaxToken const* OpenBraceToken{};
+        SyntaxToken* NamespaceKeyword{};
+        NameSyntax* Name{};
+        SyntaxToken* OpenBraceToken{};
         SyntaxListView<UsingDirectiveSyntax> Usings{};
         SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken const* CloseBraceToken{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* CloseBraceToken{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr NamespaceDeclarationSyntax()
@@ -113,13 +113,13 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        SyntaxToken const* FunctionKeyword{};
-        NameSyntax const* Name{};
-        ParameterListSyntax const* Parameters{};
-        ReturnTypeClauseSyntax const* ReturnType{};
-        BlockStatementSyntax const* Body{};
-        ArrowExpressionClauseSyntax const* ExpressionBody{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* FunctionKeyword{};
+        NameSyntax* Name{};
+        ParameterListSyntax* Parameters{};
+        ReturnTypeClauseSyntax* ReturnType{};
+        BlockStatementSyntax* Body{};
+        ArrowExpressionClauseSyntax* ExpressionBody{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr FunctionDeclarationSyntax()
@@ -133,8 +133,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ReturnTypeClauseSyntax);
 
     public:
-        SyntaxToken const* ArrowToken{};
-        NameSyntax const* Type{};
+        SyntaxToken* ArrowToken{};
+        NameSyntax* Type{};
 
     public:
         explicit constexpr ReturnTypeClauseSyntax()
@@ -175,12 +175,12 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        SyntaxToken const* StructKeyword{};
-        NameSyntax const* Name{};
-        SyntaxToken const* OpenBraceToken{};
+        SyntaxToken* StructKeyword{};
+        NameSyntax* Name{};
+        SyntaxToken* OpenBraceToken{};
         SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken const* CloseBraceToken{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* CloseBraceToken{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr StructDeclarationSyntax()
@@ -196,12 +196,12 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        SyntaxToken const* ConceptKeyword{};
-        NameSyntax const* Name{};
-        SyntaxToken const* OpenBraceToken{};
+        SyntaxToken* ConceptKeyword{};
+        NameSyntax* Name{};
+        SyntaxToken* OpenBraceToken{};
         SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken const* CloseBraceToken{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* CloseBraceToken{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr ConceptDeclarationSyntax()
@@ -217,12 +217,12 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        SyntaxToken const* ExtendKeyword{};
-        NameSyntax const* Name{};
-        SyntaxToken const* OpenBraceToken{};
+        SyntaxToken* ExtendKeyword{};
+        NameSyntax* Name{};
+        SyntaxToken* OpenBraceToken{};
         SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken const* CloseBraceToken{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* CloseBraceToken{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr ExtendDeclarationSyntax()
@@ -238,11 +238,11 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        SyntaxToken const* VarKeyword{};
-        NameSyntax const* Name{};
-        TypeClauseSyntax const* Type{};
-        EqualsValueClauseSyntax const* Initializer{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* VarKeyword{};
+        NameSyntax* Name{};
+        TypeClauseSyntax* Type{};
+        EqualsValueClauseSyntax* Initializer{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr FieldDeclarationSyntax()
@@ -258,11 +258,11 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        SyntaxToken const* ConstKeyword{};
-        NameSyntax const* Name{};
-        TypeClauseSyntax const* Type{};
-        EqualsValueClauseSyntax const* Initializer{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* ConstKeyword{};
+        NameSyntax* Name{};
+        TypeClauseSyntax* Type{};
+        EqualsValueClauseSyntax* Initializer{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr ConstantDeclarationSyntax()
@@ -290,8 +290,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(AttributeTargetSpecifierSyntax);
 
     public:
-        SyntaxToken const* Identifier{};
-        SyntaxToken const* ColonToken{};
+        SyntaxToken* Identifier{};
+        SyntaxToken* ColonToken{};
     };
 
     class AttributeSyntax : public SyntaxNode
@@ -306,8 +306,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(AttributeListSyntax);
 
     public:
-        SyntaxToken const* OpenAttributeToken{};
-        AttributeTargetSpecifierSyntax const* Target{};
+        SyntaxToken* OpenAttributeToken{};
+        AttributeTargetSpecifierSyntax* Target{};
         SeparatedSyntaxListView<AttributeSyntax> Attributes{};
         SyntaxToken* CloseAttributeToken{};
     };
@@ -318,8 +318,8 @@ namespace weave::syntax
 
     public:
         // TODO: Figure out how to handle named arguments
-        SyntaxToken const* DirectionKindKeyword{};
-        ExpressionSyntax const* Expression{};
+        SyntaxToken* DirectionKindKeyword{};
+        ExpressionSyntax* Expression{};
 
     public:
         explicit constexpr ArgumentSyntax()
@@ -333,9 +333,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ArgumentListSyntax);
 
     public:
-        SyntaxToken const* OpenParenToken{};
+        SyntaxToken* OpenParenToken{};
         SeparatedSyntaxListView<ArgumentSyntax> Arguments{};
-        SyntaxToken const* CloseParenToken{};
+        SyntaxToken* CloseParenToken{};
 
     public:
         explicit constexpr ArgumentListSyntax()
@@ -349,9 +349,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(BracketedArgumentListSyntax);
 
     public:
-        SyntaxToken const* OpenBracketToken{};
+        SyntaxToken* OpenBracketToken{};
         SeparatedSyntaxListView<ArgumentSyntax> Arguments{};
-        SyntaxToken const* CloseBracketToken{};
+        SyntaxToken* CloseBracketToken{};
 
     public:
         explicit constexpr BracketedArgumentListSyntax()
@@ -367,8 +367,8 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        NameSyntax const* Identifier{};
-        TypeClauseSyntax const* Type{};
+        NameSyntax* Identifier{};
+        TypeClauseSyntax* Type{};
 
     public:
         explicit constexpr ParameterSyntax()
@@ -382,9 +382,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ParameterListSyntax);
 
     public:
-        SyntaxToken const* OpenParenToken{};
+        SyntaxToken* OpenParenToken{};
         SeparatedSyntaxListView<ParameterSyntax> Parameters{};
-        SyntaxToken const* CloseParenToken{};
+        SyntaxToken* CloseParenToken{};
 
     public:
         explicit constexpr ParameterListSyntax()
@@ -437,9 +437,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(GenericParameterListSyntax);
 
     public:
-        SyntaxToken const* OpenToken{};
+        SyntaxToken* OpenToken{};
         SeparatedSyntaxListView<GenericParameterSyntax> Parameters{};
-        SyntaxToken const* CloseToken{};
+        SyntaxToken* CloseToken{};
     };
 
     class ConstraintSyntax : public SyntaxNode
@@ -463,8 +463,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(InvocationExpressionSyntax);
 
     public:
-        ExpressionSyntax const* Expression{};
-        ArgumentListSyntax const* ArgumentList{};
+        ExpressionSyntax* Expression{};
+        ArgumentListSyntax* ArgumentList{};
 
     public:
         explicit constexpr InvocationExpressionSyntax()
@@ -479,9 +479,9 @@ namespace weave::syntax
 
     public:
         SyntaxKind OperationKind{};
-        ExpressionSyntax const* Expression{};
-        SyntaxToken const* OperatorToken{};
-        SimpleNameSyntax const* Name{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* OperatorToken{};
+        SimpleNameSyntax* Name{};
 
     public:
         explicit constexpr MemberAccessExpressionSyntax()
@@ -495,8 +495,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ElementAccessExpressionSyntax);
 
     public:
-        ExpressionSyntax const* Expression{};
-        BracketedArgumentListSyntax const* ArgumentList{};
+        ExpressionSyntax* Expression{};
+        BracketedArgumentListSyntax* ArgumentList{};
 
     public:
         explicit constexpr ElementAccessExpressionSyntax()
@@ -511,9 +511,9 @@ namespace weave::syntax
 
     public:
         SyntaxKind Operation{};
-        ExpressionSyntax const* Left{};
-        SyntaxToken const* OperatorToken{};
-        ExpressionSyntax const* Right{};
+        ExpressionSyntax* Left{};
+        SyntaxToken* OperatorToken{};
+        ExpressionSyntax* Right{};
 
     public:
         explicit constexpr AssignmentExpressionSyntax()
@@ -528,9 +528,9 @@ namespace weave::syntax
 
     public:
         SyntaxKind Operation{};
-        ExpressionSyntax const* Left{};
-        SyntaxToken const* OperatorToken{};
-        ExpressionSyntax const* Right{};
+        ExpressionSyntax* Left{};
+        SyntaxToken* OperatorToken{};
+        ExpressionSyntax* Right{};
 
     public:
         explicit constexpr BinaryExpressionSyntax()
@@ -545,8 +545,8 @@ namespace weave::syntax
 
     public:
         SyntaxKind Operation{};
-        SyntaxToken const* OperatorToken{};
-        ExpressionSyntax const* Operand{};
+        SyntaxToken* OperatorToken{};
+        ExpressionSyntax* Operand{};
 
     public:
         explicit constexpr UnaryExpressionSyntax()
@@ -561,8 +561,8 @@ namespace weave::syntax
 
     public:
         SyntaxKind Operation{};
-        ExpressionSyntax const* Operand{};
-        SyntaxToken const* OperatorToken{};
+        ExpressionSyntax* Operand{};
+        SyntaxToken* OperatorToken{};
 
     public:
         explicit constexpr PostfixUnaryExpression()
@@ -576,9 +576,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ParenthesizedExpressionSyntax);
 
     public:
-        SyntaxToken const* OpenParenToken{};
-        ExpressionSyntax const* Expression{};
-        SyntaxToken const* CloseParenToken{};
+        SyntaxToken* OpenParenToken{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* CloseParenToken{};
 
     public:
         explicit constexpr ParenthesizedExpressionSyntax()
@@ -592,7 +592,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(LiteralExpressionSyntax);
 
     public:
-        SyntaxToken const* LiteralToken{};
+        SyntaxToken* LiteralToken{};
 
     public:
         explicit constexpr LiteralExpressionSyntax()
@@ -606,11 +606,11 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ConditionalExpressionSyntax);
 
     public:
-        ExpressionSyntax const* Condition{};
-        SyntaxToken const* QuestionToken{};
-        ExpressionSyntax const* WhenTrue{};
-        SyntaxToken const* ColonToken{};
-        ExpressionSyntax const* WhenFalse{};
+        ExpressionSyntax* Condition{};
+        SyntaxToken* QuestionToken{};
+        ExpressionSyntax* WhenTrue{};
+        SyntaxToken* ColonToken{};
+        ExpressionSyntax* WhenFalse{};
 
     public:
         explicit constexpr ConditionalExpressionSyntax()
@@ -633,7 +633,7 @@ namespace weave::syntax
         // WEAVE_DEFINE_SYNTAX_NODE(PredefinedTypeSyntax);
 
     public:
-        SyntaxToken const* Keyword{};
+        SyntaxToken* Keyword{};
     };
 
     class NameSyntax : public TypeSyntax
@@ -648,7 +648,7 @@ namespace weave::syntax
     class SimpleNameSyntax : public NameSyntax
     {
     public:
-        SyntaxToken const* Identifier{};
+        SyntaxToken* Identifier{};
 
     public:
         explicit constexpr SimpleNameSyntax(SyntaxKind kind)
@@ -673,7 +673,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(GenericNameSyntax);
 
     public:
-        GenericArgumentListSyntax const* TypeArgumentList{};
+        GenericArgumentListSyntax* TypeArgumentList{};
 
     public:
         explicit constexpr GenericNameSyntax()
@@ -687,9 +687,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(QualifiedNameSyntax);
 
     public:
-        NameSyntax const* Left{};
-        SyntaxToken const* DotToken{};
-        SimpleNameSyntax const* Right{};
+        NameSyntax* Left{};
+        SyntaxToken* DotToken{};
+        SimpleNameSyntax* Right{};
 
     public:
         explicit constexpr QualifiedNameSyntax()
@@ -703,8 +703,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(TypeClauseSyntax);
 
     public:
-        SyntaxToken const* ColonToken{};
-        NameSyntax const* Identifier{};
+        SyntaxToken* ColonToken{};
+        NameSyntax* Identifier{};
 
     public:
         explicit constexpr TypeClauseSyntax()
@@ -718,8 +718,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(EqualsValueClauseSyntax);
 
     public:
-        SyntaxToken const* EqualsToken{};
-        ExpressionSyntax const* Expression{};
+        SyntaxToken* EqualsToken{};
+        ExpressionSyntax* Expression{};
 
     public:
         explicit constexpr EqualsValueClauseSyntax()
@@ -742,7 +742,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(EmptyStatementSyntax);
 
     public:
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr EmptyStatementSyntax()
@@ -756,11 +756,11 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(VariableDeclarationSyntax);
 
     public:
-        SyntaxToken const* VarKeyword{};
-        IdentifierNameSyntax const* Identifier{};
-        TypeClauseSyntax const* TypeClause{};
-        EqualsValueClauseSyntax const* Initializer{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* VarKeyword{};
+        IdentifierNameSyntax* Identifier{};
+        TypeClauseSyntax* TypeClause{};
+        EqualsValueClauseSyntax* Initializer{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr VariableDeclarationSyntax()
@@ -774,9 +774,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ReturnStatementSyntax);
 
     public:
-        SyntaxToken const* ReturnKeyword{};
-        ExpressionSyntax const* Expression{};
-        SyntaxToken const* SemicolonToken{};
+        SyntaxToken* ReturnKeyword{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr ReturnStatementSyntax()
@@ -790,8 +790,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ExpressionStatementSyntax);
 
     public:
-        ExpressionSyntax const* Expression{};
-        SyntaxToken const* SemicolonToken{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr ExpressionStatementSyntax()
@@ -805,9 +805,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(BlockStatementSyntax);
 
     public:
-        SyntaxToken const* OpenBraceToken{};
+        SyntaxToken* OpenBraceToken{};
         SyntaxListView<StatementSyntax> Statements{};
-        SyntaxToken const* CloseBraceToken{};
+        SyntaxToken* CloseBraceToken{};
 
     public:
         explicit constexpr BlockStatementSyntax()
@@ -821,8 +821,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ArrowExpressionClauseSyntax);
 
     public:
-        SyntaxToken const* ArrowToken{};
-        ExpressionSyntax const* Expression{};
+        SyntaxToken* ArrowToken{};
+        ExpressionSyntax* Expression{};
 
     public:
         explicit constexpr ArrowExpressionClauseSyntax()
@@ -836,10 +836,10 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(IfStatementSyntax);
 
     public:
-        SyntaxToken const* IfKeyword{};
-        ExpressionSyntax const* Condition{};
-        StatementSyntax const* ThenStatement{};
-        ElseClauseSyntax const* ElseClause{};
+        SyntaxToken* IfKeyword{};
+        ExpressionSyntax* Condition{};
+        StatementSyntax* ThenStatement{};
+        ElseClauseSyntax* ElseClause{};
 
     public:
         explicit constexpr IfStatementSyntax()
@@ -853,8 +853,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ElseClauseSyntax);
 
     public:
-        SyntaxToken const* ElseKeyword{};
-        BlockStatementSyntax const* Statement{};
+        SyntaxToken* ElseKeyword{};
+        BlockStatementSyntax* Statement{};
 
     public:
         explicit constexpr ElseClauseSyntax()

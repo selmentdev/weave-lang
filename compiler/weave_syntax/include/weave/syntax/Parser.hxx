@@ -13,7 +13,7 @@ namespace weave::syntax
     private:
         source::DiagnosticSink* _diagnostic{};
         SyntaxFactory* _factory{};
-        std::vector<SyntaxToken const*> _tokens{};
+        std::vector<SyntaxToken*> _tokens{};
         size_t _index{};
 
     public:
@@ -23,16 +23,16 @@ namespace weave::syntax
             source::SourceText const& source);
 
     public:
-        [[nodiscard]] CompilationUnitSyntax const* Parse();
+        [[nodiscard]] CompilationUnitSyntax* Parse();
 
     private:
-        [[nodiscard]] SyntaxToken const* Peek(size_t offset) const;
-        [[nodiscard]] SyntaxToken const* Current() const;
-        SyntaxToken const* Next();
-        [[nodiscard]] SyntaxToken const* Match(SyntaxKind kind);
-        [[nodiscard]] SyntaxToken const* MatchOptional(SyntaxKind kind);
-        [[nodiscard]] SyntaxToken const* TryMatch(SyntaxKind kind);
-        [[nodiscard]] SyntaxToken const* SkipToken(SyntaxKind kind, bool consume = true);
+        [[nodiscard]] SyntaxToken* Peek(size_t offset) const;
+        [[nodiscard]] SyntaxToken* Current() const;
+        SyntaxToken* Next();
+        [[nodiscard]] SyntaxToken* Match(SyntaxKind kind);
+        [[nodiscard]] SyntaxToken* MatchOptional(SyntaxKind kind);
+        [[nodiscard]] SyntaxToken* TryMatch(SyntaxKind kind);
+        [[nodiscard]] SyntaxToken* SkipToken(SyntaxKind kind, bool consume = true);
 
     private:
         struct ResetPoint
@@ -60,137 +60,137 @@ namespace weave::syntax
         }
 
     private:
-        [[nodiscard]] CompilationUnitSyntax const* ParseCompilationUnit();
+        [[nodiscard]] CompilationUnitSyntax* ParseCompilationUnit();
 
         void ParseTypeBody(
-            std::vector<ConstraintSyntax const*>& constraints,
-            std::vector<MemberDeclarationSyntax const*>& members);
+            std::vector<ConstraintSyntax*>& constraints,
+            std::vector<MemberDeclarationSyntax*>& members);
 
         void ParseNamespaceBody(
-            SyntaxToken const* openBraceOrSemicolon,
-            std::vector<UsingDirectiveSyntax const*>& usings,
-            std::vector<MemberDeclarationSyntax const*>& members);
+            SyntaxToken* openBraceOrSemicolon,
+            std::vector<UsingDirectiveSyntax*>& usings,
+            std::vector<MemberDeclarationSyntax*>& members);
 
         void ParseMemberModifiers(
-            std::vector<SyntaxToken const*>& modifiers);
+            std::vector<SyntaxToken*>& modifiers);
 
         void ParseFunctionParameterModifiers(
-            std::vector<SyntaxToken const*>& modifiers);
+            std::vector<SyntaxToken*>& modifiers);
 
         void ParseAttributesList(
-            std::vector<AttributeListSyntax const*>& attributes);
+            std::vector<AttributeListSyntax*>& attributes);
 
-        MemberDeclarationSyntax const* ParseMemberDeclaration(
-            std::span<AttributeListSyntax const*> attributes,
-            std::span<SyntaxToken const*> modifiers);
+        MemberDeclarationSyntax* ParseMemberDeclaration(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
-        AttributeListSyntax const* ParseAttributeList();
+        AttributeListSyntax* ParseAttributeList();
 
-        NamespaceDeclarationSyntax const* ParseNamespaceDeclaration(
-            std::span<AttributeListSyntax const*> attributes,
-            std::span<SyntaxToken const*> modifiers);
+        NamespaceDeclarationSyntax* ParseNamespaceDeclaration(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
-        StructDeclarationSyntax const* ParseStructDeclaration(
-            std::span<AttributeListSyntax const*> attributes,
-            std::span<SyntaxToken const*> modifiers);
+        StructDeclarationSyntax* ParseStructDeclaration(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
-        ExtendDeclarationSyntax const* ParseExtendDeclaration(
-            std::span<AttributeListSyntax const*> attributes,
-            std::span<SyntaxToken const*> modifiers);
+        ExtendDeclarationSyntax* ParseExtendDeclaration(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
-        ConceptDeclarationSyntax const* ParseConceptDeclaration(
-            std::span<AttributeListSyntax const*> attributes,
-            std::span<SyntaxToken const*> modifiers);
+        ConceptDeclarationSyntax* ParseConceptDeclaration(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
-        UsingDirectiveSyntax const* ParseUsingDirective();
+        UsingDirectiveSyntax* ParseUsingDirective();
 
-        ReturnTypeClauseSyntax const* ParseReturnTypeClause();
+        ReturnTypeClauseSyntax* ParseReturnTypeClause();
 
-        ArrowExpressionClauseSyntax const* ParseArrowExpressionClause();
+        ArrowExpressionClauseSyntax* ParseArrowExpressionClause();
 
-        FunctionDeclarationSyntax const* ParseFunctionDeclaration(
-            std::span<AttributeListSyntax const*> attributes,
-            std::span<SyntaxToken const*> modifiers);
+        FunctionDeclarationSyntax* ParseFunctionDeclaration(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
-        TypeClauseSyntax const* ParseTypeClause();
+        TypeClauseSyntax* ParseTypeClause();
 
-        TypeClauseSyntax const* ParseOptionalTypeClause();
+        TypeClauseSyntax* ParseOptionalTypeClause();
 
-        EqualsValueClauseSyntax const* ParseEqualsValueClause();
+        EqualsValueClauseSyntax* ParseEqualsValueClause();
 
-        EqualsValueClauseSyntax const* ParseOptionalEqualsValueClause();
+        EqualsValueClauseSyntax* ParseOptionalEqualsValueClause();
 
-        ArgumentSyntax const* ParseArgument();
+        ArgumentSyntax* ParseArgument();
 
-        ArgumentListSyntax const* ParseArgumentList();
+        ArgumentListSyntax* ParseArgumentList();
 
-        BracketedArgumentListSyntax const* ParseBracketedArgumentList();
+        BracketedArgumentListSyntax* ParseBracketedArgumentList();
 
-        ParameterSyntax const* ParseParameter(
-            std::span<AttributeListSyntax const*> attributes,
-            std::span<SyntaxToken const*> modifiers);
+        ParameterSyntax* ParseParameter(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
-        ParameterListSyntax const* ParseParameterList();
+        ParameterListSyntax* ParseParameterList();
 
-        FieldDeclarationSyntax const* ParseFieldDeclaration(
-            std::span<AttributeListSyntax const*> attributes,
-            std::span<SyntaxToken const*> modifiers);
+        FieldDeclarationSyntax* ParseFieldDeclaration(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
-        ConstantDeclarationSyntax const* ParseConstantDeclaration(
-            std::span<AttributeListSyntax const*> attributes,
-            std::span<SyntaxToken const*> modifiers);
+        ConstantDeclarationSyntax* ParseConstantDeclaration(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
-        NameSyntax const* ParseQualifiedName();
+        NameSyntax* ParseQualifiedName();
 
-        SimpleNameSyntax const* ParseSimpleName();
+        SimpleNameSyntax* ParseSimpleName();
 
-        IdentifierNameSyntax const* ParseIdentifierName();
+        IdentifierNameSyntax* ParseIdentifierName();
 
-        ExpressionSyntax const* ParseExpression(
+        ExpressionSyntax* ParseExpression(
             Precedence parentPrecedence = Precedence::Expression);
 
-        ExpressionSyntax const* ParseTerm(
+        ExpressionSyntax* ParseTerm(
             Precedence precedence);
 
-        ExpressionSyntax const* ParsePostfixExpression(
-            ExpressionSyntax const* expression);
+        ExpressionSyntax* ParsePostfixExpression(
+            ExpressionSyntax* expression);
 
-        ExpressionSyntax const* ParseTermWithoutPostfix(
+        ExpressionSyntax* ParseTermWithoutPostfix(
             Precedence precedence);
 
-        ExpressionSyntax const* ParseParenthesizedExpression();
+        ExpressionSyntax* ParseParenthesizedExpression();
 
-        ExpressionSyntax const* ParseBooleanLiteral();
+        ExpressionSyntax* ParseBooleanLiteral();
 
-        ExpressionSyntax const* ParseIntegerLiteral();
+        ExpressionSyntax* ParseIntegerLiteral();
 
-        ExpressionSyntax const* ParseFloatLiteral();
+        ExpressionSyntax* ParseFloatLiteral();
 
-        ExpressionSyntax const* ParseStringLiteral();
+        ExpressionSyntax* ParseStringLiteral();
 
-        StatementSyntax const* ParseStatement();
+        StatementSyntax* ParseStatement();
 
-        StatementSyntax const* CreateMissingStatement(
-            std::span<SyntaxToken const*> tokens);
+        StatementSyntax* CreateMissingStatement(
+            std::span<SyntaxToken*> tokens);
 
-        BlockStatementSyntax const* ParseBlockStatement();
+        BlockStatementSyntax* ParseBlockStatement();
 
-        StatementSyntax const* ParseVariableDeclaration();
+        StatementSyntax* ParseVariableDeclaration();
 
-        StatementSyntax const* ParseIfStatement();
+        StatementSyntax* ParseIfStatement();
 
-        ElseClauseSyntax const* ParseOptionalElseClause();
+        ElseClauseSyntax* ParseOptionalElseClause();
 
-        StatementSyntax const* ParseReturnStatement();
+        StatementSyntax* ParseReturnStatement();
 
-        ExpressionStatementSyntax const* ParseExpressionStatement();
+        ExpressionStatementSyntax* ParseExpressionStatement();
 
-        IdentifierNameSyntax const* CreateMissingIdentifierName();
+        IdentifierNameSyntax* CreateMissingIdentifierName();
 
         void ReportIncompleteMember(
-            std::span<SyntaxToken const*> modifiers,
-            std::span<AttributeListSyntax const*> attributes,
-            TypeSyntax const* type,
-            std::vector<MemberDeclarationSyntax const*>& members);
+            std::span<SyntaxToken*> modifiers,
+            std::span<AttributeListSyntax*> attributes,
+            TypeSyntax* type,
+            std::vector<MemberDeclarationSyntax*>& members);
     };
 }

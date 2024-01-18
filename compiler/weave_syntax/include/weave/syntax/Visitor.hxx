@@ -13,20 +13,20 @@ namespace weave::syntax
         virtual ~SyntaxVisitor() = default;
 
     public:
-        virtual ResultT Dispatch(SyntaxNode const* node, ArgsT&&... args)
+        virtual ResultT Dispatch(SyntaxNode* node, ArgsT&&... args)
         {
             if (node != nullptr)
             {
                 if (SyntaxKindTraits::IsSyntaxToken(node->Kind))
                 {
-                    return this->OnToken(static_cast<SyntaxToken const*>(node), std::forward<ArgsT>(args)...);
+                    return this->OnToken(static_cast<SyntaxToken*>(node), std::forward<ArgsT>(args)...);
                 }
 
                 switch (node->Kind)
                 {
 #define WEAVE_SYNTAX_NODE_CONCRETE(name, value, spelling) \
     case SyntaxKind::name: \
-        return this->On##name(static_cast<name const*>(node), std::forward<ArgsT>(args)...);
+        return this->On##name(static_cast<name*>(node), std::forward<ArgsT>(args)...);
 #include "weave/syntax/SyntaxKind.inl"
 
                 default:
@@ -37,26 +37,26 @@ namespace weave::syntax
             return ResultT{};
         }
 
-        virtual ResultT OnToken(SyntaxToken const* token, ArgsT&&... args)
+        virtual ResultT OnToken(SyntaxToken* token, ArgsT&&... args)
         {
             return static_cast<VisitorT*>(this)->OnDefault(token, std::forward<ArgsT>(args)...);
         }
 
         virtual ResultT OnTrivia(
-            [[maybe_unused]] SyntaxTrivia const* trivia,
+            [[maybe_unused]] SyntaxTrivia* trivia,
             [[maybe_unused]] ArgsT&&... args)
         {
         }
 
         virtual ResultT OnDefault(
-            [[maybe_unused]] SyntaxNode const* node,
+            [[maybe_unused]] SyntaxNode* node,
             [[maybe_unused]] ArgsT&&... args)
         {
             return ResultT{};
         }
 
 #define WEAVE_SYNTAX_NODE(name, value, spelling) \
-    virtual ResultT On##name(name const* node, ArgsT&&... args) \
+    virtual ResultT On##name(name* node, ArgsT&&... args) \
     { \
         return static_cast<VisitorT*>(this)->OnDefault(node, std::forward<ArgsT>(args)...); \
     }
@@ -72,45 +72,45 @@ namespace weave::syntax
         size_t Depth = 0;
 
     public:
-        void OnCompilationUnitSyntax(CompilationUnitSyntax const* node) override;
-        void OnSyntaxList(SyntaxList const* node) override;
-        void OnNamespaceDeclarationSyntax(NamespaceDeclarationSyntax const* node) override;
-        void OnStructDeclarationSyntax(StructDeclarationSyntax const* node) override;
-        void OnConceptDeclarationSyntax(ConceptDeclarationSyntax const* node) override;
-        void OnExtendDeclarationSyntax(ExtendDeclarationSyntax const* node) override;
-        void OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax const* node) override;
-        void OnQualifiedNameSyntax(QualifiedNameSyntax const* node) override;
-        void OnFunctionDeclarationSyntax(FunctionDeclarationSyntax const* node) override;
-        void OnUsingDirectiveSyntax(UsingDirectiveSyntax const* node) override;
-        void OnIdentifierNameSyntax(IdentifierNameSyntax const* node) override;
-        void OnParameterListSyntax(ParameterListSyntax const* node) override;
-        void OnParameterSyntax(ParameterSyntax const* node) override;
-        void OnTypeClauseSyntax(TypeClauseSyntax const* node) override;
-        void OnFieldDeclarationSyntax(FieldDeclarationSyntax const* node) override;
-        void OnConstantDeclarationSyntax(ConstantDeclarationSyntax const* node) override;
-        void OnEqualsValueClauseSyntax(EqualsValueClauseSyntax const* node) override;
-        void OnLiteralExpressionSyntax(LiteralExpressionSyntax const* node) override;
-        void OnAssignmentExpressionSyntax(AssignmentExpressionSyntax const* node) override;
-        void OnBinaryExpressionSyntax(BinaryExpressionSyntax const* node) override;
-        void OnUnaryExpressionSyntax(UnaryExpressionSyntax const* node) override;
-        void OnPostfixUnaryExpression(PostfixUnaryExpression const* node) override;
-        void OnParenthesizedExpressionSyntax(ParenthesizedExpressionSyntax const* node) override;
-        void OnInvocationExpressionSyntax(InvocationExpressionSyntax const* node) override;
-        void OnMemberAccessExpressionSyntax(MemberAccessExpressionSyntax const* node) override;
-        void OnArgumentListSyntax(ArgumentListSyntax const* node) override;
-        void OnArgumentSyntax(ArgumentSyntax const* node) override;
-        void OnBracketedArgumentListSyntax(BracketedArgumentListSyntax const* node) override;
-        void OnElementAccessExpressionSyntax(ElementAccessExpressionSyntax const* node) override;
+        void OnCompilationUnitSyntax(CompilationUnitSyntax* node) override;
+        void OnSyntaxList(SyntaxList* node) override;
+        void OnNamespaceDeclarationSyntax(NamespaceDeclarationSyntax* node) override;
+        void OnStructDeclarationSyntax(StructDeclarationSyntax* node) override;
+        void OnConceptDeclarationSyntax(ConceptDeclarationSyntax* node) override;
+        void OnExtendDeclarationSyntax(ExtendDeclarationSyntax* node) override;
+        void OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax* node) override;
+        void OnQualifiedNameSyntax(QualifiedNameSyntax* node) override;
+        void OnFunctionDeclarationSyntax(FunctionDeclarationSyntax* node) override;
+        void OnUsingDirectiveSyntax(UsingDirectiveSyntax* node) override;
+        void OnIdentifierNameSyntax(IdentifierNameSyntax* node) override;
+        void OnParameterListSyntax(ParameterListSyntax* node) override;
+        void OnParameterSyntax(ParameterSyntax* node) override;
+        void OnTypeClauseSyntax(TypeClauseSyntax* node) override;
+        void OnFieldDeclarationSyntax(FieldDeclarationSyntax* node) override;
+        void OnConstantDeclarationSyntax(ConstantDeclarationSyntax* node) override;
+        void OnEqualsValueClauseSyntax(EqualsValueClauseSyntax* node) override;
+        void OnLiteralExpressionSyntax(LiteralExpressionSyntax* node) override;
+        void OnAssignmentExpressionSyntax(AssignmentExpressionSyntax* node) override;
+        void OnBinaryExpressionSyntax(BinaryExpressionSyntax* node) override;
+        void OnUnaryExpressionSyntax(UnaryExpressionSyntax* node) override;
+        void OnPostfixUnaryExpression(PostfixUnaryExpression* node) override;
+        void OnParenthesizedExpressionSyntax(ParenthesizedExpressionSyntax* node) override;
+        void OnInvocationExpressionSyntax(InvocationExpressionSyntax* node) override;
+        void OnMemberAccessExpressionSyntax(MemberAccessExpressionSyntax* node) override;
+        void OnArgumentListSyntax(ArgumentListSyntax* node) override;
+        void OnArgumentSyntax(ArgumentSyntax* node) override;
+        void OnBracketedArgumentListSyntax(BracketedArgumentListSyntax* node) override;
+        void OnElementAccessExpressionSyntax(ElementAccessExpressionSyntax* node) override;
 
-        void OnBlockStatementSyntax(BlockStatementSyntax const* node) override;
-        void OnExpressionStatementSyntax(ExpressionStatementSyntax const* node) override;
-        void OnIfStatementSyntax(IfStatementSyntax const* node) override;
-        void OnReturnStatementSyntax(ReturnStatementSyntax const* node) override;
-        void OnElseClauseSyntax(ElseClauseSyntax const* node) override;
-        void OnVariableDeclarationSyntax(VariableDeclarationSyntax const* node) override;
-        void OnConditionalExpressionSyntax(ConditionalExpressionSyntax const* node) override;
-        void OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax const* node) override;
-        void OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax const* node) override;
-        void OnDelegateDeclarationSyntax(DelegateDeclarationSyntax const* node) override;
+        void OnBlockStatementSyntax(BlockStatementSyntax* node) override;
+        void OnExpressionStatementSyntax(ExpressionStatementSyntax* node) override;
+        void OnIfStatementSyntax(IfStatementSyntax* node) override;
+        void OnReturnStatementSyntax(ReturnStatementSyntax* node) override;
+        void OnElseClauseSyntax(ElseClauseSyntax* node) override;
+        void OnVariableDeclarationSyntax(VariableDeclarationSyntax* node) override;
+        void OnConditionalExpressionSyntax(ConditionalExpressionSyntax* node) override;
+        void OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax* node) override;
+        void OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax* node) override;
+        void OnDelegateDeclarationSyntax(DelegateDeclarationSyntax* node) override;
     };
 }
