@@ -451,6 +451,8 @@ namespace weave::syntax
         case SyntaxKind::DotToken:
         case SyntaxKind::WhileKeyword:
         case SyntaxKind::ForKeyword:
+        case SyntaxKind::VarKeyword:
+        case SyntaxKind::LetKeyword:
         case SyntaxKind::GotoKeyword:
         case SyntaxKind::IfKeyword:
         case SyntaxKind::ElseKeyword:

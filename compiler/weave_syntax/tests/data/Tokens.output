@@ -1,340 +1,1283 @@
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Tokens.source
 ___
-CompilationUnit (overridden)
-  [declaration::incomplete-member]
-    BoolKeyword
-    CharKeyword
-    Char16Keyword
-    Char32Keyword
-    Char8Keyword
-    Decimal128Keyword
-    decimal32
-    decimal64
-    Float16Keyword
-    Float32Keyword
-    Float64Keyword
-    Int128Keyword
-    Int16Keyword
-    int256
-    Int32Keyword
-    Int64Keyword
-    Int8Keyword
-    iptr
-    IntSizeKeyword
-    object
-    string
-    UInt128Keyword
-    UInt16Keyword
-    uint256
-    UInt32Keyword
-    UInt64Keyword
-    UInt8Keyword
-    uptr
-    UIntSizeKeyword
-    void
-    ByteKeyword
-    AndKeyword
-    AndEqualKeyword
-    OrKeyword
-    OrEqualKeyword
-    XorKeyword
-    XorEqualKeyword
-    NotKeyword
-    NotEqKeyword
-    BitAndKeyword
-    BitOrKeyword
-    BitComplKeyword
-    __column__
-    __file__
-    __function__
-    __function_pretty__
-    __line__
-    __module__
-    __source_location__
-    AbstractKeyword
-    AddKeyword
-    AddressOfKeyword
-    AddressSpaceKeyword
-    AliasKeyword
-    AlignKeyword
-    AlignasKeyword
-    AlignofKeyword
-    ArrayKeyword
-    AsKeyword
-    AssemblyKeyword
-    AssertKeyword
-    AssumeKeyword
-    AsyncKeyword
-    AtomicKeyword
-    AttributeKeyword
-    AutoKeyword
-    AvailableKeyword
-    AwaitKeyword
-    BaseKeyword
-    BecomeKeyword
-    BitCastKeyword
-    BodyKeyword
-    BorrowKeyword
-    BoxKeyword
-    BreakKeyword
-    CallConvKeyword
-    CaseKeyword
-    CastKeyword
-    CheckedKeyword
-    ClassKeyword
-    ColumnMajorKeyword
-    CompileKeyword
-  [declaration::concept]
-    [expression::identifier-name]: 
-    [declaration::const]
-      [expression::identifier-name]: ctor
-    [declaration::incomplete-member]
-      ContinueKeyword
-      ContravariantKeyword
-      CovariantKeyword
-      DebugKeyword
-      DefaultKeyword
-      DeferKeyword
-      DelegateKeyword
-      DeleteKeyword
-      DeprecatedKeyword
-      dtor
-      DiscardKeyword
-      DoKeyword
-      DropKeyword
-      DynamicKeyword
-      EagerKeyword
-      ElseKeyword
-      EnumKeyword
-      EventKeyword
-      ExceptKeyword
-      ExplicitKeyword
-      ExportKeyword
-      ExpressionKeyword
-      ExtensionKeyword
-      FalseKeyword
-      FieldKeyword
-      FileKeyword
-      FinalKeyword
-      FinallyKeyword
-      FixedKeyword
-      ForKeyword
-      ForceKeyword
-      ForeachKeyword
-      FractionKeyword
-      FragmentKeyword
-      FriendKeyword
-      FromKeyword
-    [declaration::function]
-      [expression::identifier-name]: 
-      [expression::identifier-name]: 
-    [declaration::incomplete-member]
-      GenericKeyword
-      GetKeyword
-      GlobalKeyword
-      GotoKeyword
-      GroupSharedKeyword
-      IfKeyword
-      ImmutableKeyword
-      ImplementationKeyword
-      ImplicitKeyword
-      ImportKeyword
-      InKeyword
-      InheritKeyword
-      InjectKeyword
-      InlineKeyword
-      InOutKeyword
-      InterfaceKeyword
-      InvariantKeyword
-      IsKeyword
-      LazyKeyword
-      LetKeyword
-      LikelyKeyword
-      LinkSectionKeyword
-      LockKeyword
-      LoopKeyword
-      MacroKeyword
-      ManagerKeyword
-      MatchKeyword
-      MatrixKeyword
-      MemberKeyword
-      MetaKeyword
-      MixinKeyword
-      ModuleKeyword
-      MoveKeyword
-      MutableKeyword
-      NameOfKeyword
-      NamespaceKeyword
-      NativeKeyword
-      NewKeyword
-      NoAliasKeyword
-      NodiscardKeyword
-      NoInlineKeyword
-      NoreturnKeyword
-      NoSuspendKeyword
-      NotNullKeyword
-      NullKeyword
-      NullableKeyword
-      OffsetOfKeyword
-      OperatorKeyword
-      OpqaueKeyword
-      OptionalKeyword
-      OutKeyword
-      OverloadKeyword
-      OverrideKeyword
-      PackageKeyword
-      PackedKeyword
-      ParallelKeyword
-      ParamsKeyword
-      PartialKeyword
-      PragmaKeyword
-      PreciseKeyword
-      PropertyKeyword
-      ProtectedKeyword
-      PureKeyword
-      RaiseKeyword
-      RecordKeyword
-      RecursiveKeyword
-      RefKeyword
-      ReflectKeyword
-      RegisterKeyword
-      ReinterpretKeyword
-      RemoveKeyword
-      RequireKeyword
-      RequiredKeyword
-      ResumeKeyword
-      RetainKeyword
-      ReturnKeyword
-      RowMajorKeyword
-      SaturateKeyword
-      ScalarKeyword
-      ScopeKeyword
-      SectionKeyword
-      SelfKeyword
-      SetKeyword
-      SharedKeyword
-      SizeofKeyword
-      SliceKeyword
-      StackallocKeyword
-      StaticKeyword
-      StructKeyword
-      SuperKeyword
-      SuspendKeyword
-      SwitchKeyword
-      SynchronizedKeyword
-      TailCallKeyword
-      TemplateKeyword
-      TestKeyword
-      ThisKeyword
-      ThreadLocalKeyword
-      TraitKeyword
-      TransferKeyword
-      TrueKeyword
-      TryKeyword
-      TupleKeyword
-      TypeKeyword
-      TypeofKeyword
-      UnalignedKeyword
-      UnboxKeyword
-      UncheckedKeyword
-      UndefinedKeyword
-      UniformKeyword
-      UnionKeyword
-      UnlikelyKeyword
-      UnmanagedKeyword
-      UnreachableKeyword
-      UnsafeKeyword
-      UnsizedKeyword
-      UsingKeyword
-      UuidOfKeyword
-      ValueKeyword
-    [declaration::field]
-      [expression::identifier-name]: 
-    [declaration::incomplete-member]
-      VectorKeyword
-      VendorKeyword
-      VersionKeyword
-      VirtualKeyword
-      VolatileKeyword
-      VtableKeyword
-      WhenKeyword
-      WhereKeyword
-      WhileKeyword
-      WithKeyword
-      YieldKeyword
-      TildeToken
-      ExclamationEqualsToken
-      ExclamationToken
-      PlusEqualsToken
-      PlusPlusToken
-      PlusToken
-      MinusEqualsToken
-      MinusMinusToken
-      MinusGreaterThanToken
-      MinusToken
-      AsteriskEqualsToken
-      AsteriskToken
-      SlashEqualsToken
-      SlashToken
-      OpenParenToken
-      CloseParenToken
-      OpenBraceToken
-  [declaration::incomplete-member]
-    OpenBracketToken
-    CloseBracketToken
-    ColonColonToken
-    ColonToken
-    AtToken
-    DollarToken
-    PercentEqualsToken
-    PercentToken
-    CaretToken
-    EqualsToken
-    CaretToken
-    AmpersandAmpersandToken
-    AmpersandEqualsToken
-    AmpersandToken
-    EqualsEqualsToken
-    EqualsGreaterThanToken
-    EqualsToken
-    BackslashToken
-    BackslashToken
-    BarBarToken
-    BarEqualsToken
-    BarToken
-    CommaToken
-    LessThanEqualsToken
-    LessThanLessThanEqualsToken
-    LessThanLessThanToken
-    LessThanLessThanToken
-    LessThanToken
-    GreaterThanGreaterThanToken
-    GreaterThanToken
-    LessThanToken
-    GreaterThanEqualsToken
-    GreaterThanGreaterThanEqualsToken
-    GreaterThanGreaterThanToken
-    GreaterThanToken
-    QuestionQuestionToken
-    QuestionToken
-    DotDotDotToken
-    DotDotToken
-    DotToken
-    _
-    class
-    enum
-    struct
-    "raw string \t"
-    "raw string \n"
-    " r#"inner\nraw\nstring"# "
-parsing took: 00:00:00.010
-PageFaultCount: 1550
-PeakWorkingSetSize: 5.789 MiB (6070272)
-WorkingSetSize: 4.422 MiB (4636672)
-QuotaPeakPagedPoolUsage: 211.125 KiB (216192)
-QuotaPagedPoolUsage: 207.250 KiB (212224)
-QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+-------
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+AndKeyword
+AndEqualKeyword
+OrKeyword
+OrEqualKeyword
+XorKeyword
+XorEqualKeyword
+NotKeyword
+NotEqKeyword
+BitAndKeyword
+BitOrKeyword
+BitComplKeyword
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+AbstractKeyword
+AddKeyword
+AddressOfKeyword
+AddressSpaceKeyword
+AliasKeyword
+AlignKeyword
+AlignasKeyword
+AlignOfKeyword
+ArrayKeyword
+AsKeyword
+AssemblyKeyword
+AssertKeyword
+AssumeKeyword
+AsyncKeyword
+AtomicKeyword
+AttributeKeyword
+AutoKeyword
+AvailableKeyword
+AwaitKeyword
+BaseKeyword
+BecomeKeyword
+BitCastKeyword
+BodyKeyword
+BorrowKeyword
+BoxKeyword
+BreakKeyword
+CallConvKeyword
+CaseKeyword
+CastKeyword
+CheckedKeyword
+ClassKeyword
+ColumnMajorKeyword
+CompileKeyword
+ConceptKeyword
+IdentifierToken
+OpenBraceToken
+ContinueKeyword
+ContravariantKeyword
+CovariantKeyword
+DebugKeyword
+DefaultKeyword
+DeferKeyword
+DelegateKeyword
+DeleteKeyword
+DeprecatedKeyword
+IdentifierToken
+DiscardKeyword
+DoKeyword
+DropKeyword
+DynamicKeyword
+EagerKeyword
+ElseKeyword
+EnumKeyword
+EventKeyword
+ExceptKeyword
+ExplicitKeyword
+ExportKeyword
+ExpressionKeyword
+ExtensionKeyword
+ExternKeyword
+FalseKeyword
+FieldKeyword
+FileKeyword
+FinalKeyword
+FinallyKeyword
+FixedKeyword
+ForKeyword
+ForceKeyword
+ForeachKeyword
+FractionKeyword
+FragmentKeyword
+FriendKeyword
+FromKeyword
+FunctionKeyword
+IdentifierToken
+OpenParenToken
+IdentifierToken
+ColonToken
+IdentifierToken
+CloseParenToken
+SemicolonToken
+ImplementationKeyword
+ImplicitKeyword
+ImportKeyword
+InKeyword
+InheritKeyword
+InjectKeyword
+InlineKeyword
+InOutKeyword
+InterfaceKeyword
+InternalKeyword
+InvariantKeyword
+IsKeyword
+LazyKeyword
+LetKeyword
+LikelyKeyword
+LinkSectionKeyword
+LockKeyword
+LoopKeyword
+MacroKeyword
+ManagerKeyword
+MatchKeyword
+MatrixKeyword
+MemberKeyword
+MetaKeyword
+MixinKeyword
+ModuleKeyword
+MoveKeyword
+MutableKeyword
+NameOfKeyword
+NamespaceKeyword
+IdentifierToken
+OpenBraceToken
+NoAliasKeyword
+NodiscardKeyword
+NoInlineKeyword
+NoreturnKeyword
+NoSuspendKeyword
+NotNullKeyword
+NullKeyword
+NullableKeyword
+OffsetOfKeyword
+OperatorKeyword
+OpqaueKeyword
+OptionalKeyword
+OutKeyword
+OverloadKeyword
+OverrideKeyword
+PackageKeyword
+PackedKeyword
+ParallelKeyword
+ParamsKeyword
+PartialKeyword
+PragmaKeyword
+PreciseKeyword
+PrivateKeyword
+PropertyKeyword
+ProtectedKeyword
+PublicKeyword
+PureKeyword
+RaiseKeyword
+ReadonlyKeyword
+RecordKeyword
+RecursiveKeyword
+RefKeyword
+ReflectKeyword
+RegisterKeyword
+ReinterpretKeyword
+RemoveKeyword
+RequireKeyword
+RequiredKeyword
+ResumeKeyword
+RetainKeyword
+ReturnKeyword
+RowMajorKeyword
+SaturateKeyword
+ScalarKeyword
+ScopeKeyword
+SectionKeyword
+SelfKeyword
+SetKeyword
+SharedKeyword
+SizeOfKeyword
+SliceKeyword
+StackallocKeyword
+StaticKeyword
+StructKeyword
+IdentifierToken
+OpenBraceToken
+SwitchKeyword
+SynchronizedKeyword
+TailCallKeyword
+TemplateKeyword
+TestKeyword
+ThisKeyword
+ThreadLocalKeyword
+TraitKeyword
+TransferKeyword
+TrueKeyword
+TryKeyword
+TupleKeyword
+TypeKeyword
+TypeOfKeyword
+UnalignedKeyword
+UnboxKeyword
+UncheckedKeyword
+UndefinedKeyword
+UniformKeyword
+UnionKeyword
+UnlikelyKeyword
+UnmanagedKeyword
+UnreachableKeyword
+UnsafeKeyword
+UnsizedKeyword
+UsingKeyword
+UuidOfKeyword
+ValueKeyword
+VarKeyword
+IdentifierToken
+SemicolonToken
+VersionKeyword
+VirtualKeyword
+VolatileKeyword
+VtableKeyword
+WhenKeyword
+WhereKeyword
+WhileKeyword
+WithKeyword
+YieldKeyword
+TildeToken
+ExclamationEqualsToken
+ExclamationToken
+PlusEqualsToken
+PlusPlusToken
+PlusToken
+MinusEqualsToken
+MinusMinusToken
+MinusGreaterThanToken
+MinusToken
+AsteriskEqualsToken
+AsteriskToken
+SlashEqualsToken
+SlashToken
+OpenParenToken
+CloseParenToken
+OpenBraceToken
+CloseBraceToken
+OpenBracketToken
+CloseBracketToken
+ColonColonToken
+ColonToken
+SemicolonToken
+AtToken
+DollarToken
+PercentEqualsToken
+PercentToken
+CaretToken
+EqualsToken
+CaretToken
+AmpersandAmpersandToken
+AmpersandEqualsToken
+AmpersandToken
+EqualsEqualsToken
+EqualsGreaterThanToken
+EqualsToken
+BackslashToken
+BackslashToken
+BarBarToken
+BarEqualsToken
+BarToken
+CommaToken
+LessThanEqualsToken
+LessThanLessThanEqualsToken
+LessThanLessThanToken
+LessThanLessThanToken
+LessThanToken
+GreaterThanGreaterThanToken
+GreaterThanToken
+LessThanToken
+GreaterThanEqualsToken
+GreaterThanGreaterThanEqualsToken
+GreaterThanGreaterThanToken
+GreaterThanToken
+QuestionQuestionToken
+QuestionToken
+DotDotDotToken
+DotDotToken
+DotToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+IdentifierToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+CloseBraceToken
+CloseBraceToken
+EndOfFileToken
+-------
+bool
+char
+char16
+char32
+char8
+decimal128
+decimal32
+decimal64
+float16
+float32
+float64
+int128
+int16
+int256
+int32
+int64
+int8
+iptr
+isize
+object
+string
+uint128
+uint16
+uint256
+uint32
+uint64
+uint8
+uptr
+usize
+void
+byte
+and
+and_eq
+or
+or_eq
+xor
+xor_eq
+not
+not_eq
+bit_and
+bit_or
+bit_compl
+__column__
+__file__
+__function__
+__function_pretty__
+__line__
+__module__
+__source_location__
+abstract
+add
+addressof
+addrspace
+alias
+align
+alignas
+alignof
+array
+as
+assembly
+assert
+assume
+async
+atomic
+attribute
+auto
+available
+await
+base
+become
+bitcast
+body
+borrow
+box
+break
+callconv
+case
+cast
+checked
+class
+columnmajor
+compile
+concept
+{continue
+contravariant
+covariant
+debug
+default
+defer
+delegate
+delete
+deprecated
+dtor
+discard
+do
+drop
+dynamic
+eager
+else
+enum
+event
+except
+explicit
+export
+expression
+extension
+extern
+false
+field
+file
+final
+finally
+fixed
+for
+force
+foreach
+fraction
+fragment
+friend
+from
+function
+implementation
+implicit
+import
+in
+inherit
+inject
+inline
+inout
+interface
+internal
+invariant
+is
+lazy
+let
+likely
+linksection
+lock
+loop
+macro
+managed
+match
+matrix
+member
+meta
+mixin
+module
+move
+mutable
+nameof
+namespace
+{noalias
+nodiscard
+noinline
+noreturn
+nosuspend
+notnull
+null
+nullable
+offsetof
+operator
+opaque
+optional
+out
+overload
+override
+package
+packed
+parallel
+params
+partial
+pragma
+precise
+private
+property
+protected
+public
+pure
+raise
+readonly
+record
+recursive
+ref
+reflect
+register
+reinterpret
+remove
+require
+required
+resume
+retain
+return
+rowmajor
+saturate
+scalar
+scope
+section
+self
+set
+shared
+sizeof
+slice
+stackalloc
+static
+struct
+{switch
+synchronized
+tailcall
+template
+test
+this
+threadlocal
+trait
+transfer
+true
+try
+tuple
+type
+typeof
+unaligned
+unbox
+unchecked
+undefined
+uniform
+union
+unlikely
+unmanaged
+unreachable
+unsafe
+unsized
+using
+uuidof
+value
+var
+version
+virtual
+volatile
+vtable
+when
+where
+while
+with
+yield
+~
+!=
+!
++=
+++
++
+-=
+--
+->
+-
+*=
+*
+/=
+/
+(
+)
+{
+}
+[
+]
+::
+:
+;
+@
+$
+%=
+%
+^=
+^
+&&
+&=
+&
+==
+=>
+=
+\\
+||
+|=
+|
+,
+<=
+<<=
+<<
+<<<
+>>>
+<
+>=
+>>=
+>>
+>
+??
+?
+...
+..
+.
+_
+r#class
+r#enum
+r#struct
+r"raw string \t"
+r#"raw string \n"#
+r##" r#"inner\nraw\nstring"# "##
+}}-------
+OnCompilationUnitSyntax
+    OnSyntaxList
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `bool`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `char`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `char16`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `char32`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `char8`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `decimal128`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `decimal32`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `decimal64`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `float16`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `float32`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `float64`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `int128`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `int16`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `int256`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `int32`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `int64`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `int8`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `iptr`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `isize`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `object`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `string`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `uint128`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `uint16`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `uint256`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `uint32`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `uint64`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `uint8`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `uptr`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `usize`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `void`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `byte`
+        OnIncompleteDeclarationSyntax
+            OnToken `and` `and`
+        OnIncompleteDeclarationSyntax
+            OnToken `and_eq` `and_eq`
+        OnIncompleteDeclarationSyntax
+            OnToken `or` `or`
+        OnIncompleteDeclarationSyntax
+            OnToken `or_eq` `or_eq`
+        OnIncompleteDeclarationSyntax
+            OnToken `xor` `xor`
+        OnIncompleteDeclarationSyntax
+            OnToken `xor_eq` `xor_eq`
+        OnIncompleteDeclarationSyntax
+            OnToken `not` `not`
+        OnIncompleteDeclarationSyntax
+            OnToken `not_eq` `not_eq`
+        OnIncompleteDeclarationSyntax
+            OnToken `bit_and` `bit_and`
+        OnIncompleteDeclarationSyntax
+            OnToken `bit_or` `bit_or`
+        OnIncompleteDeclarationSyntax
+            OnToken `bit_compl` `bit_compl`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `__column__`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `__file__`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `__function__`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `__function_pretty__`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `__line__`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `__module__`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `__source_location__`
+        OnIncompleteDeclarationSyntax
+            OnToken `abstract` `abstract`
+        OnIncompleteDeclarationSyntax
+            OnToken `add` `add`
+        OnIncompleteDeclarationSyntax
+            OnToken `addressof` `addressof`
+        OnIncompleteDeclarationSyntax
+            OnToken `addrspace` `addrspace`
+        OnIncompleteDeclarationSyntax
+            OnToken `alias` `alias`
+        OnIncompleteDeclarationSyntax
+            OnToken `align` `align`
+        OnIncompleteDeclarationSyntax
+            OnToken `alignas` `alignas`
+        OnIncompleteDeclarationSyntax
+            OnToken `alignof` `alignof`
+        OnIncompleteDeclarationSyntax
+            OnToken `array` `array`
+        OnIncompleteDeclarationSyntax
+            OnToken `as` `as`
+        OnIncompleteDeclarationSyntax
+            OnToken `assembly` `assembly`
+        OnIncompleteDeclarationSyntax
+            OnToken `assert` `assert`
+        OnIncompleteDeclarationSyntax
+            OnToken `assume` `assume`
+        OnIncompleteDeclarationSyntax
+            OnSyntaxList
+                OnToken `async` `async`
+            OnToken `atomic` `atomic`
+        OnIncompleteDeclarationSyntax
+            OnToken `attribute` `attribute`
+        OnIncompleteDeclarationSyntax
+            OnToken `auto` `auto`
+        OnIncompleteDeclarationSyntax
+            OnToken `available` `available`
+        OnIncompleteDeclarationSyntax
+            OnToken `await` `await`
+        OnIncompleteDeclarationSyntax
+            OnToken `base` `base`
+        OnIncompleteDeclarationSyntax
+            OnToken `become` `become`
+        OnIncompleteDeclarationSyntax
+            OnToken `bitcast` `bitcast`
+        OnIncompleteDeclarationSyntax
+            OnToken `body` `body`
+        OnIncompleteDeclarationSyntax
+            OnToken `borrow` `borrow`
+        OnIncompleteDeclarationSyntax
+            OnToken `box` `box`
+        OnIncompleteDeclarationSyntax
+            OnToken `break` `break`
+        OnIncompleteDeclarationSyntax
+            OnToken `callconv` `callconv`
+        OnIncompleteDeclarationSyntax
+            OnToken `case` `case`
+        OnIncompleteDeclarationSyntax
+            OnToken `cast` `cast`
+        OnIncompleteDeclarationSyntax
+            OnSyntaxList
+                OnToken `checked` `checked`
+            OnToken `class` `class`
+        OnIncompleteDeclarationSyntax
+            OnToken `columnmajor` `columnmajor`
+        OnIncompleteDeclarationSyntax
+            OnToken `compile` `compile`
+        OnConceptDeclarationSyntax
+            OnToken `concept` `concept`
+            OnIdentifierNameSyntax ``
+            OnToken `` `{`
+            OnSyntaxList
+                OnIncompleteDeclarationSyntax
+                    OnToken `continue` `continue`
+                OnIncompleteDeclarationSyntax
+                    OnToken `contravariant` `contravariant`
+                OnIncompleteDeclarationSyntax
+                    OnToken `covariant` `covariant`
+                OnIncompleteDeclarationSyntax
+                    OnToken `debug` `debug`
+                OnIncompleteDeclarationSyntax
+                    OnToken `default` `default`
+                OnIncompleteDeclarationSyntax
+                    OnToken `defer` `defer`
+                OnIncompleteDeclarationSyntax
+                    OnToken `delegate` `delegate`
+                OnIncompleteDeclarationSyntax
+                    OnToken `delete` `delete`
+                OnIncompleteDeclarationSyntax
+                    OnToken `deprecated` `deprecated`
+                OnIncompleteDeclarationSyntax
+                    OnIdentifierNameSyntax `dtor`
+                OnIncompleteDeclarationSyntax
+                    OnToken `discard` `discard`
+                OnIncompleteDeclarationSyntax
+                    OnToken `do` `do`
+                OnIncompleteDeclarationSyntax
+                    OnToken `drop` `drop`
+                OnIncompleteDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `dynamic` `dynamic`
+                    OnToken `eager` `eager`
+                OnIncompleteDeclarationSyntax
+                    OnToken `else` `else`
+                OnIncompleteDeclarationSyntax
+                    OnToken `enum` `enum`
+                OnIncompleteDeclarationSyntax
+                    OnToken `event` `event`
+                OnIncompleteDeclarationSyntax
+                    OnToken `except` `except`
+                OnIncompleteDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `explicit` `explicit`
+                        OnToken `export` `export`
+                    OnToken `expression` `expression`
+                OnIncompleteDeclarationSyntax
+                    OnToken `extension` `extension`
+                OnIncompleteDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `extern` `extern`
+                    OnToken `false` `false`
+                OnIncompleteDeclarationSyntax
+                    OnToken `field` `field`
+                OnIncompleteDeclarationSyntax
+                    OnToken `file` `file`
+                OnIncompleteDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `final` `final`
+                    OnToken `finally` `finally`
+                OnIncompleteDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `fixed` `fixed`
+                    OnToken `for` `for`
+                OnIncompleteDeclarationSyntax
+                    OnToken `force` `force`
+                OnIncompleteDeclarationSyntax
+                    OnToken `foreach` `foreach`
+                OnIncompleteDeclarationSyntax
+                    OnToken `fraction` `fraction`
+                OnIncompleteDeclarationSyntax
+                    OnToken `fragment` `fragment`
+                OnIncompleteDeclarationSyntax
+                    OnToken `friend` `friend`
+                OnIncompleteDeclarationSyntax
+                    OnToken `from` `from`
+                    OnToken `function` `function`
+                    OnIdentifierNameSyntax ``
+                        OnToken `` `[`
+                        OnSyntaxList
+                                OnIdentifierNameSyntax ``
+                                    OnToken `` `:`
+                                    OnIdentifierNameSyntax ``
+                        OnToken `` `)`
+                    OnToken `` `;`
+                OnIncompleteDeclarationSyntax
+                    OnToken `implementation` `implementation`
+                OnIncompleteDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `implicit` `implicit`
+                    OnToken `import` `import`
+                OnIncompleteDeclarationSyntax
+                    OnToken `in` `in`
+                OnIncompleteDeclarationSyntax
+                    OnToken `inherit` `inherit`
+                OnIncompleteDeclarationSyntax
+                    OnToken `inject` `inject`
+                OnIncompleteDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `inline` `inline`
+                    OnToken `inout` `inout`
+                OnIncompleteDeclarationSyntax
+                    OnToken `interface` `interface`
+                OnIncompleteDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `internal` `internal`
+                    OnToken `invariant` `invariant`
+                OnIncompleteDeclarationSyntax
+                    OnToken `is` `is`
+                OnIncompleteDeclarationSyntax
+                    OnToken `lazy` `lazy`
+                OnIncompleteDeclarationSyntax
+                    OnToken `let` `let`
+                OnIncompleteDeclarationSyntax
+                    OnToken `likely` `likely`
+                OnIncompleteDeclarationSyntax
+                    OnToken `linksection` `linksection`
+                OnIncompleteDeclarationSyntax
+                    OnToken `lock` `lock`
+                OnIncompleteDeclarationSyntax
+                    OnToken `loop` `loop`
+                OnIncompleteDeclarationSyntax
+                    OnToken `macro` `macro`
+                OnIncompleteDeclarationSyntax
+                    OnToken `managed` `managed`
+                OnIncompleteDeclarationSyntax
+                    OnToken `match` `match`
+                OnIncompleteDeclarationSyntax
+                    OnToken `matrix` `matrix`
+                OnIncompleteDeclarationSyntax
+                    OnToken `member` `member`
+                OnIncompleteDeclarationSyntax
+                    OnToken `meta` `meta`
+                OnIncompleteDeclarationSyntax
+                    OnToken `mixin` `mixin`
+                OnIncompleteDeclarationSyntax
+                    OnToken `module` `module`
+                OnIncompleteDeclarationSyntax
+                    OnToken `move` `move`
+                OnIncompleteDeclarationSyntax
+                    OnToken `mutable` `mutable`
+                OnIncompleteDeclarationSyntax
+                    OnToken `nameof` `nameof`
+                OnNamespaceDeclarationSyntax
+                    OnToken `namespace` `namespace`
+                    OnIdentifierNameSyntax ``
+                    OnToken `` `{`
+                    OnSyntaxList
+                        OnIncompleteDeclarationSyntax
+                            OnToken `noalias` `noalias`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `nodiscard` `nodiscard`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `noinline` `noinline`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `noreturn` `noreturn`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `nosuspend` `nosuspend`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `notnull` `notnull`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `null` `null`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `nullable` `nullable`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `offsetof` `offsetof`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `operator` `operator`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `opaque` `opaque`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `optional` `optional`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `out` `out`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `overload` `overload`
+                        OnIncompleteDeclarationSyntax
+                            OnSyntaxList
+                                OnToken `override` `override`
+                            OnToken `package` `package`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `packed` `packed`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `parallel` `parallel`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `params` `params`
+                        OnIncompleteDeclarationSyntax
+                            OnSyntaxList
+                                OnToken `partial` `partial`
+                            OnToken `pragma` `pragma`
+                        OnIncompleteDeclarationSyntax
+                            OnSyntaxList
+                                OnToken `precise` `precise`
+                                OnToken `private` `private`
+                            OnToken `property` `property`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `protected` `protected`
+                        OnIncompleteDeclarationSyntax
+                            OnSyntaxList
+                                OnToken `public` `public`
+                                OnToken `pure` `pure`
+                            OnToken `raise` `raise`
+                        OnIncompleteDeclarationSyntax
+                            OnSyntaxList
+                                OnToken `readonly` `readonly`
+                            OnToken `record` `record`
+                        OnIncompleteDeclarationSyntax
+                            OnSyntaxList
+                                OnToken `recursive` `recursive`
+                                OnToken `ref` `ref`
+                            OnToken `reflect` `reflect`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `register` `register`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `reinterpret` `reinterpret`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `remove` `remove`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `require` `require`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `required` `required`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `resume` `resume`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `retain` `retain`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `return` `return`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `rowmajor` `rowmajor`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `saturate` `saturate`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `scalar` `scalar`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `scope` `scope`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `section` `section`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `self` `self`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `set` `set`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `shared` `shared`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `sizeof` `sizeof`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `slice` `slice`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `stackalloc` `stackalloc`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `static` `static`
+                        OnStructDeclarationSyntax
+                            OnToken `struct` `struct`
+                            OnIdentifierNameSyntax ``
+                            OnToken `` `{`
+                            OnSyntaxList
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `switch` `switch`
+                                OnIncompleteDeclarationSyntax
+                                    OnSyntaxList
+                                        OnToken `synchronized` `synchronized`
+                                        OnToken `tailcall` `tailcall`
+                                    OnToken `template` `template`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `test` `test`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `this` `this`
+                                OnIncompleteDeclarationSyntax
+                                    OnSyntaxList
+                                        OnToken `threadlocal` `threadlocal`
+                                    OnToken `trait` `trait`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `transfer` `transfer`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `true` `true`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `try` `try`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `tuple` `tuple`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `type` `type`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `typeof` `typeof`
+                                OnIncompleteDeclarationSyntax
+                                    OnSyntaxList
+                                        OnToken `unaligned` `unaligned`
+                                    OnToken `unbox` `unbox`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `unchecked` `unchecked`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `undefined` `undefined`
+                                OnIncompleteDeclarationSyntax
+                                    OnSyntaxList
+                                        OnToken `uniform` `uniform`
+                                    OnToken `union` `union`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `unlikely` `unlikely`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `unmanaged` `unmanaged`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `unreachable` `unreachable`
+                                OnIncompleteDeclarationSyntax
+                                    OnSyntaxList
+                                        OnToken `unsafe` `unsafe`
+                                    OnToken `unsized` `unsized`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `using` `using`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `uuidof` `uuidof`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `value` `value`
+                                    OnToken `var` `var`
+                                    OnIdentifierNameSyntax ``
+                                    OnToken `` `;`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `version` `version`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `virtual` `virtual`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `volatile` `volatile`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `vtable` `vtable`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `when` `when`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `where` `where`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `while` `while`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `with` `with`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `yield` `yield`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `~` `~`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `!=` `!=`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `!` `!`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `+=` `+=`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `++` `++`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `+` `+`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `-=` `-=`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `--` `--`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `->` `->`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `-` `-`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `*=` `*=`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `*` `*`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `/=` `/=`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `/` `/`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `(` `[`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `)` `)`
+                                OnIncompleteDeclarationSyntax
+                                    OnToken `{` `{`
+                            OnToken `}` `}`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `[` `[`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `]` `]`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `::` `::`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `:` `:`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `;` `;`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `@` `@`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `$` `$`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `%=` `%=`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `%` `%`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `^` `^`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `=` `=`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `^` `^`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `&&` `&&`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `&=` `&=`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `&` `&`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `==` `==`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `=>` `=>`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `=` `=`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `\` `\`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `\` `\`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `||` `||`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `|=` `|=`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `|` `|`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `,` `,`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `<=` `<=`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `<<=` `<<=`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `<<` `<<`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `<<` `<<`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `<` `<`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `>>` `>>`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `>` `>`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `<` `<`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `>=` `>=`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `>>=` `>>=`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `>>` `>>`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `>` `>`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `??` `??`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `?` `?`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `...` `...`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `..` `..`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `.` `.`
+                        OnIncompleteDeclarationSyntax
+                            OnIdentifierNameSyntax `_`
+                        OnIncompleteDeclarationSyntax
+                            OnIdentifierNameSyntax `class`
+                        OnIncompleteDeclarationSyntax
+                            OnIdentifierNameSyntax `enum`
+                        OnIncompleteDeclarationSyntax
+                            OnIdentifierNameSyntax `struct`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `r"raw string \t"` `[token:string-literal]`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `r#"raw string \n"#` `[token:string-literal]`
+                        OnIncompleteDeclarationSyntax
+                            OnToken `r##" r#"inner\nraw\nstring"# "##` `[token:string-literal]`
+                    OnToken `` `}`
+            OnToken `` `}`
+    OnToken `` `[token::end-of-file]`
+-------
+parsing took: 00:00:00.012
+PageFaultCount: 1521
+PeakWorkingSetSize: 5.688 MiB (5963776)
+WorkingSetSize: 4.402 MiB (4616192)
+QuotaPeakPagedPoolUsage: 260.141 KiB (266384)
+QuotaPagedPoolUsage: 259.398 KiB (265624)
+QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
 QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 1.605 MiB (1683456)
-PeakPagefileUsage: 2.258 MiB (2367488)
+PagefileUsage: 1.637 MiB (1716224)
+PeakPagefileUsage: 2.121 MiB (2224128)

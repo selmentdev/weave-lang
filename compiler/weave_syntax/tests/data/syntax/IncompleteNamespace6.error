@@ -3,3 +3,8 @@ error: unexpected token '}', expected '{'
          |
        1 | namespace Y }
          |             ^
+error: expected '}'
+        --> <source>:3:1
+         |
+       3 | 
+         | ^

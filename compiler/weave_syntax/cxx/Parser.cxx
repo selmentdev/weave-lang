@@ -38,8 +38,7 @@ namespace weave::syntax
 
         if (index >= this->_tokens.size())
         {
-            // return this->_tokens.back();
-            return nullptr;
+            return this->_tokens.back();
         }
 
         return this->_tokens[index];
@@ -82,7 +81,7 @@ namespace weave::syntax
                     SyntaxKindTraits::GetSpelling(kind)));
         }
 
-        // Consume token
+        // Consume token here
         this->Next();
 #else
         this->_diagnostic->AddError(

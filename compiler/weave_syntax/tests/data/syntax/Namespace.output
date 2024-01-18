@@ -1,165 +1,801 @@
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\Namespace.source
 ___
-CompilationUnit (overridden)
-  [statement::using]
-    [expression::identifier-name]: weave
-  [statement::using]
-    [expression::qualified-name]
-      [expression::identifier-name]: weave
-      [expression::identifier-name]: fs
-  [declaration::namespace]
-    [expression::identifier-name]: weave
-    [declaration::const]
-      [expression::identifier-name]: Version
-      [expression::qualified-name]
-        [expression::qualified-name]
-          [expression::identifier-name]: weave
-          [expression::identifier-name]: core
-        [expression::identifier-name]: u32
-      [expression::identifier-name]: uninitialized
-    [declaration::field]
-      [expression::identifier-name]: Global
-      [expression::identifier-name]: i32
-      [expression::identifier-name]: uninitialized
-    [declaration::function]
-      [expression::identifier-name]: Main
-      [expression::identifier-name]: 
-    [declaration::struct]
-      [expression::identifier-name]: Vector4
-      [declaration::field]
-        [expression::identifier-name]: X
-        [expression::identifier-name]: f32
-      [declaration::field]
-        [expression::identifier-name]: Y
-        [expression::identifier-name]: f32
-      [declaration::field]
-        [expression::identifier-name]: Z
-        [expression::identifier-name]: f32
-      [declaration::field]
-        [expression::identifier-name]: W
-        [expression::identifier-name]: f32
-      [declaration::function]
-        [expression::identifier-name]: From
-        [expression::identifier-name]: Vector4
-    [declaration::concept]
-      [expression::identifier-name]: Addable
-      [declaration::function]
-        [expression::identifier-name]: Add
-        [expression::identifier-name]: Self
-    [declaration::extend]
-      [expression::identifier-name]: Vector4
-      [declaration::function]
-        [expression::identifier-name]: New
-        [expression::identifier-name]: Vector4
-  [declaration::namespace]
-    [expression::qualified-name]
-      [expression::identifier-name]: weave
-      [expression::identifier-name]: compiler
-    [statement::using]
-      [expression::qualified-name]
-        [expression::identifier-name]: weave
-        [expression::identifier-name]: extensions
-    [declaration::struct]
-      [expression::identifier-name]: Compiler
-  [declaration::namespace]
-    [expression::identifier-name]: core
-    [declaration::struct]
-      [expression::identifier-name]: Vector
-      [declaration::incomplete-member]
-        ExclamationToken
-        OpenBracketToken
-        T
-        ColonToken
-        TypeKeyword
-        CommaToken
-        Capacity
-        ColonToken
-        UIntSizeKeyword
-        CloseBracketToken
-        OpenBraceToken
-        PrivateKeyword
-        FieldKeyword
-        _data
-        ColonToken
-        OpenBracketToken
-        T
-        SemicolonToken
-        Capacity
-        CloseBracketToken
-        EqualsToken
-        uninitialized
-        SemicolonToken
-        PrivateKeyword
-        FieldKeyword
-        _length
-        ColonToken
-        UIntSizeKeyword
-        EqualsToken
-        0
-        SemicolonToken
-        PublicKeyword
-        PropertyKeyword
-        OpenParenToken
-        SelfKeyword
-        CloseParenToken
-        length
-        OpenParenToken
-        CloseParenToken
-        MinusGreaterThanToken
-        UIntSizeKeyword
-        OpenBraceToken
-        ReturnKeyword
-        SelfKeyword
-        DotToken
-        _length
-        SemicolonToken
-    [declaration::function]
-      [expression::identifier-name]: 
-      [expression::identifier-name]: 
-    [declaration::incomplete-member]
-      SelfKeyword
-      CloseParenToken
-      push
-      OpenParenToken
-      ValueKeyword
-      ColonToken
-      T
-      CloseParenToken
-      MinusGreaterThanToken
-      void
-      before
-      ColonToken
-      OpenParenToken
-      SelfKeyword
-      DotToken
-      _length
-      LessThanToken
-      Capacity
-      CloseParenToken
-      OpenBraceToken
-      SelfKeyword
-      DotToken
-      _data
-      OpenBracketToken
-      SelfKeyword
-      DotToken
-      _length
-      CloseBracketToken
-      EqualsToken
-      ValueKeyword
-      SelfKeyword
-      DotToken
-      _length
-      PlusEqualsToken
-      1
+-------
+UsingKeyword
+IdentifierToken
+SemicolonToken
+UsingKeyword
+IdentifierToken
+DotToken
+IdentifierToken
+SemicolonToken
+NamespaceKeyword
+IdentifierToken
+OpenBraceToken
+PublicKeyword
+VarKeyword
+IdentifierToken
+EqualsToken
+IdentifierToken
+DotToken
+IdentifierToken
+DotToken
+IdentifierToken
+OpenParenToken
+IdentifierToken
+CommaToken
+MoveKeyword
+IdentifierToken
+CommaToken
+OutKeyword
+IdentifierToken
+CloseParenToken
+OpenBracketToken
+IdentifierToken
+CommaToken
+IdentifierToken
+CommaToken
+IdentifierToken
+CloseBracketToken
+PlusPlusToken
+SemicolonToken
+PublicKeyword
+VarKeyword
+IdentifierToken
+EqualsToken
+AsteriskToken
+OpenParenToken
+OpenParenToken
+OpenParenToken
+OpenParenToken
+OpenParenToken
+IdentifierToken
+CloseParenToken
+DotToken
+IdentifierToken
+CloseParenToken
+DotToken
+IdentifierToken
+CloseParenToken
+OpenParenToken
+IdentifierToken
+CommaToken
+MoveKeyword
+IdentifierToken
+CommaToken
+OutKeyword
+IdentifierToken
+CloseParenToken
+CloseParenToken
+OpenBracketToken
+IdentifierToken
+CommaToken
+IdentifierToken
+CommaToken
+IdentifierToken
+CloseBracketToken
+PlusPlusToken
+CloseParenToken
+SemicolonToken
+PublicKeyword
+VarKeyword
+IdentifierToken
+EqualsToken
+IdentifierToken
+OpenBracketToken
+OpenParenToken
+OpenParenToken
+IdentifierToken
+CloseParenToken
+CloseParenToken
+CloseBracketToken
+SemicolonToken
+IdentifierToken
+CloseParenToken
+CommaToken
+IdentifierToken
+CloseBracketToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+EqualsToken
+IdentifierToken
+PlusPlusToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+EqualsToken
+PlusPlusToken
+IdentifierToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+EqualsToken
+PlusPlusToken
+IdentifierToken
+PlusPlusToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+EqualsToken
+OpenParenToken
+PlusPlusToken
+IdentifierToken
+CloseParenToken
+PlusPlusToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+EqualsToken
+PlusPlusToken
+OpenParenToken
+IdentifierToken
+PlusPlusToken
+CloseParenToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+EqualsToken
+IdentifierToken
+DotToken
+IdentifierToken
+DotToken
+IdentifierToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+EqualsToken
+IntegerLiteralToken
+PlusToken
+IntegerLiteralToken
+AsteriskToken
+IntegerLiteralToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+EqualsToken
+IntegerLiteralToken
+PlusToken
+OpenParenToken
+IntegerLiteralToken
+AsteriskToken
+IntegerLiteralToken
+CloseParenToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+EqualsToken
+OpenParenToken
+IntegerLiteralToken
+PlusToken
+IntegerLiteralToken
+CloseParenToken
+AsteriskToken
+IntegerLiteralToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+EqualsToken
+IntegerLiteralToken
+PlusToken
+IntegerLiteralToken
+AsteriskToken
+IntegerLiteralToken
+MinusToken
+IntegerLiteralToken
+SemicolonToken
+PublicKeyword
+ConstKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+DotToken
+IdentifierToken
+DotToken
+IdentifierToken
+EqualsToken
+IdentifierToken
+SemicolonToken
+PublicKeyword
+VarKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+EqualsToken
+IdentifierToken
+SemicolonToken
+PublicKeyword
+FunctionKeyword
+IdentifierToken
+OpenParenToken
+CloseParenToken
+OpenBraceToken
+CloseBraceToken
+PublicKeyword
+StructKeyword
+IdentifierToken
+OpenBraceToken
+PublicKeyword
+VarKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+SemicolonToken
+PublicKeyword
+VarKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+SemicolonToken
+PublicKeyword
+VarKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+SemicolonToken
+PublicKeyword
+VarKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+SemicolonToken
+PublicKeyword
+FunctionKeyword
+IdentifierToken
+OpenParenToken
+InKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+CommaToken
+InKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+CommaToken
+InKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+CommaToken
+InKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+CloseParenToken
+MinusGreaterThanToken
+IdentifierToken
+OpenBraceToken
+CloseBraceToken
+CloseBraceToken
+PublicKeyword
+ConceptKeyword
+IdentifierToken
+OpenBraceToken
+PublicKeyword
+FunctionKeyword
+IdentifierToken
+OpenParenToken
+CloseParenToken
+MinusGreaterThanToken
+IdentifierToken
+OpenBraceToken
+CloseBraceToken
+CloseBraceToken
+PublicKeyword
+ExtendKeyword
+IdentifierToken
+OpenBraceToken
+PublicKeyword
+FunctionKeyword
+IdentifierToken
+OpenParenToken
+CloseParenToken
+MinusGreaterThanToken
+IdentifierToken
+OpenBraceToken
+CloseBraceToken
+CloseBraceToken
+CloseBraceToken
+EndOfFileToken
+-------
+using weave;
+using weave.fs;
+
+namespace weave
+{
+    public var g1 = g2.g3.g4(g5, move g6, out result)[lecimy, w, kulki]++;
+
+    public var g1 = *(((((g2).g3).g4)(g5, move g6, out result))[lecimy, w, kulki]++);
+
+    public var precedence = g1[((g1g3), g4];
+
+    public const p0 = gloo++;
+    public const p1 = ++gloo;
+    public const p2 = ++gloo++;
+    public const p3 = (++gloo)++;
+    public const p4 = ++(gloo++);
+
+    //public const invalid.name = 21;
+
+    public const valid = name.foo.bar;
+
+    public const magic = 21 + 37 * 4;
+    public const magic = 21 + (37 * 4);
+    public const magic = (21 + 37) * 4;
+
+    public const papaj : f32 = 2 + 1 * 3 - 7;
+
+    public const Version : weave.core.u32 = uninitialized;
+    public var Global : i32 = uninitialized;
+
+    public function Main()
+    {
+    }
+
+    public struct Vector4
+    {
+        public var X: f32;
+        public var Y: f32;
+        public var Z: f32;
+        public var W: f32;
+
+        public function From(in x: f32, in y: f32, in z: f32, in w: f32) -> Vector4 { }
+    }
+
+    public concept Addable
+    {
+        public function Add() -> Self { }
+    }
+
+    public extend Vector4
+    {
+        public function New() -> Vector4 { }
+    }
+}
+/*
+namespace weave.compiler {
+    using weave.extensions;
+
+    public struct Compiler {
+    };
+}
+
+namespace core {
+    public struct Vector![T: type, Capacity: usize] {
+        private field _data: [T; Capacity] = uninitialized;
+
+        private field _length: usize = 0;
+
+        public property (self) length() -> usize {
+            return self._length;
+        }
+
+        public function (self) push(value: T) -> void
+            before: (self._length < Capacity)
+        {
+            self._data[self._length] = value;
+            self._length += 1;
+        }
+    }
+}
+
+namespace std::numerics 
+{
+    public struct Vector2![T: type] {
+        public field x: T = uninitialized;
+        public field y: T = uninitialized;
+
+        public function (self) add(other: vector2![T]) -> vector2![T]
+            where T : Addable
+        {
+            return vector2![T] {
+                x: self.x + other.x,
+                y: self.y + other.y,
+            };
+        }
+    }
+}
+
+namespace std::numerics
+{
+    public function CheckedAdd![T: Addable](a: T, b: T) -> Option![T] {
+        if a > 0 && b > 0 && a > T::MaxValue - b {
+            return None;
+        }
+
+        if a < 0 && b < 0 && a < T::MinValue - b {
+            return None;
+        }
+
+        return Some(a + b);
+    }
+}
+*/
+-------
+OnCompilationUnitSyntax
+    OnSyntaxList
+            OnToken `using` `using`
+            OnIdentifierNameSyntax `weave`
+            OnToken `;` `;`
+            OnToken `using` `using`
+                OnIdentifierNameSyntax `weave`
+                OnToken `.` `.`
+                OnIdentifierNameSyntax `fs`
+            OnToken `;` `;`
+    OnSyntaxList
+        OnNamespaceDeclarationSyntax
+            OnToken `namespace` `namespace`
+            OnIdentifierNameSyntax `weave`
+            OnToken `{` `{`
+            OnSyntaxList
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `var` `var`
+                    OnIdentifierNameSyntax `g1`
+                        OnToken `=` `=`
+                                            OnIdentifierNameSyntax `g2`
+                                            OnToken `.` `.`
+                                            OnIdentifierNameSyntax `g3`
+                                        OnToken `.` `.`
+                                        OnIdentifierNameSyntax `g4`
+                                        OnToken `(` `[`
+                                        OnSyntaxList
+                                                OnIdentifierNameSyntax `g5`
+                                            OnToken `,` `,`
+                                                OnToken `move` `move`
+                                                OnIdentifierNameSyntax `g6`
+                                            OnToken `,` `,`
+                                                OnToken `out` `out`
+                                                OnIdentifierNameSyntax `result`
+                                        OnToken `)` `)`
+                                    OnToken `[` `[`
+                                    OnSyntaxList
+                                            OnIdentifierNameSyntax `lecimy`
+                                        OnToken `,` `,`
+                                            OnIdentifierNameSyntax `w`
+                                        OnToken `,` `,`
+                                            OnIdentifierNameSyntax `kulki`
+                                    OnToken `]` `]`
+                            OnToken `++` `++`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `var` `var`
+                    OnIdentifierNameSyntax `g1`
+                        OnToken `=` `=`
+                            OnToken `*` `*`
+                                OnToken `(` `[`
+                                            OnToken `(` `[`
+                                                    OnToken `(` `[`
+                                                            OnToken `(` `[`
+                                                                    OnToken `(` `[`
+                                                                    OnIdentifierNameSyntax `g2`
+                                                                    OnToken `)` `)`
+                                                                OnToken `.` `.`
+                                                                OnIdentifierNameSyntax `g3`
+                                                            OnToken `)` `)`
+                                                        OnToken `.` `.`
+                                                        OnIdentifierNameSyntax `g4`
+                                                    OnToken `)` `)`
+                                                    OnToken `(` `[`
+                                                    OnSyntaxList
+                                                            OnIdentifierNameSyntax `g5`
+                                                        OnToken `,` `,`
+                                                            OnToken `move` `move`
+                                                            OnIdentifierNameSyntax `g6`
+                                                        OnToken `,` `,`
+                                                            OnToken `out` `out`
+                                                            OnIdentifierNameSyntax `result`
+                                                    OnToken `)` `)`
+                                            OnToken `)` `)`
+                                            OnToken `[` `[`
+                                            OnSyntaxList
+                                                    OnIdentifierNameSyntax `lecimy`
+                                                OnToken `,` `,`
+                                                    OnIdentifierNameSyntax `w`
+                                                OnToken `,` `,`
+                                                    OnIdentifierNameSyntax `kulki`
+                                            OnToken `]` `]`
+                                    OnToken `++` `++`
+                                OnToken `)` `)`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `var` `var`
+                    OnIdentifierNameSyntax `precedence`
+                        OnToken `=` `=`
+                            OnIdentifierNameSyntax `g1`
+                                OnToken `[` `[`
+                                OnSyntaxList
+                                            OnToken `(` `[`
+                                                OnToken `(` `[`
+                                                OnIdentifierNameSyntax `g1`
+                                                OnToken `` `)`
+                                            OnToken `` `)`
+                                OnToken `` `]`
+                    OnToken `` `;`
+                OnIncompleteDeclarationSyntax
+                    OnIdentifierNameSyntax `g3`
+                OnIncompleteDeclarationSyntax
+                    OnToken `)` `)`
+                OnIncompleteDeclarationSyntax
+                    OnToken `,` `,`
+                OnIncompleteDeclarationSyntax
+                    OnIdentifierNameSyntax `g4`
+                OnIncompleteDeclarationSyntax
+                    OnToken `]` `]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `p0`
+                        OnToken `=` `=`
+                            OnIdentifierNameSyntax `gloo`
+                            OnToken `++` `++`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `p1`
+                        OnToken `=` `=`
+                            OnToken `++` `++`
+                            OnIdentifierNameSyntax `gloo`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `p2`
+                        OnToken `=` `=`
+                            OnToken `++` `++`
+                                OnIdentifierNameSyntax `gloo`
+                                OnToken `++` `++`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `p3`
+                        OnToken `=` `=`
+                                OnToken `(` `[`
+                                    OnToken `++` `++`
+                                    OnIdentifierNameSyntax `gloo`
+                                OnToken `)` `)`
+                            OnToken `++` `++`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `p4`
+                        OnToken `=` `=`
+                            OnToken `++` `++`
+                                OnToken `(` `[`
+                                    OnIdentifierNameSyntax `gloo`
+                                    OnToken `++` `++`
+                                OnToken `)` `)`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `valid`
+                        OnToken `=` `=`
+                                OnIdentifierNameSyntax `name`
+                                OnToken `.` `.`
+                                OnIdentifierNameSyntax `foo`
+                            OnToken `.` `.`
+                            OnIdentifierNameSyntax `bar`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `magic`
+                        OnToken `=` `=`
+                                OnToken `21` `[token:integer-literal]`
+                            OnToken `+` `+`
+                                    OnToken `37` `[token:integer-literal]`
+                                OnToken `*` `*`
+                                    OnToken `4` `[token:integer-literal]`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `magic`
+                        OnToken `=` `=`
+                                OnToken `21` `[token:integer-literal]`
+                            OnToken `+` `+`
+                                OnToken `(` `[`
+                                        OnToken `37` `[token:integer-literal]`
+                                    OnToken `*` `*`
+                                        OnToken `4` `[token:integer-literal]`
+                                OnToken `)` `)`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `magic`
+                        OnToken `=` `=`
+                                OnToken `(` `[`
+                                        OnToken `21` `[token:integer-literal]`
+                                    OnToken `+` `+`
+                                        OnToken `37` `[token:integer-literal]`
+                                OnToken `)` `)`
+                            OnToken `*` `*`
+                                OnToken `4` `[token:integer-literal]`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `papaj`
+                        OnToken `:` `:`
+                        OnIdentifierNameSyntax `f32`
+                        OnToken `=` `=`
+                                    OnToken `2` `[token:integer-literal]`
+                                OnToken `+` `+`
+                                        OnToken `1` `[token:integer-literal]`
+                                    OnToken `*` `*`
+                                        OnToken `3` `[token:integer-literal]`
+                            OnToken `-` `-`
+                                OnToken `7` `[token:integer-literal]`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `const` `const`
+                    OnIdentifierNameSyntax `Version`
+                        OnToken `:` `:`
+                                OnIdentifierNameSyntax `weave`
+                                OnToken `.` `.`
+                                OnIdentifierNameSyntax `core`
+                            OnToken `.` `.`
+                            OnIdentifierNameSyntax `u32`
+                        OnToken `=` `=`
+                        OnIdentifierNameSyntax `uninitialized`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `var` `var`
+                    OnIdentifierNameSyntax `Global`
+                        OnToken `:` `:`
+                        OnIdentifierNameSyntax `i32`
+                        OnToken `=` `=`
+                        OnIdentifierNameSyntax `uninitialized`
+                    OnToken `;` `;`
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `function` `function`
+                    OnIdentifierNameSyntax `Main`
+                        OnToken `(` `[`
+                        OnToken `)` `)`
+                        OnToken `{` `{`
+                        OnToken `}` `}`
+                OnStructDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `struct` `struct`
+                    OnIdentifierNameSyntax `Vector4`
+                    OnToken `{` `{`
+                    OnSyntaxList
+                            OnSyntaxList
+                                OnToken `public` `public`
+                            OnToken `var` `var`
+                            OnIdentifierNameSyntax `X`
+                                OnToken `:` `:`
+                                OnIdentifierNameSyntax `f32`
+                            OnToken `;` `;`
+                            OnSyntaxList
+                                OnToken `public` `public`
+                            OnToken `var` `var`
+                            OnIdentifierNameSyntax `Y`
+                                OnToken `:` `:`
+                                OnIdentifierNameSyntax `f32`
+                            OnToken `;` `;`
+                            OnSyntaxList
+                                OnToken `public` `public`
+                            OnToken `var` `var`
+                            OnIdentifierNameSyntax `Z`
+                                OnToken `:` `:`
+                                OnIdentifierNameSyntax `f32`
+                            OnToken `;` `;`
+                            OnSyntaxList
+                                OnToken `public` `public`
+                            OnToken `var` `var`
+                            OnIdentifierNameSyntax `W`
+                                OnToken `:` `:`
+                                OnIdentifierNameSyntax `f32`
+                            OnToken `;` `;`
+                            OnSyntaxList
+                                OnToken `public` `public`
+                            OnToken `function` `function`
+                            OnIdentifierNameSyntax `From`
+                                OnToken `(` `[`
+                                OnSyntaxList
+                                        OnSyntaxList
+                                            OnToken `in` `in`
+                                        OnIdentifierNameSyntax `x`
+                                            OnToken `:` `:`
+                                            OnIdentifierNameSyntax `f32`
+                                    OnToken `,` `,`
+                                        OnSyntaxList
+                                            OnToken `in` `in`
+                                        OnIdentifierNameSyntax `y`
+                                            OnToken `:` `:`
+                                            OnIdentifierNameSyntax `f32`
+                                    OnToken `,` `,`
+                                        OnSyntaxList
+                                            OnToken `in` `in`
+                                        OnIdentifierNameSyntax `z`
+                                            OnToken `:` `:`
+                                            OnIdentifierNameSyntax `f32`
+                                    OnToken `,` `,`
+                                        OnSyntaxList
+                                            OnToken `in` `in`
+                                        OnIdentifierNameSyntax `w`
+                                            OnToken `:` `:`
+                                            OnIdentifierNameSyntax `f32`
+                                OnToken `)` `)`
+                                OnToken `->` `->`
+                                OnIdentifierNameSyntax `Vector4`
+                                OnToken `{` `{`
+                                OnToken `}` `}`
+                    OnToken `}` `}`
+                OnConceptDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `concept` `concept`
+                    OnIdentifierNameSyntax `Addable`
+                    OnToken `{` `{`
+                    OnSyntaxList
+                            OnSyntaxList
+                                OnToken `public` `public`
+                            OnToken `function` `function`
+                            OnIdentifierNameSyntax `Add`
+                                OnToken `(` `[`
+                                OnToken `)` `)`
+                                OnToken `->` `->`
+                                OnIdentifierNameSyntax `Self`
+                                OnToken `{` `{`
+                                OnToken `}` `}`
+                    OnToken `}` `}`
+                OnExtendDeclarationSyntax
+                    OnSyntaxList
+                        OnToken `public` `public`
+                    OnToken `extend` `extend`
+                    OnIdentifierNameSyntax `Vector4`
+                    OnToken `{` `{`
+                    OnSyntaxList
+                            OnSyntaxList
+                                OnToken `public` `public`
+                            OnToken `function` `function`
+                            OnIdentifierNameSyntax `New`
+                                OnToken `(` `[`
+                                OnToken `)` `)`
+                                OnToken `->` `->`
+                                OnIdentifierNameSyntax `Vector4`
+                                OnToken `{` `{`
+                                OnToken `}` `}`
+                    OnToken `}` `}`
+            OnToken `}` `}`
+    OnToken `` `[token::end-of-file]`
+-------
 parsing took: 00:00:00.003
-PageFaultCount: 1415
-PeakWorkingSetSize: 5.277 MiB (5533696)
-WorkingSetSize: 4.355 MiB (4567040)
-QuotaPeakPagedPoolUsage: 207.336 KiB (212312)
-QuotaPagedPoolUsage: 207.250 KiB (212224)
-QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+PageFaultCount: 1396
+PeakWorkingSetSize: 5.195 MiB (5447680)
+WorkingSetSize: 4.340 MiB (4550656)
+QuotaPeakPagedPoolUsage: 259.398 KiB (265624)
+QuotaPagedPoolUsage: 259.398 KiB (265624)
+QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
 QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 780.000 KiB (798720)
-PeakPagefileUsage: 1.734 MiB (1818624)
+PagefileUsage: 800.000 KiB (819200)
+PeakPagefileUsage: 1.625 MiB (1703936)

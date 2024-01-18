@@ -1,9 +1,9 @@
-error: unexpected token '[token::end-of-file]', expected '{'
+error: expected '{'
         --> <source>:2:1
          |
        2 | 
          | ^
-error: unexpected token '[token::end-of-file]', expected '}'
+error: expected '}'
         --> <source>:2:1
          |
        2 | 

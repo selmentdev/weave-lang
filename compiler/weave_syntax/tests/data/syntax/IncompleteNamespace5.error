@@ -3,12 +3,7 @@ error: unexpected token ';', expected '{'
          |
        1 | namespace X ;
          |             ^
-hint: unexpected semicolon
-        --> <source>:1:13
-         |
-       1 | namespace X ;
-         |             ^
-error: unexpected token '[token::end-of-file]', expected '}'
+error: expected '}'
         --> <source>:2:1
          |
        2 | 

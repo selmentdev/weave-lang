@@ -1,9 +1,9 @@
-hint: unexpected semicolon
+error: unexpected token ';', expected member declaration
         --> <source>:1:15
          |
        1 | namespace X { ;
          |               ^
-error: unexpected token '[token::end-of-file]', expected '}'
+error: expected '}'
         --> <source>:2:1
          |
        2 | 

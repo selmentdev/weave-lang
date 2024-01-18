@@ -1,6 +1,42 @@
-function before() -> void {}
+// empty statement
+function Emtpy() {;}
+extern function Declared() -> void;
+inline function Expression() => 42;
+export function Body() -> void {
+    return;
+}
 
-function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
+function Select2(a: bool, b: float, c: float, d: float, e: float) -> float {
+    return a ? b + c * d  d + e / c;
+}
+
+function Select(a: bool, b: float, c: float) -> float {
+    return a ? b : c;
+}
+
+function Select2(a: bool, b: float, c: float, d: float, e: float) -> float {
+    return a ? b + c * d : d + e / c;
+}
+
+function foo(x: int, y: int, z: int, c: int, out w: int) -> void {
+    w = x = y = z + c;
+}
+
+function before(y: bool) -> void {
+    if /*let Some(y)*/ = y {
+        Console.WriteLine("Got something");
+    } else {
+        Console.WriteLine("Got nothing");
+    }
+}
+
+// pacz pan, syntax walker :^)
+
+public private tailcall unsafe export restricted transient trusted function mul_high(
+    in ref out value move left: u64,
+    in right: u64,
+    out lower: u64) -> u64
+{
     let ll = left & 0xFFFFFFFFu64;
     let lu = left >> 32u64;
     let rl = right & 0xFFFFFFFFu64;
@@ -15,3 +51,13 @@ function mul_high(left: u64, right: u64, lower: out u64) -> u64 {
 }
 
 function after() -> void {}
+
+function Testing(a: int32, b: int32) -> int32 {
+    if a < b {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+function EndOfFileDuringStatement() { =42: a=5;}

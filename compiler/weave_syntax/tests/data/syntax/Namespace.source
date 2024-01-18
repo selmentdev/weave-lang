@@ -3,6 +3,28 @@ using weave.fs;
 
 namespace weave
 {
+    public var g1 = g2.g3.g4(g5, move g6, out result)[lecimy, w, kulki]++;
+
+    public var g1 = *(((((g2).g3).g4)(g5, move g6, out result))[lecimy, w, kulki]++);
+
+    public var precedence = g1[((g1, g2), g3), g4];
+
+    public const p0 = gloo++;
+    public const p1 = ++gloo;
+    public const p2 = ++gloo++;
+    public const p3 = (++gloo)++;
+    public const p4 = ++(gloo++);
+
+    //public const invalid.name = 21;
+
+    public const valid = name.foo.bar;
+
+    public const magic = 21 + 37 * 4;
+    public const magic = 21 + (37 * 4);
+    public const magic = (21 + 37) * 4;
+
+    public const papaj : f32 = 2 + 1 * 3 - 7;
+
     public const Version : weave.core.u32 = uninitialized;
     public var Global : i32 = uninitialized;
 
@@ -17,7 +39,7 @@ namespace weave
         public var Z: f32;
         public var W: f32;
 
-        public function From() -> Vector4 { }
+        public function From(in x: f32, in y: f32, in z: f32, in w: f32) -> Vector4 { }
     }
 
     public concept Addable
@@ -30,7 +52,7 @@ namespace weave
         public function New() -> Vector4 { }
     }
 }
-
+/*
 namespace weave.compiler {
     using weave.extensions;
 
@@ -88,3 +110,4 @@ namespace std::numerics
         return Some(a + b);
     }
 }
+*/

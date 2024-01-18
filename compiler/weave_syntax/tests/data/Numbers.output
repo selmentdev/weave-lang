@@ -1,174 +1,611 @@
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Numbers.source
 ___
-CompilationUnit (overridden)
-  [declaration::incomplete-member]
-    0
-    DotToken
-    2137
-    3.3
-    DotToken
-    3.3
-    DotToken
-    3
-    3.3
-    DotToken
-    3
-    DotToken
-    3.3
-    DotToken
-    3.3
-    _0
-    DotToken
-    3
-    3
-    DotToken
-    G
-    0.2137
-    0
-    DotToken
-    9
-    0
-    DotToken
-    _
-    0
-    DotToken
-    _3
-    0
-    DotToken
-    _3_
-    0
-    DotToken
-    _3_e
-    0
-    DotToken
-    _3_e10
-    0
-    DotToken
-    _3_e10_f32
-    0.3
-    0.3
-    0.3
-  [declaration::struct]
-    [expression::identifier-name]: 
-    [declaration::incomplete-member]
-      0.3e10
-      0.3e10
-      0e10
-      1e10
-      1e+10
-      1e-10
-      1p-10
-      10
-      PlusToken
-      _10_f32
-      10e+10
-      10e+10
-      10
-      10
-      10.0
-      10
-      10.0
-      999340282366920938463463374607431768211455999
-      9900000000000000000000000000999999999999999999999999999999
-      111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110
-      37777777777777777777777777777777777777777770
-      ffffffffffffffffffffffffffffffff0
-      121
-      1010301
-      30
-      41
-      5
-      6
-      7
-      8
-      9
-      1.0
-      2
-      3.0
-      DotToken
-      3
-      e3f32
-      44
-      5.05
-      66
-      7.07
-      8.0e
-      PlusToken
-      9
-      9.0e
-      MinusToken
-      9
-      deadc0dedeadbeef
-      
-      1
-      1e+2
-      539.0
-      
-      
-      
-      
-      
-      123
-      123.456
-      101
-      111.101
-      18
-      123495670
-      123
-      456
-      789
-      
-      
-      
-      ABCDEF
-      755
-      10101010
-      ABCDEF
-      755
-      10101010
-      ABCDEF
-      755
-      10101010
-      ABCDEF
-      755
-      10101010
-      ABCDEFf64
-      ABCDEFf64
-      1.0e7
-      ffffffff
-      4294967295
-      ffffffffffffffff
-      18446744073709551615
-      MinusToken
-      2147483648
-      MinusToken
-      3.40282356e+38
-      3.40282356e+38
-      MinusToken
-      1.7976931348623158e+308
-      1.7976931348623158e+308
-      1111
-      1111.1111
-      1111+111
-      1111.111+111
-      1111
-      1111.1111
-      1111e+111
-      1111.111e+111
-      1111
-      1111.1111
-      1111p+111
-      1111.111p+111
-      11111111.101+101
-      21.37
-parsing took: 00:00:00.006
-PageFaultCount: 1615
-PeakWorkingSetSize: 5.922 MiB (6209536)
-WorkingSetSize: 4.688 MiB (4915200)
-QuotaPeakPagedPoolUsage: 209.664 KiB (214696)
-QuotaPagedPoolUsage: 208.336 KiB (213336)
-QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
-QuotaNonPagedPoolUsage: 5.305 KiB (5432)
-PagefileUsage: 1.543 MiB (1617920)
-PeakPagefileUsage: 2.078 MiB (2179072)
+-------
+IntegerLiteralToken
+DotToken
+IntegerLiteralToken
+FloatLiteralToken
+DotToken
+FloatLiteralToken
+DotToken
+IntegerLiteralToken
+FloatLiteralToken
+DotToken
+IntegerLiteralToken
+DotToken
+FloatLiteralToken
+DotToken
+FloatLiteralToken
+IdentifierToken
+DotToken
+IntegerLiteralToken
+IntegerLiteralToken
+DotToken
+IdentifierToken
+FloatLiteralToken
+IntegerLiteralToken
+DotToken
+IntegerLiteralToken
+IntegerLiteralToken
+DotToken
+IdentifierToken
+FloatLiteralToken
+DotToken
+IdentifierToken
+FloatLiteralToken
+DotToken
+IdentifierToken
+FloatLiteralToken
+DotToken
+IdentifierToken
+FloatLiteralToken
+DotToken
+IdentifierToken
+FloatLiteralToken
+DotToken
+IdentifierToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+StructKeyword
+IdentifierToken
+OpenBraceToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+PlusToken
+IdentifierToken
+FloatLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+DotToken
+IntegerLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+PlusToken
+IntegerLiteralToken
+FloatLiteralToken
+MinusToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+IntegerLiteralToken
+MinusToken
+IntegerLiteralToken
+MinusToken
+FloatLiteralToken
+FloatLiteralToken
+MinusToken
+FloatLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+IntegerLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+FloatLiteralToken
+CloseBraceToken
+EndOfFileToken
+-------
+0
+.2137
+3.3.
+3.3.3
+3.3.3.
+3.3.3.3
+_0.3
+3.G
+0.2137
+0.
+9x
+0._
+0._3
+0._3_
+0._3_e
+0._3_e10
+0._3_e10_f32
+0.3_
+0.3_e_
+0.3_e_ struct
+{0e10
+1e10
+1e+10
+1e-10
+0x_1_p-10
+10e_+_10_f32
+10e+_10_f32
+10_e+_10_f32
+10_e+_f32
+10u123
+10.0f123
+0b10f32
+0b10.0f32
+999340282366920938463463374607431768211455999
+9900000000000000000000000000999999999999999999999999999999
+0b111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110
+0o37777777777777777777777777777777777777777770
+0xffffffffffffffffffffffffffffffff0
+0b121
+0b10_10301
+0b30
+0b41
+0b5
+0b6
+0b7
+0b8
+0b9
+0o1.0
+0o2f32
+0o3.0f32
+0x.3f32
+0xe3f32
+0o4e4
+0o5.0e5
+0o6e6f32
+0o7.0e7f64
+0x8.0e+9
+0x9.0e-9
+0xdeadc0dedeadbeefusize
+0o
+1e+
+1e+2
+0x539.0
+0x
+0xu32
+0ou32
+0bu32
+0b
+0o123f64
+0o123.456
+0b101f64
+0b111.101
+0o18
+0o1234_9_5670
+123X1a3
+456O123
+789B101
+0XYZ
+0OPQ
+0BCD
+0XABCDEF
+0O755
+0B10101010
+0XABC_DEF
+0O7_55
+0B1010_1010
+0XABC_DEF_u64
+0O7_55_u32
+0B1010_1010_u8
+0XABCDEFu64
+0O755u32
+0B10101010u8
+0XABCDEFf64
+0xABCDEFf64
+1.0E7f64
+0xffffffff
+4294967295
+0xffffffffffffffff
+18446744073709551615
+-2147483648i32
+-3.40282356e+38_f32
+3.40282356e+38_f32
+-1.7976931348623158e+308_f64
+1.7976931348623158e+308_f64
+0b1111
+0b1111.1111
+0b1111e+111
+0b1111.111e+111
+1111
+1111.1111
+1111e+111
+1111.111e+111
+0x1111
+0x1111.1111
+0x1111p+111
+0x1111.111p+111
+0b1111_1111.101e+101
+21.37m32
+}-------
+OnCompilationUnitSyntax
+    OnSyntaxList
+        OnIncompleteDeclarationSyntax
+            OnToken `0` `[token:integer-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnToken `2137` `[token:integer-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `3.3` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnToken `3.3` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnToken `3` `[token:integer-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `3.3` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnToken `3` `[token:integer-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnToken `3.3` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnToken `3.3` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `_0`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnToken `3` `[token:integer-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `3` `[token:integer-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `G`
+        OnIncompleteDeclarationSyntax
+            OnToken `0.2137` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `0` `[token:integer-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnToken `9x` `[token:integer-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `0` `[token:integer-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `_`
+        OnIncompleteDeclarationSyntax
+            OnToken `0` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `_3`
+        OnIncompleteDeclarationSyntax
+            OnToken `0` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `_3_`
+        OnIncompleteDeclarationSyntax
+            OnToken `0` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `_3_e`
+        OnIncompleteDeclarationSyntax
+            OnToken `0` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `_3_e10`
+        OnIncompleteDeclarationSyntax
+            OnToken `0` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `.` `.`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `_3_e10_f32`
+        OnIncompleteDeclarationSyntax
+            OnToken `0.3_` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `0.3_e_` `[token:float-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `0.3_e_` `[token:float-literal]`
+        OnStructDeclarationSyntax
+            OnToken `struct` `struct`
+            OnIdentifierNameSyntax ``
+            OnToken `` `{`
+            OnSyntaxList
+                OnIncompleteDeclarationSyntax
+                    OnToken `0e10` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1e10` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1e+10` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1e-10` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x_1_p-10` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `10e_` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `+` `+`
+                OnIncompleteDeclarationSyntax
+                    OnIdentifierNameSyntax `_10_f32`
+                OnIncompleteDeclarationSyntax
+                    OnToken `10e+_10_f32` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `10_e+_10_f32` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `10_e+_f32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `10u123` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `10.0f123` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b10f32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b10.0f32` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `999340282366920938463463374607431768211455999` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `9900000000000000000000000000999999999999999999999999999999` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o37777777777777777777777777777777777777777770` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0xffffffffffffffffffffffffffffffff0` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b121` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b10_10301` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b30` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b41` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b5` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b6` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b7` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b8` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b9` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o1.0` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o2f32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o3.0f32` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x.` `.`
+                OnIncompleteDeclarationSyntax
+                    OnToken `3f32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0xe3f32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o4e4` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o5.0e5` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o6e6f32` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o7.0e7f64` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x8.0e` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `+` `+`
+                OnIncompleteDeclarationSyntax
+                    OnToken `9` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x9.0e` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `-` `-`
+                OnIncompleteDeclarationSyntax
+                    OnToken `9` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0xdeadc0dedeadbeefusize` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1e+` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1e+2` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x539.0` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0xu32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0ou32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0bu32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o123f64` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o123.456` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b101f64` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b111.101` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o18` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0o1234_9_5670` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `123X1a3` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `456O123` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `789B101` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0XYZ` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0OPQ` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0BCD` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0XABCDEF` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0O755` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0B10101010` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0XABC_DEF` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0O7_55` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0B1010_1010` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0XABC_DEF_u64` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0O7_55_u32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0B1010_1010_u8` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0XABCDEFu64` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0O755u32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0B10101010u8` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0XABCDEFf64` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0xABCDEFf64` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1.0E7f64` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0xffffffff` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `4294967295` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0xffffffffffffffff` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `18446744073709551615` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `-` `-`
+                OnIncompleteDeclarationSyntax
+                    OnToken `2147483648i32` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `-` `-`
+                OnIncompleteDeclarationSyntax
+                    OnToken `3.40282356e+38_f32` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `3.40282356e+38_f32` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `-` `-`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1.7976931348623158e+308_f64` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1.7976931348623158e+308_f64` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b1111` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b1111.1111` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b1111e+111` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b1111.111e+111` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1111` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1111.1111` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1111e+111` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `1111.111e+111` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x1111` `[token:integer-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x1111.1111` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x1111p+111` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0x1111.111p+111` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `0b1111_1111.101e+101` `[token:float-literal]`
+                OnIncompleteDeclarationSyntax
+                    OnToken `21.37m32` `[token:float-literal]`
+            OnToken `` `}`
+    OnToken `` `[token::end-of-file]`
+-------
+parsing took: 00:00:00.008
+PageFaultCount: 1499
+PeakWorkingSetSize: 5.609 MiB (5881856)
+WorkingSetSize: 4.348 MiB (4558848)
+QuotaPeakPagedPoolUsage: 259.766 KiB (266000)
+QuotaPagedPoolUsage: 259.398 KiB (265624)
+QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
+QuotaNonPagedPoolUsage: 5.172 KiB (5296)
+PagefileUsage: 1.590 MiB (1667072)
+PeakPagefileUsage: 2.055 MiB (2154496)

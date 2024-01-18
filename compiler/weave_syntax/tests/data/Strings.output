@@ -1,91 +1,296 @@
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Strings.source
 ___
-CompilationUnit (overridden)
-  [declaration::incomplete-member]
-    "test"
-    "test"
-    "test"
-    "test"
-    "test"
-    "test"
-    65533
-    32
-    32
-    32
-    128514
-    10084
-    127757
-    1
-    18
-    291
-    4660
-    74565
-    65533
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    117
-    ""
-    " "
-    "	"
-    "
-
-"
-    "
-"
-    ""
-    ""
-    ""
-    ">>r#"test"#<<"
-    "here's a long string"# "# "##; "
-    "abc"
-    "abc"
-    "abc"#
-r#""
-    "
-"
-    ""
-    " string literal goes on
+-------
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+CharacterLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+StringLiteralToken
+IdentifierToken
+HashToken
+TildeToken
+StringLiteralToken
+TildeToken
+HashToken
+EndOfFileToken
+-------
+u8"test"
+u8r#"test"#
+u16"test"
+u16r##"test"##
+u32"test"
+u32r###"test"###
+''
+' '
+'    '
+'          '
+'😂'
+'❤️'
+'🌍'
+'\u{1}'
+'\u{12}'
+'\u{123}'
+'\u{1234}'
+'\u{12345}'
+'\u{123456}'
+'\u{1234567}'
+'\u{12345678}'
+'\u1}'
+'\u12}'
+'\u123}'
+'\u1234}'
+'\u12345}'
+'\u123456}'
+'\u1234567}'
+'\u12345678}'
+'\u{1'
+'\u{12'
+'\u{123'
+'\u{1234'
+'\u{12345'
+'\u{123456'
+'\u{1234567'
+'\u{12345678'
+'\u1'
+'\u12'
+'\u123'
+'\u1234'
+'\u12345'
+'\u123456'
+'\u1234567'
+'\u12345678'
+""
+" "
+"\t"
+"\n\n"
+"\n"
+r""
+r#""#
+r##""##
+r##">>r#"test"#<<"##
+r###"here's a long string"# "# "##; "###
+r#"abc"##
+r#"def"#
+r##"ghi"#
+r#""##
+r#"
+"####
+r""##
+r#" string literal goes on
 and on
 
 
-r"
-    r
-    HashToken
-    TildeToken
-    "#"
-    TildeToken
-    HashToken
-parsing took: 00:00:00.004
-PageFaultCount: 1451
-PeakWorkingSetSize: 5.410 MiB (5672960)
-WorkingSetSize: 4.316 MiB (4526080)
-QuotaPeakPagedPoolUsage: 207.617 KiB (212600)
-QuotaPagedPoolUsage: 207.156 KiB (212128)
-QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+r"#
+r#~"#"~#
+-------
+OnCompilationUnitSyntax
+    OnSyntaxList
+        OnIncompleteDeclarationSyntax
+            OnToken `u8"test"` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `u8r#"test"#` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `u16"test"` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `u16r##"test"##` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `u32"test"` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `u32r###"test"###` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `''` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `' '` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'    '` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'          '` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'😂'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'❤️'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'🌍'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{1}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{12}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{123}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{1234}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{12345}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{123456}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{1234567}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{12345678}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u1}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u12}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u123}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u1234}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u12345}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u123456}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u1234567}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u12345678}'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{1'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{12'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{123'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{1234'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{12345'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{123456'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{1234567'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u{12345678'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u1'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u12'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u123'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u1234'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u12345'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u123456'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u1234567'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `'\u12345678'` `[token:character-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `""` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `" "` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `"\t"` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `"\n\n"` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `"\n"` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r""` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r#""#` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r##""##` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r##">>r#"test"#<<"##` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r###"here's a long string"# "# "##; "###` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r#"abc"##` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r#"def"#` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r##"ghi"#
+r#""##` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r#"
+"####` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r""##` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `r#" string literal goes on
+and on
+
+
+r"#` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnIdentifierNameSyntax `r`
+        OnIncompleteDeclarationSyntax
+            OnToken `#` `#`
+        OnIncompleteDeclarationSyntax
+            OnToken `~` `~`
+        OnIncompleteDeclarationSyntax
+            OnToken `"#"` `[token:string-literal]`
+        OnIncompleteDeclarationSyntax
+            OnToken `~` `~`
+        OnIncompleteDeclarationSyntax
+            OnToken `#` `#`
+    OnToken `` `[token::end-of-file]`
+-------
+parsing took: 00:00:00.005
+PageFaultCount: 1458
+PeakWorkingSetSize: 5.449 MiB (5713920)
+WorkingSetSize: 4.332 MiB (4542464)
+QuotaPeakPagedPoolUsage: 259.578 KiB (265808)
+QuotaPagedPoolUsage: 259.398 KiB (265624)
+QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
 QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 760.000 KiB (778240)
-PeakPagefileUsage: 1.891 MiB (1982464)
+PagefileUsage: 748.000 KiB (765952)
+PeakPagefileUsage: 1.906 MiB (1998848)

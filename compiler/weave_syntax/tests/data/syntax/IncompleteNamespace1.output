@@ -1,16 +1,31 @@
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\IncompleteNamespace1.source
 ___
-CompilationUnit (overridden)
-  [declaration::namespace]
-    [expression::identifier-name]: 
+-------
+NamespaceKeyword
+IdentifierToken
+OpenBraceToken
+CloseBraceToken
+EndOfFileToken
+-------
+namespace 
+{}-------
+OnCompilationUnitSyntax
+    OnSyntaxList
+        OnNamespaceDeclarationSyntax
+            OnToken `namespace` `namespace`
+            OnIdentifierNameSyntax ``
+            OnToken `` `{`
+            OnToken `` `}`
+    OnToken `` `[token::end-of-file]`
+-------
 parsing took: 00:00:00.000
-PageFaultCount: 1369
-PeakWorkingSetSize: 5.094 MiB (5341184)
-WorkingSetSize: 4.680 MiB (4907008)
-QuotaPeakPagedPoolUsage: 207.336 KiB (212312)
-QuotaPagedPoolUsage: 207.156 KiB (212128)
-QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+PageFaultCount: 1381
+PeakWorkingSetSize: 5.152 MiB (5402624)
+WorkingSetSize: 4.711 MiB (4939776)
+QuotaPeakPagedPoolUsage: 259.578 KiB (265808)
+QuotaPagedPoolUsage: 259.305 KiB (265528)
+QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
 QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 1.465 MiB (1536000)
-PeakPagefileUsage: 1.586 MiB (1662976)
+PagefileUsage: 1.516 MiB (1589248)
+PeakPagefileUsage: 1.605 MiB (1683456)

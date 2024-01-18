@@ -1,18 +1,45 @@
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\IncompleteNamespace7.source
 ___
-CompilationUnit (overridden)
-  [declaration::namespace]
-    [expression::identifier-name]: X
-    [declaration::namespace]
-      [expression::identifier-name]: Y
+-------
+NamespaceKeyword
+IdentifierToken
+OpenBraceToken
+NamespaceKeyword
+IdentifierToken
+OpenBraceToken
+CloseBraceToken
+CloseBraceToken
+EndOfFileToken
+-------
+namespace X
+{
+    namespace Y
+    {
+    }
+}-------
+OnCompilationUnitSyntax
+    OnSyntaxList
+        OnNamespaceDeclarationSyntax
+            OnToken `namespace` `namespace`
+            OnIdentifierNameSyntax `X`
+            OnToken `{` `{`
+            OnSyntaxList
+                OnNamespaceDeclarationSyntax
+                    OnToken `namespace` `namespace`
+                    OnIdentifierNameSyntax `Y`
+                    OnToken `{` `{`
+                    OnToken `}` `}`
+            OnToken `` `}`
+    OnToken `` `[token::end-of-file]`
+-------
 parsing took: 00:00:00.000
-PageFaultCount: 1372
-PeakWorkingSetSize: 5.102 MiB (5349376)
-WorkingSetSize: 4.688 MiB (4915200)
-QuotaPeakPagedPoolUsage: 207.336 KiB (212312)
-QuotaPagedPoolUsage: 207.156 KiB (212128)
-QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+PageFaultCount: 1388
+PeakWorkingSetSize: 5.164 MiB (5414912)
+WorkingSetSize: 4.723 MiB (4952064)
+QuotaPeakPagedPoolUsage: 263.273 KiB (269592)
+QuotaPagedPoolUsage: 259.305 KiB (265528)
+QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
 QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 1.473 MiB (1544192)
-PeakPagefileUsage: 1.602 MiB (1679360)
+PagefileUsage: 1.527 MiB (1601536)
+PeakPagefileUsage: 1.625 MiB (1703936)

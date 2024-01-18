@@ -1,1625 +1,1470 @@
-error: unexpected token 'bool'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:1:1
          |
        1 | bool
          | ^^^^
-error: unexpected token 'char'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:2:1
          |
        2 | char
          | ^^^^
-error: unexpected token 'char16'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:3:1
          |
        3 | char16
          | ^^^^^^
-error: unexpected token 'char32'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:4:1
          |
        4 | char32
          | ^^^^^^
-error: unexpected token 'char8'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:5:1
          |
        5 | char8
          | ^^^^^
-error: unexpected token 'decimal128'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:6:1
          |
        6 | decimal128
          | ^^^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:7:1
          |
        7 | decimal32
          | ^^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:8:1
          |
        8 | decimal64
          | ^^^^^^^^^
-error: unexpected token 'float16'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:9:1
          |
        9 | float16
          | ^^^^^^^
-error: unexpected token 'float32'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:10:1
          |
       10 | float32
          | ^^^^^^^
-error: unexpected token 'float64'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:11:1
          |
       11 | float64
          | ^^^^^^^
-error: unexpected token 'int128'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:12:1
          |
       12 | int128
          | ^^^^^^
-error: unexpected token 'int16'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:13:1
          |
       13 | int16
          | ^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:14:1
          |
       14 | int256
          | ^^^^^^
-error: unexpected token 'int32'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:15:1
          |
       15 | int32
          | ^^^^^
-error: unexpected token 'int64'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:16:1
          |
       16 | int64
          | ^^^^^
-error: unexpected token 'int8'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:17:1
          |
       17 | int8
          | ^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:18:1
          |
       18 | iptr
          | ^^^^
-error: unexpected token 'isize'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:19:1
          |
       19 | isize
          | ^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:20:1
          |
       20 | object
          | ^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:21:1
          |
       21 | string
          | ^^^^^^
-error: unexpected token 'uint128'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:22:1
          |
       22 | uint128
          | ^^^^^^^
-error: unexpected token 'uint16'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:23:1
          |
       23 | uint16
          | ^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:24:1
          |
       24 | uint256
          | ^^^^^^^
-error: unexpected token 'uint32'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:25:1
          |
       25 | uint32
          | ^^^^^^
-error: unexpected token 'uint64'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:26:1
          |
       26 | uint64
          | ^^^^^^
-error: unexpected token 'uint8'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:27:1
          |
       27 | uint8
          | ^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:28:1
          |
       28 | uptr
          | ^^^^
-error: unexpected token 'usize'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:29:1
          |
       29 | usize
          | ^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:30:1
          |
       30 | void
          | ^^^^
-error: unexpected token 'byte'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:31:1
          |
       31 | byte
          | ^^^^
-error: unexpected token 'and'
+error: unexpected token 'and', expected member declaration
         --> <source>:32:1
          |
       32 | and
          | ^^^
-error: unexpected token 'and_eq'
+error: unexpected token 'and_eq', expected member declaration
         --> <source>:33:1
          |
       33 | and_eq
          | ^^^^^^
-error: unexpected token 'or'
+error: unexpected token 'or', expected member declaration
         --> <source>:34:1
          |
       34 | or
          | ^^
-error: unexpected token 'or_eq'
+error: unexpected token 'or_eq', expected member declaration
         --> <source>:35:1
          |
       35 | or_eq
          | ^^^^^
-error: unexpected token 'xor'
+error: unexpected token 'xor', expected member declaration
         --> <source>:36:1
          |
       36 | xor
          | ^^^
-error: unexpected token 'xor_eq'
+error: unexpected token 'xor_eq', expected member declaration
         --> <source>:37:1
          |
       37 | xor_eq
          | ^^^^^^
-error: unexpected token 'not'
+error: unexpected token 'not', expected member declaration
         --> <source>:38:1
          |
       38 | not
          | ^^^
-error: unexpected token 'not_eq'
+error: unexpected token 'not_eq', expected member declaration
         --> <source>:39:1
          |
       39 | not_eq
          | ^^^^^^
-error: unexpected token 'bit_and'
+error: unexpected token 'bit_and', expected member declaration
         --> <source>:40:1
          |
       40 | bit_and
          | ^^^^^^^
-error: unexpected token 'bit_or'
+error: unexpected token 'bit_or', expected member declaration
         --> <source>:41:1
          |
       41 | bit_or
          | ^^^^^^
-error: unexpected token 'bit_compl'
+error: unexpected token 'bit_compl', expected member declaration
         --> <source>:42:1
          |
       42 | bit_compl
          | ^^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:43:1
          |
       43 | __column__
          | ^^^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:44:1
          |
       44 | __file__
          | ^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:45:1
          |
       45 | __function__
          | ^^^^^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:46:1
          |
       46 | __function_pretty__
          | ^^^^^^^^^^^^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:47:1
          |
       47 | __line__
          | ^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:48:1
          |
       48 | __module__
          | ^^^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:49:1
          |
       49 | __source_location__
          | ^^^^^^^^^^^^^^^^^^^
-error: unexpected token 'abstract'
+error: unexpected token 'abstract', expected member declaration
         --> <source>:50:1
          |
       50 | abstract
          | ^^^^^^^^
-error: unexpected token 'add'
+error: unexpected token 'add', expected member declaration
         --> <source>:51:1
          |
       51 | add
          | ^^^
-error: unexpected token 'addressof'
+error: unexpected token 'addressof', expected member declaration
         --> <source>:52:1
          |
       52 | addressof
          | ^^^^^^^^^
-error: unexpected token 'addrspace'
+error: unexpected token 'addrspace', expected member declaration
         --> <source>:53:1
          |
       53 | addrspace
          | ^^^^^^^^^
-error: unexpected token 'alias'
+error: unexpected token 'alias', expected member declaration
         --> <source>:54:1
          |
       54 | alias
          | ^^^^^
-error: unexpected token 'align'
+error: unexpected token 'align', expected member declaration
         --> <source>:55:1
          |
       55 | align
          | ^^^^^
-error: unexpected token 'alignas'
+error: unexpected token 'alignas', expected member declaration
         --> <source>:56:1
          |
       56 | alignas
          | ^^^^^^^
-error: unexpected token 'alignof'
+error: unexpected token 'alignof', expected member declaration
         --> <source>:57:1
          |
       57 | alignof
          | ^^^^^^^
-error: unexpected token 'array'
+error: unexpected token 'array', expected member declaration
         --> <source>:58:1
          |
       58 | array
          | ^^^^^
-error: unexpected token 'as'
+error: unexpected token 'as', expected member declaration
         --> <source>:59:1
          |
       59 | as
          | ^^
-error: unexpected token 'assembly'
+error: unexpected token 'assembly', expected member declaration
         --> <source>:60:1
          |
       60 | assembly
          | ^^^^^^^^
-error: unexpected token 'assert'
+error: unexpected token 'assert', expected member declaration
         --> <source>:61:1
          |
       61 | assert
          | ^^^^^^
-error: unexpected token 'assume'
+error: unexpected token 'assume', expected member declaration
         --> <source>:62:1
          |
       62 | assume
          | ^^^^^^
-error: unexpected token 'async'
-        --> <source>:63:1
-         |
-      63 | async
-         | ^^^^^
-error: unexpected token 'atomic'
+error: unexpected token 'atomic', expected member declaration
         --> <source>:64:1
          |
       64 | atomic
          | ^^^^^^
-error: unexpected token 'attribute'
+error: unexpected token 'attribute', expected member declaration
         --> <source>:65:1
          |
       65 | attribute
          | ^^^^^^^^^
-error: unexpected token 'auto'
+error: unexpected token 'auto', expected member declaration
         --> <source>:66:1
          |
       66 | auto
          | ^^^^
-error: unexpected token 'available'
+error: unexpected token 'available', expected member declaration
         --> <source>:67:1
          |
       67 | available
          | ^^^^^^^^^
-error: unexpected token 'await'
+error: unexpected token 'await', expected member declaration
         --> <source>:68:1
          |
       68 | await
          | ^^^^^
-error: unexpected token 'base'
+error: unexpected token 'base', expected member declaration
         --> <source>:69:1
          |
       69 | base
          | ^^^^
-error: unexpected token 'become'
+error: unexpected token 'become', expected member declaration
         --> <source>:70:1
          |
       70 | become
          | ^^^^^^
-error: unexpected token 'bitcast'
+error: unexpected token 'bitcast', expected member declaration
         --> <source>:71:1
          |
       71 | bitcast
          | ^^^^^^^
-error: unexpected token 'body'
+error: unexpected token 'body', expected member declaration
         --> <source>:72:1
          |
       72 | body
          | ^^^^
-error: unexpected token 'borrow'
+error: unexpected token 'borrow', expected member declaration
         --> <source>:73:1
          |
       73 | borrow
          | ^^^^^^
-error: unexpected token 'box'
+error: unexpected token 'box', expected member declaration
         --> <source>:74:1
          |
       74 | box
          | ^^^
-error: unexpected token 'break'
+error: unexpected token 'break', expected member declaration
         --> <source>:75:1
          |
       75 | break
          | ^^^^^
-error: unexpected token 'callconv'
+error: unexpected token 'callconv', expected member declaration
         --> <source>:76:1
          |
       76 | callconv
          | ^^^^^^^^
-error: unexpected token 'case'
+error: unexpected token 'case', expected member declaration
         --> <source>:77:1
          |
       77 | case
          | ^^^^
-error: unexpected token 'cast'
+error: unexpected token 'cast', expected member declaration
         --> <source>:78:1
          |
       78 | cast
          | ^^^^
-error: unexpected token 'checked'
-        --> <source>:79:1
-         |
-      79 | checked
-         | ^^^^^^^
-error: unexpected token 'class'
+error: unexpected token 'class', expected member declaration
         --> <source>:80:1
          |
       80 | class
          | ^^^^^
-error: unexpected token 'columnmajor'
+error: unexpected token 'columnmajor', expected member declaration
         --> <source>:81:1
          |
       81 | columnmajor
          | ^^^^^^^^^^^
-error: unexpected token 'compile'
+error: unexpected token 'compile', expected member declaration
         --> <source>:82:1
          |
       82 | compile
          | ^^^^^^^
-error: unexpected token 'const', expected '[token::identifier]'
+error: unexpected token 'const', expected '[token:identifier]'
         --> <source>:84:1
          |
       84 | const
          | ^^^^^
-error: unexpected token 'const', expected '{'
-        --> <source>:84:1
+error: unexpected token '[token:identifier]', expected '{'
+        --> <source>:85:1
          |
-      84 | const
-         | ^^^^^
-error: unexpected token 'continue', expected ';'
+      85 | ctor
+         | ^^^^
+error: unexpected token 'continue', expected member declaration
         --> <source>:86:1
          |
       86 | continue
          | ^^^^^^^^
-error: unexpected token 'continue'
-        --> <source>:86:1
-         |
-      86 | continue
-         | ^^^^^^^^
-error: unexpected token 'contravariant'
+error: unexpected token 'contravariant', expected member declaration
         --> <source>:87:1
          |
       87 | contravariant
          | ^^^^^^^^^^^^^
-error: unexpected token 'covariant'
+error: unexpected token 'covariant', expected member declaration
         --> <source>:88:1
          |
       88 | covariant
          | ^^^^^^^^^
-error: unexpected token 'debug'
+error: unexpected token 'debug', expected member declaration
         --> <source>:89:1
          |
       89 | debug
          | ^^^^^
-error: unexpected token 'default'
+error: unexpected token 'default', expected member declaration
         --> <source>:90:1
          |
       90 | default
          | ^^^^^^^
-error: unexpected token 'defer'
+error: unexpected token 'defer', expected member declaration
         --> <source>:91:1
          |
       91 | defer
          | ^^^^^
-error: unexpected token 'delegate'
+error: unexpected token 'delegate', expected member declaration
         --> <source>:92:1
          |
       92 | delegate
          | ^^^^^^^^
-error: unexpected token 'delete'
+error: unexpected token 'delete', expected member declaration
         --> <source>:93:1
          |
       93 | delete
          | ^^^^^^
-error: unexpected token 'deprecated'
+error: unexpected token 'deprecated', expected member declaration
         --> <source>:94:1
          |
       94 | deprecated
          | ^^^^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:95:1
          |
       95 | dtor
          | ^^^^
-error: unexpected token 'discard'
+error: unexpected token 'discard', expected member declaration
         --> <source>:96:1
          |
       96 | discard
          | ^^^^^^^
-error: unexpected token 'do'
+error: unexpected token 'do', expected member declaration
         --> <source>:97:1
          |
       97 | do
          | ^^
-error: unexpected token 'drop'
+error: unexpected token 'drop', expected member declaration
         --> <source>:98:1
          |
       98 | drop
          | ^^^^
-error: unexpected token 'dynamic'
-        --> <source>:99:1
-         |
-      99 | dynamic
-         | ^^^^^^^
-error: unexpected token 'eager'
+error: unexpected token 'eager', expected member declaration
         --> <source>:100:1
          |
      100 | eager
          | ^^^^^
-error: unexpected token 'else'
+error: unexpected token 'else', expected member declaration
         --> <source>:101:1
          |
      101 | else
          | ^^^^
-error: unexpected token 'enum'
+error: unexpected token 'enum', expected member declaration
         --> <source>:102:1
          |
      102 | enum
          | ^^^^
-error: unexpected token 'event'
+error: unexpected token 'event', expected member declaration
         --> <source>:103:1
          |
      103 | event
          | ^^^^^
-error: unexpected token 'except'
+error: unexpected token 'except', expected member declaration
         --> <source>:104:1
          |
      104 | except
          | ^^^^^^
-error: unexpected token 'explicit'
-        --> <source>:105:1
-         |
-     105 | explicit
-         | ^^^^^^^^
-error: unexpected token 'export'
-        --> <source>:106:1
-         |
-     106 | export
-         | ^^^^^^
-error: unexpected token 'expression'
+error: unexpected token 'expression', expected member declaration
         --> <source>:107:1
          |
      107 | expression
          | ^^^^^^^^^^
-error: unexpected token 'extension'
+error: unexpected token 'extension', expected member declaration
         --> <source>:108:1
          |
      108 | extension
          | ^^^^^^^^^
-error: unexpected token 'false'
+error: unexpected token 'false', expected member declaration
         --> <source>:110:1
          |
      110 | false
          | ^^^^^
-error: unexpected token 'field'
+error: unexpected token 'field', expected member declaration
         --> <source>:111:1
          |
      111 | field
          | ^^^^^
-error: unexpected token 'file'
+error: unexpected token 'file', expected member declaration
         --> <source>:112:1
          |
      112 | file
          | ^^^^
-error: unexpected token 'final'
-        --> <source>:113:1
-         |
-     113 | final
-         | ^^^^^
-error: unexpected token 'finally'
+error: unexpected token 'finally', expected member declaration
         --> <source>:114:1
          |
      114 | finally
          | ^^^^^^^
-error: unexpected token 'fixed'
-        --> <source>:115:1
-         |
-     115 | fixed
-         | ^^^^^
-error: unexpected token 'for'
+error: unexpected token 'for', expected member declaration
         --> <source>:116:1
          |
      116 | for
          | ^^^
-error: unexpected token 'force'
+error: unexpected token 'force', expected member declaration
         --> <source>:117:1
          |
      117 | force
          | ^^^^^
-error: unexpected token 'foreach'
+error: unexpected token 'foreach', expected member declaration
         --> <source>:118:1
          |
      118 | foreach
          | ^^^^^^^
-error: unexpected token 'fraction'
+error: unexpected token 'fraction', expected member declaration
         --> <source>:119:1
          |
      119 | fraction
          | ^^^^^^^^
-error: unexpected token 'fragment'
+error: unexpected token 'fragment', expected member declaration
         --> <source>:120:1
          |
      120 | fragment
          | ^^^^^^^^
-error: unexpected token 'friend'
+error: unexpected token 'friend', expected member declaration
         --> <source>:121:1
          |
      121 | friend
          | ^^^^^^
-error: unexpected token 'from'
+error: unexpected token 'from', expected member declaration
         --> <source>:122:1
          |
      122 | from
          | ^^^^
-error: unexpected token 'generic', expected '[token::identifier]'
+error: unexpected token 'generic', expected '[token:identifier]'
         --> <source>:124:1
          |
      124 | generic
          | ^^^^^^^
-error: unexpected token 'generic', expected '['
-        --> <source>:124:1
-         |
-     124 | generic
-         | ^^^^^^^
-error: unexpected token 'generic', expected ')'
-        --> <source>:124:1
-         |
-     124 | generic
-         | ^^^^^^^
-error: unexpected token 'generic', expected '->'
-        --> <source>:124:1
-         |
-     124 | generic
-         | ^^^^^^^
-error: unexpected token 'generic', expected '[token::identifier]'
-        --> <source>:124:1
-         |
-     124 | generic
-         | ^^^^^^^
-error: unexpected token 'generic', expected '{'
-        --> <source>:124:1
-         |
-     124 | generic
-         | ^^^^^^^
-error: unexpected token 'generic', expected '}'
-        --> <source>:124:1
-         |
-     124 | generic
-         | ^^^^^^^
-error: unexpected token 'generic'
-        --> <source>:124:1
-         |
-     124 | generic
-         | ^^^^^^^
-error: unexpected token 'get'
+error: unexpected token 'get', expected '['
         --> <source>:125:1
          |
      125 | get
          | ^^^
-error: unexpected token 'global'
+error: unexpected token 'global', expected '[token:identifier]'
         --> <source>:126:1
          |
      126 | global
          | ^^^^^^
-error: unexpected token 'goto'
+error: unexpected token 'goto', expected ':'
         --> <source>:127:1
          |
      127 | goto
          | ^^^^
-error: unexpected token 'groupshared'
+error: unexpected token 'groupshared', expected '[token:identifier]'
         --> <source>:128:1
          |
      128 | groupshared
          | ^^^^^^^^^^^
-error: unexpected token 'if'
+error: unexpected token 'if', expected ')'
         --> <source>:129:1
          |
      129 | if
          | ^^
-error: unexpected token 'immutable'
+error: unexpected token 'immutable', expected ';'
         --> <source>:130:1
          |
      130 | immutable
          | ^^^^^^^^^
-error: unexpected token 'implementation'
+error: unexpected token 'implementation', expected member declaration
         --> <source>:131:1
          |
      131 | implementation
          | ^^^^^^^^^^^^^^
-error: unexpected token 'implicit'
-        --> <source>:132:1
-         |
-     132 | implicit
-         | ^^^^^^^^
-error: unexpected token 'import'
+error: unexpected token 'import', expected member declaration
         --> <source>:133:1
          |
      133 | import
          | ^^^^^^
-error: unexpected token 'in'
+error: unexpected token 'in', expected member declaration
         --> <source>:134:1
          |
      134 | in
          | ^^
-error: unexpected token 'inherit'
+error: unexpected token 'inherit', expected member declaration
         --> <source>:135:1
          |
      135 | inherit
          | ^^^^^^^
-error: unexpected token 'inject'
+error: unexpected token 'inject', expected member declaration
         --> <source>:136:1
          |
      136 | inject
          | ^^^^^^
-error: unexpected token 'inline'
-        --> <source>:137:1
-         |
-     137 | inline
-         | ^^^^^^
-error: unexpected token 'inout'
+error: unexpected token 'inout', expected member declaration
         --> <source>:138:1
          |
      138 | inout
          | ^^^^^
-error: unexpected token 'interface'
+error: unexpected token 'interface', expected member declaration
         --> <source>:139:1
          |
      139 | interface
          | ^^^^^^^^^
-error: unexpected token 'invariant'
+error: unexpected token 'invariant', expected member declaration
         --> <source>:141:1
          |
      141 | invariant
          | ^^^^^^^^^
-error: unexpected token 'is'
+error: unexpected token 'is', expected member declaration
         --> <source>:142:1
          |
      142 | is
          | ^^
-error: unexpected token 'lazy'
+error: unexpected token 'lazy', expected member declaration
         --> <source>:143:1
          |
      143 | lazy
          | ^^^^
-error: unexpected token 'let'
+error: unexpected token 'let', expected member declaration
         --> <source>:144:1
          |
      144 | let
          | ^^^
-error: unexpected token 'likely'
+error: unexpected token 'likely', expected member declaration
         --> <source>:145:1
          |
      145 | likely
          | ^^^^^^
-error: unexpected token 'linksection'
+error: unexpected token 'linksection', expected member declaration
         --> <source>:146:1
          |
      146 | linksection
          | ^^^^^^^^^^^
-error: unexpected token 'lock'
+error: unexpected token 'lock', expected member declaration
         --> <source>:147:1
          |
      147 | lock
          | ^^^^
-error: unexpected token 'loop'
+error: unexpected token 'loop', expected member declaration
         --> <source>:148:1
          |
      148 | loop
          | ^^^^
-error: unexpected token 'macro'
+error: unexpected token 'macro', expected member declaration
         --> <source>:149:1
          |
      149 | macro
          | ^^^^^
-error: unexpected token 'managed'
+error: unexpected token 'managed', expected member declaration
         --> <source>:150:1
          |
      150 | managed
          | ^^^^^^^
-error: unexpected token 'match'
+error: unexpected token 'match', expected member declaration
         --> <source>:151:1
          |
      151 | match
          | ^^^^^
-error: unexpected token 'matrix'
+error: unexpected token 'matrix', expected member declaration
         --> <source>:152:1
          |
      152 | matrix
          | ^^^^^^
-error: unexpected token 'member'
+error: unexpected token 'member', expected member declaration
         --> <source>:153:1
          |
      153 | member
          | ^^^^^^
-error: unexpected token 'meta'
+error: unexpected token 'meta', expected member declaration
         --> <source>:154:1
          |
      154 | meta
          | ^^^^
-error: unexpected token 'mixin'
+error: unexpected token 'mixin', expected member declaration
         --> <source>:155:1
          |
      155 | mixin
          | ^^^^^
-error: unexpected token 'module'
+error: unexpected token 'module', expected member declaration
         --> <source>:156:1
          |
      156 | module
          | ^^^^^^
-error: unexpected token 'move'
+error: unexpected token 'move', expected member declaration
         --> <source>:157:1
          |
      157 | move
          | ^^^^
-error: unexpected token 'mutable'
+error: unexpected token 'mutable', expected member declaration
         --> <source>:158:1
          |
      158 | mutable
          | ^^^^^^^
-error: unexpected token 'nameof'
+error: unexpected token 'nameof', expected member declaration
         --> <source>:159:1
          |
      159 | nameof
          | ^^^^^^
-error: unexpected token 'namespace'
-        --> <source>:160:1
-         |
-     160 | namespace
-         | ^^^^^^^^^
-error: unexpected token 'native'
+error: unexpected token 'native', expected '[token:identifier]'
         --> <source>:161:1
          |
      161 | native
          | ^^^^^^
-error: unexpected token 'new'
+error: unexpected token 'new', expected '{'
         --> <source>:162:1
          |
      162 | new
          | ^^^
-error: unexpected token 'noalias'
+error: unexpected token 'noalias', expected member declaration
         --> <source>:163:1
          |
      163 | noalias
          | ^^^^^^^
-error: unexpected token 'nodiscard'
+error: unexpected token 'nodiscard', expected member declaration
         --> <source>:164:1
          |
      164 | nodiscard
          | ^^^^^^^^^
-error: unexpected token 'noinline'
+error: unexpected token 'noinline', expected member declaration
         --> <source>:165:1
          |
      165 | noinline
          | ^^^^^^^^
-error: unexpected token 'noreturn'
+error: unexpected token 'noreturn', expected member declaration
         --> <source>:166:1
          |
      166 | noreturn
          | ^^^^^^^^
-error: unexpected token 'nosuspend'
+error: unexpected token 'nosuspend', expected member declaration
         --> <source>:167:1
          |
      167 | nosuspend
          | ^^^^^^^^^
-error: unexpected token 'notnull'
+error: unexpected token 'notnull', expected member declaration
         --> <source>:168:1
          |
      168 | notnull
          | ^^^^^^^
-error: unexpected token 'null'
+error: unexpected token 'null', expected member declaration
         --> <source>:169:1
          |
      169 | null
          | ^^^^
-error: unexpected token 'nullable'
+error: unexpected token 'nullable', expected member declaration
         --> <source>:170:1
          |
      170 | nullable
          | ^^^^^^^^
-error: unexpected token 'offsetof'
+error: unexpected token 'offsetof', expected member declaration
         --> <source>:171:1
          |
      171 | offsetof
          | ^^^^^^^^
-error: unexpected token 'operator'
+error: unexpected token 'operator', expected member declaration
         --> <source>:172:1
          |
      172 | operator
          | ^^^^^^^^
-error: unexpected token 'opaque'
+error: unexpected token 'opaque', expected member declaration
         --> <source>:173:1
          |
      173 | opaque
          | ^^^^^^
-error: unexpected token 'optional'
+error: unexpected token 'optional', expected member declaration
         --> <source>:174:1
          |
      174 | optional
          | ^^^^^^^^
-error: unexpected token 'out'
+error: unexpected token 'out', expected member declaration
         --> <source>:175:1
          |
      175 | out
          | ^^^
-error: unexpected token 'overload'
+error: unexpected token 'overload', expected member declaration
         --> <source>:176:1
          |
      176 | overload
          | ^^^^^^^^
-error: unexpected token 'override'
-        --> <source>:177:1
-         |
-     177 | override
-         | ^^^^^^^^
-error: unexpected token 'package'
+error: unexpected token 'package', expected member declaration
         --> <source>:178:1
          |
      178 | package
          | ^^^^^^^
-error: unexpected token 'packed'
+error: unexpected token 'packed', expected member declaration
         --> <source>:179:1
          |
      179 | packed
          | ^^^^^^
-error: unexpected token 'parallel'
+error: unexpected token 'parallel', expected member declaration
         --> <source>:180:1
          |
      180 | parallel
          | ^^^^^^^^
-error: unexpected token 'params'
+error: unexpected token 'params', expected member declaration
         --> <source>:181:1
          |
      181 | params
          | ^^^^^^
-error: unexpected token 'partial'
-        --> <source>:182:1
-         |
-     182 | partial
-         | ^^^^^^^
-error: unexpected token 'pragma'
+error: unexpected token 'pragma', expected member declaration
         --> <source>:183:1
          |
      183 | pragma
          | ^^^^^^
-error: unexpected token 'precise'
-        --> <source>:184:1
-         |
-     184 | precise
-         | ^^^^^^^
-error: unexpected token 'property'
+error: unexpected token 'property', expected member declaration
         --> <source>:186:1
          |
      186 | property
          | ^^^^^^^^
-error: unexpected token 'protected'
+error: unexpected token 'protected', expected member declaration
         --> <source>:187:1
          |
      187 | protected
          | ^^^^^^^^^
-error: unexpected token 'pure'
-        --> <source>:189:1
-         |
-     189 | pure
-         | ^^^^
-error: unexpected token 'raise'
+error: unexpected token 'raise', expected member declaration
         --> <source>:190:1
          |
      190 | raise
          | ^^^^^
-error: unexpected token 'record'
+error: unexpected token 'record', expected member declaration
         --> <source>:192:1
          |
      192 | record
          | ^^^^^^
-error: unexpected token 'recursive'
-        --> <source>:193:1
-         |
-     193 | recursive
-         | ^^^^^^^^^
-error: unexpected token 'ref'
-        --> <source>:194:1
-         |
-     194 | ref
-         | ^^^
-error: unexpected token 'reflect'
+error: unexpected token 'reflect', expected member declaration
         --> <source>:195:1
          |
      195 | reflect
          | ^^^^^^^
-error: unexpected token 'register'
+error: unexpected token 'register', expected member declaration
         --> <source>:196:1
          |
      196 | register
          | ^^^^^^^^
-error: unexpected token 'reinterpret'
+error: unexpected token 'reinterpret', expected member declaration
         --> <source>:197:1
          |
      197 | reinterpret
          | ^^^^^^^^^^^
-error: unexpected token 'remove'
+error: unexpected token 'remove', expected member declaration
         --> <source>:198:1
          |
      198 | remove
          | ^^^^^^
-error: unexpected token 'require'
+error: unexpected token 'require', expected member declaration
         --> <source>:199:1
          |
      199 | require
          | ^^^^^^^
-error: unexpected token 'required'
+error: unexpected token 'required', expected member declaration
         --> <source>:200:1
          |
      200 | required
          | ^^^^^^^^
-error: unexpected token 'resume'
+error: unexpected token 'resume', expected member declaration
         --> <source>:201:1
          |
      201 | resume
          | ^^^^^^
-error: unexpected token 'retain'
+error: unexpected token 'retain', expected member declaration
         --> <source>:202:1
          |
      202 | retain
          | ^^^^^^
-error: unexpected token 'return'
+error: unexpected token 'return', expected member declaration
         --> <source>:203:1
          |
      203 | return
          | ^^^^^^
-error: unexpected token 'rowmajor'
+error: unexpected token 'rowmajor', expected member declaration
         --> <source>:204:1
          |
      204 | rowmajor
          | ^^^^^^^^
-error: unexpected token 'saturate'
+error: unexpected token 'saturate', expected member declaration
         --> <source>:205:1
          |
      205 | saturate
          | ^^^^^^^^
-error: unexpected token 'scalar'
+error: unexpected token 'scalar', expected member declaration
         --> <source>:206:1
          |
      206 | scalar
          | ^^^^^^
-error: unexpected token 'scope'
+error: unexpected token 'scope', expected member declaration
         --> <source>:207:1
          |
      207 | scope
          | ^^^^^
-error: unexpected token 'section'
+error: unexpected token 'section', expected member declaration
         --> <source>:208:1
          |
      208 | section
          | ^^^^^^^
-error: unexpected token 'self'
+error: unexpected token 'self', expected member declaration
         --> <source>:209:1
          |
      209 | self
          | ^^^^
-error: unexpected token 'set'
+error: unexpected token 'set', expected member declaration
         --> <source>:210:1
          |
      210 | set
          | ^^^
-error: unexpected token 'shared'
+error: unexpected token 'shared', expected member declaration
         --> <source>:211:1
          |
      211 | shared
          | ^^^^^^
-error: unexpected token 'sizeof'
+error: unexpected token 'sizeof', expected member declaration
         --> <source>:212:1
          |
      212 | sizeof
          | ^^^^^^
-error: unexpected token 'slice'
+error: unexpected token 'slice', expected member declaration
         --> <source>:213:1
          |
      213 | slice
          | ^^^^^
-error: unexpected token 'stackalloc'
+error: unexpected token 'stackalloc', expected member declaration
         --> <source>:214:1
          |
      214 | stackalloc
          | ^^^^^^^^^^
-error: unexpected token 'static'
+error: unexpected token 'static', expected member declaration
         --> <source>:215:1
          |
      215 | static
          | ^^^^^^
-error: unexpected token 'struct'
-        --> <source>:216:1
-         |
-     216 | struct
-         | ^^^^^^
-error: unexpected token 'super'
+error: unexpected token 'super', expected '[token:identifier]'
         --> <source>:217:1
          |
      217 | super
          | ^^^^^
-error: unexpected token 'suspend'
+error: unexpected token 'suspend', expected '{'
         --> <source>:218:1
          |
      218 | suspend
          | ^^^^^^^
-error: unexpected token 'switch'
+error: unexpected token 'switch', expected member declaration
         --> <source>:219:1
          |
      219 | switch
          | ^^^^^^
-error: unexpected token 'synchronized'
-        --> <source>:220:1
-         |
-     220 | synchronized
-         | ^^^^^^^^^^^^
-error: unexpected token 'tailcall'
-        --> <source>:221:1
-         |
-     221 | tailcall
-         | ^^^^^^^^
-error: unexpected token 'template'
+error: unexpected token 'template', expected member declaration
         --> <source>:222:1
          |
      222 | template
          | ^^^^^^^^
-error: unexpected token 'test'
+error: unexpected token 'test', expected member declaration
         --> <source>:223:1
          |
      223 | test
          | ^^^^
-error: unexpected token 'this'
+error: unexpected token 'this', expected member declaration
         --> <source>:224:1
          |
      224 | this
          | ^^^^
-error: unexpected token 'threadlocal'
-        --> <source>:225:1
-         |
-     225 | threadlocal
-         | ^^^^^^^^^^^
-error: unexpected token 'trait'
+error: unexpected token 'trait', expected member declaration
         --> <source>:226:1
          |
      226 | trait
          | ^^^^^
-error: unexpected token 'transfer'
+error: unexpected token 'transfer', expected member declaration
         --> <source>:227:1
          |
      227 | transfer
          | ^^^^^^^^
-error: unexpected token 'true'
+error: unexpected token 'true', expected member declaration
         --> <source>:228:1
          |
      228 | true
          | ^^^^
-error: unexpected token 'try'
+error: unexpected token 'try', expected member declaration
         --> <source>:229:1
          |
      229 | try
          | ^^^
-error: unexpected token 'tuple'
+error: unexpected token 'tuple', expected member declaration
         --> <source>:230:1
          |
      230 | tuple
          | ^^^^^
-error: unexpected token 'type'
+error: unexpected token 'type', expected member declaration
         --> <source>:231:1
          |
      231 | type
          | ^^^^
-error: unexpected token 'typeof'
+error: unexpected token 'typeof', expected member declaration
         --> <source>:232:1
          |
      232 | typeof
          | ^^^^^^
-error: unexpected token 'unaligned'
-        --> <source>:233:1
-         |
-     233 | unaligned
-         | ^^^^^^^^^
-error: unexpected token 'unbox'
+error: unexpected token 'unbox', expected member declaration
         --> <source>:234:1
          |
      234 | unbox
          | ^^^^^
-error: unexpected token 'unchecked'
+error: unexpected token 'unchecked', expected member declaration
         --> <source>:235:1
          |
      235 | unchecked
          | ^^^^^^^^^
-error: unexpected token 'undefined'
+error: unexpected token 'undefined', expected member declaration
         --> <source>:236:1
          |
      236 | undefined
          | ^^^^^^^^^
-error: unexpected token 'uniform'
-        --> <source>:237:1
-         |
-     237 | uniform
-         | ^^^^^^^
-error: unexpected token 'union'
+error: unexpected token 'union', expected member declaration
         --> <source>:238:1
          |
      238 | union
          | ^^^^^
-error: unexpected token 'unlikely'
+error: unexpected token 'unlikely', expected member declaration
         --> <source>:239:1
          |
      239 | unlikely
          | ^^^^^^^^
-error: unexpected token 'unmanaged'
+error: unexpected token 'unmanaged', expected member declaration
         --> <source>:240:1
          |
      240 | unmanaged
          | ^^^^^^^^^
-error: unexpected token 'unreachable'
+error: unexpected token 'unreachable', expected member declaration
         --> <source>:241:1
          |
      241 | unreachable
          | ^^^^^^^^^^^
-error: unexpected token 'unsafe'
-        --> <source>:242:1
-         |
-     242 | unsafe
-         | ^^^^^^
-error: unexpected token 'unsized'
+error: unexpected token 'unsized', expected member declaration
         --> <source>:243:1
          |
      243 | unsized
          | ^^^^^^^
-error: unexpected token 'using'
+error: unexpected token 'using', expected member declaration
         --> <source>:244:1
          |
      244 | using
          | ^^^^^
-error: unexpected token 'uuidof'
+error: unexpected token 'uuidof', expected member declaration
         --> <source>:245:1
          |
      245 | uuidof
          | ^^^^^^
-error: unexpected token 'value'
+error: unexpected token 'value', expected member declaration
         --> <source>:246:1
          |
      246 | value
          | ^^^^^
-error: unexpected token 'vector', expected '[token::identifier]'
+error: unexpected token 'vector', expected '[token:identifier]'
         --> <source>:248:1
          |
      248 | vector
          | ^^^^^^
-error: unexpected token 'vector', expected ';'
-        --> <source>:248:1
-         |
-     248 | vector
-         | ^^^^^^
-error: unexpected token 'vector'
-        --> <source>:248:1
-         |
-     248 | vector
-         | ^^^^^^
-error: unexpected token 'vendor'
+error: unexpected token 'vendor', expected ';'
         --> <source>:249:1
          |
      249 | vendor
          | ^^^^^^
-error: unexpected token 'version'
+error: unexpected token 'version', expected member declaration
         --> <source>:250:1
          |
      250 | version
          | ^^^^^^^
-error: unexpected token 'virtual'
+error: unexpected token 'virtual', expected member declaration
         --> <source>:251:1
          |
      251 | virtual
          | ^^^^^^^
-error: unexpected token 'volatile'
+error: unexpected token 'volatile', expected member declaration
         --> <source>:252:1
          |
      252 | volatile
          | ^^^^^^^^
-error: unexpected token 'vtable'
+error: unexpected token 'vtable', expected member declaration
         --> <source>:253:1
          |
      253 | vtable
          | ^^^^^^
-error: unexpected token 'when'
+error: unexpected token 'when', expected member declaration
         --> <source>:254:1
          |
      254 | when
          | ^^^^
-error: unexpected token 'where'
+error: unexpected token 'where', expected member declaration
         --> <source>:255:1
          |
      255 | where
          | ^^^^^
-error: unexpected token 'while'
+error: unexpected token 'while', expected member declaration
         --> <source>:256:1
          |
      256 | while
          | ^^^^^
-error: unexpected token 'with'
+error: unexpected token 'with', expected member declaration
         --> <source>:257:1
          |
      257 | with
          | ^^^^
-error: unexpected token 'yield'
+error: unexpected token 'yield', expected member declaration
         --> <source>:258:1
          |
      258 | yield
          | ^^^^^
-error: unexpected token '~'
+error: unexpected token '~', expected member declaration
         --> <source>:259:1
          |
      259 | ~
          | ^
-error: unexpected token '!='
+error: unexpected token '!=', expected member declaration
         --> <source>:260:1
          |
      260 | !=
          | ^^
-error: unexpected token '!'
+error: unexpected token '!', expected member declaration
         --> <source>:261:1
          |
      261 | !
          | ^
-error: unexpected token '+='
+error: unexpected token '+=', expected member declaration
         --> <source>:262:1
          |
      262 | +=
          | ^^
-error: unexpected token '++'
+error: unexpected token '++', expected member declaration
         --> <source>:263:1
          |
      263 | ++
          | ^^
-error: unexpected token '+'
+error: unexpected token '+', expected member declaration
         --> <source>:264:1
          |
      264 | +
          | ^
-error: unexpected token '-='
+error: unexpected token '-=', expected member declaration
         --> <source>:265:1
          |
      265 | -=
          | ^^
-error: unexpected token '--'
+error: unexpected token '--', expected member declaration
         --> <source>:266:1
          |
      266 | --
          | ^^
-error: unexpected token '->'
+error: unexpected token '->', expected member declaration
         --> <source>:267:1
          |
      267 | ->
          | ^^
-error: unexpected token '-'
+error: unexpected token '-', expected member declaration
         --> <source>:268:1
          |
      268 | -
          | ^
-error: unexpected token '*='
+error: unexpected token '*=', expected member declaration
         --> <source>:269:1
          |
      269 | *=
          | ^^
-error: unexpected token '*'
+error: unexpected token '*', expected member declaration
         --> <source>:270:1
          |
      270 | *
          | ^
-error: unexpected token '/='
+error: unexpected token '/=', expected member declaration
         --> <source>:271:1
          |
      271 | /=
          | ^^
-error: unexpected token '/'
+error: unexpected token '/', expected member declaration
         --> <source>:272:1
          |
      272 | /
          | ^
-error: unexpected token '['
+error: unexpected token '[', expected member declaration
         --> <source>:273:1
          |
      273 | (
          | ^
-error: unexpected token ')'
+error: unexpected token ')', expected member declaration
         --> <source>:274:1
          |
      274 | )
          | ^
-error: unexpected token '{'
+error: unexpected token '{', expected member declaration
         --> <source>:275:1
          |
      275 | {
          | ^
-hint: unexpected semicolon
-        --> <source>:281:1
-         |
-     281 | ;
-         | ^
-error: unexpected token '['
+error: unexpected token '[', expected member declaration
         --> <source>:277:1
          |
      277 | [
          | ^
-error: unexpected token ']'
+error: unexpected token ']', expected member declaration
         --> <source>:278:1
          |
      278 | ]
          | ^
-error: unexpected token '::'
+error: unexpected token '::', expected member declaration
         --> <source>:279:1
          |
      279 | ::
          | ^^
-error: unexpected token ':'
+error: unexpected token ':', expected member declaration
         --> <source>:280:1
          |
      280 | :
          | ^
-error: unexpected token '@'
+error: unexpected token ';', expected member declaration
+        --> <source>:281:1
+         |
+     281 | ;
+         | ^
+error: unexpected token '@', expected member declaration
         --> <source>:282:1
          |
      282 | @
          | ^
-error: unexpected token '$'
+error: unexpected token '$', expected member declaration
         --> <source>:283:1
          |
      283 | $
          | ^
-error: unexpected token '%='
+error: unexpected token '%=', expected member declaration
         --> <source>:284:1
          |
      284 | %=
          | ^^
-error: unexpected token '%'
+error: unexpected token '%', expected member declaration
         --> <source>:285:1
          |
      285 | %
          | ^
-error: unexpected token '^'
+error: unexpected token '^', expected member declaration
         --> <source>:286:1
          |
      286 | ^=
          | ^
-error: unexpected token '='
+error: unexpected token '=', expected member declaration
         --> <source>:286:2
          |
      286 | ^=
          |  ^
-error: unexpected token '^'
+error: unexpected token '^', expected member declaration
         --> <source>:287:1
          |
      287 | ^
          | ^
-error: unexpected token '&&'
+error: unexpected token '&&', expected member declaration
         --> <source>:288:1
          |
      288 | &&
          | ^^
-error: unexpected token '&='
+error: unexpected token '&=', expected member declaration
         --> <source>:289:1
          |
      289 | &=
          | ^^
-error: unexpected token '&'
+error: unexpected token '&', expected member declaration
         --> <source>:290:1
          |
      290 | &
          | ^
-error: unexpected token '=='
+error: unexpected token '==', expected member declaration
         --> <source>:291:1
          |
      291 | ==
          | ^^
-error: unexpected token '=>'
+error: unexpected token '=>', expected member declaration
         --> <source>:292:1
          |
      292 | =>
          | ^^
-error: unexpected token '='
+error: unexpected token '=', expected member declaration
         --> <source>:293:1
          |
      293 | =
          | ^
-error: unexpected token '\'
+error: unexpected token '\', expected member declaration
         --> <source>:294:1
          |
      294 | \\
          | ^
-error: unexpected token '\'
+error: unexpected token '\', expected member declaration
         --> <source>:294:2
          |
      294 | \\
          |  ^
-error: unexpected token '||'
+error: unexpected token '||', expected member declaration
         --> <source>:295:1
          |
      295 | ||
          | ^^
-error: unexpected token '|='
+error: unexpected token '|=', expected member declaration
         --> <source>:296:1
          |
      296 | |=
          | ^^
-error: unexpected token '|'
+error: unexpected token '|', expected member declaration
         --> <source>:297:1
          |
      297 | |
          | ^
-error: unexpected token ','
+error: unexpected token ',', expected member declaration
         --> <source>:298:1
          |
      298 | ,
          | ^
-error: unexpected token '<='
+error: unexpected token '<=', expected member declaration
         --> <source>:299:1
          |
      299 | <=
          | ^^
-error: unexpected token '<<='
+error: unexpected token '<<=', expected member declaration
         --> <source>:300:1
          |
      300 | <<=
          | ^^^
-error: unexpected token '<<'
+error: unexpected token '<<', expected member declaration
         --> <source>:301:1
          |
      301 | <<
          | ^^
-error: unexpected token '<<'
+error: unexpected token '<<', expected member declaration
         --> <source>:302:1
          |
      302 | <<<
          | ^^
-error: unexpected token '<'
+error: unexpected token '<', expected member declaration
         --> <source>:302:3
          |
      302 | <<<
          |   ^
-error: unexpected token '>>'
+error: unexpected token '>>', expected member declaration
         --> <source>:303:1
          |
      303 | >>>
          | ^^
-error: unexpected token '>'
+error: unexpected token '>', expected member declaration
         --> <source>:303:3
          |
      303 | >>>
          |   ^
-error: unexpected token '<'
+error: unexpected token '<', expected member declaration
         --> <source>:304:1
          |
      304 | <
          | ^
-error: unexpected token '>='
+error: unexpected token '>=', expected member declaration
         --> <source>:305:1
          |
      305 | >=
          | ^^
-error: unexpected token '>>='
+error: unexpected token '>>=', expected member declaration
         --> <source>:306:1
          |
      306 | >>=
          | ^^^
-error: unexpected token '>>'
+error: unexpected token '>>', expected member declaration
         --> <source>:307:1
          |
      307 | >>
          | ^^
-error: unexpected token '>'
+error: unexpected token '>', expected member declaration
         --> <source>:308:1
          |
      308 | >
          | ^
-error: unexpected token '??'
+error: unexpected token '??', expected member declaration
         --> <source>:309:1
          |
      309 | ??
          | ^^
-error: unexpected token '?'
+error: unexpected token '?', expected member declaration
         --> <source>:310:1
          |
      310 | ?
          | ^
-error: unexpected token '...'
+error: unexpected token '...', expected member declaration
         --> <source>:311:1
          |
      311 | ...
          | ^^^
-error: unexpected token '..'
+error: unexpected token '..', expected member declaration
         --> <source>:312:1
          |
      312 | ..
          | ^^
-error: unexpected token '.'
+error: unexpected token '.', expected member declaration
         --> <source>:313:1
          |
      313 | .
          | ^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:314:1
          |
      314 | _
          | ^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:315:1
          |
      315 | r#class
          | ^^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:316:1
          |
      316 | r#enum
          | ^^^^^^
-error: unexpected token '[token::identifier]'
+error: unexpected token '[token:identifier]', expected member declaration
         --> <source>:317:1
          |
      317 | r#struct
          | ^^^^^^^^
-error: unexpected token '[literal:string]'
+error: unexpected token '[token:string-literal]', expected member declaration
         --> <source>:318:1
          |
      318 | r"raw string \t"
          | ^^^^^^^^^^^^^^^^
-error: unexpected token '[literal:string]'
+error: unexpected token '[token:string-literal]', expected member declaration
         --> <source>:319:1
          |
      319 | r#"raw string \n"#
          | ^^^^^^^^^^^^^^^^^^
-error: unexpected token '[literal:string]'
+error: unexpected token '[token:string-literal]', expected member declaration
         --> <source>:320:1
          |
      320 | r##" r#"inner\nraw\nstring"# "##
          | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: expected '}'
+        --> <source>:321:1
+         |
+     321 | 
+         | ^
+error: expected '}'
+        --> <source>:321:1
+         |
+     321 | 
+         | ^

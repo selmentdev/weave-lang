@@ -54,8 +54,8 @@ r##""##
 r##">>r#"test"#<<"##
 r###"here's a long string"# "# "##; "###
 r#"abc"##
-r#"abc"#
-r##"abc"#
+r#"def"#
+r##"ghi"#
 r#""##
 r#"
 "####

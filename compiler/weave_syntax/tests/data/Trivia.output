@@ -1,51 +1,146 @@
 ---
 file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Trivia.source
 ___
-CompilationUnit (overridden)
-  [declaration::function]
-    [expression::identifier-name]: TryReadTrivia
-    [expression::identifier-name]: 
-  [declaration::incomplete-member]
-    SelfKeyword
-    ColonToken
-    ThisKeyword
-    MutableKeyword
-    Lexer
-    CommaToken
-    trivia
-    ColonToken
-    OutKeyword
-    Trivia
-    CloseParenToken
-    OpenBraceToken
-    IfKeyword
-    LetKeyword
-    Some
-    OpenParenToken
-    comment
-    CloseParenToken
-    EqualsToken
-    SelfKeyword
-    DotToken
-    TryReadComment
-    OpenParenToken
-    CloseParenToken
-    OpenBraceToken
-    trivia
-    EqualsToken
-    Trivia
-    DotToken
-    Comment
-    OpenParenToken
-    comment
-    CloseParenToken
+-------
+PublicKeyword
+FunctionKeyword
+IdentifierToken
+OpenParenToken
+InKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+CommaToken
+OutKeyword
+IdentifierToken
+ColonToken
+IdentifierToken
+CloseParenToken
+OpenBraceToken
+IfKeyword
+IdentifierToken
+OpenBraceToken
+IdentifierToken
+OpenParenToken
+IdentifierToken
+CloseParenToken
+EqualsToken
+IdentifierToken
+SemicolonToken
+IdentifierToken
+DotToken
+IdentifierToken
+OpenParenToken
+CloseParenToken
+SemicolonToken
+IdentifierToken
+EqualsToken
+IdentifierToken
+DotToken
+IdentifierToken
+OpenParenToken
+IdentifierToken
+CloseParenToken
+SemicolonToken
+IdentifierToken
+SemicolonToken
+OpenBraceToken
+IdentifierToken
+EqualsToken
+IdentifierToken
+DotToken
+IdentifierToken
+SemicolonToken
+CloseBraceToken
+CloseBraceToken
+CloseBraceToken
+EndOfFileToken
+-------
+// Before entity
+public function TryReadTrivia(
+    in oof: Lexer,              // Comment for argument 'self'
+    out trivia: Trivia          // Comment for argument 'trivia'
+)
+{
+    if {Some(comment) /* for Some() */ = /* for TryReadComment() */ .TryReadComment()         trivia = Trivia.Comment(comment)
+{
+        /* before assignment */ trivia = Trivia.None /* after assignment */
+    // Just plain comment
+}
+}}// trivia at end of file
+-------
+OnCompilationUnitSyntax
+    OnSyntaxList
+            OnSyntaxList
+                OnToken `public` `public`
+            OnToken `function` `function`
+            OnIdentifierNameSyntax `TryReadTrivia`
+                OnToken `(` `[`
+                OnSyntaxList
+                        OnSyntaxList
+                            OnToken `in` `in`
+                        OnIdentifierNameSyntax `oof`
+                            OnToken `:` `:`
+                            OnIdentifierNameSyntax `Lexer`
+                    OnToken `,` `,`
+                        OnSyntaxList
+                            OnToken `out` `out`
+                        OnIdentifierNameSyntax `trivia`
+                            OnToken `:` `:`
+                            OnIdentifierNameSyntax `Trivia`
+                OnToken `)` `)`
+                OnToken `{` `{`
+                OnSyntaxList
+                        OnToken `if` `if`
+                        OnIdentifierNameSyntax ``
+                            OnToken `` `{`
+                            OnSyntaxList
+                                            OnIdentifierNameSyntax `Some`
+                                                OnToken `(` `[`
+                                                OnSyntaxList
+                                                        OnIdentifierNameSyntax `comment`
+                                                OnToken `)` `)`
+                                        OnToken `=` `=`
+                                        OnIdentifierNameSyntax ``
+                                    OnToken `` `;`
+                                            OnIdentifierNameSyntax ``
+                                            OnToken `.` `.`
+                                            OnIdentifierNameSyntax `TryReadComment`
+                                            OnToken `(` `[`
+                                            OnToken `)` `)`
+                                    OnToken `` `;`
+                                        OnIdentifierNameSyntax `trivia`
+                                        OnToken `=` `=`
+                                                OnIdentifierNameSyntax `Trivia`
+                                                OnToken `.` `.`
+                                                OnIdentifierNameSyntax `Comment`
+                                                OnToken `(` `[`
+                                                OnSyntaxList
+                                                        OnIdentifierNameSyntax `comment`
+                                                OnToken `)` `)`
+                                    OnToken `` `;`
+                                    OnIdentifierNameSyntax ``
+                                    OnToken `` `;`
+                                    OnToken `{` `{`
+                                    OnSyntaxList
+                                                OnIdentifierNameSyntax `trivia`
+                                                OnToken `=` `=`
+                                                    OnIdentifierNameSyntax `Trivia`
+                                                    OnToken `.` `.`
+                                                    OnIdentifierNameSyntax `None`
+                                            OnToken `` `;`
+                                    OnToken `}` `}`
+                            OnToken `` `}`
+                OnToken `` `}`
+    OnToken `` `[token::end-of-file]`
+-------
 parsing took: 00:00:00.001
-PageFaultCount: 1391
-PeakWorkingSetSize: 5.172 MiB (5423104)
-WorkingSetSize: 4.289 MiB (4497408)
-QuotaPeakPagedPoolUsage: 207.617 KiB (212600)
-QuotaPagedPoolUsage: 207.156 KiB (212128)
-QuotaPeakNonPagedPoolUsage: 29.367 KiB (30072)
+PageFaultCount: 1395
+PeakWorkingSetSize: 5.199 MiB (5451776)
+WorkingSetSize: 4.336 MiB (4546560)
+QuotaPeakPagedPoolUsage: 259.859 KiB (266096)
+QuotaPagedPoolUsage: 259.398 KiB (265624)
+QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
 QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 728.000 KiB (745472)
-PeakPagefileUsage: 1.648 MiB (1728512)
+PagefileUsage: 736.000 KiB (753664)
+PeakPagefileUsage: 1.637 MiB (1716224)
