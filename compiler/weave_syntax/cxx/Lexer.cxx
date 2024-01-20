@@ -195,7 +195,7 @@ namespace weave::syntax
 
         if (this->TryReadIdentifier(token))
         {
-            if (std::optional<SyntaxKind> const keyword = SyntaxKindTraits::TryMapIdentifierToKeyword(token.Value); keyword.has_value())
+            if (std::optional<SyntaxKind> const keyword = TryMapIdentifierToKeyword(token.Value); keyword.has_value())
             {
                 token.Kind = *keyword;
             }
@@ -258,7 +258,7 @@ namespace weave::syntax
             }
             else if (SyntaxKind kind = this->TryReadComment(); kind != SyntaxKind::None)
             {
-                if ((this->_mode == LexerTriviaMode::All) or ((this->_mode == LexerTriviaMode::Documentation) and (SyntaxKindTraits::IsDocumentationTrivia(kind))))
+                if ((this->_mode == LexerTriviaMode::All) or ((this->_mode == LexerTriviaMode::Documentation) and IsDocumentationTrivia(kind)))
                 {
                     builder.emplace_back(kind, this->_cursor.GetSpan());
                 }

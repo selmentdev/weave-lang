@@ -182,4 +182,33 @@ namespace weave::syntax
             this->CreateTriviaRange(leadingTrivia, trailingTrivia),
             this->Strings.Get(value));
     }
+
+    void SyntaxFactory::DebugDump()
+    {
+        size_t totalAllocated{};
+        size_t totalReserved{};
+
+        auto dump = [&](memory::LinearAllocator const& allocator, std::string_view name)
+        {
+            size_t allocated{};
+            size_t reserved{};
+            allocator.QueryMemoryUsage(allocated, reserved);
+
+            fmt::println("{:>30}: (allocated: {:>9}, reserved: {:>9})", name, allocated, reserved);
+
+            totalAllocated += allocated;
+            totalReserved += reserved;
+        };
+
+        dump(this->TokenAllocator, "TokenAllocator");
+        dump(this->TriviaAllocator, "TriviaAllocator");
+        dump(this->CharacterLiteralAllocator, "CharacterLiteralAllocator");
+        dump(this->StringLiteralAllocator, "StringLiteralAllocator");
+        dump(this->FloatLiteralAllocator, "FloatLiteralAllocator");
+        dump(this->IntegerLiteralAllocator, "IntegerLiteralAllocator");
+        dump(this->IdentifierAllocator, "IdentifierAllocator");
+        dump(this->SyntaxNodeAllocator, "SyntaxNodeAllocator");
+
+        fmt::println("Total: (allocated: {}, reserved: {})", totalAllocated, totalReserved);
+    }
 }

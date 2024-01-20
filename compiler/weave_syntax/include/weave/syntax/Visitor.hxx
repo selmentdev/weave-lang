@@ -6,7 +6,7 @@
 
 namespace weave::syntax
 {
-    template <typename VisitorT, typename ResultT, typename... ArgsT>
+    template <typename ResultT, typename... ArgsT>
     class SyntaxVisitor
     {
     public:
@@ -17,19 +17,21 @@ namespace weave::syntax
         {
             if (node != nullptr)
             {
-                if (SyntaxKindTraits::IsSyntaxToken(node->Kind))
+                switch (node->Kind)  // NOLINT(clang-diagnostic-switch-enum)
                 {
-                    return this->OnToken(static_cast<SyntaxToken*>(node), std::forward<ArgsT>(args)...);
-                }
+                
 
-                switch (node->Kind)
-                {
-#define WEAVE_SYNTAX_NODE_CONCRETE(name, value, spelling) \
+#define WEAVE_SYNTAX_NODE(name, spelling) \
     case SyntaxKind::name: \
         return this->On##name(static_cast<name*>(node), std::forward<ArgsT>(args)...);
 #include "weave/syntax/SyntaxKind.inl"
 
                 default:
+                    if (IsToken(node->Kind))
+                    {
+                        return this->OnToken(static_cast<SyntaxToken*>(node), std::forward<ArgsT>(args)...);   
+                    }
+
                     WEAVE_BUGCHECK("Invalid node kind");
                 }
             }
@@ -39,13 +41,14 @@ namespace weave::syntax
 
         virtual ResultT OnToken(SyntaxToken* token, ArgsT&&... args)
         {
-            return static_cast<VisitorT*>(this)->OnDefault(token, std::forward<ArgsT>(args)...);
+            return this->OnDefault(token, std::forward<ArgsT>(args)...);
         }
 
         virtual ResultT OnTrivia(
             [[maybe_unused]] SyntaxTrivia* trivia,
             [[maybe_unused]] ArgsT&&... args)
         {
+            return ResultT{};
         }
 
         virtual ResultT OnDefault(
@@ -55,10 +58,10 @@ namespace weave::syntax
             return ResultT{};
         }
 
-#define WEAVE_SYNTAX_NODE(name, value, spelling) \
+#define WEAVE_SYNTAX_NODE(name, spelling) \
     virtual ResultT On##name(name* node, ArgsT&&... args) \
     { \
-        return static_cast<VisitorT*>(this)->OnDefault(node, std::forward<ArgsT>(args)...); \
+        return this->OnDefault(node, std::forward<ArgsT>(args)...); \
     }
 #include "weave/syntax/SyntaxKind.inl"
     };
@@ -66,7 +69,7 @@ namespace weave::syntax
 
 namespace weave::syntax
 {
-    class SyntaxWalker : public SyntaxVisitor<SyntaxWalker, void>
+    class SyntaxWalker : public SyntaxVisitor<void>
     {
     public:
         size_t Depth = 0;
@@ -112,5 +115,6 @@ namespace weave::syntax
         void OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax* node) override;
         void OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax* node) override;
         void OnDelegateDeclarationSyntax(DelegateDeclarationSyntax* node) override;
+        void OnSelfExpressionSyntax(SelfExpressionSyntax* node) override;
     };
 }

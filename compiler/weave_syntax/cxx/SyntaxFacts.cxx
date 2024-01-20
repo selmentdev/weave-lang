@@ -377,6 +377,7 @@ namespace weave::syntax
         case SyntaxKind::BreakKeyword:
         case SyntaxKind::ContinueKeyword:
         case SyntaxKind::CaseKeyword:
+        case SyntaxKind::ConstKeyword:
         case SyntaxKind::ReturnKeyword:
         case SyntaxKind::WhileKeyword:
         case SyntaxKind::DoKeyword:
@@ -385,6 +386,10 @@ namespace weave::syntax
         case SyntaxKind::UsingKeyword:
         case SyntaxKind::VarKeyword:
         case SyntaxKind::LetKeyword:
+        case SyntaxKind::GotoKeyword:
+        case SyntaxKind::IfKeyword:
+        case SyntaxKind::ElseKeyword:
+        case SyntaxKind::TryKeyword:
             return true;
 
         default:

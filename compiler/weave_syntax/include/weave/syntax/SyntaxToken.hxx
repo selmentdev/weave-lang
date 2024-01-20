@@ -22,6 +22,8 @@ namespace weave::syntax
     {
         None = 0u,
         Missing = 1u << 0u,
+        HasErrors = 1u << 1u,
+        ContainsSkippedText = 1u << 2u,
     };
 
     struct SyntaxToken : SyntaxNode

@@ -59,7 +59,12 @@ namespace weave::syntax
             this->_index = resetPoint._index;
         }
 
-    private:
+        // NOTE:
+        //      This is public only for unit test purposes.
+        //
+        //      When this compiler will bootstrap itself, a proper unit testing support will be
+        //      integrated as well.
+    public:
         [[nodiscard]] CompilationUnitSyntax* ParseCompilationUnit();
 
         void ParseTypeBody(
@@ -146,6 +151,8 @@ namespace weave::syntax
 
         IdentifierNameSyntax* ParseIdentifierName();
 
+        SelfExpressionSyntax* ParseSelfExpression();
+
         ExpressionSyntax* ParseExpression(
             Precedence parentPrecedence = Precedence::Expression);
 
@@ -178,6 +185,8 @@ namespace weave::syntax
         StatementSyntax* ParseVariableDeclaration();
 
         StatementSyntax* ParseIfStatement();
+
+        StatementSyntax* ParseMisplacedElseClause();
 
         ElseClauseSyntax* ParseOptionalElseClause();
 

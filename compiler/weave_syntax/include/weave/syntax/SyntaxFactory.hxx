@@ -103,5 +103,8 @@ namespace weave::syntax
             std::span<SyntaxTrivia const> leadingTrivia,
             std::span<SyntaxTrivia const> trailingTrivia,
             std::string_view value);
+
+    public:
+        void DebugDump();
     };
 }

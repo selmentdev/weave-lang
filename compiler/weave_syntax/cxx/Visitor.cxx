@@ -4,6 +4,8 @@ namespace weave::syntax
 {
     void SyntaxWalker::OnCompilationUnitSyntax(CompilationUnitSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->AttributeLists.GetNode());
@@ -16,6 +18,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnSyntaxList(SyntaxList* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         size_t const count = node->GetCount();
@@ -31,6 +35,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnNamespaceDeclarationSyntax(NamespaceDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Attributes.GetNode());
@@ -48,6 +54,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnStructDeclarationSyntax(StructDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Attributes.GetNode());
@@ -64,6 +72,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnConceptDeclarationSyntax(ConceptDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Attributes.GetNode());
@@ -80,6 +90,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnExtendDeclarationSyntax(ExtendDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Attributes.GetNode());
@@ -96,6 +108,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Attributes.GetNode());
@@ -104,8 +118,11 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
     void SyntaxWalker::OnQualifiedNameSyntax(QualifiedNameSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Left);
@@ -117,6 +134,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnFunctionDeclarationSyntax(FunctionDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Attributes.GetNode());
@@ -131,8 +150,11 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
     void SyntaxWalker::OnUsingDirectiveSyntax(UsingDirectiveSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->UsingKeyword);
@@ -141,16 +163,22 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
     void SyntaxWalker::OnIdentifierNameSyntax(IdentifierNameSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Identifier);
 
         --this->Depth;
     }
+
     void SyntaxWalker::OnParameterListSyntax(ParameterListSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->OpenParenToken);
@@ -159,8 +187,11 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
     void SyntaxWalker::OnParameterSyntax(ParameterSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Attributes.GetNode());
@@ -173,6 +204,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnTypeClauseSyntax(TypeClauseSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->ColonToken);
@@ -183,6 +216,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnFieldDeclarationSyntax(FieldDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Attributes.GetNode());
@@ -198,6 +233,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnConstantDeclarationSyntax(ConstantDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Attributes.GetNode());
@@ -213,6 +250,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnEqualsValueClauseSyntax(EqualsValueClauseSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->EqualsToken);
@@ -223,6 +262,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnLiteralExpressionSyntax(LiteralExpressionSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->LiteralToken);
@@ -232,6 +273,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnAssignmentExpressionSyntax(AssignmentExpressionSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Left);
@@ -243,6 +286,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnBinaryExpressionSyntax(BinaryExpressionSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Left);
@@ -254,6 +299,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnUnaryExpressionSyntax(UnaryExpressionSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->OperatorToken);
@@ -264,6 +311,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnPostfixUnaryExpression(PostfixUnaryExpression* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Operand);
@@ -274,6 +323,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnParenthesizedExpressionSyntax(ParenthesizedExpressionSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->OpenParenToken);
@@ -285,6 +336,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnInvocationExpressionSyntax(InvocationExpressionSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Expression);
@@ -295,6 +348,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnMemberAccessExpressionSyntax(MemberAccessExpressionSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Expression);
@@ -306,6 +361,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnArgumentListSyntax(ArgumentListSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->OpenParenToken);
@@ -317,6 +374,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnArgumentSyntax(ArgumentSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->DirectionKindKeyword);
@@ -327,6 +386,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnBracketedArgumentListSyntax(BracketedArgumentListSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->OpenBracketToken);
@@ -338,6 +399,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnElementAccessExpressionSyntax(ElementAccessExpressionSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Expression);
@@ -348,6 +411,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnBlockStatementSyntax(BlockStatementSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->OpenBraceToken);
@@ -359,6 +424,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnExpressionStatementSyntax(ExpressionStatementSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Expression);
@@ -369,6 +436,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnIfStatementSyntax(IfStatementSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->IfKeyword);
@@ -381,6 +450,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnReturnStatementSyntax(ReturnStatementSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->ReturnKeyword);
@@ -392,6 +463,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnElseClauseSyntax(ElseClauseSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->ElseKeyword);
@@ -402,6 +475,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnVariableDeclarationSyntax(VariableDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->VarKeyword);
@@ -415,6 +490,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnConditionalExpressionSyntax(ConditionalExpressionSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->Condition);
@@ -428,6 +505,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->ArrowToken);
@@ -438,6 +517,8 @@ namespace weave::syntax
 
     void SyntaxWalker::OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         this->Dispatch(node->ArrowToken);
@@ -448,10 +529,23 @@ namespace weave::syntax
 
     void SyntaxWalker::OnDelegateDeclarationSyntax(DelegateDeclarationSyntax* node)
     {
+        this->OnDefault(node);
+
         ++this->Depth;
 
         (void)node;
-        //this->Dispatch(node->
+        WEAVE_BUGCHECK("Not implemented");
+
+        //--this->Depth;
+    }
+
+    void SyntaxWalker::OnSelfExpressionSyntax(SelfExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->SelfKeyword);
 
         --this->Depth;
     }

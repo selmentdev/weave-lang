@@ -214,11 +214,11 @@ int main(int argc, const char* argv[])
                         fmt::print("{}", _text.GetText(tt.Source));
                     }
 
-                    if ((token->Kind == syntax::SyntaxKind::OpenBraceToken) or (token->Kind == syntax::SyntaxKind::CloseBraceToken))
-                    {
-                        fmt::print("{}", syntax::SyntaxKindTraits::GetSpelling(token->Kind));
-                    }
-                    else
+                    //if ((token->Kind == syntax::SyntaxKind::OpenBraceToken) or (token->Kind == syntax::SyntaxKind::CloseBraceToken))
+                    //{
+                    //    fmt::print("{}", GetSpelling(token->Kind));
+                    //}
+                    //else
                     {
                         fmt::print("{}", _text.GetText(token->Source));
                     }
@@ -281,10 +281,17 @@ int main(int argc, const char* argv[])
                     SyntaxWalker::OnExtendDeclarationSyntax(node);
                 }
 
+                void OnFunctionDeclarationSyntax(syntax::FunctionDeclarationSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnFunctionDeclarationSyntax(node);
+                }
+
                 void OnDefault(syntax::SyntaxNode* node) override
                 {
                     Indent();
-                    fmt::println("{} {}", __func__, syntax::SyntaxKindTraits::GetSpelling(node->Kind));
+                    fmt::println("{} {}", __func__, syntax::GetSpelling(node->Kind));
                     SyntaxWalker::OnDefault(node);
                 }
 
@@ -295,29 +302,71 @@ int main(int argc, const char* argv[])
                     SyntaxWalker::OnSyntaxList(node);
                 }
 
+                void OnBlockStatementSyntax(syntax::BlockStatementSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnBlockStatementSyntax(node);
+                }
+
+                void OnParameterListSyntax(syntax::ParameterListSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnParameterListSyntax(node);
+                }
+
+                void OnParameterSyntax(syntax::ParameterSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnParameterSyntax(node);
+                }
+
+                void OnArgumentListSyntax(syntax::ArgumentListSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnArgumentListSyntax(node);
+                }
+
+                void OnEmptyStatementSyntax(syntax::EmptyStatementSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnEmptyStatementSyntax(node);
+                }
+
+                void OnExpressionStatementSyntax(syntax::ExpressionStatementSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnExpressionStatementSyntax(node);
+                }
+
                 void OnToken(syntax::SyntaxToken* token) override
                 {
-#if false
+#if true
                     for (auto t : token->GetLeadingTrivia())
                     {
                         Indent();
-                        fmt::println("{}::LeadingTrivia `{}`", __func__, _text.GetText(t.Source));
+                        fmt::println("{}::LeadingTrivia `{}`", __func__, GetSpelling(t.Kind));
                     }
 
                     Indent();
-                    fmt::println("{} `{}`", __func__, syntax::SyntaxKindTraits::GetName(token->Kind), _text.GetText(token->Source));
+                    fmt::println("{} `{}`", __func__, GetName(token->Kind), _text.GetText(token->Source));
 
                     for (auto t : token->GetLeadingTrivia())
                     {
                         Indent();
-                        fmt::println("{}::TrailingTrivia `{}`", __func__, _text.GetText(t.Source));
+                        fmt::println("{}::TrailingTrivia `{}`", __func__, GetSpelling(t.Kind));
                     }
 #else
                     Indent();
                     fmt::println("{} `{}` `{}`",
                         __func__,
                         _text.GetText(token->Source),
-                        weave::syntax::SyntaxKindTraits::GetSpelling(token->Kind));
+                        GetSpelling(token->Kind));
 #endif
                 }
 
@@ -337,6 +386,41 @@ int main(int argc, const char* argv[])
                     // SyntaxWalker::OnIdentifierNameSyntax(node);
                 }
 
+                void OnArgumentSyntax(syntax::ArgumentSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnArgumentSyntax(node);
+                }
+
+                void OnArrowExpressionClauseSyntax(syntax::ArrowExpressionClauseSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnArrowExpressionClauseSyntax(node);
+                }
+
+                void OnAssignmentExpressionSyntax(syntax::AssignmentExpressionSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnAssignmentExpressionSyntax(node);
+                }
+
+                void OnIfStatementSyntax(syntax::IfStatementSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnIfStatementSyntax(node);
+                }
+
+                void OnElseClauseSyntax(syntax::ElseClauseSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnElseClauseSyntax(node);
+                }
+
                 // void OnQualifiedNameSyntax(syntax::QualifiedNameSyntax* node) override
                 //{
                 //     Indent();
@@ -347,15 +431,15 @@ int main(int argc, const char* argv[])
             };
 
             auto cu2 = pp.Parse();
-            fmt::println("-------");
+            /*fmt::println("-------");
             {
                 TreeLinearizer printer{};
                 printer.Dispatch(cu2);
                 for (auto k : printer.GetKinds())
                 {
-                    fmt::println("{}", syntax::SyntaxKindTraits::GetName(k));
+                    fmt::println("{}", GetName(k));
                 }
-            }
+            }*/
             fmt::println("-------");
             {
                 TokenPrintingWalker printer{text};
@@ -373,6 +457,8 @@ int main(int argc, const char* argv[])
             {
                 fmt::println(stderr, "{}", item);
             }
+
+            factory.DebugDump();
         }
         else
         {

@@ -70,15 +70,15 @@ namespace weave::syntax
             this->_diagnostic->AddError(
                 this->Current()->Source,
                 fmt::format("expected '{}'",
-                    SyntaxKindTraits::GetSpelling(kind)));
+                    GetSpelling(kind)));
         }
         else
         {
             this->_diagnostic->AddError(
                 this->Current()->Source,
                 fmt::format("unexpected token '{}', expected '{}'",
-                    SyntaxKindTraits::GetSpelling(this->Current()->Kind),
-                    SyntaxKindTraits::GetSpelling(kind)));
+                    GetSpelling(this->Current()->Kind),
+                    GetSpelling(kind)));
         }
 
         // Consume token here
@@ -322,18 +322,10 @@ namespace weave::syntax
             current->Source,
             fmt::format(
                 "unexpected token '{}', expected member declaration",
-                SyntaxKindTraits::GetSpelling(current->Kind)));
+                GetSpelling(current->Kind)));
 
         // Fixme: do we need to parse this as identifier?
-        SyntaxNode* name = nullptr;
-        if (current->Is(SyntaxKind::IdentifierToken))
-        {
-            name = this->ParseIdentifierName();
-        }
-        else
-        {
-            name = this->Next();
-        }
+        SyntaxNode* name = this->Next();
 
         // FIXME: Report this using function.
         IncompleteDeclarationSyntax* result = this->_factory->CreateNode<IncompleteDeclarationSyntax>();
@@ -787,6 +779,14 @@ namespace weave::syntax
         return result;
     }
 
+    SelfExpressionSyntax* Parser::ParseSelfExpression()
+    {
+        SyntaxToken* tokenSelf = this->Match(SyntaxKind::SelfKeyword);
+        SelfExpressionSyntax* result = this->_factory->CreateNode<SelfExpressionSyntax>();
+        result->SelfKeyword = tokenSelf;
+        return result;
+    }
+
     ExpressionSyntax* Parser::ParseExpression(Precedence parentPrecedence)
     {
         if (SyntaxFacts::IsInvalidSubexpression(this->Current()->Kind))
@@ -795,7 +795,7 @@ namespace weave::syntax
             ExpressionSyntax* result = CreateMissingIdentifierName();
             this->_diagnostic->AddError(
                 this->Current()->Source,
-                fmt::format("invalid expression term: {}", SyntaxKindTraits::GetSpelling(kind)));
+                fmt::format("invalid expression term: {}", GetSpelling(kind)));
             return result;
         }
 
@@ -1028,6 +1028,9 @@ namespace weave::syntax
         case SyntaxKind::IdentifierToken:
             return this->ParseIdentifierName();
 
+        case SyntaxKind::SelfKeyword:
+            return this->ParseSelfExpression();
+
         default:
             ExpressionSyntax* missing = this->CreateMissingIdentifierName();
 
@@ -1041,7 +1044,7 @@ namespace weave::syntax
             {
                 this->_diagnostic->AddError(
                     this->Current()->Source,
-                    fmt::format("invalid expression term '{}'", SyntaxKindTraits::GetSpelling(this->Current()->Kind)));
+                    fmt::format("invalid expression term '{}'", GetSpelling(this->Current()->Kind)));
             }
 
 
@@ -1111,6 +1114,9 @@ namespace weave::syntax
         case SyntaxKind::IfKeyword:
             return this->ParseIfStatement();
 
+        case SyntaxKind::ElseKeyword:
+            return this->ParseMisplacedElseClause();
+
         case SyntaxKind::ReturnKeyword:
             return this->ParseReturnStatement();
 
@@ -1130,6 +1136,9 @@ namespace weave::syntax
 
     BlockStatementSyntax* Parser::ParseBlockStatement()
     {
+        // FIXME:
+        //      Any token before open brace should be reported as unexpected nodes.
+        //      This will require a slight remodelling of node types, but it is a really needed one  
         std::vector<StatementSyntax*> statements{};
 
         SyntaxToken* tokenOpenBrace = this->Match(SyntaxKind::OpenBraceToken);
@@ -1147,6 +1156,13 @@ namespace weave::syntax
                 }
             }
 
+            // FIXME: If we got here, we have to synchronize to closing brace. We could try to
+            //        reason about code after this point, but it might be too complex and not
+            //        worth the effort.
+            //
+            //        For now, we just consume tokens until we find closing brace.
+
+
             // FIXME: Skipped tokens should be passed to syntax trivia of previous node.
             //        This may require to have to remember what was the last token processed.
             //        For firs statement of the block, this will be open brace token.
@@ -1156,7 +1172,7 @@ namespace weave::syntax
             SyntaxToken* skipped = this->Next();
             this->_diagnostic->AddError(
                 skipped->Source,
-                fmt::format("unexpected token: '{}'", SyntaxKindTraits::GetSpelling(skipped->Kind)));
+                fmt::format("unexpected token: '{}'", GetSpelling(skipped->Kind)));
         }
 
         SyntaxToken* tokenCloseBrace = this->Match(SyntaxKind::CloseBraceToken);
@@ -1198,12 +1214,33 @@ namespace weave::syntax
         return result;
     }
 
+    StatementSyntax* Parser::ParseMisplacedElseClause()
+    {
+        WEAVE_ASSERT(this->Current()->Kind == SyntaxKind::ElseKeyword);
+
+        SyntaxToken* tokenIf = this->Match(SyntaxKind::IfKeyword);
+        ExpressionSyntax* condition = this->ParseExpression();
+        StatementSyntax* thenStatement = this->ParseExpressionStatement();
+        ElseClauseSyntax* elseClause = this->ParseOptionalElseClause();
+
+        IfStatementSyntax* result = this->_factory->CreateNode<IfStatementSyntax>();
+        result->IfKeyword = tokenIf;
+        result->Condition = condition;
+        result->ThenStatement = thenStatement;
+        result->ElseClause = elseClause;
+        return result;
+    }
+
     ElseClauseSyntax* Parser::ParseOptionalElseClause()
     {
         if (this->Current()->Is(SyntaxKind::ElseKeyword))
         {
             SyntaxToken* tokenElse = this->Next();
-            BlockStatementSyntax* elseStatement = this->ParseBlockStatement();
+
+            StatementSyntax* elseStatement =
+                this->Current()->Is(SyntaxKind::IfKeyword)
+                    ? this->ParseIfStatement()
+                    : this->ParseBlockStatement();
 
             ElseClauseSyntax* result = this->_factory->CreateNode<ElseClauseSyntax>();
             result->ElseKeyword = tokenElse;
@@ -1267,5 +1304,4 @@ namespace weave::syntax
         result->Type = type;
         members.emplace_back(result);
     }
-
 }

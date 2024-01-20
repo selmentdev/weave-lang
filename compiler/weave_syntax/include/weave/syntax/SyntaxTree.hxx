@@ -16,7 +16,6 @@ public: \
 
 namespace weave::syntax
 {
-
     class DeclarationSyntax : public SyntaxNode
     {
     public:
@@ -601,6 +600,20 @@ namespace weave::syntax
         }
     };
 
+    class SelfExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(SelfExpressionSyntax);
+
+    public:
+        SyntaxToken* SelfKeyword{};
+
+    public:
+        explicit constexpr SelfExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::SelfExpressionSyntax}
+        {
+        }
+    };
+
     class ConditionalExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ConditionalExpressionSyntax);
@@ -854,7 +867,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ElseKeyword{};
-        BlockStatementSyntax* Statement{};
+        StatementSyntax* Statement{};
 
     public:
         explicit constexpr ElseClauseSyntax()

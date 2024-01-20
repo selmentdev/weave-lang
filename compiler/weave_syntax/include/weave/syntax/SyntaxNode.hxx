@@ -177,6 +177,12 @@ namespace weave::syntax
 
 namespace weave::syntax
 {
-#define WEAVE_SYNTAX_NODE(name, value, spelling) class name;
+    class NameSyntax;
+    class ExpressionSyntax;
+    class MemberDeclarationSyntax;
+    class StatementSyntax;
+    class TypeSyntax;
+
+#define WEAVE_SYNTAX_NODE(name, spelling) class name;
 #include "weave/syntax/SyntaxKind.inl"
 }
