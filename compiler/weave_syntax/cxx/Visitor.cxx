@@ -549,4 +549,16 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnToken(weave::syntax::SyntaxToken* token)
+    {
+        this->OnDefault(token);
+
+        ++this->Depth;
+
+        this->Dispatch(token->LeadingTrivia.GetNode());
+        this->Dispatch(token->TrailingTrivia.GetNode());
+
+        --this->Depth;
+    }
 }

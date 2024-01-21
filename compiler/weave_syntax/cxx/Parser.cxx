@@ -5,6 +5,11 @@
 #include "weave/syntax/SyntaxFacts.hxx"
 #include "weave/syntax/Lexer.hxx"
 
+// Implementation details:
+// - nesting level is used to determine when to stop token recovery operation
+//   - if parser reaches maximum nesting level, it should report all remaining tokens as unexpected tokens of invalid
+//     syntax node currently being parsed
+
 namespace weave::syntax
 {
     Parser::Parser(
@@ -118,33 +123,43 @@ namespace weave::syntax
 
     SyntaxToken* Parser::SkipToken(SyntaxKind kind, bool consume)
     {
-        std::vector<SyntaxTrivia> leadingTrivia{};
+        std::vector<SyntaxNode*> leadingTrivia{};
 
         if (consume)
         {
             SyntaxToken* bad = this->Next();
 
             // Copy leading trivia
-            for (SyntaxTrivia const& trivia : bad->GetLeadingTrivia())
+            if (SyntaxList const* node = bad->LeadingTrivia.GetNode())
             {
-                leadingTrivia.push_back(trivia);
+                std::copy(
+                    node->GetElements(),
+                    node->GetElements() + node->GetCount(),
+                    std::back_inserter(leadingTrivia));
             }
 
             // Push skipped token as trivia
-            leadingTrivia.push_back(SyntaxTrivia{
-                SyntaxKind::SkippedTokenTrivia,
-                bad->Source,
-            });
+            leadingTrivia.emplace_back(
+                this->_factory->CreateToken(
+                    SyntaxKind::SkippedTokenTrivia,
+                    bad->Source));
 
             // Copy trailing trivia
-            for (SyntaxTrivia const& trivia : bad->GetTrailingTrivia())
+            if (SyntaxList const* node = bad->TrailingTrivia.GetNode())
             {
-                leadingTrivia.push_back(trivia);
+                std::copy(
+                    node->GetElements(),
+                    node->GetElements() + node->GetCount(),
+                    std::back_inserter(leadingTrivia));
             }
         }
 
         source::SourceSpan const source = this->Current()->Source.WithZeroLength();
-        return this->_factory->CreateMissingToken(kind, source, leadingTrivia, {});
+        return this->_factory->CreateMissingToken(
+            kind,
+            source,
+            SyntaxListView<SyntaxTrivia>{this->_factory->CreateList(leadingTrivia)},
+            SyntaxListView<SyntaxTrivia>{});
     }
 
     CompilationUnitSyntax* Parser::ParseCompilationUnit()
@@ -674,6 +689,11 @@ namespace weave::syntax
             this->ParseFunctionParameterModifiers(modifiers);
 
             ParameterSyntax* parameter = this->ParseParameter(attributes, modifiers);
+            // TODO: Insert logic for parsing separators here:
+            // - if current token is ',', then append it to parameter
+            // - if current token is ')', then break
+            // - if current token is EOF, then break
+            // - otherwise, report error and append token to unexpected tokens to parameter list until `)` or EOF is reached
             nodes.push_back(parameter);
 
             if (SyntaxToken* comma = this->TryMatch(SyntaxKind::CommaToken))
@@ -1138,7 +1158,7 @@ namespace weave::syntax
     {
         // FIXME:
         //      Any token before open brace should be reported as unexpected nodes.
-        //      This will require a slight remodelling of node types, but it is a really needed one  
+        //      This will require a slight remodelling of node types, but it is a really needed one
         std::vector<StatementSyntax*> statements{};
 
         SyntaxToken* tokenOpenBrace = this->Match(SyntaxKind::OpenBraceToken);
@@ -1239,8 +1259,8 @@ namespace weave::syntax
 
             StatementSyntax* elseStatement =
                 this->Current()->Is(SyntaxKind::IfKeyword)
-                    ? this->ParseIfStatement()
-                    : this->ParseBlockStatement();
+                ? this->ParseIfStatement()
+                : this->ParseBlockStatement();
 
             ElseClauseSyntax* result = this->_factory->CreateNode<ElseClauseSyntax>();
             result->ElseKeyword = tokenElse;
@@ -1286,9 +1306,7 @@ namespace weave::syntax
         IdentifierNameSyntax* result = this->_factory->CreateNode<IdentifierNameSyntax>();
         result->Identifier = this->_factory->CreateMissingToken(
             SyntaxKind::IdentifierToken,
-            this->Current()->Source.WithZeroLength(),
-            {},
-            {});
+            this->Current()->Source.WithZeroLength());
         return result;
     }
 

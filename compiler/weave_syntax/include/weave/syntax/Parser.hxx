@@ -15,6 +15,8 @@ namespace weave::syntax
         SyntaxFactory* _factory{};
         std::vector<SyntaxToken*> _tokens{};
         size_t _index{};
+        size_t _nestingLevel{};
+        size_t _maximumNestingLevel{128};
 
     public:
         explicit Parser(
@@ -57,6 +59,30 @@ namespace weave::syntax
         void Reset(ResetPoint const& resetPoint)
         {
             this->_index = resetPoint._index;
+        }
+
+        void AdjustNestingLevel(SyntaxKind kind)
+        {
+            switch (kind)
+            {
+            case SyntaxKind::OpenBraceToken:
+                case SyntaxKind::OpenBracketToken:
+                case SyntaxKind::OpenParenToken:
+                case SyntaxKind::ExclamationOpenParenToken:
+                case SyntaxKind::LessThanToken:
+                    ++this->_nestingLevel;
+                    break;
+
+                case SyntaxKind::CloseBraceToken:
+                case SyntaxKind::CloseBracketToken:
+                case SyntaxKind::CloseParenToken:
+                case SyntaxKind::GreaterThanToken:
+                    --this->_nestingLevel;
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         // NOTE:

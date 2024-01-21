@@ -6,16 +6,17 @@
 
 namespace weave::syntax
 {
-    struct SyntaxTrivia final
+    struct SyntaxTrivia final : SyntaxNode
     {
-        SyntaxKind Kind;
         source::SourceSpan Source;
-    };
 
-    struct SyntaxTriviaRange
-    {
-        std::span<SyntaxTrivia const> Leading{};
-        std::span<SyntaxTrivia const> Trailing{};
+        explicit constexpr SyntaxTrivia(
+            SyntaxKind kind,
+            source::SourceSpan const& source)
+            : SyntaxNode{kind}
+            , Source{source}
+        {
+        }
     };
 
     enum class SyntaxTokenFlags : uint32_t
@@ -31,41 +32,34 @@ namespace weave::syntax
         source::SourceSpan Source;
 
         bitwise::Flags<SyntaxTokenFlags> Flags{};
-        SyntaxTriviaRange const* Trivia;
 
-        constexpr SyntaxToken(SyntaxKind kind, source::SourceSpan source, SyntaxTriviaRange const* trivia)
+        SyntaxListView<SyntaxTrivia> LeadingTrivia{};
+        SyntaxListView<SyntaxTrivia> TrailingTrivia{};
+
+        constexpr SyntaxToken(
+            SyntaxKind kind,
+            source::SourceSpan source,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia)
             : SyntaxNode{kind}
             , Source{source}
-            , Trivia{trivia}
+            , LeadingTrivia{leadingTrivia}
+            , TrailingTrivia{trailingTrivia}
         {
         }
 
-        constexpr SyntaxToken(SyntaxKind kind, source::SourceSpan source, SyntaxTriviaRange const* trivia, bitwise::Flags<SyntaxTokenFlags> flags)
+        constexpr SyntaxToken(
+            SyntaxKind kind,
+            source::SourceSpan source,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
+            bitwise::Flags<SyntaxTokenFlags> flags)
             : SyntaxNode{kind}
             , Source{source}
             , Flags{flags}
-            , Trivia{trivia}
+            , LeadingTrivia{leadingTrivia}
+            , TrailingTrivia{trailingTrivia}
         {
-        }
-
-        [[nodiscard]] constexpr std::span<SyntaxTrivia const> GetLeadingTrivia() const
-        {
-            if (this->Trivia != nullptr)
-            {
-                return this->Trivia->Leading;
-            }
-
-            return {};
-        }
-
-        [[nodiscard]] constexpr std::span<SyntaxTrivia const> GetTrailingTrivia() const
-        {
-            if (this->Trivia != nullptr)
-            {
-                return this->Trivia->Trailing;
-            }
-
-            return {};
         }
 
         [[nodiscard]] constexpr bool IsMissing() const
@@ -105,11 +99,12 @@ namespace weave::syntax
 
         constexpr IntegerLiteralSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             LiteralPrefixKind prefix,
             std::string_view value,
             std::string_view suffix)
-            : SyntaxToken{SyntaxKind::IntegerLiteralToken, source, trivia}
+            : SyntaxToken{SyntaxKind::IntegerLiteralToken, source, leadingTrivia, trailingTrivia}
             , Prefix{prefix}
             , Value{value}
             , Suffix{suffix}
@@ -118,12 +113,13 @@ namespace weave::syntax
 
         constexpr IntegerLiteralSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             LiteralPrefixKind prefix,
             std::string_view value,
             std::string_view suffix,
             bitwise::Flags<SyntaxTokenFlags> flags)
-            : SyntaxToken{SyntaxKind::IntegerLiteralToken, source, trivia, flags}
+            : SyntaxToken{SyntaxKind::IntegerLiteralToken, source, leadingTrivia, trailingTrivia, flags}
             , Prefix{prefix}
             , Value{value}
             , Suffix{suffix}
@@ -149,11 +145,12 @@ namespace weave::syntax
 
         constexpr FloatLiteralSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             LiteralPrefixKind prefix,
             std::string_view value,
             std::string_view suffix)
-            : SyntaxToken{SyntaxKind::FloatLiteralToken, source, trivia}
+            : SyntaxToken{SyntaxKind::FloatLiteralToken, source, leadingTrivia, trailingTrivia}
             , Prefix{prefix}
             , Value{value}
             , Suffix{suffix}
@@ -162,12 +159,13 @@ namespace weave::syntax
 
         constexpr FloatLiteralSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             LiteralPrefixKind prefix,
             std::string_view value,
             std::string_view suffix,
             bitwise::Flags<SyntaxTokenFlags> flags)
-            : SyntaxToken{SyntaxKind::FloatLiteralToken, source, trivia, flags}
+            : SyntaxToken{SyntaxKind::FloatLiteralToken, source, leadingTrivia, trailingTrivia, flags}
             , Prefix{prefix}
             , Value{value}
             , Suffix{suffix}
@@ -192,10 +190,11 @@ namespace weave::syntax
 
         constexpr StringLiteralSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             LiteralPrefixKind prefix,
             std::string_view value)
-            : SyntaxToken{SyntaxKind::StringLiteralToken, source, trivia}
+            : SyntaxToken{SyntaxKind::StringLiteralToken, source, leadingTrivia, trailingTrivia}
             , Prefix{prefix}
             , Value{value}
         {
@@ -203,11 +202,12 @@ namespace weave::syntax
 
         constexpr StringLiteralSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             LiteralPrefixKind prefix,
             std::string_view value,
             bitwise::Flags<SyntaxTokenFlags> flags)
-            : SyntaxToken{SyntaxKind::StringLiteralToken, source, trivia, flags}
+            : SyntaxToken{SyntaxKind::StringLiteralToken, source, leadingTrivia, trailingTrivia, flags}
             , Prefix{prefix}
             , Value{value}
         {
@@ -231,10 +231,11 @@ namespace weave::syntax
 
         constexpr CharacterLiteralSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             LiteralPrefixKind prefix,
             char32_t value)
-            : SyntaxToken{SyntaxKind::CharacterLiteralToken, source, trivia}
+            : SyntaxToken{SyntaxKind::CharacterLiteralToken, source, leadingTrivia, trailingTrivia}
             , Prefix{prefix}
             , Value{value}
         {
@@ -242,11 +243,12 @@ namespace weave::syntax
 
         constexpr CharacterLiteralSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             LiteralPrefixKind prefix,
             char32_t value,
             bitwise::Flags<SyntaxTokenFlags> flags)
-            : SyntaxToken{SyntaxKind::CharacterLiteralToken, source, trivia, flags}
+            : SyntaxToken{SyntaxKind::CharacterLiteralToken, source, leadingTrivia, trailingTrivia, flags}
             , Prefix{prefix}
             , Value{value}
         {
@@ -269,19 +271,21 @@ namespace weave::syntax
 
         constexpr IdentifierSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             std::string_view identifier)
-            : SyntaxToken{SyntaxKind::IdentifierToken, source, trivia}
+            : SyntaxToken{SyntaxKind::IdentifierToken, source, leadingTrivia, trailingTrivia}
             , Identifier{identifier}
         {
         }
 
         constexpr IdentifierSyntaxToken(
             source::SourceSpan const& source,
-            SyntaxTriviaRange const* trivia,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia,
             std::string_view identifier,
             bitwise::Flags<SyntaxTokenFlags> flags)
-            : SyntaxToken{SyntaxKind::IdentifierToken, source, trivia, flags}
+            : SyntaxToken{SyntaxKind::IdentifierToken, source, leadingTrivia, trailingTrivia, flags}
             , Identifier{identifier}
         {
         }

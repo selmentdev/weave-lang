@@ -209,10 +209,7 @@ int main(int argc, const char* argv[])
 
                 void OnToken(syntax::SyntaxToken* token) override
                 {
-                    for (auto tt : token->GetLeadingTrivia())
-                    {
-                        fmt::print("{}", _text.GetText(tt.Source));
-                    }
+                    this->Dispatch(token->LeadingTrivia.GetNode());
 
                     //if ((token->Kind == syntax::SyntaxKind::OpenBraceToken) or (token->Kind == syntax::SyntaxKind::CloseBraceToken))
                     //{
@@ -223,10 +220,12 @@ int main(int argc, const char* argv[])
                         fmt::print("{}", _text.GetText(token->Source));
                     }
 
-                    for (auto tt : token->GetTrailingTrivia())
-                    {
-                        fmt::print("{}", _text.GetText(tt.Source));
-                    }
+                    this->Dispatch(token->TrailingTrivia.GetNode());
+                }
+
+                void OnTrivia(syntax::SyntaxTrivia* trivia) override
+                {
+                    fmt::print("{}", _text.GetText(trivia->Source));
                 }
             };
 
@@ -346,28 +345,18 @@ int main(int argc, const char* argv[])
 
                 void OnToken(syntax::SyntaxToken* token) override
                 {
-#if true
-                    for (auto t : token->GetLeadingTrivia())
-                    {
-                        Indent();
-                        fmt::println("{}::LeadingTrivia `{}`", __func__, GetSpelling(t.Kind));
-                    }
+                    this->Dispatch(token->LeadingTrivia.GetNode());
 
                     Indent();
                     fmt::println("{} `{}`", __func__, GetName(token->Kind), _text.GetText(token->Source));
 
-                    for (auto t : token->GetLeadingTrivia())
-                    {
-                        Indent();
-                        fmt::println("{}::TrailingTrivia `{}`", __func__, GetSpelling(t.Kind));
-                    }
-#else
+                    this->Dispatch(token->TrailingTrivia.GetNode());
+                }
+
+                void OnTrivia(weave::syntax::SyntaxTrivia *trivia) override
+                {
                     Indent();
-                    fmt::println("{} `{}` `{}`",
-                        __func__,
-                        _text.GetText(token->Source),
-                        GetSpelling(token->Kind));
-#endif
+                    fmt::println("{}::LeadingTrivia `{}`", __func__, GetSpelling(trivia->Kind));
                 }
 
                 void OnIncompleteDeclarationSyntax(syntax::IncompleteDeclarationSyntax* node) override

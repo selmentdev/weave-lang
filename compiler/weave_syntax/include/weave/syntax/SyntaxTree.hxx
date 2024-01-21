@@ -3,6 +3,12 @@
 #include "weave/syntax/SyntaxNode.hxx"
 #include "weave/syntax/SyntaxToken.hxx"
 
+// Design:
+//      - each syntax node should have pointer to owner tree - this way we can access the factory responsible for memory
+//        allocation and deallocation.
+//      - comma separated list of elements must handle separators inside element of the list
+//        - for example, list of function arguments must have comma inside argument node
+
 #define WEAVE_DEFINE_SYNTAX_NODE(k) \
 public: \
     static constexpr bool ClassOf(SyntaxKind kind) \

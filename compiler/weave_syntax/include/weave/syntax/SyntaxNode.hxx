@@ -37,6 +37,7 @@ namespace weave::syntax
     
     class SyntaxList : public SyntaxNode
     {
+        // Optimization idea: we can store elements in memory after the SyntaxList object
     public:
         static constexpr bool ClassOf(SyntaxKind kind)
         {

@@ -32,6 +32,11 @@ namespace weave::syntax
                         return this->OnToken(static_cast<SyntaxToken*>(node), std::forward<ArgsT>(args)...);   
                     }
 
+                    if (IsTrivia(node->Kind))
+                    {
+                        return this->OnTrivia(static_cast<SyntaxTrivia*>(node), std::forward<ArgsT>(args)...);
+                    }
+
                     WEAVE_BUGCHECK("Invalid node kind");
                 }
             }
@@ -116,5 +121,6 @@ namespace weave::syntax
         void OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax* node) override;
         void OnDelegateDeclarationSyntax(DelegateDeclarationSyntax* node) override;
         void OnSelfExpressionSyntax(SelfExpressionSyntax* node) override;
+        void OnToken(weave::syntax::SyntaxToken *token) override;
     };
 }

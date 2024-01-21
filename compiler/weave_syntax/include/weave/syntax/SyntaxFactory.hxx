@@ -9,7 +9,6 @@ namespace weave::syntax
     {
     private:
         memory::TypedLinearAllocator<SyntaxToken> TokenAllocator{16u << 10u};
-        memory::TypedLinearAllocator<SyntaxTriviaRange> TriviaRangeAllocator{};
         memory::TypedLinearAllocator<SyntaxTrivia> TriviaAllocator{};
         memory::TypedLinearAllocator<CharacterLiteralSyntaxToken> CharacterLiteralAllocator{};
         memory::TypedLinearAllocator<StringLiteralSyntaxToken> StringLiteralAllocator{};
@@ -19,8 +18,6 @@ namespace weave::syntax
 
         memory::LinearAllocator SyntaxNodeAllocator{128u << 10u};
         stringpool::StringPool Strings{};
-
-        static SyntaxTriviaRange const EmptyTriviaRange;
 
     public:
         template <typename NodeT, typename... ArgsT>
@@ -48,9 +45,7 @@ namespace weave::syntax
         }
 
     public:
-        SyntaxTriviaRange const* CreateTriviaRange(
-            std::span<SyntaxTrivia const> leading,
-            std::span<SyntaxTrivia const> trailing);
+        SyntaxListView<SyntaxTrivia> CreateTriviaList(std::span<SyntaxTrivia const> trivia);
 
         SyntaxToken* CreateToken(
             SyntaxKind kind,
@@ -61,6 +56,23 @@ namespace weave::syntax
             source::SourceSpan const& source,
             std::span<SyntaxTrivia const> leadingTrivia,
             std::span<SyntaxTrivia const> trailingTrivia);
+
+        SyntaxToken* CreateMissingToken(
+            SyntaxKind kind,
+            source::SourceSpan const& source,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia);
+
+        SyntaxToken* CreateMissingToken(
+            SyntaxKind kind,
+            source::SourceSpan const& source)
+        {
+            return this->CreateMissingToken(
+                kind,
+                source,
+                SyntaxListView<SyntaxTrivia>{},
+                SyntaxListView<SyntaxTrivia>{});
+        }
 
         SyntaxToken* CreateMissingToken(
             SyntaxKind kind,
