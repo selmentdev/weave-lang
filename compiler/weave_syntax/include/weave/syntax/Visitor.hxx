@@ -17,9 +17,9 @@ namespace weave::syntax
         {
             if (node != nullptr)
             {
-                switch (node->Kind)  // NOLINT(clang-diagnostic-switch-enum)
+                switch (node->Kind) // NOLINT(clang-diagnostic-switch-enum)
                 {
-                
+
 
 #define WEAVE_SYNTAX_NODE(name, spelling) \
     case SyntaxKind::name: \
@@ -29,7 +29,7 @@ namespace weave::syntax
                 default:
                     if (IsToken(node->Kind))
                     {
-                        return this->OnToken(static_cast<SyntaxToken*>(node), std::forward<ArgsT>(args)...);   
+                        return this->OnToken(static_cast<SyntaxToken*>(node), std::forward<ArgsT>(args)...);
                     }
 
                     if (IsTrivia(node->Kind))
@@ -78,6 +78,14 @@ namespace weave::syntax
     {
     public:
         size_t Depth = 0;
+        bool WithTrivia = false;
+
+        SyntaxWalker() = default;
+
+        SyntaxWalker(bool withTrivia)
+            : WithTrivia{withTrivia}
+        {
+        }
 
     public:
         void OnCompilationUnitSyntax(CompilationUnitSyntax* node) override;
@@ -121,6 +129,7 @@ namespace weave::syntax
         void OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax* node) override;
         void OnDelegateDeclarationSyntax(DelegateDeclarationSyntax* node) override;
         void OnSelfExpressionSyntax(SelfExpressionSyntax* node) override;
-        void OnToken(weave::syntax::SyntaxToken *token) override;
+        void OnToken(SyntaxToken* token) override;
+        void OnUnexpectedNodesSyntax(UnexpectedNodesSyntax* node) override;
     };
 }

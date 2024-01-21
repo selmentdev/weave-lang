@@ -36,7 +36,8 @@ private:
 
     public:
         explicit Walker(std::vector<Entry>& entries)
-            : _entries(entries)
+            : SyntaxWalker{false}
+            , _entries(entries)
         {
         }
 
@@ -579,4 +580,25 @@ public unknown B;
     N(2, SyntaxKind::IncompleteDeclarationSyntax);
     N(3, SyntaxKind::SemicolonToken);
     N(1, SyntaxKind::EndOfFileToken);
+}
+
+TEST_CASE("parser - unrecognized 'return while true' statement")
+{
+    using namespace weave::syntax;
+    ParserHelper helper{
+        R"___({
+
+return while true;
+
+})___",
+        [](Parser& parser)
+        {
+            return parser.ParseBlockStatement();
+        }};
+
+
+    REQUIRE(helper.Entries.size() == 20);
+    Validator N{helper};
+
+    N(0, SyntaxKind::CompilationUnitSyntax);
 }

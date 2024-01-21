@@ -36,6 +36,10 @@ namespace weave::syntax
         [[nodiscard]] SyntaxToken* TryMatch(SyntaxKind kind);
         [[nodiscard]] SyntaxToken* SkipToken(SyntaxKind kind, bool consume = true);
 
+
+    private:
+        [[nodiscard]] SyntaxToken* MatchUntil(std::vector<SyntaxNode*>& unexpected, SyntaxKind kind);
+
     private:
         struct ResetPoint
         {
@@ -63,25 +67,25 @@ namespace weave::syntax
 
         void AdjustNestingLevel(SyntaxKind kind)
         {
-            switch (kind)
+            switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
             {
             case SyntaxKind::OpenBraceToken:
-                case SyntaxKind::OpenBracketToken:
-                case SyntaxKind::OpenParenToken:
-                case SyntaxKind::ExclamationOpenParenToken:
-                case SyntaxKind::LessThanToken:
-                    ++this->_nestingLevel;
-                    break;
+            case SyntaxKind::OpenBracketToken:
+            case SyntaxKind::OpenParenToken:
+            case SyntaxKind::ExclamationOpenParenToken:
+            case SyntaxKind::LessThanToken:
+                ++this->_nestingLevel;
+                break;
 
-                case SyntaxKind::CloseBraceToken:
-                case SyntaxKind::CloseBracketToken:
-                case SyntaxKind::CloseParenToken:
-                case SyntaxKind::GreaterThanToken:
-                    --this->_nestingLevel;
-                    break;
+            case SyntaxKind::CloseBraceToken:
+            case SyntaxKind::CloseBracketToken:
+            case SyntaxKind::CloseParenToken:
+            case SyntaxKind::GreaterThanToken:
+                --this->_nestingLevel;
+                break;
 
-                default:
-                    break;
+            default:
+                break;
             }
         }
 
@@ -221,6 +225,8 @@ namespace weave::syntax
         ExpressionStatementSyntax* ParseExpressionStatement();
 
         IdentifierNameSyntax* CreateMissingIdentifierName();
+
+        UnexpectedNodesSyntax* CreateUnexpectedNodes(std::span<SyntaxNode*> nodes);
 
         void ReportIncompleteMember(
             std::span<SyntaxToken*> modifiers,

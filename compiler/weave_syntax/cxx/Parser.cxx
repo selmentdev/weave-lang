@@ -162,6 +162,45 @@ namespace weave::syntax
             SyntaxListView<SyntaxTrivia>{});
     }
 
+    SyntaxToken* Parser::MatchUntil(std::vector<SyntaxNode*>& unexpected, SyntaxKind kind)
+    {
+        unexpected.clear();
+
+        // TODO: Process tokens until started depth is reached. This way we won't process whole file as-is.
+        while ((not this->Current()->Is(kind)) and (not this->Current()->Is(SyntaxKind::EndOfFileToken)))
+        {
+            unexpected.push_back(this->Next());
+        }
+
+        if (this->Current()->Is(kind))
+        {
+            return this->Next();
+        }
+
+        // TODO: If we reached starting depth, then report error and return missing token.
+        // TODO: Combine all unexpected tokens into single source range and report them as-error.
+
+        if (this->Current()->Kind != SyntaxKind::EndOfFileToken)
+        {
+            this->_diagnostic->AddError(
+                this->Current()->Source,
+                fmt::format("unexpected token '{}', expected '{}'",
+                    GetSpelling(this->Current()->Kind),
+                    GetSpelling(kind)));
+        }
+        else
+        {
+            this->_diagnostic->AddError(
+                this->Current()->Source,
+                fmt::format("unexpected end of file, expected '{}'",
+                    GetSpelling(kind)));
+        }
+
+        return this->_factory->CreateMissingToken(
+            kind,
+            this->Current()->Source.WithZeroLength());
+    }
+
     CompilationUnitSyntax* Parser::ParseCompilationUnit()
     {
         std::vector<UsingDirectiveSyntax*> usings{};
@@ -1074,13 +1113,18 @@ namespace weave::syntax
 
     ExpressionSyntax* Parser::ParseParenthesizedExpression()
     {
+        std::vector<SyntaxNode*> unexpected{};
+
         SyntaxToken* tokenOpenParen = this->Match(SyntaxKind::OpenParenToken);
         ExpressionSyntax* expression = this->ParseExpression();
-        SyntaxToken* tokenCloseParen = this->Match(SyntaxKind::CloseParenToken);
+
+        SyntaxToken* tokenCloseParen = this->MatchUntil(unexpected, SyntaxKind::CloseParenToken);
+        UnexpectedNodesSyntax* unexpectedNodesBetweenExpressionAndCloseParen = this->CreateUnexpectedNodes(unexpected);
 
         ParenthesizedExpressionSyntax* result = this->_factory->CreateNode<ParenthesizedExpressionSyntax>();
         result->OpenParenToken = tokenOpenParen;
         result->Expression = expression;
+        result->BetweenExpressionAndCloseParen = unexpectedNodesBetweenExpressionAndCloseParen;
         result->CloseParenToken = tokenCloseParen;
         return result;
     }
@@ -1156,6 +1200,46 @@ namespace weave::syntax
 
     BlockStatementSyntax* Parser::ParseBlockStatement()
     {
+        std::vector<SyntaxNode*> unexpected{};
+        std::vector<StatementSyntax*> statements{};
+
+        // Match any unexpected nodes before open brace.
+        SyntaxToken* tokenOpenBrace = this->MatchUntil(unexpected, SyntaxKind::OpenBraceToken);
+        UnexpectedNodesSyntax* unexpectedNodesBeforeOpenBrace = this->CreateUnexpectedNodes(unexpected);
+
+        while ((this->Current()->Kind != SyntaxKind::EndOfFileToken) and (this->Current()->Kind != SyntaxKind::CloseBraceToken))
+        {
+            if (SyntaxFacts::IsValidStatement(this->Current()->Kind))
+            {
+                StatementSyntax* statement = this->ParseStatement();
+
+                if (statement != nullptr)
+                {
+                    statements.push_back(statement);
+                    continue;
+                }
+            }
+
+            // Failed to parse statement. Match any unexpected nodes until end of block
+            break;
+        }
+
+        SyntaxToken* tokenCloseBrace = this->MatchUntil(unexpected, SyntaxKind::CloseBraceToken);
+        UnexpectedNodesSyntax* unexpectedNodesBeforeCloseBrace = this->CreateUnexpectedNodes(unexpected);
+
+        BlockStatementSyntax* result = this->_factory->CreateNode<BlockStatementSyntax>();
+        result->BeforeOpenBrace = unexpectedNodesBeforeOpenBrace;
+        result->OpenBraceToken = tokenOpenBrace;
+        result->Statements = SyntaxListView<StatementSyntax>{this->_factory->CreateList(statements)};
+        result->BetweenStatementsAndCloseBrace = unexpectedNodesBeforeCloseBrace;
+        result->CloseBraceToken = tokenCloseBrace;
+        return result;
+    }
+
+
+    /*
+    BlockStatementSyntax* Parser::ParseBlockStatement()
+    {
         // FIXME:
         //      Any token before open brace should be reported as unexpected nodes.
         //      This will require a slight remodelling of node types, but it is a really needed one
@@ -1202,7 +1286,7 @@ namespace weave::syntax
         result->Statements = SyntaxListView<StatementSyntax>{this->_factory->CreateList(statements)};
         result->CloseBraceToken = tokenCloseBrace;
         return result;
-    }
+    }*/
 
     StatementSyntax* Parser::ParseVariableDeclaration()
     {
@@ -1308,6 +1392,18 @@ namespace weave::syntax
             SyntaxKind::IdentifierToken,
             this->Current()->Source.WithZeroLength());
         return result;
+    }
+
+    UnexpectedNodesSyntax* Parser::CreateUnexpectedNodes(std::span<SyntaxNode*> nodes)
+    {
+        if (not nodes.empty())
+        {
+            UnexpectedNodesSyntax* result = this->_factory->CreateNode<UnexpectedNodesSyntax>();
+            result->Nodes = SyntaxListView<SyntaxNode>{this->_factory->CreateList(nodes)};
+            return result;
+        }
+
+        return nullptr;
     }
 
     void Parser::ReportIncompleteMember(

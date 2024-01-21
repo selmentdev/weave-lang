@@ -327,9 +327,13 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->BeforeOpenParen);
         this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->BetweenOpenParenAndExpression);
         this->Dispatch(node->Expression);
+        this->Dispatch(node->BetweenExpressionAndCloseParen);
         this->Dispatch(node->CloseParenToken);
+        this->Dispatch(node->AfterCloseParen);
 
         --this->Depth;
     }
@@ -415,9 +419,13 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->BeforeOpenBrace);
         this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->BetweenOpenBraceAndStatements);
         this->Dispatch(node->Statements.GetNode());
+        this->Dispatch(node->BetweenStatementsAndCloseBrace);
         this->Dispatch(node->CloseBraceToken);
+        this->Dispatch(node->AfterCloseBrace);
 
         --this->Depth;
     }
@@ -556,8 +564,22 @@ namespace weave::syntax
 
         ++this->Depth;
 
-        this->Dispatch(token->LeadingTrivia.GetNode());
-        this->Dispatch(token->TrailingTrivia.GetNode());
+        if (this->WithTrivia)
+        {
+            this->Dispatch(token->LeadingTrivia.GetNode());
+            this->Dispatch(token->TrailingTrivia.GetNode());
+        }
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnUnexpectedNodesSyntax(UnexpectedNodesSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Nodes.GetNode());
 
         --this->Depth;
     }

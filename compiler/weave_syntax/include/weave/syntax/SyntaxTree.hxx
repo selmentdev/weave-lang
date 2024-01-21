@@ -581,9 +581,13 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ParenthesizedExpressionSyntax);
 
     public:
+        UnexpectedNodesSyntax* BeforeOpenParen{};
         SyntaxToken* OpenParenToken{};
+        UnexpectedNodesSyntax* BetweenOpenParenAndExpression{};
         ExpressionSyntax* Expression{};
+        UnexpectedNodesSyntax* BetweenExpressionAndCloseParen{};
         SyntaxToken* CloseParenToken{};
+        UnexpectedNodesSyntax* AfterCloseParen{};
 
     public:
         explicit constexpr ParenthesizedExpressionSyntax()
@@ -824,9 +828,13 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(BlockStatementSyntax);
 
     public:
+        UnexpectedNodesSyntax* BeforeOpenBrace{};
         SyntaxToken* OpenBraceToken{};
+        UnexpectedNodesSyntax* BetweenOpenBraceAndStatements{};
         SyntaxListView<StatementSyntax> Statements{};
+        UnexpectedNodesSyntax* BetweenStatementsAndCloseBrace{};
         SyntaxToken* CloseBraceToken{};
+        UnexpectedNodesSyntax* AfterCloseBrace{};
 
     public:
         explicit constexpr BlockStatementSyntax()
@@ -878,6 +886,28 @@ namespace weave::syntax
     public:
         explicit constexpr ElseClauseSyntax()
             : SyntaxNode{SyntaxKind::ElseClauseSyntax}
+        {
+        }
+    };
+
+    class UnexpectedNodesSyntax : public SyntaxNode
+    {
+    public:
+        static constexpr bool ClassOf(SyntaxKind kind)
+        {
+            return kind == SyntaxKind::UnexpectedNodesSyntax;
+        }
+
+        static constexpr bool ClassOf(SyntaxNode const* node)
+        {
+            return node->Is(SyntaxKind::UnexpectedNodesSyntax);
+        }
+
+    public:
+        SyntaxListView<SyntaxNode> Nodes{};
+
+        explicit constexpr UnexpectedNodesSyntax()
+            : SyntaxNode{SyntaxKind::UnexpectedNodesSyntax}
         {
         }
     };

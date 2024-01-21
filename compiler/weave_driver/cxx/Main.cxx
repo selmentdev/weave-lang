@@ -227,6 +227,13 @@ int main(int argc, const char* argv[])
                 {
                     fmt::print("{}", _text.GetText(trivia->Source));
                 }
+
+                void OnUnexpectedNodesSyntax(syntax::UnexpectedNodesSyntax* node) override
+                {
+                    fmt::print("\u001b[41m");
+                    SyntaxWalker::OnUnexpectedNodesSyntax(node);
+                    fmt::print("\u001b[0m");
+                }
             };
 
             class GX : public syntax::SyntaxWalker
@@ -408,6 +415,13 @@ int main(int argc, const char* argv[])
                     Indent();
                     fmt::println("{}", __func__);
                     SyntaxWalker::OnElseClauseSyntax(node);
+                }
+
+                void OnUnexpectedNodesSyntax(syntax::UnexpectedNodesSyntax* node) override
+                {
+                    Indent();
+                    fmt::println("{}", __func__);
+                    SyntaxWalker::OnUnexpectedNodesSyntax(node);
                 }
 
                 // void OnQualifiedNameSyntax(syntax::QualifiedNameSyntax* node) override
