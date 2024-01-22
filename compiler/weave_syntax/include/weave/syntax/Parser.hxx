@@ -32,9 +32,7 @@ namespace weave::syntax
         [[nodiscard]] SyntaxToken* Current() const;
         SyntaxToken* Next();
         [[nodiscard]] SyntaxToken* Match(SyntaxKind kind);
-        [[nodiscard]] SyntaxToken* MatchOptional(SyntaxKind kind);
         [[nodiscard]] SyntaxToken* TryMatch(SyntaxKind kind);
-        [[nodiscard]] SyntaxToken* SkipToken(SyntaxKind kind, bool consume = true);
 
 
     private:

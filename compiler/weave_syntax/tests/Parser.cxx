@@ -66,6 +66,8 @@ class Validator final
 private:
     ParserHelper& _helper;
     size_t _index{};
+    size_t _depth{};
+
 
 public:
     explicit Validator(ParserHelper& helper)
@@ -81,6 +83,25 @@ public:
         CHECK(this->_helper.Entries[this->_index].Kind == kind);
         CHECK(this->_helper.Entries[this->_index].Depth == depth);
         ++this->_index;
+    }
+
+    void operator()(weave::syntax::SyntaxKind kind)
+    {
+        CAPTURE(this->_index);
+        REQUIRE(this->_index < this->_helper.Entries.size());
+        CHECK(this->_helper.Entries[this->_index].Kind == kind);
+        CHECK(this->_helper.Entries[this->_index].Depth == this->_depth);
+        ++this->_index;
+    }
+
+    void Enter()
+    {
+        ++this->_depth;
+    }
+
+    void Leave()
+    {
+        --this->_depth;
     }
 };
 
@@ -100,20 +121,43 @@ if (true) { }
 
     REQUIRE(helper.Entries.size() == 14);
     Validator N{helper};
-    N(0, SyntaxKind::BlockStatementSyntax);
-    N(1, SyntaxKind::OpenBraceToken);
-    N(1, SyntaxKind::SyntaxList);
-    N(2, SyntaxKind::IfStatementSyntax);
-    N(3, SyntaxKind::IfKeyword);
-    N(3, SyntaxKind::ParenthesizedExpressionSyntax);
-    N(4, SyntaxKind::OpenParenToken);
-    N(4, SyntaxKind::LiteralExpressionSyntax);
-    N(5, SyntaxKind::TrueKeyword);
-    N(4, SyntaxKind::CloseParenToken);
-    N(3, SyntaxKind::BlockStatementSyntax);
-    N(4, SyntaxKind::OpenBraceToken);
-    N(4, SyntaxKind::CloseBraceToken);
-    N(1, SyntaxKind::CloseBraceToken);
+    N(SyntaxKind::BlockStatementSyntax);
+    N.Enter();
+    {
+        N(SyntaxKind::OpenBraceToken);
+        N(SyntaxKind::SyntaxList);
+        N.Enter();
+        {
+            N(SyntaxKind::IfStatementSyntax);
+            N.Enter();
+            {
+                N(SyntaxKind::IfKeyword);
+                N(SyntaxKind::ParenthesizedExpressionSyntax);
+                N.Enter();
+                {
+                    N(SyntaxKind::OpenParenToken);
+                    N(SyntaxKind::LiteralExpressionSyntax);
+                    N.Enter();
+                    {
+                        N(SyntaxKind::TrueKeyword);
+                    }
+                    N.Leave();
+                    N(SyntaxKind::CloseParenToken);
+                }
+                N.Leave();
+                N(SyntaxKind::BlockStatementSyntax);
+                N.Enter();
+                {
+                    N(SyntaxKind::OpenBraceToken);
+                    N(SyntaxKind::CloseBraceToken);
+                }
+                N.Leave();
+            }
+            N.Leave();
+        }
+        N.Leave();
+        N(SyntaxKind::CloseBraceToken);
+    }
 }
 
 TEST_CASE("parser - valid 'if' statement with true")
@@ -132,17 +176,36 @@ if true { }
 
     REQUIRE(helper.Entries.size() == 11);
     Validator N{helper};
-    N(0, SyntaxKind::BlockStatementSyntax);
-    N(1, SyntaxKind::OpenBraceToken);
-    N(1, SyntaxKind::SyntaxList);
-    N(2, SyntaxKind::IfStatementSyntax);
-    N(3, SyntaxKind::IfKeyword);
-    N(3, SyntaxKind::LiteralExpressionSyntax);
-    N(4, SyntaxKind::TrueKeyword);
-    N(3, SyntaxKind::BlockStatementSyntax);
-    N(4, SyntaxKind::OpenBraceToken);
-    N(4, SyntaxKind::CloseBraceToken);
-    N(1, SyntaxKind::CloseBraceToken);
+    N(SyntaxKind::BlockStatementSyntax);
+    N.Enter();
+    {
+        N(SyntaxKind::OpenBraceToken);
+        N(SyntaxKind::SyntaxList);
+        N.Enter();
+        {
+            N(SyntaxKind::IfStatementSyntax);
+            N.Enter();
+            {
+                N(SyntaxKind::IfKeyword);
+                N(SyntaxKind::LiteralExpressionSyntax);
+                N.Enter();
+                {
+                    N(SyntaxKind::TrueKeyword);
+                }
+                N.Leave();
+                N(SyntaxKind::BlockStatementSyntax);
+                N.Enter();
+                {
+                    N(SyntaxKind::OpenBraceToken);
+                    N(SyntaxKind::CloseBraceToken);
+                }
+                N.Leave();
+            }
+            N.Leave();
+        }
+        N.Leave();
+        N(SyntaxKind::CloseBraceToken);
+    }
 }
 
 TEST_CASE("parser - valid 'if' 'else' statement")
@@ -239,37 +302,73 @@ if true {
             return parser.ParseBlockStatement();
         }};
 
-    REQUIRE(helper.Entries.size() == 28);
+    REQUIRE(helper.Entries.size() == 33);
     Validator N{helper};
 
     N(0, SyntaxKind::BlockStatementSyntax);
-    N(1, SyntaxKind::OpenBraceToken);
-    N(1, SyntaxKind::SyntaxList);
-    N(2, SyntaxKind::IfStatementSyntax);
-    N(3, SyntaxKind::IfKeyword);
-    N(3, SyntaxKind::LiteralExpressionSyntax);
-    N(4, SyntaxKind::TrueKeyword);
-    N(3, SyntaxKind::BlockStatementSyntax);
-    N(4, SyntaxKind::OpenBraceToken);
-    N(4, SyntaxKind::CloseBraceToken);
-    N(3, SyntaxKind::ElseClauseSyntax);
-    N(4, SyntaxKind::ElseKeyword);
-    N(4, SyntaxKind::BlockStatementSyntax);
-    N(5, SyntaxKind::OpenBraceToken);
-    N(5, SyntaxKind::CloseBraceToken);
-    N(2, SyntaxKind::IfStatementSyntax);
-    N(3, SyntaxKind::IfKeyword);
-    N(3, SyntaxKind::IdentifierNameSyntax);
-    N(4, SyntaxKind::IdentifierToken);
-    N(3, SyntaxKind::ExpressionStatementSyntax);
-    N(4, SyntaxKind::IdentifierNameSyntax);
-    N(5, SyntaxKind::IdentifierToken);
-    N(4, SyntaxKind::SemicolonToken);
-    N(2, SyntaxKind::ExpressionStatementSyntax);
-    N(3, SyntaxKind::LiteralExpressionSyntax);
-    N(4, SyntaxKind::FalseKeyword);
-    N(3, SyntaxKind::SemicolonToken);
-    N(1, SyntaxKind::CloseBraceToken);
+    {
+        N(1, SyntaxKind::OpenBraceToken);
+        N(1, SyntaxKind::SyntaxList);
+        {
+            N(2, SyntaxKind::IfStatementSyntax);
+            {
+                N(3, SyntaxKind::IfKeyword);
+                N(3, SyntaxKind::LiteralExpressionSyntax);
+                {
+                    N(4, SyntaxKind::TrueKeyword);
+                }
+                N(3, SyntaxKind::BlockStatementSyntax);
+                {
+                    N(4, SyntaxKind::OpenBraceToken);
+                    N(4, SyntaxKind::CloseBraceToken);
+                }
+                N(3, SyntaxKind::ElseClauseSyntax);
+                {
+                    N(4, SyntaxKind::ElseKeyword);
+                    N(4, SyntaxKind::BlockStatementSyntax);
+                    {
+                        N(5, SyntaxKind::OpenBraceToken);
+                        N(5, SyntaxKind::CloseBraceToken);
+                    }
+                }
+            }
+            // TODO: Verifiy if this should be parsed as broken if
+            N(2, SyntaxKind::IfStatementSyntax);
+            {
+                N(3, SyntaxKind::IfKeyword);
+                N(3, SyntaxKind::IdentifierNameSyntax);
+                {
+                    N(4, SyntaxKind::IdentifierToken);
+                }
+                N(3, SyntaxKind::ExpressionStatementSyntax);
+                {
+                    N(4, SyntaxKind::IdentifierNameSyntax);
+                    {
+                        N(5, SyntaxKind::IdentifierToken);
+                    }
+                    N(4, SyntaxKind::SemicolonToken);
+                }
+                N(3, SyntaxKind::ElseClauseSyntax);
+                {
+                    N(4, SyntaxKind::ElseKeyword);
+                    N(4, SyntaxKind::IfStatementSyntax);
+                    {
+                        N(5, SyntaxKind::IfKeyword);
+                        N(5, SyntaxKind::LiteralExpressionSyntax);
+                        {
+                            N(6, SyntaxKind::FalseKeyword);
+                        }
+                        N(5, SyntaxKind::BlockStatementSyntax);
+                        {
+                            N(6, SyntaxKind::OpenBraceToken);
+                            N(6, SyntaxKind::CloseBraceToken);
+                        }
+                    }
+                }
+            }
+        }
+        N(1, SyntaxKind::CloseBraceToken);
+    }
 }
 
 TEST_CASE("parser - misplaced 'else' statement - else at start")
@@ -289,26 +388,59 @@ else {
             return parser.ParseBlockStatement();
         }};
 
-    REQUIRE(helper.Entries.size() == 16);
+    REQUIRE(helper.Entries.size() == 26);
     Validator N{helper};
 
-
     N(0, SyntaxKind::BlockStatementSyntax);
-    N(1, SyntaxKind::OpenBraceToken);
-    N(1, SyntaxKind::SyntaxList);
-    N(2, SyntaxKind::IfStatementSyntax);
-    N(3, SyntaxKind::IfKeyword);
-    N(3, SyntaxKind::IdentifierNameSyntax);
-    N(4, SyntaxKind::IdentifierToken);
-    N(3, SyntaxKind::ExpressionStatementSyntax);
-    N(4, SyntaxKind::IdentifierNameSyntax);
-    N(5, SyntaxKind::IdentifierToken);
-    N(4, SyntaxKind::SemicolonToken);
-    N(2, SyntaxKind::ExpressionStatementSyntax);
-    N(3, SyntaxKind::LiteralExpressionSyntax);
-    N(4, SyntaxKind::FalseKeyword);
-    N(3, SyntaxKind::SemicolonToken);
-    N(1, SyntaxKind::CloseBraceToken);
+    {
+        N(1, SyntaxKind::OpenBraceToken);
+        N(1, SyntaxKind::SyntaxList);
+        {
+            N(2, SyntaxKind::IfStatementSyntax);
+            {
+                N(3, SyntaxKind::IfKeyword);
+                N(3, SyntaxKind::IdentifierNameSyntax);
+                {
+                    N(4, SyntaxKind::IdentifierToken);
+                }
+                N(3, SyntaxKind::ExpressionStatementSyntax);
+                {
+                    N(4, SyntaxKind::IdentifierNameSyntax);
+                    {
+                        N(5, SyntaxKind::IdentifierToken);
+                    }
+                    N(4, SyntaxKind::SemicolonToken);
+                }
+                N(3, SyntaxKind::ElseClauseSyntax);
+                {
+                    N(4, SyntaxKind::ElseKeyword);
+                    N(4, SyntaxKind::IfStatementSyntax);
+                    {
+                        N(5, SyntaxKind::IfKeyword);
+                        N(5, SyntaxKind::LiteralExpressionSyntax);
+                        {
+                            N(6, SyntaxKind::FalseKeyword);
+                        }
+                        N(5, SyntaxKind::BlockStatementSyntax);
+                        {
+                            N(6, SyntaxKind::OpenBraceToken);
+                            N(6, SyntaxKind::CloseBraceToken);
+                        }
+                        N(5, SyntaxKind::ElseClauseSyntax);
+                        {
+                            N(6, SyntaxKind::ElseKeyword);
+                            N(6, SyntaxKind::BlockStatementSyntax);
+                            {
+                                N(7, SyntaxKind::OpenBraceToken);
+                                N(7, SyntaxKind::CloseBraceToken);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        N(1, SyntaxKind::CloseBraceToken);
+    }
 }
 
 TEST_CASE("parser - misplaced 'else' statement - additional else at end")
@@ -329,42 +461,83 @@ if true {
             return parser.ParseBlockStatement();
         }};
 
-    REQUIRE(helper.Entries.size() == 33);
+    REQUIRE(helper.Entries.size() == 38);
     Validator N{helper};
 
     N(0, SyntaxKind::BlockStatementSyntax);
-    N(1, SyntaxKind::OpenBraceToken);
-    N(1, SyntaxKind::SyntaxList);
-    N(2, SyntaxKind::IfStatementSyntax);
-    N(3, SyntaxKind::IfKeyword);
-    N(3, SyntaxKind::LiteralExpressionSyntax);
-    N(4, SyntaxKind::TrueKeyword);
-    N(3, SyntaxKind::BlockStatementSyntax);
-    N(4, SyntaxKind::OpenBraceToken);
-    N(4, SyntaxKind::CloseBraceToken);
-    N(3, SyntaxKind::ElseClauseSyntax);
-    N(4, SyntaxKind::ElseKeyword);
-    N(4, SyntaxKind::IfStatementSyntax);
-    N(5, SyntaxKind::IfKeyword);
-    N(5, SyntaxKind::LiteralExpressionSyntax);
-    N(6, SyntaxKind::FalseKeyword);
-    N(5, SyntaxKind::BlockStatementSyntax);
-    N(6, SyntaxKind::OpenBraceToken);
-    N(6, SyntaxKind::CloseBraceToken);
-    N(5, SyntaxKind::ElseClauseSyntax);
-    N(6, SyntaxKind::ElseKeyword);
-    N(6, SyntaxKind::BlockStatementSyntax);
-    N(7, SyntaxKind::OpenBraceToken);
-    N(7, SyntaxKind::CloseBraceToken);
-    N(2, SyntaxKind::IfStatementSyntax);
-    N(3, SyntaxKind::IfKeyword);
-    N(3, SyntaxKind::IdentifierNameSyntax);
-    N(4, SyntaxKind::IdentifierToken);
-    N(3, SyntaxKind::ExpressionStatementSyntax);
-    N(4, SyntaxKind::IdentifierNameSyntax);
-    N(5, SyntaxKind::IdentifierToken);
-    N(4, SyntaxKind::SemicolonToken);
-    N(1, SyntaxKind::CloseBraceToken);
+    {
+        N(1, SyntaxKind::OpenBraceToken);
+        N(1, SyntaxKind::SyntaxList);
+        {
+            N(2, SyntaxKind::IfStatementSyntax);
+            {
+                N(3, SyntaxKind::IfKeyword);
+                N(3, SyntaxKind::LiteralExpressionSyntax);
+                {
+                    N(4, SyntaxKind::TrueKeyword);
+                }
+                N(3, SyntaxKind::BlockStatementSyntax);
+                {
+                    N(4, SyntaxKind::OpenBraceToken);
+                    N(4, SyntaxKind::CloseBraceToken);
+                }
+                N(3, SyntaxKind::ElseClauseSyntax);
+                {
+                    N(4, SyntaxKind::ElseKeyword);
+                    N(4, SyntaxKind::IfStatementSyntax);
+                    {
+                        N(5, SyntaxKind::IfKeyword);
+                        N(5, SyntaxKind::LiteralExpressionSyntax);
+                        {
+                            N(6, SyntaxKind::FalseKeyword);
+                        }
+                        N(5, SyntaxKind::BlockStatementSyntax);
+                        {
+                            N(6, SyntaxKind::OpenBraceToken);
+                            N(6, SyntaxKind::CloseBraceToken);
+                        }
+                        N(5, SyntaxKind::ElseClauseSyntax);
+                        {
+                            N(6, SyntaxKind::ElseKeyword);
+                            N(6, SyntaxKind::BlockStatementSyntax);
+                            {
+                                N(7, SyntaxKind::OpenBraceToken);
+                                N(7, SyntaxKind::CloseBraceToken);
+                            }
+                        }
+                    }
+                }
+            }
+            // Misplaced `else`; parsed as `if`
+            // TODO: Verify if it should be parsed as unexpected nodes.
+            N(2, SyntaxKind::IfStatementSyntax);
+            {
+                N(3, SyntaxKind::IfKeyword);
+                N(3, SyntaxKind::IdentifierNameSyntax);
+                {
+                    N(4, SyntaxKind::IdentifierToken);
+                }
+                N(3, SyntaxKind::ExpressionStatementSyntax);
+                {
+                    N(4, SyntaxKind::IdentifierNameSyntax);
+                    {
+                        N(5, SyntaxKind::IdentifierToken);
+                    }
+                    N(4, SyntaxKind::SemicolonToken);
+                }
+                N(3, SyntaxKind::ElseClauseSyntax);
+                {
+                    N(4, SyntaxKind::ElseKeyword);
+                    N(4, SyntaxKind::BlockStatementSyntax);
+                    {
+                        N(5, SyntaxKind::OpenBraceToken);
+                        N(5, SyntaxKind::CloseBraceToken);
+                    }
+                }
+            }
+        }
+        N(1, SyntaxKind::CloseBraceToken);
+    }
 }
 
 TEST_CASE("parser - empty compilation unit")
@@ -597,8 +770,155 @@ return while true;
         }};
 
 
-    REQUIRE(helper.Entries.size() == 20);
+    REQUIRE(helper.Entries.size() == 14);
     Validator N{helper};
 
-    N(0, SyntaxKind::CompilationUnitSyntax);
+    N(0, SyntaxKind::BlockStatementSyntax);
+    {
+        N(1, SyntaxKind::OpenBraceToken);
+        N(1, SyntaxKind::SyntaxList);
+        {
+            N(2, SyntaxKind::ReturnStatementSyntax);
+            {
+                N(3, SyntaxKind::ReturnKeyword);
+                N(3, SyntaxKind::IdentifierNameSyntax);
+                {
+                    N(4, SyntaxKind::IdentifierToken);
+                }
+                N(3, SyntaxKind::SemicolonToken);
+            }
+        }
+        N(1, SyntaxKind::UnexpectedNodesSyntax);
+        {
+            N(2, SyntaxKind::SyntaxList);
+            {
+                N(3, SyntaxKind::WhileKeyword);
+                N(3, SyntaxKind::TrueKeyword);
+                N(3, SyntaxKind::SemicolonToken);
+            }
+        }
+        N(1, SyntaxKind::CloseBraceToken);
+    }
+}
+
+TEST_CASE("parser - ")
+{
+    using namespace weave::syntax;
+    ParserHelper helper{
+        R"___({
+
+if while true
+{
+    call1();
+    @(*#%&*@#);
+    call2();
+}
+
+
+})___",
+        [](Parser& parser)
+        {
+            return parser.ParseBlockStatement();
+        }};
+
+
+    REQUIRE(helper.Entries.size() == 41);
+    Validator N{helper};
+
+    N(0, SyntaxKind::BlockStatementSyntax);
+    N.Enter();
+    {
+        N(1, SyntaxKind::OpenBraceToken);
+        N(1, SyntaxKind::SyntaxList);
+        N.Enter();
+        {
+            N(2, SyntaxKind::IfStatementSyntax);
+            N.Enter();
+            {
+                N(3, SyntaxKind::IfKeyword);
+                N(3, SyntaxKind::IdentifierNameSyntax);
+                N.Enter();
+                {
+                    N(4, SyntaxKind::IdentifierToken);
+                }
+                N.Leave();
+                N(3, SyntaxKind::BlockStatementSyntax);
+                N.Enter();
+                {
+                    N(4, SyntaxKind::UnexpectedNodesSyntax);
+                    N.Enter();
+                    {
+                        N(5, SyntaxKind::SyntaxList);
+                        N.Enter();
+                        {
+                            N(6, SyntaxKind::WhileKeyword);
+                            N(6, SyntaxKind::TrueKeyword);
+                        }
+                        N.Leave();
+                    }
+                    N.Leave();
+                    N(4, SyntaxKind::OpenBraceToken);
+                    N(4, SyntaxKind::SyntaxList);
+                    N.Enter();
+                    {
+                        N(5, SyntaxKind::ExpressionStatementSyntax);
+                        N.Enter();
+                        {
+                            N(6, SyntaxKind::InvocationExpressionSyntax);
+                            N.Enter();
+                            {
+                                N(7, SyntaxKind::IdentifierNameSyntax);
+                                N.Enter();
+                                {
+                                    N(8, SyntaxKind::IdentifierToken);
+                                }
+                                N.Leave();
+                                N(7, SyntaxKind::ArgumentListSyntax);
+                                N.Enter();
+                                {
+                                    N(8, SyntaxKind::OpenParenToken);
+                                    N(8, SyntaxKind::CloseParenToken);
+                                }
+                                N.Leave();
+                            }
+                            N.Leave();
+                            N(6, SyntaxKind::SemicolonToken);
+                        }
+                        N.Leave();
+                    }
+                    N.Leave();
+                    N(4, SyntaxKind::UnexpectedNodesSyntax);
+                    N.Enter();
+                    {
+                        N(5, SyntaxKind::SyntaxList);
+                        N.Enter();
+                        {
+                            N(6, SyntaxKind::AtToken);
+                            N(6, SyntaxKind::OpenParenToken);
+                            N(6, SyntaxKind::AsteriskToken);
+                            N(6, SyntaxKind::HashToken);
+                            N(6, SyntaxKind::PercentToken);
+                            N(6, SyntaxKind::AmpersandToken);
+                            N(6, SyntaxKind::AsteriskToken);
+                            N(6, SyntaxKind::AtToken);
+                            N(6, SyntaxKind::HashToken);
+                            N(6, SyntaxKind::CloseParenToken);
+                            N(6, SyntaxKind::SemicolonToken);
+                            N(6, SyntaxKind::IdentifierToken);
+                            N(6, SyntaxKind::OpenParenToken);
+                            N(6, SyntaxKind::CloseParenToken);
+                            N(6, SyntaxKind::SemicolonToken);
+                        }
+                        N.Leave();
+                    }
+                    N(4, SyntaxKind::CloseBraceToken);
+                    N.Leave();
+                }
+                N.Leave();
+            }
+            N.Leave();
+        }
+        N.Leave();
+        N(1, SyntaxKind::CloseBraceToken);
+    }
 }

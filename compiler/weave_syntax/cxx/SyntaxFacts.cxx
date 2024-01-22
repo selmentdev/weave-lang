@@ -451,22 +451,22 @@ namespace weave::syntax
     {
         switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
-        case SyntaxKind::BreakKeyword:
-        case SyntaxKind::ContinueKeyword:
-        case SyntaxKind::DotToken:
-        case SyntaxKind::WhileKeyword:
-        case SyntaxKind::ForKeyword:
-        case SyntaxKind::VarKeyword:
-        case SyntaxKind::LetKeyword:
-        case SyntaxKind::GotoKeyword:
+        //case SyntaxKind::BreakKeyword:
+        //case SyntaxKind::ContinueKeyword:
+        //case SyntaxKind::DotToken:
+        //case SyntaxKind::WhileKeyword:
+        //case SyntaxKind::ForKeyword:
+        //case SyntaxKind::VarKeyword:
+        //case SyntaxKind::LetKeyword:
+        //case SyntaxKind::GotoKeyword:
         case SyntaxKind::IfKeyword:
         case SyntaxKind::ElseKeyword:
         case SyntaxKind::ReturnKeyword:
-        case SyntaxKind::SwitchKeyword:
-        case SyntaxKind::MatchKeyword:
-        case SyntaxKind::UnsafeKeyword:
-        case SyntaxKind::UsingDirectiveSyntax:
-        case SyntaxKind::OpenBraceToken:
+        //case SyntaxKind::SwitchKeyword:
+        //case SyntaxKind::MatchKeyword:
+        //case SyntaxKind::UnsafeKeyword:
+        //case SyntaxKind::UsingDirectiveSyntax:
+        //case SyntaxKind::OpenBraceToken:
         case SyntaxKind::SemicolonToken:
         case SyntaxKind::IdentifierToken:
             return true;

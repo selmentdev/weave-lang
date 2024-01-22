@@ -1,3 +1,4 @@
+// ReSharper disable CppClangTidyMiscNoRecursion
 #include "weave/syntax/Parser.hxx"
 
 #include "weave/bugcheck/BugCheck.hxx"
@@ -68,8 +69,6 @@ namespace weave::syntax
             return this->Next();
         }
 
-#if true
-        // FIXME: If current token is EOF, then just report missing token
         if (this->Current()->Is(SyntaxKind::EndOfFileToken))
         {
             this->_diagnostic->AddError(
@@ -86,29 +85,7 @@ namespace weave::syntax
                     GetSpelling(kind)));
         }
 
-        // Consume token here
-        this->Next();
-#else
-        this->_diagnostic->AddError(
-            this->Current()->Source,
-            fmt::format("unexpected token '{}', expected '{}'",
-                SyntaxKindTraits::GetSpelling(this->Current()->Kind),
-                SyntaxKindTraits::GetSpelling(kind)));
-#endif
-
-        // return this->_factory->CreateMissingToken(kind, this->Current()->Source);
-        return this->SkipToken(kind, false);
-    }
-
-    SyntaxToken* Parser::MatchOptional(SyntaxKind kind)
-    {
-        if (this->Current()->Is(kind))
-        {
-            return this->Next();
-        }
-
-        // return this->_factory->CreateMissingToken(kind, this->Current()->Source);
-        return this->SkipToken(kind, false);
+        return this->_factory->CreateMissingToken(kind, this->Current()->Source.WithZeroLength());
     }
 
     SyntaxToken* Parser::TryMatch(SyntaxKind kind)
@@ -119,47 +96,6 @@ namespace weave::syntax
         }
 
         return nullptr;
-    }
-
-    SyntaxToken* Parser::SkipToken(SyntaxKind kind, bool consume)
-    {
-        std::vector<SyntaxNode*> leadingTrivia{};
-
-        if (consume)
-        {
-            SyntaxToken* bad = this->Next();
-
-            // Copy leading trivia
-            if (SyntaxList const* node = bad->LeadingTrivia.GetNode())
-            {
-                std::copy(
-                    node->GetElements(),
-                    node->GetElements() + node->GetCount(),
-                    std::back_inserter(leadingTrivia));
-            }
-
-            // Push skipped token as trivia
-            leadingTrivia.emplace_back(
-                this->_factory->CreateToken(
-                    SyntaxKind::SkippedTokenTrivia,
-                    bad->Source));
-
-            // Copy trailing trivia
-            if (SyntaxList const* node = bad->TrailingTrivia.GetNode())
-            {
-                std::copy(
-                    node->GetElements(),
-                    node->GetElements() + node->GetCount(),
-                    std::back_inserter(leadingTrivia));
-            }
-        }
-
-        source::SourceSpan const source = this->Current()->Source.WithZeroLength();
-        return this->_factory->CreateMissingToken(
-            kind,
-            source,
-            SyntaxListView<SyntaxTrivia>{this->_factory->CreateList(leadingTrivia)},
-            SyntaxListView<SyntaxTrivia>{});
     }
 
     SyntaxToken* Parser::MatchUntil(std::vector<SyntaxNode*>& unexpected, SyntaxKind kind)
