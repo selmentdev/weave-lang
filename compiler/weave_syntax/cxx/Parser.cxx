@@ -31,6 +31,8 @@ namespace weave::syntax
                 break;
             }
         }
+
+        this->_current = Peek(0);
     }
 
     CompilationUnitSyntax* Parser::Parse()
@@ -52,13 +54,26 @@ namespace weave::syntax
 
     SyntaxToken* Parser::Current() const
     {
-        return this->Peek(0);
+        WEAVE_ASSERT(this->_current != nullptr);
+        return this->_current;
     }
 
     SyntaxToken* Parser::Next()
     {
         SyntaxToken* current = this->Current();
         ++this->_index;
+
+        if (this->_index >= this->_tokens.size())
+        {
+            this->_current = this->_tokens.back();
+        }
+        else
+        {
+            this->_current = this->_tokens[this->_index];
+        }
+
+        this->AdjustNestingLevel(current->Kind);
+
         return current;
     }
 

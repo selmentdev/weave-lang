@@ -15,8 +15,9 @@ namespace weave::syntax
         SyntaxFactory* _factory{};
         std::vector<SyntaxToken*> _tokens{};
         size_t _index{};
-        size_t _nestingLevel{};
-        size_t _maximumNestingLevel{128};
+        ptrdiff_t _nestingLevel{};
+        ptrdiff_t _maximumNestingLevel{128};
+        SyntaxToken* _current{};
 
     public:
         explicit Parser(
@@ -39,30 +40,6 @@ namespace weave::syntax
         [[nodiscard]] SyntaxToken* MatchUntil(std::vector<SyntaxNode*>& unexpected, SyntaxKind kind);
 
     private:
-        struct ResetPoint
-        {
-            friend class Parser;
-
-        private:
-            size_t _index{};
-
-        public:
-            explicit constexpr ResetPoint(size_t index)
-                : _index(index)
-            {
-            }
-        };
-
-        [[nodiscard]] constexpr ResetPoint GetResetPoint() const
-        {
-            return ResetPoint{this->_index};
-        }
-
-        void Reset(ResetPoint const& resetPoint)
-        {
-            this->_index = resetPoint._index;
-        }
-
         void AdjustNestingLevel(SyntaxKind kind)
         {
             switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
@@ -72,13 +49,17 @@ namespace weave::syntax
             case SyntaxKind::OpenParenToken:
             case SyntaxKind::ExclamationOpenParenToken:
             case SyntaxKind::LessThanToken:
+                fmt::println("Incrementing nesting level: {} when matching {}", this->_nestingLevel, GetName(kind));
                 ++this->_nestingLevel;
+
                 break;
 
             case SyntaxKind::CloseBraceToken:
             case SyntaxKind::CloseBracketToken:
             case SyntaxKind::CloseParenToken:
             case SyntaxKind::GreaterThanToken:
+
+                fmt::println("Decrementing nesting level: {} when matching {}", this->_nestingLevel, GetName(kind));
                 --this->_nestingLevel;
                 break;
 
