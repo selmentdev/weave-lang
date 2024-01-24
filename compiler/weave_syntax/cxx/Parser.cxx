@@ -1369,4 +1369,81 @@ namespace weave::syntax
         result->Type = type;
         members.emplace_back(result);
     }
+
+    SyntaxToken* Parser::MatchBalancedTokenSequence(SyntaxKind terminator, std::vector<SyntaxToken*>& tokens, std::vector<SyntaxNode*>& unexpected)
+    {
+        tokens.clear();
+        std::vector<SyntaxKind> stack{};
+
+        while (true)
+        {
+            SyntaxKind const current = this->Current()->Kind;
+
+            if (current == SyntaxKind::EndOfFileToken)
+            {
+                break;
+            }
+
+            if (stack.empty() and current == terminator)
+            {
+                break;
+            }
+
+            switch (current)
+            {
+                // Consume opening tokens
+            case SyntaxKind::OpenBraceToken:
+                {
+                    stack.push_back(SyntaxKind::CloseBraceToken);
+                    break;
+                }
+
+            case SyntaxKind::OpenBracketToken:
+                {
+                    stack.push_back(SyntaxKind::CloseBracketToken);
+                    break;
+                }
+
+            case SyntaxKind::OpenParenToken:
+                {
+                    stack.push_back(SyntaxKind::CloseParenToken);
+                    break;
+                }
+
+                // Check if proper closing token is on the stack
+            case SyntaxKind::CloseBraceToken:
+            case SyntaxKind::CloseParenToken:
+            case SyntaxKind::CloseBracketToken:
+                {
+                    if (stack.empty())
+                    {
+                        // Prematurely exit loop; match until terminator and report other tokens as invalid
+                        return this->MatchUntil(unexpected, terminator);
+                    }
+
+                    if (stack.back() != current)
+                    {
+                        // Matched different closing token.
+                        // Something like this: `(aaaaa{bbbbb]ccccc)` - `{` does not match `]`
+                        return this->MatchUntil(unexpected, terminator);
+                    }
+
+                    stack.pop_back();
+                    break;
+                }
+
+            default:
+                break;
+            }
+
+            // Append to tokens list.
+            tokens.push_back(this->Next());
+        }
+
+        // We got here only in two cases:
+        // - matches terminator
+        // - end of file
+
+        return this->Match(terminator);
+    }
 }

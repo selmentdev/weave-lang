@@ -8,6 +8,7 @@ lang spec
 - visibility `public`, `private`, `internal`
 - entities `type`, `concept`, `struct`, `enum`, `function`, `extend`, `partial`
 - constraints `where`, `assume`, `assert`
+- contracts `in`, `out`
 - statements `let`, `var`, `if`, `else`, `for`, `while`, `break`, `continue`, `return`, `yield`, `defer`, `match`, `case`, `default`, `using`, `goto`, `loop`, `do`, `const`
 
 ## Entities
@@ -210,6 +211,8 @@ Tuple types are used to define types that are used to group multiple values toge
 
 ```
 public type Point = (int32, int32);
+
+public type Vector3 = (X: float32, Y: float32, Z: float32);
 ```
 
 ## Strong types
@@ -258,7 +261,7 @@ public concept RandomGenerator
                 buffer[i * 8 + j] = value[j];
             }
         }
-        
+
         if remainder > 0
         {
             let value = self.SampleUInt64().AsBytes();
@@ -286,6 +289,103 @@ public extend Generator as RandomGenerator
 }
 ```
 
+## Attributes
+
+Attributes can be attached to almost all entities in language.
+
+---
+Syntax:
+
+```
+balanced-token-sequence
+    : token*
+    | '{' balanced-token-sequence '}'
+    | '(' balanced-token-sequence ')'
+    | '[' balanced-token-sequence ']'
+    ;
+
+attribute-specifier
+    : qualified-identifier
+    | qualified-identifier '(' balanced-sequence-of-tokens ')'
+    ;
+
+attribute-declaration
+    : '[<' attribute-specifier (',' attribute-specifier)* '>]'
+    ;
+```
+
+---
+
+Example:
+
+```
+[<Available(edition: 2022)>]
+[<Deprecated("because reasons"), ForceInline>]
+public function MyFunction(a: int32, b: int32) => a + b;
+```
+
+Alternative syntax:
+
+```
+@Available(edition: 2022)
+@Deprecated("because reasons") @ForceInline
+```
+
+## Contracts
+
+Contracts are mechanism to provide runtime validation of function preconditions and postconditions.
+
+Semantics of contract failure handling:
+
+| semantic | action   | handled | comments |
+|----------|----------|---------|-|
+| ignore   | continue | no      | |
+| assume   | continue | no      | assumes that preconditions are true; this may be removed in final specification |
+| observe  | continue | ye      | |
+| enforce  | abort    | yes     | |
+
+- function body
+  - `assert(expression, ...)` - for source code assertions, with optional formatted error message
+
+- function precondition
+    - `in: expression ;`
+    - `in { statements... }`
+        - contains list of statements which must be a sequence of assertions
+    - preconditions must not change state of observed values
+- function postcondition
+    - `out identifier: expression ;`
+    - `out: expression ;`
+    - `out (identifier) { statements... }`
+    - `out { statements... }`
+
+```weave
+function Foo(a: int32, b: int32, out c: int32) -> int32
+    // input contracts
+    in: a > 42;
+    in
+    {
+        assert((21 <= b) and (b <= 37);
+    }
+    // output contracts
+    out: c > 22;
+    out
+    {
+        assert((a * b) < 2137);
+    }
+
+    // return contracts
+    out r: r < 666;
+    out (r)
+    {
+        assert(a + r);
+    }
+{
+    return a + b;
+}
+```
+
+Contract statements are expanded by compiler at call site. Preconditions are checked before function call, postconditions are checked after function call. Compiler is permitted to report possible contradictions between conflicting contracts at compile time. Compiler may assume that preconditions and postconditions are always true, which can impact generated executable.
+
 ## Constraints
 
 Constraints are used to define requirements for generic parameters. Constraints can be defined for types, function arguments and return value. Constraints are defined using `where` keyword.
@@ -300,53 +400,6 @@ public function MultiplyAdd![type T](a: in T, b: in T, c: in T) -> T
 }
 ```
 
-Constraints defined for function arguments and return value are used to validate arguments and return value at runtime. Constraints defined for types are used to validate generic arguments at compile-time.
-
-Example below shows generic function with runtime constraints.
-
-```
-public function SomeLogic(a: int32, b: int32) -> int32
-    where a > 0
-    where b > 0
-    where return > 0
-{
-    return a + b;
-}
-```
-
-Runtime constraints are inlined at function call-site. Compiler rewrites code in such way that function arguments are validated before function call and return value is validated after function call.
-
-Compiler can optimize out constraints that are proven to be true at compile-time.
-
-Runtime constraints can be disabled by compiler options for release builds.
-
-Example below shows how runtime constraints are inlined at function call-site.
-
-Before:
-
-```
-public function Logic(a: int32, b: int32) -> int32
-{
-    return SomeLogic(a, b);
-}
-```
-
-After expansion:
-
-```
-public function Logic(a: int32, b: int32) -> int32
-{
-    assert(a > 0);
-    assert(b > 0);
-
-    let result = SomeLogic(a, b);
-
-    assert(result > 0);
-
-    return result;
-}
-```
-
 Constraints can also be used with concepts.
 
 ```
@@ -358,25 +411,28 @@ public concept NormalDistribution![type T]
 }
 ```
 
-## Notes
+## Properties
 
-1. How about defining runtime constraints (contracts) inside function body?
+Properties are fields with explicit setter and getter functions.
 
 ```
-public function SomeLogic![type T](a: T, b: T) -> T
-    where T: Addable
-{
-    assume a > 0;
-    assume b > 0;
-    assume return > 0;
+private var _value: int32;
 
-    return a + b;
+public var MyProperty: int32 {
+    get {
+        return self._value;
+    }
+    set (value) {
+        self._value = value;
+    }
 }
 ```
 
-Bad idea. Contracts can be defined for functions without bodies. It would be inconsistent to allow defining contracts inside function body.
+Compiler is permitted to choose best fit qualifier for setter value. Value type is infered from type of property.
 
-```js
+## Notes
+
+```
 public struct Point
 {
     public var X: int32;
@@ -447,6 +503,55 @@ public extend Point as Addable![Vector]
     }
 }
 ```
+
+## Literals
+
+- string literal `"example"`
+- character literal `'a'`
+- integer literal `0x1234_5678_u128`
+- float literal `21.37_f32`
+- array literal
+```
+let myArray: [int32] = { 2, 1, 3, 7 }
+
+// with indices (may be out-of-order / sparse)
+let myArray: [int32] = {
+    0: 2,
+    1: 1,
+    3: 7,
+    2: 3,
+};
+```
+
+- object literal
+```
+// Explicit types (linter may hint removing ': Vec4' type clause)
+let myObject: Vec4 = Vec4{
+    X: 2,
+    Y: 1,
+    Z: 3,
+    W: 7,
+};
+
+// Typep deduced
+let myObject = Vec4{
+    X: 2,
+    Y: 1,
+    Z: 3,
+    W: 7,
+};
+```
+- tuple literal `(a, b)`
+- labelled tuple literal (type infered from lhs)
+```
+let x: (a: int32, b: int32) = (b: 21, a: 37);
+// question: could this use '{}' as just like other literals?
+let y: (a: int32, b: int32) = {b: 21, a: 37};
+
+public var PositiveX: Vector3 => { X: 1, Y: 0, Z: 0 };
+public var PositiveZ => Vector3{ X: 0, Y: 0, Z: 1 };
+```
+- empty unit tuple `()`
 
 ## Examples
 

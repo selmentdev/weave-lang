@@ -162,7 +162,7 @@ namespace weave::syntax
         uint64_t Hash;
     };
 
-    constexpr auto c_KeywordLookup = []()
+    constexpr auto c_KeywordLookup = []()  // NOLINT(fuchsia-statically-constructed-objects)
     {
         auto result = std::array{
 #define WEAVE_SYNTAX_CONTEXTUAL_KEYWORD(name, spelling) KeywordMappingEntry{spelling, SyntaxKind::name, hash::Fnv1a64::FromString(spelling)},

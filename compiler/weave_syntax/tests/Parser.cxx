@@ -922,3 +922,76 @@ if while true
         N(1, SyntaxKind::CloseBraceToken);
     }
 }
+
+TEST_CASE("parser - balanced token sequence")
+{
+    using namespace weave::syntax;
+
+    std::vector<SyntaxToken*> tokens{};
+    std::vector<SyntaxNode*> unexpected{};
+
+    SECTION("valid - empty sequence")
+    {
+        ParserHelper helper{
+            ")",
+            [&](Parser& parser)
+            {
+                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+            }};
+
+        REQUIRE(tokens.size() == 0);
+        REQUIRE(unexpected.size() == 0);
+    }
+
+    SECTION("valid - premature")
+    {
+        ParserHelper helper{
+            "))",
+            [&](Parser& parser)
+            {
+                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+            }};
+
+        REQUIRE(tokens.size() == 0);
+        REQUIRE(unexpected.size() == 0);
+    }
+
+    SECTION("valid - balanced")
+    {
+        ParserHelper helper{
+            "())",
+            [&](Parser& parser)
+            {
+                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+            }};
+
+        REQUIRE(tokens.size() == 0);
+        REQUIRE(unexpected.size() == 0);
+    }
+
+    SECTION("invalid - premature end of file")
+    {
+        ParserHelper helper{
+            "",
+            [&](Parser& parser)
+            {
+                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+            }};
+
+        REQUIRE(tokens.size() == 0);
+        REQUIRE(unexpected.size() == 0);
+    }
+
+    SECTION("invalid - unbalanced")
+    {
+        ParserHelper helper{
+            "aaa'b'{cccc]420_69)",
+            [&](Parser& parser)
+            {
+                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+            }};
+
+        REQUIRE(tokens.size() == 5);
+        REQUIRE(unexpected.size() == 4);
+    }
+}

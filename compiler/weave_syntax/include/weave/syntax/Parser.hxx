@@ -212,5 +212,10 @@ namespace weave::syntax
             std::span<AttributeListSyntax*> attributes,
             TypeSyntax* type,
             std::vector<MemberDeclarationSyntax*>& members);
+
+        SyntaxToken* MatchBalancedTokenSequence(
+            SyntaxKind terminator,
+            std::vector<SyntaxToken*>& tokens,
+            std::vector<SyntaxNode*>& unexpected);
     };
 }
