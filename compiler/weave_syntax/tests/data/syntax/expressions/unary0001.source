@@ -1,0 +1,7 @@
+let x = sizeof(UInt128);
+let y = 2 * sizeof(Int64) + sizeof(Int32);
+let z = nameof(core.numerics.UInt128);
+let w = typeof(std.c.ulonglong);
+let a = addressof(w);
+let c = alignof(w);
+let e = &x;

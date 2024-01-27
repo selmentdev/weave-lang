@@ -311,7 +311,10 @@ namespace weave::syntax
         case SyntaxKind::LogicalNotExpression:
         case SyntaxKind::PreIncrementExpression:
         case SyntaxKind::PreDecrementExpression:
-            // TODO: Support for typeof, sizeof, nameof, addressof, await, checked, unchecked
+        case SyntaxKind::SizeOfExpression:
+        case SyntaxKind::TypeOfExpression:
+        case SyntaxKind::NameOfExpression:
+            // TODO: Support for await, checked, unchecked
             return Precedence::Unary;
         // case SyntaxKind::CastExpression:
         //     return Precedence::Cast;
@@ -405,8 +408,9 @@ namespace weave::syntax
         {
         case SyntaxKind::TypeOfKeyword:
         case SyntaxKind::SizeOfKeyword:
+        case SyntaxKind::AlignOfKeyword:
         case SyntaxKind::NameOfKeyword:
-        case SyntaxKind::OffsetOfKeyword:
+        case SyntaxKind::AddressOfKeyword:
         case SyntaxKind::DefaultKeyword:
         case SyntaxKind::FalseKeyword:
         case SyntaxKind::TrueKeyword:
@@ -519,6 +523,11 @@ namespace weave::syntax
     {
         switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
         {
+        case SyntaxKind::TypeOfKeyword:
+        case SyntaxKind::SizeOfKeyword:
+        case SyntaxKind::AlignOfKeyword:
+        case SyntaxKind::NameOfKeyword:
+        case SyntaxKind::AddressOfKeyword:
         case SyntaxKind::FalseKeyword:
         case SyntaxKind::TrueKeyword:
         case SyntaxKind::IntegerLiteralToken:

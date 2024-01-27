@@ -37,7 +37,7 @@ namespace helpers
         syntax::SyntaxFactory factory{};
 
         syntax::Parser parser{&diagnostic, &factory, text};
-        [[maybe_unused]] syntax::CompilationUnitSyntax const* cu = parser.Parse();
+        [[maybe_unused]] syntax::SourceFileSyntax const* cu = parser.ParseSourceFile();
 
         REQUIRE(diagnostic.Items.size() == expectedDiagnostics.size());
 

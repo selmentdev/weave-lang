@@ -1,0 +1,10 @@
+error: Expected '{'
+        --> <source>:1:11
+         |
+       1 | public if let x(y) = 42 {
+         |           ^^^
+error: Expected '}'
+        --> <source>:7:1
+         |
+       7 | 
+         | ^

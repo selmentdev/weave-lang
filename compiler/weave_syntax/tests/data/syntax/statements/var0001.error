@@ -1,0 +1,25 @@
+error: Expected '[token:identifier]'
+        --> <source>:2:9
+         |
+       2 |     let if y;
+         |         ^^
+error: Expected '{'
+        --> <source>:2:13
+         |
+       2 |     let if y;
+         |             ^
+error: Expected '{'
+        --> <source>:8:8
+         |
+       8 |     if let x(y) = 42 { }
+         |        ^^^
+error: Expected '}'
+        --> <source>:10:1
+         |
+      10 | 
+         | ^
+error: Expected '}'
+        --> <source>:10:1
+         |
+      10 | 
+         | ^

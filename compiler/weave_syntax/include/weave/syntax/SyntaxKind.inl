@@ -427,7 +427,7 @@ WEAVE_SYNTAX_NODE(LiteralExpressionSyntax,                      "[node:literal-e
 WEAVE_SYNTAX_NODE(UnaryExpressionSyntax,                        "[node:unary-expression]")
 WEAVE_SYNTAX_NODE(BinaryExpressionSyntax,                       "[node:binary-expression]")
 WEAVE_SYNTAX_NODE(EqualsValueClauseSyntax,                      "[node:equals-value-clause]")
-WEAVE_SYNTAX_NODE(PostfixUnaryExpression,                       "[node:postfix-unary-expression]")
+WEAVE_SYNTAX_NODE(PostfixUnaryExpressionSyntax,                 "[node:postfix-unary-expression]")
 WEAVE_SYNTAX_NODE(InvocationExpressionSyntax,                   "[node:invocation-expression]")
 WEAVE_SYNTAX_NODE(ConditionalExpressionSyntax,                  "[node:conditional-expression]")
 WEAVE_SYNTAX_NODE(MemberAccessExpressionSyntax,                 "[node:member-access-expression]")
@@ -445,6 +445,11 @@ WEAVE_SYNTAX_NODE(EmptyStatementSyntax,                         "[node:empty-sta
 WEAVE_SYNTAX_NODE(SelfExpressionSyntax,                         "[node:self-expression]")
 WEAVE_SYNTAX_NODE(UnexpectedNodesSyntax,                        "[node:unexpected-nodes]")
 WEAVE_SYNTAX_NODE(BalancedTokenSequneceSyntax,                  "[node:balanced-token-sequence]")
+WEAVE_SYNTAX_NODE(SizeOfExpressionSyntax,                       "[node:size-of-expression]")
+WEAVE_SYNTAX_NODE(AlignOfExpressionSyntax,                      "[node:align-of-expression]")
+WEAVE_SYNTAX_NODE(NameOfExpressionSyntax,                       "[node:name-of-expression]")
+WEAVE_SYNTAX_NODE(TypeOfExpressionSyntax,                       "[node:type-of-expression]")
+WEAVE_SYNTAX_NODE(AddressOfExpressionSyntax,                    "[node:address-of-expression]")
 
 WEAVE_SYNTAX_NODE(SourceFileSyntax,                             "[node:source-file]")
 WEAVE_SYNTAX_NODE(CodeBlockSyntax,                              "code block syntax")
@@ -459,6 +464,10 @@ WEAVE_SYNTAX_EXPRESSION(PreIncrementExpression,                 "[expr:pre-incre
 WEAVE_SYNTAX_EXPRESSION(PreDecrementExpression,                 "[expr:pre-decrement]")
 WEAVE_SYNTAX_EXPRESSION(AddressOfExpression,                    "[expr:address-of]")
 WEAVE_SYNTAX_EXPRESSION(DereferenceExpression,                  "[expr:dereference]")
+
+WEAVE_SYNTAX_EXPRESSION(SizeOfExpression,                       "[expr:size-of]")
+WEAVE_SYNTAX_EXPRESSION(TypeOfExpression,                       "[expr:type-of]")
+WEAVE_SYNTAX_EXPRESSION(NameOfExpression,                       "[expr:name-of]")
 
 // postfix unary expressions
 WEAVE_SYNTAX_EXPRESSION(PostIncrementExpression,                "[expr:post-increment]")

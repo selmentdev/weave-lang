@@ -1,0 +1,6 @@
+public if let x(y) = 42 {
+    vo.v += 42;
+}
+if x(y) = 42 {
+  vo.v += 213;
+}

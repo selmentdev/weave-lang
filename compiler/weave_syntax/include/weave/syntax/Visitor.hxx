@@ -108,7 +108,7 @@ namespace weave::syntax
         void OnAssignmentExpressionSyntax(AssignmentExpressionSyntax* node) override;
         void OnBinaryExpressionSyntax(BinaryExpressionSyntax* node) override;
         void OnUnaryExpressionSyntax(UnaryExpressionSyntax* node) override;
-        void OnPostfixUnaryExpression(PostfixUnaryExpression* node) override;
+        void OnPostfixUnaryExpressionSyntax(PostfixUnaryExpressionSyntax* node) override;
         void OnParenthesizedExpressionSyntax(ParenthesizedExpressionSyntax* node) override;
         void OnInvocationExpressionSyntax(InvocationExpressionSyntax* node) override;
         void OnMemberAccessExpressionSyntax(MemberAccessExpressionSyntax* node) override;
@@ -137,5 +137,10 @@ namespace weave::syntax
         void OnEmptyStatementSyntax(EmptyStatementSyntax* node) override;
         void OnCodeBlockItemSyntax(CodeBlockItemSyntax* node) override;
         void OnCodeBlockSyntax(CodeBlockSyntax* node) override;
+        void OnSizeOfExpressionSyntax(SizeOfExpressionSyntax* node) override;
+        void OnAlignOfExpressionSyntax(AlignOfExpressionSyntax* node) override;
+        void OnTypeOfExpressionSyntax(TypeOfExpressionSyntax* node) override;
+        void OnNameOfExpressionSyntax(NameOfExpressionSyntax* node) override;
+        void OnAddressOfExpressionSyntax(AddressOfExpressionSyntax* node) override;
     };
 }

@@ -286,7 +286,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnPostfixUnaryExpression(PostfixUnaryExpression* node)
+    void SyntaxWalker::OnPostfixUnaryExpressionSyntax(PostfixUnaryExpressionSyntax* node)
     {
         this->OnDefault(node);
 
@@ -662,4 +662,75 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnSizeOfExpressionSyntax(SizeOfExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->SizeOfKeyword);
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnAlignOfExpressionSyntax(AlignOfExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->AlignOfKeyword);
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnTypeOfExpressionSyntax(TypeOfExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->TypeOfKeyword);
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnNameOfExpressionSyntax(NameOfExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->NameOfKeyword);
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnAddressOfExpressionSyntax(AddressOfExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->AddressOfKeyword);
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
 }

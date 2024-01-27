@@ -23,9 +23,6 @@ namespace weave::syntax
             SyntaxFactory* factory,
             source::SourceText const& source);
 
-    public:
-        [[nodiscard]] CompilationUnitSyntax* Parse();
-
     private:
         [[nodiscard]] SyntaxToken* Peek(size_t offset) const;
         [[nodiscard]] SyntaxToken* Current() const;
@@ -156,60 +153,15 @@ namespace weave::syntax
 
         ParameterSyntax* ParseParameter();
     public:
-        [[nodiscard]] CompilationUnitSyntax* ParseCompilationUnit();
-
-
-        void ParseTypeBody(
-            std::vector<ConstraintSyntax*>& constraints,
-            std::vector<MemberDeclarationSyntax*>& members);
-
-        void ParseNamespaceBody(
-            SyntaxToken* openBraceOrSemicolon,
-            std::vector<UsingDirectiveSyntax*>& usings,
-            std::vector<MemberDeclarationSyntax*>& members);
-
-        void ParseMemberModifiers(
-            std::vector<SyntaxToken*>& modifiers);
-
-        void ParseFunctionParameterModifiers(
-            std::vector<SyntaxToken*>& modifiers);
-
-        void ParseAttributesList(
-            std::vector<AttributeListSyntax*>& attributes);
-
-        MemberDeclarationSyntax* ParseMemberDeclaration(
-            std::span<AttributeListSyntax*> attributes,
-            std::span<SyntaxToken*> modifiers);
-
         AttributeSyntax* ParseAttribute();
 
         AttributeListSyntax* ParseAttributeList();
-
-        NamespaceDeclarationSyntax* ParseNamespaceDeclaration(
-            std::span<AttributeListSyntax*> attributes,
-            std::span<SyntaxToken*> modifiers);
-
-        StructDeclarationSyntax* ParseStructDeclaration(
-            std::span<AttributeListSyntax*> attributes,
-            std::span<SyntaxToken*> modifiers);
-
-        ExtendDeclarationSyntax* ParseExtendDeclaration(
-            std::span<AttributeListSyntax*> attributes,
-            std::span<SyntaxToken*> modifiers);
-
-        ConceptDeclarationSyntax* ParseConceptDeclaration(
-            std::span<AttributeListSyntax*> attributes,
-            std::span<SyntaxToken*> modifiers);
 
         UsingDirectiveSyntax* ParseUsingDirective();
 
         ReturnTypeClauseSyntax* ParseReturnTypeClause();
 
         ArrowExpressionClauseSyntax* ParseArrowExpressionClause();
-
-        FunctionDeclarationSyntax* ParseFunctionDeclaration(
-            std::span<AttributeListSyntax*> attributes,
-            std::span<SyntaxToken*> modifiers);
 
         TypeClauseSyntax* ParseTypeClause();
 
@@ -224,14 +176,6 @@ namespace weave::syntax
         ArgumentListSyntax* ParseArgumentList();
 
         BracketedArgumentListSyntax* ParseBracketedArgumentList();
-
-        //ParameterSyntax* ParseParameter(
-        //    std::span<AttributeListSyntax*> attributes,
-        //    std::span<SyntaxToken*> modifiers);
-
-        ConstantDeclarationSyntax* ParseConstantDeclaration(
-            std::span<AttributeListSyntax*> attributes,
-            std::span<SyntaxToken*> modifiers);
 
         NameSyntax* ParseQualifiedName();
 
@@ -255,6 +199,16 @@ namespace weave::syntax
 
         ExpressionSyntax* ParseParenthesizedExpression();
 
+        SizeOfExpressionSyntax* ParseSizeOfExpression();
+
+        AlignOfExpressionSyntax* ParseAlignOfExpression();
+
+        TypeOfExpressionSyntax* ParseTypeOfExpression();
+
+        NameOfExpressionSyntax* ParseNameOfExpression();
+
+        AddressOfExpressionSyntax* ParseAddressOfExpression();
+
         ExpressionSyntax* ParseBooleanLiteral();
 
         ExpressionSyntax* ParseIntegerLiteral();
@@ -264,9 +218,6 @@ namespace weave::syntax
         ExpressionSyntax* ParseStringLiteral();
 
         ExpressionSyntax* ParseCharacterLiteral();
-
-        StatementSyntax* CreateMissingStatement(
-            std::span<SyntaxToken*> tokens);
 
         StatementSyntax* ParseIfStatement(
             SyntaxListView<AttributeListSyntax> attributes,

@@ -21,8 +21,46 @@ error: Unexpected tokens
          | ^^^^^^^^
       51 | add
          | ^^^
-      52 | addressof
+error: Expected '[token:identifier]'
+        --> <source>:53:1
+         |
+      53 | addrspace
          | ^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:53:1
+         |
+      53 | addrspace
+         | ^^^^^^^^^
+      54 | alias
+         | ^^^^^
+      55 | align
+         | ^^^^^
+      56 | alignas
+         | ^^^^^^^
+error: Expected '('
+        --> <source>:58:1
+         |
+      58 | array
+         | ^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:58:1
+         |
+      58 | array
+         | ^^^^^
+error: Expected ')'
+        --> <source>:58:1
+         |
+      58 | array
+         | ^^^^^
+error: Unexpected tokens
+        --> <source>:58:1
+         |
+      58 | array
+         | ^^^^^
+      59 | as
+         | ^^
+      60 | assembly
+         | ^^^^^^^^
      ... |
       80 | class
          | ^^^^^

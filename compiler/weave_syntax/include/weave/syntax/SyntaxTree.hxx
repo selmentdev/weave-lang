@@ -604,9 +604,9 @@ namespace weave::syntax
         }
     };
 
-    class PostfixUnaryExpression final : public ExpressionSyntax
+    class PostfixUnaryExpressionSyntax final : public ExpressionSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(PostfixUnaryExpression);
+        WEAVE_DEFINE_SYNTAX_NODE(PostfixUnaryExpressionSyntax);
 
     public:
         SyntaxKind Operation{};
@@ -614,8 +614,8 @@ namespace weave::syntax
         SyntaxToken* OperatorToken{};
 
     public:
-        explicit constexpr PostfixUnaryExpression()
-            : ExpressionSyntax{SyntaxKind::PostfixUnaryExpression}
+        explicit constexpr PostfixUnaryExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::PostfixUnaryExpressionSyntax}
         {
         }
     };
@@ -664,6 +664,91 @@ namespace weave::syntax
     public:
         explicit constexpr SelfExpressionSyntax()
             : ExpressionSyntax{SyntaxKind::SelfExpressionSyntax}
+        {
+        }
+    };
+
+    class SizeOfExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(SizeOfExpressionSyntax);
+
+    public:
+        SyntaxToken* SizeOfKeyword{};
+        SyntaxToken* OpenParenToken{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr SizeOfExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::SizeOfExpressionSyntax}
+        {
+        }
+    };
+
+    class AlignOfExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(AlignOfExpressionSyntax);
+
+    public:
+        SyntaxToken* AlignOfKeyword{};
+        SyntaxToken* OpenParenToken{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr AlignOfExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::AlignOfExpressionSyntax}
+        {
+        }
+    };
+
+    class TypeOfExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TypeOfExpressionSyntax);
+
+    public:
+        SyntaxToken* TypeOfKeyword{};
+        SyntaxToken* OpenParenToken{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr TypeOfExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::TypeOfExpressionSyntax}
+        {
+        }
+    };
+
+    class NameOfExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(NameOfExpressionSyntax);
+
+    public:
+        SyntaxToken* NameOfKeyword{};
+        SyntaxToken* OpenParenToken{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr NameOfExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::NameOfExpressionSyntax}
+        {
+        }
+    };
+
+    class AddressOfExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(AddressOfExpressionSyntax);
+
+    public:
+        SyntaxToken* AddressOfKeyword{};
+        SyntaxToken* OpenParenToken{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr AddressOfExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::AddressOfExpressionSyntax}
         {
         }
     };
