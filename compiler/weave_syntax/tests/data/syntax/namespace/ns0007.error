@@ -1,0 +1,5 @@
+error: Expected '{'
+        --> <source>:1:13
+         |
+       1 | namespace Y }
+         |             ^

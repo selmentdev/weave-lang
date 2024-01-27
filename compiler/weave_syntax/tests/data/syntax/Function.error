@@ -1,30 +1,8 @@
 error: Unexpected tokens
         --> <source>:3:38
          |
-       3 | #[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {}
+       3 | #[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {})
          |                                      ^^^^^^^^^^^^^^^^^^^^^^
-       4 | 
-         | 
-       5 | // Argument attributes:
-         | ^^^^^^^^^^^^^^^^^^^^^^^
-       6 | #[Foo, Deprecated("Reason")]
-         | ^^^^^^^^^^^^^^^^^^^^^^^^^^
-error: Expected ';'
-        --> <source>:6:28
-         |
-       6 | #[Foo, Deprecated("Reason")]
-         |                            ^
-error: Unexpected tokens
-        --> <source>:6:28
-         |
-       6 | #[Foo, Deprecated("Reason")]
-         |                            ^
-       7 | function Bar(
-         | ^^^^^^^^^^^^^
-       8 |     #[Unused] a: Int32,
-         | ^^^^^^^^^^^^^^^^^^^^^^^
-       9 |     #[Unused] b: Float32);
-         | ^^^^^^^^^^^^^^^^^^^^^^^^^
 error: Expected ':'
         --> <source>:19:27
          |
@@ -35,34 +13,83 @@ error: Expected '[token:identifier]'
          |
       35 |     if /*let Some(y)*/ = y {
          |                        ^
-error: Expected '[token:identifier]'
+error: Unexpected tokens
         --> <source>:72:39
          |
       72 | function EndOfFileDuringStatement() { =42: a=5;}
          |                                       ^
-error: Expected ';'
+error: Unexpected tokens
         --> <source>:72:42
          |
       72 | function EndOfFileDuringStatement() { =42: a=5;}
          |                                          ^
 error: Unexpected tokens
-        --> <source>:72:42
-         |
-      72 | function EndOfFileDuringStatement() { =42: a=5;}
-         |                                          ^^^^^^
-error: Unexpected tokens
         --> <source>:76:1
          |
       76 | const x = 42
-         | ^^^^^^^^^^^^
-      77 | 
-         | 
+         | ^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:78:11
+         |
       78 | namespace namespace }
-         | ^^^^^^^^^^^^^^^^^^^^^
-     ... |
-      93 |             S
-         | ^^^^^^^^^^^^^
-      94 |             T
-         | ^^^^^^^^^^^^^
+         |           ^^^^^^^^^
+error: Expected '{'
+        --> <source>:78:11
+         |
+      78 | namespace namespace }
+         |           ^^^^^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:78:21
+         |
+      78 | namespace namespace }
+         |                     ^
+error: Expected '{'
+        --> <source>:78:21
+         |
+      78 | namespace namespace }
+         |                     ^
+error: Unexpected tokens
+        --> <source>:83:27
+         |
+      83 |             function W() {:z= a b c 4
+         |                           ^
+error: Expected '[token:identifier]'
+        --> <source>:95:22
+         |
       95 |             namespace; // this is commentos
-         | ^^^^^^^^^^^^^^^^^^^^^
+         |                      ^
+error: Expected '{'
+        --> <source>:95:22
+         |
+      95 |             namespace; // this is commentos
+         |                      ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^

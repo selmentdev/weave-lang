@@ -1,158 +1,3 @@
-error: Expected ';'
-        --> <source>:2:1
-         |
-       2 | char
-         | ^^^^
-error: Expected ';'
-        --> <source>:3:1
-         |
-       3 | char16
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:4:1
-         |
-       4 | char32
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:5:1
-         |
-       5 | char8
-         | ^^^^^
-error: Expected ';'
-        --> <source>:6:1
-         |
-       6 | decimal128
-         | ^^^^^^^^^^
-error: Expected ';'
-        --> <source>:7:1
-         |
-       7 | decimal32
-         | ^^^^^^^^^
-error: Expected ';'
-        --> <source>:8:1
-         |
-       8 | decimal64
-         | ^^^^^^^^^
-error: Expected ';'
-        --> <source>:9:1
-         |
-       9 | float16
-         | ^^^^^^^
-error: Expected ';'
-        --> <source>:10:1
-         |
-      10 | float32
-         | ^^^^^^^
-error: Expected ';'
-        --> <source>:11:1
-         |
-      11 | float64
-         | ^^^^^^^
-error: Expected ';'
-        --> <source>:12:1
-         |
-      12 | int128
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:13:1
-         |
-      13 | int16
-         | ^^^^^
-error: Expected ';'
-        --> <source>:14:1
-         |
-      14 | int256
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:15:1
-         |
-      15 | int32
-         | ^^^^^
-error: Expected ';'
-        --> <source>:16:1
-         |
-      16 | int64
-         | ^^^^^
-error: Expected ';'
-        --> <source>:17:1
-         |
-      17 | int8
-         | ^^^^
-error: Expected ';'
-        --> <source>:18:1
-         |
-      18 | iptr
-         | ^^^^
-error: Expected ';'
-        --> <source>:19:1
-         |
-      19 | isize
-         | ^^^^^
-error: Expected ';'
-        --> <source>:20:1
-         |
-      20 | object
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:21:1
-         |
-      21 | string
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:22:1
-         |
-      22 | uint128
-         | ^^^^^^^
-error: Expected ';'
-        --> <source>:23:1
-         |
-      23 | uint16
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:24:1
-         |
-      24 | uint256
-         | ^^^^^^^
-error: Expected ';'
-        --> <source>:25:1
-         |
-      25 | uint32
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:26:1
-         |
-      26 | uint64
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:27:1
-         |
-      27 | uint8
-         | ^^^^^
-error: Expected ';'
-        --> <source>:28:1
-         |
-      28 | uptr
-         | ^^^^
-error: Expected ';'
-        --> <source>:29:1
-         |
-      29 | usize
-         | ^^^^^
-error: Expected ';'
-        --> <source>:30:1
-         |
-      30 | void
-         | ^^^^
-error: Expected ';'
-        --> <source>:31:1
-         |
-      31 | byte
-         | ^^^^
-error: Expected ';'
-        --> <source>:32:1
-         |
-      32 | and
-         | ^^^
 error: Unexpected tokens
         --> <source>:32:1
          |
@@ -163,8 +8,143 @@ error: Unexpected tokens
       34 | or
          | ^^
      ... |
-     278 | ]
+      40 | bit_and
+         | ^^^^^^^
+      41 | bit_or
+         | ^^^^^^
+      42 | bit_compl
+         | ^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:50:1
+         |
+      50 | abstract
+         | ^^^^^^^^
+      51 | add
+         | ^^^
+      52 | addressof
+         | ^^^^^^^^^
+     ... |
+      80 | class
+         | ^^^^^
+      81 | columnmajor
+         | ^^^^^^^^^^^
+      82 | compile
+         | ^^^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:84:1
+         |
+      84 | const
+         | ^^^^^
+error: Expected '{'
+        --> <source>:84:1
+         |
+      84 | const
+         | ^^^^^
+error: Unexpected tokens
+        --> <source>:84:1
+         |
+      84 | const
+         | ^^^^^
+error: Unexpected tokens
+        --> <source>:86:1
+         |
+      86 | continue
+         | ^^^^^^^^
+      87 | contravariant
+         | ^^^^^^^^^^^^^
+      88 | covariant
+         | ^^^^^^^^^
+     ... |
+      92 | delegate
+         | ^^^^^^^^
+      93 | delete
+         | ^^^^^^
+      94 | deprecated
+         | ^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:96:1
+         |
+      96 | discard
+         | ^^^^^^^
+      97 | do
+         | ^^
+      98 | drop
+         | ^^^^
+      99 | dynamic
+         | ^^^^^^^
+     100 | eager
+         | ^^^^^
+error: Expected 'if'
+        --> <source>:101:1
+         |
+     101 | else
+         | ^^^^
+error: Expected '{'
+        --> <source>:102:1
+         |
+     102 | enum
+         | ^^^^
+error: Unexpected tokens
+        --> <source>:102:1
+         |
+     102 | enum
+         | ^^^^
+     103 | event
+         | ^^^^^
+     104 | except
+         | ^^^^^^
+     ... |
+     107 | expression
+         | ^^^^^^^^^^
+     108 | extension
+         | ^^^^^^^^^
+     109 | extern
+         | ^^^^^^
+error: Unexpected tokens
+        --> <source>:111:1
+         |
+     111 | field
+         | ^^^^^
+     112 | file
+         | ^^^^
+     113 | final
+         | ^^^^^
+     ... |
+     120 | fragment
+         | ^^^^^^^^
+     121 | friend
+         | ^^^^^^
+     122 | from
+         | ^^^^
+error: Expected '[token:identifier]'
+        --> <source>:124:1
+         |
+     124 | generic
+         | ^^^^^^^
+error: Unexpected tokens
+        --> <source>:124:1
+         |
+     124 | generic
+         | ^^^^^^^
+     125 | get
+         | ^^^
+     126 | global
+         | ^^^^^^
+     ... |
+     270 | *
          | ^
+     271 | /=
+         | ^^
+     272 | /
+         | ^
+error: Expected '[token:identifier]'
+        --> <source>:277:1
+         |
+     277 | [
+         | ^
+error: Unexpected tokens
+        --> <source>:279:1
+         |
      279 | ::
          | ^^
      280 | :
@@ -179,13 +159,18 @@ error: Unexpected tokens
      284 | %=
          | ^^
      ... |
-     318 | r"raw string \t"
-         | ^^^^^^^^^^^^^^^^
-     319 | r#"raw string \n"#
-         | ^^^^^^^^^^^^^^^^^^
-     320 | r##" r#"inner\nraw\nstring"# "##
-         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-error: Expected ';'
+     311 | ...
+         | ^^^
+     312 | ..
+         | ^^
+     313 | .
+         | ^
+error: Expected '}'
+        --> <source>:321:1
+         |
+     321 | 
+         | ^
+error: Expected '}'
         --> <source>:321:1
          |
      321 | 

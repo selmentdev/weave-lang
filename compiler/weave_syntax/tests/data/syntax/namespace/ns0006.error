@@ -1,0 +1,10 @@
+error: Expected '{'
+        --> <source>:1:13
+         |
+       1 | namespace X ;
+         |             ^
+error: Expected '}'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^

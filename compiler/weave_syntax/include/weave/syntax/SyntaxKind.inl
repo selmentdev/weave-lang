@@ -400,7 +400,6 @@ WEAVE_SYNTAX_NODE(QualifiedNameSyntax,                          "[node:qualified
 WEAVE_SYNTAX_NODE(StructDeclarationSyntax,                      "[node:struct-declaration]")
 WEAVE_SYNTAX_NODE(ConceptDeclarationSyntax,                     "[node:concept-declaration]")
 WEAVE_SYNTAX_NODE(ExtendDeclarationSyntax,                      "[node:extend-declaration]")
-WEAVE_SYNTAX_NODE(FieldDeclarationSyntax,                       "[node:field-declaration]")
 WEAVE_SYNTAX_NODE(EnumDeclarationSyntax,                        "[node:enum-declaration]")
 WEAVE_SYNTAX_NODE(EnumMemberDeclarationSyntax,                  "[node:enum-member-declaration]")
 WEAVE_SYNTAX_NODE(AttributeTargetSpecifierSyntax,               "[node:attribute-target-specifier]")

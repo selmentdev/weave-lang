@@ -1,0 +1,15 @@
+error: Expected '[token:identifier]'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^
+error: Expected '{'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^
+error: Expected '}'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^

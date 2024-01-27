@@ -1,0 +1,20 @@
+error: Unexpected tokens
+        --> <source>:1:8
+         |
+       1 | public break function
+         |        ^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^
+error: Expected '('
+        --> <source>:2:1
+         |
+       2 | 
+         | ^
+error: Expected ')'
+        --> <source>:2:1
+         |
+       2 | 
+         | ^

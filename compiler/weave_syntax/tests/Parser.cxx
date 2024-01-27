@@ -59,14 +59,13 @@ private:
     };
 
 public:
-    template <typename ActionT = weave::syntax::SyntaxNode*(weave::syntax::Parser&)>
-    ParserHelper(std::string_view source, ActionT&& action)
+    ParserHelper(std::string_view source)
         : Text{std::string{source}}
     {
         weave::syntax::Parser parser{&this->Diagnostic, &this->Factory, this->Text};
         Walker walker{this->Entries};
 
-        this->Root = action(parser);
+        this->Root = parser.ParseSourceFile();
         walker.Dispatch(this->Root);
     }
 };
@@ -125,11 +124,7 @@ TEST_CASE("parser - valid 'if' statement with parenthesized expression")
 
 if (true) { }
 
-})___",
-        [](Parser& parser)
-        {
-            return parser.ParseBlockStatement();
-        }};
+})___"};
 
     REQUIRE(helper.Entries.size() == 14);
     Validator N{helper};
@@ -180,11 +175,7 @@ TEST_CASE("parser - valid 'if' statement with true")
 
 if true { }
 
-})___",
-        [](Parser& parser)
-        {
-            return parser.ParseBlockStatement();
-        }};
+})___"};
 
     REQUIRE(helper.Entries.size() == 11);
     Validator N{helper};
@@ -230,11 +221,7 @@ if true {
 } else {
 }
 
-})___",
-        [](Parser& parser)
-        {
-            return parser.ParseBlockStatement();
-        }};
+})___"};
 
     REQUIRE(helper.Entries.size() == 16);
     Validator N{helper};
@@ -266,11 +253,7 @@ if true {
 } else if false {
 }
 
-})___",
-        [](Parser& parser)
-        {
-            return parser.ParseBlockStatement();
-        }};
+})___"};
 
     REQUIRE(helper.Entries.size() == 20);
     Validator N{helper};
@@ -308,11 +291,7 @@ if true {
 } else if false {
 }
 
-})___",
-        [](Parser& parser)
-        {
-            return parser.ParseBlockStatement();
-        }};
+})___"};
 
     REQUIRE(helper.Entries.size() == 33);
     Validator N{helper};
@@ -394,11 +373,7 @@ else if false {
 else {
 }
 
-})___",
-        [](Parser& parser)
-        {
-            return parser.ParseBlockStatement();
-        }};
+})___"};
 
     REQUIRE(helper.Entries.size() == 26);
     Validator N{helper};
@@ -467,11 +442,7 @@ if true {
 } else {
 }
 
-})___",
-        [](Parser& parser)
-        {
-            return parser.ParseBlockStatement();
-        }};
+})___"};
 
     REQUIRE(helper.Entries.size() == 38);
     Validator N{helper};
@@ -556,11 +527,7 @@ TEST_CASE("parser - empty compilation unit")
 {
     using namespace weave::syntax;
     ParserHelper helper{
-        R"___()___",
-        [](Parser& parser)
-        {
-            return parser.ParseCompilationUnit();
-        }};
+        R"___()___"};
 
     REQUIRE(helper.Entries.size() == 2);
     Validator N{helper};
@@ -579,11 +546,7 @@ namespace A
 {
 }
 
-)___",
-        [](Parser& parser)
-        {
-            return parser.ParseCompilationUnit();
-        }};
+)___"};
 
     REQUIRE(helper.Entries.size() == 9);
     Validator N{helper};
@@ -611,11 +574,7 @@ namespace B
 {
 }
 
-)___",
-        [](Parser& parser)
-        {
-            return parser.ParseCompilationUnit();
-        }};
+)___"};
 
     REQUIRE(helper.Entries.size() == 15);
     Validator N{helper};
@@ -652,11 +611,7 @@ namespace B
     }
 }
 
-)___",
-        [](Parser& parser)
-        {
-            return parser.ParseCompilationUnit();
-        }};
+)___"};
 
     REQUIRE(helper.Entries.size() == 24);
     Validator N{helper};
@@ -697,11 +652,7 @@ public struct A { };
 
 using B;
 
-)___",
-        [](Parser& parser)
-        {
-            return parser.ParseCompilationUnit();
-        }};
+)___"};
 
     REQUIRE(helper.Entries.size() == 18);
     Validator N{helper};
@@ -736,11 +687,7 @@ public struct A { };
 
 public unknown B;
 
-)___",
-        [](Parser& parser)
-        {
-            return parser.ParseCompilationUnit();
-        }};
+)___"};
 
     REQUIRE(helper.Entries.size() == 20);
     Validator N{helper};
@@ -775,11 +722,7 @@ TEST_CASE("parser - unrecognized 'return while true' statement")
 
 return while true;
 
-})___",
-        [](Parser& parser)
-        {
-            return parser.ParseBlockStatement();
-        }};
+})___"};
 
 
     REQUIRE(helper.Entries.size() == 14);
@@ -827,11 +770,7 @@ if while true
 }
 
 
-})___",
-        [](Parser& parser)
-        {
-            return parser.ParseBlockStatement();
-        }};
+})___"};
 
 
     REQUIRE(helper.Entries.size() == 41);
@@ -942,11 +881,7 @@ TEST_CASE("parser - balanced token sequence")
     SECTION("valid - empty sequence")
     {
         ParserHelper helper{
-            "()",
-            [&](Parser& parser)
-            {
-                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
-            }};
+            "()"};
 
         REQUIRE(helper.Entries.size() == 3);
 
@@ -964,11 +899,7 @@ TEST_CASE("parser - balanced token sequence")
     SECTION("valid - premature")
     {
         ParserHelper helper{
-            "((())",
-            [&](Parser& parser)
-            {
-                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
-            }};
+            "((())"};
 
         REQUIRE(helper.Entries.size() == 8);
         Validator N{helper};
@@ -994,11 +925,7 @@ TEST_CASE("parser - balanced token sequence")
     SECTION("valid - balanced")
     {
         ParserHelper helper{
-            "())",
-            [&](Parser& parser)
-            {
-                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
-            }};
+            "())"};
 
         REQUIRE(helper.Entries.size() == 3);
         Validator N{helper};
@@ -1015,11 +942,7 @@ TEST_CASE("parser - balanced token sequence")
     SECTION("invalid - premature end of file")
     {
         ParserHelper helper{
-            "(",
-            [&](Parser& parser)
-            {
-                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
-            }};
+            "("};
 
         REQUIRE(helper.Entries.size() == 3);
     }
@@ -1027,11 +950,7 @@ TEST_CASE("parser - balanced token sequence")
     SECTION("invalid - unbalanced")
     {
         ParserHelper helper{
-            "(aaa'b'{cccc]420_69))",
-            [&](Parser& parser)
-            {
-                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
-            }};
+            "(aaa'b'{cccc]420_69))"};
 
         REQUIRE(helper.Entries.size() == 12);
         Validator N{helper};
@@ -1079,11 +998,7 @@ TEST_CASE("parser - function - arguments")
 
 public function A() -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 17);
         Validator N{helper};
@@ -1101,11 +1016,7 @@ public function A(
     a: Int
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 25);
         Validator N{helper};
@@ -1123,11 +1034,7 @@ public function A(
     ,
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 20);
         Validator N{helper};
@@ -1145,11 +1052,7 @@ public function A(
     ,,,,
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 23);
         Validator N{helper};
@@ -1168,11 +1071,7 @@ public function A(
     a: Int
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 23);
         Validator N{helper};
@@ -1192,11 +1091,7 @@ public function A(
     ,
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 24);
         Validator N{helper};
@@ -1215,11 +1110,7 @@ public function A(
     ,
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 26);
         Validator N{helper};
@@ -1238,11 +1129,7 @@ public function A(
     b: Float
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 33);
         Validator N{helper};
@@ -1261,11 +1148,7 @@ public function A(
     b: Float
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 32);
         Validator N{helper};
@@ -1284,11 +1167,7 @@ public function A(
     #[deprecated] b: Float
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 48);
         Validator N{helper};
@@ -1308,11 +1187,7 @@ public function A(
     c: String
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 34);
         Validator N{helper};
@@ -1332,11 +1207,7 @@ public function A(
     c: String
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 41);
         Validator N{helper};
@@ -1356,11 +1227,7 @@ public function A(
     c: String
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 33);
         Validator N{helper};
@@ -1380,11 +1247,7 @@ public function A(
     c: String
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 32);
         Validator N{helper};
@@ -1404,11 +1267,7 @@ public function A(
     c: String
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 49);
         Validator N{helper};
@@ -1428,11 +1287,7 @@ public function A(
     c: String
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 49);
         Validator N{helper};
@@ -1452,11 +1307,7 @@ public function A(
     c: String
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 41);
         Validator N{helper};
@@ -1476,11 +1327,7 @@ public function A(
     c: String
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 49);
         Validator N{helper};
@@ -1500,11 +1347,7 @@ public function A(
     c: String
 ) -> Void;
 
-)___",
-            [&](Parser& parser)
-            {
-                return parser.Parse();
-            }};
+)___"};
 
         REQUIRE(helper.Entries.size() == 49);
         Validator N{helper};

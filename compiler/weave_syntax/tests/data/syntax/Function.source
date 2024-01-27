@@ -1,6 +1,6 @@
 // empty statement
 
-#[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {}
+#[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {})
 
 // Argument attributes:
 #[Foo, Deprecated("Reason")]

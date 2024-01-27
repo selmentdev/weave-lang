@@ -7,4 +7,4 @@
         [node=UnexpectedNodesSyntax]
           [node=SyntaxList]
             [token=BreakKeyword, start=7, end=12, position=0:7:0:12, missing=false, text='break']
-  [token=EndOfFileToken, start=1004, end=1004, position=59:0:59:0, missing=false, text='']
+  [token=EndOfFileToken, start=13, end=13, position=1:0:1:0, missing=false, text='']

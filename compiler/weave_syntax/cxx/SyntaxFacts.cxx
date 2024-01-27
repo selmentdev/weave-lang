@@ -487,6 +487,8 @@ namespace weave::syntax
         case SyntaxKind::ElseKeyword:
         //case SyntaxKind::BreakKeyword:
         //case SyntaxKind::ContinueKeyword:
+        case SyntaxKind::OpenBraceToken:
+        case SyntaxKind::SemicolonToken:
             return true;
 
         default:
@@ -505,6 +507,7 @@ namespace weave::syntax
         case SyntaxKind::ExtendKeyword:
         case SyntaxKind::VarKeyword:
         case SyntaxKind::LetKeyword:
+        case SyntaxKind::NamespaceKeyword:
             return true;
 
         default:
@@ -522,7 +525,6 @@ namespace weave::syntax
         case SyntaxKind::FloatLiteralToken:
         case SyntaxKind::StringLiteralToken:
         case SyntaxKind::CharacterLiteralToken:
-        case SyntaxKind::OpenBraceToken:
         case SyntaxKind::OpenParenToken:
         case SyntaxKind::OpenBracketToken:
         case SyntaxKind::IdentifierToken:

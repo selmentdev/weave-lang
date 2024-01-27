@@ -32,6 +32,7 @@ namespace weave::syntax
 
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
+        UnexpectedNodesSyntax* Unexpected{};
     };
 
     class MemberDeclarationSyntax : public DeclarationSyntax
@@ -61,7 +62,6 @@ namespace weave::syntax
     public:
         SyntaxToken* UsingKeyword{};
         NameSyntax* Name{};
-        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr UsingDirectiveSyntax()
@@ -84,8 +84,10 @@ namespace weave::syntax
         }
 
     public:
+        UnexpectedNodesSyntax* BeforeLeftBrace{};
         SyntaxToken* LeftBrace{};
         SyntaxListView<CodeBlockItemSyntax> Elements{};
+        UnexpectedNodesSyntax* BeforeRightBrace{};
         SyntaxToken* RightBrace{};
     };
 
@@ -101,7 +103,6 @@ namespace weave::syntax
 
     public:
         SyntaxNode* Item{};
-        UnexpectedNodesSyntax* BeforeSemicolon{};
         SyntaxToken* Semicolon{};
         UnexpectedNodesSyntax* AfterSemicolon{};
     };
@@ -148,11 +149,7 @@ namespace weave::syntax
     public:
         SyntaxToken* NamespaceKeyword{};
         NameSyntax* Name{};
-        SyntaxToken* OpenBraceToken{};
-        SyntaxListView<UsingDirectiveSyntax> Usings{};
-        SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken* CloseBraceToken{};
-        SyntaxToken* SemicolonToken{};
+        CodeBlockSyntax* Members{};
 
     public:
         explicit constexpr NamespaceDeclarationSyntax()
@@ -170,9 +167,8 @@ namespace weave::syntax
         NameSyntax* Name{};
         ParameterListSyntax* Parameters{};
         ReturnTypeClauseSyntax* ReturnType{};
-        BlockStatementSyntax* Body{};
+        CodeBlockSyntax* Body{};
         ArrowExpressionClauseSyntax* ExpressionBody{};
-        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr FunctionDeclarationSyntax()
@@ -228,10 +224,7 @@ namespace weave::syntax
     public:
         SyntaxToken* StructKeyword{};
         NameSyntax* Name{};
-        SyntaxToken* OpenBraceToken{};
-        SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken* CloseBraceToken{};
-        SyntaxToken* SemicolonToken{};
+        CodeBlockSyntax* Members{};
 
     public:
         explicit constexpr StructDeclarationSyntax()
@@ -247,10 +240,7 @@ namespace weave::syntax
     public:
         SyntaxToken* ConceptKeyword{};
         NameSyntax* Name{};
-        SyntaxToken* OpenBraceToken{};
-        SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken* CloseBraceToken{};
-        SyntaxToken* SemicolonToken{};
+        CodeBlockSyntax* Members{};
 
     public:
         explicit constexpr ConceptDeclarationSyntax()
@@ -266,32 +256,11 @@ namespace weave::syntax
     public:
         SyntaxToken* ExtendKeyword{};
         NameSyntax* Name{};
-        SyntaxToken* OpenBraceToken{};
-        SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken* CloseBraceToken{};
-        SyntaxToken* SemicolonToken{};
+        CodeBlockSyntax* Members{};
 
     public:
         explicit constexpr ExtendDeclarationSyntax()
             : TypeDeclarationSyntax{SyntaxKind::ExtendDeclarationSyntax}
-        {
-        }
-    };
-
-    class FieldDeclarationSyntax : public MemberDeclarationSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(FieldDeclarationSyntax);
-
-    public:
-        SyntaxToken* VarKeyword{};
-        NameSyntax* Name{};
-        TypeClauseSyntax* Type{};
-        EqualsValueClauseSyntax* Initializer{};
-        SyntaxToken* SemicolonToken{};
-
-    public:
-        explicit constexpr FieldDeclarationSyntax()
-            : MemberDeclarationSyntax{SyntaxKind::FieldDeclarationSyntax}
         {
         }
     };
@@ -305,7 +274,6 @@ namespace weave::syntax
         NameSyntax* Name{};
         TypeClauseSyntax* Type{};
         EqualsValueClauseSyntax* Initializer{};
-        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr ConstantDeclarationSyntax()
@@ -444,6 +412,7 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
+        UnexpectedNodesSyntax* Unexpected{};
         NameSyntax* Identifier{};
         TypeClauseSyntax* Type{};
         SyntaxToken* TrailingComma{};
@@ -460,9 +429,10 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ParameterListSyntax);
 
     public:
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
         SyntaxListView<ParameterSyntax> Parameters{};
-        UnexpectedNodesSyntax* BeforeParenToken{};
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
         SyntaxToken* CloseParenToken{};
 
     public:
@@ -836,15 +806,12 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
+        UnexpectedNodesSyntax* Unexpected{};
     };
 
     class EmptyStatementSyntax final : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(EmptyStatementSyntax);
-
-    public:
-        UnexpectedNodesSyntax* BeforeSemicolon{};
-        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr EmptyStatementSyntax()
@@ -862,7 +829,6 @@ namespace weave::syntax
         IdentifierNameSyntax* Identifier{};
         TypeClauseSyntax* TypeClause{};
         EqualsValueClauseSyntax* Initializer{};
-        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr VariableDeclarationSyntax()
@@ -878,7 +844,6 @@ namespace weave::syntax
     public:
         SyntaxToken* ReturnKeyword{};
         ExpressionSyntax* Expression{};
-        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr ReturnStatementSyntax()
@@ -893,7 +858,6 @@ namespace weave::syntax
 
     public:
         ExpressionSyntax* Expression{};
-        SyntaxToken* SemicolonToken{};
 
     public:
         explicit constexpr ExpressionStatementSyntax()
@@ -907,13 +871,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(BlockStatementSyntax);
 
     public:
-        UnexpectedNodesSyntax* BeforeOpenBrace{};
-        SyntaxToken* OpenBraceToken{};
-        UnexpectedNodesSyntax* BetweenOpenBraceAndStatements{};
-        SyntaxListView<SyntaxNode> Statements{};
-        UnexpectedNodesSyntax* BetweenStatementsAndCloseBrace{};
-        SyntaxToken* CloseBraceToken{};
-        UnexpectedNodesSyntax* AfterCloseBrace{};
+        CodeBlockSyntax* Members{};
 
     public:
         explicit constexpr BlockStatementSyntax()

@@ -1,8 +1,0 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=EmptyStatementSyntax]
-      [node=UnexpectedNodesSyntax]
-        [node=SyntaxList]
-          [token=NamespaceKeyword, start=0, end=9, position=0:0:0:9, missing=false]
-      [token=SemicolonToken, start=12, end=12, position=1:0:1:0, missing=true]
-  [token=EndOfFileToken, start=12, end=12, position=1:0:1:0, missing=false]

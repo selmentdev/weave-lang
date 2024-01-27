@@ -1,9 +1,25 @@
+public break
+/*
 #[Deprecated] function qux()
 var bar:float=21.37f32
 a += 21.38f32;
 var foo:roo=2000 ];
 
-struct
+namespacce {
+struct A{
+    struct B{
+        struct C{
+            concept D{
+                extend E {
+                    function E() -> Void { }
+                }
+            }
+        }
+    }
+}
+}
+
+struct 
 
 public function Foo() -> Void { }
 
@@ -38,6 +54,6 @@ function Test()
 //  - can hold any arbitrary syntax nodes
 // code block: `{` elements `}` in file / function declaration
 // - as member block, can hold any syntax node
-*/
 
 struct Y{ };
+*/

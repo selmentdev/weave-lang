@@ -3,22 +3,7 @@ error: Expected '[token:identifier]'
          |
        2 | .2137
          |  ^^^^
-error: Expected ';'
-        --> <source>:2:2
-         |
-       2 | .2137
-         |  ^^^^
-error: Expected ';'
-        --> <source>:3:1
-         |
-       3 | 3.3.
-         | ^^^
 error: Expected '[token:identifier]'
-        --> <source>:4:1
-         |
-       4 | 3.3.3
-         | ^^^
-error: Expected ';'
         --> <source>:4:1
          |
        4 | 3.3.3
@@ -28,22 +13,7 @@ error: Expected '[token:identifier]'
          |
        4 | 3.3.3
          |     ^
-error: Expected ';'
-        --> <source>:4:5
-         |
-       4 | 3.3.3
-         |     ^
-error: Expected ';'
-        --> <source>:5:1
-         |
-       5 | 3.3.3.
-         | ^^^
 error: Expected '[token:identifier]'
-        --> <source>:5:5
-         |
-       5 | 3.3.3.
-         |     ^
-error: Expected ';'
         --> <source>:5:5
          |
        5 | 3.3.3.
@@ -53,111 +23,21 @@ error: Expected '[token:identifier]'
          |
        6 | 3.3.3.3
          | ^^^
-error: Expected ';'
-        --> <source>:6:1
-         |
-       6 | 3.3.3.3
-         | ^^^
 error: Expected '[token:identifier]'
         --> <source>:6:5
          |
        6 | 3.3.3.3
          |     ^^^
-error: Expected ';'
-        --> <source>:6:5
-         |
-       6 | 3.3.3.3
-         |     ^^^
-error: Expected ';'
-        --> <source>:7:1
-         |
-       7 | _0.3
-         | ^^
 error: Expected '[token:identifier]'
         --> <source>:7:4
          |
        7 | _0.3
          |    ^
-error: Expected ';'
-        --> <source>:7:4
-         |
-       7 | _0.3
-         |    ^
-error: Expected ';'
-        --> <source>:8:1
-         |
-       8 | 3.G
-         | ^
-error: Expected ';'
-        --> <source>:9:1
-         |
-       9 | 0.2137
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:10:1
-         |
-      10 | 0.
-         | ^
 error: Expected '[token:identifier]'
         --> <source>:11:1
          |
       11 | 9x
          | ^^
-error: Expected ';'
-        --> <source>:11:1
-         |
-      11 | 9x
-         | ^^
-error: Expected ';'
-        --> <source>:12:1
-         |
-      12 | 0._
-         | ^
-error: Expected ';'
-        --> <source>:13:1
-         |
-      13 | 0._3
-         | ^
-error: Expected ';'
-        --> <source>:14:1
-         |
-      14 | 0._3_
-         | ^
-error: Expected ';'
-        --> <source>:15:1
-         |
-      15 | 0._3_e
-         | ^
-error: Expected ';'
-        --> <source>:16:1
-         |
-      16 | 0._3_e10
-         | ^
-error: Expected ';'
-        --> <source>:17:1
-         |
-      17 | 0._3_e10_f32
-         | ^
-error: Expected ';'
-        --> <source>:18:1
-         |
-      18 | 0.3_
-         | ^^^^
-error: Expected ';'
-        --> <source>:19:1
-         |
-      19 | 0.3_e_
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:20:1
-         |
-      20 | 0.3_e_ struct
-         | ^^^^^^
-error: Expected ';'
-        --> <source>:20:8
-         |
-      20 | 0.3_e_ struct
-         |        ^^^^^^
 error: Expected '[token:identifier]'
         --> <source>:21:1
          |
@@ -168,6 +48,11 @@ error: Expected '{'
          |
       21 | 0.3_e10_
          | ^^^^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:53:4
+         |
+      53 | 0x.3f32
+         |    ^^^^
 error: Expected '}'
         --> <source>:121:1
          |

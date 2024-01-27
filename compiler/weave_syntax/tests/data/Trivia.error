@@ -1,15 +1,15 @@
-error: Unexpected tokens
+error: Expected '{'
         --> <source>:7:8
          |
        7 |     if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
-         |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-error: Expected ';'
-        --> <source>:9:5
+         |        ^^^
+error: Expected 'if'
+        --> <source>:9:7
          |
        9 |     } else {
-         |     ^
-error: Expected ';'
-        --> <source>:11:5
+         |       ^^^^
+error: Expected '}'
+        --> <source>:15:1
          |
-      11 |     }
-         |     ^
+      15 | 
+         | ^

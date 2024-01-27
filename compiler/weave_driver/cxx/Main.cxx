@@ -144,13 +144,14 @@ public:
         Indent();
         auto startPosition = this->_text.GetLinePosition(token->Source.Start);
         auto endPosition = this->_text.GetLinePosition(token->Source.End);
-        fmt::println("[token={}, start={}, end={}, position={}:{}:{}:{}, missing={}]",
+        fmt::println("[token={}, start={}, end={}, position={}:{}:{}:{}, missing={}, text='{}']",
             weave::syntax::GetName(token->Kind),
             token->Source.Start.Offset,
             token->Source.End.Offset,
             startPosition.Line, startPosition.Column,
             endPosition.Line, endPosition.Column,
-            token->IsMissing());
+            token->IsMissing(),
+            (not token->IsMissing()) ? this->_text.GetText(token->Source) : "");
 
         // this->Dispatch(token->TrailingTrivia.GetNode());
     }
@@ -280,7 +281,7 @@ int main(int argc, const char* argv[])
 
             if (driver.Experimental.Format == session::PrintFormat::AST)
             {
-                    auto* root = parser.ParseSourceFile();
+                auto* root = parser.ParseSourceFile();
                 {
                     SyntaxTreeStructurePrinter printer{text};
                     printer.Dispatch(root);

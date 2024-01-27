@@ -1,0 +1,5 @@
+error: Expected '}'
+        --> <source>:6:1
+         |
+       6 | 
+         | ^

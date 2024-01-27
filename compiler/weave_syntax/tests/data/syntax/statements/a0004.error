@@ -1,0 +1,5 @@
+error: Unexpected tokens
+        --> <source>:2:26
+         |
+       2 |     #[Deprecated] public break;
+         |                          ^^^^^

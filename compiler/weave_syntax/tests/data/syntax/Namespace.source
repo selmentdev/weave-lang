@@ -9,23 +9,23 @@ namespace weave
 
     public var precedence = g1[((g1, g2), g3), g4];
 
-    public const p0 = gloo++;
-    public const p1 = ++gloo;
-    public const p2 = ++gloo++;
-    public const p3 = (++gloo)++;
-    public const p4 = ++(gloo++);
+    public let p0 = gloo++;
+    public let p1 = ++gloo;
+    public let p2 = ++gloo++;
+    public let p3 = (++gloo)++;
+    public let p4 = ++(gloo++);
 
-    //public const invalid.name = 21;
+    //public let invalid.name = 21;
 
-    public const valid = name.foo.bar;
+    public let valid = name.foo.bar;
 
-    public const magic = 21 + 37 * 4;
-    public const magic = 21 + (37 * 4);
-    public const magic = (21 + 37) * 4;
+    public let magic = 21 + 37 * 4;
+    public let magic = 21 + (37 * 4);
+    public let magic = (21 + 37) * 4;
 
-    public const papaj : f32 = 2 + 1 * 3 - 7;
+    public let papaj : f32 = 2 + 1 * 3 - 7;
 
-    public const Version : weave.core.u32 = uninitialized;
+    public let Version : weave.core.u32 = uninitialized;
     public var Global : i32 = uninitialized;
 
     public function Main()
