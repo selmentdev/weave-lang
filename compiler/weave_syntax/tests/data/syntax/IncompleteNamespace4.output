@@ -1,35 +1,10 @@
----
-file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\IncompleteNamespace4.source
-___
--------
-NamespaceKeyword
-IdentifierToken
-OpenBraceToken
-SemicolonToken
-CloseBraceToken
-EndOfFileToken
--------
-namespace X { ;
-}-------
-OnCompilationUnitSyntax
-    OnSyntaxList
-        OnNamespaceDeclarationSyntax
-            OnToken `namespace` `namespace`
-            OnIdentifierNameSyntax `X`
-            OnToken `{` `{`
-            OnSyntaxList
-                OnIncompleteDeclarationSyntax
-                    OnToken `;` `;`
-            OnToken `` `}`
-    OnToken `` `[token::end-of-file]`
--------
-parsing took: 00:00:00.000
-PageFaultCount: 1386
-PeakWorkingSetSize: 5.160 MiB (5410816)
-WorkingSetSize: 4.715 MiB (4943872)
-QuotaPeakPagedPoolUsage: 259.578 KiB (265808)
-QuotaPagedPoolUsage: 259.305 KiB (265528)
-QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
-QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 1.551 MiB (1626112)
-PeakPagefileUsage: 1.617 MiB (1695744)
+[node=SourceFileSyntax]
+  [node=SyntaxList]
+    [node=EmptyStatementSyntax]
+      [node=UnexpectedNodesSyntax]
+        [node=SyntaxList]
+          [token=NamespaceKeyword, start=0, end=9, position=0:0:0:9, missing=false]
+          [token=IdentifierToken, start=10, end=11, position=0:10:0:11, missing=false]
+          [token=OpenBraceToken, start=12, end=13, position=0:12:0:13, missing=false]
+      [token=SemicolonToken, start=14, end=15, position=0:14:0:15, missing=false]
+  [token=EndOfFileToken, start=17, end=17, position=1:0:1:0, missing=false]

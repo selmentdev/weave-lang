@@ -1,14 +1,9 @@
-error: expected '[token:identifier]'
-        --> <source>:2:1
+error: Unexpected tokens
+        --> <source>:1:1
          |
-       2 | 
-         | ^
-error: expected '{'
-        --> <source>:2:1
-         |
-       2 | 
-         | ^
-error: expected '}'
+       1 | namespace 
+         | ^^^^^^^^^
+error: Expected ';'
         --> <source>:2:1
          |
        2 | 

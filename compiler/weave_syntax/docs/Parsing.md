@@ -23,6 +23,14 @@ This way we even can introduce new namespace at function level. This does not ma
 
 Syntax tree validation is performed after tree is constructed.
 
+## Missing Tokens
+
+Parser creates missing tokens when parsing rule can't match valid one. Syntax tree must preserve structure of original source code and have valid structure.
+
+## Unexpected Tokens
+
+Unexpected nodes may be created when parser can't match other parsing rules. Most of the time, unexpected nodes are created right after missing token, because structure of parsed text is malformed in such way that no single rule can be applied until synchronization point.
+
 
 ## Statement List
 

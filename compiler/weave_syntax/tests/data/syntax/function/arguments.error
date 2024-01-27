@@ -1,0 +1,15 @@
+error: Expected '[token:identifier]'
+        --> <source>:3:15
+         |
+       3 |     #[unused] ,
+         |               ^
+error: Expected ':'
+        --> <source>:3:15
+         |
+       3 |     #[unused] ,
+         |               ^
+error: Expected '[token:identifier]'
+        --> <source>:3:15
+         |
+       3 |     #[unused] ,
+         |               ^

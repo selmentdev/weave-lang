@@ -1,41 +1,14 @@
----
-file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\IncompleteNamespace6.source
-___
--------
-NamespaceKeyword
-IdentifierToken
-OpenBraceToken
-NamespaceKeyword
-IdentifierToken
-OpenBraceToken
-CloseBraceToken
-CloseBraceToken
-EndOfFileToken
--------
-namespace Y {namespace X { }
-}-------
-OnCompilationUnitSyntax
-    OnSyntaxList
-        OnNamespaceDeclarationSyntax
-            OnToken `namespace` `namespace`
-            OnIdentifierNameSyntax `Y`
-            OnToken `` `{`
-            OnSyntaxList
-                OnNamespaceDeclarationSyntax
-                    OnToken `namespace` `namespace`
-                    OnIdentifierNameSyntax `X`
-                    OnToken `{` `{`
-                    OnToken `}` `}`
-            OnToken `` `}`
-    OnToken `` `[token::end-of-file]`
--------
-parsing took: 00:00:00.000
-PageFaultCount: 1386
-PeakWorkingSetSize: 5.168 MiB (5419008)
-WorkingSetSize: 4.727 MiB (4956160)
-QuotaPeakPagedPoolUsage: 259.578 KiB (265808)
-QuotaPagedPoolUsage: 259.305 KiB (265528)
-QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
-QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 1.523 MiB (1597440)
-PeakPagefileUsage: 1.617 MiB (1695744)
+[node=SourceFileSyntax]
+  [node=SyntaxList]
+    [node=EmptyStatementSyntax]
+      [node=UnexpectedNodesSyntax]
+        [node=SyntaxList]
+          [token=NamespaceKeyword, start=0, end=9, position=0:0:0:9, missing=false]
+          [token=IdentifierToken, start=10, end=11, position=0:10:0:11, missing=false]
+          [token=CloseBraceToken, start=12, end=13, position=0:12:0:13, missing=false]
+          [token=NamespaceKeyword, start=15, end=24, position=1:0:1:9, missing=false]
+          [token=IdentifierToken, start=25, end=26, position=1:10:1:11, missing=false]
+          [token=OpenBraceToken, start=27, end=28, position=1:12:1:13, missing=false]
+          [token=CloseBraceToken, start=29, end=30, position=1:14:1:15, missing=false]
+      [token=SemicolonToken, start=32, end=32, position=2:0:2:0, missing=true]
+  [token=EndOfFileToken, start=32, end=32, position=2:0:2:0, missing=false]

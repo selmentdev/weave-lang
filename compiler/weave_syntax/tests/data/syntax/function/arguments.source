@@ -1,0 +1,5 @@
+public function A(
+    a: Int,
+    #[unused] ,
+    c: String
+) -> Void;

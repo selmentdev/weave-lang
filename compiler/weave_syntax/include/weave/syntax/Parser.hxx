@@ -15,8 +15,6 @@ namespace weave::syntax
         SyntaxFactory* _factory{};
         std::vector<SyntaxToken*> _tokens{};
         size_t _index{};
-        ptrdiff_t _nestingLevel{};
-        ptrdiff_t _maximumNestingLevel{128};
         SyntaxToken* _current{};
 
     public:
@@ -35,46 +33,57 @@ namespace weave::syntax
         [[nodiscard]] SyntaxToken* Match(SyntaxKind kind);
         [[nodiscard]] SyntaxToken* TryMatch(SyntaxKind kind);
 
-
     private:
         [[nodiscard]] SyntaxToken* MatchUntil(std::vector<SyntaxNode*>& unexpected, SyntaxKind kind);
+        [[nodiscard]] UnexpectedNodesSyntax* ConsumeUnexpected(SyntaxKind kind);
+
+        void MatchUntil(SyntaxToken*& matched, UnexpectedNodesSyntax*& unexpected, SyntaxKind kind);
 
     private:
-        void AdjustNestingLevel(SyntaxKind kind)
-        {
-            switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
-            {
-            case SyntaxKind::OpenBraceToken:
-            case SyntaxKind::OpenBracketToken:
-            case SyntaxKind::OpenParenToken:
-            case SyntaxKind::ExclamationOpenParenToken:
-            case SyntaxKind::LessThanToken:
-                fmt::println("Incrementing nesting level: {} when matching {}", this->_nestingLevel, GetName(kind));
-                ++this->_nestingLevel;
-
-                break;
-
-            case SyntaxKind::CloseBraceToken:
-            case SyntaxKind::CloseBracketToken:
-            case SyntaxKind::CloseParenToken:
-            case SyntaxKind::GreaterThanToken:
-
-                fmt::println("Decrementing nesting level: {} when matching {}", this->_nestingLevel, GetName(kind));
-                --this->_nestingLevel;
-                break;
-
-            default:
-                break;
-            }
-        }
-
         // NOTE:
         //      This is public only for unit test purposes.
         //
         //      When this compiler will bootstrap itself, a proper unit testing support will be
         //      integrated as well.
     public:
+        [[nodiscard]] SourceFileSyntax* ParseSourceFile();
+
+        void ParseCodeBlock(
+            std::vector<CodeBlockItemSyntax*>& items,
+            bool global);
+
+        [[nodiscard]] CodeBlockItemSyntax* ParseCodeBlockItem();
+
+        SyntaxListView<AttributeListSyntax> ParseAttributesList();
+
+        SyntaxListView<SyntaxToken> ParseModifiersList();
+
+        FunctionDeclarationSyntax* ParseFunctionDeclaration(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
+        ConceptDeclarationSyntax* ParseConceptDeclaration(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
+        ExtendDeclarationSyntax* ParseExtendDeclaration(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
+        DeclarationSyntax* ParseDeclaration(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
+        StatementSyntax* ParseStatement(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
+        ExpressionSyntax* ParseExpressionNew();
+
+
+    public:
         [[nodiscard]] CompilationUnitSyntax* ParseCompilationUnit();
+
 
         void ParseTypeBody(
             std::vector<ConstraintSyntax*>& constraints,
@@ -97,6 +106,8 @@ namespace weave::syntax
         MemberDeclarationSyntax* ParseMemberDeclaration(
             std::span<AttributeListSyntax*> attributes,
             std::span<SyntaxToken*> modifiers);
+
+        AttributeSyntax* ParseAttribute();
 
         AttributeListSyntax* ParseAttributeList();
 
@@ -184,22 +195,34 @@ namespace weave::syntax
 
         ExpressionSyntax* ParseStringLiteral();
 
-        StatementSyntax* ParseStatement();
+        ExpressionSyntax* ParseCharacterLiteral();
+
+        StatementSyntax* ParseStatement(
+            std::span<AttributeListSyntax*> attributes,
+            std::span<SyntaxToken*> modifiers);
 
         StatementSyntax* CreateMissingStatement(
             std::span<SyntaxToken*> tokens);
 
         BlockStatementSyntax* ParseBlockStatement();
 
-        StatementSyntax* ParseVariableDeclaration();
+        DeclarationSyntax* ParseVariableDeclaration();
 
-        StatementSyntax* ParseIfStatement();
+        StatementSyntax* ParseIfStatement(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
 
-        StatementSyntax* ParseMisplacedElseClause();
+        StatementSyntax* ParseMisplacedElseClause(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
 
         ElseClauseSyntax* ParseOptionalElseClause();
 
-        StatementSyntax* ParseReturnStatement();
+        StatementSyntax* ParseReturnStatement(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
+        EmptyStatementSyntax* ParseEmptyStatement();
 
         ExpressionStatementSyntax* ParseExpressionStatement();
 
@@ -207,11 +230,9 @@ namespace weave::syntax
 
         UnexpectedNodesSyntax* CreateUnexpectedNodes(std::span<SyntaxNode*> nodes);
 
-        void ReportIncompleteMember(
-            std::span<SyntaxToken*> modifiers,
-            std::span<AttributeListSyntax*> attributes,
-            TypeSyntax* type,
-            std::vector<MemberDeclarationSyntax*>& members);
+        BalancedTokenSequneceSyntax* ParseBalancedTokenSequence(
+            SyntaxKind open,
+            SyntaxKind close);
 
         SyntaxToken* MatchBalancedTokenSequence(
             SyntaxKind terminator,

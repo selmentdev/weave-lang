@@ -117,7 +117,7 @@ namespace weave::syntax
                 return nullptr;
             }
 
-            return static_cast<T*>(this->_node->GetElements() + index);
+            return static_cast<T*>(this->_node->GetElements()[index]);
         }
 
         template <typename OtherT>
@@ -180,6 +180,7 @@ namespace weave::syntax
 {
     class NameSyntax;
     class ExpressionSyntax;
+    class DeclarationSyntax;
     class MemberDeclarationSyntax;
     class StatementSyntax;
     class TypeSyntax;

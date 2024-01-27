@@ -1,0 +1,51 @@
+error: Unexpected tokens
+        --> <source>:3:17
+         |
+       3 | public internal break w : Float32 = 2137.0f32;
+         |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:4:17
+         |
+       4 | public internal const y : Float32 = 2137.0f32;
+         |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:6:31
+         |
+       6 | #[Deprecated("Dont use this") public] private internal y += 420.69f32;
+         |                               ^^^^^^
+error: Unexpected tokens
+        --> <source>:19:8
+         |
+      19 |     if while true
+         |        ^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:21:17
+         |
+      21 |         call1();@(*
+         |                 ^^^
+      22 | #%&*
+         | ^^^^
+      23 | @#);call2();
+         | ^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:27:1
+         |
+      27 | }}
+         | ^^
+      28 | }}}
+         | ^^^
+error: Expected '[token:identifier]'
+        --> <source>:34:2
+         |
+      34 | */
+         |  ^
+error: Expected '[token:identifier]'
+        --> <source>:36:1
+         |
+      36 | struct Y{ };
+         | ^^^^^^
+error: Expected ';'
+        --> <source>:36:1
+         |
+      36 | struct Y{ };
+         | ^^^^^^

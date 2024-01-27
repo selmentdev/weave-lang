@@ -1,60 +1,15 @@
-error: invalid expression term: let
+error: Unexpected tokens
         --> <source>:7:8
          |
        7 |     if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
-         |        ^^^
-error: unexpected token 'let', expected '{'
-        --> <source>:7:8
-         |
-       7 |     if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
-         |        ^^^
-error: invalid expression term 'self'
-        --> <source>:7:72
-         |
-       7 |     if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
-         |                                                                        ^^^^
-error: unexpected token 'self', expected ';'
-        --> <source>:7:72
-         |
-       7 |     if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
-         |                                                                        ^^^^
-error: invalid expression term '.'
-        --> <source>:7:76
-         |
-       7 |     if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
-         |                                                                            ^
-error: unexpected token '{', expected ';'
-        --> <source>:7:94
-         |
-       7 |     if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
-         |                                                                                              ^
-error: unexpected token '}', expected ';'
+         |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Expected ';'
         --> <source>:9:5
          |
        9 |     } else {
          |     ^
-error: invalid expression term 'else'
-        --> <source>:9:7
-         |
-       9 |     } else {
-         |       ^^^^
-error: unexpected token 'else', expected ';'
-        --> <source>:9:7
-         |
-       9 |     } else {
-         |       ^^^^
-error: unexpected token '}', expected ';'
+error: Expected ';'
         --> <source>:11:5
          |
       11 |     }
          |     ^
-error: expected '}'
-        --> <source>:15:1
-         |
-      15 | 
-         | ^
-error: expected '}'
-        --> <source>:15:1
-         |
-      15 | 
-         | ^

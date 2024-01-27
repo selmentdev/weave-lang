@@ -18,6 +18,7 @@ public:
     {
         size_t Depth{};
         weave::syntax::SyntaxKind Kind{};
+        bool Missing{};
 
         [[nodiscard]] constexpr auto operator<=>(const Entry&) const = default;
     };
@@ -43,7 +44,16 @@ private:
 
         void OnDefault(weave::syntax::SyntaxNode* node) override
         {
-            this->_entries.emplace_back(this->Depth, node->Kind);
+            auto& entry = this->_entries.emplace_back(this->Depth, node->Kind);
+
+            // TODO: SyntaxNodeKind should be testable if we have a proper token.
+
+            if (weave::syntax::IsToken(node->Kind))
+            {
+                auto const* const token = static_cast<weave::syntax::SyntaxToken*>(node);
+                entry.Missing = token->IsMissing();
+            }
+
             SyntaxWalker::OnDefault(node);
         }
     };
@@ -76,21 +86,23 @@ public:
     {
     }
 
-    void operator()(size_t depth, weave::syntax::SyntaxKind kind)
+    void operator()(size_t depth, weave::syntax::SyntaxKind kind, bool missing = false)
     {
         CAPTURE(this->_index);
         REQUIRE(this->_index < this->_helper.Entries.size());
         CHECK(this->_helper.Entries[this->_index].Kind == kind);
         CHECK(this->_helper.Entries[this->_index].Depth == depth);
+        CHECK(this->_helper.Entries[this->_index].Missing == missing);
         ++this->_index;
     }
 
-    void operator()(weave::syntax::SyntaxKind kind)
+    void operator()(weave::syntax::SyntaxKind kind, bool missing = false)
     {
         CAPTURE(this->_index);
         REQUIRE(this->_index < this->_helper.Entries.size());
         CHECK(this->_helper.Entries[this->_index].Kind == kind);
         CHECK(this->_helper.Entries[this->_index].Depth == this->_depth);
+        CHECK(this->_helper.Entries[this->_index].Missing == missing);
         ++this->_index;
     }
 
@@ -335,18 +347,18 @@ if true {
             // TODO: Verifiy if this should be parsed as broken if
             N(2, SyntaxKind::IfStatementSyntax);
             {
-                N(3, SyntaxKind::IfKeyword);
+                N(3, SyntaxKind::IfKeyword, true);
                 N(3, SyntaxKind::IdentifierNameSyntax);
                 {
-                    N(4, SyntaxKind::IdentifierToken);
+                    N(4, SyntaxKind::IdentifierToken, true);
                 }
                 N(3, SyntaxKind::ExpressionStatementSyntax);
                 {
                     N(4, SyntaxKind::IdentifierNameSyntax);
                     {
-                        N(5, SyntaxKind::IdentifierToken);
+                        N(5, SyntaxKind::IdentifierToken, true);
                     }
-                    N(4, SyntaxKind::SemicolonToken);
+                    N(4, SyntaxKind::SemicolonToken, true);
                 }
                 N(3, SyntaxKind::ElseClauseSyntax);
                 {
@@ -398,18 +410,18 @@ else {
         {
             N(2, SyntaxKind::IfStatementSyntax);
             {
-                N(3, SyntaxKind::IfKeyword);
+                N(3, SyntaxKind::IfKeyword, true);
                 N(3, SyntaxKind::IdentifierNameSyntax);
                 {
-                    N(4, SyntaxKind::IdentifierToken);
+                    N(4, SyntaxKind::IdentifierToken, true);
                 }
                 N(3, SyntaxKind::ExpressionStatementSyntax);
                 {
                     N(4, SyntaxKind::IdentifierNameSyntax);
                     {
-                        N(5, SyntaxKind::IdentifierToken);
+                        N(5, SyntaxKind::IdentifierToken, true);
                     }
-                    N(4, SyntaxKind::SemicolonToken);
+                    N(4, SyntaxKind::SemicolonToken, true);
                 }
                 N(3, SyntaxKind::ElseClauseSyntax);
                 {
@@ -512,18 +524,18 @@ if true {
             // TODO: Verify if it should be parsed as unexpected nodes.
             N(2, SyntaxKind::IfStatementSyntax);
             {
-                N(3, SyntaxKind::IfKeyword);
+                N(3, SyntaxKind::IfKeyword, true);
                 N(3, SyntaxKind::IdentifierNameSyntax);
                 {
-                    N(4, SyntaxKind::IdentifierToken);
+                    N(4, SyntaxKind::IdentifierToken, true);
                 }
                 N(3, SyntaxKind::ExpressionStatementSyntax);
                 {
                     N(4, SyntaxKind::IdentifierNameSyntax);
                     {
-                        N(5, SyntaxKind::IdentifierToken);
+                        N(5, SyntaxKind::IdentifierToken, true);
                     }
-                    N(4, SyntaxKind::SemicolonToken);
+                    N(4, SyntaxKind::SemicolonToken, true);
                 }
                 N(3, SyntaxKind::ElseClauseSyntax);
                 {
@@ -783,9 +795,9 @@ return while true;
                 N(3, SyntaxKind::ReturnKeyword);
                 N(3, SyntaxKind::IdentifierNameSyntax);
                 {
-                    N(4, SyntaxKind::IdentifierToken);
+                    N(4, SyntaxKind::IdentifierToken, true);
                 }
-                N(3, SyntaxKind::SemicolonToken);
+                N(3, SyntaxKind::SemicolonToken, true);
             }
         }
         N(1, SyntaxKind::UnexpectedNodesSyntax);
@@ -839,7 +851,7 @@ if while true
                 N(3, SyntaxKind::IdentifierNameSyntax);
                 N.Enter();
                 {
-                    N(4, SyntaxKind::IdentifierToken);
+                    N(4, SyntaxKind::IdentifierToken, true);
                 }
                 N.Leave();
                 N(3, SyntaxKind::BlockStatementSyntax);
@@ -927,33 +939,56 @@ TEST_CASE("parser - balanced token sequence")
 {
     using namespace weave::syntax;
 
-    std::vector<SyntaxToken*> tokens{};
-    std::vector<SyntaxNode*> unexpected{};
-
     SECTION("valid - empty sequence")
     {
         ParserHelper helper{
-            ")",
+            "()",
             [&](Parser& parser)
             {
-                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
             }};
 
-        REQUIRE(tokens.size() == 0);
-        REQUIRE(unexpected.size() == 0);
+        REQUIRE(helper.Entries.size() == 3);
+
+        Validator N{helper};
+
+        N(SyntaxKind::BalancedTokenSequneceSyntax);
+        N.Enter();
+        {
+            N(SyntaxKind::OpenParenToken);
+            N(SyntaxKind::CloseParenToken);
+        }
+        N.Leave();
     }
 
     SECTION("valid - premature")
     {
         ParserHelper helper{
-            "))",
+            "((())",
             [&](Parser& parser)
             {
-                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
             }};
 
-        REQUIRE(tokens.size() == 0);
-        REQUIRE(unexpected.size() == 0);
+        REQUIRE(helper.Entries.size() == 8);
+        Validator N{helper};
+
+        N(SyntaxKind::BalancedTokenSequneceSyntax);
+        N.Enter();
+        {
+            N(SyntaxKind::OpenParenToken);
+            N(SyntaxKind::SyntaxList);
+            N.Enter();
+            {
+                N(SyntaxKind::OpenParenToken);
+                N(SyntaxKind::OpenParenToken);
+                N(SyntaxKind::CloseParenToken);
+                N(SyntaxKind::CloseParenToken);
+            }
+            N.Leave();
+            N(SyntaxKind::CloseParenToken, true);
+        }
+        N.Leave();
     }
 
     SECTION("valid - balanced")
@@ -962,36 +997,670 @@ TEST_CASE("parser - balanced token sequence")
             "())",
             [&](Parser& parser)
             {
-                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
             }};
 
-        REQUIRE(tokens.size() == 0);
-        REQUIRE(unexpected.size() == 0);
+        REQUIRE(helper.Entries.size() == 3);
+        Validator N{helper};
+
+        N(SyntaxKind::BalancedTokenSequneceSyntax);
+        N.Enter();
+        {
+            N(SyntaxKind::OpenParenToken);
+            N(SyntaxKind::CloseParenToken);
+        }
+        N.Leave();
     }
 
     SECTION("invalid - premature end of file")
     {
         ParserHelper helper{
-            "",
+            "(",
             [&](Parser& parser)
             {
-                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
             }};
 
-        REQUIRE(tokens.size() == 0);
-        REQUIRE(unexpected.size() == 0);
+        REQUIRE(helper.Entries.size() == 3);
     }
 
     SECTION("invalid - unbalanced")
     {
         ParserHelper helper{
-            "aaa'b'{cccc]420_69)",
+            "(aaa'b'{cccc]420_69))",
             [&](Parser& parser)
             {
-                return parser.MatchBalancedTokenSequence(SyntaxKind::CloseParenToken, tokens, unexpected);
+                return parser.ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
             }};
 
-        REQUIRE(tokens.size() == 5);
-        REQUIRE(unexpected.size() == 4);
+        REQUIRE(helper.Entries.size() == 12);
+        Validator N{helper};
+
+
+        N(SyntaxKind::BalancedTokenSequneceSyntax);
+        N.Enter();
+        {
+            N(SyntaxKind::OpenParenToken);
+            N(SyntaxKind::SyntaxList);
+            N.Enter();
+            {
+                N(SyntaxKind::IdentifierToken);
+                N(SyntaxKind::CharacterLiteralToken);
+                N(SyntaxKind::OpenBraceToken);
+                N(SyntaxKind::IdentifierToken);
+            }
+            N.Leave();
+            N(SyntaxKind::UnexpectedNodesSyntax);
+            N.Enter();
+            {
+                N(SyntaxKind::SyntaxList);
+                N.Enter();
+                {
+                    N(SyntaxKind::CloseBracketToken);
+                    N(SyntaxKind::IntegerLiteralToken);
+                }
+                N.Leave();
+            }
+            N.Leave();
+            N(SyntaxKind::CloseParenToken);
+        }
+        N.Leave();
+    }
+}
+
+TEST_CASE("parser - function - arguments")
+{
+    using namespace weave::syntax;
+
+    SECTION("no arguments")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A() -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 17);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("one argument")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 25);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("single unexpected comma")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    ,
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 20);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple unexpected commas")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    ,,,,
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 23);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("unexpected comma before valid argument")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    ,
+    a: Int
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 23);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("unexpected comma before valid argument with trailing comma")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    ,
+    a: Int
+    ,
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 24);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("unexpected trailing comma after valid argument")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int
+    ,
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 26);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    b: Float
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 33);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments without comma between")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int
+    b: Float
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 32);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments with attributes")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    #[unused] a: Int,
+    #[deprecated] b: Float
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 48);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments, one without name")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    : Float,
+    c: String
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 34);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments, one without type")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    b: ,
+    c: String
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 41);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments, one without name and type")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    : ,
+    c: String
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 33);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments, one without name, type and comma")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    : 
+    c: String
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 32);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments, one with only attribute")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    #[unused] ,
+    c: String
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 49);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments, one with attribute and name")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    #[unused] b,
+    c: String
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 49);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments, one with attribute and type")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    #[unused] ,
+    c: String
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 41);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments, one with attribute and type")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    #[unused] : Float,
+    c: String
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 49);
+        Validator N{helper};
+
+        N(0, SyntaxKind::BlockStatementSyntax);
+        N.Enter();
+    }
+
+    SECTION("multiple arguments, one with attribute and colon")
+    {
+        ParserHelper helper{
+            R"___(
+
+public function A(
+    a: Int,
+    #[unused] ,
+    c: String
+) -> Void;
+
+)___",
+            [&](Parser& parser)
+            {
+                return parser.Parse();
+            }};
+
+        REQUIRE(helper.Entries.size() == 49);
+        Validator N{helper};
+
+        N(SyntaxKind::CompilationUnitSyntax);
+        N.Enter();
+        {
+            N(SyntaxKind::SyntaxList);
+            N.Enter();
+            {
+                N(SyntaxKind::FunctionDeclarationSyntax);
+                N.Enter();
+                {
+                    N(SyntaxKind::SyntaxList);
+                    N.Enter();
+                    {
+                        N(SyntaxKind::PublicKeyword);
+                    }
+                    N.Leave();
+                    N(SyntaxKind::FunctionKeyword);
+                    N(SyntaxKind::IdentifierNameSyntax);
+                    N.Enter();
+                    {
+                        N(SyntaxKind::IdentifierToken);
+                    }
+                    N.Leave();
+                    N(SyntaxKind::ParameterListSyntax);
+                    N.Enter();
+                    {
+                        N(SyntaxKind::OpenParenToken);
+                        N(SyntaxKind::SyntaxList);
+                        N.Enter();
+                        {
+                            N(SyntaxKind::ParameterSyntax);
+                            N.Enter();
+                            {
+                                N(SyntaxKind::IdentifierNameSyntax);
+                                N.Enter();
+                                {
+                                    N(SyntaxKind::IdentifierToken);
+                                }
+                                N.Leave();
+                                N(SyntaxKind::TypeClauseSyntax);
+                                N.Enter();
+                                {
+                                    N(SyntaxKind::ColonToken);
+                                    N(SyntaxKind::IdentifierNameSyntax);
+                                    N.Enter();
+                                    {
+                                        N(SyntaxKind::IdentifierToken);
+                                    }
+                                    N.Leave();
+                                }
+                                N.Leave();
+                                N(SyntaxKind::CommaToken);
+                            }
+                            N.Leave();
+                            N(SyntaxKind::ParameterSyntax);
+                            N.Enter();
+                            {
+                                N(SyntaxKind::SyntaxList);
+                                N.Enter();
+                                {
+                                    N(SyntaxKind::AttributeListSyntax);
+                                    N.Enter();
+                                    {
+                                        N(SyntaxKind::HashOpenBracketToken);
+                                        N(SyntaxKind::SyntaxList);
+                                        N.Enter();
+                                        {
+                                            N(SyntaxKind::AttributeSyntax);
+                                            N.Enter();
+                                            {
+                                                N(SyntaxKind::IdentifierNameSyntax);
+                                                N.Enter();
+                                                {
+                                                    N(SyntaxKind::IdentifierToken);
+                                                }
+                                                N.Leave();
+                                            }
+                                            N.Leave();
+                                        }
+                                        N.Leave();
+                                        N(SyntaxKind::CloseBracketToken);
+                                    }
+                                    N.Leave();
+                                }
+                                N.Leave();
+                                N(SyntaxKind::IdentifierNameSyntax);
+                                N.Enter();
+                                {
+                                    N(SyntaxKind::IdentifierToken);
+                                }
+                                N.Leave();
+                                N(SyntaxKind::TypeClauseSyntax);
+                                N.Enter();
+                                {
+                                    N(SyntaxKind::ColonToken);
+                                    N(SyntaxKind::IdentifierNameSyntax);
+                                    N.Enter();
+                                    {
+                                        N(SyntaxKind::IdentifierToken, true);
+                                    }
+                                    N.Leave();
+                                }
+                                N.Leave();
+                                N(SyntaxKind::CommaToken);
+                            }
+                            N.Leave();
+                            N(SyntaxKind::ParameterSyntax);
+                            N.Enter();
+                            {
+                                N(SyntaxKind::IdentifierNameSyntax);
+                                N.Enter();
+                                {
+                                    N(SyntaxKind::IdentifierToken);
+                                }
+                                N.Leave();
+                                N(SyntaxKind::TypeClauseSyntax);
+                                N.Enter();
+                                {
+                                    N(SyntaxKind::ColonToken);
+                                    N(SyntaxKind::IdentifierNameSyntax);
+                                    N.Enter();
+                                    {
+                                        N(SyntaxKind::IdentifierToken);
+                                    }
+                                    N.Leave();
+                                }
+                                N.Leave();
+                            }
+                            N.Leave();
+                        }
+                        N.Leave();
+                        N(SyntaxKind::CloseParenToken);
+                    }
+                    N.Leave();
+                    N(SyntaxKind::ReturnTypeClauseSyntax);
+                    N.Enter();
+                    {
+                        N(SyntaxKind::MinusGreaterThanToken);
+                        N(SyntaxKind::IdentifierNameSyntax);
+                        N.Enter();
+                        {
+                            N(SyntaxKind::IdentifierToken);
+                        }
+                        N.Leave();
+                    }
+                    N.Leave();
+                    N(SyntaxKind::SemicolonToken);
+                }
+                N.Leave();
+            }
+            N.Leave();
+            N(SyntaxKind::EndOfFileToken);
+            N.Leave();
+        }
     }
 }

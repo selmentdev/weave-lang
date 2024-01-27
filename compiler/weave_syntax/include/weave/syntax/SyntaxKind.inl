@@ -89,6 +89,7 @@ WEAVE_SYNTAX_PUNCTUATION(GreaterThanGreaterThanEqualsToken,     ">>=")
 WEAVE_SYNTAX_PUNCTUATION(GreaterThanGreaterThanToken,           ">>")
 WEAVE_SYNTAX_PUNCTUATION(GreaterThanToken,                      ">")
 WEAVE_SYNTAX_PUNCTUATION(HashToken,                             "#")
+WEAVE_SYNTAX_PUNCTUATION(HashOpenBracketToken,                  "#[")
 WEAVE_SYNTAX_PUNCTUATION(LessLessLessToken,                     "<<<")
 WEAVE_SYNTAX_PUNCTUATION(LessThanEqualsToken,                   "<=")
 WEAVE_SYNTAX_PUNCTUATION(LessThanLessThanEqualsToken,           "<<=")
@@ -444,6 +445,11 @@ WEAVE_SYNTAX_NODE(ReturnStatementSyntax,                        "[node:return-st
 WEAVE_SYNTAX_NODE(EmptyStatementSyntax,                         "[node:empty-statement]")
 WEAVE_SYNTAX_NODE(SelfExpressionSyntax,                         "[node:self-expression]")
 WEAVE_SYNTAX_NODE(UnexpectedNodesSyntax,                        "[node:unexpected-nodes]")
+WEAVE_SYNTAX_NODE(BalancedTokenSequneceSyntax,                  "[node:balanced-token-sequence]")
+
+WEAVE_SYNTAX_NODE(SourceFileSyntax,                             "[node:source-file]")
+WEAVE_SYNTAX_NODE(CodeBlockSyntax,                              "code block syntax")
+WEAVE_SYNTAX_NODE(CodeBlockItemSyntax,                          "code block item syntax")
 
 // prefix unary expressions
 WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    "[expr:unary-plus]")

@@ -42,7 +42,7 @@ namespace weave::source
 
             if (line_range.Start.Column > 0)
             {
-                lines.emplace_back(fmt::format("         | /{0:-<{1}}\\", "", line_range.End.Column));
+                //lines.emplace_back(fmt::format("         | /{0:-<{1}}\\", "", line_range.End.Column));
             }
 
             for (uint32_t line = line_range.Start.Line; line <= line_range.End.Line; ++line)
@@ -51,19 +51,26 @@ namespace weave::source
                 {
                     if (line >= prolog_line)
                     {
-                        lines.emplace_back(fmt::format("     ... | |"));
+                        lines.emplace_back(fmt::format("     ... |"));
 
                         line = epilog_line;
                         too_long = false;
                     }
                 }
 
+                auto sourceSpan = source.GetLineContent(line).value_or(SourceSpan{});
+                SourceSpan clamped{
+                    .Start = SourcePosition{std::max(sourceSpan.Start.Offset, entry.Source.Start.Offset)},
+                    .End = SourcePosition{std::min(sourceSpan.End.Offset, entry.Source.End.Offset)},
+                };
+                auto lineSpan = source.GetLineSpan(clamped);
                 std::string_view const lineView = source.GetLineContentText(line);
 
-                lines.emplace_back(fmt::format("{:>8} | | {}", line + 1, lineView));
+                lines.emplace_back(fmt::format("{:>8} | {}", line + 1, lineView));
+                lines.emplace_back(fmt::format("         | {0: <{1}}{0:^<{2}}", "", lineSpan.Start.Column, lineSpan.End.Column - lineSpan.Start.Column, std::max<uint32_t>(1, entry.Source.End.Offset - entry.Source.Start.Offset)));
             }
 
-            lines.emplace_back(fmt::format("         | |{0:_<{1}}^", "", line_range.End.Column));
+            //lines.emplace_back(fmt::format("         | |{0:_<{1}}^", "", line_range.End.Column));
         }
     }
 

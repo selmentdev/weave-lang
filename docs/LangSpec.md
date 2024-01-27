@@ -67,10 +67,10 @@ Function parameters are defined by list of arguments. Each argument is defined b
 | -------- | --------- | ---------- | --------- | --------- | -------------- |
 | 'ref'    | both      | readwrite  | reference | shared    | by caller      |
 | 'out'    | output    | writeonly  | reference | unique    | by callee      |
-| 'in'     | input     | readonly   | reference | shared    | by callee      |
-| 'copy'   | input     | readwrite  | value     | unique    | by callee      |
-| 'move'   | input     | readwrite  | value     | unique    | by callee      |
-| 'params' | input     | readonly   | array     | shared    | by callee      |
+| 'in'     | input     | readonly   | reference | shared    | by caller      |
+| 'copy'   | input     | readwrite  | value     | unique    | by caller      |
+| 'move'   | input     | readwrite  | value     | unique    | by caller      |
+| 'params' | input     | readonly   | reference | shared    | by caller      |
 
 Grammar:
 
@@ -222,7 +222,7 @@ IDEA: used to define new type based on existing one. It disallows type conversio
 
 ```
 public struct MyInt : int32; // 1.
-public struct MyInt(int32); // 2.
+public struct MyInt(int32);  // 2.
 public struct MyInt = int32; // 3.
 ```
 

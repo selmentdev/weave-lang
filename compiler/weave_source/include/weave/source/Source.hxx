@@ -7,6 +7,21 @@
 
 namespace weave::source
 {
+    struct LineIndex final
+    {
+        uint32_t Value;
+    };
+
+    struct ColumnIndex final
+    {
+        uint32_t Value;
+    };
+
+    struct ByteIndex final
+    {
+        uint32_t Value;
+    };
+
     struct LinePosition final
     {
         uint32_t Line;
@@ -52,6 +67,13 @@ namespace weave::source
             return {this->Start, this->Start};
         }
     };
+
+    [[nodiscard]] constexpr bool Disjoint(SourceSpan const& self, SourceSpan const& other)
+    {
+        uint32_t const min_end = std::min(self.End.Offset, other.End.Offset);
+        uint32_t const max_start = std::max(self.Start.Offset, other.Start.Offset);
+        return min_end <= max_start;
+    }
 
     [[nodiscard]] constexpr SourceSpan Combine(SourceSpan const& s1, SourceSpan const& s2)
     {

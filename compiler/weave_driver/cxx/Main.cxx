@@ -27,7 +27,6 @@
 #include "weave/bugcheck/Assert.hxx"
 #include "weave/filesystem/FileInfo.hxx"
 #include "weave/system/Environment.hxx"
-#include "weave/syntax/Parser.hxx"
 #include "weave/syntax/Visitor.hxx"
 
 #include "weave/filesystem/Utilities.hxx"
@@ -85,6 +84,91 @@ public:
     }
 };
 
+class ErrorReporter final : public weave::syntax::SyntaxWalker
+{
+public:
+    weave::source::DiagnosticSink& Diagnostic;
+
+public:
+    explicit ErrorReporter(weave::source::DiagnosticSink& diagnostic)
+        : Diagnostic(diagnostic)
+    {
+    }
+
+    void OnToken(weave::syntax::SyntaxToken* token) override
+    {
+        if (token->IsMissing())
+        {
+            this->Diagnostic.AddError(token->Source, fmt::format("Expected '{}'", weave::syntax::GetSpelling(token->Kind)));
+        }
+    }
+
+    void OnUnexpectedNodesSyntax(weave::syntax::UnexpectedNodesSyntax* node) override
+    {
+        auto first = static_cast<weave::syntax::SyntaxToken*>(node->Nodes.GetElement(0));
+        auto last = static_cast<weave::syntax::SyntaxToken*>(node->Nodes.GetElement(node->Nodes.GetCount() - 1));
+        auto source = weave::source::Combine(first->Source, last->Source);
+        this->Diagnostic.AddError(source, fmt::format("Unexpected tokens"));
+    }
+};
+
+class SyntaxTreeStructurePrinter final : public weave::syntax::SyntaxWalker
+{
+private:
+    void Indent()
+    {
+        fmt::print("{:{}}", "", this->Depth * 2);
+    }
+
+    weave::source::SourceText const& _text;
+
+public:
+    SyntaxTreeStructurePrinter(weave::source::SourceText const& text)
+        : SyntaxWalker{true}
+        , _text{text}
+    {
+    }
+
+public:
+    void OnDefault(weave::syntax::SyntaxNode* node) override
+    {
+        Indent();
+        fmt::println("[node={}]", weave::syntax::GetName(node->Kind));
+
+        SyntaxWalker::OnDefault(node);
+    }
+
+    void OnToken(weave::syntax::SyntaxToken* token) override
+    {
+        // this->Dispatch(token->LeadingTrivia.GetNode());
+        Indent();
+        auto startPosition = this->_text.GetLinePosition(token->Source.Start);
+        auto endPosition = this->_text.GetLinePosition(token->Source.End);
+        fmt::println("[token={}, start={}, end={}, position={}:{}:{}:{}, missing={}]",
+            weave::syntax::GetName(token->Kind),
+            token->Source.Start.Offset,
+            token->Source.End.Offset,
+            startPosition.Line, startPosition.Column,
+            endPosition.Line, endPosition.Column,
+            token->IsMissing());
+
+        // this->Dispatch(token->TrailingTrivia.GetNode());
+    }
+
+    void OnTrivia(weave::syntax::SyntaxTrivia* trivia) override
+    {
+        Indent();
+        auto startPosition = this->_text.GetLinePosition(trivia->Source.Start);
+        auto endPosition = this->_text.GetLinePosition(trivia->Source.End);
+        fmt::println("[trivia={}, start={}, end={}, position={}:{}:{}:{}]",
+            weave::syntax::GetName(trivia->Kind),
+            trivia->Source.Start.Offset,
+            trivia->Source.End.Offset,
+            startPosition.Line, startPosition.Column,
+            endPosition.Line, endPosition.Column);
+    }
+};
+
 int main(int argc, const char* argv[])
 {
     using namespace weave;
@@ -133,6 +217,9 @@ int main(int argc, const char* argv[])
                 fmt::println("    {}", option.Description);
                 fmt::println("");
             }
+
+            fflush(stdout);
+            fflush(stderr);
             return EXIT_SUCCESS;
         }
 
@@ -151,6 +238,8 @@ int main(int argc, const char* argv[])
         if (handler.HasErrors())
         {
             fmt::println(stderr, "aborting due to previous errors");
+            fflush(stdout);
+            fflush(stderr);
             return EXIT_FAILURE;
         }
 
@@ -166,26 +255,19 @@ int main(int argc, const char* argv[])
 
         auto const& files = result.GetPositional();
 
-        fmt::println("---");
-
-        for (auto const& f : files)
-        {
-            fmt::println("file: {}", f);
-        }
-
-        fmt::println("___");
-
         if (files.empty())
         {
             fmt::println(stderr, "No input files specified");
+            fflush(stdout);
+            fflush(stderr);
             return EXIT_FAILURE;
         }
 
-        if (files.size() > 1)
-        {
-            fmt::println(stderr, "Too many files specified");
-            return EXIT_FAILURE;
-        }
+        // if (files.size() > 1)
+        //{
+        //     fmt::println(stderr, "Too many files specified");
+        //     return EXIT_FAILURE;
+        // }
 
         auto parsing_timing = time::Instant::Now();
         if (auto file = filesystem::ReadTextFile(files.front()); file.has_value())
@@ -194,7 +276,33 @@ int main(int argc, const char* argv[])
             source::DiagnosticSink diagnostic{"<source>"};
             syntax::SyntaxFactory factory{};
 
-            syntax::Parser pp{&diagnostic, &factory, text};
+            syntax::Parser parser{&diagnostic, &factory, text};
+
+            if (driver.Experimental.Format == session::PrintFormat::AST)
+            {
+                    auto* root = parser.ParseSourceFile();
+                {
+                    SyntaxTreeStructurePrinter printer{text};
+                    printer.Dispatch(root);
+                }
+                {
+                    // HACK: Remove with parser error reporting.
+                    diagnostic.Items.clear();
+                    ErrorReporter error{diagnostic};
+                    error.Dispatch(root);
+                    std::vector<std::string> diag{};
+                    source::FormatDiagnostics(diag, text, diagnostic, 1000);
+
+                    for (std::string const& item : diag)
+                    {
+                        fmt::println(stderr, "{}", item);
+                    }
+                }
+
+                fflush(stdout);
+                fflush(stderr);
+                return EXIT_SUCCESS;
+            }
 
             class TokenPrintingWalker : public syntax::SyntaxWalker
             {
@@ -211,11 +319,16 @@ int main(int argc, const char* argv[])
                 {
                     this->Dispatch(token->LeadingTrivia.GetNode());
 
-                    //if ((token->Kind == syntax::SyntaxKind::OpenBraceToken) or (token->Kind == syntax::SyntaxKind::CloseBraceToken))
+                    // if ((token->Kind == syntax::SyntaxKind::OpenBraceToken) or (token->Kind == syntax::SyntaxKind::CloseBraceToken))
                     //{
-                    //    fmt::print("{}", GetSpelling(token->Kind));
-                    //}
-                    //else
+                    //     fmt::print("{}", GetSpelling(token->Kind));
+                    // }
+                    // else
+                    if (token->IsMissing())
+                    {
+                        fmt::print("/*missing:'{}'*/", weave::syntax::GetSpelling(token->Kind));
+                    }
+                    else
                     {
                         fmt::print("{}", _text.GetText(token->Source));
                     }
@@ -230,9 +343,11 @@ int main(int argc, const char* argv[])
 
                 void OnUnexpectedNodesSyntax(syntax::UnexpectedNodesSyntax* node) override
                 {
-                    fmt::print("\u001b[41m");
+                    fmt::print("/*>>>");
+                    // fmt::print("\u001b[41m");
                     SyntaxWalker::OnUnexpectedNodesSyntax(node);
-                    fmt::print("\u001b[0m");
+                    fmt::print("<<<*/");
+                    // fmt::print("\u001b[0m");
                 }
             };
 
@@ -360,7 +475,7 @@ int main(int argc, const char* argv[])
                     this->Dispatch(token->TrailingTrivia.GetNode());
                 }
 
-                void OnTrivia(weave::syntax::SyntaxTrivia *trivia) override
+                void OnTrivia(weave::syntax::SyntaxTrivia* trivia) override
                 {
                     Indent();
                     fmt::println("{}::LeadingTrivia `{}`", __func__, GetSpelling(trivia->Kind));
@@ -433,7 +548,12 @@ int main(int argc, const char* argv[])
                 // }
             };
 
-            auto cu2 = pp.Parse();
+            auto cu2 = parser.ParseSourceFile();
+            fmt::println("------");
+            {
+                ErrorReporter rr{diagnostic};
+                rr.Dispatch(cu2);
+            }
             /*fmt::println("-------");
             {
                 TreeLinearizer printer{};
@@ -473,10 +593,12 @@ int main(int argc, const char* argv[])
     else
     {
         fmt::println(stderr, "{}", matched.error());
+        fflush(stdout);
+        fflush(stderr);
         return EXIT_FAILURE;
     }
 
-#if defined(WIN32)
+#if defined(WIN32) && false
     HANDLE hProcess = GetCurrentProcess();
     PROCESS_MEMORY_COUNTERS pmc{sizeof(pmc)};
 

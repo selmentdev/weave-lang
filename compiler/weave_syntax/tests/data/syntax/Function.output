@@ -1,921 +1,885 @@
----
-file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\Function.source
-___
--------
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-CloseParenToken
-OpenBraceToken
-EmptyStatementSyntax
-CloseBraceToken
-ExternKeyword
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-SemicolonToken
-InlineKeyword
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-CloseParenToken
-EqualsGreaterThanToken
-IntegerLiteralToken
-SemicolonToken
-ExportKeyword
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-OpenBraceToken
-ReturnKeyword
-SemicolonToken
-CloseBraceToken
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-OpenBraceToken
-ReturnKeyword
-IdentifierToken
-QuestionToken
-IdentifierToken
-PlusToken
-IdentifierToken
-AsteriskToken
-IdentifierToken
-ColonToken
-PlusToken
-IdentifierToken
-SlashToken
-IdentifierToken
-SemicolonToken
-CloseBraceToken
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-OpenBraceToken
-ReturnKeyword
-IdentifierToken
-QuestionToken
-IdentifierToken
-ColonToken
-IdentifierToken
-SemicolonToken
-CloseBraceToken
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-OpenBraceToken
-ReturnKeyword
-IdentifierToken
-QuestionToken
-IdentifierToken
-PlusToken
-IdentifierToken
-AsteriskToken
-IdentifierToken
-ColonToken
-IdentifierToken
-PlusToken
-IdentifierToken
-SlashToken
-IdentifierToken
-SemicolonToken
-CloseBraceToken
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-OutKeyword
-IdentifierToken
-ColonToken
-IdentifierToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-OpenBraceToken
-IdentifierToken
-EqualsToken
-IdentifierToken
-EqualsToken
-IdentifierToken
-EqualsToken
-IdentifierToken
-PlusToken
-IdentifierToken
-SemicolonToken
-CloseBraceToken
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-OpenBraceToken
-IfKeyword
-IdentifierToken
-EqualsToken
-IdentifierToken
-OpenBraceToken
-IdentifierToken
-DotToken
-IdentifierToken
-OpenParenToken
-StringLiteralToken
-CloseParenToken
-SemicolonToken
-CloseBraceToken
-ElseKeyword
-OpenBraceToken
-IdentifierToken
-DotToken
-IdentifierToken
-OpenParenToken
-StringLiteralToken
-CloseParenToken
-SemicolonToken
-CloseBraceToken
-CloseBraceToken
-PublicKeyword
-PrivateKeyword
-TailCallKeyword
-UnsafeKeyword
-ExportKeyword
-RestrictedKeyword
-TransientKeyword
-TrustedKeyword
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-InKeyword
-RefKeyword
-OutKeyword
-ValueKeyword
-MoveKeyword
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-InKeyword
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-OutKeyword
-IdentifierToken
-ColonToken
-IdentifierToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-OpenBraceToken
-LetKeyword
-IdentifierToken
-EqualsToken
-IdentifierToken
-AmpersandToken
-IntegerLiteralToken
-SemicolonToken
-LetKeyword
-IdentifierToken
-EqualsToken
-IdentifierToken
-GreaterThanGreaterThanToken
-IntegerLiteralToken
-SemicolonToken
-LetKeyword
-IdentifierToken
-EqualsToken
-IdentifierToken
-AmpersandToken
-IntegerLiteralToken
-SemicolonToken
-LetKeyword
-IdentifierToken
-EqualsToken
-IdentifierToken
-GreaterThanGreaterThanToken
-IntegerLiteralToken
-SemicolonToken
-LetKeyword
-IdentifierToken
-EqualsToken
-IdentifierToken
-AsteriskToken
-IdentifierToken
-SemicolonToken
-LetKeyword
-IdentifierToken
-EqualsToken
-IdentifierToken
-AsteriskToken
-IdentifierToken
-SemicolonToken
-LetKeyword
-IdentifierToken
-EqualsToken
-IdentifierToken
-AsteriskToken
-IdentifierToken
-SemicolonToken
-LetKeyword
-IdentifierToken
-EqualsToken
-IdentifierToken
-AsteriskToken
-IdentifierToken
-SemicolonToken
-LetKeyword
-IdentifierToken
-EqualsToken
-OpenParenToken
-IdentifierToken
-GreaterThanGreaterThanToken
-IntegerLiteralToken
-CloseParenToken
-PlusToken
-IdentifierToken
-PlusToken
-OpenParenToken
-IdentifierToken
-AmpersandToken
-IntegerLiteralToken
-CloseParenToken
-SemicolonToken
-IdentifierToken
-EqualsToken
-OpenParenToken
-IdentifierToken
-AmpersandToken
-IntegerLiteralToken
-CloseParenToken
-BarToken
-OpenParenToken
-IdentifierToken
-LessThanLessThanToken
-IntegerLiteralToken
-CloseParenToken
-SemicolonToken
-ReturnKeyword
-OpenParenToken
-IdentifierToken
-GreaterThanGreaterThanToken
-IntegerLiteralToken
-CloseParenToken
-PlusToken
-OpenParenToken
-IdentifierToken
-GreaterThanGreaterThanToken
-IntegerLiteralToken
-CloseParenToken
-PlusToken
-IdentifierToken
-SemicolonToken
-CloseBraceToken
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-OpenBraceToken
-CloseBraceToken
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CloseParenToken
-MinusGreaterThanToken
-IdentifierToken
-OpenBraceToken
-IfKeyword
-IdentifierToken
-LessThanToken
-IdentifierToken
-OpenBraceToken
-ReturnKeyword
-IdentifierToken
-SemicolonToken
-CloseBraceToken
-ElseKeyword
-OpenBraceToken
-ReturnKeyword
-IdentifierToken
-SemicolonToken
-CloseBraceToken
-CloseBraceToken
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-CloseParenToken
-OpenBraceToken
-IdentifierToken
-EqualsToken
-IntegerLiteralToken
-SemicolonToken
-IdentifierToken
-EqualsToken
-IntegerLiteralToken
-SemicolonToken
-CloseBraceToken
-EndOfFileToken
--------
-// empty statement
-function Emtpy() {}
-extern function Declared() -> void;
-inline function Expression() => 42;
-export function Body() -> void {
-    return;
-}
-
-function Select2(a: bool, b: float, c: float, d: float, e: float) -> float {
-    return a ? b + c * d  + e / c;
-}
-
-function Select(a: bool, b: float, c: float) -> float {
-    return a ? b : c;
-}
-
-function Select2(a: bool, b: float, c: float, d: float, e: float) -> float {
-    return a ? b + c * d : d + e / c;
-}
-
-function foo(x: int, y: int, z: int, c: int, out w: int) -> void {
-    w = x = y = z + c;
-}
-
-function before(y: bool) -> void {
-    if /*let Some(y)*/ = y {
-        Console.WriteLine("Got something");
-    } else {
-        Console.WriteLine("Got nothing");
-    }
-}
-
-// pacz pan, syntax walker :^)
-
-public private tailcall unsafe export restricted transient trusted function mul_high(
-    in ref out value move left: u64,
-    in right: u64,
-    out lower: u64) -> u64
-{
-    let ll = left & 0xFFFFFFFFu64;
-    let lu = left >> 32u64;
-    let rl = right & 0xFFFFFFFFu64;
-    let ru = right >> 32u64;
-    let ll_rl = ll * rl;
-    let ll_ru = ll * ru;
-    let lu_rl = lu * rl;
-    let lu_ru = lu * ru;
-    let m = (ll_rl >> 32u64) + ll_ru + (lu_rl & 0xFFFFFFFFu64);
-    lower = (ll_rl & 0xFFFFFFFFu64) | (m << 32u64);
-    return (m >> 32u64) + (lu_rl >> 32u64) + lu_ru;
-}
-
-function after() -> void {}
-
-function Testing(a: int32, b: int32) -> int32 {
-    if a < b {
-        return a;
-    } else {
-        return b;
-    }
-}
-
-function EndOfFileDuringStatement() { =42a=5;}
--------
-OnCompilationUnitSyntax
-    OnSyntaxList
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `Emtpy`
-                OnToken `(` `[`
-                OnToken `)` `)`
-                OnToken `{` `{`
-                OnSyntaxList
-                    OnDefault [stmt:empty-statement]
-                OnToken `}` `}`
-            OnSyntaxList
-                OnToken `extern` `extern`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `Declared`
-                OnToken `(` `[`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `void`
-            OnToken `;` `;`
-            OnSyntaxList
-                OnToken `inline` `inline`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `Expression`
-                OnToken `(` `[`
-                OnToken `)` `)`
-                OnToken `=>` `=>`
-                    OnToken `42` `[token:integer-literal]`
-            OnToken `;` `;`
-            OnSyntaxList
-                OnToken `export` `export`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `Body`
-                OnToken `(` `[`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `void`
-                OnToken `{` `{`
-                OnSyntaxList
-                        OnToken `return` `return`
-                        OnToken `;` `;`
-                OnToken `}` `}`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `Select2`
-                OnToken `(` `[`
-                OnSyntaxList
-                        OnIdentifierNameSyntax `a`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `bool`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `b`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `c`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `d`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `e`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `float`
-                OnToken `{` `{`
-                OnSyntaxList
-                        OnToken `return` `return`
-                            OnIdentifierNameSyntax `a`
-                            OnToken `?` `?`
-                                OnIdentifierNameSyntax `b`
-                                OnToken `+` `+`
-                                    OnIdentifierNameSyntax `c`
-                                    OnToken `*` `*`
-                                    OnIdentifierNameSyntax `d`
-                            OnToken `` `:`
-                                    OnToken `+` `+`
-                                    OnIdentifierNameSyntax `e`
-                                OnToken `/` `/`
-                                OnIdentifierNameSyntax `c`
-                        OnToken `;` `;`
-                OnToken `}` `}`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `Select`
-                OnToken `(` `[`
-                OnSyntaxList
-                        OnIdentifierNameSyntax `a`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `bool`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `b`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `c`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `float`
-                OnToken `{` `{`
-                OnSyntaxList
-                        OnToken `return` `return`
-                            OnIdentifierNameSyntax `a`
-                            OnToken `?` `?`
-                            OnIdentifierNameSyntax `b`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `c`
-                        OnToken `;` `;`
-                OnToken `}` `}`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `Select2`
-                OnToken `(` `[`
-                OnSyntaxList
-                        OnIdentifierNameSyntax `a`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `bool`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `b`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `c`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `d`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `e`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `float`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `float`
-                OnToken `{` `{`
-                OnSyntaxList
-                        OnToken `return` `return`
-                            OnIdentifierNameSyntax `a`
-                            OnToken `?` `?`
-                                OnIdentifierNameSyntax `b`
-                                OnToken `+` `+`
-                                    OnIdentifierNameSyntax `c`
-                                    OnToken `*` `*`
-                                    OnIdentifierNameSyntax `d`
-                            OnToken `:` `:`
-                                OnIdentifierNameSyntax `d`
-                                OnToken `+` `+`
-                                    OnIdentifierNameSyntax `e`
-                                    OnToken `/` `/`
-                                    OnIdentifierNameSyntax `c`
-                        OnToken `;` `;`
-                OnToken `}` `}`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `foo`
-                OnToken `(` `[`
-                OnSyntaxList
-                        OnIdentifierNameSyntax `x`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `int`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `y`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `int`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `z`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `int`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `c`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `int`
-                    OnToken `,` `,`
-                        OnSyntaxList
-                            OnToken `out` `out`
-                        OnIdentifierNameSyntax `w`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `int`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `void`
-                OnToken `{` `{`
-                OnSyntaxList
-                            OnIdentifierNameSyntax `w`
-                            OnToken `=` `=`
-                                OnIdentifierNameSyntax `x`
-                                OnToken `=` `=`
-                                    OnIdentifierNameSyntax `y`
-                                    OnToken `=` `=`
-                                        OnIdentifierNameSyntax `z`
-                                        OnToken `+` `+`
-                                        OnIdentifierNameSyntax `c`
-                        OnToken `;` `;`
-                OnToken `}` `}`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `before`
-                OnToken `(` `[`
-                OnSyntaxList
-                        OnIdentifierNameSyntax `y`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `bool`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `void`
-                OnToken `{` `{`
-                OnSyntaxList
-                        OnToken `if` `if`
-                            OnIdentifierNameSyntax ``
-                            OnToken `=` `=`
-                            OnIdentifierNameSyntax `y`
-                            OnToken `{` `{`
-                            OnSyntaxList
-                                            OnIdentifierNameSyntax `Console`
-                                            OnToken `.` `.`
-                                            OnIdentifierNameSyntax `WriteLine`
-                                            OnToken `(` `[`
-                                            OnSyntaxList
-                                                        OnToken `"Got something"` `[token:string-literal]`
-                                            OnToken `)` `)`
-                                    OnToken `;` `;`
-                            OnToken `}` `}`
-                            OnToken `else` `else`
-                                OnToken `{` `{`
-                                OnSyntaxList
-                                                OnIdentifierNameSyntax `Console`
-                                                OnToken `.` `.`
-                                                OnIdentifierNameSyntax `WriteLine`
-                                                OnToken `(` `[`
-                                                OnSyntaxList
-                                                            OnToken `"Got nothing"` `[token:string-literal]`
-                                                OnToken `)` `)`
-                                        OnToken `;` `;`
-                                OnToken `}` `}`
-                OnToken `}` `}`
-            OnSyntaxList
-                OnToken `public` `public`
-                OnToken `private` `private`
-                OnToken `tailcall` `tailcall`
-                OnToken `unsafe` `unsafe`
-                OnToken `export` `export`
-                OnToken `restricted` `restricted`
-                OnToken `transient` `transient`
-                OnToken `trusted` `trusted`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `mul_high`
-                OnToken `(` `[`
-                OnSyntaxList
-                        OnSyntaxList
-                            OnToken `in` `in`
-                            OnToken `ref` `ref`
-                            OnToken `out` `out`
-                            OnToken `value` `value`
-                            OnToken `move` `move`
-                        OnIdentifierNameSyntax `left`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `u64`
-                    OnToken `,` `,`
-                        OnSyntaxList
-                            OnToken `in` `in`
-                        OnIdentifierNameSyntax `right`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `u64`
-                    OnToken `,` `,`
-                        OnSyntaxList
-                            OnToken `out` `out`
-                        OnIdentifierNameSyntax `lower`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `u64`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `u64`
-                OnToken `{` `{`
-                OnSyntaxList
-                        OnToken `let` `let`
-                        OnIdentifierNameSyntax `ll`
-                            OnToken `=` `=`
-                                OnIdentifierNameSyntax `left`
-                                OnToken `&` `&`
-                                    OnToken `0xFFFFFFFFu64` `[token:integer-literal]`
-                        OnToken `;` `;`
-                        OnToken `let` `let`
-                        OnIdentifierNameSyntax `lu`
-                            OnToken `=` `=`
-                                OnIdentifierNameSyntax `left`
-                                OnToken `>>` `>>`
-                                    OnToken `32u64` `[token:integer-literal]`
-                        OnToken `;` `;`
-                        OnToken `let` `let`
-                        OnIdentifierNameSyntax `rl`
-                            OnToken `=` `=`
-                                OnIdentifierNameSyntax `right`
-                                OnToken `&` `&`
-                                    OnToken `0xFFFFFFFFu64` `[token:integer-literal]`
-                        OnToken `;` `;`
-                        OnToken `let` `let`
-                        OnIdentifierNameSyntax `ru`
-                            OnToken `=` `=`
-                                OnIdentifierNameSyntax `right`
-                                OnToken `>>` `>>`
-                                    OnToken `32u64` `[token:integer-literal]`
-                        OnToken `;` `;`
-                        OnToken `let` `let`
-                        OnIdentifierNameSyntax `ll_rl`
-                            OnToken `=` `=`
-                                OnIdentifierNameSyntax `ll`
-                                OnToken `*` `*`
-                                OnIdentifierNameSyntax `rl`
-                        OnToken `;` `;`
-                        OnToken `let` `let`
-                        OnIdentifierNameSyntax `ll_ru`
-                            OnToken `=` `=`
-                                OnIdentifierNameSyntax `ll`
-                                OnToken `*` `*`
-                                OnIdentifierNameSyntax `ru`
-                        OnToken `;` `;`
-                        OnToken `let` `let`
-                        OnIdentifierNameSyntax `lu_rl`
-                            OnToken `=` `=`
-                                OnIdentifierNameSyntax `lu`
-                                OnToken `*` `*`
-                                OnIdentifierNameSyntax `rl`
-                        OnToken `;` `;`
-                        OnToken `let` `let`
-                        OnIdentifierNameSyntax `lu_ru`
-                            OnToken `=` `=`
-                                OnIdentifierNameSyntax `lu`
-                                OnToken `*` `*`
-                                OnIdentifierNameSyntax `ru`
-                        OnToken `;` `;`
-                        OnToken `let` `let`
-                        OnIdentifierNameSyntax `m`
-                            OnToken `=` `=`
-                                        OnToken `(` `[`
-                                            OnIdentifierNameSyntax `ll_rl`
-                                            OnToken `>>` `>>`
-                                                OnToken `32u64` `[token:integer-literal]`
-                                        OnToken `)` `)`
-                                    OnToken `+` `+`
-                                    OnIdentifierNameSyntax `ll_ru`
-                                OnToken `+` `+`
-                                    OnToken `(` `[`
-                                        OnIdentifierNameSyntax `lu_rl`
-                                        OnToken `&` `&`
-                                            OnToken `0xFFFFFFFFu64` `[token:integer-literal]`
-                                    OnToken `)` `)`
-                        OnToken `;` `;`
-                            OnIdentifierNameSyntax `lower`
-                            OnToken `=` `=`
-                                    OnToken `(` `[`
-                                        OnIdentifierNameSyntax `ll_rl`
-                                        OnToken `&` `&`
-                                            OnToken `0xFFFFFFFFu64` `[token:integer-literal]`
-                                    OnToken `)` `)`
-                                OnToken `|` `|`
-                                    OnToken `(` `[`
-                                        OnIdentifierNameSyntax `m`
-                                        OnToken `<<` `<<`
-                                            OnToken `32u64` `[token:integer-literal]`
-                                    OnToken `)` `)`
-                        OnToken `;` `;`
-                        OnToken `return` `return`
-                                    OnToken `(` `[`
-                                        OnIdentifierNameSyntax `m`
-                                        OnToken `>>` `>>`
-                                            OnToken `32u64` `[token:integer-literal]`
-                                    OnToken `)` `)`
-                                OnToken `+` `+`
-                                    OnToken `(` `[`
-                                        OnIdentifierNameSyntax `lu_rl`
-                                        OnToken `>>` `>>`
-                                            OnToken `32u64` `[token:integer-literal]`
-                                    OnToken `)` `)`
-                            OnToken `+` `+`
-                            OnIdentifierNameSyntax `lu_ru`
-                        OnToken `;` `;`
-                OnToken `}` `}`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `after`
-                OnToken `(` `[`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `void`
-                OnToken `{` `{`
-                OnToken `}` `}`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `Testing`
-                OnToken `(` `[`
-                OnSyntaxList
-                        OnIdentifierNameSyntax `a`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `int32`
-                    OnToken `,` `,`
-                        OnIdentifierNameSyntax `b`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `int32`
-                OnToken `)` `)`
-                OnToken `->` `->`
-                OnIdentifierNameSyntax `int32`
-                OnToken `{` `{`
-                OnSyntaxList
-                        OnToken `if` `if`
-                            OnIdentifierNameSyntax `a`
-                            OnToken `<` `<`
-                            OnIdentifierNameSyntax `b`
-                            OnToken `{` `{`
-                            OnSyntaxList
-                                    OnToken `return` `return`
-                                    OnIdentifierNameSyntax `a`
-                                    OnToken `;` `;`
-                            OnToken `}` `}`
-                            OnToken `else` `else`
-                                OnToken `{` `{`
-                                OnSyntaxList
-                                        OnToken `return` `return`
-                                        OnIdentifierNameSyntax `b`
-                                        OnToken `;` `;`
-                                OnToken `}` `}`
-                OnToken `}` `}`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `EndOfFileDuringStatement`
-                OnToken `(` `[`
-                OnToken `)` `)`
-                OnToken `{` `{`
-                OnSyntaxList
-                            OnIdentifierNameSyntax ``
-                            OnToken `=` `=`
-                                OnToken `42` `[token:integer-literal]`
-                        OnToken `` `;`
-                            OnIdentifierNameSyntax `a`
-                            OnToken `=` `=`
-                                OnToken `5` `[token:integer-literal]`
-                        OnToken `;` `;`
-                OnToken `}` `}`
-    OnToken `` `[token::end-of-file]`
--------
-parsing took: 00:00:00.003
-PageFaultCount: 1391
-PeakWorkingSetSize: 5.191 MiB (5443584)
-WorkingSetSize: 4.336 MiB (4546560)
-QuotaPeakPagedPoolUsage: 259.484 KiB (265712)
-QuotaPagedPoolUsage: 259.398 KiB (265624)
-QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
-QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 720.000 KiB (737280)
-PeakPagefileUsage: 1.621 MiB (1699840)
+[node=SourceFileSyntax]
+  [node=SyntaxList]
+    [node=FunctionDeclarationSyntax]
+      [node=SyntaxList]
+        [node=AttributeListSyntax]
+          [token=HashOpenBracketToken, start=22, end=24, position=2:0:2:2, missing=false]
+          [node=SyntaxList]
+            [node=AttributeSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=24, end=30, position=2:2:2:8, missing=false]
+              [token=CommaToken, start=30, end=31, position=2:8:2:9, missing=false]
+            [node=AttributeSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=32, end=40, position=2:10:2:18, missing=false]
+              [token=CommaToken, start=40, end=41, position=2:18:2:19, missing=false]
+          [token=CloseBracketToken, start=41, end=42, position=2:19:2:20, missing=false]
+      [token=FunctionKeyword, start=43, end=51, position=2:21:2:29, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=52, end=58, position=2:30:2:36, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=58, end=59, position=2:36:2:37, missing=false]
+        [node=UnexpectedNodesSyntax]
+          [node=SyntaxList]
+            [token=CommaToken, start=59, end=60, position=2:37:2:38, missing=false]
+            [token=IdentifierToken, start=60, end=61, position=2:38:2:39, missing=false]
+            [token=ColonToken, start=61, end=62, position=2:39:2:40, missing=false]
+            [token=IdentifierToken, start=62, end=63, position=2:40:2:41, missing=false]
+            [token=CommaToken, start=63, end=64, position=2:41:2:42, missing=false]
+            [token=IdentifierToken, start=65, end=66, position=2:43:2:44, missing=false]
+            [token=ColonToken, start=66, end=67, position=2:44:2:45, missing=false]
+            [token=IdentifierToken, start=67, end=68, position=2:45:2:46, missing=false]
+            [token=CommaToken, start=68, end=69, position=2:46:2:47, missing=false]
+            [token=HashOpenBracketToken, start=70, end=72, position=2:48:2:50, missing=false]
+            [token=IdentifierToken, start=72, end=75, position=2:50:2:53, missing=false]
+            [token=CloseBracketToken, start=75, end=76, position=2:53:2:54, missing=false]
+            [token=CommaToken, start=77, end=78, position=2:55:2:56, missing=false]
+            [token=OpenBraceToken, start=79, end=80, position=2:57:2:58, missing=false]
+            [token=CloseBraceToken, start=80, end=81, position=2:58:2:59, missing=false]
+            [token=HashOpenBracketToken, start=110, end=112, position=5:0:5:2, missing=false]
+            [token=IdentifierToken, start=112, end=115, position=5:2:5:5, missing=false]
+            [token=CommaToken, start=115, end=116, position=5:5:5:6, missing=false]
+            [token=IdentifierToken, start=117, end=127, position=5:7:5:17, missing=false]
+            [token=OpenParenToken, start=127, end=128, position=5:17:5:18, missing=false]
+            [token=StringLiteralToken, start=128, end=136, position=5:18:5:26, missing=false]
+        [token=CloseParenToken, start=136, end=137, position=5:26:5:27, missing=false]
+      [token=SemicolonToken, start=137, end=138, position=5:27:5:28, missing=true]
+    [node=EmptyStatementSyntax]
+      [node=UnexpectedNodesSyntax]
+        [node=SyntaxList]
+          [token=CloseBracketToken, start=137, end=138, position=5:27:5:28, missing=false]
+          [token=FunctionKeyword, start=140, end=148, position=6:0:6:8, missing=false]
+          [token=IdentifierToken, start=149, end=152, position=6:9:6:12, missing=false]
+          [token=OpenParenToken, start=152, end=153, position=6:12:6:13, missing=false]
+          [token=HashOpenBracketToken, start=159, end=161, position=7:4:7:6, missing=false]
+          [token=IdentifierToken, start=161, end=167, position=7:6:7:12, missing=false]
+          [token=CloseBracketToken, start=167, end=168, position=7:12:7:13, missing=false]
+          [token=IdentifierToken, start=169, end=170, position=7:14:7:15, missing=false]
+          [token=ColonToken, start=170, end=171, position=7:15:7:16, missing=false]
+          [token=IdentifierToken, start=172, end=177, position=7:17:7:22, missing=false]
+          [token=CommaToken, start=177, end=178, position=7:22:7:23, missing=false]
+          [token=HashOpenBracketToken, start=184, end=186, position=8:4:8:6, missing=false]
+          [token=IdentifierToken, start=186, end=192, position=8:6:8:12, missing=false]
+          [token=CloseBracketToken, start=192, end=193, position=8:12:8:13, missing=false]
+          [token=IdentifierToken, start=194, end=195, position=8:14:8:15, missing=false]
+          [token=ColonToken, start=195, end=196, position=8:15:8:16, missing=false]
+          [token=IdentifierToken, start=197, end=204, position=8:17:8:24, missing=false]
+          [token=CloseParenToken, start=204, end=205, position=8:24:8:25, missing=false]
+      [token=SemicolonToken, start=205, end=206, position=8:25:8:26, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [token=FunctionKeyword, start=210, end=218, position=10:0:10:8, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=219, end=224, position=10:9:10:14, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=224, end=225, position=10:14:10:15, missing=false]
+        [token=CloseParenToken, start=225, end=226, position=10:15:10:16, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=227, end=228, position=10:17:10:18, missing=false]
+        [node=SyntaxList]
+          [node=EmptyStatementSyntax]
+            [token=SemicolonToken, start=228, end=229, position=10:18:10:19, missing=false]
+        [token=CloseBraceToken, start=229, end=230, position=10:19:10:20, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [node=SyntaxList]
+        [token=ExternKeyword, start=232, end=238, position=11:0:11:6, missing=false]
+      [token=FunctionKeyword, start=239, end=247, position=11:7:11:15, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=248, end=256, position=11:16:11:24, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=256, end=257, position=11:24:11:25, missing=false]
+        [token=CloseParenToken, start=257, end=258, position=11:25:11:26, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=259, end=261, position=11:27:11:29, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=262, end=266, position=11:30:11:34, missing=false]
+      [token=SemicolonToken, start=266, end=267, position=11:34:11:35, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [node=SyntaxList]
+        [token=InlineKeyword, start=269, end=275, position=12:0:12:6, missing=false]
+      [token=FunctionKeyword, start=276, end=284, position=12:7:12:15, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=285, end=295, position=12:16:12:26, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=295, end=296, position=12:26:12:27, missing=false]
+        [token=CloseParenToken, start=296, end=297, position=12:27:12:28, missing=false]
+      [node=ArrowExpressionClauseSyntax]
+        [token=EqualsGreaterThanToken, start=298, end=300, position=12:29:12:31, missing=false]
+        [node=LiteralExpressionSyntax]
+          [token=IntegerLiteralToken, start=301, end=303, position=12:32:12:34, missing=false]
+      [token=SemicolonToken, start=303, end=304, position=12:34:12:35, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [node=SyntaxList]
+        [token=ExportKeyword, start=306, end=312, position=13:0:13:6, missing=false]
+      [token=FunctionKeyword, start=313, end=321, position=13:7:13:15, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=322, end=326, position=13:16:13:20, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=326, end=327, position=13:20:13:21, missing=false]
+        [token=CloseParenToken, start=327, end=328, position=13:21:13:22, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=329, end=331, position=13:23:13:25, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=332, end=336, position=13:26:13:30, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=337, end=338, position=13:31:13:32, missing=false]
+        [node=SyntaxList]
+          [node=ReturnStatementSyntax]
+            [token=ReturnKeyword, start=344, end=350, position=14:4:14:10, missing=false]
+            [token=SemicolonToken, start=350, end=351, position=14:10:14:11, missing=false]
+        [token=CloseBraceToken, start=353, end=354, position=15:0:15:1, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [token=FunctionKeyword, start=358, end=366, position=17:0:17:8, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=367, end=374, position=17:9:17:16, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=374, end=375, position=17:16:17:17, missing=false]
+        [node=SyntaxList]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=375, end=376, position=17:17:17:18, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=376, end=377, position=17:18:17:19, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=378, end=382, position=17:20:17:24, missing=false]
+            [token=CommaToken, start=382, end=383, position=17:24:17:25, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=384, end=385, position=17:26:17:27, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=385, end=386, position=17:27:17:28, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=387, end=392, position=17:29:17:34, missing=false]
+            [token=CommaToken, start=392, end=393, position=17:34:17:35, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=394, end=395, position=17:36:17:37, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=395, end=396, position=17:37:17:38, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=397, end=402, position=17:39:17:44, missing=false]
+            [token=CommaToken, start=402, end=403, position=17:44:17:45, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=404, end=405, position=17:46:17:47, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=405, end=406, position=17:47:17:48, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=407, end=412, position=17:49:17:54, missing=false]
+            [token=CommaToken, start=412, end=413, position=17:54:17:55, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=414, end=415, position=17:56:17:57, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=415, end=416, position=17:57:17:58, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=417, end=422, position=17:59:17:64, missing=false]
+        [token=CloseParenToken, start=422, end=423, position=17:64:17:65, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=424, end=426, position=17:66:17:68, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=427, end=432, position=17:69:17:74, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=433, end=434, position=17:75:17:76, missing=false]
+        [node=SyntaxList]
+          [node=ReturnStatementSyntax]
+            [token=ReturnKeyword, start=440, end=446, position=18:4:18:10, missing=false]
+            [node=ConditionalExpressionSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=447, end=448, position=18:11:18:12, missing=false]
+              [token=QuestionToken, start=449, end=450, position=18:13:18:14, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=451, end=452, position=18:15:18:16, missing=false]
+                [token=PlusToken, start=453, end=454, position=18:17:18:18, missing=false]
+                [node=BinaryExpressionSyntax]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=455, end=456, position=18:19:18:20, missing=false]
+                  [token=AsteriskToken, start=457, end=458, position=18:21:18:22, missing=false]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=459, end=460, position=18:23:18:24, missing=false]
+              [token=ColonToken, start=462, end=463, position=18:26:18:27, missing=true]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=462, end=463, position=18:26:18:27, missing=false]
+                [token=PlusToken, start=464, end=465, position=18:28:18:29, missing=false]
+                [node=BinaryExpressionSyntax]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=466, end=467, position=18:30:18:31, missing=false]
+                  [token=SlashToken, start=468, end=469, position=18:32:18:33, missing=false]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=470, end=471, position=18:34:18:35, missing=false]
+            [token=SemicolonToken, start=471, end=472, position=18:35:18:36, missing=false]
+        [token=CloseBraceToken, start=474, end=475, position=19:0:19:1, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [token=FunctionKeyword, start=479, end=487, position=21:0:21:8, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=488, end=494, position=21:9:21:15, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=494, end=495, position=21:15:21:16, missing=false]
+        [node=SyntaxList]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=495, end=496, position=21:16:21:17, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=496, end=497, position=21:17:21:18, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=498, end=502, position=21:19:21:23, missing=false]
+            [token=CommaToken, start=502, end=503, position=21:23:21:24, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=504, end=505, position=21:25:21:26, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=505, end=506, position=21:26:21:27, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=507, end=512, position=21:28:21:33, missing=false]
+            [token=CommaToken, start=512, end=513, position=21:33:21:34, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=514, end=515, position=21:35:21:36, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=515, end=516, position=21:36:21:37, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=517, end=522, position=21:38:21:43, missing=false]
+        [token=CloseParenToken, start=522, end=523, position=21:43:21:44, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=524, end=526, position=21:45:21:47, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=527, end=532, position=21:48:21:53, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=533, end=534, position=21:54:21:55, missing=false]
+        [node=SyntaxList]
+          [node=ReturnStatementSyntax]
+            [token=ReturnKeyword, start=540, end=546, position=22:4:22:10, missing=false]
+            [node=ConditionalExpressionSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=547, end=548, position=22:11:22:12, missing=false]
+              [token=QuestionToken, start=549, end=550, position=22:13:22:14, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=551, end=552, position=22:15:22:16, missing=false]
+              [token=ColonToken, start=553, end=554, position=22:17:22:18, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=555, end=556, position=22:19:22:20, missing=false]
+            [token=SemicolonToken, start=556, end=557, position=22:20:22:21, missing=false]
+        [token=CloseBraceToken, start=559, end=560, position=23:0:23:1, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [token=FunctionKeyword, start=564, end=572, position=25:0:25:8, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=573, end=580, position=25:9:25:16, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=580, end=581, position=25:16:25:17, missing=false]
+        [node=SyntaxList]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=581, end=582, position=25:17:25:18, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=582, end=583, position=25:18:25:19, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=584, end=588, position=25:20:25:24, missing=false]
+            [token=CommaToken, start=588, end=589, position=25:24:25:25, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=590, end=591, position=25:26:25:27, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=591, end=592, position=25:27:25:28, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=593, end=598, position=25:29:25:34, missing=false]
+            [token=CommaToken, start=598, end=599, position=25:34:25:35, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=600, end=601, position=25:36:25:37, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=601, end=602, position=25:37:25:38, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=603, end=608, position=25:39:25:44, missing=false]
+            [token=CommaToken, start=608, end=609, position=25:44:25:45, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=610, end=611, position=25:46:25:47, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=611, end=612, position=25:47:25:48, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=613, end=618, position=25:49:25:54, missing=false]
+            [token=CommaToken, start=618, end=619, position=25:54:25:55, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=620, end=621, position=25:56:25:57, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=621, end=622, position=25:57:25:58, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=623, end=628, position=25:59:25:64, missing=false]
+        [token=CloseParenToken, start=628, end=629, position=25:64:25:65, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=630, end=632, position=25:66:25:68, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=633, end=638, position=25:69:25:74, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=639, end=640, position=25:75:25:76, missing=false]
+        [node=SyntaxList]
+          [node=ReturnStatementSyntax]
+            [token=ReturnKeyword, start=646, end=652, position=26:4:26:10, missing=false]
+            [node=ConditionalExpressionSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=653, end=654, position=26:11:26:12, missing=false]
+              [token=QuestionToken, start=655, end=656, position=26:13:26:14, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=657, end=658, position=26:15:26:16, missing=false]
+                [token=PlusToken, start=659, end=660, position=26:17:26:18, missing=false]
+                [node=BinaryExpressionSyntax]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=661, end=662, position=26:19:26:20, missing=false]
+                  [token=AsteriskToken, start=663, end=664, position=26:21:26:22, missing=false]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=665, end=666, position=26:23:26:24, missing=false]
+              [token=ColonToken, start=667, end=668, position=26:25:26:26, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=669, end=670, position=26:27:26:28, missing=false]
+                [token=PlusToken, start=671, end=672, position=26:29:26:30, missing=false]
+                [node=BinaryExpressionSyntax]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=673, end=674, position=26:31:26:32, missing=false]
+                  [token=SlashToken, start=675, end=676, position=26:33:26:34, missing=false]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=677, end=678, position=26:35:26:36, missing=false]
+            [token=SemicolonToken, start=678, end=679, position=26:36:26:37, missing=false]
+        [token=CloseBraceToken, start=681, end=682, position=27:0:27:1, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [token=FunctionKeyword, start=686, end=694, position=29:0:29:8, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=695, end=698, position=29:9:29:12, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=698, end=699, position=29:12:29:13, missing=false]
+        [node=SyntaxList]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=699, end=700, position=29:13:29:14, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=700, end=701, position=29:14:29:15, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=702, end=705, position=29:16:29:19, missing=false]
+            [token=CommaToken, start=705, end=706, position=29:19:29:20, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=707, end=708, position=29:21:29:22, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=708, end=709, position=29:22:29:23, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=710, end=713, position=29:24:29:27, missing=false]
+            [token=CommaToken, start=713, end=714, position=29:27:29:28, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=715, end=716, position=29:29:29:30, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=716, end=717, position=29:30:29:31, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=718, end=721, position=29:32:29:35, missing=false]
+            [token=CommaToken, start=721, end=722, position=29:35:29:36, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=723, end=724, position=29:37:29:38, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=724, end=725, position=29:38:29:39, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=726, end=729, position=29:40:29:43, missing=false]
+            [token=CommaToken, start=729, end=730, position=29:43:29:44, missing=false]
+          [node=ParameterSyntax]
+            [node=SyntaxList]
+              [token=OutKeyword, start=731, end=734, position=29:45:29:48, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=735, end=736, position=29:49:29:50, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=736, end=737, position=29:50:29:51, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=738, end=741, position=29:52:29:55, missing=false]
+        [token=CloseParenToken, start=741, end=742, position=29:55:29:56, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=743, end=745, position=29:57:29:59, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=746, end=750, position=29:60:29:64, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=751, end=752, position=29:65:29:66, missing=false]
+        [node=SyntaxList]
+          [node=ExpressionStatementSyntax]
+            [node=AssignmentExpressionSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=758, end=759, position=30:4:30:5, missing=false]
+              [token=EqualsToken, start=760, end=761, position=30:6:30:7, missing=false]
+              [node=AssignmentExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=762, end=763, position=30:8:30:9, missing=false]
+                [token=EqualsToken, start=764, end=765, position=30:10:30:11, missing=false]
+                [node=AssignmentExpressionSyntax]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=766, end=767, position=30:12:30:13, missing=false]
+                  [token=EqualsToken, start=768, end=769, position=30:14:30:15, missing=false]
+                  [node=BinaryExpressionSyntax]
+                    [node=IdentifierNameSyntax]
+                      [token=IdentifierToken, start=770, end=771, position=30:16:30:17, missing=false]
+                    [token=PlusToken, start=772, end=773, position=30:18:30:19, missing=false]
+                    [node=IdentifierNameSyntax]
+                      [token=IdentifierToken, start=774, end=775, position=30:20:30:21, missing=false]
+            [token=SemicolonToken, start=775, end=776, position=30:21:30:22, missing=false]
+        [token=CloseBraceToken, start=778, end=779, position=31:0:31:1, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [token=FunctionKeyword, start=783, end=791, position=33:0:33:8, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=792, end=798, position=33:9:33:15, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=798, end=799, position=33:15:33:16, missing=false]
+        [node=SyntaxList]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=799, end=800, position=33:16:33:17, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=800, end=801, position=33:17:33:18, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=802, end=806, position=33:19:33:23, missing=false]
+        [token=CloseParenToken, start=806, end=807, position=33:23:33:24, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=808, end=810, position=33:25:33:27, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=811, end=815, position=33:28:33:32, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=816, end=817, position=33:33:33:34, missing=false]
+        [node=SyntaxList]
+          [node=IfStatementSyntax]
+            [token=IfKeyword, start=823, end=825, position=34:4:34:6, missing=false]
+            [node=AssignmentExpressionSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=842, end=843, position=34:23:34:24, missing=true]
+              [token=EqualsToken, start=842, end=843, position=34:23:34:24, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=844, end=845, position=34:25:34:26, missing=false]
+            [node=BlockStatementSyntax]
+              [token=OpenBraceToken, start=846, end=847, position=34:27:34:28, missing=false]
+              [node=SyntaxList]
+                [node=ExpressionStatementSyntax]
+                  [node=InvocationExpressionSyntax]
+                    [node=MemberAccessExpressionSyntax]
+                      [node=IdentifierNameSyntax]
+                        [token=IdentifierToken, start=857, end=864, position=35:8:35:15, missing=false]
+                      [token=DotToken, start=864, end=865, position=35:15:35:16, missing=false]
+                      [node=IdentifierNameSyntax]
+                        [token=IdentifierToken, start=865, end=874, position=35:16:35:25, missing=false]
+                    [node=ArgumentListSyntax]
+                      [token=OpenParenToken, start=874, end=875, position=35:25:35:26, missing=false]
+                      [node=SyntaxList]
+                        [node=ArgumentSyntax]
+                          [node=LiteralExpressionSyntax]
+                            [token=StringLiteralToken, start=875, end=890, position=35:26:35:41, missing=false]
+                      [token=CloseParenToken, start=890, end=891, position=35:41:35:42, missing=false]
+                  [token=SemicolonToken, start=891, end=892, position=35:42:35:43, missing=false]
+              [token=CloseBraceToken, start=898, end=899, position=36:4:36:5, missing=false]
+            [node=ElseClauseSyntax]
+              [token=ElseKeyword, start=900, end=904, position=36:6:36:10, missing=false]
+              [node=BlockStatementSyntax]
+                [token=OpenBraceToken, start=905, end=906, position=36:11:36:12, missing=false]
+                [node=SyntaxList]
+                  [node=ExpressionStatementSyntax]
+                    [node=InvocationExpressionSyntax]
+                      [node=MemberAccessExpressionSyntax]
+                        [node=IdentifierNameSyntax]
+                          [token=IdentifierToken, start=916, end=923, position=37:8:37:15, missing=false]
+                        [token=DotToken, start=923, end=924, position=37:15:37:16, missing=false]
+                        [node=IdentifierNameSyntax]
+                          [token=IdentifierToken, start=924, end=933, position=37:16:37:25, missing=false]
+                      [node=ArgumentListSyntax]
+                        [token=OpenParenToken, start=933, end=934, position=37:25:37:26, missing=false]
+                        [node=SyntaxList]
+                          [node=ArgumentSyntax]
+                            [node=LiteralExpressionSyntax]
+                              [token=StringLiteralToken, start=934, end=947, position=37:26:37:39, missing=false]
+                        [token=CloseParenToken, start=947, end=948, position=37:39:37:40, missing=false]
+                    [token=SemicolonToken, start=948, end=949, position=37:40:37:41, missing=false]
+                [token=CloseBraceToken, start=955, end=956, position=38:4:38:5, missing=false]
+        [token=CloseBraceToken, start=958, end=959, position=39:0:39:1, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [node=SyntaxList]
+        [token=PublicKeyword, start=997, end=1003, position=43:0:43:6, missing=false]
+        [token=PrivateKeyword, start=1004, end=1011, position=43:7:43:14, missing=false]
+        [token=TailCallKeyword, start=1012, end=1020, position=43:15:43:23, missing=false]
+        [token=UnsafeKeyword, start=1021, end=1027, position=43:24:43:30, missing=false]
+        [token=ExportKeyword, start=1028, end=1034, position=43:31:43:37, missing=false]
+        [token=RestrictedKeyword, start=1035, end=1045, position=43:38:43:48, missing=false]
+        [token=TransientKeyword, start=1046, end=1055, position=43:49:43:58, missing=false]
+        [token=TrustedKeyword, start=1056, end=1063, position=43:59:43:66, missing=false]
+      [token=FunctionKeyword, start=1064, end=1072, position=43:67:43:75, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=1073, end=1081, position=43:76:43:84, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=1081, end=1082, position=43:84:43:85, missing=false]
+        [node=SyntaxList]
+          [node=ParameterSyntax]
+            [node=SyntaxList]
+              [token=InKeyword, start=1088, end=1090, position=44:4:44:6, missing=false]
+              [token=RefKeyword, start=1091, end=1094, position=44:7:44:10, missing=false]
+              [token=OutKeyword, start=1095, end=1098, position=44:11:44:14, missing=false]
+              [token=ValueKeyword, start=1099, end=1104, position=44:15:44:20, missing=false]
+              [token=MoveKeyword, start=1105, end=1109, position=44:21:44:25, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1110, end=1114, position=44:26:44:30, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=1114, end=1115, position=44:30:44:31, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1116, end=1119, position=44:32:44:35, missing=false]
+            [token=CommaToken, start=1119, end=1120, position=44:35:44:36, missing=false]
+          [node=ParameterSyntax]
+            [node=SyntaxList]
+              [token=InKeyword, start=1126, end=1128, position=45:4:45:6, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1129, end=1134, position=45:7:45:12, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=1134, end=1135, position=45:12:45:13, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1136, end=1139, position=45:14:45:17, missing=false]
+            [token=CommaToken, start=1139, end=1140, position=45:17:45:18, missing=false]
+          [node=ParameterSyntax]
+            [node=SyntaxList]
+              [token=OutKeyword, start=1146, end=1149, position=46:4:46:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1150, end=1155, position=46:8:46:13, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=1155, end=1156, position=46:13:46:14, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1157, end=1160, position=46:15:46:18, missing=false]
+        [token=CloseParenToken, start=1160, end=1161, position=46:18:46:19, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=1162, end=1164, position=46:20:46:22, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=1165, end=1168, position=46:23:46:26, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=1170, end=1171, position=47:0:47:1, missing=false]
+        [node=SyntaxList]
+          [node=VariableDeclarationSyntax]
+            [token=LetKeyword, start=1177, end=1180, position=48:4:48:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1181, end=1183, position=48:8:48:10, missing=false]
+            [node=EqualsValueClauseSyntax]
+              [token=EqualsToken, start=1184, end=1185, position=48:11:48:12, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1186, end=1190, position=48:13:48:17, missing=false]
+                [token=AmpersandToken, start=1191, end=1192, position=48:18:48:19, missing=false]
+                [node=LiteralExpressionSyntax]
+                  [token=IntegerLiteralToken, start=1193, end=1206, position=48:20:48:33, missing=false]
+            [token=SemicolonToken, start=1206, end=1207, position=48:33:48:34, missing=false]
+          [node=VariableDeclarationSyntax]
+            [token=LetKeyword, start=1213, end=1216, position=49:4:49:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1217, end=1219, position=49:8:49:10, missing=false]
+            [node=EqualsValueClauseSyntax]
+              [token=EqualsToken, start=1220, end=1221, position=49:11:49:12, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1222, end=1226, position=49:13:49:17, missing=false]
+                [token=GreaterThanGreaterThanToken, start=1227, end=1229, position=49:18:49:20, missing=false]
+                [node=LiteralExpressionSyntax]
+                  [token=IntegerLiteralToken, start=1230, end=1235, position=49:21:49:26, missing=false]
+            [token=SemicolonToken, start=1235, end=1236, position=49:26:49:27, missing=false]
+          [node=VariableDeclarationSyntax]
+            [token=LetKeyword, start=1242, end=1245, position=50:4:50:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1246, end=1248, position=50:8:50:10, missing=false]
+            [node=EqualsValueClauseSyntax]
+              [token=EqualsToken, start=1249, end=1250, position=50:11:50:12, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1251, end=1256, position=50:13:50:18, missing=false]
+                [token=AmpersandToken, start=1257, end=1258, position=50:19:50:20, missing=false]
+                [node=LiteralExpressionSyntax]
+                  [token=IntegerLiteralToken, start=1259, end=1272, position=50:21:50:34, missing=false]
+            [token=SemicolonToken, start=1272, end=1273, position=50:34:50:35, missing=false]
+          [node=VariableDeclarationSyntax]
+            [token=LetKeyword, start=1279, end=1282, position=51:4:51:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1283, end=1285, position=51:8:51:10, missing=false]
+            [node=EqualsValueClauseSyntax]
+              [token=EqualsToken, start=1286, end=1287, position=51:11:51:12, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1288, end=1293, position=51:13:51:18, missing=false]
+                [token=GreaterThanGreaterThanToken, start=1294, end=1296, position=51:19:51:21, missing=false]
+                [node=LiteralExpressionSyntax]
+                  [token=IntegerLiteralToken, start=1297, end=1302, position=51:22:51:27, missing=false]
+            [token=SemicolonToken, start=1302, end=1303, position=51:27:51:28, missing=false]
+          [node=VariableDeclarationSyntax]
+            [token=LetKeyword, start=1309, end=1312, position=52:4:52:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1313, end=1318, position=52:8:52:13, missing=false]
+            [node=EqualsValueClauseSyntax]
+              [token=EqualsToken, start=1319, end=1320, position=52:14:52:15, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1321, end=1323, position=52:16:52:18, missing=false]
+                [token=AsteriskToken, start=1324, end=1325, position=52:19:52:20, missing=false]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1326, end=1328, position=52:21:52:23, missing=false]
+            [token=SemicolonToken, start=1328, end=1329, position=52:23:52:24, missing=false]
+          [node=VariableDeclarationSyntax]
+            [token=LetKeyword, start=1335, end=1338, position=53:4:53:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1339, end=1344, position=53:8:53:13, missing=false]
+            [node=EqualsValueClauseSyntax]
+              [token=EqualsToken, start=1345, end=1346, position=53:14:53:15, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1347, end=1349, position=53:16:53:18, missing=false]
+                [token=AsteriskToken, start=1350, end=1351, position=53:19:53:20, missing=false]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1352, end=1354, position=53:21:53:23, missing=false]
+            [token=SemicolonToken, start=1354, end=1355, position=53:23:53:24, missing=false]
+          [node=VariableDeclarationSyntax]
+            [token=LetKeyword, start=1361, end=1364, position=54:4:54:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1365, end=1370, position=54:8:54:13, missing=false]
+            [node=EqualsValueClauseSyntax]
+              [token=EqualsToken, start=1371, end=1372, position=54:14:54:15, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1373, end=1375, position=54:16:54:18, missing=false]
+                [token=AsteriskToken, start=1376, end=1377, position=54:19:54:20, missing=false]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1378, end=1380, position=54:21:54:23, missing=false]
+            [token=SemicolonToken, start=1380, end=1381, position=54:23:54:24, missing=false]
+          [node=VariableDeclarationSyntax]
+            [token=LetKeyword, start=1387, end=1390, position=55:4:55:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1391, end=1396, position=55:8:55:13, missing=false]
+            [node=EqualsValueClauseSyntax]
+              [token=EqualsToken, start=1397, end=1398, position=55:14:55:15, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1399, end=1401, position=55:16:55:18, missing=false]
+                [token=AsteriskToken, start=1402, end=1403, position=55:19:55:20, missing=false]
+                [node=IdentifierNameSyntax]
+                  [token=IdentifierToken, start=1404, end=1406, position=55:21:55:23, missing=false]
+            [token=SemicolonToken, start=1406, end=1407, position=55:23:55:24, missing=false]
+          [node=VariableDeclarationSyntax]
+            [token=LetKeyword, start=1413, end=1416, position=56:4:56:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1417, end=1418, position=56:8:56:9, missing=false]
+            [node=EqualsValueClauseSyntax]
+              [token=EqualsToken, start=1419, end=1420, position=56:10:56:11, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=BinaryExpressionSyntax]
+                  [node=ParenthesizedExpressionSyntax]
+                    [token=OpenParenToken, start=1421, end=1422, position=56:12:56:13, missing=false]
+                    [node=BinaryExpressionSyntax]
+                      [node=IdentifierNameSyntax]
+                        [token=IdentifierToken, start=1422, end=1427, position=56:13:56:18, missing=false]
+                      [token=GreaterThanGreaterThanToken, start=1428, end=1430, position=56:19:56:21, missing=false]
+                      [node=LiteralExpressionSyntax]
+                        [token=IntegerLiteralToken, start=1431, end=1436, position=56:22:56:27, missing=false]
+                    [token=CloseParenToken, start=1436, end=1437, position=56:27:56:28, missing=false]
+                  [token=PlusToken, start=1438, end=1439, position=56:29:56:30, missing=false]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=1440, end=1445, position=56:31:56:36, missing=false]
+                [token=PlusToken, start=1446, end=1447, position=56:37:56:38, missing=false]
+                [node=ParenthesizedExpressionSyntax]
+                  [token=OpenParenToken, start=1448, end=1449, position=56:39:56:40, missing=false]
+                  [node=BinaryExpressionSyntax]
+                    [node=IdentifierNameSyntax]
+                      [token=IdentifierToken, start=1449, end=1454, position=56:40:56:45, missing=false]
+                    [token=AmpersandToken, start=1455, end=1456, position=56:46:56:47, missing=false]
+                    [node=LiteralExpressionSyntax]
+                      [token=IntegerLiteralToken, start=1457, end=1470, position=56:48:56:61, missing=false]
+                  [token=CloseParenToken, start=1470, end=1471, position=56:61:56:62, missing=false]
+            [token=SemicolonToken, start=1471, end=1472, position=56:62:56:63, missing=false]
+          [node=ExpressionStatementSyntax]
+            [node=AssignmentExpressionSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1478, end=1483, position=57:4:57:9, missing=false]
+              [token=EqualsToken, start=1484, end=1485, position=57:10:57:11, missing=false]
+              [node=BinaryExpressionSyntax]
+                [node=ParenthesizedExpressionSyntax]
+                  [token=OpenParenToken, start=1486, end=1487, position=57:12:57:13, missing=false]
+                  [node=BinaryExpressionSyntax]
+                    [node=IdentifierNameSyntax]
+                      [token=IdentifierToken, start=1487, end=1492, position=57:13:57:18, missing=false]
+                    [token=AmpersandToken, start=1493, end=1494, position=57:19:57:20, missing=false]
+                    [node=LiteralExpressionSyntax]
+                      [token=IntegerLiteralToken, start=1495, end=1508, position=57:21:57:34, missing=false]
+                  [token=CloseParenToken, start=1508, end=1509, position=57:34:57:35, missing=false]
+                [token=BarToken, start=1510, end=1511, position=57:36:57:37, missing=false]
+                [node=ParenthesizedExpressionSyntax]
+                  [token=OpenParenToken, start=1512, end=1513, position=57:38:57:39, missing=false]
+                  [node=BinaryExpressionSyntax]
+                    [node=IdentifierNameSyntax]
+                      [token=IdentifierToken, start=1513, end=1514, position=57:39:57:40, missing=false]
+                    [token=LessThanLessThanToken, start=1515, end=1517, position=57:41:57:43, missing=false]
+                    [node=LiteralExpressionSyntax]
+                      [token=IntegerLiteralToken, start=1518, end=1523, position=57:44:57:49, missing=false]
+                  [token=CloseParenToken, start=1523, end=1524, position=57:49:57:50, missing=false]
+            [token=SemicolonToken, start=1524, end=1525, position=57:50:57:51, missing=false]
+          [node=ReturnStatementSyntax]
+            [token=ReturnKeyword, start=1531, end=1537, position=58:4:58:10, missing=false]
+            [node=BinaryExpressionSyntax]
+              [node=BinaryExpressionSyntax]
+                [node=ParenthesizedExpressionSyntax]
+                  [token=OpenParenToken, start=1538, end=1539, position=58:11:58:12, missing=false]
+                  [node=BinaryExpressionSyntax]
+                    [node=IdentifierNameSyntax]
+                      [token=IdentifierToken, start=1539, end=1540, position=58:12:58:13, missing=false]
+                    [token=GreaterThanGreaterThanToken, start=1541, end=1543, position=58:14:58:16, missing=false]
+                    [node=LiteralExpressionSyntax]
+                      [token=IntegerLiteralToken, start=1544, end=1549, position=58:17:58:22, missing=false]
+                  [token=CloseParenToken, start=1549, end=1550, position=58:22:58:23, missing=false]
+                [token=PlusToken, start=1551, end=1552, position=58:24:58:25, missing=false]
+                [node=ParenthesizedExpressionSyntax]
+                  [token=OpenParenToken, start=1553, end=1554, position=58:26:58:27, missing=false]
+                  [node=BinaryExpressionSyntax]
+                    [node=IdentifierNameSyntax]
+                      [token=IdentifierToken, start=1554, end=1559, position=58:27:58:32, missing=false]
+                    [token=GreaterThanGreaterThanToken, start=1560, end=1562, position=58:33:58:35, missing=false]
+                    [node=LiteralExpressionSyntax]
+                      [token=IntegerLiteralToken, start=1563, end=1568, position=58:36:58:41, missing=false]
+                  [token=CloseParenToken, start=1568, end=1569, position=58:41:58:42, missing=false]
+              [token=PlusToken, start=1570, end=1571, position=58:43:58:44, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1572, end=1577, position=58:45:58:50, missing=false]
+            [token=SemicolonToken, start=1577, end=1578, position=58:50:58:51, missing=false]
+        [token=CloseBraceToken, start=1580, end=1581, position=59:0:59:1, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [token=FunctionKeyword, start=1585, end=1593, position=61:0:61:8, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=1594, end=1599, position=61:9:61:14, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=1599, end=1600, position=61:14:61:15, missing=false]
+        [token=CloseParenToken, start=1600, end=1601, position=61:15:61:16, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=1602, end=1604, position=61:17:61:19, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=1605, end=1609, position=61:20:61:24, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=1610, end=1611, position=61:25:61:26, missing=false]
+        [token=CloseBraceToken, start=1611, end=1612, position=61:26:61:27, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [token=FunctionKeyword, start=1616, end=1624, position=63:0:63:8, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=1625, end=1632, position=63:9:63:16, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=1632, end=1633, position=63:16:63:17, missing=false]
+        [node=SyntaxList]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1633, end=1634, position=63:17:63:18, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=1634, end=1635, position=63:18:63:19, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1636, end=1641, position=63:20:63:25, missing=false]
+            [token=CommaToken, start=1641, end=1642, position=63:25:63:26, missing=false]
+          [node=ParameterSyntax]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=1643, end=1644, position=63:27:63:28, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=1644, end=1645, position=63:28:63:29, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1646, end=1651, position=63:30:63:35, missing=false]
+        [token=CloseParenToken, start=1651, end=1652, position=63:35:63:36, missing=false]
+      [node=ReturnTypeClauseSyntax]
+        [token=MinusGreaterThanToken, start=1653, end=1655, position=63:37:63:39, missing=false]
+        [node=IdentifierNameSyntax]
+          [token=IdentifierToken, start=1656, end=1661, position=63:40:63:45, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=1662, end=1663, position=63:46:63:47, missing=false]
+        [node=SyntaxList]
+          [node=IfStatementSyntax]
+            [token=IfKeyword, start=1669, end=1671, position=64:4:64:6, missing=false]
+            [node=BinaryExpressionSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1672, end=1673, position=64:7:64:8, missing=false]
+              [token=LessThanToken, start=1674, end=1675, position=64:9:64:10, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1676, end=1677, position=64:11:64:12, missing=false]
+            [node=BlockStatementSyntax]
+              [token=OpenBraceToken, start=1678, end=1679, position=64:13:64:14, missing=false]
+              [node=SyntaxList]
+                [node=ReturnStatementSyntax]
+                  [token=ReturnKeyword, start=1689, end=1695, position=65:8:65:14, missing=false]
+                  [node=IdentifierNameSyntax]
+                    [token=IdentifierToken, start=1696, end=1697, position=65:15:65:16, missing=false]
+                  [token=SemicolonToken, start=1697, end=1698, position=65:16:65:17, missing=false]
+              [token=CloseBraceToken, start=1704, end=1705, position=66:4:66:5, missing=false]
+            [node=ElseClauseSyntax]
+              [token=ElseKeyword, start=1706, end=1710, position=66:6:66:10, missing=false]
+              [node=BlockStatementSyntax]
+                [token=OpenBraceToken, start=1711, end=1712, position=66:11:66:12, missing=false]
+                [node=SyntaxList]
+                  [node=ReturnStatementSyntax]
+                    [token=ReturnKeyword, start=1722, end=1728, position=67:8:67:14, missing=false]
+                    [node=IdentifierNameSyntax]
+                      [token=IdentifierToken, start=1729, end=1730, position=67:15:67:16, missing=false]
+                    [token=SemicolonToken, start=1730, end=1731, position=67:16:67:17, missing=false]
+                [token=CloseBraceToken, start=1737, end=1738, position=68:4:68:5, missing=false]
+        [token=CloseBraceToken, start=1740, end=1741, position=69:0:69:1, missing=false]
+    [node=FunctionDeclarationSyntax]
+      [token=FunctionKeyword, start=1745, end=1753, position=71:0:71:8, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=1754, end=1778, position=71:9:71:33, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=1778, end=1779, position=71:33:71:34, missing=false]
+        [token=CloseParenToken, start=1779, end=1780, position=71:34:71:35, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=1781, end=1782, position=71:36:71:37, missing=false]
+        [node=SyntaxList]
+          [node=ExpressionStatementSyntax]
+            [node=AssignmentExpressionSyntax]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=1783, end=1784, position=71:38:71:39, missing=true]
+              [token=EqualsToken, start=1783, end=1784, position=71:38:71:39, missing=false]
+              [node=LiteralExpressionSyntax]
+                [token=IntegerLiteralToken, start=1784, end=1786, position=71:39:71:41, missing=false]
+            [token=SemicolonToken, start=1786, end=1787, position=71:41:71:42, missing=true]
+        [node=UnexpectedNodesSyntax]
+          [node=SyntaxList]
+            [token=ColonToken, start=1786, end=1787, position=71:41:71:42, missing=false]
+            [token=IdentifierToken, start=1788, end=1789, position=71:43:71:44, missing=false]
+            [token=EqualsToken, start=1789, end=1790, position=71:44:71:45, missing=false]
+            [token=IntegerLiteralToken, start=1790, end=1791, position=71:45:71:46, missing=false]
+            [token=SemicolonToken, start=1791, end=1792, position=71:46:71:47, missing=false]
+        [token=CloseBraceToken, start=1792, end=1793, position=71:47:71:48, missing=false]
+    [node=StructDeclarationSyntax]
+      [token=StructKeyword, start=1797, end=1803, position=73:0:73:6, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=1804, end=1807, position=73:7:73:10, missing=false]
+      [token=OpenBraceToken, start=1808, end=1809, position=73:11:73:12, missing=false]
+      [token=CloseBraceToken, start=1809, end=1810, position=73:12:73:13, missing=false]
+    [node=EmptyStatementSyntax]
+      [node=UnexpectedNodesSyntax]
+        [node=SyntaxList]
+          [token=ConstKeyword, start=1814, end=1819, position=75:0:75:5, missing=false]
+          [token=IdentifierToken, start=1820, end=1821, position=75:6:75:7, missing=false]
+          [token=EqualsToken, start=1822, end=1823, position=75:8:75:9, missing=false]
+          [token=IntegerLiteralToken, start=1824, end=1826, position=75:10:75:12, missing=false]
+          [token=NamespaceKeyword, start=1830, end=1839, position=77:0:77:9, missing=false]
+          [token=NamespaceKeyword, start=1840, end=1849, position=77:10:77:19, missing=false]
+          [token=CloseBraceToken, start=1850, end=1851, position=77:20:77:21, missing=false]
+          [token=NamespaceKeyword, start=1855, end=1864, position=79:0:79:9, missing=false]
+          [token=IdentifierToken, start=1865, end=1866, position=79:10:79:11, missing=false]
+          [token=OpenBraceToken, start=1867, end=1868, position=79:12:79:13, missing=false]
+          [token=NamespaceKeyword, start=1874, end=1883, position=80:4:80:13, missing=false]
+          [token=IdentifierToken, start=1884, end=1885, position=80:14:80:15, missing=false]
+          [token=OpenBraceToken, start=1886, end=1887, position=80:16:80:17, missing=false]
+          [token=NamespaceKeyword, start=1897, end=1906, position=81:8:81:17, missing=false]
+          [token=IdentifierToken, start=1907, end=1908, position=81:18:81:19, missing=false]
+          [token=OpenBraceToken, start=1909, end=1910, position=81:20:81:21, missing=false]
+          [token=FunctionKeyword, start=1924, end=1932, position=82:12:82:20, missing=false]
+          [token=IdentifierToken, start=1933, end=1934, position=82:21:82:22, missing=false]
+          [token=OpenParenToken, start=1934, end=1935, position=82:22:82:23, missing=false]
+          [token=CloseParenToken, start=1935, end=1936, position=82:23:82:24, missing=false]
+          [token=OpenBraceToken, start=1937, end=1938, position=82:25:82:26, missing=false]
+          [token=ColonToken, start=1938, end=1939, position=82:26:82:27, missing=false]
+          [token=IdentifierToken, start=1939, end=1940, position=82:27:82:28, missing=false]
+          [token=EqualsToken, start=1940, end=1941, position=82:28:82:29, missing=false]
+          [token=IdentifierToken, start=1942, end=1943, position=82:30:82:31, missing=false]
+          [token=IdentifierToken, start=1944, end=1945, position=82:32:82:33, missing=false]
+          [token=IdentifierToken, start=1946, end=1947, position=82:34:82:35, missing=false]
+          [token=IntegerLiteralToken, start=1948, end=1949, position=82:36:82:37, missing=false]
+          [token=IdentifierToken, start=1962, end=1963, position=83:12:83:13, missing=false]
+          [token=IdentifierToken, start=1976, end=1977, position=84:12:84:13, missing=false]
+          [token=IdentifierToken, start=1997, end=1998, position=92:12:92:13, missing=false]
+          [token=IdentifierToken, start=2011, end=2012, position=93:12:93:13, missing=false]
+          [token=NamespaceKeyword, start=2026, end=2035, position=94:12:94:21, missing=false]
+      [token=SemicolonToken, start=2035, end=2036, position=94:21:94:22, missing=false]
+  [token=EndOfFileToken, start=2059, end=2059, position=95:0:95:0, missing=false]

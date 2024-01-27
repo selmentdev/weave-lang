@@ -1,20 +1,68 @@
-error: unexpected token '[token:identifier]', expected ':'
-        --> <source>:10:27
+error: Unexpected tokens
+        --> <source>:3:38
          |
-      10 |     return a ? b + c * d  d + e / c;
+       3 | #[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {}
+         |                                      ^^^^^^^^^^^^^^^^^^^^^^
+       4 | 
+         | 
+       5 | // Argument attributes:
+         | ^^^^^^^^^^^^^^^^^^^^^^^
+       6 | #[Foo, Deprecated("Reason")]
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Expected ';'
+        --> <source>:6:28
+         |
+       6 | #[Foo, Deprecated("Reason")]
+         |                            ^
+error: Unexpected tokens
+        --> <source>:6:28
+         |
+       6 | #[Foo, Deprecated("Reason")]
+         |                            ^
+       7 | function Bar(
+         | ^^^^^^^^^^^^^
+       8 |     #[Unused] a: Int32,
+         | ^^^^^^^^^^^^^^^^^^^^^^^
+       9 |     #[Unused] b: Float32);
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Expected ':'
+        --> <source>:19:27
+         |
+      19 |     return a ? b + c * d  d + e / c;
          |                           ^
-error: invalid expression term '='
-        --> <source>:26:24
+error: Expected '[token:identifier]'
+        --> <source>:35:24
          |
-      26 |     if /*let Some(y)*/ = y {
+      35 |     if /*let Some(y)*/ = y {
          |                        ^
-error: invalid expression term '='
-        --> <source>:63:39
+error: Expected '[token:identifier]'
+        --> <source>:72:39
          |
-      63 | function EndOfFileDuringStatement() { =42: a=5;}
+      72 | function EndOfFileDuringStatement() { =42: a=5;}
          |                                       ^
-error: unexpected token ':', expected ';'
-        --> <source>:63:42
+error: Expected ';'
+        --> <source>:72:42
          |
-      63 | function EndOfFileDuringStatement() { =42: a=5;}
+      72 | function EndOfFileDuringStatement() { =42: a=5;}
          |                                          ^
+error: Unexpected tokens
+        --> <source>:72:42
+         |
+      72 | function EndOfFileDuringStatement() { =42: a=5;}
+         |                                          ^^^^^^
+error: Unexpected tokens
+        --> <source>:76:1
+         |
+      76 | const x = 42
+         | ^^^^^^^^^^^^
+      77 | 
+         | 
+      78 | namespace namespace }
+         | ^^^^^^^^^^^^^^^^^^^^^
+     ... |
+      93 |             S
+         | ^^^^^^^^^^^^^
+      94 |             T
+         | ^^^^^^^^^^^^^
+      95 |             namespace; // this is commentos
+         | ^^^^^^^^^^^^^^^^^^^^^

@@ -1,146 +1,93 @@
----
-file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Trivia.source
-___
--------
-PublicKeyword
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-InKeyword
-IdentifierToken
-ColonToken
-IdentifierToken
-CommaToken
-OutKeyword
-IdentifierToken
-ColonToken
-IdentifierToken
-CloseParenToken
-OpenBraceToken
-IfKeyword
-IdentifierToken
-OpenBraceToken
-IdentifierToken
-OpenParenToken
-IdentifierToken
-CloseParenToken
-EqualsToken
-IdentifierToken
-SemicolonToken
-IdentifierToken
-DotToken
-IdentifierToken
-OpenParenToken
-CloseParenToken
-SemicolonToken
-IdentifierToken
-EqualsToken
-IdentifierToken
-DotToken
-IdentifierToken
-OpenParenToken
-IdentifierToken
-CloseParenToken
-SemicolonToken
-IdentifierToken
-SemicolonToken
-OpenBraceToken
-IdentifierToken
-EqualsToken
-IdentifierToken
-DotToken
-IdentifierToken
-SemicolonToken
-CloseBraceToken
-CloseBraceToken
-CloseBraceToken
-EndOfFileToken
--------
-// Before entity
-public function TryReadTrivia(
-    in oof: Lexer,              // Comment for argument 'self'
-    out trivia: Trivia          // Comment for argument 'trivia'
-)
-{
-    if {Some(comment) /* for Some() */ = /* for TryReadComment() */ .TryReadComment()         trivia = Trivia.Comment(comment)
-{
-        /* before assignment */ trivia = Trivia.None /* after assignment */
-    // Just plain comment
-}
-}}// trivia at end of file
--------
-OnCompilationUnitSyntax
-    OnSyntaxList
-            OnSyntaxList
-                OnToken `public` `public`
-            OnToken `function` `function`
-            OnIdentifierNameSyntax `TryReadTrivia`
-                OnToken `(` `[`
-                OnSyntaxList
-                        OnSyntaxList
-                            OnToken `in` `in`
-                        OnIdentifierNameSyntax `oof`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `Lexer`
-                    OnToken `,` `,`
-                        OnSyntaxList
-                            OnToken `out` `out`
-                        OnIdentifierNameSyntax `trivia`
-                            OnToken `:` `:`
-                            OnIdentifierNameSyntax `Trivia`
-                OnToken `)` `)`
-                OnToken `{` `{`
-                OnSyntaxList
-                        OnToken `if` `if`
-                        OnIdentifierNameSyntax ``
-                            OnToken `` `{`
-                            OnSyntaxList
-                                            OnIdentifierNameSyntax `Some`
-                                                OnToken `(` `[`
-                                                OnSyntaxList
-                                                        OnIdentifierNameSyntax `comment`
-                                                OnToken `)` `)`
-                                        OnToken `=` `=`
-                                        OnIdentifierNameSyntax ``
-                                    OnToken `` `;`
-                                            OnIdentifierNameSyntax ``
-                                            OnToken `.` `.`
-                                            OnIdentifierNameSyntax `TryReadComment`
-                                            OnToken `(` `[`
-                                            OnToken `)` `)`
-                                    OnToken `` `;`
-                                        OnIdentifierNameSyntax `trivia`
-                                        OnToken `=` `=`
-                                                OnIdentifierNameSyntax `Trivia`
-                                                OnToken `.` `.`
-                                                OnIdentifierNameSyntax `Comment`
-                                                OnToken `(` `[`
-                                                OnSyntaxList
-                                                        OnIdentifierNameSyntax `comment`
-                                                OnToken `)` `)`
-                                    OnToken `` `;`
-                                    OnIdentifierNameSyntax ``
-                                    OnToken `` `;`
-                                    OnToken `{` `{`
-                                    OnSyntaxList
-                                                OnIdentifierNameSyntax `trivia`
-                                                OnToken `=` `=`
-                                                    OnIdentifierNameSyntax `Trivia`
-                                                    OnToken `.` `.`
-                                                    OnIdentifierNameSyntax `None`
-                                            OnToken `` `;`
-                                    OnToken `}` `}`
-                            OnToken `` `}`
-                OnToken `` `}`
-    OnToken `` `[token::end-of-file]`
--------
-parsing took: 00:00:00.001
-PageFaultCount: 1395
-PeakWorkingSetSize: 5.199 MiB (5451776)
-WorkingSetSize: 4.336 MiB (4546560)
-QuotaPeakPagedPoolUsage: 259.859 KiB (266096)
-QuotaPagedPoolUsage: 259.398 KiB (265624)
-QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
-QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 736.000 KiB (753664)
-PeakPagefileUsage: 1.637 MiB (1716224)
+[node=SourceFileSyntax]
+  [node=SyntaxList]
+    [node=FunctionDeclarationSyntax]
+      [node=SyntaxList]
+        [token=PublicKeyword, start=18, end=24, position=1:0:1:6, missing=false]
+      [token=FunctionKeyword, start=25, end=33, position=1:7:1:15, missing=false]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=34, end=47, position=1:16:1:29, missing=false]
+      [node=ParameterListSyntax]
+        [token=OpenParenToken, start=47, end=48, position=1:29:1:30, missing=false]
+        [node=SyntaxList]
+          [node=ParameterSyntax]
+            [node=SyntaxList]
+              [token=InKeyword, start=54, end=56, position=2:4:2:6, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=57, end=60, position=2:7:2:10, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=60, end=61, position=2:10:2:11, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=62, end=67, position=2:12:2:17, missing=false]
+            [token=CommaToken, start=67, end=68, position=2:17:2:18, missing=false]
+          [node=ParameterSyntax]
+            [node=SyntaxList]
+              [token=OutKeyword, start=118, end=121, position=3:4:3:7, missing=false]
+            [node=IdentifierNameSyntax]
+              [token=IdentifierToken, start=122, end=128, position=3:8:3:14, missing=false]
+            [node=TypeClauseSyntax]
+              [token=ColonToken, start=128, end=129, position=3:14:3:15, missing=false]
+              [node=IdentifierNameSyntax]
+                [token=IdentifierToken, start=130, end=136, position=3:16:3:22, missing=false]
+        [token=CloseParenToken, start=180, end=181, position=4:0:4:1, missing=false]
+      [node=BlockStatementSyntax]
+        [token=OpenBraceToken, start=183, end=184, position=5:0:5:1, missing=false]
+        [node=SyntaxList]
+          [node=IfStatementSyntax]
+            [token=IfKeyword, start=190, end=192, position=6:4:6:6, missing=false]
+            [node=BlockStatementSyntax]
+              [node=UnexpectedNodesSyntax]
+                [node=SyntaxList]
+                  [token=LetKeyword, start=193, end=196, position=6:7:6:10, missing=false]
+                  [token=IdentifierToken, start=197, end=201, position=6:11:6:15, missing=false]
+                  [token=OpenParenToken, start=201, end=202, position=6:15:6:16, missing=false]
+                  [token=IdentifierToken, start=202, end=209, position=6:16:6:23, missing=false]
+                  [token=CloseParenToken, start=209, end=210, position=6:23:6:24, missing=false]
+                  [token=EqualsToken, start=228, end=229, position=6:42:6:43, missing=false]
+                  [token=SelfKeyword, start=257, end=261, position=6:71:6:75, missing=false]
+                  [token=DotToken, start=261, end=262, position=6:75:6:76, missing=false]
+                  [token=IdentifierToken, start=262, end=276, position=6:76:6:90, missing=false]
+                  [token=OpenParenToken, start=276, end=277, position=6:90:6:91, missing=false]
+                  [token=CloseParenToken, start=277, end=278, position=6:91:6:92, missing=false]
+              [token=OpenBraceToken, start=279, end=280, position=6:93:6:94, missing=false]
+              [node=SyntaxList]
+                [node=ExpressionStatementSyntax]
+                  [node=AssignmentExpressionSyntax]
+                    [node=IdentifierNameSyntax]
+                      [token=IdentifierToken, start=290, end=296, position=7:8:7:14, missing=false]
+                    [token=EqualsToken, start=297, end=298, position=7:15:7:16, missing=false]
+                    [node=InvocationExpressionSyntax]
+                      [node=MemberAccessExpressionSyntax]
+                        [node=IdentifierNameSyntax]
+                          [token=IdentifierToken, start=299, end=305, position=7:17:7:23, missing=false]
+                        [token=DotToken, start=305, end=306, position=7:23:7:24, missing=false]
+                        [node=IdentifierNameSyntax]
+                          [token=IdentifierToken, start=306, end=313, position=7:24:7:31, missing=false]
+                      [node=ArgumentListSyntax]
+                        [token=OpenParenToken, start=313, end=314, position=7:31:7:32, missing=false]
+                        [node=SyntaxList]
+                          [node=ArgumentSyntax]
+                            [node=IdentifierNameSyntax]
+                              [token=IdentifierToken, start=314, end=321, position=7:32:7:39, missing=false]
+                        [token=CloseParenToken, start=321, end=322, position=7:39:7:40, missing=false]
+                  [token=SemicolonToken, start=328, end=329, position=8:4:8:5, missing=true]
+              [token=CloseBraceToken, start=328, end=329, position=8:4:8:5, missing=false]
+            [node=ElseClauseSyntax]
+              [token=ElseKeyword, start=330, end=334, position=8:6:8:10, missing=false]
+              [node=BlockStatementSyntax]
+                [token=OpenBraceToken, start=335, end=336, position=8:11:8:12, missing=false]
+                [node=SyntaxList]
+                  [node=ExpressionStatementSyntax]
+                    [node=AssignmentExpressionSyntax]
+                      [node=IdentifierNameSyntax]
+                        [token=IdentifierToken, start=370, end=376, position=9:32:9:38, missing=false]
+                      [token=EqualsToken, start=377, end=378, position=9:39:9:40, missing=false]
+                      [node=MemberAccessExpressionSyntax]
+                        [node=IdentifierNameSyntax]
+                          [token=IdentifierToken, start=379, end=385, position=9:41:9:47, missing=false]
+                        [token=DotToken, start=385, end=386, position=9:47:9:48, missing=false]
+                        [node=IdentifierNameSyntax]
+                          [token=IdentifierToken, start=386, end=390, position=9:48:9:52, missing=false]
+                    [token=SemicolonToken, start=419, end=420, position=10:4:10:5, missing=true]
+                [token=CloseBraceToken, start=419, end=420, position=10:4:10:5, missing=false]
+        [token=CloseBraceToken, start=449, end=450, position=12:0:12:1, missing=false]
+  [token=EndOfFileToken, start=478, end=478, position=14:0:14:0, missing=false]

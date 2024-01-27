@@ -1,30 +1,9 @@
----
-file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\syntax\IncompleteNamespace5.source
-___
--------
-NamespaceKeyword
-IdentifierToken
-OpenBraceToken
-CloseBraceToken
-EndOfFileToken
--------
-namespace X {}-------
-OnCompilationUnitSyntax
-    OnSyntaxList
-        OnNamespaceDeclarationSyntax
-            OnToken `namespace` `namespace`
-            OnIdentifierNameSyntax `X`
-            OnToken `` `{`
-            OnToken `` `}`
-    OnToken `` `[token::end-of-file]`
--------
-parsing took: 00:00:00.000
-PageFaultCount: 1383
-PeakWorkingSetSize: 5.160 MiB (5410816)
-WorkingSetSize: 4.719 MiB (4947968)
-QuotaPeakPagedPoolUsage: 259.672 KiB (265904)
-QuotaPagedPoolUsage: 259.305 KiB (265528)
-QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
-QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 1.543 MiB (1617920)
-PeakPagefileUsage: 1.609 MiB (1687552)
+[node=SourceFileSyntax]
+  [node=SyntaxList]
+    [node=EmptyStatementSyntax]
+      [node=UnexpectedNodesSyntax]
+        [node=SyntaxList]
+          [token=NamespaceKeyword, start=0, end=9, position=0:0:0:9, missing=false]
+          [token=IdentifierToken, start=10, end=11, position=0:10:0:11, missing=false]
+      [token=SemicolonToken, start=12, end=13, position=0:12:0:13, missing=false]
+  [token=EndOfFileToken, start=15, end=15, position=1:0:1:0, missing=false]

@@ -451,22 +451,22 @@ namespace weave::syntax
     {
         switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
-        //case SyntaxKind::BreakKeyword:
-        //case SyntaxKind::ContinueKeyword:
-        //case SyntaxKind::DotToken:
-        //case SyntaxKind::WhileKeyword:
-        //case SyntaxKind::ForKeyword:
-        //case SyntaxKind::VarKeyword:
-        //case SyntaxKind::LetKeyword:
-        //case SyntaxKind::GotoKeyword:
+        // case SyntaxKind::BreakKeyword:
+        // case SyntaxKind::ContinueKeyword:
+        // case SyntaxKind::DotToken:
+        // case SyntaxKind::WhileKeyword:
+        // case SyntaxKind::ForKeyword:
+        case SyntaxKind::VarKeyword:
+        case SyntaxKind::LetKeyword:
+        // case SyntaxKind::GotoKeyword:
         case SyntaxKind::IfKeyword:
         case SyntaxKind::ElseKeyword:
         case SyntaxKind::ReturnKeyword:
-        //case SyntaxKind::SwitchKeyword:
-        //case SyntaxKind::MatchKeyword:
-        //case SyntaxKind::UnsafeKeyword:
-        //case SyntaxKind::UsingDirectiveSyntax:
-        //case SyntaxKind::OpenBraceToken:
+        // case SyntaxKind::SwitchKeyword:
+        // case SyntaxKind::MatchKeyword:
+        // case SyntaxKind::UnsafeKeyword:
+        // case SyntaxKind::UsingDirectiveSyntax:
+        // case SyntaxKind::OpenBraceToken:
         case SyntaxKind::SemicolonToken:
         case SyntaxKind::IdentifierToken:
             return true;
@@ -476,6 +476,61 @@ namespace weave::syntax
         }
 
         return IsValidExpression(kind);
+    }
+
+    bool SyntaxFacts::IsStartOfStatement(SyntaxKind kind)
+    {
+        switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::ReturnKeyword:
+        case SyntaxKind::IfKeyword:
+        case SyntaxKind::ElseKeyword:
+        //case SyntaxKind::BreakKeyword:
+        //case SyntaxKind::ContinueKeyword:
+            return true;
+
+        default:
+            return false;
+        }
+    }
+
+    bool SyntaxFacts::IsStartOfDeclaration(SyntaxKind kind)
+    {
+        switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
+        {
+        //case SyntaxKind::UsingKeyword:
+        case SyntaxKind::FunctionKeyword:
+        case SyntaxKind::StructKeyword:
+        case SyntaxKind::ConceptKeyword:
+        case SyntaxKind::ExtendKeyword:
+        case SyntaxKind::VarKeyword:
+        case SyntaxKind::LetKeyword:
+            return true;
+
+        default:
+            return false;
+        }
+    }
+
+    bool SyntaxFacts::IsStartOfExpression(SyntaxKind kind)
+    {
+        switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::FalseKeyword:
+        case SyntaxKind::TrueKeyword:
+        case SyntaxKind::IntegerLiteralToken:
+        case SyntaxKind::FloatLiteralToken:
+        case SyntaxKind::StringLiteralToken:
+        case SyntaxKind::CharacterLiteralToken:
+        case SyntaxKind::OpenBraceToken:
+        case SyntaxKind::OpenParenToken:
+        case SyntaxKind::OpenBracketToken:
+        case SyntaxKind::IdentifierToken:
+            return true;
+
+        default:
+            return false;
+        }
     }
 
 }

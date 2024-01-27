@@ -5,7 +5,7 @@ public function TryReadTrivia(
 )
 {
     if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
-        trivia = Trivia.Comment(comment)
+        trivia = Trivia.Comment(comment);
     } else {
         /* before assignment */ trivia = Trivia.None /* after assignment */
     }

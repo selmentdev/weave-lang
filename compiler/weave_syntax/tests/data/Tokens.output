@@ -1,1283 +1,427 @@
----
-file: D:/repos/weave-lang/compiler/weave_syntax/tests\data\Tokens.source
-___
--------
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-AndKeyword
-AndEqualKeyword
-OrKeyword
-OrEqualKeyword
-XorKeyword
-XorEqualKeyword
-NotKeyword
-NotEqKeyword
-BitAndKeyword
-BitOrKeyword
-BitComplKeyword
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-AbstractKeyword
-AddKeyword
-AddressOfKeyword
-AddressSpaceKeyword
-AliasKeyword
-AlignKeyword
-AlignasKeyword
-AlignOfKeyword
-ArrayKeyword
-AsKeyword
-AssemblyKeyword
-AssertKeyword
-AssumeKeyword
-AsyncKeyword
-AtomicKeyword
-AttributeKeyword
-AutoKeyword
-AvailableKeyword
-AwaitKeyword
-BaseKeyword
-BecomeKeyword
-BitCastKeyword
-BodyKeyword
-BorrowKeyword
-BoxKeyword
-BreakKeyword
-CallConvKeyword
-CaseKeyword
-CastKeyword
-CheckedKeyword
-ClassKeyword
-ColumnMajorKeyword
-CompileKeyword
-ConceptKeyword
-IdentifierToken
-OpenBraceToken
-ContinueKeyword
-ContravariantKeyword
-CovariantKeyword
-DebugKeyword
-DefaultKeyword
-DeferKeyword
-DelegateKeyword
-DeleteKeyword
-DeprecatedKeyword
-IdentifierToken
-DiscardKeyword
-DoKeyword
-DropKeyword
-DynamicKeyword
-EagerKeyword
-ElseKeyword
-EnumKeyword
-EventKeyword
-ExceptKeyword
-ExplicitKeyword
-ExportKeyword
-ExpressionKeyword
-ExtensionKeyword
-ExternKeyword
-FalseKeyword
-FieldKeyword
-FileKeyword
-FinalKeyword
-FinallyKeyword
-FixedKeyword
-ForKeyword
-ForceKeyword
-ForeachKeyword
-FractionKeyword
-FragmentKeyword
-FriendKeyword
-FromKeyword
-FunctionKeyword
-IdentifierToken
-OpenParenToken
-IdentifierToken
-ColonToken
-IdentifierToken
-CloseParenToken
-SemicolonToken
-ImplementationKeyword
-ImplicitKeyword
-ImportKeyword
-InKeyword
-InheritKeyword
-InjectKeyword
-InlineKeyword
-InOutKeyword
-InterfaceKeyword
-InternalKeyword
-InvariantKeyword
-IsKeyword
-LazyKeyword
-LetKeyword
-LikelyKeyword
-LinkSectionKeyword
-LockKeyword
-LoopKeyword
-MacroKeyword
-ManagerKeyword
-MatchKeyword
-MatrixKeyword
-MemberKeyword
-MetaKeyword
-MixinKeyword
-ModuleKeyword
-MoveKeyword
-MutableKeyword
-NameOfKeyword
-NamespaceKeyword
-IdentifierToken
-OpenBraceToken
-NoAliasKeyword
-NodiscardKeyword
-NoInlineKeyword
-NoreturnKeyword
-NoSuspendKeyword
-NotNullKeyword
-NullKeyword
-NullableKeyword
-OffsetOfKeyword
-OperatorKeyword
-OpqaueKeyword
-OptionalKeyword
-OutKeyword
-OverloadKeyword
-OverrideKeyword
-PackageKeyword
-PackedKeyword
-ParallelKeyword
-ParamsKeyword
-PartialKeyword
-PragmaKeyword
-PreciseKeyword
-PrivateKeyword
-PropertyKeyword
-ProtectedKeyword
-PublicKeyword
-PureKeyword
-RaiseKeyword
-ReadonlyKeyword
-RecordKeyword
-RecursiveKeyword
-RefKeyword
-ReflectKeyword
-RegisterKeyword
-ReinterpretKeyword
-RemoveKeyword
-RequireKeyword
-RequiredKeyword
-ResumeKeyword
-RetainKeyword
-ReturnKeyword
-RowMajorKeyword
-SaturateKeyword
-ScalarKeyword
-ScopeKeyword
-SectionKeyword
-SelfKeyword
-SetKeyword
-SharedKeyword
-SizeOfKeyword
-SliceKeyword
-StackallocKeyword
-StaticKeyword
-StructKeyword
-IdentifierToken
-OpenBraceToken
-SwitchKeyword
-SynchronizedKeyword
-TailCallKeyword
-TemplateKeyword
-TestKeyword
-ThisKeyword
-ThreadLocalKeyword
-TraitKeyword
-TransferKeyword
-TrueKeyword
-TryKeyword
-TupleKeyword
-TypeKeyword
-TypeOfKeyword
-UnalignedKeyword
-UnboxKeyword
-UncheckedKeyword
-UndefinedKeyword
-UniformKeyword
-UnionKeyword
-UnlikelyKeyword
-UnmanagedKeyword
-UnreachableKeyword
-UnsafeKeyword
-UnsizedKeyword
-UsingKeyword
-UuidOfKeyword
-ValueKeyword
-VarKeyword
-IdentifierToken
-SemicolonToken
-VersionKeyword
-VirtualKeyword
-VolatileKeyword
-VtableKeyword
-WhenKeyword
-WhereKeyword
-WhileKeyword
-WithKeyword
-YieldKeyword
-TildeToken
-ExclamationEqualsToken
-ExclamationToken
-PlusEqualsToken
-PlusPlusToken
-PlusToken
-MinusEqualsToken
-MinusMinusToken
-MinusGreaterThanToken
-MinusToken
-AsteriskEqualsToken
-AsteriskToken
-SlashEqualsToken
-SlashToken
-OpenParenToken
-CloseParenToken
-OpenBraceToken
-CloseBraceToken
-OpenBracketToken
-CloseBracketToken
-ColonColonToken
-ColonToken
-SemicolonToken
-AtToken
-DollarToken
-PercentEqualsToken
-PercentToken
-CaretToken
-EqualsToken
-CaretToken
-AmpersandAmpersandToken
-AmpersandEqualsToken
-AmpersandToken
-EqualsEqualsToken
-EqualsGreaterThanToken
-EqualsToken
-BackslashToken
-BackslashToken
-BarBarToken
-BarEqualsToken
-BarToken
-CommaToken
-LessThanEqualsToken
-LessThanLessThanEqualsToken
-LessThanLessThanToken
-LessThanLessThanToken
-LessThanToken
-GreaterThanGreaterThanToken
-GreaterThanToken
-LessThanToken
-GreaterThanEqualsToken
-GreaterThanGreaterThanEqualsToken
-GreaterThanGreaterThanToken
-GreaterThanToken
-QuestionQuestionToken
-QuestionToken
-DotDotDotToken
-DotDotToken
-DotToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-IdentifierToken
-StringLiteralToken
-StringLiteralToken
-StringLiteralToken
-CloseBraceToken
-CloseBraceToken
-EndOfFileToken
--------
-bool
-char
-char16
-char32
-char8
-decimal128
-decimal32
-decimal64
-float16
-float32
-float64
-int128
-int16
-int256
-int32
-int64
-int8
-iptr
-isize
-object
-string
-uint128
-uint16
-uint256
-uint32
-uint64
-uint8
-uptr
-usize
-void
-byte
-and
-and_eq
-or
-or_eq
-xor
-xor_eq
-not
-not_eq
-bit_and
-bit_or
-bit_compl
-__column__
-__file__
-__function__
-__function_pretty__
-__line__
-__module__
-__source_location__
-abstract
-add
-addressof
-addrspace
-alias
-align
-alignas
-alignof
-array
-as
-assembly
-assert
-assume
-async
-atomic
-attribute
-auto
-available
-await
-base
-become
-bitcast
-body
-borrow
-box
-break
-callconv
-case
-cast
-checked
-class
-columnmajor
-compile
-concept
-{continue
-contravariant
-covariant
-debug
-default
-defer
-delegate
-delete
-deprecated
-dtor
-discard
-do
-drop
-dynamic
-eager
-else
-enum
-event
-except
-explicit
-export
-expression
-extension
-extern
-false
-field
-file
-final
-finally
-fixed
-for
-force
-foreach
-fraction
-fragment
-friend
-from
-function
-implementation
-implicit
-import
-in
-inherit
-inject
-inline
-inout
-interface
-internal
-invariant
-is
-lazy
-let
-likely
-linksection
-lock
-loop
-macro
-managed
-match
-matrix
-member
-meta
-mixin
-module
-move
-mutable
-nameof
-namespace
-{noalias
-nodiscard
-noinline
-noreturn
-nosuspend
-notnull
-null
-nullable
-offsetof
-operator
-opaque
-optional
-out
-overload
-override
-package
-packed
-parallel
-params
-partial
-pragma
-precise
-private
-property
-protected
-public
-pure
-raise
-readonly
-record
-recursive
-ref
-reflect
-register
-reinterpret
-remove
-require
-required
-resume
-retain
-return
-rowmajor
-saturate
-scalar
-scope
-section
-self
-set
-shared
-sizeof
-slice
-stackalloc
-static
-struct
-{switch
-synchronized
-tailcall
-template
-test
-this
-threadlocal
-trait
-transfer
-true
-try
-tuple
-type
-typeof
-unaligned
-unbox
-unchecked
-undefined
-uniform
-union
-unlikely
-unmanaged
-unreachable
-unsafe
-unsized
-using
-uuidof
-value
-var
-version
-virtual
-volatile
-vtable
-when
-where
-while
-with
-yield
-~
-!=
-!
-+=
-++
-+
--=
---
-->
--
-*=
-*
-/=
-/
-(
-)
-{
-}
-[
-]
-::
-:
-;
-@
-$
-%=
-%
-^=
-^
-&&
-&=
-&
-==
-=>
-=
-\\
-||
-|=
-|
-,
-<=
-<<=
-<<
-<<<
->>>
-<
->=
->>=
->>
->
-??
-?
-...
-..
-.
-_
-r#class
-r#enum
-r#struct
-r"raw string \t"
-r#"raw string \n"#
-r##" r#"inner\nraw\nstring"# "##
-}}-------
-OnCompilationUnitSyntax
-    OnSyntaxList
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `bool`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `char`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `char16`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `char32`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `char8`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `decimal128`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `decimal32`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `decimal64`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `float16`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `float32`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `float64`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `int128`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `int16`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `int256`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `int32`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `int64`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `int8`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `iptr`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `isize`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `object`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `string`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `uint128`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `uint16`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `uint256`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `uint32`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `uint64`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `uint8`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `uptr`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `usize`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `void`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `byte`
-        OnIncompleteDeclarationSyntax
-            OnToken `and` `and`
-        OnIncompleteDeclarationSyntax
-            OnToken `and_eq` `and_eq`
-        OnIncompleteDeclarationSyntax
-            OnToken `or` `or`
-        OnIncompleteDeclarationSyntax
-            OnToken `or_eq` `or_eq`
-        OnIncompleteDeclarationSyntax
-            OnToken `xor` `xor`
-        OnIncompleteDeclarationSyntax
-            OnToken `xor_eq` `xor_eq`
-        OnIncompleteDeclarationSyntax
-            OnToken `not` `not`
-        OnIncompleteDeclarationSyntax
-            OnToken `not_eq` `not_eq`
-        OnIncompleteDeclarationSyntax
-            OnToken `bit_and` `bit_and`
-        OnIncompleteDeclarationSyntax
-            OnToken `bit_or` `bit_or`
-        OnIncompleteDeclarationSyntax
-            OnToken `bit_compl` `bit_compl`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `__column__`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `__file__`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `__function__`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `__function_pretty__`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `__line__`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `__module__`
-        OnIncompleteDeclarationSyntax
-            OnIdentifierNameSyntax `__source_location__`
-        OnIncompleteDeclarationSyntax
-            OnToken `abstract` `abstract`
-        OnIncompleteDeclarationSyntax
-            OnToken `add` `add`
-        OnIncompleteDeclarationSyntax
-            OnToken `addressof` `addressof`
-        OnIncompleteDeclarationSyntax
-            OnToken `addrspace` `addrspace`
-        OnIncompleteDeclarationSyntax
-            OnToken `alias` `alias`
-        OnIncompleteDeclarationSyntax
-            OnToken `align` `align`
-        OnIncompleteDeclarationSyntax
-            OnToken `alignas` `alignas`
-        OnIncompleteDeclarationSyntax
-            OnToken `alignof` `alignof`
-        OnIncompleteDeclarationSyntax
-            OnToken `array` `array`
-        OnIncompleteDeclarationSyntax
-            OnToken `as` `as`
-        OnIncompleteDeclarationSyntax
-            OnToken `assembly` `assembly`
-        OnIncompleteDeclarationSyntax
-            OnToken `assert` `assert`
-        OnIncompleteDeclarationSyntax
-            OnToken `assume` `assume`
-        OnIncompleteDeclarationSyntax
-            OnSyntaxList
-                OnToken `async` `async`
-            OnToken `atomic` `atomic`
-        OnIncompleteDeclarationSyntax
-            OnToken `attribute` `attribute`
-        OnIncompleteDeclarationSyntax
-            OnToken `auto` `auto`
-        OnIncompleteDeclarationSyntax
-            OnToken `available` `available`
-        OnIncompleteDeclarationSyntax
-            OnToken `await` `await`
-        OnIncompleteDeclarationSyntax
-            OnToken `base` `base`
-        OnIncompleteDeclarationSyntax
-            OnToken `become` `become`
-        OnIncompleteDeclarationSyntax
-            OnToken `bitcast` `bitcast`
-        OnIncompleteDeclarationSyntax
-            OnToken `body` `body`
-        OnIncompleteDeclarationSyntax
-            OnToken `borrow` `borrow`
-        OnIncompleteDeclarationSyntax
-            OnToken `box` `box`
-        OnIncompleteDeclarationSyntax
-            OnToken `break` `break`
-        OnIncompleteDeclarationSyntax
-            OnToken `callconv` `callconv`
-        OnIncompleteDeclarationSyntax
-            OnToken `case` `case`
-        OnIncompleteDeclarationSyntax
-            OnToken `cast` `cast`
-        OnIncompleteDeclarationSyntax
-            OnSyntaxList
-                OnToken `checked` `checked`
-            OnToken `class` `class`
-        OnIncompleteDeclarationSyntax
-            OnToken `columnmajor` `columnmajor`
-        OnIncompleteDeclarationSyntax
-            OnToken `compile` `compile`
-        OnConceptDeclarationSyntax
-            OnToken `concept` `concept`
-            OnIdentifierNameSyntax ``
-            OnToken `` `{`
-            OnSyntaxList
-                OnIncompleteDeclarationSyntax
-                    OnToken `continue` `continue`
-                OnIncompleteDeclarationSyntax
-                    OnToken `contravariant` `contravariant`
-                OnIncompleteDeclarationSyntax
-                    OnToken `covariant` `covariant`
-                OnIncompleteDeclarationSyntax
-                    OnToken `debug` `debug`
-                OnIncompleteDeclarationSyntax
-                    OnToken `default` `default`
-                OnIncompleteDeclarationSyntax
-                    OnToken `defer` `defer`
-                OnIncompleteDeclarationSyntax
-                    OnToken `delegate` `delegate`
-                OnIncompleteDeclarationSyntax
-                    OnToken `delete` `delete`
-                OnIncompleteDeclarationSyntax
-                    OnToken `deprecated` `deprecated`
-                OnIncompleteDeclarationSyntax
-                    OnIdentifierNameSyntax `dtor`
-                OnIncompleteDeclarationSyntax
-                    OnToken `discard` `discard`
-                OnIncompleteDeclarationSyntax
-                    OnToken `do` `do`
-                OnIncompleteDeclarationSyntax
-                    OnToken `drop` `drop`
-                OnIncompleteDeclarationSyntax
-                    OnSyntaxList
-                        OnToken `dynamic` `dynamic`
-                    OnToken `eager` `eager`
-                OnIncompleteDeclarationSyntax
-                    OnToken `else` `else`
-                OnIncompleteDeclarationSyntax
-                    OnToken `enum` `enum`
-                OnIncompleteDeclarationSyntax
-                    OnToken `event` `event`
-                OnIncompleteDeclarationSyntax
-                    OnToken `except` `except`
-                OnIncompleteDeclarationSyntax
-                    OnSyntaxList
-                        OnToken `explicit` `explicit`
-                        OnToken `export` `export`
-                    OnToken `expression` `expression`
-                OnIncompleteDeclarationSyntax
-                    OnToken `extension` `extension`
-                OnIncompleteDeclarationSyntax
-                    OnSyntaxList
-                        OnToken `extern` `extern`
-                    OnToken `false` `false`
-                OnIncompleteDeclarationSyntax
-                    OnToken `field` `field`
-                OnIncompleteDeclarationSyntax
-                    OnToken `file` `file`
-                OnIncompleteDeclarationSyntax
-                    OnSyntaxList
-                        OnToken `final` `final`
-                    OnToken `finally` `finally`
-                OnIncompleteDeclarationSyntax
-                    OnSyntaxList
-                        OnToken `fixed` `fixed`
-                    OnToken `for` `for`
-                OnIncompleteDeclarationSyntax
-                    OnToken `force` `force`
-                OnIncompleteDeclarationSyntax
-                    OnToken `foreach` `foreach`
-                OnIncompleteDeclarationSyntax
-                    OnToken `fraction` `fraction`
-                OnIncompleteDeclarationSyntax
-                    OnToken `fragment` `fragment`
-                OnIncompleteDeclarationSyntax
-                    OnToken `friend` `friend`
-                OnIncompleteDeclarationSyntax
-                    OnToken `from` `from`
-                    OnToken `function` `function`
-                    OnIdentifierNameSyntax ``
-                        OnToken `` `[`
-                        OnSyntaxList
-                                OnIdentifierNameSyntax ``
-                                    OnToken `` `:`
-                                    OnIdentifierNameSyntax ``
-                        OnToken `` `)`
-                    OnToken `` `;`
-                OnIncompleteDeclarationSyntax
-                    OnToken `implementation` `implementation`
-                OnIncompleteDeclarationSyntax
-                    OnSyntaxList
-                        OnToken `implicit` `implicit`
-                    OnToken `import` `import`
-                OnIncompleteDeclarationSyntax
-                    OnToken `in` `in`
-                OnIncompleteDeclarationSyntax
-                    OnToken `inherit` `inherit`
-                OnIncompleteDeclarationSyntax
-                    OnToken `inject` `inject`
-                OnIncompleteDeclarationSyntax
-                    OnSyntaxList
-                        OnToken `inline` `inline`
-                    OnToken `inout` `inout`
-                OnIncompleteDeclarationSyntax
-                    OnToken `interface` `interface`
-                OnIncompleteDeclarationSyntax
-                    OnSyntaxList
-                        OnToken `internal` `internal`
-                    OnToken `invariant` `invariant`
-                OnIncompleteDeclarationSyntax
-                    OnToken `is` `is`
-                OnIncompleteDeclarationSyntax
-                    OnToken `lazy` `lazy`
-                OnIncompleteDeclarationSyntax
-                    OnToken `let` `let`
-                OnIncompleteDeclarationSyntax
-                    OnToken `likely` `likely`
-                OnIncompleteDeclarationSyntax
-                    OnToken `linksection` `linksection`
-                OnIncompleteDeclarationSyntax
-                    OnToken `lock` `lock`
-                OnIncompleteDeclarationSyntax
-                    OnToken `loop` `loop`
-                OnIncompleteDeclarationSyntax
-                    OnToken `macro` `macro`
-                OnIncompleteDeclarationSyntax
-                    OnToken `managed` `managed`
-                OnIncompleteDeclarationSyntax
-                    OnToken `match` `match`
-                OnIncompleteDeclarationSyntax
-                    OnToken `matrix` `matrix`
-                OnIncompleteDeclarationSyntax
-                    OnToken `member` `member`
-                OnIncompleteDeclarationSyntax
-                    OnToken `meta` `meta`
-                OnIncompleteDeclarationSyntax
-                    OnToken `mixin` `mixin`
-                OnIncompleteDeclarationSyntax
-                    OnToken `module` `module`
-                OnIncompleteDeclarationSyntax
-                    OnToken `move` `move`
-                OnIncompleteDeclarationSyntax
-                    OnToken `mutable` `mutable`
-                OnIncompleteDeclarationSyntax
-                    OnToken `nameof` `nameof`
-                OnNamespaceDeclarationSyntax
-                    OnToken `namespace` `namespace`
-                    OnIdentifierNameSyntax ``
-                    OnToken `` `{`
-                    OnSyntaxList
-                        OnIncompleteDeclarationSyntax
-                            OnToken `noalias` `noalias`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `nodiscard` `nodiscard`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `noinline` `noinline`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `noreturn` `noreturn`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `nosuspend` `nosuspend`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `notnull` `notnull`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `null` `null`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `nullable` `nullable`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `offsetof` `offsetof`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `operator` `operator`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `opaque` `opaque`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `optional` `optional`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `out` `out`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `overload` `overload`
-                        OnIncompleteDeclarationSyntax
-                            OnSyntaxList
-                                OnToken `override` `override`
-                            OnToken `package` `package`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `packed` `packed`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `parallel` `parallel`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `params` `params`
-                        OnIncompleteDeclarationSyntax
-                            OnSyntaxList
-                                OnToken `partial` `partial`
-                            OnToken `pragma` `pragma`
-                        OnIncompleteDeclarationSyntax
-                            OnSyntaxList
-                                OnToken `precise` `precise`
-                                OnToken `private` `private`
-                            OnToken `property` `property`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `protected` `protected`
-                        OnIncompleteDeclarationSyntax
-                            OnSyntaxList
-                                OnToken `public` `public`
-                                OnToken `pure` `pure`
-                            OnToken `raise` `raise`
-                        OnIncompleteDeclarationSyntax
-                            OnSyntaxList
-                                OnToken `readonly` `readonly`
-                            OnToken `record` `record`
-                        OnIncompleteDeclarationSyntax
-                            OnSyntaxList
-                                OnToken `recursive` `recursive`
-                                OnToken `ref` `ref`
-                            OnToken `reflect` `reflect`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `register` `register`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `reinterpret` `reinterpret`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `remove` `remove`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `require` `require`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `required` `required`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `resume` `resume`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `retain` `retain`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `return` `return`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `rowmajor` `rowmajor`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `saturate` `saturate`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `scalar` `scalar`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `scope` `scope`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `section` `section`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `self` `self`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `set` `set`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `shared` `shared`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `sizeof` `sizeof`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `slice` `slice`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `stackalloc` `stackalloc`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `static` `static`
-                        OnStructDeclarationSyntax
-                            OnToken `struct` `struct`
-                            OnIdentifierNameSyntax ``
-                            OnToken `` `{`
-                            OnSyntaxList
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `switch` `switch`
-                                OnIncompleteDeclarationSyntax
-                                    OnSyntaxList
-                                        OnToken `synchronized` `synchronized`
-                                        OnToken `tailcall` `tailcall`
-                                    OnToken `template` `template`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `test` `test`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `this` `this`
-                                OnIncompleteDeclarationSyntax
-                                    OnSyntaxList
-                                        OnToken `threadlocal` `threadlocal`
-                                    OnToken `trait` `trait`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `transfer` `transfer`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `true` `true`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `try` `try`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `tuple` `tuple`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `type` `type`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `typeof` `typeof`
-                                OnIncompleteDeclarationSyntax
-                                    OnSyntaxList
-                                        OnToken `unaligned` `unaligned`
-                                    OnToken `unbox` `unbox`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `unchecked` `unchecked`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `undefined` `undefined`
-                                OnIncompleteDeclarationSyntax
-                                    OnSyntaxList
-                                        OnToken `uniform` `uniform`
-                                    OnToken `union` `union`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `unlikely` `unlikely`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `unmanaged` `unmanaged`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `unreachable` `unreachable`
-                                OnIncompleteDeclarationSyntax
-                                    OnSyntaxList
-                                        OnToken `unsafe` `unsafe`
-                                    OnToken `unsized` `unsized`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `using` `using`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `uuidof` `uuidof`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `value` `value`
-                                    OnToken `var` `var`
-                                    OnIdentifierNameSyntax ``
-                                    OnToken `` `;`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `version` `version`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `virtual` `virtual`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `volatile` `volatile`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `vtable` `vtable`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `when` `when`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `where` `where`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `while` `while`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `with` `with`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `yield` `yield`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `~` `~`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `!=` `!=`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `!` `!`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `+=` `+=`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `++` `++`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `+` `+`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `-=` `-=`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `--` `--`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `->` `->`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `-` `-`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `*=` `*=`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `*` `*`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `/=` `/=`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `/` `/`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `(` `[`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `)` `)`
-                                OnIncompleteDeclarationSyntax
-                                    OnToken `{` `{`
-                            OnToken `}` `}`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `[` `[`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `]` `]`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `::` `::`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `:` `:`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `;` `;`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `@` `@`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `$` `$`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `%=` `%=`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `%` `%`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `^` `^`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `=` `=`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `^` `^`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `&&` `&&`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `&=` `&=`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `&` `&`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `==` `==`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `=>` `=>`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `=` `=`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `\` `\`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `\` `\`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `||` `||`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `|=` `|=`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `|` `|`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `,` `,`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `<=` `<=`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `<<=` `<<=`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `<<` `<<`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `<<` `<<`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `<` `<`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `>>` `>>`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `>` `>`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `<` `<`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `>=` `>=`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `>>=` `>>=`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `>>` `>>`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `>` `>`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `??` `??`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `?` `?`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `...` `...`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `..` `..`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `.` `.`
-                        OnIncompleteDeclarationSyntax
-                            OnIdentifierNameSyntax `_`
-                        OnIncompleteDeclarationSyntax
-                            OnIdentifierNameSyntax `class`
-                        OnIncompleteDeclarationSyntax
-                            OnIdentifierNameSyntax `enum`
-                        OnIncompleteDeclarationSyntax
-                            OnIdentifierNameSyntax `struct`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `r"raw string \t"` `[token:string-literal]`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `r#"raw string \n"#` `[token:string-literal]`
-                        OnIncompleteDeclarationSyntax
-                            OnToken `r##" r#"inner\nraw\nstring"# "##` `[token:string-literal]`
-                    OnToken `` `}`
-            OnToken `` `}`
-    OnToken `` `[token::end-of-file]`
--------
-parsing took: 00:00:00.012
-PageFaultCount: 1521
-PeakWorkingSetSize: 5.688 MiB (5963776)
-WorkingSetSize: 4.402 MiB (4616192)
-QuotaPeakPagedPoolUsage: 260.141 KiB (266384)
-QuotaPagedPoolUsage: 259.398 KiB (265624)
-QuotaPeakNonPagedPoolUsage: 29.680 KiB (30392)
-QuotaNonPagedPoolUsage: 5.172 KiB (5296)
-PagefileUsage: 1.637 MiB (1716224)
-PeakPagefileUsage: 2.121 MiB (2224128)
+[node=SourceFileSyntax]
+  [node=SyntaxList]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=0, end=4, position=0:0:0:4, missing=false]
+      [token=SemicolonToken, start=6, end=10, position=1:0:1:4, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=6, end=10, position=1:0:1:4, missing=false]
+      [token=SemicolonToken, start=12, end=18, position=2:0:2:6, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=12, end=18, position=2:0:2:6, missing=false]
+      [token=SemicolonToken, start=20, end=26, position=3:0:3:6, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=20, end=26, position=3:0:3:6, missing=false]
+      [token=SemicolonToken, start=28, end=33, position=4:0:4:5, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=28, end=33, position=4:0:4:5, missing=false]
+      [token=SemicolonToken, start=35, end=45, position=5:0:5:10, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=35, end=45, position=5:0:5:10, missing=false]
+      [token=SemicolonToken, start=47, end=56, position=6:0:6:9, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=47, end=56, position=6:0:6:9, missing=false]
+      [token=SemicolonToken, start=58, end=67, position=7:0:7:9, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=58, end=67, position=7:0:7:9, missing=false]
+      [token=SemicolonToken, start=69, end=76, position=8:0:8:7, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=69, end=76, position=8:0:8:7, missing=false]
+      [token=SemicolonToken, start=78, end=85, position=9:0:9:7, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=78, end=85, position=9:0:9:7, missing=false]
+      [token=SemicolonToken, start=87, end=94, position=10:0:10:7, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=87, end=94, position=10:0:10:7, missing=false]
+      [token=SemicolonToken, start=96, end=102, position=11:0:11:6, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=96, end=102, position=11:0:11:6, missing=false]
+      [token=SemicolonToken, start=104, end=109, position=12:0:12:5, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=104, end=109, position=12:0:12:5, missing=false]
+      [token=SemicolonToken, start=111, end=117, position=13:0:13:6, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=111, end=117, position=13:0:13:6, missing=false]
+      [token=SemicolonToken, start=119, end=124, position=14:0:14:5, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=119, end=124, position=14:0:14:5, missing=false]
+      [token=SemicolonToken, start=126, end=131, position=15:0:15:5, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=126, end=131, position=15:0:15:5, missing=false]
+      [token=SemicolonToken, start=133, end=137, position=16:0:16:4, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=133, end=137, position=16:0:16:4, missing=false]
+      [token=SemicolonToken, start=139, end=143, position=17:0:17:4, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=139, end=143, position=17:0:17:4, missing=false]
+      [token=SemicolonToken, start=145, end=150, position=18:0:18:5, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=145, end=150, position=18:0:18:5, missing=false]
+      [token=SemicolonToken, start=152, end=158, position=19:0:19:6, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=152, end=158, position=19:0:19:6, missing=false]
+      [token=SemicolonToken, start=160, end=166, position=20:0:20:6, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=160, end=166, position=20:0:20:6, missing=false]
+      [token=SemicolonToken, start=168, end=175, position=21:0:21:7, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=168, end=175, position=21:0:21:7, missing=false]
+      [token=SemicolonToken, start=177, end=183, position=22:0:22:6, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=177, end=183, position=22:0:22:6, missing=false]
+      [token=SemicolonToken, start=185, end=192, position=23:0:23:7, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=185, end=192, position=23:0:23:7, missing=false]
+      [token=SemicolonToken, start=194, end=200, position=24:0:24:6, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=194, end=200, position=24:0:24:6, missing=false]
+      [token=SemicolonToken, start=202, end=208, position=25:0:25:6, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=202, end=208, position=25:0:25:6, missing=false]
+      [token=SemicolonToken, start=210, end=215, position=26:0:26:5, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=210, end=215, position=26:0:26:5, missing=false]
+      [token=SemicolonToken, start=217, end=221, position=27:0:27:4, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=217, end=221, position=27:0:27:4, missing=false]
+      [token=SemicolonToken, start=223, end=228, position=28:0:28:5, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=223, end=228, position=28:0:28:5, missing=false]
+      [token=SemicolonToken, start=230, end=234, position=29:0:29:4, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=230, end=234, position=29:0:29:4, missing=false]
+      [token=SemicolonToken, start=236, end=240, position=30:0:30:4, missing=true]
+    [node=ExpressionStatementSyntax]
+      [node=IdentifierNameSyntax]
+        [token=IdentifierToken, start=236, end=240, position=30:0:30:4, missing=false]
+      [token=SemicolonToken, start=242, end=245, position=31:0:31:3, missing=true]
+    [node=EmptyStatementSyntax]
+      [node=UnexpectedNodesSyntax]
+        [node=SyntaxList]
+          [token=AndKeyword, start=242, end=245, position=31:0:31:3, missing=false]
+          [token=AndEqualKeyword, start=247, end=253, position=32:0:32:6, missing=false]
+          [token=OrKeyword, start=255, end=257, position=33:0:33:2, missing=false]
+          [token=OrEqualKeyword, start=259, end=264, position=34:0:34:5, missing=false]
+          [token=XorKeyword, start=266, end=269, position=35:0:35:3, missing=false]
+          [token=XorEqualKeyword, start=271, end=277, position=36:0:36:6, missing=false]
+          [token=NotKeyword, start=279, end=282, position=37:0:37:3, missing=false]
+          [token=NotEqKeyword, start=284, end=290, position=38:0:38:6, missing=false]
+          [token=BitAndKeyword, start=292, end=299, position=39:0:39:7, missing=false]
+          [token=BitOrKeyword, start=301, end=307, position=40:0:40:6, missing=false]
+          [token=BitComplKeyword, start=309, end=318, position=41:0:41:9, missing=false]
+          [token=IdentifierToken, start=320, end=330, position=42:0:42:10, missing=false]
+          [token=IdentifierToken, start=332, end=340, position=43:0:43:8, missing=false]
+          [token=IdentifierToken, start=342, end=354, position=44:0:44:12, missing=false]
+          [token=IdentifierToken, start=356, end=375, position=45:0:45:19, missing=false]
+          [token=IdentifierToken, start=377, end=385, position=46:0:46:8, missing=false]
+          [token=IdentifierToken, start=387, end=397, position=47:0:47:10, missing=false]
+          [token=IdentifierToken, start=399, end=418, position=48:0:48:19, missing=false]
+          [token=AbstractKeyword, start=420, end=428, position=49:0:49:8, missing=false]
+          [token=AddKeyword, start=430, end=433, position=50:0:50:3, missing=false]
+          [token=AddressOfKeyword, start=435, end=444, position=51:0:51:9, missing=false]
+          [token=AddressSpaceKeyword, start=446, end=455, position=52:0:52:9, missing=false]
+          [token=AliasKeyword, start=457, end=462, position=53:0:53:5, missing=false]
+          [token=AlignKeyword, start=464, end=469, position=54:0:54:5, missing=false]
+          [token=AlignasKeyword, start=471, end=478, position=55:0:55:7, missing=false]
+          [token=AlignOfKeyword, start=480, end=487, position=56:0:56:7, missing=false]
+          [token=ArrayKeyword, start=489, end=494, position=57:0:57:5, missing=false]
+          [token=AsKeyword, start=496, end=498, position=58:0:58:2, missing=false]
+          [token=AssemblyKeyword, start=500, end=508, position=59:0:59:8, missing=false]
+          [token=AssertKeyword, start=510, end=516, position=60:0:60:6, missing=false]
+          [token=AssumeKeyword, start=518, end=524, position=61:0:61:6, missing=false]
+          [token=AsyncKeyword, start=526, end=531, position=62:0:62:5, missing=false]
+          [token=AtomicKeyword, start=533, end=539, position=63:0:63:6, missing=false]
+          [token=AttributeKeyword, start=541, end=550, position=64:0:64:9, missing=false]
+          [token=AutoKeyword, start=552, end=556, position=65:0:65:4, missing=false]
+          [token=AvailableKeyword, start=558, end=567, position=66:0:66:9, missing=false]
+          [token=AwaitKeyword, start=569, end=574, position=67:0:67:5, missing=false]
+          [token=BaseKeyword, start=576, end=580, position=68:0:68:4, missing=false]
+          [token=BecomeKeyword, start=582, end=588, position=69:0:69:6, missing=false]
+          [token=BitCastKeyword, start=590, end=597, position=70:0:70:7, missing=false]
+          [token=BodyKeyword, start=599, end=603, position=71:0:71:4, missing=false]
+          [token=BorrowKeyword, start=605, end=611, position=72:0:72:6, missing=false]
+          [token=BoxKeyword, start=613, end=616, position=73:0:73:3, missing=false]
+          [token=BreakKeyword, start=618, end=623, position=74:0:74:5, missing=false]
+          [token=CallConvKeyword, start=625, end=633, position=75:0:75:8, missing=false]
+          [token=CaseKeyword, start=635, end=639, position=76:0:76:4, missing=false]
+          [token=CastKeyword, start=641, end=645, position=77:0:77:4, missing=false]
+          [token=CheckedKeyword, start=647, end=654, position=78:0:78:7, missing=false]
+          [token=ClassKeyword, start=656, end=661, position=79:0:79:5, missing=false]
+          [token=ColumnMajorKeyword, start=663, end=674, position=80:0:80:11, missing=false]
+          [token=CompileKeyword, start=676, end=683, position=81:0:81:7, missing=false]
+          [token=ConceptKeyword, start=685, end=692, position=82:0:82:7, missing=false]
+          [token=ConstKeyword, start=694, end=699, position=83:0:83:5, missing=false]
+          [token=IdentifierToken, start=701, end=705, position=84:0:84:4, missing=false]
+          [token=ContinueKeyword, start=707, end=715, position=85:0:85:8, missing=false]
+          [token=ContravariantKeyword, start=717, end=730, position=86:0:86:13, missing=false]
+          [token=CovariantKeyword, start=732, end=741, position=87:0:87:9, missing=false]
+          [token=DebugKeyword, start=743, end=748, position=88:0:88:5, missing=false]
+          [token=DefaultKeyword, start=750, end=757, position=89:0:89:7, missing=false]
+          [token=DeferKeyword, start=759, end=764, position=90:0:90:5, missing=false]
+          [token=DelegateKeyword, start=766, end=774, position=91:0:91:8, missing=false]
+          [token=DeleteKeyword, start=776, end=782, position=92:0:92:6, missing=false]
+          [token=DeprecatedKeyword, start=784, end=794, position=93:0:93:10, missing=false]
+          [token=IdentifierToken, start=796, end=800, position=94:0:94:4, missing=false]
+          [token=DiscardKeyword, start=802, end=809, position=95:0:95:7, missing=false]
+          [token=DoKeyword, start=811, end=813, position=96:0:96:2, missing=false]
+          [token=DropKeyword, start=815, end=819, position=97:0:97:4, missing=false]
+          [token=DynamicKeyword, start=821, end=828, position=98:0:98:7, missing=false]
+          [token=EagerKeyword, start=830, end=835, position=99:0:99:5, missing=false]
+          [token=ElseKeyword, start=837, end=841, position=100:0:100:4, missing=false]
+          [token=EnumKeyword, start=843, end=847, position=101:0:101:4, missing=false]
+          [token=EventKeyword, start=849, end=854, position=102:0:102:5, missing=false]
+          [token=ExceptKeyword, start=856, end=862, position=103:0:103:6, missing=false]
+          [token=ExplicitKeyword, start=864, end=872, position=104:0:104:8, missing=false]
+          [token=ExportKeyword, start=874, end=880, position=105:0:105:6, missing=false]
+          [token=ExpressionKeyword, start=882, end=892, position=106:0:106:10, missing=false]
+          [token=ExtensionKeyword, start=894, end=903, position=107:0:107:9, missing=false]
+          [token=ExternKeyword, start=905, end=911, position=108:0:108:6, missing=false]
+          [token=FalseKeyword, start=913, end=918, position=109:0:109:5, missing=false]
+          [token=FieldKeyword, start=920, end=925, position=110:0:110:5, missing=false]
+          [token=FileKeyword, start=927, end=931, position=111:0:111:4, missing=false]
+          [token=FinalKeyword, start=933, end=938, position=112:0:112:5, missing=false]
+          [token=FinallyKeyword, start=940, end=947, position=113:0:113:7, missing=false]
+          [token=FixedKeyword, start=949, end=954, position=114:0:114:5, missing=false]
+          [token=ForKeyword, start=956, end=959, position=115:0:115:3, missing=false]
+          [token=ForceKeyword, start=961, end=966, position=116:0:116:5, missing=false]
+          [token=ForeachKeyword, start=968, end=975, position=117:0:117:7, missing=false]
+          [token=FractionKeyword, start=977, end=985, position=118:0:118:8, missing=false]
+          [token=FragmentKeyword, start=987, end=995, position=119:0:119:8, missing=false]
+          [token=FriendKeyword, start=997, end=1003, position=120:0:120:6, missing=false]
+          [token=FromKeyword, start=1005, end=1009, position=121:0:121:4, missing=false]
+          [token=FunctionKeyword, start=1011, end=1019, position=122:0:122:8, missing=false]
+          [token=GenericKeyword, start=1021, end=1028, position=123:0:123:7, missing=false]
+          [token=GetKeyword, start=1030, end=1033, position=124:0:124:3, missing=false]
+          [token=GlobalKeyword, start=1035, end=1041, position=125:0:125:6, missing=false]
+          [token=GotoKeyword, start=1043, end=1047, position=126:0:126:4, missing=false]
+          [token=GroupSharedKeyword, start=1049, end=1060, position=127:0:127:11, missing=false]
+          [token=IfKeyword, start=1062, end=1064, position=128:0:128:2, missing=false]
+          [token=ImmutableKeyword, start=1066, end=1075, position=129:0:129:9, missing=false]
+          [token=ImplementationKeyword, start=1077, end=1091, position=130:0:130:14, missing=false]
+          [token=ImplicitKeyword, start=1093, end=1101, position=131:0:131:8, missing=false]
+          [token=ImportKeyword, start=1103, end=1109, position=132:0:132:6, missing=false]
+          [token=InKeyword, start=1111, end=1113, position=133:0:133:2, missing=false]
+          [token=InheritKeyword, start=1115, end=1122, position=134:0:134:7, missing=false]
+          [token=InjectKeyword, start=1124, end=1130, position=135:0:135:6, missing=false]
+          [token=InlineKeyword, start=1132, end=1138, position=136:0:136:6, missing=false]
+          [token=InOutKeyword, start=1140, end=1145, position=137:0:137:5, missing=false]
+          [token=InterfaceKeyword, start=1147, end=1156, position=138:0:138:9, missing=false]
+          [token=InternalKeyword, start=1158, end=1166, position=139:0:139:8, missing=false]
+          [token=InvariantKeyword, start=1168, end=1177, position=140:0:140:9, missing=false]
+          [token=IsKeyword, start=1179, end=1181, position=141:0:141:2, missing=false]
+          [token=LazyKeyword, start=1183, end=1187, position=142:0:142:4, missing=false]
+          [token=LetKeyword, start=1189, end=1192, position=143:0:143:3, missing=false]
+          [token=LikelyKeyword, start=1194, end=1200, position=144:0:144:6, missing=false]
+          [token=LinkSectionKeyword, start=1202, end=1213, position=145:0:145:11, missing=false]
+          [token=LockKeyword, start=1215, end=1219, position=146:0:146:4, missing=false]
+          [token=LoopKeyword, start=1221, end=1225, position=147:0:147:4, missing=false]
+          [token=MacroKeyword, start=1227, end=1232, position=148:0:148:5, missing=false]
+          [token=ManagerKeyword, start=1234, end=1241, position=149:0:149:7, missing=false]
+          [token=MatchKeyword, start=1243, end=1248, position=150:0:150:5, missing=false]
+          [token=MatrixKeyword, start=1250, end=1256, position=151:0:151:6, missing=false]
+          [token=MemberKeyword, start=1258, end=1264, position=152:0:152:6, missing=false]
+          [token=MetaKeyword, start=1266, end=1270, position=153:0:153:4, missing=false]
+          [token=MixinKeyword, start=1272, end=1277, position=154:0:154:5, missing=false]
+          [token=ModuleKeyword, start=1279, end=1285, position=155:0:155:6, missing=false]
+          [token=MoveKeyword, start=1287, end=1291, position=156:0:156:4, missing=false]
+          [token=MutableKeyword, start=1293, end=1300, position=157:0:157:7, missing=false]
+          [token=NameOfKeyword, start=1302, end=1308, position=158:0:158:6, missing=false]
+          [token=NamespaceKeyword, start=1310, end=1319, position=159:0:159:9, missing=false]
+          [token=NativeKeyword, start=1321, end=1327, position=160:0:160:6, missing=false]
+          [token=NewKeyword, start=1329, end=1332, position=161:0:161:3, missing=false]
+          [token=NoAliasKeyword, start=1334, end=1341, position=162:0:162:7, missing=false]
+          [token=NodiscardKeyword, start=1343, end=1352, position=163:0:163:9, missing=false]
+          [token=NoInlineKeyword, start=1354, end=1362, position=164:0:164:8, missing=false]
+          [token=NoreturnKeyword, start=1364, end=1372, position=165:0:165:8, missing=false]
+          [token=NoSuspendKeyword, start=1374, end=1383, position=166:0:166:9, missing=false]
+          [token=NotNullKeyword, start=1385, end=1392, position=167:0:167:7, missing=false]
+          [token=NullKeyword, start=1394, end=1398, position=168:0:168:4, missing=false]
+          [token=NullableKeyword, start=1400, end=1408, position=169:0:169:8, missing=false]
+          [token=OffsetOfKeyword, start=1410, end=1418, position=170:0:170:8, missing=false]
+          [token=OperatorKeyword, start=1420, end=1428, position=171:0:171:8, missing=false]
+          [token=OpqaueKeyword, start=1430, end=1436, position=172:0:172:6, missing=false]
+          [token=OptionalKeyword, start=1438, end=1446, position=173:0:173:8, missing=false]
+          [token=OutKeyword, start=1448, end=1451, position=174:0:174:3, missing=false]
+          [token=OverloadKeyword, start=1453, end=1461, position=175:0:175:8, missing=false]
+          [token=OverrideKeyword, start=1463, end=1471, position=176:0:176:8, missing=false]
+          [token=PackageKeyword, start=1473, end=1480, position=177:0:177:7, missing=false]
+          [token=PackedKeyword, start=1482, end=1488, position=178:0:178:6, missing=false]
+          [token=ParallelKeyword, start=1490, end=1498, position=179:0:179:8, missing=false]
+          [token=ParamsKeyword, start=1500, end=1506, position=180:0:180:6, missing=false]
+          [token=PartialKeyword, start=1508, end=1515, position=181:0:181:7, missing=false]
+          [token=PragmaKeyword, start=1517, end=1523, position=182:0:182:6, missing=false]
+          [token=PreciseKeyword, start=1525, end=1532, position=183:0:183:7, missing=false]
+          [token=PrivateKeyword, start=1534, end=1541, position=184:0:184:7, missing=false]
+          [token=PropertyKeyword, start=1543, end=1551, position=185:0:185:8, missing=false]
+          [token=ProtectedKeyword, start=1553, end=1562, position=186:0:186:9, missing=false]
+          [token=PublicKeyword, start=1564, end=1570, position=187:0:187:6, missing=false]
+          [token=PureKeyword, start=1572, end=1576, position=188:0:188:4, missing=false]
+          [token=RaiseKeyword, start=1578, end=1583, position=189:0:189:5, missing=false]
+          [token=ReadonlyKeyword, start=1585, end=1593, position=190:0:190:8, missing=false]
+          [token=RecordKeyword, start=1595, end=1601, position=191:0:191:6, missing=false]
+          [token=RecursiveKeyword, start=1603, end=1612, position=192:0:192:9, missing=false]
+          [token=RefKeyword, start=1614, end=1617, position=193:0:193:3, missing=false]
+          [token=ReflectKeyword, start=1619, end=1626, position=194:0:194:7, missing=false]
+          [token=RegisterKeyword, start=1628, end=1636, position=195:0:195:8, missing=false]
+          [token=ReinterpretKeyword, start=1638, end=1649, position=196:0:196:11, missing=false]
+          [token=RemoveKeyword, start=1651, end=1657, position=197:0:197:6, missing=false]
+          [token=RequireKeyword, start=1659, end=1666, position=198:0:198:7, missing=false]
+          [token=RequiredKeyword, start=1668, end=1676, position=199:0:199:8, missing=false]
+          [token=ResumeKeyword, start=1678, end=1684, position=200:0:200:6, missing=false]
+          [token=RetainKeyword, start=1686, end=1692, position=201:0:201:6, missing=false]
+          [token=ReturnKeyword, start=1694, end=1700, position=202:0:202:6, missing=false]
+          [token=RowMajorKeyword, start=1702, end=1710, position=203:0:203:8, missing=false]
+          [token=SaturateKeyword, start=1712, end=1720, position=204:0:204:8, missing=false]
+          [token=ScalarKeyword, start=1722, end=1728, position=205:0:205:6, missing=false]
+          [token=ScopeKeyword, start=1730, end=1735, position=206:0:206:5, missing=false]
+          [token=SectionKeyword, start=1737, end=1744, position=207:0:207:7, missing=false]
+          [token=SelfKeyword, start=1746, end=1750, position=208:0:208:4, missing=false]
+          [token=SetKeyword, start=1752, end=1755, position=209:0:209:3, missing=false]
+          [token=SharedKeyword, start=1757, end=1763, position=210:0:210:6, missing=false]
+          [token=SizeOfKeyword, start=1765, end=1771, position=211:0:211:6, missing=false]
+          [token=SliceKeyword, start=1773, end=1778, position=212:0:212:5, missing=false]
+          [token=StackallocKeyword, start=1780, end=1790, position=213:0:213:10, missing=false]
+          [token=StaticKeyword, start=1792, end=1798, position=214:0:214:6, missing=false]
+          [token=StructKeyword, start=1800, end=1806, position=215:0:215:6, missing=false]
+          [token=SuperKeyword, start=1808, end=1813, position=216:0:216:5, missing=false]
+          [token=SuspendKeyword, start=1815, end=1822, position=217:0:217:7, missing=false]
+          [token=SwitchKeyword, start=1824, end=1830, position=218:0:218:6, missing=false]
+          [token=SynchronizedKeyword, start=1832, end=1844, position=219:0:219:12, missing=false]
+          [token=TailCallKeyword, start=1846, end=1854, position=220:0:220:8, missing=false]
+          [token=TemplateKeyword, start=1856, end=1864, position=221:0:221:8, missing=false]
+          [token=TestKeyword, start=1866, end=1870, position=222:0:222:4, missing=false]
+          [token=ThisKeyword, start=1872, end=1876, position=223:0:223:4, missing=false]
+          [token=ThreadLocalKeyword, start=1878, end=1889, position=224:0:224:11, missing=false]
+          [token=TraitKeyword, start=1891, end=1896, position=225:0:225:5, missing=false]
+          [token=TransferKeyword, start=1898, end=1906, position=226:0:226:8, missing=false]
+          [token=TrueKeyword, start=1908, end=1912, position=227:0:227:4, missing=false]
+          [token=TryKeyword, start=1914, end=1917, position=228:0:228:3, missing=false]
+          [token=TupleKeyword, start=1919, end=1924, position=229:0:229:5, missing=false]
+          [token=TypeKeyword, start=1926, end=1930, position=230:0:230:4, missing=false]
+          [token=TypeOfKeyword, start=1932, end=1938, position=231:0:231:6, missing=false]
+          [token=UnalignedKeyword, start=1940, end=1949, position=232:0:232:9, missing=false]
+          [token=UnboxKeyword, start=1951, end=1956, position=233:0:233:5, missing=false]
+          [token=UncheckedKeyword, start=1958, end=1967, position=234:0:234:9, missing=false]
+          [token=UndefinedKeyword, start=1969, end=1978, position=235:0:235:9, missing=false]
+          [token=UniformKeyword, start=1980, end=1987, position=236:0:236:7, missing=false]
+          [token=UnionKeyword, start=1989, end=1994, position=237:0:237:5, missing=false]
+          [token=UnlikelyKeyword, start=1996, end=2004, position=238:0:238:8, missing=false]
+          [token=UnmanagedKeyword, start=2006, end=2015, position=239:0:239:9, missing=false]
+          [token=UnreachableKeyword, start=2017, end=2028, position=240:0:240:11, missing=false]
+          [token=UnsafeKeyword, start=2030, end=2036, position=241:0:241:6, missing=false]
+          [token=UnsizedKeyword, start=2038, end=2045, position=242:0:242:7, missing=false]
+          [token=UsingKeyword, start=2047, end=2052, position=243:0:243:5, missing=false]
+          [token=UuidOfKeyword, start=2054, end=2060, position=244:0:244:6, missing=false]
+          [token=ValueKeyword, start=2062, end=2067, position=245:0:245:5, missing=false]
+          [token=VarKeyword, start=2069, end=2072, position=246:0:246:3, missing=false]
+          [token=VectorKeyword, start=2074, end=2080, position=247:0:247:6, missing=false]
+          [token=VendorKeyword, start=2082, end=2088, position=248:0:248:6, missing=false]
+          [token=VersionKeyword, start=2090, end=2097, position=249:0:249:7, missing=false]
+          [token=VirtualKeyword, start=2099, end=2106, position=250:0:250:7, missing=false]
+          [token=VolatileKeyword, start=2108, end=2116, position=251:0:251:8, missing=false]
+          [token=VtableKeyword, start=2118, end=2124, position=252:0:252:6, missing=false]
+          [token=WhenKeyword, start=2126, end=2130, position=253:0:253:4, missing=false]
+          [token=WhereKeyword, start=2132, end=2137, position=254:0:254:5, missing=false]
+          [token=WhileKeyword, start=2139, end=2144, position=255:0:255:5, missing=false]
+          [token=WithKeyword, start=2146, end=2150, position=256:0:256:4, missing=false]
+          [token=YieldKeyword, start=2152, end=2157, position=257:0:257:5, missing=false]
+          [token=TildeToken, start=2159, end=2160, position=258:0:258:1, missing=false]
+          [token=ExclamationEqualsToken, start=2162, end=2164, position=259:0:259:2, missing=false]
+          [token=ExclamationToken, start=2166, end=2167, position=260:0:260:1, missing=false]
+          [token=PlusEqualsToken, start=2169, end=2171, position=261:0:261:2, missing=false]
+          [token=PlusPlusToken, start=2173, end=2175, position=262:0:262:2, missing=false]
+          [token=PlusToken, start=2177, end=2178, position=263:0:263:1, missing=false]
+          [token=MinusEqualsToken, start=2180, end=2182, position=264:0:264:2, missing=false]
+          [token=MinusMinusToken, start=2184, end=2186, position=265:0:265:2, missing=false]
+          [token=MinusGreaterThanToken, start=2188, end=2190, position=266:0:266:2, missing=false]
+          [token=MinusToken, start=2192, end=2193, position=267:0:267:1, missing=false]
+          [token=AsteriskEqualsToken, start=2195, end=2197, position=268:0:268:2, missing=false]
+          [token=AsteriskToken, start=2199, end=2200, position=269:0:269:1, missing=false]
+          [token=SlashEqualsToken, start=2202, end=2204, position=270:0:270:2, missing=false]
+          [token=SlashToken, start=2206, end=2207, position=271:0:271:1, missing=false]
+          [token=OpenParenToken, start=2209, end=2210, position=272:0:272:1, missing=false]
+          [token=CloseParenToken, start=2212, end=2213, position=273:0:273:1, missing=false]
+          [token=OpenBraceToken, start=2215, end=2216, position=274:0:274:1, missing=false]
+          [token=CloseBraceToken, start=2218, end=2219, position=275:0:275:1, missing=false]
+          [token=OpenBracketToken, start=2221, end=2222, position=276:0:276:1, missing=false]
+          [token=CloseBracketToken, start=2224, end=2225, position=277:0:277:1, missing=false]
+          [token=ColonColonToken, start=2227, end=2229, position=278:0:278:2, missing=false]
+          [token=ColonToken, start=2231, end=2232, position=279:0:279:1, missing=false]
+      [token=SemicolonToken, start=2234, end=2235, position=280:0:280:1, missing=false]
+    [node=EmptyStatementSyntax]
+      [node=UnexpectedNodesSyntax]
+        [node=SyntaxList]
+          [token=AtToken, start=2237, end=2238, position=281:0:281:1, missing=false]
+          [token=DollarToken, start=2240, end=2241, position=282:0:282:1, missing=false]
+          [token=PercentEqualsToken, start=2243, end=2245, position=283:0:283:2, missing=false]
+          [token=PercentToken, start=2247, end=2248, position=284:0:284:1, missing=false]
+          [token=CaretToken, start=2250, end=2251, position=285:0:285:1, missing=false]
+          [token=EqualsToken, start=2251, end=2252, position=285:1:285:2, missing=false]
+          [token=CaretToken, start=2254, end=2255, position=286:0:286:1, missing=false]
+          [token=AmpersandAmpersandToken, start=2257, end=2259, position=287:0:287:2, missing=false]
+          [token=AmpersandEqualsToken, start=2261, end=2263, position=288:0:288:2, missing=false]
+          [token=AmpersandToken, start=2265, end=2266, position=289:0:289:1, missing=false]
+          [token=EqualsEqualsToken, start=2268, end=2270, position=290:0:290:2, missing=false]
+          [token=EqualsGreaterThanToken, start=2272, end=2274, position=291:0:291:2, missing=false]
+          [token=EqualsToken, start=2276, end=2277, position=292:0:292:1, missing=false]
+          [token=BackslashToken, start=2279, end=2280, position=293:0:293:1, missing=false]
+          [token=BackslashToken, start=2280, end=2281, position=293:1:293:2, missing=false]
+          [token=BarBarToken, start=2283, end=2285, position=294:0:294:2, missing=false]
+          [token=BarEqualsToken, start=2287, end=2289, position=295:0:295:2, missing=false]
+          [token=BarToken, start=2291, end=2292, position=296:0:296:1, missing=false]
+          [token=CommaToken, start=2294, end=2295, position=297:0:297:1, missing=false]
+          [token=LessThanEqualsToken, start=2297, end=2299, position=298:0:298:2, missing=false]
+          [token=LessThanLessThanEqualsToken, start=2301, end=2304, position=299:0:299:3, missing=false]
+          [token=LessThanLessThanToken, start=2306, end=2308, position=300:0:300:2, missing=false]
+          [token=LessThanLessThanToken, start=2310, end=2312, position=301:0:301:2, missing=false]
+          [token=LessThanToken, start=2312, end=2313, position=301:2:301:3, missing=false]
+          [token=GreaterThanGreaterThanToken, start=2315, end=2317, position=302:0:302:2, missing=false]
+          [token=GreaterThanToken, start=2317, end=2318, position=302:2:302:3, missing=false]
+          [token=LessThanToken, start=2320, end=2321, position=303:0:303:1, missing=false]
+          [token=GreaterThanEqualsToken, start=2323, end=2325, position=304:0:304:2, missing=false]
+          [token=GreaterThanGreaterThanEqualsToken, start=2327, end=2330, position=305:0:305:3, missing=false]
+          [token=GreaterThanGreaterThanToken, start=2332, end=2334, position=306:0:306:2, missing=false]
+          [token=GreaterThanToken, start=2336, end=2337, position=307:0:307:1, missing=false]
+          [token=QuestionQuestionToken, start=2339, end=2341, position=308:0:308:2, missing=false]
+          [token=QuestionToken, start=2343, end=2344, position=309:0:309:1, missing=false]
+          [token=DotDotDotToken, start=2346, end=2349, position=310:0:310:3, missing=false]
+          [token=DotDotToken, start=2351, end=2353, position=311:0:311:2, missing=false]
+          [token=DotToken, start=2355, end=2356, position=312:0:312:1, missing=false]
+          [token=IdentifierToken, start=2358, end=2359, position=313:0:313:1, missing=false]
+          [token=IdentifierToken, start=2361, end=2368, position=314:0:314:7, missing=false]
+          [token=IdentifierToken, start=2370, end=2376, position=315:0:315:6, missing=false]
+          [token=IdentifierToken, start=2378, end=2386, position=316:0:316:8, missing=false]
+          [token=StringLiteralToken, start=2388, end=2404, position=317:0:317:16, missing=false]
+          [token=StringLiteralToken, start=2406, end=2424, position=318:0:318:18, missing=false]
+          [token=StringLiteralToken, start=2426, end=2458, position=319:0:319:32, missing=false]
+      [token=SemicolonToken, start=2460, end=2460, position=320:0:320:0, missing=true]
+  [token=EndOfFileToken, start=2460, end=2460, position=320:0:320:0, missing=false]

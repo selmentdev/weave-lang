@@ -72,8 +72,6 @@ namespace weave::syntax
             this->_current = this->_tokens[this->_index];
         }
 
-        this->AdjustNestingLevel(current->Kind);
-
         return current;
     }
 
@@ -100,7 +98,7 @@ namespace weave::syntax
                     GetSpelling(kind)));
         }
 
-        return this->_factory->CreateMissingToken(kind, this->Current()->Source.WithZeroLength());
+        return this->_factory->CreateMissingToken(kind, this->Current()->Source);
     }
 
     SyntaxToken* Parser::TryMatch(SyntaxKind kind)
@@ -149,8 +147,318 @@ namespace weave::syntax
 
         return this->_factory->CreateMissingToken(
             kind,
-            this->Current()->Source.WithZeroLength());
+            this->Current()->Source /*.WithZeroLength()*/);
     }
+
+    UnexpectedNodesSyntax* Parser::ConsumeUnexpected(SyntaxKind kind)
+    {
+        std::vector<SyntaxNode*> unexpected{};
+
+        while (this->Current()->Kind == kind)
+        {
+            unexpected.push_back(this->Next());
+        }
+
+        return this->CreateUnexpectedNodes(unexpected);
+    }
+
+    void Parser::MatchUntil(SyntaxToken*& matched, UnexpectedNodesSyntax*& unexpected, SyntaxKind kind)
+    {
+        std::vector<SyntaxNode*> nodes{};
+
+        // TODO:    Process tokens until started depth is reached. This way we won't process whole file as-is.
+        //          For example, when matching ')' token we might get out of parent scope by matching '}'.
+
+        while ((not this->Current()->Is(kind)) and (not this->Current()->Is(SyntaxKind::EndOfFileToken)))
+        {
+            nodes.push_back(this->Next());
+        }
+
+        if (this->Current()->Is(kind))
+        {
+            matched = this->Next();
+        }
+        else
+        {
+            matched = this->_factory->CreateMissingToken(
+                kind,
+                this->Current()->Source);
+        }
+
+        unexpected = this->CreateUnexpectedNodes(nodes);
+    }
+
+    SourceFileSyntax* Parser::ParseSourceFile()
+    {
+        std::vector<CodeBlockItemSyntax*> children{};
+        this->ParseCodeBlock(children, true);
+
+        SourceFileSyntax* result = this->_factory->CreateNode<SourceFileSyntax>();
+        result->Elements = SyntaxListView<CodeBlockItemSyntax>{this->_factory->CreateList(children)};
+        this->MatchUntil(result->EndOfFileToken, result->BeforeEndOfFileToken, SyntaxKind::EndOfFileToken);
+        return result;
+    }
+
+    void Parser::ParseCodeBlock(std::vector<CodeBlockItemSyntax*>& items, bool global)
+    {
+        items.clear();
+
+        while (SyntaxToken const* current = this->Current())
+        {
+            if (current->Is(SyntaxKind::CloseBraceToken))
+            {
+                if (not global)
+                {
+                    break;
+                }
+            }
+            else if (current->Is(SyntaxKind::EndOfFileToken))
+            {
+                break;
+            }
+
+            if (CodeBlockItemSyntax* result = this->ParseCodeBlockItem())
+            {
+                items.push_back(result);
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    CodeBlockItemSyntax* Parser::ParseCodeBlockItem()
+    {
+        SyntaxNode* element = nullptr;
+
+        SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
+        SyntaxListView<SyntaxToken> modifiers = this->ParseModifiersList();
+
+        SyntaxKind const kind = this->Current()->Kind;
+
+        // Algorithm:
+        //  Perform lookahead for proper item kind.
+        if (SyntaxFacts::IsStartOfDeclaration(kind))
+        {
+            element = this->ParseDeclaration(attributes, modifiers);
+        }
+        else if (SyntaxFacts::IsStartOfStatement(kind))
+        {
+            element = this->ParseStatement(attributes, modifiers);
+        }
+        else if (SyntaxFacts::IsStartOfExpression(kind))
+        {
+            ExpressionStatementSyntax* result = this->_factory->CreateNode<ExpressionStatementSyntax>();
+            result->Attributes = this->ParseAttributesList();
+            result->Modifiers = this->ParseModifiersList();
+            result->Expression = this->ParseExpression();
+            element = result;
+        }
+        else
+        {
+            //IncompleteDeclarationSyntax* incomplete = this->_factory->CreateNode<IncompleteDeclarationSyntax>();
+            //incomplete->Attributes = this->ParseAttributesList();
+            //incomplete->Modifiers = this->ParseModifiersList();
+            //element = incomplete;
+            return nullptr;
+        }
+
+        CodeBlockItemSyntax* result = this->_factory->CreateNode<CodeBlockItemSyntax>();
+        result->Item = element;
+        result->Semicolon = this->TryMatch(SyntaxKind::SemicolonToken);
+        // Consume any trailing semicolons to reduce number of emitted nodes.
+        result->AfterSemicolon = this->ConsumeUnexpected(SyntaxKind::SemicolonToken);
+        //this->MatchUntil(result->Semicolon, result->BeforeSemicolon, SyntaxKind::SemicolonToken);
+        return result;
+    }
+
+    SyntaxListView<AttributeListSyntax> Parser::ParseAttributesList()
+    {
+        std::vector<AttributeListSyntax*> elements{};
+
+        while (AttributeListSyntax* current = this->ParseAttributeList())
+        {
+            elements.push_back(current);
+        }
+
+        return SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(elements)};
+    }
+
+    SyntaxListView<SyntaxToken> Parser::ParseModifiersList()
+    {
+        std::vector<SyntaxToken*> elements{};
+
+        while (SyntaxToken* current = this->Current())
+        {
+            if (not SyntaxFacts::IsMemberModifier(current->Kind))
+            {
+                break;
+            }
+
+            elements.push_back(this->Next());
+        }
+
+        return SyntaxListView<SyntaxToken>{this->_factory->CreateList(elements)};
+    }
+
+    FunctionDeclarationSyntax* Parser::ParseFunctionDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
+    {
+        FunctionDeclarationSyntax* result = this->_factory->CreateNode<FunctionDeclarationSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->FunctionKeyword = this->Match(SyntaxKind::FunctionKeyword);
+        result->Name = this->ParseIdentifierName();
+        result->Parameters = this->ParseParameterList();
+
+        if (this->Current()->Is(SyntaxKind::MinusGreaterThanToken))
+        {
+            result->ReturnType = this->ParseReturnTypeClause();
+        }
+
+        if (this->Current()->Is(SyntaxKind::OpenBraceToken))
+        {
+            result->Body = this->ParseBlockStatement();
+        }
+        else if (this->Current()->Is(SyntaxKind::EqualsGreaterThanToken))
+        {
+            result->ExpressionBody = this->ParseArrowExpressionClause();
+        }
+
+        /*if ((result->Body == nullptr) and (result->ExpressionBody == nullptr))
+        {
+            result->SemicolonToken = this->Match(SyntaxKind::SemicolonToken);
+        }
+        else
+        {
+            result->SemicolonToken = this->TryMatch(SyntaxKind::SemicolonToken);
+        }*/
+
+        return result;
+    }
+
+    ConceptDeclarationSyntax* Parser::ParseConceptDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
+    {
+        SyntaxToken* tokenConcept = this->Match(SyntaxKind::ConceptKeyword);
+        NameSyntax* name = this->ParseSimpleName();
+        SyntaxToken* tokenOpenBrace = this->Match(SyntaxKind::OpenBraceToken);
+
+        std::vector<ConstraintSyntax*> constraints{};
+        std::vector<MemberDeclarationSyntax*> members{};
+
+        this->ParseTypeBody(constraints, members);
+
+        SyntaxToken* tokenCloseBrace = this->Match(SyntaxKind::CloseBraceToken);
+        SyntaxToken* tokenSemicolon = this->TryMatch(SyntaxKind::SemicolonToken);
+
+        ConceptDeclarationSyntax* result = this->_factory->CreateNode<ConceptDeclarationSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->ConceptKeyword = tokenConcept;
+        result->Name = name;
+        result->OpenBraceToken = tokenOpenBrace;
+        result->Members = SyntaxListView<MemberDeclarationSyntax>{this->_factory->CreateList(members)};
+        result->CloseBraceToken = tokenCloseBrace;
+        result->SemicolonToken = tokenSemicolon;
+        return result;
+    }
+
+    ExtendDeclarationSyntax* Parser::ParseExtendDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
+    {
+        SyntaxToken* tokenExtend = this->Match(SyntaxKind::ExtendKeyword);
+        NameSyntax* name = this->ParseSimpleName();
+        SyntaxToken* tokenOpenBrace = this->Match(SyntaxKind::OpenBraceToken);
+
+        std::vector<ConstraintSyntax*> constraints{};
+        std::vector<MemberDeclarationSyntax*> members{};
+
+        this->ParseTypeBody(constraints, members);
+
+        SyntaxToken* tokenCloseBrace = this->Match(SyntaxKind::CloseBraceToken);
+        SyntaxToken* tokenSemicolon = this->TryMatch(SyntaxKind::SemicolonToken);
+
+        ExtendDeclarationSyntax* result = this->_factory->CreateNode<ExtendDeclarationSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->ExtendKeyword = tokenExtend;
+        result->Name = name;
+        result->OpenBraceToken = tokenOpenBrace;
+        result->Members = SyntaxListView<MemberDeclarationSyntax>{this->_factory->CreateList(members)};
+        result->CloseBraceToken = tokenCloseBrace;
+        result->SemicolonToken = tokenSemicolon;
+        return result;
+    }
+
+    DeclarationSyntax* Parser::ParseDeclaration(
+        SyntaxListView<AttributeListSyntax> attributes,
+        SyntaxListView<SyntaxToken> modifiers)
+    {
+        switch (this->Current()->Kind)
+        {
+        case SyntaxKind::FunctionKeyword:
+            return this->ParseFunctionDeclaration(attributes, modifiers);
+
+        case SyntaxKind::ConceptKeyword:
+            return this->ParseConceptDeclaration(attributes, modifiers);
+
+        case SyntaxKind::ExtendKeyword:
+            return this->ParseExtendDeclaration(attributes, modifiers);
+
+        case SyntaxKind::VarKeyword:
+        case SyntaxKind::LetKeyword:
+            return this->ParseVariableDeclaration();
+
+        default:
+            break;
+        }
+
+        WEAVE_BUGCHECK("Declaration not handled");
+    }
+
+    StatementSyntax* Parser::ParseStatement(
+        SyntaxListView<AttributeListSyntax> attributes,
+        SyntaxListView<SyntaxToken> modifiers)
+    {
+        switch (this->Current()->Kind)
+        {
+        case SyntaxKind::ReturnKeyword:
+            return this->ParseReturnStatement(attributes, modifiers);
+
+        case SyntaxKind::IfKeyword:
+            return this->ParseIfStatement(attributes, modifiers);
+
+        case SyntaxKind::ElseKeyword:
+            return this->ParseMisplacedElseClause(attributes, modifiers);
+
+        default:
+            break;
+        }
+
+        WEAVE_BUGCHECK("Statement not handled");
+    }
+
+    ExpressionSyntax* Parser::ParseExpressionNew()
+    {
+        switch (this->Current()->Kind)
+        {
+        case SyntaxKind::FalseKeyword:
+        case SyntaxKind::TrueKeyword:
+        case SyntaxKind::IntegerLiteralToken:
+        case SyntaxKind::FloatLiteralToken:
+        case SyntaxKind::StringLiteralToken:
+        case SyntaxKind::CharacterLiteralToken:
+        case SyntaxKind::OpenParenToken:
+        case SyntaxKind::OpenBracketToken:
+        case SyntaxKind::IdentifierToken:
+            return this->ParseExpression();
+
+        default:
+            break;
+        }
+
+        WEAVE_BUGCHECK("Invalid expression");
+    }
+
 
     CompilationUnitSyntax* Parser::ParseCompilationUnit()
     {
@@ -330,26 +638,52 @@ namespace weave::syntax
                 GetSpelling(current->Kind)));
 
         // Fixme: do we need to parse this as identifier?
-        SyntaxNode* name = this->Next();
+        // SyntaxNode* name = this->Next();
 
         // FIXME: Report this using function.
-        IncompleteDeclarationSyntax* result = this->_factory->CreateNode<IncompleteDeclarationSyntax>();
-        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
-        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
-        result->Type = name;
+        // IncompleteDeclarationSyntax* result = this->_factory->CreateNode<IncompleteDeclarationSyntax>();
+        // result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+        // result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
 
-        return result;
+        return nullptr;
+        // return result;
+    }
+
+    AttributeSyntax* Parser::ParseAttribute()
+    {
+        if (this->Current()->Is(SyntaxKind::IdentifierToken))
+        {
+            AttributeSyntax* result = this->_factory->CreateNode<AttributeSyntax>();
+            result->Name = this->ParseQualifiedName();
+            result->Tokens = this->ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
+            result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+            return result;
+        }
+
+        return nullptr;
     }
 
     AttributeListSyntax* Parser::ParseAttributeList()
     {
-        /*while (SyntaxToken* current = this->Current())
+        if (SyntaxToken* openAttributeToken = this->TryMatch(SyntaxKind::HashOpenBracketToken))
         {
-            if (current->Is(SyntaxKind::CloseBracketToken))
+            std::vector<AttributeSyntax*> attributes{};
+
+            while (AttributeSyntax* current = this->ParseAttribute())
             {
-                break;
+                attributes.emplace_back(current);
             }
-        }*/
+
+            std::vector<SyntaxNode*> unexpected{};
+            SyntaxToken* closeAttributeToken = this->MatchUntil(unexpected, SyntaxKind::CloseBracketToken);
+
+            AttributeListSyntax* result = this->_factory->CreateNode<AttributeListSyntax>();
+            result->OpenAttributeToken = openAttributeToken;
+            result->Attributes = SyntaxListView<AttributeSyntax>{this->_factory->CreateList(attributes)};
+            result->BeforeCloseAttributeToken = this->CreateUnexpectedNodes(unexpected);
+            result->CloseAttributeToken = closeAttributeToken;
+            return result;
+        }
 
         return nullptr;
     }
@@ -615,7 +949,7 @@ namespace weave::syntax
 
         ArgumentListSyntax* result = this->_factory->CreateNode<ArgumentListSyntax>();
         result->OpenParenToken = tokenOpenParen;
-        result->Arguments = SeparatedSyntaxListView<ArgumentSyntax>{this->_factory->CreateList(nodes)};
+        result->Arguments = SyntaxListView<ArgumentSyntax>{this->_factory->CreateList(nodes)};
         result->CloseParenToken = tokenCloseParen;
         return result;
     }
@@ -645,50 +979,46 @@ namespace weave::syntax
 
         BracketedArgumentListSyntax* result = this->_factory->CreateNode<BracketedArgumentListSyntax>();
         result->OpenBracketToken = tokenOpenBracket;
-        result->Arguments = SeparatedSyntaxListView<ArgumentSyntax>{this->_factory->CreateList(nodes)};
+        result->Arguments = SyntaxListView<ArgumentSyntax>{this->_factory->CreateList(nodes)};
         result->CloseBracketToken = tokenCloseBracket;
         return result;
     }
 
     ParameterSyntax* Parser::ParseParameter(std::span<AttributeListSyntax*> attributes, std::span<SyntaxToken*> modifiers)
     {
-        NameSyntax* name = this->ParseIdentifierName();
-        TypeClauseSyntax* typeClause = this->ParseTypeClause();
+        if (this->Current()->Is(SyntaxKind::IdentifierToken) or not attributes.empty() or not modifiers.empty())
+        {
+            NameSyntax* name = this->ParseIdentifierName();
+            TypeClauseSyntax* typeClause = this->ParseTypeClause();
+            SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
-        ParameterSyntax* result = this->_factory->CreateNode<ParameterSyntax>();
-        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
-        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
-        result->Identifier = name;
-        result->Type = typeClause;
-        return result;
+            ParameterSyntax* result = this->_factory->CreateNode<ParameterSyntax>();
+            result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+            result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+            result->Identifier = name;
+            result->Type = typeClause;
+            result->TrailingComma = trailingComma;
+            return result;
+        }
+
+        return nullptr;
     }
 
     ParameterListSyntax* Parser::ParseParameterList()
     {
         SyntaxToken* tokenOpenParen = this->Match(SyntaxKind::OpenParenToken);
-
+        std::vector<AttributeListSyntax*> attributes{};
         std::vector<SyntaxNode*> nodes{};
         std::vector<SyntaxToken*> modifiers{};
-
-        std::vector<AttributeListSyntax*> attributes{};
 
         while ((this->Current()->Kind != SyntaxKind::CloseParenToken) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
         {
             this->ParseAttributesList(attributes);
-
             this->ParseFunctionParameterModifiers(modifiers);
 
-            ParameterSyntax* parameter = this->ParseParameter(attributes, modifiers);
-            // TODO: Insert logic for parsing separators here:
-            // - if current token is ',', then append it to parameter
-            // - if current token is ')', then break
-            // - if current token is EOF, then break
-            // - otherwise, report error and append token to unexpected tokens to parameter list until `)` or EOF is reached
-            nodes.push_back(parameter);
-
-            if (SyntaxToken* comma = this->TryMatch(SyntaxKind::CommaToken))
+            if (ParameterSyntax* parameter = this->ParseParameter(attributes, modifiers))
             {
-                nodes.push_back(comma);
+                nodes.push_back(parameter);
             }
             else
             {
@@ -696,11 +1026,16 @@ namespace weave::syntax
             }
         }
 
-        SyntaxToken* tokenCloseParen = this->Match(SyntaxKind::CloseParenToken);
+        // NOTE:    Trailing token validation could be implemented using syntax tree walker with
+        //          matcher testing trailing token for last node of syntax list.
+
+        std::vector<SyntaxNode*> unexpected{};
+        SyntaxToken* tokenCloseParen = this->MatchUntil(unexpected, SyntaxKind::CloseParenToken);
 
         ParameterListSyntax* result = this->_factory->CreateNode<ParameterListSyntax>();
         result->OpenParenToken = tokenOpenParen;
-        result->Parameters = SeparatedSyntaxListView<ParameterSyntax>{this->_factory->CreateList(nodes)};
+        result->Parameters = SyntaxListView<ParameterSyntax>{this->_factory->CreateList(nodes)};
+        result->BeforeParenToken = this->CreateUnexpectedNodes(unexpected);
         result->CloseParenToken = tokenCloseParen;
         return result;
     }
@@ -801,12 +1136,16 @@ namespace weave::syntax
     {
         if (SyntaxFacts::IsInvalidSubexpression(this->Current()->Kind))
         {
+#if true
+            return nullptr;
+#else
             SyntaxKind const kind = this->Current()->Kind;
             ExpressionSyntax* result = CreateMissingIdentifierName();
             this->_diagnostic->AddError(
                 this->Current()->Source,
                 fmt::format("invalid expression term: {}", GetSpelling(kind)));
             return result;
+#endif
         }
 
         ExpressionSyntax* result = nullptr;
@@ -1035,6 +1374,9 @@ namespace weave::syntax
         case SyntaxKind::StringLiteralToken:
             return this->ParseStringLiteral();
 
+        case SyntaxKind::CharacterLiteralToken:
+            return this->ParseCharacterLiteral();
+
         case SyntaxKind::IdentifierToken:
             return this->ParseIdentifierName();
 
@@ -1115,44 +1457,71 @@ namespace weave::syntax
         return result;
     }
 
-    StatementSyntax* Parser::ParseStatement()
+    ExpressionSyntax* Parser::ParseCharacterLiteral()
     {
+        SyntaxToken* literalToken = this->Match(SyntaxKind::CharacterLiteralToken);
+        LiteralExpressionSyntax* result = this->_factory->CreateNode<LiteralExpressionSyntax>();
+        result->LiteralToken = literalToken;
+        return result;
+    }
+
+    StatementSyntax* Parser::ParseStatement(
+        std::span<AttributeListSyntax*> attributes,
+        std::span<SyntaxToken*> modifiers)
+    {
+        (void)attributes;
+        (void)modifiers;
+        StatementSyntax* result = nullptr;
+        /*
         switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::OpenBraceToken:
-            return this->ParseBlockStatement();
+            result = this->ParseBlockStatement();
+            break;
 
-        case SyntaxKind::VarKeyword:
-        case SyntaxKind::LetKeyword:
-            return this->ParseVariableDeclaration();
+            // case SyntaxKind::VarKeyword:
+            // case SyntaxKind::LetKeyword:
+            //     result = this->ParseVariableDeclaration();
+            //     break;
 
         case SyntaxKind::IfKeyword:
-            return this->ParseIfStatement();
+            result = this->ParseIfStatement();
+            break;
 
         case SyntaxKind::ElseKeyword:
-            return this->ParseMisplacedElseClause();
+            result = this->ParseMisplacedElseClause();
+            break;
 
         case SyntaxKind::ReturnKeyword:
-            return this->ParseReturnStatement();
+            result = this->ParseReturnStatement();
+            break;
 
         case SyntaxKind::SemicolonToken:
-            {
-                EmptyStatementSyntax* result = this->_factory->CreateNode<EmptyStatementSyntax>();
-                result->SemicolonToken = this->Match(SyntaxKind::SemicolonToken);
-                return result;
-            }
+            result = this->ParseEmptyStatement();
+            break;
 
         default:
             break;
         }
 
-        return this->ParseExpressionStatement();
+        if (result == nullptr)
+        {
+            result = this->ParseExpressionStatement();
+        }
+
+        if (result != nullptr)
+        {
+            result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+            result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+        }
+        */
+        return result;
     }
 
     BlockStatementSyntax* Parser::ParseBlockStatement()
     {
         std::vector<SyntaxNode*> unexpected{};
-        std::vector<StatementSyntax*> statements{};
+        std::vector<SyntaxNode*> statements{};
 
         // Match any unexpected nodes before open brace.
         SyntaxToken* tokenOpenBrace = this->MatchUntil(unexpected, SyntaxKind::OpenBraceToken);
@@ -1160,15 +1529,29 @@ namespace weave::syntax
 
         while ((this->Current()->Kind != SyntaxKind::EndOfFileToken) and (this->Current()->Kind != SyntaxKind::CloseBraceToken))
         {
+            std::vector<AttributeListSyntax*> attributes{};
+            this->ParseAttributesList(attributes);
+
+            std::vector<SyntaxToken*> modifiers{};
+            this->ParseMemberModifiers(modifiers);
+
             if (SyntaxFacts::IsValidStatement(this->Current()->Kind))
             {
-                StatementSyntax* statement = this->ParseStatement();
+                StatementSyntax* statement = this->ParseStatement(attributes, modifiers);
 
                 if (statement != nullptr)
                 {
                     statements.push_back(statement);
                     continue;
                 }
+            }
+
+            if (not attributes.empty() or not modifiers.empty())
+            {
+                IncompleteDeclarationSyntax* incomplete = this->_factory->CreateNode<IncompleteDeclarationSyntax>();
+                incomplete->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
+                incomplete->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
+                statements.push_back(incomplete);
             }
 
             // Failed to parse statement. Match any unexpected nodes until end of block
@@ -1181,7 +1564,7 @@ namespace weave::syntax
         BlockStatementSyntax* result = this->_factory->CreateNode<BlockStatementSyntax>();
         result->BeforeOpenBrace = unexpectedNodesBeforeOpenBrace;
         result->OpenBraceToken = tokenOpenBrace;
-        result->Statements = SyntaxListView<StatementSyntax>{this->_factory->CreateList(statements)};
+        result->Statements = SyntaxListView<SyntaxNode>{this->_factory->CreateList(statements)};
         result->BetweenStatementsAndCloseBrace = unexpectedNodesBeforeCloseBrace;
         result->CloseBraceToken = tokenCloseBrace;
         return result;
@@ -1239,7 +1622,7 @@ namespace weave::syntax
         return result;
     }*/
 
-    StatementSyntax* Parser::ParseVariableDeclaration()
+    DeclarationSyntax* Parser::ParseVariableDeclaration()
     {
         SyntaxKind const expected = (this->Current()->Kind == SyntaxKind::VarKeyword)
             ? SyntaxKind::VarKeyword
@@ -1250,11 +1633,12 @@ namespace weave::syntax
         result->Identifier = this->ParseIdentifierName();
         result->TypeClause = this->ParseOptionalTypeClause();
         result->Initializer = this->ParseOptionalEqualsValueClause();
-        result->SemicolonToken = this->Match(SyntaxKind::SemicolonToken);
         return result;
     }
 
-    StatementSyntax* Parser::ParseIfStatement()
+    StatementSyntax* Parser::ParseIfStatement(
+        SyntaxListView<AttributeListSyntax> attributes,
+        SyntaxListView<SyntaxToken> modifiers)
     {
         SyntaxToken* tokenIf = this->Match(SyntaxKind::IfKeyword);
         ExpressionSyntax* condition = this->ParseExpression();
@@ -1262,6 +1646,8 @@ namespace weave::syntax
         ElseClauseSyntax* elseClause = this->ParseOptionalElseClause();
 
         IfStatementSyntax* result = this->_factory->CreateNode<IfStatementSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
         result->IfKeyword = tokenIf;
         result->Condition = condition;
         result->ThenStatement = thenStatement;
@@ -1269,7 +1655,9 @@ namespace weave::syntax
         return result;
     }
 
-    StatementSyntax* Parser::ParseMisplacedElseClause()
+    StatementSyntax* Parser::ParseMisplacedElseClause(
+        SyntaxListView<AttributeListSyntax> attributes,
+        SyntaxListView<SyntaxToken> modifiers)
     {
         WEAVE_ASSERT(this->Current()->Kind == SyntaxKind::ElseKeyword);
 
@@ -1279,6 +1667,8 @@ namespace weave::syntax
         ElseClauseSyntax* elseClause = this->ParseOptionalElseClause();
 
         IfStatementSyntax* result = this->_factory->CreateNode<IfStatementSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
         result->IfKeyword = tokenIf;
         result->Condition = condition;
         result->ThenStatement = thenStatement;
@@ -1294,7 +1684,7 @@ namespace weave::syntax
 
             StatementSyntax* elseStatement =
                 this->Current()->Is(SyntaxKind::IfKeyword)
-                ? this->ParseIfStatement()
+                ? this->ParseIfStatement({}, {})
                 : this->ParseBlockStatement();
 
             ElseClauseSyntax* result = this->_factory->CreateNode<ElseClauseSyntax>();
@@ -1306,7 +1696,9 @@ namespace weave::syntax
         return nullptr;
     }
 
-    StatementSyntax* Parser::ParseReturnStatement()
+    StatementSyntax* Parser::ParseReturnStatement(
+        SyntaxListView<AttributeListSyntax> attributes,
+        SyntaxListView<SyntaxToken> modifiers)
     {
         SyntaxToken* tokenReturn = this->Match(SyntaxKind::ReturnKeyword);
         ExpressionSyntax* expression = nullptr;
@@ -1319,21 +1711,34 @@ namespace weave::syntax
         SyntaxToken* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
 
         ReturnStatementSyntax* result = this->_factory->CreateNode<ReturnStatementSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
         result->ReturnKeyword = tokenReturn;
         result->Expression = expression;
         result->SemicolonToken = tokenSemicolon;
         return result;
     }
 
+    EmptyStatementSyntax* Parser::ParseEmptyStatement()
+    {
+        EmptyStatementSyntax* result = this->_factory->CreateNode<EmptyStatementSyntax>();
+        result->SemicolonToken = this->Match(SyntaxKind::SemicolonToken);
+        return result;
+    }
+
     ExpressionStatementSyntax* Parser::ParseExpressionStatement()
     {
-        ExpressionSyntax* expression = this->ParseExpression();
-        SyntaxToken* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
+        if (ExpressionSyntax* expression = this->ParseExpression())
+        {
+            SyntaxToken* tokenSemicolon = this->Match(SyntaxKind::SemicolonToken);
 
-        ExpressionStatementSyntax* result = this->_factory->CreateNode<ExpressionStatementSyntax>();
-        result->Expression = expression;
-        result->SemicolonToken = tokenSemicolon;
-        return result;
+            ExpressionStatementSyntax* result = this->_factory->CreateNode<ExpressionStatementSyntax>();
+            result->Expression = expression;
+            result->SemicolonToken = tokenSemicolon;
+            return result;
+        }
+
+        return nullptr;
     }
 
     IdentifierNameSyntax* Parser::CreateMissingIdentifierName()
@@ -1341,7 +1746,7 @@ namespace weave::syntax
         IdentifierNameSyntax* result = this->_factory->CreateNode<IdentifierNameSyntax>();
         result->Identifier = this->_factory->CreateMissingToken(
             SyntaxKind::IdentifierToken,
-            this->Current()->Source.WithZeroLength());
+            this->Current()->Source /*.WithZeroLength()*/);
         return result;
     }
 
@@ -1357,17 +1762,25 @@ namespace weave::syntax
         return nullptr;
     }
 
-    void Parser::ReportIncompleteMember(
-        std::span<SyntaxToken*> modifiers,
-        std::span<AttributeListSyntax*> attributes,
-        TypeSyntax* type,
-        std::vector<MemberDeclarationSyntax*>& members)
+    BalancedTokenSequneceSyntax* Parser::ParseBalancedTokenSequence(
+        SyntaxKind open,
+        SyntaxKind close)
     {
-        IncompleteDeclarationSyntax* result = this->_factory->CreateNode<IncompleteDeclarationSyntax>();
-        result->Attributes = SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(attributes)};
-        result->Modifiers = SyntaxListView<SyntaxToken>{this->_factory->CreateList(modifiers)};
-        result->Type = type;
-        members.emplace_back(result);
+        if (SyntaxToken* openToken = this->TryMatch(open))
+        {
+            std::vector<SyntaxToken*> tokens{};
+            std::vector<SyntaxNode*> unexpected{};
+            SyntaxToken* closeToken = this->MatchBalancedTokenSequence(close, tokens, unexpected);
+
+            BalancedTokenSequneceSyntax* result = this->_factory->CreateNode<BalancedTokenSequneceSyntax>();
+            result->OpenParenToken = openToken;
+            result->Tokens = SyntaxListView<SyntaxToken>{this->_factory->CreateList(tokens)};
+            result->BeforeCloseParen = this->CreateUnexpectedNodes(unexpected);
+            result->CloseParenToken = closeToken;
+            return result;
+        }
+
+        return nullptr;
     }
 
     SyntaxToken* Parser::MatchBalancedTokenSequence(SyntaxKind terminator, std::vector<SyntaxToken*>& tokens, std::vector<SyntaxNode*>& unexpected)
@@ -1444,6 +1857,7 @@ namespace weave::syntax
         // - matches terminator
         // - end of file
 
-        return this->Match(terminator);
+        // return this->Match(terminator); // verify
+        return this->MatchUntil(unexpected, terminator);
     }
 }

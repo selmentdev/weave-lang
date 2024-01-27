@@ -1,5 +1,13 @@
 // empty statement
 
+#[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {}
+
+// Argument attributes:
+#[Foo, Deprecated("Reason")]
+function Bar(
+    #[Unused] a: Int32,
+    #[Unused] b: Float32);
+
 function Emtpy() {;}
 extern function Declared() -> void;
 inline function Expression() => 42;
@@ -73,4 +81,15 @@ namespace X {
     namespace Y {
         namespace Z {
             function W() {:z= a b c 4
-            namespace;
+            R
+            U
+
+
+
+
+
+
+
+            S
+            T
+            namespace; // this is commentos

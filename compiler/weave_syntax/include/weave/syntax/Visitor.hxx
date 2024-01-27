@@ -53,7 +53,7 @@ namespace weave::syntax
             [[maybe_unused]] SyntaxTrivia* trivia,
             [[maybe_unused]] ArgsT&&... args)
         {
-            return ResultT{};
+            return this->OnDefault(trivia, std::forward<ArgsT>(args)...);
         }
 
         virtual ResultT OnDefault(
@@ -131,5 +131,12 @@ namespace weave::syntax
         void OnSelfExpressionSyntax(SelfExpressionSyntax* node) override;
         void OnToken(SyntaxToken* token) override;
         void OnUnexpectedNodesSyntax(UnexpectedNodesSyntax* node) override;
+        void OnBalancedTokenSequneceSyntax(BalancedTokenSequneceSyntax* node) override;
+        void OnAttributeListSyntax(AttributeListSyntax* node) override;
+        void OnAttributeSyntax(AttributeSyntax* node) override;
+        void OnSourceFileSyntax(SourceFileSyntax* node) override;
+        void OnEmptyStatementSyntax(EmptyStatementSyntax* node) override;
+        void OnCodeBlockItemSyntax(CodeBlockItemSyntax* node) override;
+        void OnCodeBlockSyntax(CodeBlockSyntax* node) override;
     };
 }

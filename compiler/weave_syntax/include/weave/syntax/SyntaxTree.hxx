@@ -29,6 +29,9 @@ namespace weave::syntax
             : SyntaxNode{kind}
         {
         }
+
+        SyntaxListView<AttributeListSyntax> Attributes{};
+        SyntaxListView<SyntaxToken> Modifiers{};
     };
 
     class MemberDeclarationSyntax : public DeclarationSyntax
@@ -40,18 +43,13 @@ namespace weave::syntax
         }
     };
 
-    class IncompleteDeclarationSyntax : public MemberDeclarationSyntax
+    class IncompleteDeclarationSyntax : public DeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(IncompleteDeclarationSyntax);
 
     public:
-        SyntaxListView<AttributeListSyntax> Attributes{};
-        SyntaxListView<SyntaxToken> Modifiers{};
-        SyntaxNode* Type{};
-
-    public:
         explicit constexpr IncompleteDeclarationSyntax()
-            : MemberDeclarationSyntax{SyntaxKind::IncompleteDeclarationSyntax}
+            : DeclarationSyntax{SyntaxKind::IncompleteDeclarationSyntax}
         {
         }
     };
@@ -71,6 +69,60 @@ namespace weave::syntax
         {
         }
     };
+
+    class CodeBlockSyntax;
+    class CodeBlockItemSyntax;
+
+    class CodeBlockSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(CodeBlockSyntax);
+
+    public:
+        explicit constexpr CodeBlockSyntax()
+            : SyntaxNode{SyntaxKind::CodeBlockSyntax}
+        {
+        }
+
+    public:
+        SyntaxToken* LeftBrace{};
+        SyntaxListView<CodeBlockItemSyntax> Elements{};
+        SyntaxToken* RightBrace{};
+    };
+
+    class CodeBlockItemSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(CodeBlockItemSyntax);
+
+    public:
+        explicit constexpr CodeBlockItemSyntax()
+            : SyntaxNode{SyntaxKind::CodeBlockItemSyntax}
+        {
+        }
+
+    public:
+        SyntaxNode* Item{};
+        UnexpectedNodesSyntax* BeforeSemicolon{};
+        SyntaxToken* Semicolon{};
+        UnexpectedNodesSyntax* AfterSemicolon{};
+    };
+
+
+    class SourceFileSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(SourceFileSyntax);
+
+    public:
+        SyntaxListView<CodeBlockItemSyntax> Elements{};
+        UnexpectedNodesSyntax* BeforeEndOfFileToken{};
+        SyntaxToken* EndOfFileToken{};
+
+    public:
+        explicit constexpr SourceFileSyntax()
+            : SyntaxNode{SyntaxKind::SourceFileSyntax}
+        {
+        }
+    };
+
 
     class CompilationUnitSyntax : public SyntaxNode
     {
@@ -94,8 +146,6 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(NamespaceDeclarationSyntax);
 
     public:
-        SyntaxListView<AttributeListSyntax> Attributes{};
-        SyntaxListView<SyntaxToken> Modifiers{};
         SyntaxToken* NamespaceKeyword{};
         NameSyntax* Name{};
         SyntaxToken* OpenBraceToken{};
@@ -116,8 +166,6 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(FunctionDeclarationSyntax);
 
     public:
-        SyntaxListView<AttributeListSyntax> Attributes{};
-        SyntaxListView<SyntaxToken> Modifiers{};
         SyntaxToken* FunctionKeyword{};
         NameSyntax* Name{};
         ParameterListSyntax* Parameters{};
@@ -178,8 +226,6 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(StructDeclarationSyntax);
 
     public:
-        SyntaxListView<AttributeListSyntax> Attributes{};
-        SyntaxListView<SyntaxToken> Modifiers{};
         SyntaxToken* StructKeyword{};
         NameSyntax* Name{};
         SyntaxToken* OpenBraceToken{};
@@ -199,8 +245,6 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ConceptDeclarationSyntax);
 
     public:
-        SyntaxListView<AttributeListSyntax> Attributes{};
-        SyntaxListView<SyntaxToken> Modifiers{};
         SyntaxToken* ConceptKeyword{};
         NameSyntax* Name{};
         SyntaxToken* OpenBraceToken{};
@@ -220,8 +264,6 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ExtendDeclarationSyntax);
 
     public:
-        SyntaxListView<AttributeListSyntax> Attributes{};
-        SyntaxListView<SyntaxToken> Modifiers{};
         SyntaxToken* ExtendKeyword{};
         NameSyntax* Name{};
         SyntaxToken* OpenBraceToken{};
@@ -241,8 +283,6 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(FieldDeclarationSyntax);
 
     public:
-        SyntaxListView<AttributeListSyntax> Attributes{};
-        SyntaxListView<SyntaxToken> Modifiers{};
         SyntaxToken* VarKeyword{};
         NameSyntax* Name{};
         TypeClauseSyntax* Type{};
@@ -261,8 +301,6 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ConstantDeclarationSyntax);
 
     public:
-        SyntaxListView<AttributeListSyntax> Attributes{};
-        SyntaxListView<SyntaxToken> Modifiers{};
         SyntaxToken* ConstKeyword{};
         NameSyntax* Name{};
         TypeClauseSyntax* Type{};
@@ -299,11 +337,38 @@ namespace weave::syntax
         SyntaxToken* ColonToken{};
     };
 
+    class BalancedTokenSequneceSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(BalancedTokenSequneceSyntax);
+
+    public:
+        explicit constexpr BalancedTokenSequneceSyntax()
+            : SyntaxNode{SyntaxKind::BalancedTokenSequneceSyntax}
+        {
+        }
+
+    public:
+        SyntaxToken* OpenParenToken{};
+        SyntaxListView<SyntaxToken> Tokens{};
+        UnexpectedNodesSyntax* BeforeCloseParen{};
+        SyntaxToken* CloseParenToken{};
+    };
+
     class AttributeSyntax : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(AttributeSyntax);
 
     public:
+        explicit constexpr AttributeSyntax()
+            : SyntaxNode{SyntaxKind::AttributeSyntax}
+        {
+        }
+
+    public:
+        NameSyntax* Name{};
+        BalancedTokenSequneceSyntax* Tokens{};
+        SyntaxToken* TrailingComma{};
+        // TODO: Validate if trailing comma is not present at end of attributes list.
     };
 
     class AttributeListSyntax : public SyntaxNode
@@ -311,9 +376,16 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(AttributeListSyntax);
 
     public:
+        explicit constexpr AttributeListSyntax()
+            : SyntaxNode{SyntaxKind::AttributeListSyntax}
+        {
+        }
+
+    public:
         SyntaxToken* OpenAttributeToken{};
         AttributeTargetSpecifierSyntax* Target{};
-        SeparatedSyntaxListView<AttributeSyntax> Attributes{};
+        SyntaxListView<AttributeSyntax> Attributes{};
+        UnexpectedNodesSyntax* BeforeCloseAttributeToken{};
         SyntaxToken* CloseAttributeToken{};
     };
 
@@ -339,7 +411,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* OpenParenToken{};
-        SeparatedSyntaxListView<ArgumentSyntax> Arguments{};
+        SyntaxListView<ArgumentSyntax> Arguments{};
         SyntaxToken* CloseParenToken{};
 
     public:
@@ -355,7 +427,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* OpenBracketToken{};
-        SeparatedSyntaxListView<ArgumentSyntax> Arguments{};
+        SyntaxListView<ArgumentSyntax> Arguments{};
         SyntaxToken* CloseBracketToken{};
 
     public:
@@ -374,6 +446,7 @@ namespace weave::syntax
         SyntaxListView<SyntaxToken> Modifiers{};
         NameSyntax* Identifier{};
         TypeClauseSyntax* Type{};
+        SyntaxToken* TrailingComma{};
 
     public:
         explicit constexpr ParameterSyntax()
@@ -388,7 +461,8 @@ namespace weave::syntax
 
     public:
         SyntaxToken* OpenParenToken{};
-        SeparatedSyntaxListView<ParameterSyntax> Parameters{};
+        SyntaxListView<ParameterSyntax> Parameters{};
+        UnexpectedNodesSyntax* BeforeParenToken{};
         SyntaxToken* CloseParenToken{};
 
     public:
@@ -443,7 +517,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* OpenToken{};
-        SeparatedSyntaxListView<GenericParameterSyntax> Parameters{};
+        SyntaxListView<GenericParameterSyntax> Parameters{};
         SyntaxToken* CloseToken{};
     };
 
@@ -758,6 +832,10 @@ namespace weave::syntax
             : SyntaxNode{kind}
         {
         }
+
+    public:
+        SyntaxListView<AttributeListSyntax> Attributes{};
+        SyntaxListView<SyntaxToken> Modifiers{};
     };
 
     class EmptyStatementSyntax final : public StatementSyntax
@@ -765,6 +843,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(EmptyStatementSyntax);
 
     public:
+        UnexpectedNodesSyntax* BeforeSemicolon{};
         SyntaxToken* SemicolonToken{};
 
     public:
@@ -774,7 +853,7 @@ namespace weave::syntax
         }
     };
 
-    class VariableDeclarationSyntax : public StatementSyntax
+    class VariableDeclarationSyntax : public DeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(VariableDeclarationSyntax);
 
@@ -787,7 +866,7 @@ namespace weave::syntax
 
     public:
         explicit constexpr VariableDeclarationSyntax()
-            : StatementSyntax{SyntaxKind::VariableDeclarationSyntax}
+            : DeclarationSyntax{SyntaxKind::VariableDeclarationSyntax}
         {
         }
     };
@@ -831,7 +910,7 @@ namespace weave::syntax
         UnexpectedNodesSyntax* BeforeOpenBrace{};
         SyntaxToken* OpenBraceToken{};
         UnexpectedNodesSyntax* BetweenOpenBraceAndStatements{};
-        SyntaxListView<StatementSyntax> Statements{};
+        SyntaxListView<SyntaxNode> Statements{};
         UnexpectedNodesSyntax* BetweenStatementsAndCloseBrace{};
         SyntaxToken* CloseBraceToken{};
         UnexpectedNodesSyntax* AfterCloseBrace{};

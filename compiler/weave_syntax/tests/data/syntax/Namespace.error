@@ -1,50 +1,105 @@
-error: unexpected token ',', expected ')'
+error: Unexpected tokens
+        --> <source>:1:1
+         |
+       1 | using weave;
+         | ^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:2:1
+         |
+       2 | using weave.fs;
+         | ^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:4:1
+         |
+       4 | namespace weave
+         | ^^^^^^^^^^^^^^^
+       5 | {
+         | ^
+       6 |     public var g1 = g2.g3.g4(g5, move g6, out result)[lecimy, w, kulki]++;
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
         --> <source>:10:36
          |
       10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                    ^
-error: unexpected token '[token:identifier]', expected ')'
-        --> <source>:10:38
-         |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                      ^^
-error: unexpected token ')', expected ']'
-        --> <source>:10:40
-         |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                        ^
-error: unexpected token ',', expected ';'
+         |                                    ^^^^
+error: Unexpected tokens
         --> <source>:10:41
          |
       10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                         ^
-error: unexpected token '[token:identifier]', expected member declaration
-        --> <source>:10:43
+         |                                         ^^^^
+error: Unexpected tokens
+        --> <source>:12:12
          |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                           ^^
-error: unexpected token ')', expected member declaration
-        --> <source>:10:45
+      12 |     public const p0 = gloo++;
+         |            ^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:13:12
          |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                             ^
-error: unexpected token ',', expected member declaration
-        --> <source>:10:46
+      13 |     public const p1 = ++gloo;
+         |            ^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:14:12
          |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                              ^
-error: unexpected token '[token:identifier]', expected member declaration
-        --> <source>:10:48
+      14 |     public const p2 = ++gloo++;
+         |            ^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:15:12
          |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                                ^^
-error: unexpected token ']', expected member declaration
-        --> <source>:10:50
+      15 |     public const p3 = (++gloo)++;
+         |            ^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:16:12
          |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                                  ^
-error: unexpected token ';', expected member declaration
-        --> <source>:10:51
+      16 |     public const p4 = ++(gloo++);
+         |            ^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:20:12
          |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                                   ^
+      20 |     public const valid = name.foo.bar;
+         |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:22:12
+         |
+      22 |     public const magic = 21 + 37 * 4;
+         |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:23:12
+         |
+      23 |     public const magic = 21 + (37 * 4);
+         |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:24:12
+         |
+      24 |     public const magic = (21 + 37) * 4;
+         |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:26:12
+         |
+      26 |     public const papaj : f32 = 2 + 1 * 3 - 7;
+         |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:28:12
+         |
+      28 |     public const Version : weave.core.u32 = uninitialized;
+         |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:45:12
+         |
+      45 |     public concept Addable
+         |            ^^^^^^^^^^^^^^^
+      46 |     {
+         | ^^^^^
+      47 |         public function Add() -> Self { }
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     ... |
+      52 |         public function New() -> Vector4 { }
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      53 |     }
+         | ^^^^^
+      54 | }
+         | ^
+error: Expected ';'
+        --> <source>:114:1
+         |
+     114 | 
+         | ^

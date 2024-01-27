@@ -1,4 +1,17 @@
-error: expected '}'
+error: Unexpected tokens
+        --> <source>:1:1
+         |
+       1 | namespace X
+         | ^^^^^^^^^^^
+       2 | {
+         | ^
+       3 |     namespace Y
+         | ^^^^^^^^^^^^^^^
+       4 |     {
+         | ^^^^^
+       5 |     }
+         | ^^^^^
+error: Expected ';'
         --> <source>:6:1
          |
        6 | 

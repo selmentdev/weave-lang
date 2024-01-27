@@ -1,3 +1,43 @@
-function Test() {
-    return while true;
+#[Deprecated] function qux()
+var bar:float=21.37f32
+a += 21.38f32;
+var foo:roo=2000 ];
+
+struct
+
+public function Foo() -> Void { }
+
+public internal break w : Float32 = 2137.0f32;
+public internal const y : Float32 = 2137.0f32;
+
+#[Deprecated("Dont use this") public] private internal y += 420.69f32;
+
+private var x : Int32 = 2137;
+
+public struct X { };
+
+#[Serialize(
+    name: "Test",
+    args: [2, 1, 3, 7],
+)]
+#[ForceInline, Artificial, Alias("ThisIsNewFunction")]
+function Test()
+{
+    if while true
+    {
+        call1();@(*
+#%&*
+@#);call2();
+    }
 }
+
+}}
+}}}
+
+// member block: `{` elements `}` in type declaration
+//  - can hold any arbitrary syntax nodes
+// code block: `{` elements `}` in file / function declaration
+// - as member block, can hold any syntax node
+*/
+
+struct Y{ };

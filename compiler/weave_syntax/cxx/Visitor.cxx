@@ -114,7 +114,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Type);
 
         --this->Depth;
     }
@@ -183,6 +182,7 @@ namespace weave::syntax
 
         this->Dispatch(node->OpenParenToken);
         this->Dispatch(node->Parameters.GetNode());
+        this->Dispatch(node->BeforeParenToken);
         this->Dispatch(node->CloseParenToken);
 
         --this->Depth;
@@ -198,6 +198,7 @@ namespace weave::syntax
         this->Dispatch(node->Modifiers.GetNode());
         this->Dispatch(node->Identifier);
         this->Dispatch(node->Type);
+        this->Dispatch(node->TrailingComma);
 
         --this->Depth;
     }
@@ -419,6 +420,9 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+
         this->Dispatch(node->BeforeOpenBrace);
         this->Dispatch(node->OpenBraceToken);
         this->Dispatch(node->BetweenOpenBraceAndStatements);
@@ -436,6 +440,9 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+
         this->Dispatch(node->Expression);
         this->Dispatch(node->SemicolonToken);
 
@@ -447,6 +454,9 @@ namespace weave::syntax
         this->OnDefault(node);
 
         ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
 
         this->Dispatch(node->IfKeyword);
         this->Dispatch(node->Condition);
@@ -461,6 +471,9 @@ namespace weave::syntax
         this->OnDefault(node);
 
         ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
 
         this->Dispatch(node->ReturnKeyword);
         this->Dispatch(node->Expression);
@@ -486,6 +499,9 @@ namespace weave::syntax
         this->OnDefault(node);
 
         ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
 
         this->Dispatch(node->VarKeyword);
         this->Dispatch(node->Identifier);
@@ -580,6 +596,101 @@ namespace weave::syntax
         ++this->Depth;
 
         this->Dispatch(node->Nodes.GetNode());
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnBalancedTokenSequneceSyntax(BalancedTokenSequneceSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Tokens.GetNode());
+        this->Dispatch(node->BeforeCloseParen);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnAttributeListSyntax(AttributeListSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->OpenAttributeToken);
+        this->Dispatch(node->Target);
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->BeforeCloseAttributeToken);
+        this->Dispatch(node->CloseAttributeToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnAttributeSyntax(AttributeSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Name);
+        this->Dispatch(node->Tokens);
+        this->Dispatch(node->TrailingComma);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnSourceFileSyntax(SourceFileSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Elements.GetNode());
+        this->Dispatch(node->BeforeEndOfFileToken);
+        this->Dispatch(node->EndOfFileToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnEmptyStatementSyntax(EmptyStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->BeforeSemicolon);
+        this->Dispatch(node->SemicolonToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnCodeBlockItemSyntax(CodeBlockItemSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Item);
+        this->Dispatch(node->BeforeSemicolon);
+        this->Dispatch(node->Semicolon);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnCodeBlockSyntax(CodeBlockSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->LeftBrace);
+        this->Dispatch(node->Elements.GetNode());
+        this->Dispatch(node->RightBrace);
 
         --this->Depth;
     }

@@ -748,7 +748,14 @@ namespace weave::syntax
             {
                 this->_cursor.Advance();
 
-                token.Kind = SyntaxKind::HashToken;
+                if (this->_cursor.First(U'['))
+                {
+                    token.Kind = SyntaxKind::HashOpenBracketToken;
+                }
+                else
+                {
+                    token.Kind = SyntaxKind::HashToken;
+                }
 
                 return true;
             }
