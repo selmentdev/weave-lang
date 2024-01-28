@@ -1,13 +1,3 @@
-error: Expected '[token:identifier]'
-        --> <source>:5:68
-         |
-       5 |     internal function MultiplyHigh(left: UInt64, right: UInt64) -> (lower: UInt64, upper: UInt64)
-         |                                                                    ^
-error: Unexpected tokens
-        --> <source>:5:74
-         |
-       5 |     internal function MultiplyHigh(left: UInt64, right: UInt64) -> (lower: UInt64, upper: UInt64)
-         |                                                                          ^^^^^^^^^^^^^^^^^^^^^^^
 error: Unexpected tokens
         --> <source>:22:22
          |

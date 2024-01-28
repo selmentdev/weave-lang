@@ -705,7 +705,7 @@ namespace weave::syntax
     {
         ReturnTypeClauseSyntax* result = this->_factory->CreateNode<ReturnTypeClauseSyntax>();
         result->ArrowToken = this->Match(SyntaxKind::MinusGreaterThanToken);
-        result->Type = this->ParseQualifiedName();
+        result->Type = this->ParseType();
         return result;
     }
 

@@ -182,7 +182,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ArrowToken{};
-        NameSyntax* Type{};
+        TypeSyntax* Type{};
 
     public:
         explicit constexpr ReturnTypeClauseSyntax()
