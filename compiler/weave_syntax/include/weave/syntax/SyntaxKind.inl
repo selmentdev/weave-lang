@@ -390,7 +390,7 @@ WEAVE_SYNTAX_KEYWORD(YieldKeyword,                              "yield")
 
 WEAVE_SYNTAX_NODE(CompilationUnitSyntax,                        "[node:compilation-unit]")
 WEAVE_SYNTAX_NODE(SyntaxList,                                   "[node:syntax-list]")
-WEAVE_SYNTAX_NODE(UsingDirectiveSyntax,                         "[node:using-directive]")
+WEAVE_SYNTAX_NODE(UsingDeclarationSyntax,                       "[node:using-declaration]")
 WEAVE_SYNTAX_NODE(IncompleteDeclarationSyntax,                  "[node:incomplete-declaration]")
 WEAVE_SYNTAX_NODE(NamespaceDeclarationSyntax,                   "[node:namespace-declaration]")
 WEAVE_SYNTAX_NODE(SimpleNameSyntax,                             "[node:simple-name]")

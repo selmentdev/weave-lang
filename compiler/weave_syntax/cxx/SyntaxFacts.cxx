@@ -426,7 +426,7 @@ namespace weave::syntax
     {
         switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
-        // case SyntaxKind::UsingKeyword:
+        case SyntaxKind::UsingKeyword:
         case SyntaxKind::FunctionKeyword:
         case SyntaxKind::StructKeyword:
         case SyntaxKind::ConceptKeyword:

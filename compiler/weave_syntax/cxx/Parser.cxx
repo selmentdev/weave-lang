@@ -502,6 +502,9 @@ namespace weave::syntax
     {
         switch (this->Current()->Kind)
         {
+        case SyntaxKind::UsingKeyword:
+            return this->ParseUsingDeclaration();
+
         case SyntaxKind::FunctionKeyword:
             return this->ParseFunctionDeclaration(attributes, modifiers);
 
@@ -687,12 +690,12 @@ namespace weave::syntax
         return nullptr;
     }
 
-    UsingDirectiveSyntax* Parser::ParseUsingDirective()
+    UsingDeclarationSyntax* Parser::ParseUsingDeclaration()
     {
         SyntaxToken* tokenUsing = this->Match(SyntaxKind::UsingKeyword);
         NameSyntax* name = this->ParseQualifiedName();
 
-        UsingDirectiveSyntax* result = this->_factory->CreateNode<UsingDirectiveSyntax>();
+        UsingDeclarationSyntax* result = this->_factory->CreateNode<UsingDeclarationSyntax>();
         result->UsingKeyword = tokenUsing;
         result->Name = name;
         return result;

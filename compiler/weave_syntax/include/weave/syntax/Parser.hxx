@@ -188,7 +188,7 @@ namespace weave::syntax
 
         AttributeListSyntax* ParseAttributeList();
 
-        UsingDirectiveSyntax* ParseUsingDirective();
+        UsingDeclarationSyntax* ParseUsingDeclaration();
 
         ReturnTypeClauseSyntax* ParseReturnTypeClause();
 

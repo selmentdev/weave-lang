@@ -581,7 +581,7 @@ namespace B
 
     N(0, SyntaxKind::CompilationUnitSyntax);
     N(1, SyntaxKind::SyntaxList);
-    N(2, SyntaxKind::UsingDirectiveSyntax);
+    N(2, SyntaxKind::UsingDeclarationSyntax);
     N(3, SyntaxKind::UsingKeyword);
     N(3, SyntaxKind::IdentifierNameSyntax);
     N(4, SyntaxKind::IdentifierToken);
@@ -618,7 +618,7 @@ namespace B
 
     N(0, SyntaxKind::CompilationUnitSyntax);
     N(1, SyntaxKind::SyntaxList);
-    N(2, SyntaxKind::UsingDirectiveSyntax);
+    N(2, SyntaxKind::UsingDeclarationSyntax);
     N(3, SyntaxKind::UsingKeyword);
     N(3, SyntaxKind::IdentifierNameSyntax);
     N(4, SyntaxKind::IdentifierToken);
@@ -659,7 +659,7 @@ using B;
 
     N(0, SyntaxKind::CompilationUnitSyntax);
     N(1, SyntaxKind::SyntaxList);
-    N(2, SyntaxKind::UsingDirectiveSyntax);
+    N(2, SyntaxKind::UsingDeclarationSyntax);
     N(3, SyntaxKind::UsingKeyword);
     N(3, SyntaxKind::IdentifierNameSyntax);
     N(4, SyntaxKind::IdentifierToken);

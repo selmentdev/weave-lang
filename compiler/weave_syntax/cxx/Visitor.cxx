@@ -148,7 +148,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnUsingDirectiveSyntax(UsingDirectiveSyntax* node)
+    void SyntaxWalker::OnUsingDeclarationSyntax(UsingDeclarationSyntax* node)
     {
         this->OnDefault(node);
 

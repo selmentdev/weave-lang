@@ -97,7 +97,7 @@ namespace weave::syntax
         void OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax* node) override;
         void OnQualifiedNameSyntax(QualifiedNameSyntax* node) override;
         void OnFunctionDeclarationSyntax(FunctionDeclarationSyntax* node) override;
-        void OnUsingDirectiveSyntax(UsingDirectiveSyntax* node) override;
+        void OnUsingDeclarationSyntax(UsingDeclarationSyntax* node) override;
         void OnIdentifierNameSyntax(IdentifierNameSyntax* node) override;
         void OnTupleIndexSyntax(TupleIndexSyntax* node) override;
         void OnTupleTypeSyntax(TupleTypeSyntax* node) override;

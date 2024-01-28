@@ -55,17 +55,17 @@ namespace weave::syntax
         }
     };
 
-    class UsingDirectiveSyntax : public SyntaxNode
+    class UsingDeclarationSyntax : public DeclarationSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(UsingDirectiveSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(UsingDeclarationSyntax);
 
     public:
         SyntaxToken* UsingKeyword{};
         NameSyntax* Name{};
 
     public:
-        explicit constexpr UsingDirectiveSyntax()
-            : SyntaxNode{SyntaxKind::UsingDirectiveSyntax}
+        explicit constexpr UsingDeclarationSyntax()
+            : DeclarationSyntax{SyntaxKind::UsingDeclarationSyntax}
         {
         }
     };
@@ -130,7 +130,7 @@ namespace weave::syntax
 
     public:
         SyntaxListView<AttributeListSyntax> AttributeLists{};
-        SyntaxListView<UsingDirectiveSyntax> Usings{};
+        SyntaxListView<UsingDeclarationSyntax> Usings{};
         SyntaxListView<MemberDeclarationSyntax> Members{};
         SyntaxToken* EndOfFileToken{};
 
