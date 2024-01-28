@@ -144,53 +144,40 @@ namespace weave::syntax
 
         VariableDeclarationSyntax* ParseVariableDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<SyntaxToken> modifiers);
 
         FunctionDeclarationSyntax* ParseFunctionDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<SyntaxToken> modifiers);
 
         NamespaceDeclarationSyntax* ParseNamespaceDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<SyntaxToken> modifiers);
 
         ConceptDeclarationSyntax* ParseConceptDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<SyntaxToken> modifiers);
 
         ExtendDeclarationSyntax* ParseExtendDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<SyntaxToken> modifiers);
 
         StructDeclarationSyntax* ParseStructDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<SyntaxToken> modifiers);
 
         DeclarationSyntax* ParseDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<SyntaxToken> modifiers);
 
         StatementSyntax* ParseStatement(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         BlockStatementSyntax* ParseBlockStatement(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         EmptyStatementSyntax* ParseEmptyStatement(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         ParameterListSyntax* ParseParameterList();
 
@@ -268,41 +255,27 @@ namespace weave::syntax
         ExpressionSyntax* ParseCharacterLiteral();
 
         StatementSyntax* ParseIfStatement(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         StatementSyntax* ParseWhileStatement(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         StatementSyntax* ParseGotoStatement(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         StatementSyntax* ParseBreakStatement(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         StatementSyntax* ParseContinueStatement(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         StatementSyntax* ParseMisplacedElseClause(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         ElseClauseSyntax* ParseOptionalElseClause();
 
         StatementSyntax* ParseReturnStatement(
-            SyntaxListView<AttributeListSyntax> attributes,
-            SyntaxListView<SyntaxToken> modifiers,
-            UnexpectedNodesSyntax* unexpected);
+            SyntaxListView<AttributeListSyntax> attributes);
 
         ExpressionStatementSyntax* ParseExpressionStatement(
             SyntaxListView<AttributeListSyntax> attributes);

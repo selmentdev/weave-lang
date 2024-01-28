@@ -1,5 +1,9 @@
+// infinite loop actually
 this_is_loop: if x < 10
 {
+goto update_counter;
+    x -= 2137;
+update_counter:
     x += 1;
     goto this_is_loop;
 }
