@@ -423,7 +423,6 @@ WEAVE_SYNTAX_NODE(TypeGenericParameterSyntax,                   "[node:type-gene
 WEAVE_SYNTAX_NODE(ConstantGenericParameterSyntax,               "[node:constant-generic-parameter]")
 WEAVE_SYNTAX_NODE(TypeClauseSyntax,                             "[node:type-clause]")
 WEAVE_SYNTAX_NODE(AssignmentExpressionSyntax,                   "[node:assignment-expression]")
-WEAVE_SYNTAX_NODE(ParenthesizedExpressionSyntax,                "[node:parenthesized-expression]")
 WEAVE_SYNTAX_NODE(LiteralExpressionSyntax,                      "[node:literal-expression]")
 WEAVE_SYNTAX_NODE(UnaryExpressionSyntax,                        "[node:unary-expression]")
 WEAVE_SYNTAX_NODE(BinaryExpressionSyntax,                       "[node:binary-expression]")
@@ -461,6 +460,8 @@ WEAVE_SYNTAX_NODE(CodeBlockItemSyntax,                          "code block item
 WEAVE_SYNTAX_NODE(TupleTypeSyntax,                              "tuple type")
 WEAVE_SYNTAX_NODE(TupleTypeElementSyntax,                       "tuple type element")
 WEAVE_SYNTAX_NODE(LabeledStatementSyntax,                       "labeled statement")
+WEAVE_SYNTAX_NODE(TupleExpressionSyntax,                        "tuple expression")
+WEAVE_SYNTAX_NODE(LabeledExpressionSyntax,                      "labeled expression")
 
 // prefix unary expressions
 WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    "[expr:unary-plus]")
@@ -521,7 +522,6 @@ WEAVE_SYNTAX_EXPRESSION(CoalesceAssignmentExpression,           "[expr:coalesce-
 
 // expressions
 WEAVE_SYNTAX_EXPRESSION(ConditionalExpression,                  "[expr:conditional]")
-WEAVE_SYNTAX_EXPRESSION(ParenthesizedExpression,                "[expr:parenthesized]")
 WEAVE_SYNTAX_EXPRESSION(InvocationExpression,                   "[expr:invocation]")
 
 // primary expressions

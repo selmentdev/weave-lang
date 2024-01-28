@@ -1,9 +1,4 @@
 error: Unexpected tokens
-        --> <source>:22:22
-         |
-      22 |         return (lower, upper);
-         |                      ^^^^^^^
-error: Unexpected tokens
         --> <source>:40:36
          |
       40 |         public var Lower: UInt64 { get; }

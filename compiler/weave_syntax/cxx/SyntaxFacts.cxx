@@ -331,7 +331,6 @@ namespace weave::syntax
         case SyntaxKind::InvocationExpression:
         case SyntaxKind::IntegerLiteralExpression:
         case SyntaxKind::FloatLiteralExpression:
-        case SyntaxKind::ParenthesizedExpression:
         case SyntaxKind::PointerMemberAccessExpression:
         case SyntaxKind::PostDecrementExpression:
         case SyntaxKind::PostIncrementExpression:

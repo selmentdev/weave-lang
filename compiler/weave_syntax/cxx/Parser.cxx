@@ -1149,7 +1149,7 @@ namespace weave::syntax
         switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::OpenParenToken:
-            return this->ParseParenthesizedExpression();
+            return this->ParseTupleExpression();
 
         case SyntaxKind::SizeOfKeyword:
             return this->ParseSizeOfExpression();
@@ -1206,22 +1206,72 @@ namespace weave::syntax
         }
     }
 
-    ExpressionSyntax* Parser::ParseParenthesizedExpression()
+    TupleExpressionSyntax* Parser::ParseTupleExpression()
     {
-        std::vector<SyntaxNode*> unexpected{};
+        std::vector<LabeledExpressionSyntax*> elements{};
 
-        SyntaxToken* tokenOpenParen = this->Match(SyntaxKind::OpenParenToken);
-        ExpressionSyntax* expression = this->ParseExpression();
+        TupleExpressionSyntax* result = this->_factory->CreateNode<TupleExpressionSyntax>();
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
-        SyntaxToken* tokenCloseParen = this->MatchUntil(unexpected, SyntaxKind::CloseParenToken);
-        UnexpectedNodesSyntax* unexpectedNodesBetweenExpressionAndCloseParen = this->CreateUnexpectedNodes(unexpected);
+        while (SyntaxToken* current = this->Current())
+        {
+            if (current->Kind == SyntaxKind::CloseParenToken)
+            {
+                break;
+            }
+            else if (current->Kind == SyntaxKind::EndOfFileToken)
+            {
+                break;
+            }
 
-        ParenthesizedExpressionSyntax* result = this->_factory->CreateNode<ParenthesizedExpressionSyntax>();
-        result->OpenParenToken = tokenOpenParen;
-        result->Expression = expression;
-        result->BetweenExpressionAndCloseParen = unexpectedNodesBetweenExpressionAndCloseParen;
-        result->CloseParenToken = tokenCloseParen;
+            if (LabeledExpressionSyntax* element = this->ParseLabeledExpression())
+            {
+                elements.push_back(element);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
+
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
         return result;
+    }
+
+    LabeledExpressionSyntax* Parser::ParseLabeledExpression()
+    {
+        SyntaxToken* label = nullptr;
+        SyntaxToken* colon = nullptr;
+
+        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
+        {
+            label = this->Match(SyntaxKind::IdentifierToken);
+            colon = this->Match(SyntaxKind::ColonToken);
+        }
+
+        ExpressionSyntax* expression = nullptr;
+
+        if (SyntaxFacts::IsStartOfExpression(this->Current()->Kind))
+        {
+            expression = this->ParseExpression();
+        }
+
+        SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
+
+        if (label or colon or expression)
+        {
+            LabeledExpressionSyntax* result = this->_factory->CreateNode<LabeledExpressionSyntax>();
+            result->Label = label;
+            result->Colon = colon;
+            result->Expression = expression;
+            result->TrailingComma = trailingComma;
+            return result;
+        }
+
+        return nullptr;
     }
 
     SizeOfExpressionSyntax* Parser::ParseSizeOfExpression()

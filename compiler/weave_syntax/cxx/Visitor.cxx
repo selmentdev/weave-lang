@@ -346,23 +346,6 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnParenthesizedExpressionSyntax(ParenthesizedExpressionSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->BeforeOpenParen);
-        this->Dispatch(node->OpenParenToken);
-        this->Dispatch(node->BetweenOpenParenAndExpression);
-        this->Dispatch(node->Expression);
-        this->Dispatch(node->BetweenExpressionAndCloseParen);
-        this->Dispatch(node->CloseParenToken);
-        this->Dispatch(node->AfterCloseParen);
-
-        --this->Depth;
-    }
-
     void SyntaxWalker::OnInvocationExpressionSyntax(InvocationExpressionSyntax* node)
     {
         this->OnDefault(node);
@@ -866,6 +849,35 @@ namespace weave::syntax
         this->Dispatch(node->Name);
         this->Dispatch(node->Colon);
         this->Dispatch(node->Statement);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnTupleExpressionSyntax(TupleExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->BeforeOpenParenToken);
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Elements.GetNode());
+        this->Dispatch(node->BeforeCloseParenToken);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnLabeledExpressionSyntax(LabeledExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Label);
+        this->Dispatch(node->Colon);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->TrailingComma);
 
         --this->Depth;
     }

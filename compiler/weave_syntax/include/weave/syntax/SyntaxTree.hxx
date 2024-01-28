@@ -619,26 +619,6 @@ namespace weave::syntax
         }
     };
 
-    class ParenthesizedExpressionSyntax final : public ExpressionSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(ParenthesizedExpressionSyntax);
-
-    public:
-        UnexpectedNodesSyntax* BeforeOpenParen{};
-        SyntaxToken* OpenParenToken{};
-        UnexpectedNodesSyntax* BetweenOpenParenAndExpression{};
-        ExpressionSyntax* Expression{};
-        UnexpectedNodesSyntax* BetweenExpressionAndCloseParen{};
-        SyntaxToken* CloseParenToken{};
-        UnexpectedNodesSyntax* AfterCloseParen{};
-
-    public:
-        explicit constexpr ParenthesizedExpressionSyntax()
-            : ExpressionSyntax{SyntaxKind::ParenthesizedExpressionSyntax}
-        {
-        }
-    };
-
     class LiteralExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(LiteralExpressionSyntax);
@@ -1153,6 +1133,41 @@ namespace weave::syntax
     public:
         explicit constexpr LabeledStatementSyntax()
             : StatementSyntax{SyntaxKind::LabeledStatementSyntax}
+        {
+        }
+    };
+
+    class TupleExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TupleExpressionSyntax);
+
+    public:
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
+        SyntaxListView<LabeledExpressionSyntax> Elements{};
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr TupleExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::TupleExpressionSyntax}
+        {
+        }
+    };
+
+    class LabeledExpressionSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(LabeledExpressionSyntax);
+
+    public:
+        SyntaxToken* Label{};
+        SyntaxToken* Colon{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* TrailingComma{};
+
+    public:
+        explicit constexpr LabeledExpressionSyntax()
+            : SyntaxNode{SyntaxKind::LabeledExpressionSyntax}
         {
         }
     };

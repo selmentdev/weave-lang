@@ -116,57 +116,6 @@ public:
     }
 };
 
-TEST_CASE("parser - valid 'if' statement with parenthesized expression")
-{
-    using namespace weave::syntax;
-    ParserHelper helper{
-        R"___({
-
-if (true) { }
-
-})___"};
-
-    REQUIRE(helper.Entries.size() == 14);
-    Validator N{helper};
-    N(SyntaxKind::BlockStatementSyntax);
-    N.Enter();
-    {
-        N(SyntaxKind::OpenBraceToken);
-        N(SyntaxKind::SyntaxList);
-        N.Enter();
-        {
-            N(SyntaxKind::IfStatementSyntax);
-            N.Enter();
-            {
-                N(SyntaxKind::IfKeyword);
-                N(SyntaxKind::ParenthesizedExpressionSyntax);
-                N.Enter();
-                {
-                    N(SyntaxKind::OpenParenToken);
-                    N(SyntaxKind::LiteralExpressionSyntax);
-                    N.Enter();
-                    {
-                        N(SyntaxKind::TrueKeyword);
-                    }
-                    N.Leave();
-                    N(SyntaxKind::CloseParenToken);
-                }
-                N.Leave();
-                N(SyntaxKind::BlockStatementSyntax);
-                N.Enter();
-                {
-                    N(SyntaxKind::OpenBraceToken);
-                    N(SyntaxKind::CloseBraceToken);
-                }
-                N.Leave();
-            }
-            N.Leave();
-        }
-        N.Leave();
-        N(SyntaxKind::CloseBraceToken);
-    }
-}
-
 TEST_CASE("parser - valid 'if' statement with true")
 {
     using namespace weave::syntax;

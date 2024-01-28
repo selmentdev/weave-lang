@@ -1,0 +1,5 @@
+error: Expected '[token:identifier]'
+        --> <source>:15:11
+         |
+      15 | 	return x.[1_2]
+         |           ^

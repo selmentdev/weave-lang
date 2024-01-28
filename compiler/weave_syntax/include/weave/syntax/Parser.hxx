@@ -232,7 +232,9 @@ namespace weave::syntax
         ExpressionSyntax* ParseTermWithoutPostfix(
             Precedence precedence);
 
-        ExpressionSyntax* ParseParenthesizedExpression();
+        TupleExpressionSyntax* ParseTupleExpression();
+
+        LabeledExpressionSyntax* ParseLabeledExpression();
 
         SizeOfExpressionSyntax* ParseSizeOfExpression();
 
