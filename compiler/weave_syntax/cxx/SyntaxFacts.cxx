@@ -402,86 +402,6 @@ namespace weave::syntax
         return false;
     }
 
-    bool SyntaxFacts::IsValidExpression(SyntaxKind kind)
-    {
-        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
-        {
-        case SyntaxKind::TypeOfKeyword:
-        case SyntaxKind::SizeOfKeyword:
-        case SyntaxKind::AlignOfKeyword:
-        case SyntaxKind::NameOfKeyword:
-        case SyntaxKind::AddressOfKeyword:
-        case SyntaxKind::DefaultKeyword:
-        case SyntaxKind::FalseKeyword:
-        case SyntaxKind::TrueKeyword:
-        case SyntaxKind::OpenParenToken:
-        case SyntaxKind::IntegerLiteralToken:
-        case SyntaxKind::FloatLiteralToken:
-        case SyntaxKind::StringLiteralToken:
-        case SyntaxKind::CharacterLiteralToken:
-        case SyntaxKind::IdentifierToken:
-            return true;
-        default:
-            {
-                if (GetPostfixUnaryExpression(kind) != SyntaxKind::None)
-                {
-                    return true;
-                }
-
-                if (GetPrefixUnaryExpression(kind) != SyntaxKind::None)
-                {
-                    return true;
-                }
-
-                if (GetBinaryExpression(kind) != SyntaxKind::None)
-                {
-                    return true;
-                }
-
-                if (GetAssignmentExpression(kind) != SyntaxKind::None)
-                {
-                    return true;
-                }
-
-                // Predefined types are valid expressions too. Right now we handle them as identifiers
-                break;
-            }
-        }
-
-        return false;
-    }
-
-    bool SyntaxFacts::IsValidStatement(SyntaxKind kind)
-    {
-        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
-        {
-        case SyntaxKind::BreakKeyword:
-        case SyntaxKind::ContinueKeyword:
-        // case SyntaxKind::DotToken:
-        case SyntaxKind::WhileKeyword:
-        // case SyntaxKind::ForKeyword:
-        case SyntaxKind::VarKeyword:
-        case SyntaxKind::LetKeyword:
-        case SyntaxKind::GotoKeyword:
-        case SyntaxKind::IfKeyword:
-        case SyntaxKind::ElseKeyword:
-        case SyntaxKind::ReturnKeyword:
-        // case SyntaxKind::SwitchKeyword:
-        // case SyntaxKind::MatchKeyword:
-        // case SyntaxKind::UnsafeKeyword:
-        // case SyntaxKind::UsingDirectiveSyntax:
-        // case SyntaxKind::OpenBraceToken:
-        case SyntaxKind::SemicolonToken:
-        case SyntaxKind::IdentifierToken:
-            return true;
-
-        default:
-            break;
-        }
-
-        return IsValidExpression(kind);
-    }
-
     bool SyntaxFacts::IsStartOfStatement(SyntaxKind kind)
     {
         switch (kind) // NOLINT(clang-diagnostic-switch-enum)
@@ -530,6 +450,7 @@ namespace weave::syntax
         case SyntaxKind::AlignOfKeyword:
         case SyntaxKind::NameOfKeyword:
         case SyntaxKind::AddressOfKeyword:
+        //case SyntaxKind::DefaultKeyword:
         case SyntaxKind::FalseKeyword:
         case SyntaxKind::TrueKeyword:
         case SyntaxKind::IntegerLiteralToken:
@@ -542,8 +463,27 @@ namespace weave::syntax
             return true;
 
         default:
+            if (GetPostfixUnaryExpression(kind) != SyntaxKind::None)
+            {
+                return true;
+            }
+
+            if (GetPrefixUnaryExpression(kind) != SyntaxKind::None)
+            {
+                return true;
+            }
+
+            if (GetBinaryExpression(kind) != SyntaxKind::None)
+            {
+                return true;
+            }
+
+            if (GetAssignmentExpression(kind) != SyntaxKind::None)
+            {
+                return true;
+            }
+
             return false;
         }
     }
-
 }

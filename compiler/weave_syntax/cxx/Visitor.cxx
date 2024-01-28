@@ -479,6 +479,7 @@ namespace weave::syntax
         this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->IfKeyword);
+        this->Dispatch(node->ConditionAttributes.GetNode());
         this->Dispatch(node->Condition);
         this->Dispatch(node->ThenStatement);
         this->Dispatch(node->ElseClause);
@@ -525,6 +526,7 @@ namespace weave::syntax
         this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->WhileKeyword);
+        this->Dispatch(node->ConditionAttributes.GetNode());
         this->Dispatch(node->Condition);
         this->Dispatch(node->Statement);
 

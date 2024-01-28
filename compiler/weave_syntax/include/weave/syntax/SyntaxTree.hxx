@@ -1031,6 +1031,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* IfKeyword{};
+        SyntaxListView<AttributeListSyntax> ConditionAttributes{};
         ExpressionSyntax* Condition{};
         StatementSyntax* ThenStatement{};
         ElseClauseSyntax* ElseClause{};
@@ -1063,6 +1064,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* WhileKeyword{};
+        SyntaxListView<AttributeListSyntax> ConditionAttributes{};
         ExpressionSyntax* Condition{};
         StatementSyntax* Statement{};
 

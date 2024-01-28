@@ -1,0 +1,22 @@
+// attributes on if-else expressions
+
+if #[Likely] x == 42
+{
+    a();
+}
+else if #[Unlikely] x == 43
+{
+    b();
+}
+else
+{
+    c();
+}
+
+// loop condition expressions
+
+while #[Likely] x < 42
+{
+    a();
+    ++x;
+}

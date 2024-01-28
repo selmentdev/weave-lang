@@ -13,11 +13,16 @@ error: Expected '[token:identifier]'
          |
       35 |     if /*let Some(y)*/ = y {
          |                        ^
-error: Unexpected tokens
+error: Expected '[token:identifier]'
         --> <source>:72:39
          |
       72 | function EndOfFileDuringStatement() { =42: a=5;}
-         |                                       ^^^^^^^^^
+         |                                       ^
+error: Unexpected tokens
+        --> <source>:72:42
+         |
+      72 | function EndOfFileDuringStatement() { =42: a=5;}
+         |                                          ^^^^^^
 error: Unexpected tokens
         --> <source>:76:1
          |

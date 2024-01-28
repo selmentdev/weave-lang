@@ -247,7 +247,6 @@ namespace weave::syntax
         // Get current state to be able to reset it in case of failure.
         ResetPoint const started = this->GetResetPoint();
 
-#if true
         // Declarations, statements and expressions can have attributes.
         SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
 
@@ -330,67 +329,6 @@ namespace weave::syntax
         // No luck, reset parser to original state and stop.
         this->Reset(started);
         return nullptr;
-
-#else
-        SyntaxNode* element = nullptr;
-
-        SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
-        SyntaxListView<SyntaxToken> modifiers = this->ParseMemberModifiersList();
-
-        UnexpectedNodesSyntax* unexpected{};
-
-        // Lookahead for one of expected tokens.
-        SyntaxToken* current = this->MatchUntil(unexpected, [](SyntaxKind kind)
-            {
-                return SyntaxFacts::IsStartOfDeclaration(kind) or
-                    SyntaxFacts::IsStartOfStatement(kind) or
-                    SyntaxFacts::IsStartOfExpression(kind) or
-                    kind == SyntaxKind::CloseBraceToken or
-                    kind == SyntaxKind::CloseBracketToken or
-                    kind == SyntaxKind::CloseParenToken or
-                    kind == SyntaxKind::SemicolonToken;
-            });
-
-        if (SyntaxFacts::IsStartOfDeclaration(current->Kind))
-        {
-            element = this->ParseDeclaration(attributes, modifiers, unexpected);
-        }
-        else if (SyntaxFacts::IsStartOfStatement(current->Kind))
-        {
-            element = this->ParseStatement(attributes, modifiers, unexpected);
-        }
-        else if (SyntaxFacts::IsStartOfExpression(current->Kind))
-        {
-            ExpressionStatementSyntax* result = this->_factory->CreateNode<ExpressionStatementSyntax>();
-            result->Attributes = attributes;
-            result->Modifiers = modifiers;
-            result->Unexpected = unexpected;
-            result->Expression = this->ParseExpression();
-            element = result;
-        }
-        else if ((attributes.GetNode() != nullptr) or (modifiers.GetNode() != nullptr))
-        {
-            IncompleteDeclarationSyntax* result = this->_factory->CreateNode<IncompleteDeclarationSyntax>();
-            result->Attributes = attributes;
-            result->Modifiers = modifiers;
-            result->Unexpected = unexpected;
-            element = result;
-        }
-
-        SyntaxToken* semicolon = this->TryMatch(SyntaxKind::SemicolonToken);
-        UnexpectedNodesSyntax* unexpectedSemicolons = this->ConsumeUnexpected(SyntaxKind::SemicolonToken);
-
-        if ((element != nullptr) or (semicolon != nullptr) or (unexpectedSemicolons))
-        {
-            CodeBlockItemSyntax* result = this->_factory->CreateNode<CodeBlockItemSyntax>();
-            result->Item = element;
-            result->Semicolon = semicolon;
-            result->AfterSemicolon = unexpectedSemicolons;
-            return result;
-        }
-
-        return nullptr;
-#endif
     }
 
     SyntaxListView<AttributeListSyntax> Parser::ParseAttributesList()
@@ -1403,6 +1341,7 @@ namespace weave::syntax
         UnexpectedNodesSyntax* unexpected)
     {
         SyntaxToken* tokenIf = this->Match(SyntaxKind::IfKeyword);
+        SyntaxListView<AttributeListSyntax> conditionAttributes = this->ParseAttributesList();
         ExpressionSyntax* condition = this->ParseExpression();
         StatementSyntax* thenStatement = this->ParseBlockStatement({}, {}, {});
         ElseClauseSyntax* elseClause = this->ParseOptionalElseClause();
@@ -1412,6 +1351,7 @@ namespace weave::syntax
         result->Modifiers = modifiers;
         result->Unexpected = unexpected;
         result->IfKeyword = tokenIf;
+        result->ConditionAttributes = conditionAttributes;
         result->Condition = condition;
         result->ThenStatement = thenStatement;
         result->ElseClause = elseClause;
@@ -1421,6 +1361,7 @@ namespace weave::syntax
     StatementSyntax* Parser::ParseWhileStatement(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers, UnexpectedNodesSyntax* unexpected)
     {
         SyntaxToken* tokenWhile = this->Match(SyntaxKind::WhileKeyword);
+        SyntaxListView<AttributeListSyntax> conditionAttributes = this->ParseAttributesList();
         ExpressionSyntax* condition = this->ParseExpression();
         BlockStatementSyntax* statement = this->ParseBlockStatement({}, {}, {});
 
@@ -1429,6 +1370,7 @@ namespace weave::syntax
         result->Modifiers = modifiers;
         result->Unexpected = unexpected;
         result->WhileKeyword = tokenWhile;
+        result->ConditionAttributes = conditionAttributes;
         result->Condition = condition;
         result->Statement = statement;
         return result;

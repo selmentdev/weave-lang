@@ -94,6 +94,11 @@ namespace weave::syntax
         {
         }
 
+        SyntaxListView(SyntaxListView const&) = default;
+        SyntaxListView(SyntaxListView&&) = default;
+        SyntaxListView& operator=(SyntaxListView const&) = default;
+        SyntaxListView& operator=(SyntaxListView&&) = default;
+
     public:
         [[nodiscard]] constexpr SyntaxList* GetNode() const
         {
@@ -124,52 +129,6 @@ namespace weave::syntax
         [[nodiscard]] constexpr SyntaxListView<OtherT> Cast() const
         {
             return SyntaxListView<OtherT>{this->_node};
-        }
-    };
-
-    template <typename T>
-    struct SeparatedSyntaxListView
-    {
-    private:
-        SyntaxList* _node;
-
-    public:
-        SeparatedSyntaxListView() = default;
-
-        explicit constexpr SeparatedSyntaxListView(SyntaxList* node)
-            : _node{node}
-        {
-        }
-
-    public:
-        [[nodiscard]] constexpr SyntaxList* GetNode() const
-        {
-            return this->_node;
-        }
-
-        [[nodiscard]] constexpr SyntaxListView<SyntaxNode> GetWithSeparators() const
-        {
-            return SyntaxListView<SyntaxNode>{this->_node};
-        }
-
-        [[nodiscard]] constexpr size_t GetCount() const
-        {
-            if (this->_node == nullptr)
-            {
-                return 0;
-            }
-
-            return (this->_node->GetCount() + 1) / 2;
-        }
-
-        [[nodiscard]] constexpr T* GetElement(size_t index) const
-        {
-            if (this->_node == nullptr)
-            {
-                return nullptr;
-            }
-
-            return static_cast<T*>(this->_node->Get(index * 2));
         }
     };
 }
