@@ -1,0 +1,113 @@
+// Core library
+
+namespace core
+{
+    internal function MultiplyHigh(left: UInt64, right: UInt64) -> (lower: UInt64, upper: UInt64)
+    {
+        let leftLower : UInt64 = (left & 0xFFFFFFFF) as UInt64;
+        let leftUpper : UInt64 = (left >> 32) as UInt64;
+        let rightLower : UInt64 = (right & 0xFFFFFFFF) as UInt64;
+        let rightUpper : UInt64 = (right >> 32) as UInt64;
+
+        // do 
+        let productLower : UInt64 = leftLower * rightLower;
+        let productMiddle1 : UInt64 = leftLower * rightUpper;
+        let productMiddle2 : UInt64 = leftUpper * rightLower;
+        let productUpper : UInt64 = leftUpper * rightUpper;
+
+        var carry : UInt64 = (productLower >> 32) + productMiddle1 + (productMiddle2 & 0xFFFFFFFF);
+        let lower : UInt64 = (productLower & 0xFFFFFFFF) | (carry << 32);
+        var upper : UInt64 = (carry >> 32) + (productMiddle2 >> 32) + productUpper;
+
+        return (lower, upper);
+    }
+
+    internal function AddWithCarry(left: UInt64, right: UInt64, carry: Bool) -> UInt64
+    {
+        return (left + right) + (carry ? 1 : 0);
+    }
+
+    internal function SubtractWithBorrow(left: UInt64, right: UInt64, r#borrow: Bool) -> UInt64
+    {
+        return (left - right) - (r#borrow ? 1 : 0);
+    }
+}
+
+namespace core
+{
+    public struct UInt128
+    {
+        public var Lower: UInt64 { get; }
+        public var Upper: UInt64 { get; }
+    }
+
+    public extend UInt128
+    {
+        public function New(lower: UInt64, upper: UInt64) -> UInt128
+        {
+            return UInt128{
+                Lower = lower,
+                Upper = upper,
+            };
+        }
+
+        public function New(lower: UInt64) -> UInt128
+        {
+            return UInt128{
+                Lower = lower,
+                Upper = 0,
+            };
+        }
+    }
+
+    public extend UInt128
+    {
+        public function ZeroLower(self: Self) -> UInt128
+        {
+            return UInt128{
+                Lower = 0,
+                Upper = self.Upper,
+            };
+        }
+
+        public function ZeroUpper(self: Self) -> UInt128
+        {
+            return UInt128{
+                Lower = self.Lower,
+                Upper = 0,
+            };
+        }
+
+        public function MoveUpperToLower(self: Self) -> UInt128
+        {
+            return UInt128{
+                Lower = self.Upper,
+                Upper = 0,
+            };
+        }
+
+        public function MoveLowerToUpper(self: Self) -> UInt128
+        {
+            return UInt128{
+                Lower = 0,
+                Upper = self.Lower,
+            };
+        }
+
+        public function CombineLower(left: UInt128, right: UInt128) -> UInt128
+        {
+            return UInt128{
+                Lower = left.Lower,
+                Upper = right.Lower,
+            };
+        }
+
+        public function CombineUpper(left: UInt128, right: UInt128) -> UInt128
+        {
+            return UInt128{
+                Lower = left.Upper,
+                Upper = right.Upper,
+            };
+        }
+    }
+}

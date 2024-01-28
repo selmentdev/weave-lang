@@ -1,23 +1,8 @@
 error: Expected '[token:identifier]'
-        --> <source>:2:2
-         |
-       2 | .2137
-         |  ^^^^
-error: Expected '[token:identifier]'
         --> <source>:4:1
          |
        4 | 3.3.3
          | ^^^
-error: Expected '[token:identifier]'
-        --> <source>:4:5
-         |
-       4 | 3.3.3
-         |     ^
-error: Expected '[token:identifier]'
-        --> <source>:5:5
-         |
-       5 | 3.3.3.
-         |     ^
 error: Expected '[token:identifier]'
         --> <source>:6:1
          |
@@ -29,16 +14,6 @@ error: Expected '[token:identifier]'
        6 | 3.3.3.3
          |     ^^^
 error: Expected '[token:identifier]'
-        --> <source>:7:4
-         |
-       7 | _0.3
-         |    ^
-error: Expected '[token:identifier]'
-        --> <source>:11:1
-         |
-      11 | 9x
-         | ^^
-error: Expected '[token:identifier]'
         --> <source>:21:1
          |
       21 | 0.3_e10_
@@ -48,11 +23,6 @@ error: Expected '{'
          |
       21 | 0.3_e10_
          | ^^^^^^^^
-error: Expected '[token:identifier]'
-        --> <source>:53:4
-         |
-      53 | 0x.3f32
-         |    ^^^^
 error: Expected '}'
         --> <source>:121:1
          |

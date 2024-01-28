@@ -1,10 +1,15 @@
-error: Expected '{'
-        --> <source>:1:11
+error: Unexpected tokens
+        --> <source>:1:1
          |
        1 | public if let x(y) = 42 {
-         |           ^^^
-error: Expected '}'
-        --> <source>:7:1
-         |
-       7 | 
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^
+       2 |     vo.v += 42;
+         | ^^^^^^^^^^^^^^^
+       3 | }
+         | ^
+       4 | if x(y) = 42 {
+         | ^^^^^^^^^^^^^^
+       5 |   vo.v += 213;
+         | ^^^^^^^^^^^^^^
+       6 | }
          | ^

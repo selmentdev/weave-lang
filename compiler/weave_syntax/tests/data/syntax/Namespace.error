@@ -2,19 +2,15 @@ error: Unexpected tokens
         --> <source>:1:1
          |
        1 | using weave;
-         | ^^^^^
-error: Unexpected tokens
-        --> <source>:2:1
-         |
+         | ^^^^^^^^^^^^
        2 | using weave.fs;
+         | ^^^^^^^^^^^^^^^
+       3 | 
+         | 
+     ... |
+      52 |         public function New() -> Vector4 { }
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      53 |     }
          | ^^^^^
-error: Unexpected tokens
-        --> <source>:10:36
-         |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                    ^^^^
-error: Unexpected tokens
-        --> <source>:10:41
-         |
-      10 |     public var precedence = g1[((g1, g2), g3), g4];
-         |                                         ^^^^
+      54 | }
+         | ^

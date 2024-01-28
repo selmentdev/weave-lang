@@ -1,0 +1,5 @@
+function W() {
+    a = 1 + 2
+    :z= a b c 4
+    r = 2 + z
+}

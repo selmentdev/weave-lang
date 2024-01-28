@@ -395,6 +395,7 @@ WEAVE_SYNTAX_NODE(IncompleteDeclarationSyntax,                  "[node:incomplet
 WEAVE_SYNTAX_NODE(NamespaceDeclarationSyntax,                   "[node:namespace-declaration]")
 WEAVE_SYNTAX_NODE(SimpleNameSyntax,                             "[node:simple-name]")
 WEAVE_SYNTAX_NODE(IdentifierNameSyntax,                         "[node:identifier-name]")
+WEAVE_SYNTAX_NODE(TupleIndexSyntax,                             "[node:tuple-index]")
 WEAVE_SYNTAX_NODE(GenericNameSyntax,                            "[node:generic-name]")
 WEAVE_SYNTAX_NODE(QualifiedNameSyntax,                          "[node:qualified-name]")
 WEAVE_SYNTAX_NODE(StructDeclarationSyntax,                      "[node:struct-declaration]")
@@ -442,6 +443,10 @@ WEAVE_SYNTAX_NODE(IfStatementSyntax,                            "[node:if-statem
 WEAVE_SYNTAX_NODE(ElseClauseSyntax,                             "[node:else-clause]")
 WEAVE_SYNTAX_NODE(ReturnStatementSyntax,                        "[node:return-statement]")
 WEAVE_SYNTAX_NODE(EmptyStatementSyntax,                         "[node:empty-statement]")
+WEAVE_SYNTAX_NODE(WhileStatementSyntax,                         "[node:while-statement]")
+WEAVE_SYNTAX_NODE(BreakStatementSyntax,                         "[node:break-statement]")
+WEAVE_SYNTAX_NODE(ContinueStatementSyntax,                      "[node:continue-statement]")
+WEAVE_SYNTAX_NODE(GotoStatementSyntax,                          "[node:goto-statement]")
 WEAVE_SYNTAX_NODE(SelfExpressionSyntax,                         "[node:self-expression]")
 WEAVE_SYNTAX_NODE(UnexpectedNodesSyntax,                        "[node:unexpected-nodes]")
 WEAVE_SYNTAX_NODE(BalancedTokenSequneceSyntax,                  "[node:balanced-token-sequence]")
@@ -450,10 +455,11 @@ WEAVE_SYNTAX_NODE(AlignOfExpressionSyntax,                      "[node:align-of-
 WEAVE_SYNTAX_NODE(NameOfExpressionSyntax,                       "[node:name-of-expression]")
 WEAVE_SYNTAX_NODE(TypeOfExpressionSyntax,                       "[node:type-of-expression]")
 WEAVE_SYNTAX_NODE(AddressOfExpressionSyntax,                    "[node:address-of-expression]")
-
 WEAVE_SYNTAX_NODE(SourceFileSyntax,                             "[node:source-file]")
-WEAVE_SYNTAX_NODE(CodeBlockSyntax,                              "code block syntax")
-WEAVE_SYNTAX_NODE(CodeBlockItemSyntax,                          "code block item syntax")
+WEAVE_SYNTAX_NODE(CodeBlockSyntax,                              "code block")
+WEAVE_SYNTAX_NODE(CodeBlockItemSyntax,                          "code block item")
+WEAVE_SYNTAX_NODE(TupleTypeSyntax,                              "tuple type")
+WEAVE_SYNTAX_NODE(TupleTypeElementSyntax,                       "tuple type element")
 
 // prefix unary expressions
 WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    "[expr:unary-plus]")

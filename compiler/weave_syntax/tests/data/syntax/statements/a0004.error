@@ -1,5 +1,5 @@
 error: Unexpected tokens
-        --> <source>:2:26
+        --> <source>:2:5
          |
        2 |     #[Deprecated] public break;
-         |                          ^^^^^
+         |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^

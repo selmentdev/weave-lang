@@ -1,5 +1,5 @@
 public break
-/*
+
 #[Deprecated] function qux()
 var bar:float=21.37f32
 a += 21.38f32;
@@ -56,4 +56,3 @@ function Test()
 // - as member block, can hold any syntax node
 
 struct Y{ };
-*/

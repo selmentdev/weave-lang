@@ -17,79 +17,20 @@ error: Unexpected tokens
         --> <source>:72:39
          |
       72 | function EndOfFileDuringStatement() { =42: a=5;}
-         |                                       ^
-error: Unexpected tokens
-        --> <source>:72:42
-         |
-      72 | function EndOfFileDuringStatement() { =42: a=5;}
-         |                                          ^
+         |                                       ^^^^^^^^^
 error: Unexpected tokens
         --> <source>:76:1
          |
       76 | const x = 42
-         | ^^^^^
-error: Expected '[token:identifier]'
-        --> <source>:78:11
-         |
+         | ^^^^^^^^^^^^
+      77 | 
+         | 
       78 | namespace namespace }
-         |           ^^^^^^^^^
-error: Expected '{'
-        --> <source>:78:11
-         |
-      78 | namespace namespace }
-         |           ^^^^^^^^^
-error: Expected '[token:identifier]'
-        --> <source>:78:21
-         |
-      78 | namespace namespace }
-         |                     ^
-error: Expected '{'
-        --> <source>:78:21
-         |
-      78 | namespace namespace }
-         |                     ^
-error: Unexpected tokens
-        --> <source>:83:27
-         |
-      83 |             function W() {:z= a b c 4
-         |                           ^
-error: Expected '[token:identifier]'
-        --> <source>:95:22
-         |
+         | ^^^^^^^^^^^^^^^^^^^^^
+     ... |
+      93 |             S
+         | ^^^^^^^^^^^^^
+      94 |             T
+         | ^^^^^^^^^^^^^
       95 |             namespace; // this is commentos
-         |                      ^
-error: Expected '{'
-        --> <source>:95:22
-         |
-      95 |             namespace; // this is commentos
-         |                      ^
-error: Expected '}'
-        --> <source>:96:1
-         |
-      96 | 
-         | ^
-error: Expected '}'
-        --> <source>:96:1
-         |
-      96 | 
-         | ^
-error: Expected '}'
-        --> <source>:96:1
-         |
-      96 | 
-         | ^
-error: Expected '}'
-        --> <source>:96:1
-         |
-      96 | 
-         | ^
-error: Expected '}'
-        --> <source>:96:1
-         |
-      96 | 
-         | ^
-error: Expected '}'
-        --> <source>:96:1
-         |
-      96 | 
-         | ^
+         | ^^^^^^^^^^^^^^^^^^^^^^

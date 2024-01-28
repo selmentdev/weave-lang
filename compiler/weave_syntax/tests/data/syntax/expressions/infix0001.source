@@ -1,0 +1,6 @@
+// as operator
+{ (21.37 as UInt32).ToString(); }
+{ 21.37 as UInt32 + 420.69 as UInt32; }
+
+// is operator
+{ let result = cond is Int32 ? typeof(Int32) : typeof(Int64); }

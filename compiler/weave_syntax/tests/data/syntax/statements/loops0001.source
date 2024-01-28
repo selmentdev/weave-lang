@@ -1,0 +1,10 @@
+#[unroll]
+while x != 0 {
+    if (x % 4) == 0 {
+        break;
+    } else if x % 3 == 1 {
+        continue;
+    } else {
+        goto somewhere;
+    }
+}

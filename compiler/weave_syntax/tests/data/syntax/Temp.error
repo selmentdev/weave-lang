@@ -1,5 +1,16 @@
 error: Unexpected tokens
-        --> <source>:1:8
+        --> <source>:1:1
          |
        1 | public break
-         |        ^^^^^
+         | ^^^^^^^^^^^^
+       2 | 
+         | 
+       3 | #[Deprecated] function qux()
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     ... |
+      56 | // - as member block, can hold any syntax node
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      57 | 
+         | 
+      58 | struct Y{ };
+         | ^^^^^^^^^^^^

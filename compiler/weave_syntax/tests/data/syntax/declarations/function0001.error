@@ -1,0 +1,7 @@
+error: Unexpected tokens
+        --> <source>:2:1
+         |
+       2 | private package; function fooB() { }
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       3 |         package; function fooC() { }
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

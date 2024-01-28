@@ -1,0 +1,7 @@
+error: Unexpected tokens
+        --> <source>:3:5
+         |
+       3 |     :z= a b c 4
+         |     ^^^^^^^^^^^
+       4 |     r = 2 + z
+         | ^^^^^^^^^^^^^

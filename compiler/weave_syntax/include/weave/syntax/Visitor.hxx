@@ -99,6 +99,9 @@ namespace weave::syntax
         void OnFunctionDeclarationSyntax(FunctionDeclarationSyntax* node) override;
         void OnUsingDirectiveSyntax(UsingDirectiveSyntax* node) override;
         void OnIdentifierNameSyntax(IdentifierNameSyntax* node) override;
+        void OnTupleIndexSyntax(TupleIndexSyntax* node) override;
+        void OnTupleTypeSyntax(TupleTypeSyntax* node) override;
+        void OnTupleTypeElementSyntax(TupleTypeElementSyntax* node) override;
         void OnParameterListSyntax(ParameterListSyntax* node) override;
         void OnParameterSyntax(ParameterSyntax* node) override;
         void OnTypeClauseSyntax(TypeClauseSyntax* node) override;
@@ -122,6 +125,10 @@ namespace weave::syntax
         void OnIfStatementSyntax(IfStatementSyntax* node) override;
         void OnReturnStatementSyntax(ReturnStatementSyntax* node) override;
         void OnElseClauseSyntax(ElseClauseSyntax* node) override;
+        void OnWhileStatementSyntax(WhileStatementSyntax* node) override;
+        void OnBreakStatementSyntax(BreakStatementSyntax* node) override;
+        void OnContinueStatementSyntax(ContinueStatementSyntax* node) override;
+        void OnGotoStatementSyntax(GotoStatementSyntax* node) override;
         void OnVariableDeclarationSyntax(VariableDeclarationSyntax* node) override;
         void OnConditionalExpressionSyntax(ConditionalExpressionSyntax* node) override;
         void OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax* node) override;

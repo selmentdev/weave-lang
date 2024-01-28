@@ -23,6 +23,46 @@ namespace weave::syntax
             SyntaxFactory* factory,
             source::SourceText const& source);
 
+    public:
+        struct ResetPoint
+        {
+            friend class Parser;
+
+        private:
+            Parser const* _owner{};
+            size_t _index{};
+
+        private:
+            explicit constexpr ResetPoint(
+                Parser const* owner,
+                size_t index)
+                : _owner{owner}
+                , _index{index}
+            {
+            }
+
+        public:
+            ResetPoint() = default;
+            ResetPoint(ResetPoint const&) = default;
+            ResetPoint(ResetPoint&&) = default;
+            ResetPoint& operator=(ResetPoint const&) = default;
+            ResetPoint& operator=(ResetPoint&&) = default;
+        };
+
+        [[nodiscard]] ResetPoint GetResetPoint() const
+        {
+            return ResetPoint{this, this->_index};
+        }
+
+        void Reset(ResetPoint const& resetPoint)
+        {
+            WEAVE_ASSERT(resetPoint._owner == this, "Invalid reset point");
+            WEAVE_ASSERT(resetPoint._index < this->_tokens.size(), "Invalid reset point");
+
+            this->_index = resetPoint._index;
+            this->_current = this->_tokens[this->_index];
+        }
+
     private:
         [[nodiscard]] SyntaxToken* Peek(size_t offset) const;
         [[nodiscard]] SyntaxToken* Current() const;
@@ -36,7 +76,7 @@ namespace weave::syntax
         [[nodiscard]] UnexpectedNodesSyntax* ConsumeUnexpected(SyntaxKind kind);
 
         template <typename CallbackT = bool(SyntaxKind)>
-        [[nodiscard]] UnexpectedNodesSyntax* ConsumeUnexpected(CallbackT callback)
+        [[nodiscard]] UnexpectedNodesSyntax* ConsumeUnexpectedIf(CallbackT callback)
         {
             std::vector<SyntaxNode*> tokens{};
 
@@ -97,6 +137,9 @@ namespace weave::syntax
 
         SyntaxListView<SyntaxToken> ParseMemberModifiersList();
 
+        void ParseMemberModifiersList(
+            std::vector<SyntaxToken*>& elements);
+
         SyntaxListView<SyntaxToken> ParseFunctionParameterModifiersList();
 
         VariableDeclarationSyntax* ParseVariableDeclaration(
@@ -152,6 +195,7 @@ namespace weave::syntax
         ParameterListSyntax* ParseParameterList();
 
         ParameterSyntax* ParseParameter();
+
     public:
         AttributeSyntax* ParseAttribute();
 
@@ -166,6 +210,8 @@ namespace weave::syntax
         TypeClauseSyntax* ParseTypeClause();
 
         TypeClauseSyntax* ParseOptionalTypeClause();
+
+        TypeSyntax* ParseType();
 
         EqualsValueClauseSyntax* ParseEqualsValueClause();
 
@@ -182,6 +228,8 @@ namespace weave::syntax
         SimpleNameSyntax* ParseSimpleName();
 
         IdentifierNameSyntax* ParseIdentifierName();
+
+        TupleIndexSyntax* ParseTupleIndex();
 
         SelfExpressionSyntax* ParseSelfExpression();
 
@@ -224,6 +272,26 @@ namespace weave::syntax
             SyntaxListView<SyntaxToken> modifiers,
             UnexpectedNodesSyntax* unexpected);
 
+        StatementSyntax* ParseWhileStatement(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers,
+            UnexpectedNodesSyntax* unexpected);
+
+        StatementSyntax* ParseGotoStatement(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers,
+            UnexpectedNodesSyntax* unexpected);
+
+        StatementSyntax* ParseBreakStatement(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers,
+            UnexpectedNodesSyntax* unexpected);
+
+        StatementSyntax* ParseContinueStatement(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers,
+            UnexpectedNodesSyntax* unexpected);
+
         StatementSyntax* ParseMisplacedElseClause(
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers,
@@ -236,7 +304,8 @@ namespace weave::syntax
             SyntaxListView<SyntaxToken> modifiers,
             UnexpectedNodesSyntax* unexpected);
 
-        ExpressionStatementSyntax* ParseExpressionStatement();
+        ExpressionStatementSyntax* ParseExpressionStatement(
+            SyntaxListView<AttributeListSyntax> attributes);
 
         IdentifierNameSyntax* CreateMissingIdentifierName();
 
@@ -250,5 +319,9 @@ namespace weave::syntax
             SyntaxKind terminator,
             std::vector<SyntaxToken*>& tokens,
             std::vector<SyntaxNode*>& unexpected);
+
+        TupleTypeSyntax* ParseTupleType();
+
+        TupleTypeElementSyntax* ParseTupleTypeElement();
     };
 }

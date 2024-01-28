@@ -1,0 +1,101 @@
+error: Expected '[token:identifier]'
+        --> <source>:5:68
+         |
+       5 |     internal function MultiplyHigh(left: UInt64, right: UInt64) -> (lower: UInt64, upper: UInt64)
+         |                                                                    ^
+error: Unexpected tokens
+        --> <source>:5:74
+         |
+       5 |     internal function MultiplyHigh(left: UInt64, right: UInt64) -> (lower: UInt64, upper: UInt64)
+         |                                                                          ^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:22:22
+         |
+      22 |         return (lower, upper);
+         |                      ^^^^^^^
+error: Unexpected tokens
+        --> <source>:40:36
+         |
+      40 |         public var Lower: UInt64 { get; }
+         |                                    ^^^^
+error: Unexpected tokens
+        --> <source>:41:36
+         |
+      41 |         public var Upper: UInt64 { get; }
+         |                                    ^^^^
+error: Unexpected tokens
+        --> <source>:49:30
+         |
+      49 |                 Lower = lower,
+         |                              ^
+      50 |                 Upper = upper,
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:57:30
+         |
+      57 |                 Lower = lower,
+         |                              ^
+      58 |                 Upper = 0,
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:65:35
+         |
+      65 |         public function ZeroLower(self: Self) -> UInt128
+         |                                   ^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:68:26
+         |
+      68 |                 Lower = 0,
+         |                          ^
+      69 |                 Upper = self.Upper,
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:73:35
+         |
+      73 |         public function ZeroUpper(self: Self) -> UInt128
+         |                                   ^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:76:35
+         |
+      76 |                 Lower = self.Lower,
+         |                                   ^
+      77 |                 Upper = 0,
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:81:42
+         |
+      81 |         public function MoveUpperToLower(self: Self) -> UInt128
+         |                                          ^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:84:35
+         |
+      84 |                 Lower = self.Upper,
+         |                                   ^
+      85 |                 Upper = 0,
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:89:42
+         |
+      89 |         public function MoveLowerToUpper(self: Self) -> UInt128
+         |                                          ^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:92:26
+         |
+      92 |                 Lower = 0,
+         |                          ^
+      93 |                 Upper = self.Lower,
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:100:35
+         |
+     100 |                 Lower = left.Lower,
+         |                                   ^
+     101 |                 Upper = right.Lower,
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:108:35
+         |
+     108 |                 Lower = left.Upper,
+         |                                   ^
+     109 |                 Upper = right.Upper,
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

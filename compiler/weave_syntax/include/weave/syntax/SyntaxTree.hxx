@@ -107,7 +107,6 @@ namespace weave::syntax
         UnexpectedNodesSyntax* AfterSemicolon{};
     };
 
-
     class SourceFileSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(SourceFileSyntax);
@@ -780,6 +779,41 @@ namespace weave::syntax
         }
     };
 
+    class TupleTypeSyntax final : public TypeSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TupleTypeSyntax);
+
+    public:
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
+        SyntaxListView<TupleTypeElementSyntax> Elements{};
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr TupleTypeSyntax()
+            : TypeSyntax{SyntaxKind::TupleTypeSyntax}
+        {
+        }
+    };
+
+    class TupleTypeElementSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TupleTypeElementSyntax);
+
+    public:
+        SyntaxToken* Name{};
+        SyntaxToken* Colon{};
+        TypeSyntax* Type{};
+        SyntaxToken* TrailingComma{};
+
+    public:
+        explicit constexpr TupleTypeElementSyntax()
+            : SyntaxNode{SyntaxKind::TupleTypeElementSyntax}
+        {
+        }
+    };
+
     class PredefinedTypeSyntax : public TypeSyntax
     {
         // WEAVE_DEFINE_SYNTAX_NODE(PredefinedTypeSyntax);
@@ -820,6 +854,17 @@ namespace weave::syntax
         }
     };
 
+    class TupleIndexSyntax final : public SimpleNameSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TupleIndexSyntax);
+
+    public:
+        explicit constexpr TupleIndexSyntax()
+            : SimpleNameSyntax{SyntaxKind::TupleIndexSyntax}
+        {
+        }
+    };
+
     class GenericNameSyntax final : public SimpleNameSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(GenericNameSyntax);
@@ -856,7 +901,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ColonToken{};
-        NameSyntax* Identifier{};
+        TypeSyntax* Type{};
 
     public:
         explicit constexpr TypeClauseSyntax()
@@ -1008,6 +1053,66 @@ namespace weave::syntax
     public:
         explicit constexpr ElseClauseSyntax()
             : SyntaxNode{SyntaxKind::ElseClauseSyntax}
+        {
+        }
+    };
+
+    class WhileStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(WhileStatementSyntax);
+
+    public:
+        SyntaxToken* WhileKeyword{};
+        ExpressionSyntax* Condition{};
+        StatementSyntax* Statement{};
+
+    public:
+        explicit constexpr WhileStatementSyntax()
+            : StatementSyntax{SyntaxKind::WhileStatementSyntax}
+        {
+        }
+    };
+
+    class BreakStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(BreakStatementSyntax);
+
+    public:
+        SyntaxToken* BreakKeyword{};
+        SyntaxToken* Label{};
+
+    public:
+        explicit constexpr BreakStatementSyntax()
+            : StatementSyntax{SyntaxKind::BreakStatementSyntax}
+        {
+        }
+    };
+
+    class ContinueStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ContinueStatementSyntax);
+
+    public:
+        SyntaxToken* ContinueKeyword{};
+
+    public:
+        explicit constexpr ContinueStatementSyntax()
+            : StatementSyntax{SyntaxKind::ContinueStatementSyntax}
+        {
+        }
+    };
+
+    class GotoStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(GotoStatementSyntax);
+
+    public:
+        SyntaxToken* GotoKeyword{};
+        SyntaxToken* Label{};
+
+    public:
+        explicit constexpr GotoStatementSyntax()
+            : StatementSyntax{SyntaxKind::GotoStatementSyntax}
         {
         }
     };

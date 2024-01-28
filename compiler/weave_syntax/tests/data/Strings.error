@@ -2,14 +2,6 @@ error: Unexpected tokens
         --> <source>:68:2
          |
       68 | r#~"#"~#;
-         |  ^^
-error: Unexpected tokens
-        --> <source>:68:7
-         |
-      68 | r#~"#"~#;
-         |       ^^
-error: Unexpected tokens
-        --> <source>:69:1
-         |
+         |  ^^^^^^^^
       69 | ;
          | ^

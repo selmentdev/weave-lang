@@ -455,14 +455,14 @@ namespace weave::syntax
     {
         switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
-        // case SyntaxKind::BreakKeyword:
-        // case SyntaxKind::ContinueKeyword:
+        case SyntaxKind::BreakKeyword:
+        case SyntaxKind::ContinueKeyword:
         // case SyntaxKind::DotToken:
-        // case SyntaxKind::WhileKeyword:
+        case SyntaxKind::WhileKeyword:
         // case SyntaxKind::ForKeyword:
         case SyntaxKind::VarKeyword:
         case SyntaxKind::LetKeyword:
-        // case SyntaxKind::GotoKeyword:
+        case SyntaxKind::GotoKeyword:
         case SyntaxKind::IfKeyword:
         case SyntaxKind::ElseKeyword:
         case SyntaxKind::ReturnKeyword:
@@ -484,13 +484,15 @@ namespace weave::syntax
 
     bool SyntaxFacts::IsStartOfStatement(SyntaxKind kind)
     {
-        switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::ReturnKeyword:
         case SyntaxKind::IfKeyword:
         case SyntaxKind::ElseKeyword:
-        //case SyntaxKind::BreakKeyword:
-        //case SyntaxKind::ContinueKeyword:
+        case SyntaxKind::BreakKeyword:
+        case SyntaxKind::ContinueKeyword:
+        case SyntaxKind::WhileKeyword:
+        case SyntaxKind::GotoKeyword:
         case SyntaxKind::OpenBraceToken:
         case SyntaxKind::SemicolonToken:
             return true;
@@ -502,9 +504,9 @@ namespace weave::syntax
 
     bool SyntaxFacts::IsStartOfDeclaration(SyntaxKind kind)
     {
-        switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
-        //case SyntaxKind::UsingKeyword:
+        // case SyntaxKind::UsingKeyword:
         case SyntaxKind::FunctionKeyword:
         case SyntaxKind::StructKeyword:
         case SyntaxKind::ConceptKeyword:
@@ -521,7 +523,7 @@ namespace weave::syntax
 
     bool SyntaxFacts::IsStartOfExpression(SyntaxKind kind)
     {
-        switch (kind)  // NOLINT(clang-diagnostic-switch-enum)
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::TypeOfKeyword:
         case SyntaxKind::SizeOfKeyword:
