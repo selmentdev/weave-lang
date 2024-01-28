@@ -263,6 +263,7 @@ namespace weave::syntax
             DeclarationSyntax* declaration = this->ParseDeclaration(attributes, modifiers, {});
 
             CodeBlockItemSyntax* result = this->_factory->CreateNode<CodeBlockItemSyntax>();
+
             result->Item = declaration;
             result->Semicolon = this->TryMatch(SyntaxKind::SemicolonToken);
             result->AfterSemicolon = this->ConsumeUnexpected(SyntaxKind::SemicolonToken);
@@ -272,10 +273,26 @@ namespace weave::syntax
         // It wasn't a declaration, so reset parser state and try to parse statement - maybe skipped tokens were part of statement.
         this->Reset(beforeModifiers);
 
+        std::optional<Label> label = this->ParseOptionalLabel();
+
         if (StatementSyntax* statement = this->ParseStatement(attributes, {}, {}))
         {
             CodeBlockItemSyntax* result = this->_factory->CreateNode<CodeBlockItemSyntax>();
-            result->Item = statement;
+
+            if (label)
+            {
+                LabeledStatementSyntax* wrapper = this->_factory->CreateNode<LabeledStatementSyntax>();
+                wrapper->Name = label->Name;
+                wrapper->Colon = label->Colon;
+                wrapper->Statement = statement;
+
+                result->Item = wrapper;
+            }
+            else
+            {
+                result->Item = statement;
+            }
+
             result->Semicolon = this->TryMatch(SyntaxKind::SemicolonToken);
             result->AfterSemicolon = this->ConsumeUnexpected(SyntaxKind::SemicolonToken);
             return result;
@@ -283,14 +300,28 @@ namespace weave::syntax
 
         if (SyntaxFacts::IsStartOfExpression(this->Current()->Kind))
         {
-            ExpressionStatementSyntax* expression = this->_factory->CreateNode<ExpressionStatementSyntax>();
-            expression->Attributes = attributes;
-            expression->Modifiers = {};
-            expression->Unexpected = {};
-            expression->Expression = this->ParseExpression();
+            ExpressionStatementSyntax* statement = this->_factory->CreateNode<ExpressionStatementSyntax>();
+            statement->Attributes = attributes;
+            statement->Modifiers = {};
+            statement->Unexpected = {};
+            statement->Expression = this->ParseExpression();
 
             CodeBlockItemSyntax* result = this->_factory->CreateNode<CodeBlockItemSyntax>();
-            result->Item = expression;
+
+            if (label)
+            {
+                LabeledStatementSyntax* wrapper = this->_factory->CreateNode<LabeledStatementSyntax>();
+                wrapper->Name = label->Name;
+                wrapper->Colon = label->Colon;
+                wrapper->Statement = statement;
+
+                result->Item = wrapper;
+            }
+            else
+            {
+                result->Item = statement;
+            }
+
             result->Semicolon = this->TryMatch(SyntaxKind::SemicolonToken);
             result->AfterSemicolon = this->ConsumeUnexpected(SyntaxKind::SemicolonToken);
             return result;
@@ -799,13 +830,13 @@ namespace weave::syntax
         {
             return this->ParseTupleType();
         }
-        //else if (this->Current()->Is(SyntaxKind::OpenBracketToken))
+        // else if (this->Current()->Is(SyntaxKind::OpenBracketToken))
         //{
-        //    return this->ParseArrayType();
-        //})
+        //     return this->ParseArrayType();
+        // })
         //{
-        //    
-        //}
+        //
+        // }
 
         return this->CreateMissingIdentifierName();
     }
@@ -1690,9 +1721,25 @@ namespace weave::syntax
         }
 
         result->Type = this->ParseType();
-        
+
         result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
         return result;
+    }
+
+    std::optional<Parser::Label> Parser::ParseOptionalLabel()
+    {
+        SyntaxToken* name = this->Current();
+        SyntaxToken* colon = this->Peek(1);
+
+        if ((name->Kind == SyntaxKind::IdentifierToken) and (colon->Kind == SyntaxKind::ColonToken))
+        {
+            this->Next();
+            this->Next();
+
+            return Label{name, colon};
+        }
+
+        return std::nullopt;
     }
 }

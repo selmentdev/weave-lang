@@ -460,6 +460,7 @@ WEAVE_SYNTAX_NODE(CodeBlockSyntax,                              "code block")
 WEAVE_SYNTAX_NODE(CodeBlockItemSyntax,                          "code block item")
 WEAVE_SYNTAX_NODE(TupleTypeSyntax,                              "tuple type")
 WEAVE_SYNTAX_NODE(TupleTypeElementSyntax,                       "tuple type element")
+WEAVE_SYNTAX_NODE(LabeledStatementSyntax,                       "labeled statement")
 
 // prefix unary expressions
 WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    "[expr:unary-plus]")

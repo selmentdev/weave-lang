@@ -149,5 +149,6 @@ namespace weave::syntax
         void OnTypeOfExpressionSyntax(TypeOfExpressionSyntax* node) override;
         void OnNameOfExpressionSyntax(NameOfExpressionSyntax* node) override;
         void OnAddressOfExpressionSyntax(AddressOfExpressionSyntax* node) override;
+        void OnLabeledStatementSyntax(LabeledStatementSyntax* node) override;
     };
 }

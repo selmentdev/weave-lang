@@ -1139,7 +1139,19 @@ namespace weave::syntax
         }
     };
 
-    // Switch-statement
-    // Case-Label
-    // Default-Label
+    class LabeledStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(LabeledStatementSyntax);
+
+    public:
+        SyntaxToken* Name{};
+        SyntaxToken* Colon{};
+        StatementSyntax* Statement{};
+
+    public:
+        explicit constexpr LabeledStatementSyntax()
+            : StatementSyntax{SyntaxKind::LabeledStatementSyntax}
+        {
+        }
+    };
 }

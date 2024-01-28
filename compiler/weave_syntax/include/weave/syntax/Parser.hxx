@@ -323,5 +323,13 @@ namespace weave::syntax
         TupleTypeSyntax* ParseTupleType();
 
         TupleTypeElementSyntax* ParseTupleTypeElement();
+
+        struct Label
+        {
+            SyntaxToken* Name{};
+            SyntaxToken* Colon{};
+        };
+
+        std::optional<Label> ParseOptionalLabel();
     };
 }
