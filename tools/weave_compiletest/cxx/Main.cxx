@@ -15,6 +15,17 @@
 
 #include <fmt/format.h>
 
+void NormalizeLineEndings(std::string& value)
+{
+    // Replace CRLF with LF
+    std::string::size_type n;
+
+    while ((n = value.find("\r\n")) != std::string::npos)
+    {
+        value.replace(n, 2, "\n");
+    }
+}
+
 int main(int argc, char** argv)
 {
     fmt::println("--- args-begin ---");
@@ -116,6 +127,9 @@ int main(int argc, char** argv)
 
             if (auto ret = weave::system::Execute(executable.c_str(), args.c_str(), wd.string().c_str(), output, error))
             {
+                NormalizeLineEndings(output);
+                NormalizeLineEndings(error);
+
                 std::filesystem::path outputFilePath = entry.path();
                 outputFilePath.replace_extension(".output");
 
