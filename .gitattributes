@@ -1,0 +1,24 @@
+# Auto detect text files and perform LF normalization
+* text eol=lf
+
+###### Git
+.gitattributes text
+.gitignore text
+.gitconfig text
+.gitmodules text
+.editorconfig text
+
+##### Windows
+*.exe binary
+*.dll binary
+
+##### Linux
+*.sh text eol=lf
+*.so binary
+
+# Custom text files
+*.source    text eol=lf
+*.error     text eol=lf
+*.output    text eol=lf
+
+*.bat text eol=crlf
