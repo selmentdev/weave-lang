@@ -20,5 +20,6 @@
 *.source    text eol=lf
 *.error     text eol=lf
 *.output    text eol=lf
+*.weave     text eol=lf
 
 *.bat text eol=crlf
