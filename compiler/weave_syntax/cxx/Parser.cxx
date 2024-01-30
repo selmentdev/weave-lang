@@ -496,6 +496,23 @@ namespace weave::syntax
         return result;
     }
 
+    TypeAliasDeclarationSyntax* Parser::ParseTypeAliasDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
+    {
+        SyntaxToken* tokenType = this->Match(SyntaxKind::TypeKeyword);
+        NameSyntax* name = this->ParseSimpleName();
+        SyntaxToken* tokenEquals = this->Match(SyntaxKind::EqualsToken);
+        TypeSyntax* type = this->ParseType();
+
+        TypeAliasDeclarationSyntax* result = this->_factory->CreateNode<TypeAliasDeclarationSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->TypeKeyword = tokenType;
+        result->Name = name;
+        result->EqualsToken = tokenEquals;
+        result->Type = type;
+        return result;
+    }
+
     DeclarationSyntax* Parser::ParseDeclaration(
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
@@ -523,6 +540,9 @@ namespace weave::syntax
 
         case SyntaxKind::NamespaceKeyword:
             return this->ParseNamespaceDeclaration(attributes, modifiers);
+
+        case SyntaxKind::TypeKeyword:
+            return this->ParseTypeAliasDeclaration(attributes, modifiers);
 
         default:
             break;

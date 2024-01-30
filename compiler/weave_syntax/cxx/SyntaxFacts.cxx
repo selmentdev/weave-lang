@@ -433,6 +433,7 @@ namespace weave::syntax
         case SyntaxKind::VarKeyword:
         case SyntaxKind::LetKeyword:
         case SyntaxKind::NamespaceKeyword:
+        case SyntaxKind::TypeKeyword:
             return true;
 
         default:

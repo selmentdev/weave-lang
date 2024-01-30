@@ -1,0 +1,6 @@
+// alias
+namespace Core.System.Windows
+{
+    public type DWORD       = Core.UInt32;
+    public type DWORD_PTR   = Core.UIntPtr;
+}

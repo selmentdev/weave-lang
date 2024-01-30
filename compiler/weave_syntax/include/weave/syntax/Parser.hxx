@@ -166,6 +166,10 @@ namespace weave::syntax
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);
 
+        TypeAliasDeclarationSyntax* ParseTypeAliasDeclaration(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
         DeclarationSyntax* ParseDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);
@@ -182,6 +186,8 @@ namespace weave::syntax
         ParameterListSyntax* ParseParameterList();
 
         ParameterSyntax* ParseParameter();
+
+        
 
     public:
         AttributeSyntax* ParseAttribute();

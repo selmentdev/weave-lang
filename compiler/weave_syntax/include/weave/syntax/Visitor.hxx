@@ -151,5 +151,6 @@ namespace weave::syntax
         void OnLabelStatementSyntax(LabelStatementSyntax* node) override;
         void OnTupleExpressionSyntax(TupleExpressionSyntax* node) override;
         void OnLabeledExpressionSyntax(LabeledExpressionSyntax* node) override;
+        void OnTypeAliasDeclarationSyntax(TypeAliasDeclarationSyntax* node) override;
     };
 }

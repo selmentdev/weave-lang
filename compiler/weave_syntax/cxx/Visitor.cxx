@@ -882,4 +882,22 @@ namespace weave::syntax
         --this->Depth;
     }
 
+    void SyntaxWalker::OnTypeAliasDeclarationSyntax(TypeAliasDeclarationSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Unexpected);
+
+        this->Dispatch(node->TypeKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->EqualsToken);
+        this->Dispatch(node->Type);
+
+        --this->Depth;
+    }
+
 }

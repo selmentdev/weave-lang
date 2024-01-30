@@ -264,6 +264,23 @@ namespace weave::syntax
         }
     };
 
+    class TypeAliasDeclarationSyntax : public TypeDeclarationSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TypeAliasDeclarationSyntax);
+
+    public:
+        SyntaxToken* TypeKeyword{};
+        NameSyntax* Name{};
+        SyntaxToken* EqualsToken{};
+        TypeSyntax* Type{};
+
+    public:
+        explicit constexpr TypeAliasDeclarationSyntax()
+            : TypeDeclarationSyntax{SyntaxKind::TypeAliasDeclarationSyntax}
+        {
+        }
+    };;
+
     class ConstantDeclarationSyntax : public MemberDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ConstantDeclarationSyntax);
@@ -1170,5 +1187,46 @@ namespace weave::syntax
             : SyntaxNode{SyntaxKind::LabeledExpressionSyntax}
         {
         }
+    };
+
+    class ContractClauseSyntax : public SyntaxNode
+    {
+    };
+
+    // in-contract-clause
+    //      : 'in' ':'     expression ';'
+    //      | 'in' '{' statement-list '}'
+    //      ;
+    class ContractPreconditionClauseSyntax final : public ContractClauseSyntax
+    {
+    public:
+        SyntaxToken* InKeyword{};
+        SyntaxToken* ColonToken{};
+
+    };
+
+    // out-contract-clause
+    //      : 'out' identifier? ':'     expression ';'
+    //      | 'out' identifier? '{' statement-list '}'
+    //      ;
+    class ContractPostconditionClauseSyntax final : public ContractClauseSyntax
+    {
+    };
+
+    // generic-constraint
+    //      : name ':' expression
+    //      ;
+    //
+    // generic-constraint-list
+    //      : generic-constraint
+    //      | generic-constraint-list ',' generic-constraint
+    //      ;
+    //
+    // where-clause
+    //      : 'where' generic-constraint-list
+    //      ;
+    class WhereClauseSyntax final : public ContractClauseSyntax
+    {
+        
     };
 }
