@@ -1,0 +1,16 @@
+public delegate PlayerDeathDelegate(
+    player: Player,
+    killer: Player,
+    weapon: Weapon
+) -> ();
+
+public function Kill(
+    game: Game,
+    player: Player,
+    other: Player
+) -> ()
+{
+    let callback : PlayerDeathCallback = game.PlayerDeath;
+
+    callback(player, other, player.CurrentWeapon);
+}

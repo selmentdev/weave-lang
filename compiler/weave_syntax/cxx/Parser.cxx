@@ -426,6 +426,25 @@ namespace weave::syntax
         return result;
     }
 
+    DelegateDeclarationSyntax* Parser::ParseDelegateDeclaration(
+        SyntaxListView<AttributeListSyntax> attributes,
+        SyntaxListView<SyntaxToken> modifiers)
+    {
+        SyntaxToken* tokenDelegate = this->Match(SyntaxKind::DelegateKeyword);
+        NameSyntax* name = this->ParseSimpleName();
+        ParameterListSyntax* parameters = this->ParseParameterList();
+        ReturnTypeClauseSyntax* returnType = this->ParseReturnTypeClause();
+
+        DelegateDeclarationSyntax* result = this->_factory->CreateNode<DelegateDeclarationSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->DelegateKeyword = tokenDelegate;
+        result->Name = name;
+        result->Parameters = parameters;
+        result->ReturnType = returnType;
+        return result;
+    }
+
     NamespaceDeclarationSyntax* Parser::ParseNamespaceDeclaration(
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
@@ -524,6 +543,9 @@ namespace weave::syntax
 
         case SyntaxKind::FunctionKeyword:
             return this->ParseFunctionDeclaration(attributes, modifiers);
+
+        case SyntaxKind::DelegateKeyword:
+            return this->ParseDelegateDeclaration(attributes, modifiers);
 
         case SyntaxKind::VarKeyword:
         case SyntaxKind::LetKeyword:

@@ -150,6 +150,10 @@ namespace weave::syntax
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);
 
+        DelegateDeclarationSyntax* ParseDelegateDeclaration(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
         NamespaceDeclarationSyntax* ParseNamespaceDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);

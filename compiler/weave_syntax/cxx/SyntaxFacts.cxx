@@ -434,6 +434,7 @@ namespace weave::syntax
         case SyntaxKind::LetKeyword:
         case SyntaxKind::NamespaceKeyword:
         case SyntaxKind::TypeKeyword:
+        case SyntaxKind::DelegateKeyword:
             return true;
 
         default:

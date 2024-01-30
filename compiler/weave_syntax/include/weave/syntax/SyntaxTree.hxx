@@ -196,6 +196,16 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(DelegateDeclarationSyntax);
 
     public:
+        SyntaxToken* DelegateKeyword{};
+        NameSyntax* Name{};
+        ParameterListSyntax* Parameters{};
+        ReturnTypeClauseSyntax* ReturnType{};
+
+    public:
+        explicit constexpr DelegateDeclarationSyntax()
+            : MemberDeclarationSyntax{SyntaxKind::DelegateDeclarationSyntax}
+        {
+        }
     };
 
     class BaseTypeDeclarationSyntax : public MemberDeclarationSyntax

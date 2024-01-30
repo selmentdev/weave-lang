@@ -626,10 +626,12 @@ namespace weave::syntax
 
         ++this->Depth;
 
-        (void)node;
-        WEAVE_BUGCHECK("Not implemented");
+        this->Dispatch(node->DelegateKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->Parameters);
+        this->Dispatch(node->ReturnType);
 
-        //--this->Depth;
+        --this->Depth;
     }
 
     void SyntaxWalker::OnSelfExpressionSyntax(SelfExpressionSyntax* node)
