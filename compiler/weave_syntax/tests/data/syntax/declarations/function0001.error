@@ -1,7 +1,5 @@
 error: Unexpected tokens
-        --> <source>:2:1
+        --> <source>:4:5
          |
-       2 | private package; function fooB() { }
-         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-       3 |         package; function fooC() { }
-         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       4 |     private package; function fooB() { }
+         |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

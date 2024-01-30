@@ -3,4 +3,8 @@ namespace Core.System.Windows
 {
     public type DWORD       = Core.UInt32;
     public type DWORD_PTR   = Core.UIntPtr;
+    public type HANDLE      = Core.IntPtr;
 }
+
+// alias to tuple
+public type Pair = (bool, string);

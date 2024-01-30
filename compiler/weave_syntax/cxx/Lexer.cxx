@@ -197,11 +197,21 @@ namespace weave::syntax
         {
             if (std::optional<SyntaxKind> const keyword = TryMapIdentifierToKeyword(token.Value); keyword.has_value())
             {
-                token.Kind = *keyword;
+                if (IsContextualKeyword(*keyword))
+                {
+                    token.Kind = SyntaxKind::IdentifierToken;
+                    token.ContextualKeyword = *keyword;
+                }
+                else
+                {
+                    token.Kind = *keyword;
+                    token.ContextualKeyword = SyntaxKind::None;
+                }
             }
             else
             {
                 token.Kind = SyntaxKind::IdentifierToken;
+                token.ContextualKeyword = SyntaxKind::None;
             }
 
             token.Source = this->_cursor.GetSpan();

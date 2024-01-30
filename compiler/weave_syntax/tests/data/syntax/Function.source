@@ -42,7 +42,7 @@ function before(y: bool) -> void {
 // pacz pan, syntax walker :^)
 
 public private tailcall unsafe export restricted transient trusted function mul_high(
-    in ref out value move left: u64,
+    in ref out move left: u64,
     in right: u64,
     out lower: u64) -> u64
 {

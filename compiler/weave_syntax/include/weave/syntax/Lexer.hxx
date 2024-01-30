@@ -17,6 +17,7 @@ namespace weave::syntax
         std::string Suffix{};
         source::SourceSpan Source{};
         SyntaxKind Kind{};
+        SyntaxKind ContextualKeyword{};
     };
 
     enum class LexerTriviaMode

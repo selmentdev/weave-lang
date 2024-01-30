@@ -1,12 +1,12 @@
 error: Unexpected tokens
-        --> <source>:32:1
+        --> <source>:50:1
          |
-      32 | and
+      50 | abstract
+         | ^^^^^^^^
+      51 | add
          | ^^^
-      33 | and_eq
-         | ^^^^^^
-      34 | or
-         | ^^
+      52 | addressof
+         | ^^^^^^^^^
      ... |
      318 | r"raw string \t"
          | ^^^^^^^^^^^^^^^^
