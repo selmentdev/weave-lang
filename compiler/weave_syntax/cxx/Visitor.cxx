@@ -836,7 +836,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnLabeledStatementSyntax(LabeledStatementSyntax* node)
+    void SyntaxWalker::OnLabelStatementSyntax(LabelStatementSyntax* node)
     {
         this->OnDefault(node);
 

@@ -1121,9 +1121,9 @@ namespace weave::syntax
         }
     };
 
-    class LabeledStatementSyntax final : public StatementSyntax
+    class LabelStatementSyntax final : public StatementSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(LabeledStatementSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(LabelStatementSyntax);
 
     public:
         SyntaxToken* Name{};
@@ -1131,8 +1131,8 @@ namespace weave::syntax
         StatementSyntax* Statement{};
 
     public:
-        explicit constexpr LabeledStatementSyntax()
-            : StatementSyntax{SyntaxKind::LabeledStatementSyntax}
+        explicit constexpr LabelStatementSyntax()
+            : StatementSyntax{SyntaxKind::LabelStatementSyntax}
         {
         }
     };

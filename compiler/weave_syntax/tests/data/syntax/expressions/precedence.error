@@ -1,0 +1,10 @@
+error: Expected '[token:identifier]'
+        --> <source>:10:18
+         |
+      10 | a = a == b != c >< d <> e > f < g >= h <= i ? j : k; // this contains an error - test recovery feature
+         |                  ^
+error: Expected '[token:identifier]'
+        --> <source>:10:23
+         |
+      10 | a = a == b != c >< d <> e > f < g >= h <= i ? j : k; // this contains an error - test recovery feature
+         |                       ^

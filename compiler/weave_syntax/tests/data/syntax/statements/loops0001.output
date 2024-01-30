@@ -1,7 +1,7 @@
 [node=SourceFileSyntax]
   [node=SyntaxList]
     [node=CodeBlockItemSyntax]
-      [node=LabeledStatementSyntax]
+      [node=LabelStatementSyntax]
         [token=IdentifierToken, start=10, end=19, position=1:0:1:9, missing=false, text='somewhere']
         [token=ColonToken, start=19, end=20, position=1:9:1:10, missing=false, text=':']
         [node=WhileStatementSyntax]

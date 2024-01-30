@@ -1,0 +1,12 @@
+a += b + c;
+a -= b * c;
+a *= b / c;
+a /= b % c;
+a = a << 20;
+a = a >> 20;
+a = a << a << 2;
+a = a << b >> c << d >> 2;
+a = -a + +b - ~c + !d ? -e : f ? ++g : h-- ? false : true;
+a = a == b != c >< d <> e > f < g >= h <= i ? j : k; // this contains an error - test recovery feature
+a = ++a++ + --b--;
+a = sizeof(c.ulong) == sizeof(c.ulonglong) ? sizeof(UInt64) : sizeof(UInt32);

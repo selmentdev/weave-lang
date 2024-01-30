@@ -1,0 +1,17 @@
+public extend Foo
+{
+    public function ThisWorks() -> ()
+    {
+    }
+
+    public function MakeError()
+    {
+        var a.b.c = 42;
+    }
+
+    public function ShouldWork()
+    {
+        self.a.b.c = 42;
+    }
+
+    // missing '}'

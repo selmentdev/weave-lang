@@ -1,0 +1,4 @@
+let a : core.system.Windows.DWORD = 0;
+var a.b.c.d : core.system.linux.off_t = 42;
+let recover : UInt32 = 24;
+// TODO: this will be ignored as `a.b` is not a valid identifier; fix this issue

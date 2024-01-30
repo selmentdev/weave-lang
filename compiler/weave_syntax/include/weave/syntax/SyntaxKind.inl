@@ -459,7 +459,7 @@ WEAVE_SYNTAX_NODE(CodeBlockSyntax,                              "code block")
 WEAVE_SYNTAX_NODE(CodeBlockItemSyntax,                          "code block item")
 WEAVE_SYNTAX_NODE(TupleTypeSyntax,                              "tuple type")
 WEAVE_SYNTAX_NODE(TupleTypeElementSyntax,                       "tuple type element")
-WEAVE_SYNTAX_NODE(LabeledStatementSyntax,                       "labeled statement")
+WEAVE_SYNTAX_NODE(LabelStatementSyntax,                         "label statement")
 WEAVE_SYNTAX_NODE(TupleExpressionSyntax,                        "tuple expression")
 WEAVE_SYNTAX_NODE(LabeledExpressionSyntax,                      "labeled expression")
 

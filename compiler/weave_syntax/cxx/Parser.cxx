@@ -280,7 +280,7 @@ namespace weave::syntax
 
             if (label)
             {
-                LabeledStatementSyntax* wrapper = this->_factory->CreateNode<LabeledStatementSyntax>();
+                LabelStatementSyntax* wrapper = this->_factory->CreateNode<LabelStatementSyntax>();
                 wrapper->Name = label->Name;
                 wrapper->Colon = label->Colon;
                 wrapper->Statement = statement;
@@ -309,7 +309,7 @@ namespace weave::syntax
 
             if (label)
             {
-                LabeledStatementSyntax* wrapper = this->_factory->CreateNode<LabeledStatementSyntax>();
+                LabelStatementSyntax* wrapper = this->_factory->CreateNode<LabelStatementSyntax>();
                 wrapper->Name = label->Name;
                 wrapper->Colon = label->Colon;
                 wrapper->Statement = statement;

@@ -459,6 +459,7 @@ namespace weave::syntax
         case SyntaxKind::OpenParenToken:
         case SyntaxKind::OpenBracketToken:
         case SyntaxKind::IdentifierToken:
+        case SyntaxKind::SelfKeyword:
             return true;
 
         default:
