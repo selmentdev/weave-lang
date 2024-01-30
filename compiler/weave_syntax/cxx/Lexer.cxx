@@ -726,7 +726,18 @@ namespace weave::syntax
 
                 if (this->_cursor.First(U':'))
                 {
-                    token.Kind = SyntaxKind::ColonColonToken;
+                    if (this->_cursor.First(U'<'))
+                    {
+                        token.Kind = SyntaxKind::ColonColonLessThanToken;
+                    }
+                    else if (this->_cursor.First(U'['))
+                    {
+                        token.Kind = SyntaxKind::ColonColonOpenBracketToken;
+                    }
+                    else
+                    {
+                        token.Kind = SyntaxKind::ColonColonToken;
+                    }
                 }
                 else
                 {

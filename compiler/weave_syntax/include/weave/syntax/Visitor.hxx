@@ -152,5 +152,11 @@ namespace weave::syntax
         void OnTupleExpressionSyntax(TupleExpressionSyntax* node) override;
         void OnLabeledExpressionSyntax(LabeledExpressionSyntax* node) override;
         void OnTypeAliasDeclarationSyntax(TypeAliasDeclarationSyntax* node) override;
+        void OnTypeGenericParameterSyntax(TypeGenericParameterSyntax* node) override;
+        void OnConstGenericParameterSyntax(ConstGenericParameterSyntax* node) override;
+        void OnGenericParametersSyntax(GenericParametersSyntax* node) override;
+        void OnGenericArgumentSyntax(GenericArgumentSyntax* node) override;
+        void OnGenericArgumentsSyntax(GenericArgumentsSyntax* node) override;
+        void OnGenericNameSyntax(GenericNameSyntax* node) override;
     };
 }

@@ -191,7 +191,17 @@ namespace weave::syntax
 
         ParameterSyntax* ParseParameter();
 
-        
+        GenericParametersSyntax* ParseGenericParameters();
+
+        GenericParametersSyntax* ParseOptionalGenericParameters();
+
+        TypeGenericParameterSyntax* ParseTypeGenericParameter();
+
+        ConstGenericParameterSyntax* ParseConstGenericParameter();
+
+        GenericArgumentSyntax* ParseGenericArgument();
+
+        GenericArgumentsSyntax* ParseGenericArguments();
 
     public:
         AttributeSyntax* ParseAttribute();
@@ -201,6 +211,8 @@ namespace weave::syntax
         UsingDeclarationSyntax* ParseUsingDeclaration();
 
         ReturnTypeClauseSyntax* ParseReturnTypeClause();
+
+        ReturnTypeClauseSyntax* ParseOptionalReturnTypeClause();
 
         ArrowExpressionClauseSyntax* ParseArrowExpressionClause();
 
@@ -229,6 +241,8 @@ namespace weave::syntax
         TupleIndexSyntax* ParseTupleIndex();
 
         SelfExpressionSyntax* ParseSelfExpression();
+
+        UnreachableExpressionSyntax* ParseUnreachableExpression();
 
         ExpressionSyntax* ParseExpression(
             Precedence parentPrecedence = Precedence::Expression);

@@ -164,6 +164,7 @@ namespace weave::syntax
     public:
         SyntaxToken* FunctionKeyword{};
         NameSyntax* Name{};
+        GenericParametersSyntax* GenericParameters{};
         ParameterListSyntax* Parameters{};
         ReturnTypeClauseSyntax* ReturnType{};
         CodeBlockSyntax* Body{};
@@ -198,6 +199,7 @@ namespace weave::syntax
     public:
         SyntaxToken* DelegateKeyword{};
         NameSyntax* Name{};
+        GenericParametersSyntax* GenericParameters{};
         ParameterListSyntax* Parameters{};
         ReturnTypeClauseSyntax* ReturnType{};
 
@@ -233,6 +235,7 @@ namespace weave::syntax
     public:
         SyntaxToken* StructKeyword{};
         NameSyntax* Name{};
+        GenericParametersSyntax* GenericParameters{};
         CodeBlockSyntax* Members{};
 
     public:
@@ -249,6 +252,7 @@ namespace weave::syntax
     public:
         SyntaxToken* ConceptKeyword{};
         NameSyntax* Name{};
+        GenericParametersSyntax* GenericParameters{};
         CodeBlockSyntax* Members{};
 
     public:
@@ -265,6 +269,7 @@ namespace weave::syntax
     public:
         SyntaxToken* ExtendKeyword{};
         NameSyntax* Name{};
+        GenericParametersSyntax* GenericParameters{};
         CodeBlockSyntax* Members{};
 
     public:
@@ -289,7 +294,8 @@ namespace weave::syntax
             : TypeDeclarationSyntax{SyntaxKind::TypeAliasDeclarationSyntax}
         {
         }
-    };;
+    };
+    ;
 
     class ConstantDeclarationSyntax : public MemberDeclarationSyntax
     {
@@ -470,12 +476,39 @@ namespace weave::syntax
 
     class GenericArgumentSyntax : public SyntaxNode
     {
+        WEAVE_DEFINE_SYNTAX_NODE(GenericArgumentSyntax)
+
+    public:
+        ExpressionSyntax* Expression{}; // Either type or value
+        SyntaxToken* TrailingComma{};
+
+    public:
+        explicit constexpr GenericArgumentSyntax()
+            : SyntaxNode{SyntaxKind::GenericArgumentSyntax}
+        {
+        }
     };
 
-    class GenericArgumentListSyntax : public SyntaxNode
+    class GenericArgumentsSyntax : public SyntaxNode
     {
+        WEAVE_DEFINE_SYNTAX_NODE(GenericArgumentsSyntax);
+
+    public:
+        UnexpectedNodesSyntax* BeforeOpenToken{};
+        SyntaxToken* OpenToken{};
+        SyntaxListView<GenericArgumentSyntax> Arguments{};
+        UnexpectedNodesSyntax* BeforeCloseToken{};
+        SyntaxToken* CloseToken{};
+
+    public:
+        explicit constexpr GenericArgumentsSyntax()
+            : SyntaxNode{SyntaxKind::GenericArgumentsSyntax}
+        {
+        }
     };
 
+
+    // Generic parameters
     class GenericParameterSyntax : public SyntaxNode
     {
     public:
@@ -485,9 +518,22 @@ namespace weave::syntax
         }
     };
 
+    // type-generic-parameter
+    //      : `type' name ':' requirements '=' expression
+    //      ;
     class TypeGenericParameterSyntax : public GenericParameterSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypeGenericParameterSyntax);
+
+    public:
+        SyntaxToken* TypeKeyword{};
+        NameSyntax* Name{};
+
+        // TODO Constraints
+
+        SyntaxToken* EqualsToken{};
+        ExpressionSyntax* DefaultExpression{};
+        SyntaxToken* TrailingComma{};
 
     public:
         explicit constexpr TypeGenericParameterSyntax()
@@ -496,25 +542,56 @@ namespace weave::syntax
         }
     };
 
-    class ConstantGenericParameterSyntax : public GenericParameterSyntax
+    // const-generic-parameter
+    //      : 'const' name ':' type '=' expression
+    //      ;
+    class ConstGenericParameterSyntax : public GenericParameterSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(ConstantGenericParameterSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(ConstGenericParameterSyntax);
 
     public:
-        explicit constexpr ConstantGenericParameterSyntax()
-            : GenericParameterSyntax{SyntaxKind::ConstantGenericParameterSyntax}
+        SyntaxToken* ConstKeyword{};
+        NameSyntax* Name{};
+        SyntaxToken* ColonToken{};
+        TypeSyntax* Type{};
+        SyntaxToken* EqualsToken{};
+        ExpressionSyntax* DefaultExpression{};
+        SyntaxToken* TrailingComma{};
+
+    public:
+        explicit constexpr ConstGenericParameterSyntax()
+            : GenericParameterSyntax{SyntaxKind::ConstGenericParameterSyntax}
         {
         }
     };
 
-    class GenericParameterListSyntax : public SyntaxNode
+    // generic-parameter
+    //      : type-generic-parameter
+    //      | const-generic-parameter
+    //      ;
+    //
+    // generic-parameter-list
+    //      : generic-parameter (',' generic-parameter)*
+    //      ;
+    // generic-parameters
+    //      : '::<' generic-parameter-list? '>'
+    //      ;
+    class GenericParametersSyntax final : public SyntaxNode
     {
-        WEAVE_DEFINE_SYNTAX_NODE(GenericParameterListSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(GenericParametersSyntax);
 
     public:
+        UnexpectedNodesSyntax* BeforeOpenToken{};
         SyntaxToken* OpenToken{};
         SyntaxListView<GenericParameterSyntax> Parameters{};
+        UnexpectedNodesSyntax* BeforeCloseToken{};
         SyntaxToken* CloseToken{};
+
+    public:
+        explicit constexpr GenericParametersSyntax()
+            : SyntaxNode{SyntaxKind::GenericParametersSyntax}
+        {
+        }
     };
 
     class ConstraintSyntax : public SyntaxNode
@@ -670,6 +747,20 @@ namespace weave::syntax
     public:
         explicit constexpr SelfExpressionSyntax()
             : ExpressionSyntax{SyntaxKind::SelfExpressionSyntax}
+        {
+        }
+    };
+
+    class UnreachableExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(UnreachableExpressionSyntax);
+
+    public:
+        SyntaxNode* UnreachableKeyword{};
+
+    public:
+        explicit constexpr UnreachableExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::UnreachableExpressionSyntax}
         {
         }
     };
@@ -877,7 +968,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(GenericNameSyntax);
 
     public:
-        GenericArgumentListSyntax* TypeArgumentList{};
+        GenericArgumentsSyntax* GenericArguments{};
 
     public:
         explicit constexpr GenericNameSyntax()
@@ -1212,7 +1303,6 @@ namespace weave::syntax
     public:
         SyntaxToken* InKeyword{};
         SyntaxToken* ColonToken{};
-
     };
 
     // out-contract-clause
@@ -1237,6 +1327,5 @@ namespace weave::syntax
     //      ;
     class WhereClauseSyntax final : public ContractClauseSyntax
     {
-        
     };
 }

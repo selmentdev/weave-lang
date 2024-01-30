@@ -63,6 +63,7 @@ namespace weave::syntax
 
         this->Dispatch(node->StructKeyword);
         this->Dispatch(node->Name);
+        this->Dispatch(node->GenericParameters);
         this->Dispatch(node->Members);
 
         --this->Depth;
@@ -140,6 +141,7 @@ namespace weave::syntax
 
         this->Dispatch(node->FunctionKeyword);
         this->Dispatch(node->Name);
+        this->Dispatch(node->GenericParameters);
         this->Dispatch(node->Parameters);
         this->Dispatch(node->ReturnType);
         this->Dispatch(node->Body);
@@ -626,8 +628,13 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Unexpected);
+
         this->Dispatch(node->DelegateKeyword);
         this->Dispatch(node->Name);
+        this->Dispatch(node->GenericParameters);
         this->Dispatch(node->Parameters);
         this->Dispatch(node->ReturnType);
 
@@ -898,6 +905,95 @@ namespace weave::syntax
         this->Dispatch(node->Name);
         this->Dispatch(node->EqualsToken);
         this->Dispatch(node->Type);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnTypeGenericParameterSyntax(TypeGenericParameterSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->TypeKeyword);
+        this->Dispatch(node->Name);
+
+        // TODO Constraints
+
+        this->Dispatch(node->EqualsToken);
+        this->Dispatch(node->DefaultExpression);
+        this->Dispatch(node->TrailingComma);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnConstGenericParameterSyntax(ConstGenericParameterSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->ConstKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->ColonToken);
+        this->Dispatch(node->Type);
+        this->Dispatch(node->EqualsToken);
+        this->Dispatch(node->DefaultExpression);
+        this->Dispatch(node->TrailingComma);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnGenericParametersSyntax(GenericParametersSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->BeforeOpenToken);
+        this->Dispatch(node->OpenToken);
+        this->Dispatch(node->Parameters.GetNode());
+        this->Dispatch(node->BeforeCloseToken);
+        this->Dispatch(node->CloseToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnGenericArgumentSyntax(GenericArgumentSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->TrailingComma);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnGenericArgumentsSyntax(GenericArgumentsSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->BeforeOpenToken);
+        this->Dispatch(node->OpenToken);
+        this->Dispatch(node->Arguments.GetNode());
+        this->Dispatch(node->BeforeCloseToken);
+        this->Dispatch(node->CloseToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnGenericNameSyntax(GenericNameSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Identifier);
+        this->Dispatch(node->GenericArguments);
 
         --this->Depth;
     }

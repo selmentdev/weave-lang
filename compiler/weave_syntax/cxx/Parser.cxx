@@ -407,12 +407,12 @@ namespace weave::syntax
         result->Modifiers = modifiers;
         result->FunctionKeyword = this->Match(SyntaxKind::FunctionKeyword);
         result->Name = this->ParseIdentifierName();
+
+        result->GenericParameters = this->ParseOptionalGenericParameters();
+
         result->Parameters = this->ParseParameterList();
 
-        if (this->Current()->Is(SyntaxKind::MinusGreaterThanToken))
-        {
-            result->ReturnType = this->ParseReturnTypeClause();
-        }
+        result->ReturnType = this->ParseOptionalReturnTypeClause();
 
         if (this->Current()->Is(SyntaxKind::OpenBraceToken))
         {
@@ -430,18 +430,17 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        SyntaxToken* tokenDelegate = this->Match(SyntaxKind::DelegateKeyword);
-        NameSyntax* name = this->ParseSimpleName();
-        ParameterListSyntax* parameters = this->ParseParameterList();
-        ReturnTypeClauseSyntax* returnType = this->ParseReturnTypeClause();
-
         DelegateDeclarationSyntax* result = this->_factory->CreateNode<DelegateDeclarationSyntax>();
         result->Attributes = attributes;
         result->Modifiers = modifiers;
-        result->DelegateKeyword = tokenDelegate;
-        result->Name = name;
-        result->Parameters = parameters;
-        result->ReturnType = returnType;
+        result->DelegateKeyword = this->Match(SyntaxKind::DelegateKeyword);
+        result->Name = this->ParseIdentifierName();
+
+        result->GenericParameters = this->ParseOptionalGenericParameters();
+
+        result->Parameters = this->ParseParameterList();
+        result->ReturnType = this->ParseOptionalReturnTypeClause();
+
         return result;
     }
 
@@ -462,18 +461,15 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        SyntaxToken* tokenConcept = this->Match(SyntaxKind::ConceptKeyword);
-        NameSyntax* name = this->ParseSimpleName();
-        CodeBlockSyntax* members = this->ParseCodeBlock();
-
         std::vector<ConstraintSyntax*> constraints{};
 
         ConceptDeclarationSyntax* result = this->_factory->CreateNode<ConceptDeclarationSyntax>();
         result->Attributes = attributes;
         result->Modifiers = modifiers;
-        result->ConceptKeyword = tokenConcept;
-        result->Name = name;
-        result->Members = members;
+        result->ConceptKeyword = this->Match(SyntaxKind::ConceptKeyword);
+        result->Name = this->ParseIdentifierName();
+        result->GenericParameters = this->ParseOptionalGenericParameters();
+        result->Members = this->ParseCodeBlock();
         return result;
     }
 
@@ -481,18 +477,15 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        SyntaxToken* tokenExtend = this->Match(SyntaxKind::ExtendKeyword);
-        NameSyntax* name = this->ParseSimpleName();
-        CodeBlockSyntax* members = this->ParseCodeBlock();
-
         std::vector<ConstraintSyntax*> constraints{};
 
         ExtendDeclarationSyntax* result = this->_factory->CreateNode<ExtendDeclarationSyntax>();
         result->Attributes = attributes;
         result->Modifiers = modifiers;
-        result->ExtendKeyword = tokenExtend;
-        result->Name = name;
-        result->Members = members;
+        result->ExtendKeyword = this->Match(SyntaxKind::ExtendKeyword);
+        result->Name = this->ParseIdentifierName();
+        result->GenericParameters = this->ParseOptionalGenericParameters();
+        result->Members = this->ParseCodeBlock();
         return result;
     }
 
@@ -500,25 +493,20 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        SyntaxToken* tokenStruct = this->Match(SyntaxKind::StructKeyword);
-        NameSyntax* name = this->ParseSimpleName();
-        CodeBlockSyntax* members = this->ParseCodeBlock();
-
-        std::vector<ConstraintSyntax*> constraints{};
-
         StructDeclarationSyntax* result = this->_factory->CreateNode<StructDeclarationSyntax>();
         result->Attributes = attributes;
         result->Modifiers = modifiers;
-        result->StructKeyword = tokenStruct;
-        result->Name = name;
-        result->Members = members;
+        result->StructKeyword = this->Match(SyntaxKind::StructKeyword);
+        result->Name = this->ParseIdentifierName();
+        result->GenericParameters = this->ParseOptionalGenericParameters();
+        result->Members = this->ParseCodeBlock();
         return result;
     }
 
     TypeAliasDeclarationSyntax* Parser::ParseTypeAliasDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
     {
         SyntaxToken* tokenType = this->Match(SyntaxKind::TypeKeyword);
-        NameSyntax* name = this->ParseSimpleName();
+        NameSyntax* name = this->ParseIdentifierName();
         SyntaxToken* tokenEquals = this->Match(SyntaxKind::EqualsToken);
         TypeSyntax* type = this->ParseType();
 
@@ -691,6 +679,152 @@ namespace weave::syntax
         return nullptr;
     }
 
+    GenericParametersSyntax* Parser::ParseGenericParameters()
+    {
+        GenericParametersSyntax* result = this->_factory->CreateNode<GenericParametersSyntax>();
+
+        this->MatchUntil(result->OpenToken, result->BeforeOpenToken, SyntaxKind::ColonColonOpenBracketToken);
+
+        std::vector<GenericParameterSyntax*> parameters{};
+
+        while (SyntaxToken* current = this->Current())
+        {
+            if (current->Kind == SyntaxKind::LessThanToken)
+            {
+                break;
+            }
+
+            if (current->Kind == SyntaxKind::EndOfFileToken)
+            {
+                break;
+            }
+
+            if (current->Kind == SyntaxKind::TypeKeyword)
+            {
+                if (TypeGenericParameterSyntax* parameter = this->ParseTypeGenericParameter())
+                {
+                    parameters.push_back(parameter);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else if (current->Kind == SyntaxKind::ConstKeyword)
+            {
+                if (ConstGenericParameterSyntax* parameter = this->ParseConstGenericParameter())
+                {
+                    parameters.push_back(parameter);
+                }
+
+                break;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        result->Parameters = SyntaxListView<GenericParameterSyntax>{this->_factory->CreateList(parameters)};
+
+        this->MatchUntil(result->CloseToken, result->BeforeCloseToken, SyntaxKind::CloseBracketToken);
+        return result;
+    }
+
+    GenericParametersSyntax* Parser::ParseOptionalGenericParameters()
+    {
+        if (this->Current()->Kind == SyntaxKind::ColonColonOpenBracketToken)
+        {
+            return this->ParseGenericParameters();
+        }
+
+        return nullptr;
+    }
+
+    TypeGenericParameterSyntax* Parser::ParseTypeGenericParameter()
+    {
+        TypeGenericParameterSyntax* result = this->_factory->CreateNode<TypeGenericParameterSyntax>();
+        result->TypeKeyword = this->Match(SyntaxKind::TypeKeyword);
+        result->Name = this->ParseIdentifierName();
+
+        result->EqualsToken = this->TryMatch(SyntaxKind::EqualsToken);
+
+        if (result->EqualsToken)
+        {
+            result->DefaultExpression = this->ParseQualifiedName();
+        }
+
+        result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+        return result;
+    }
+
+    ConstGenericParameterSyntax* Parser::ParseConstGenericParameter()
+    {
+        ConstGenericParameterSyntax* result = this->_factory->CreateNode<ConstGenericParameterSyntax>();
+        result->ConstKeyword = this->Match(SyntaxKind::ConstKeyword);
+        result->Name = this->ParseIdentifierName();
+
+        result->ColonToken = this->TryMatch(SyntaxKind::ColonToken);
+
+        if (result->ColonToken)
+        {
+            result->Type = this->ParseQualifiedName();
+        }
+
+        result->EqualsToken = this->TryMatch(SyntaxKind::EqualsToken);
+
+        if (result->EqualsToken)
+        {
+            result->DefaultExpression = this->ParseTerm(Precedence::Expression);
+        }
+
+        result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+        return result;
+    }
+
+    GenericArgumentSyntax* Parser::ParseGenericArgument()
+    {
+        GenericArgumentSyntax* result = this->_factory->CreateNode<GenericArgumentSyntax>();
+        result->Expression = this->ParseExpression();
+        result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+        return result;
+    }
+
+    GenericArgumentsSyntax* Parser::ParseGenericArguments()
+    {
+        GenericArgumentsSyntax* result = this->_factory->CreateNode<GenericArgumentsSyntax>();
+        this->MatchUntil(result->OpenToken, result->BeforeOpenToken, SyntaxKind::ColonColonOpenBracketToken);
+
+        std::vector<GenericArgumentSyntax*> arguments{};
+
+        while (SyntaxToken* current = this->Current())
+        {
+            if (current->Kind == SyntaxKind::CloseBracketToken)
+            {
+                break;
+            }
+
+            if (current->Kind == SyntaxKind::EndOfFileToken)
+            {
+                break;
+            }
+
+            if (GenericArgumentSyntax* argument = this->ParseGenericArgument())
+            {
+                arguments.push_back(argument);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        result->Arguments = SyntaxListView<GenericArgumentSyntax>{this->_factory->CreateList(arguments)};
+
+        this->MatchUntil(result->CloseToken, result->BeforeCloseToken, SyntaxKind::CloseBracketToken);
+        return result;
+    }
+
     // *** --------------------------------------------------------------------------------------------------------- ***
 
     AttributeSyntax* Parser::ParseAttribute()
@@ -749,6 +883,16 @@ namespace weave::syntax
         result->ArrowToken = this->Match(SyntaxKind::MinusGreaterThanToken);
         result->Type = this->ParseType();
         return result;
+    }
+
+    ReturnTypeClauseSyntax* Parser::ParseOptionalReturnTypeClause()
+    {
+        if (this->Current()->Is(SyntaxKind::MinusGreaterThanToken))
+        {
+            return this->ParseReturnTypeClause();
+        }
+
+        return nullptr;
     }
 
     ArrowExpressionClauseSyntax* Parser::ParseArrowExpressionClause()
@@ -937,6 +1081,17 @@ namespace weave::syntax
             return this->ParseTupleIndex();
         }
 
+        if (this->Current()->Kind == SyntaxKind::IdentifierToken)
+        {
+            if (this->Peek(1)->Kind == SyntaxKind::ColonColonOpenBracketToken)
+            {
+                GenericNameSyntax* result = this->_factory->CreateNode<GenericNameSyntax>();
+                result->Identifier = this->Match(SyntaxKind::IdentifierToken);
+                result->GenericArguments = this->ParseGenericArguments();
+                return result;
+            }
+        }
+
         return this->ParseIdentifierName();
     }
 
@@ -961,6 +1116,13 @@ namespace weave::syntax
         SyntaxToken* tokenSelf = this->Match(SyntaxKind::SelfKeyword);
         SelfExpressionSyntax* result = this->_factory->CreateNode<SelfExpressionSyntax>();
         result->SelfKeyword = tokenSelf;
+        return result;
+    }
+
+    UnreachableExpressionSyntax* Parser::ParseUnreachableExpression()
+    {
+        UnreachableExpressionSyntax* result = this->_factory->CreateNode<UnreachableExpressionSyntax>();
+        result->UnreachableKeyword = this->Match(SyntaxKind::UnreachableKeyword);
         return result;
     }
 
@@ -1222,10 +1384,13 @@ namespace weave::syntax
             return this->ParseCharacterLiteral();
 
         case SyntaxKind::IdentifierToken:
-            return this->ParseIdentifierName();
+            return this->ParseSimpleName();
 
         case SyntaxKind::SelfKeyword:
             return this->ParseSelfExpression();
+
+        case SyntaxKind::UnreachableKeyword:
+            return this->ParseUnreachableExpression();
 
         default:
             ExpressionSyntax* missing = this->CreateMissingIdentifierName();

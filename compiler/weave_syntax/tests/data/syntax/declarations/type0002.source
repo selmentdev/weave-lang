@@ -1,0 +1,18 @@
+public struct Pair::[type T1, type T2]
+{
+    public type FirstType = T1;
+    public type SecondType = T2;
+
+    public var First: FirstType;
+    public var Second: SecondType;
+}
+
+public extend Pair::[type T1, type T2]
+{
+    public function Empty()
+    {
+        return Pair{};
+    }
+
+    public function New(first: T1, second: T2) -> Pair => unreachable;
+}

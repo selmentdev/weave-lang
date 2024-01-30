@@ -1,0 +1,29 @@
+public function SwapResult::[
+    type LeftT,
+    type RightT
+](
+    left: LeftT,
+    right: RightT
+) -> (RightT, LeftT)
+{
+    return (right, left);
+}
+
+public function SwapResult::[type T](
+    left: T,
+    right: T
+) -> (T, T)
+{
+    return (right, left);
+}
+
+public function Swap::[type T]
+(
+    ref left: T,
+    ref right: T
+) -> ()
+{
+    let temp = left;
+    left = right;
+    right = temp;
+}

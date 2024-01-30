@@ -451,7 +451,7 @@ namespace weave::syntax
         case SyntaxKind::AlignOfKeyword:
         case SyntaxKind::NameOfKeyword:
         case SyntaxKind::AddressOfKeyword:
-        //case SyntaxKind::DefaultKeyword:
+        // case SyntaxKind::DefaultKeyword:
         case SyntaxKind::FalseKeyword:
         case SyntaxKind::TrueKeyword:
         case SyntaxKind::IntegerLiteralToken:
@@ -462,6 +462,7 @@ namespace weave::syntax
         case SyntaxKind::OpenBracketToken:
         case SyntaxKind::IdentifierToken:
         case SyntaxKind::SelfKeyword:
+        case SyntaxKind::UnreachableKeyword:
             return true;
 
         default:
