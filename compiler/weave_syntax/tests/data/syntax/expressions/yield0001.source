@@ -1,0 +1,27 @@
+// eval expressions with yield
+function YieldInExpression() -> Int32
+{
+    let x : Int32 = eval { yield 42;   }
+    let y : Int32 = eval { yield 2137; }
+
+    return x + y;
+}
+
+// generator with yield return
+function YieldInGenerator(max: Int32) -> Generator::[Int32]
+{
+    var i : Int32 = 0;
+
+    while i < max
+    {
+        yield return i;
+
+        ++i;
+    }
+}
+
+// generator with yield break
+function EmptyGenerator() -> Generator::[Int32]
+{
+    yield break;
+}

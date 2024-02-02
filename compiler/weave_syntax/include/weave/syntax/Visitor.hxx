@@ -121,7 +121,6 @@ namespace weave::syntax
 
         void OnBlockStatementSyntax(BlockStatementSyntax* node) override;
         void OnExpressionStatementSyntax(ExpressionStatementSyntax* node) override;
-        void OnIfStatementSyntax(IfStatementSyntax* node) override;
         void OnReturnStatementSyntax(ReturnStatementSyntax* node) override;
         void OnElseClauseSyntax(ElseClauseSyntax* node) override;
         void OnWhileStatementSyntax(WhileStatementSyntax* node) override;
@@ -158,5 +157,11 @@ namespace weave::syntax
         void OnGenericArgumentSyntax(GenericArgumentSyntax* node) override;
         void OnGenericArgumentsSyntax(GenericArgumentsSyntax* node) override;
         void OnGenericNameSyntax(GenericNameSyntax* node) override;
+        void OnEvalExpressionSyntax(EvalExpressionSyntax* node) override;
+        void OnYieldStatementSyntax(YieldStatementSyntax* node) override;
+        void OnIfExpressionSyntax(IfExpressionSyntax* node) override;
+        void OnMatchCaseClauseSyntax(MatchCaseClauseSyntax* node) override;
+        void OnMatchDefaultClauseSyntax(MatchDefaultClauseSyntax* node) override;
+        void OnMatchExpressionSyntax(MatchExpressionSyntax* node) override;
     };
 }

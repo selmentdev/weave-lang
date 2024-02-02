@@ -1123,20 +1123,20 @@ namespace weave::syntax
         }
     };
 
-    class IfStatementSyntax final : public StatementSyntax
+    class IfExpressionSyntax final : public ExpressionSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(IfStatementSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(IfExpressionSyntax);
 
     public:
         SyntaxToken* IfKeyword{};
         SyntaxListView<AttributeListSyntax> ConditionAttributes{};
         ExpressionSyntax* Condition{};
-        StatementSyntax* ThenStatement{};
+        SyntaxNode* Body{};
         ElseClauseSyntax* ElseClause{};
 
     public:
-        explicit constexpr IfStatementSyntax()
-            : StatementSyntax{SyntaxKind::IfStatementSyntax}
+        explicit constexpr IfExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::IfExpressionSyntax}
         {
         }
     };
@@ -1147,7 +1147,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ElseKeyword{};
-        StatementSyntax* Statement{};
+        SyntaxNode* Body{};
 
     public:
         explicit constexpr ElseClauseSyntax()
@@ -1164,7 +1164,7 @@ namespace weave::syntax
         SyntaxToken* WhileKeyword{};
         SyntaxListView<AttributeListSyntax> ConditionAttributes{};
         ExpressionSyntax* Condition{};
-        StatementSyntax* Statement{};
+        SyntaxNode* Body{};
 
     public:
         explicit constexpr WhileStatementSyntax()
@@ -1327,5 +1327,102 @@ namespace weave::syntax
     //      ;
     class WhereClauseSyntax final : public ContractClauseSyntax
     {
+    };
+
+    class YieldStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(YieldStatementSyntax);
+
+    public:
+        SyntaxToken* YieldKeyword{};
+        SyntaxToken* KindKeyword{};
+        ExpressionSyntax* Expression{};
+
+    public:
+        explicit constexpr YieldStatementSyntax()
+            : StatementSyntax{SyntaxKind::YieldStatementSyntax}
+        {
+        }
+    };
+
+    class EvalExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(EvalExpressionSyntax);
+
+    public:
+        SyntaxToken* EvalKeyword{};
+        CodeBlockSyntax* Body{};
+
+    public:
+        explicit constexpr EvalExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::EvalExpressionSyntax}
+        {
+        }
+    };
+
+    class MatchClauseSyntax : public SyntaxNode
+    {
+    public:
+        explicit constexpr MatchClauseSyntax(SyntaxKind kind)
+            : SyntaxNode{kind}
+        {
+        }
+    };
+
+    class MatchExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(MatchExpressionSyntax);
+
+    public:
+        SyntaxToken* MatchKeyword{};
+        SyntaxListView<AttributeListSyntax> ConditionAttributes{};
+        ExpressionSyntax* Condition{};
+
+        UnexpectedNodesSyntax* BeforeLeftBrace{};
+        SyntaxToken* LeftBrace{};
+        SyntaxListView<MatchClauseSyntax> Elements{};
+        UnexpectedNodesSyntax* BeforeRightBrace{};
+        SyntaxToken* RightBrace{};
+
+    public:
+        explicit constexpr MatchExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::MatchExpressionSyntax}
+        {
+        }
+    };
+
+    class MatchCaseClauseSyntax final : public MatchClauseSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(MatchCaseClauseSyntax);
+
+    public:
+        SyntaxToken* CaseKeyword{};
+        NameSyntax* Pattern{};
+        SyntaxToken* ColonToken{};
+        StatementSyntax* Body{};
+        SyntaxToken* TrailingSemicolon{};
+
+    public:
+        explicit constexpr MatchCaseClauseSyntax()
+            : MatchClauseSyntax{SyntaxKind::MatchCaseClauseSyntax}
+        {
+        }
+    };
+
+    class MatchDefaultClauseSyntax final : public MatchClauseSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(MatchDefaultClauseSyntax);
+
+    public:
+        SyntaxToken* DefaultKeyword{};
+        SyntaxToken* ColonToken{};
+        StatementSyntax* Body{};
+        SyntaxToken* TrailingSemicolon{};
+
+    public:
+        explicit constexpr MatchDefaultClauseSyntax()
+            : MatchClauseSyntax{SyntaxKind::MatchDefaultClauseSyntax}
+        {
+        }
     };
 }

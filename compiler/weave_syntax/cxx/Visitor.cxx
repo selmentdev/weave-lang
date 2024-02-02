@@ -453,25 +453,6 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnIfStatementSyntax(IfStatementSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->Attributes.GetNode());
-        this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
-
-        this->Dispatch(node->IfKeyword);
-        this->Dispatch(node->ConditionAttributes.GetNode());
-        this->Dispatch(node->Condition);
-        this->Dispatch(node->ThenStatement);
-        this->Dispatch(node->ElseClause);
-
-        --this->Depth;
-    }
-
     void SyntaxWalker::OnReturnStatementSyntax(ReturnStatementSyntax* node)
     {
         this->OnDefault(node);
@@ -495,7 +476,7 @@ namespace weave::syntax
         ++this->Depth;
 
         this->Dispatch(node->ElseKeyword);
-        this->Dispatch(node->Statement);
+        this->Dispatch(node->Body);
 
         --this->Depth;
     }
@@ -513,7 +494,7 @@ namespace weave::syntax
         this->Dispatch(node->WhileKeyword);
         this->Dispatch(node->ConditionAttributes.GetNode());
         this->Dispatch(node->Condition);
-        this->Dispatch(node->Statement);
+        this->Dispatch(node->Body);
 
         --this->Depth;
     }
@@ -998,4 +979,91 @@ namespace weave::syntax
         --this->Depth;
     }
 
+    void SyntaxWalker::OnEvalExpressionSyntax(EvalExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->EvalKeyword);
+        this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnYieldStatementSyntax(YieldStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->YieldKeyword);
+        this->Dispatch(node->KindKeyword);
+        this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnIfExpressionSyntax(IfExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->IfKeyword);
+        this->Dispatch(node->ConditionAttributes.GetNode());
+        this->Dispatch(node->Condition);
+        this->Dispatch(node->Body);
+        this->Dispatch(node->ElseClause);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnMatchCaseClauseSyntax(MatchCaseClauseSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->CaseKeyword);
+        this->Dispatch(node->Pattern);
+        this->Dispatch(node->ColonToken);
+        this->Dispatch(node->Body);
+        this->Dispatch(node->TrailingSemicolon);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnMatchDefaultClauseSyntax(MatchDefaultClauseSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->DefaultKeyword);
+        this->Dispatch(node->ColonToken);
+        this->Dispatch(node->Body);
+        this->Dispatch(node->TrailingSemicolon);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnMatchExpressionSyntax(MatchExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->MatchKeyword);
+        this->Dispatch(node->ConditionAttributes.GetNode());
+        this->Dispatch(node->Condition);
+
+        this->Dispatch(node->BeforeLeftBrace);
+        this->Dispatch(node->LeftBrace);
+        this->Dispatch(node->Elements.GetNode());
+        this->Dispatch(node->BeforeRightBrace);
+        this->Dispatch(node->RightBrace);
+
+        --this->Depth;
+    }
 }

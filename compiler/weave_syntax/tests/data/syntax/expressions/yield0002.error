@@ -1,0 +1,15 @@
+error: Expected ';'
+        --> <source>:23:9
+         |
+      23 |         case 1:
+         |         ^^^^
+error: Expected ';'
+        --> <source>:27:9
+         |
+      27 |         default:
+         |         ^^^^^^^
+error: Expected ';'
+        --> <source>:31:5
+         |
+      31 |     };
+         |     ^

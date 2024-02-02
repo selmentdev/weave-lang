@@ -389,8 +389,8 @@ namespace weave::syntax
         case SyntaxKind::VarKeyword:
         case SyntaxKind::LetKeyword:
         case SyntaxKind::GotoKeyword:
-        case SyntaxKind::IfKeyword:
-        case SyntaxKind::ElseKeyword:
+        //case SyntaxKind::IfKeyword:
+        //case SyntaxKind::ElseKeyword:
         case SyntaxKind::TryKeyword:
             return true;
 
@@ -406,8 +406,6 @@ namespace weave::syntax
         switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::ReturnKeyword:
-        case SyntaxKind::IfKeyword:
-        case SyntaxKind::ElseKeyword:
         case SyntaxKind::BreakKeyword:
         case SyntaxKind::ContinueKeyword:
         case SyntaxKind::WhileKeyword:
@@ -463,6 +461,9 @@ namespace weave::syntax
         case SyntaxKind::IdentifierToken:
         case SyntaxKind::SelfKeyword:
         case SyntaxKind::UnreachableKeyword:
+        case SyntaxKind::EvalKeyword:
+        case SyntaxKind::IfKeyword:
+        case SyntaxKind::MatchKeyword:
             return true;
 
         default:

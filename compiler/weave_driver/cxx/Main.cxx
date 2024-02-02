@@ -519,13 +519,6 @@ int main(int argc, const char* argv[])
                     SyntaxWalker::OnAssignmentExpressionSyntax(node);
                 }
 
-                void OnIfStatementSyntax(syntax::IfStatementSyntax* node) override
-                {
-                    Indent();
-                    fmt::println("{}", __func__);
-                    SyntaxWalker::OnIfStatementSyntax(node);
-                }
-
                 void OnElseClauseSyntax(syntax::ElseClauseSyntax* node) override
                 {
                     Indent();

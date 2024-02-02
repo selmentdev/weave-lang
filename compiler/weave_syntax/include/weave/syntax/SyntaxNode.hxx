@@ -143,6 +143,7 @@ namespace weave::syntax
     class MemberDeclarationSyntax;
     class StatementSyntax;
     class TypeSyntax;
+    class MatchClauseSyntax;
 
 #define WEAVE_SYNTAX_NODE(name, spelling) class name;
 #include "weave/syntax/SyntaxKind.inl"

@@ -3,13 +3,10 @@ error: Expected '{'
          |
        7 |     if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
          |        ^^^
-error: Expected 'if'
+error: Unexpected tokens
         --> <source>:9:7
          |
        9 |     } else {
-         |       ^^^^
-error: Expected '}'
-        --> <source>:15:1
-         |
-      15 | 
-         | ^
+         |       ^^^^^^
+      10 |         /* before assignment */ trivia = Trivia.None /* after assignment */
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

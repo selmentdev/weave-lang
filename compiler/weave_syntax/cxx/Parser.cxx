@@ -569,12 +569,6 @@ namespace weave::syntax
         case SyntaxKind::ReturnKeyword:
             return this->ParseReturnStatement(attributes);
 
-        case SyntaxKind::IfKeyword:
-            return this->ParseIfStatement(attributes);
-
-        case SyntaxKind::ElseKeyword:
-            return this->ParseMisplacedElseClause(attributes);
-
         case SyntaxKind::OpenBraceToken:
             return this->ParseBlockStatement(attributes);
 
@@ -592,6 +586,9 @@ namespace weave::syntax
 
         case SyntaxKind::GotoKeyword:
             return this->ParseGotoStatement(attributes);
+
+        case SyntaxKind::YieldKeyword:
+            return this->ParseYieldStatement(attributes);
 
         default:
             break;
@@ -616,6 +613,29 @@ namespace weave::syntax
     {
         EmptyStatementSyntax* result = this->_factory->CreateNode<EmptyStatementSyntax>();
         result->Attributes = attributes;
+        return result;
+    }
+
+    YieldStatementSyntax* Parser::ParseYieldStatement(SyntaxListView<AttributeListSyntax> attributes)
+    {
+        YieldStatementSyntax* result = this->_factory->CreateNode<YieldStatementSyntax>();
+        result->Attributes = attributes;
+        result->YieldKeyword = this->Match(SyntaxKind::YieldKeyword);
+
+        if (this->Current()->Kind == SyntaxKind::ReturnKeyword)
+        {
+            result->KindKeyword = this->Match(SyntaxKind::ReturnKeyword);
+            result->Expression = this->ParseExpression();
+        }
+        else if (this->Current()->Kind == SyntaxKind::BreakKeyword)
+        {
+            result->KindKeyword = this->Match(SyntaxKind::BreakKeyword);
+        }
+        else
+        {
+            result->Expression = this->ParseExpression();
+        }
+
         return result;
     }
 
@@ -1126,6 +1146,14 @@ namespace weave::syntax
         return result;
     }
 
+    EvalExpressionSyntax* Parser::ParseEvalExpression()
+    {
+        EvalExpressionSyntax* result = this->_factory->CreateNode<EvalExpressionSyntax>();
+        result->EvalKeyword = this->Match(SyntaxKind::EvalKeyword);
+        result->Body = this->ParseCodeBlock();
+        return result;
+    }
+
     ExpressionSyntax* Parser::ParseExpression(Precedence parentPrecedence)
     {
         if (SyntaxFacts::IsInvalidSubexpression(this->Current()->Kind))
@@ -1392,6 +1420,15 @@ namespace weave::syntax
         case SyntaxKind::UnreachableKeyword:
             return this->ParseUnreachableExpression();
 
+        case SyntaxKind::EvalKeyword:
+            return this->ParseEvalExpression();
+
+        case SyntaxKind::IfKeyword:
+            return this->ParseIfExpression();
+
+        case SyntaxKind::MatchKeyword:
+            return this->ParseMatchExpression();
+
         default:
             ExpressionSyntax* missing = this->CreateMissingIdentifierName();
 
@@ -1572,39 +1609,27 @@ namespace weave::syntax
         return result;
     }
 
-    StatementSyntax* Parser::ParseIfStatement(
-        SyntaxListView<AttributeListSyntax> attributes)
+    IfExpressionSyntax* Parser::ParseIfExpression()
     {
-        SyntaxToken* tokenIf = this->Match(SyntaxKind::IfKeyword);
-        SyntaxListView<AttributeListSyntax> conditionAttributes = this->ParseAttributesList();
-        ExpressionSyntax* condition = this->ParseExpression();
-        StatementSyntax* thenStatement = this->ParseBlockStatement({});
-        ElseClauseSyntax* elseClause = this->ParseOptionalElseClause();
+        IfExpressionSyntax* result = this->_factory->CreateNode<IfExpressionSyntax>();
+        result->IfKeyword = this->Match(SyntaxKind::IfKeyword);
+        result->ConditionAttributes = this->ParseAttributesList();
+        result->Condition = this->ParseExpression();
+        result->Body = this->ParseCodeBlock();
+        result->ElseClause = this->ParseOptionalElseClause();
 
-        IfStatementSyntax* result = this->_factory->CreateNode<IfStatementSyntax>();
-        result->Attributes = attributes;
-        result->IfKeyword = tokenIf;
-        result->ConditionAttributes = conditionAttributes;
-        result->Condition = condition;
-        result->ThenStatement = thenStatement;
-        result->ElseClause = elseClause;
         return result;
     }
 
-    StatementSyntax* Parser::ParseWhileStatement(
+    WhileStatementSyntax* Parser::ParseWhileStatement(
         SyntaxListView<AttributeListSyntax> attributes)
     {
-        SyntaxToken* tokenWhile = this->Match(SyntaxKind::WhileKeyword);
-        SyntaxListView<AttributeListSyntax> conditionAttributes = this->ParseAttributesList();
-        ExpressionSyntax* condition = this->ParseExpression();
-        BlockStatementSyntax* statement = this->ParseBlockStatement({});
-
         WhileStatementSyntax* result = this->_factory->CreateNode<WhileStatementSyntax>();
         result->Attributes = attributes;
-        result->WhileKeyword = tokenWhile;
-        result->ConditionAttributes = conditionAttributes;
-        result->Condition = condition;
-        result->Statement = statement;
+        result->WhileKeyword = this->Match(SyntaxKind::WhileKeyword);
+        result->ConditionAttributes = this->ParseAttributesList();
+        result->Condition = this->ParseExpression();
+        result->Body = this->ParseCodeBlock();
         return result;
     }
 
@@ -1645,39 +1670,15 @@ namespace weave::syntax
         return result;
     }
 
-    StatementSyntax* Parser::ParseMisplacedElseClause(
-        SyntaxListView<AttributeListSyntax> attributes)
-    {
-        WEAVE_ASSERT(this->Current()->Kind == SyntaxKind::ElseKeyword);
-
-        SyntaxToken* tokenIf = this->Match(SyntaxKind::IfKeyword);
-        ExpressionSyntax* condition = this->ParseExpression();
-        StatementSyntax* thenStatement = this->ParseExpressionStatement({});
-        ElseClauseSyntax* elseClause = this->ParseOptionalElseClause();
-
-        IfStatementSyntax* result = this->_factory->CreateNode<IfStatementSyntax>();
-        result->Attributes = attributes;
-        result->IfKeyword = tokenIf;
-        result->Condition = condition;
-        result->ThenStatement = thenStatement;
-        result->ElseClause = elseClause;
-        return result;
-    }
-
     ElseClauseSyntax* Parser::ParseOptionalElseClause()
     {
-        if (this->Current()->Is(SyntaxKind::ElseKeyword))
+        if (SyntaxToken* tokenElse = this->TryMatch(SyntaxKind::ElseKeyword))
         {
-            SyntaxToken* tokenElse = this->Next();
-
-            StatementSyntax* elseStatement =
-                this->Current()->Is(SyntaxKind::IfKeyword)
-                ? this->ParseIfStatement({})
-                : this->ParseBlockStatement({});
-
             ElseClauseSyntax* result = this->_factory->CreateNode<ElseClauseSyntax>();
             result->ElseKeyword = tokenElse;
-            result->Statement = elseStatement;
+            result->Body = (this->Current()->Kind == SyntaxKind::IfKeyword)
+                ? static_cast<SyntaxNode*>(this->ParseIfExpression())
+                : static_cast<SyntaxNode*>(this->ParseCodeBlock());
             return result;
         }
 
@@ -1904,5 +1905,80 @@ namespace weave::syntax
         }
 
         return std::nullopt;
+    }
+
+    MatchExpressionSyntax* Parser::ParseMatchExpression()
+    {
+        MatchExpressionSyntax* result = this->_factory->CreateNode<MatchExpressionSyntax>();
+        result->MatchKeyword = this->Match(SyntaxKind::MatchKeyword);
+        result->ConditionAttributes = this->ParseAttributesList();
+        result->Condition = this->ParseExpression();
+        this->MatchUntil(result->LeftBrace, result->BeforeLeftBrace, SyntaxKind::OpenBraceToken);
+
+        {
+            std::vector<MatchClauseSyntax*> items{};
+
+            while (SyntaxToken* current = this->Current())
+            {
+                if (current->Kind == SyntaxKind::CloseBraceToken)
+                {
+                    break;
+                }
+                else if (current->Kind == SyntaxKind::EndOfFileToken)
+                {
+                    break;
+                }
+
+                if (MatchClauseSyntax* item = this->ParseMatchClause())
+                {
+                    items.push_back(item);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            result->Elements = SyntaxListView<MatchClauseSyntax>{this->_factory->CreateList(items)};
+        }
+
+        this->MatchUntil(result->RightBrace, result->BeforeRightBrace, SyntaxKind::CloseBraceToken);
+        return result;
+    }
+
+    MatchClauseSyntax* Parser::ParseMatchClause()
+    {
+        if (this->Current()->Kind == SyntaxKind::CaseKeyword)
+        {
+            return this->ParseMatchCaseClause();
+        }
+
+        if (this->Current()->Kind == SyntaxKind::DefaultKeyword)
+        {
+            return this->ParseMatchDefaultClause();
+        }
+
+        return nullptr;
+    }
+
+    MatchCaseClauseSyntax* Parser::ParseMatchCaseClause()
+    {
+        MatchCaseClauseSyntax* result = this->_factory->CreateNode<MatchCaseClauseSyntax>();
+        result->CaseKeyword = this->Match(SyntaxKind::CaseKeyword);
+        result->Pattern = this->ParseQualifiedName();
+        result->ColonToken = this->Match(SyntaxKind::ColonToken);
+        result->Body = this->ParseStatement({});
+        result->TrailingSemicolon = this->Match(SyntaxKind::SemicolonToken);
+        return result;
+    }
+
+    MatchDefaultClauseSyntax* Parser::ParseMatchDefaultClause()
+    {
+        MatchDefaultClauseSyntax* result = this->_factory->CreateNode<MatchDefaultClauseSyntax>();
+        result->DefaultKeyword = this->Match(SyntaxKind::DefaultKeyword);
+        result->ColonToken = this->Match(SyntaxKind::ColonToken);
+        result->Body = this->ParseStatement({});
+        result->TrailingSemicolon = this->Match(SyntaxKind::SemicolonToken);
+        return result;
     }
 }

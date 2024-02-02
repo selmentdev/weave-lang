@@ -208,6 +208,7 @@ WEAVE_SYNTAX_KEYWORD(DynamicKeyword,                            "dynamic")
 WEAVE_SYNTAX_KEYWORD(EagerKeyword,                              "eager")
 WEAVE_SYNTAX_KEYWORD(ElseKeyword,                               "else")
 WEAVE_SYNTAX_KEYWORD(EnumKeyword,                               "enum")
+WEAVE_SYNTAX_KEYWORD(EvalKeyword,                               "eval")
 WEAVE_SYNTAX_KEYWORD(EventKeyword,                              "event")
 WEAVE_SYNTAX_KEYWORD(ExceptionKeyword,                          "exception")
 WEAVE_SYNTAX_KEYWORD(ExceptKeyword,                             "except")
@@ -416,6 +417,8 @@ WEAVE_SYNTAX_NODE(ParameterListSyntax,                          "[node:parameter
 WEAVE_SYNTAX_NODE(GenericArgumentSyntax,                        "generic argument")
 WEAVE_SYNTAX_NODE(GenericArgumentsSyntax,                       "generic arguments")
 
+WEAVE_SYNTAX_NODE(YieldStatementSyntax,                         "yield statement")
+
 WEAVE_SYNTAX_NODE(TypeGenericParameterSyntax,                   "type generic parameter")
 WEAVE_SYNTAX_NODE(ConstGenericParameterSyntax,                  "const generic parameter")
 WEAVE_SYNTAX_NODE(GenericParametersSyntax,                      "generic parameter")
@@ -442,7 +445,7 @@ WEAVE_SYNTAX_NODE(ReturnTypeClauseSyntax,                       "[node:return-ty
 WEAVE_SYNTAX_NODE(VariableDeclarationSyntax,                    "[node:variable-declaration]")
 WEAVE_SYNTAX_NODE(ExpressionStatementSyntax,                    "[node:expression-statement]")
 WEAVE_SYNTAX_NODE(BlockStatementSyntax,                         "[node:block-statement]")
-WEAVE_SYNTAX_NODE(IfStatementSyntax,                            "[node:if-statement]")
+WEAVE_SYNTAX_NODE(IfExpressionSyntax,                           "if expression")
 WEAVE_SYNTAX_NODE(ElseClauseSyntax,                             "[node:else-clause]")
 WEAVE_SYNTAX_NODE(ReturnStatementSyntax,                        "[node:return-statement]")
 WEAVE_SYNTAX_NODE(EmptyStatementSyntax,                         "[node:empty-statement]")
@@ -467,6 +470,10 @@ WEAVE_SYNTAX_NODE(TupleTypeElementSyntax,                       "tuple type elem
 WEAVE_SYNTAX_NODE(LabelStatementSyntax,                         "label statement")
 WEAVE_SYNTAX_NODE(TupleExpressionSyntax,                        "tuple expression")
 WEAVE_SYNTAX_NODE(LabeledExpressionSyntax,                      "labeled expression")
+WEAVE_SYNTAX_NODE(EvalExpressionSyntax,                         "eval expression")
+WEAVE_SYNTAX_NODE(MatchExpressionSyntax,                        "match expression")
+WEAVE_SYNTAX_NODE(MatchCaseClauseSyntax,                        "match case clause")
+WEAVE_SYNTAX_NODE(MatchDefaultClauseSyntax,                     "match default clause")
 
 // prefix unary expressions
 WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    "[expr:unary-plus]")

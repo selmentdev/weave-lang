@@ -187,6 +187,9 @@ namespace weave::syntax
         EmptyStatementSyntax* ParseEmptyStatement(
             SyntaxListView<AttributeListSyntax> attributes);
 
+        YieldStatementSyntax* ParseYieldStatement(
+            SyntaxListView<AttributeListSyntax> attributes);
+
         ParameterListSyntax* ParseParameterList();
 
         ParameterSyntax* ParseParameter();
@@ -244,6 +247,8 @@ namespace weave::syntax
 
         UnreachableExpressionSyntax* ParseUnreachableExpression();
 
+        EvalExpressionSyntax* ParseEvalExpression();
+
         ExpressionSyntax* ParseExpression(
             Precedence parentPrecedence = Precedence::Expression);
 
@@ -280,10 +285,9 @@ namespace weave::syntax
 
         ExpressionSyntax* ParseCharacterLiteral();
 
-        StatementSyntax* ParseIfStatement(
-            SyntaxListView<AttributeListSyntax> attributes);
+        IfExpressionSyntax* ParseIfExpression();
 
-        StatementSyntax* ParseWhileStatement(
+        WhileStatementSyntax* ParseWhileStatement(
             SyntaxListView<AttributeListSyntax> attributes);
 
         StatementSyntax* ParseGotoStatement(
@@ -293,9 +297,6 @@ namespace weave::syntax
             SyntaxListView<AttributeListSyntax> attributes);
 
         StatementSyntax* ParseContinueStatement(
-            SyntaxListView<AttributeListSyntax> attributes);
-
-        StatementSyntax* ParseMisplacedElseClause(
             SyntaxListView<AttributeListSyntax> attributes);
 
         ElseClauseSyntax* ParseOptionalElseClause();
@@ -330,5 +331,13 @@ namespace weave::syntax
         };
 
         std::optional<Label> ParseOptionalLabel();
+
+        MatchExpressionSyntax* ParseMatchExpression();
+
+        MatchClauseSyntax* ParseMatchClause();
+
+        MatchCaseClauseSyntax* ParseMatchCaseClause();
+
+        MatchDefaultClauseSyntax* ParseMatchDefaultClause();
     };
 }

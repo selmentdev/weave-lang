@@ -1,0 +1,17 @@
+#[FunctionAttribute] public function Function()
+{
+    #[IfAttribute] if #[ConditionAttribute] true { }
+    #[WhileAttribute] while #[ConditionAttribute] true { }
+    #[YieldReturnAttribute] yield return 42;
+    #[YieldBreakAttribute] yield break;
+    #[ReturnAttribute] return 42;
+    #[BreakAttribute] break;
+    #[ContinueAttribute] continue;
+    #[GotoAttribute] goto Label;
+    #[YieldValueAttribute] yield 42;
+    #[EvalAttribute] eval { yield 42; };
+}
+
+#[VarAttribute] public var Variable: Int32;
+
+#[LetAttribute] public var Let: Int32;
