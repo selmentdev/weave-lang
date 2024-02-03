@@ -474,6 +474,9 @@ WEAVE_SYNTAX_NODE(EvalExpressionSyntax,                         "eval expression
 WEAVE_SYNTAX_NODE(MatchExpressionSyntax,                        "match expression")
 WEAVE_SYNTAX_NODE(MatchCaseClauseSyntax,                        "match case clause")
 WEAVE_SYNTAX_NODE(MatchDefaultClauseSyntax,                     "match default clause")
+WEAVE_SYNTAX_NODE(ArrayTypeSyntax,                              "array type")
+WEAVE_SYNTAX_NODE(SliceTypeSyntax,                              "slice type")
+WEAVE_SYNTAX_NODE(ArrayExpressionSyntax,                        "array expression")
 
 // prefix unary expressions
 WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    "[expr:unary-plus]")

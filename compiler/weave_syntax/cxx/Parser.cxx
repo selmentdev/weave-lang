@@ -915,21 +915,20 @@ namespace weave::syntax
 
     TypeSyntax* Parser::ParseType()
     {
-        if (this->Current()->Is(SyntaxKind::IdentifierToken))
+        if (this->Current()->Kind == SyntaxKind::IdentifierToken)
         {
             return this->ParseQualifiedName();
         }
-        else if (this->Current()->Is(SyntaxKind::OpenParenToken))
+
+        if (this->Current()->Kind == SyntaxKind::OpenParenToken)
         {
             return this->ParseTupleType();
         }
-        // else if (this->Current()->Is(SyntaxKind::OpenBracketToken))
-        //{
-        //     return this->ParseArrayType();
-        // })
-        //{
-        //
-        // }
+
+        if (this->Current()->Kind == SyntaxKind::OpenBracketToken)
+        {
+            return this->ParseArrayOrSliceType();
+        }
 
         return this->CreateMissingIdentifierName();
     }
@@ -1398,6 +1397,12 @@ namespace weave::syntax
         case SyntaxKind::MatchKeyword:
             return this->ParseMatchExpression();
 
+        case SyntaxKind::OpenBracketToken:
+            return this->ParseArrayExpression();
+
+        case SyntaxKind::OpenBraceToken:
+            WEAVE_BUGCHECK("Object initializer is not supported!");
+
         default:
             ExpressionSyntax* missing = this->CreateMissingIdentifierName();
 
@@ -1454,15 +1459,53 @@ namespace weave::syntax
         return result;
     }
 
+    ArrayExpressionSyntax* Parser::ParseArrayExpression()
+    {
+        std::vector<LabeledExpressionSyntax*> elements{};
+
+        ArrayExpressionSyntax* result = this->_factory->CreateNode<ArrayExpressionSyntax>();
+        this->MatchUntil(result->OpenBracketToken, result->BeforeOpenBracketToken, SyntaxKind::OpenBracketToken);
+
+        while (SyntaxToken* current = this->Current())
+        {
+            if (current->Kind == SyntaxKind::CloseBracketToken)
+            {
+                break;
+            }
+            else if (current->Kind == SyntaxKind::EndOfFileToken)
+            {
+                break;
+            }
+
+            if (LabeledExpressionSyntax* element = this->ParseLabeledExpression())
+            {
+                elements.push_back(element);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
+
+        this->MatchUntil(result->CloseBracketToken, result->BeforeCloseBracketToken, SyntaxKind::CloseBracketToken);
+
+        return result;
+    }
+
     LabeledExpressionSyntax* Parser::ParseLabeledExpression()
     {
         SyntaxToken* label = nullptr;
         SyntaxToken* colon = nullptr;
 
-        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
+        if (SyntaxKind const first = this->Current()->Kind; (first == SyntaxKind::IdentifierToken) or (first == SyntaxKind::IntegerLiteralToken))
         {
-            label = this->Match(SyntaxKind::IdentifierToken);
-            colon = this->Match(SyntaxKind::ColonToken);
+            if (this->Peek(1)->Kind == SyntaxKind::ColonToken)
+            {
+                label = this->Match(first);
+                colon = this->Match(SyntaxKind::ColonToken);
+            }
         }
 
         ExpressionSyntax* expression = nullptr;
@@ -1950,6 +1993,40 @@ namespace weave::syntax
         result->ColonToken = this->Match(SyntaxKind::ColonToken);
         result->Body = this->ParseStatement({});
         result->TrailingSemicolon = this->Match(SyntaxKind::SemicolonToken);
+        return result;
+    }
+
+    TypeSyntax* Parser::ParseArrayOrSliceType()
+    {
+        SyntaxToken* openBracket = this->Match(SyntaxKind::OpenBracketToken);
+        TypeSyntax* elementType = this->ParseType();
+
+        SyntaxToken* colonToken = this->TryMatch(SyntaxKind::ColonToken);
+
+        ExpressionSyntax* lengthExpression = nullptr;
+
+        if (colonToken != nullptr)
+        {
+            lengthExpression = this->ParseExpression();
+        }
+
+        SyntaxToken* closeBracket = this->Match(SyntaxKind::CloseBracketToken);
+
+        if (colonToken != nullptr)
+        {
+            ArrayTypeSyntax* result = this->_factory->CreateNode<ArrayTypeSyntax>();
+            result->OpenBracketToken = openBracket;
+            result->ElementType = elementType;
+            result->ColonToken = colonToken;
+            result->LengthExpression = lengthExpression;
+            result->CloseBracketToken = closeBracket;
+            return result;
+        }
+
+        SliceTypeSyntax* result = this->_factory->CreateNode<SliceTypeSyntax>();
+        result->OpenBracketToken = openBracket;
+        result->ElementType = elementType;
+        result->CloseBracketToken = closeBracket;
         return result;
     }
 }

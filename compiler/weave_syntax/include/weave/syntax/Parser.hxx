@@ -263,6 +263,8 @@ namespace weave::syntax
 
         TupleExpressionSyntax* ParseTupleExpression();
 
+        ArrayExpressionSyntax* ParseArrayExpression();
+
         LabeledExpressionSyntax* ParseLabeledExpression();
 
         SizeOfExpressionSyntax* ParseSizeOfExpression();
@@ -339,5 +341,7 @@ namespace weave::syntax
         MatchCaseClauseSyntax* ParseMatchCaseClause();
 
         MatchDefaultClauseSyntax* ParseMatchDefaultClause();
+
+        TypeSyntax* ParseArrayOrSliceType();
     };
 }

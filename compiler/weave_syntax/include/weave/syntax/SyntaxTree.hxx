@@ -920,6 +920,40 @@ namespace weave::syntax
         SyntaxToken* Keyword{};
     };
 
+    class ArrayTypeSyntax final : public TypeSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ArrayTypeSyntax);
+
+    public:
+        SyntaxToken* OpenBracketToken{};
+        TypeSyntax* ElementType{};
+        SyntaxToken* ColonToken{};
+        ExpressionSyntax* LengthExpression{};
+        SyntaxToken* CloseBracketToken{};
+
+    public:
+        explicit constexpr ArrayTypeSyntax()
+            : TypeSyntax{SyntaxKind::ArrayTypeSyntax}
+        {
+        }
+    };
+
+    class SliceTypeSyntax final : public TypeSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(SliceTypeSyntax);
+
+    public:
+        SyntaxToken* OpenBracketToken{};
+        TypeSyntax* ElementType{};
+        SyntaxToken* CloseBracketToken{};
+
+    public:
+        explicit constexpr SliceTypeSyntax()
+            : TypeSyntax{SyntaxKind::SliceTypeSyntax}
+        {
+        }
+    };
+
     class NameSyntax : public TypeSyntax
     {
     public:
@@ -1269,6 +1303,24 @@ namespace weave::syntax
     public:
         explicit constexpr TupleExpressionSyntax()
             : ExpressionSyntax{SyntaxKind::TupleExpressionSyntax}
+        {
+        }
+    };
+
+    class ArrayExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ArrayExpressionSyntax);
+
+    public:
+        UnexpectedNodesSyntax* BeforeOpenBracketToken{};
+        SyntaxToken* OpenBracketToken{};
+        SyntaxListView<LabeledExpressionSyntax> Elements{};
+        UnexpectedNodesSyntax* BeforeCloseBracketToken{};
+        SyntaxToken* CloseBracketToken{};
+
+    public:
+        explicit constexpr ArrayExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::ArrayExpressionSyntax}
         {
         }
     };

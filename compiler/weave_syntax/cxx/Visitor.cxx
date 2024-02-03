@@ -1066,4 +1066,45 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnArrayTypeSyntax(ArrayTypeSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->OpenBracketToken);
+        this->Dispatch(node->ElementType);
+        this->Dispatch(node->ColonToken);
+        this->Dispatch(node->LengthExpression);
+        this->Dispatch(node->CloseBracketToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnSliceTypeSyntax(SliceTypeSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->OpenBracketToken);
+        this->Dispatch(node->ElementType);
+        this->Dispatch(node->CloseBracketToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnArrayExpressionSyntax(ArrayExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->BeforeOpenBracketToken);
+        this->Dispatch(node->OpenBracketToken);
+        this->Dispatch(node->Elements.GetNode());
+        this->Dispatch(node->BeforeCloseBracketToken);
+        this->Dispatch(node->CloseBracketToken);
+    }
 }

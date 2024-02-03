@@ -163,5 +163,8 @@ namespace weave::syntax
         void OnMatchCaseClauseSyntax(MatchCaseClauseSyntax* node) override;
         void OnMatchDefaultClauseSyntax(MatchDefaultClauseSyntax* node) override;
         void OnMatchExpressionSyntax(MatchExpressionSyntax* node) override;
+        void OnArrayTypeSyntax(ArrayTypeSyntax* node) override;
+        void OnSliceTypeSyntax(SliceTypeSyntax* node) override;
+        void OnArrayExpressionSyntax(ArrayExpressionSyntax* node) override;
     };
 }
