@@ -1107,4 +1107,68 @@ namespace weave::syntax
         this->Dispatch(node->BeforeCloseBracketToken);
         this->Dispatch(node->CloseBracketToken);
     }
+
+    void SyntaxWalker::OnCheckedStatementSyntax(CheckedStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Unexpected);
+
+        this->Dispatch(node->CheckedKeyword);
+        this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnUncheckedStatementSyntax(UncheckedStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Unexpected);
+
+        this->Dispatch(node->UncheckedKeyword);
+        this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnLoopStatementSyntax(LoopStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Unexpected);
+
+        this->Dispatch(node->LoopKeyword);
+        this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnUnsafeStatementSyntax(UnsafeStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Unexpected);
+
+        this->Dispatch(node->UnsafeKeyword);
+        this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
 }

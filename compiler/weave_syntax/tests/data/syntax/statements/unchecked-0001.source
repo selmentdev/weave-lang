@@ -1,0 +1,13 @@
+public extern function Consume(x: Int32);
+
+public function Test()
+{
+    let x: Int32 = 2137;
+    let y: Int32 = 42069;
+
+    unchecked
+    {
+        let z = x + y;
+        Consume(z);
+    }
+}

@@ -1251,6 +1251,66 @@ namespace weave::syntax
         }
     };
 
+    class LoopStatementSyntax : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(LoopStatementSyntax);
+
+    public:
+        SyntaxToken* LoopKeyword{};
+        CodeBlockSyntax* Body{};
+
+    public:
+        explicit constexpr LoopStatementSyntax()
+            : StatementSyntax{SyntaxKind::LoopStatementSyntax}
+        {
+        }
+    };
+
+    class CheckedStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(CheckedStatementSyntax);
+
+    public:
+        SyntaxToken* CheckedKeyword{};
+        CodeBlockSyntax* Body{};
+
+    public:
+        explicit constexpr CheckedStatementSyntax()
+            : StatementSyntax{SyntaxKind::CheckedStatementSyntax}
+        {
+        }
+    };
+
+    class UncheckedStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(UncheckedStatementSyntax);
+
+    public:
+        SyntaxToken* UncheckedKeyword{};
+        CodeBlockSyntax* Body{};
+
+    public:
+        explicit constexpr UncheckedStatementSyntax()
+            : StatementSyntax{SyntaxKind::UncheckedStatementSyntax}
+        {
+        }
+    };
+
+    class UnsafeStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(UnsafeStatementSyntax);
+
+    public:
+        SyntaxToken* UnsafeKeyword{};
+        CodeBlockSyntax* Body{};
+
+    public:
+        explicit constexpr UnsafeStatementSyntax()
+            : StatementSyntax{SyntaxKind::UnsafeStatementSyntax}
+        {
+        }
+    };
+
     class UnexpectedNodesSyntax : public SyntaxNode
     {
     public:

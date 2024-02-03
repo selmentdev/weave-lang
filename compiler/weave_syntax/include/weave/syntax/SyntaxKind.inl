@@ -477,6 +477,11 @@ WEAVE_SYNTAX_NODE(MatchDefaultClauseSyntax,                     "match default c
 WEAVE_SYNTAX_NODE(ArrayTypeSyntax,                              "array type")
 WEAVE_SYNTAX_NODE(SliceTypeSyntax,                              "slice type")
 WEAVE_SYNTAX_NODE(ArrayExpressionSyntax,                        "array expression")
+WEAVE_SYNTAX_NODE(LoopStatementSyntax,                          "loop statement")
+WEAVE_SYNTAX_NODE(CheckedStatementSyntax,                       "checked statement")
+WEAVE_SYNTAX_NODE(UncheckedStatementSyntax,                     "unchecked statement")
+WEAVE_SYNTAX_NODE(UnsafeStatementSyntax,                        "unsafe statement")
+
 
 // prefix unary expressions
 WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    "[expr:unary-plus]")

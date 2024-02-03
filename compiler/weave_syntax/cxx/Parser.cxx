@@ -561,6 +561,18 @@ namespace weave::syntax
         case SyntaxKind::YieldKeyword:
             return this->ParseYieldStatement(attributes);
 
+        case SyntaxKind::LoopKeyword:
+            return this->ParseLoopStatement(attributes);
+
+        case SyntaxKind::CheckedKeyword:
+            return this->ParseCheckedStatement(attributes);
+
+        case SyntaxKind::UncheckedKeyword:
+            return this->ParseUncheckedStatement(attributes);
+
+        case SyntaxKind::UnsafeKeyword:
+            return this->ParseUnsafeStatement(attributes);
+
         default:
             break;
         }
@@ -605,6 +617,42 @@ namespace weave::syntax
             result->Expression = this->ParseExpression();
         }
 
+        return result;
+    }
+
+    LoopStatementSyntax* Parser::ParseLoopStatement(SyntaxListView<AttributeListSyntax> attributes)
+    {
+        LoopStatementSyntax* result = this->_factory->CreateNode<LoopStatementSyntax>();
+        result->Attributes = attributes;
+        result->LoopKeyword = this->Match(SyntaxKind::LoopKeyword);
+        result->Body = this->ParseCodeBlock();
+        return result;
+    }
+
+    CheckedStatementSyntax* Parser::ParseCheckedStatement(SyntaxListView<AttributeListSyntax> attributes)
+    {
+        CheckedStatementSyntax* result = this->_factory->CreateNode<CheckedStatementSyntax>();
+        result->Attributes = attributes;
+        result->CheckedKeyword = this->Match(SyntaxKind::CheckedKeyword);
+        result->Body = this->ParseCodeBlock();
+        return result;
+    }
+
+    UncheckedStatementSyntax* Parser::ParseUncheckedStatement(SyntaxListView<AttributeListSyntax> attributes)
+    {
+        UncheckedStatementSyntax* result = this->_factory->CreateNode<UncheckedStatementSyntax>();
+        result->Attributes = attributes;
+        result->UncheckedKeyword = this->Match(SyntaxKind::UncheckedKeyword);
+        result->Body = this->ParseCodeBlock();
+        return result;
+    }
+
+    UnsafeStatementSyntax* Parser::ParseUnsafeStatement(SyntaxListView<AttributeListSyntax> attributes)
+    {
+        UnsafeStatementSyntax* result = this->_factory->CreateNode<UnsafeStatementSyntax>();
+        result->Attributes = attributes;
+        result->UnsafeKeyword = this->Match(SyntaxKind::UnsafeKeyword);
+        result->Body = this->ParseCodeBlock();
         return result;
     }
 

@@ -166,5 +166,9 @@ namespace weave::syntax
         void OnArrayTypeSyntax(ArrayTypeSyntax* node) override;
         void OnSliceTypeSyntax(SliceTypeSyntax* node) override;
         void OnArrayExpressionSyntax(ArrayExpressionSyntax* node) override;
+        void OnCheckedStatementSyntax(CheckedStatementSyntax* node) override;
+        void OnUncheckedStatementSyntax(UncheckedStatementSyntax* node) override;
+        void OnLoopStatementSyntax(LoopStatementSyntax* node) override;
+        void OnUnsafeStatementSyntax(UnsafeStatementSyntax* node) override;
     };
 }

@@ -190,6 +190,18 @@ namespace weave::syntax
         YieldStatementSyntax* ParseYieldStatement(
             SyntaxListView<AttributeListSyntax> attributes);
 
+        LoopStatementSyntax* ParseLoopStatement(
+            SyntaxListView<AttributeListSyntax> attributes);
+
+        CheckedStatementSyntax* ParseCheckedStatement(
+            SyntaxListView<AttributeListSyntax> attributes);
+
+        UncheckedStatementSyntax* ParseUncheckedStatement(
+            SyntaxListView<AttributeListSyntax> attributes);
+
+        UnsafeStatementSyntax* ParseUnsafeStatement(
+            SyntaxListView<AttributeListSyntax> attributes);
+
         ParameterListSyntax* ParseParameterList();
 
         ParameterSyntax* ParseParameter();
