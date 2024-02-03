@@ -119,6 +119,7 @@ WEAVE_SYNTAX_PUNCTUATION(CloseBraceToken,                       "}")
 WEAVE_SYNTAX_PUNCTUATION(CloseBracketToken,                     "]")
 WEAVE_SYNTAX_PUNCTUATION(CloseParenToken,                       ")")
 WEAVE_SYNTAX_PUNCTUATION(QuestionQuestionEqualsToken,           "??=")
+WEAVE_SYNTAX_PUNCTUATION(UnderscoreToken,                       "_")
 
 WEAVE_SYNTAX_CONTEXTUAL_KEYWORD(AddKeyword,                     "add")
 WEAVE_SYNTAX_CONTEXTUAL_KEYWORD(AndEqualKeyword,                "and_eq")
@@ -442,7 +443,7 @@ WEAVE_SYNTAX_NODE(BracketedArgumentListSyntax,                  "[node:bracketed
 WEAVE_SYNTAX_NODE(ElementAccessExpressionSyntax,                "[node:element-access-expression]")
 WEAVE_SYNTAX_NODE(ArrowExpressionClauseSyntax,                  "[node:arrow-expression-clause]")
 WEAVE_SYNTAX_NODE(ReturnTypeClauseSyntax,                       "[node:return-type-clause]")
-WEAVE_SYNTAX_NODE(VariableDeclarationSyntax,                    "[node:variable-declaration]")
+WEAVE_SYNTAX_NODE(VariableDeclarationSyntax,                    "variable declaration")
 WEAVE_SYNTAX_NODE(ExpressionStatementSyntax,                    "[node:expression-statement]")
 WEAVE_SYNTAX_NODE(BlockStatementSyntax,                         "[node:block-statement]")
 WEAVE_SYNTAX_NODE(IfExpressionSyntax,                           "if expression")
@@ -483,6 +484,14 @@ WEAVE_SYNTAX_NODE(CheckedStatementSyntax,                       "checked stateme
 WEAVE_SYNTAX_NODE(UncheckedStatementSyntax,                     "unchecked statement")
 WEAVE_SYNTAX_NODE(UnsafeStatementSyntax,                        "unsafe statement")
 WEAVE_SYNTAX_NODE(StructExpressionSyntax,                       "struct expression")
+WEAVE_SYNTAX_NODE(PatternBindingSyntax,                         "pattern binding")
+WEAVE_SYNTAX_NODE(WildcardPatternSyntax,                        "wildcard pattern")
+WEAVE_SYNTAX_NODE(LiteralPatternSyntax,                         "literal pattern")
+WEAVE_SYNTAX_NODE(IdentifierPatternSyntax,                      "identifier pattern")
+WEAVE_SYNTAX_NODE(SlicePatternItemSyntax,                       "slice pattern item")
+WEAVE_SYNTAX_NODE(SlicePatternSyntax,                           "slice pattern")
+WEAVE_SYNTAX_NODE(TuplePatternSyntax,                           "tuple pattern")
+WEAVE_SYNTAX_NODE(TuplePatternItemSyntax,                       "tuple pattern item")
 
 
 // prefix unary expressions

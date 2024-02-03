@@ -548,10 +548,8 @@ namespace weave::syntax
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
 
-        this->Dispatch(node->VarKeyword);
-        this->Dispatch(node->Identifier);
-        this->Dispatch(node->TypeClause);
-        this->Dispatch(node->Initializer);
+        this->Dispatch(node->BindingSpecifier);
+        this->Dispatch(node->Binding);
 
         --this->Depth;
     }
@@ -1165,6 +1163,106 @@ namespace weave::syntax
 
         this->Dispatch(node->UnsafeKeyword);
         this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
+
+    ////////////////////////////////////////
+
+    void SyntaxWalker::OnWildcardPatternSyntax(WildcardPatternSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->WildcardToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnLiteralPatternSyntax(LiteralPatternSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->LiteralToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnIdentifierPatternSyntax(IdentifierPatternSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Identifier);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnSlicePatternSyntax(SlicePatternSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->OpenBracketToken);
+        this->Dispatch(node->Items.GetNode());
+        this->Dispatch(node->CloseBracketToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnSlicePatternItemSyntax(SlicePatternItemSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Pattern);
+        this->Dispatch(node->TrailingComma);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnTuplePatternSyntax(TuplePatternSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->Items.GetNode());
+        this->Dispatch(node->CloseBraceToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnTuplePatternItemSyntax(TuplePatternItemSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Identifier);
+        this->Dispatch(node->Colon);
+        this->Dispatch(node->Pattern);
+        this->Dispatch(node->TrailingComma);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnPatternBindingSyntax(PatternBindingSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Pattern);
+        this->Dispatch(node->Type);
+        this->Dispatch(node->Initializer);
 
         --this->Depth;
     }

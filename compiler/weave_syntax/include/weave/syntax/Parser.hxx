@@ -139,7 +139,6 @@ namespace weave::syntax
             std::vector<SyntaxToken*>& elements);
 
 
-
         SyntaxListView<SyntaxToken> ParseFunctionParameterModifiersList();
 
         SyntaxListView<SyntaxToken> ParseFunctionArgumentModifierList();
@@ -362,5 +361,16 @@ namespace weave::syntax
         MatchDefaultClauseSyntax* ParseMatchDefaultClause();
 
         TypeSyntax* ParseArrayOrSliceType();
+
+    public:
+        PatternSyntax* ParsePattern();
+        WildcardPatternSyntax* ParseWildcardPattern();
+        LiteralPatternSyntax* ParseLiteralPattern();
+        IdentifierPatternSyntax* ParseIdentifierPattern();
+        SlicePatternItemSyntax* ParseSlicePatternItem();
+        SlicePatternSyntax* ParseSlicePattern();
+        TuplePatternItemSyntax* ParseTuplePatternItem();
+        TuplePatternSyntax* ParseTuplePattern();
+        PatternBindingSyntax* ParsePatternBinding();
     };
 }

@@ -1,0 +1,9 @@
+public function SwapTuples(
+    x: (Int32, Int32),
+    y: (Int32, Int32)
+) -> (Int32, Int32)
+{
+    let (xx, _) = x;
+    let (_, yy) = y;
+    return (xx, yy);
+}

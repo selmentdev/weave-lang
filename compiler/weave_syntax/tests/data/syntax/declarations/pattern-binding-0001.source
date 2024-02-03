@@ -1,0 +1,3 @@
+var x : Int32 = 0x2137_u32;
+var [x, _] = foo();
+let ( x: 42, y: 1337 ) = bar();

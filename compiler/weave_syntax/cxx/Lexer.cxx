@@ -210,7 +210,15 @@ namespace weave::syntax
             }
             else
             {
-                token.Kind = SyntaxKind::IdentifierToken;
+                if ((token.Value.length() == 1) and (token.Value.front() == '_'))
+                {
+                    token.Kind = SyntaxKind::UnderscoreToken;
+                }
+                else
+                {
+                   token.Kind = SyntaxKind::IdentifierToken;
+                }
+
                 token.ContextualKeyword = SyntaxKind::None;
             }
 

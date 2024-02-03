@@ -373,10 +373,10 @@ namespace weave::syntax
         VariableDeclarationSyntax* result = this->_factory->CreateNode<VariableDeclarationSyntax>();
         result->Attributes = attributes;
         result->Modifiers = modifiers;
-        result->VarKeyword = this->Match(expected);
-        result->Identifier = this->ParseIdentifierName();
-        result->TypeClause = this->ParseOptionalTypeClause();
-        result->Initializer = this->ParseOptionalInitializerClause();
+
+        result->BindingSpecifier = this->Match(expected);
+        result->Binding = this->ParsePatternBinding();
+
         return result;
     }
 
@@ -506,7 +506,7 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        switch (this->Current()->Kind)  // NOLINT(clang-diagnostic-switch-enum)
+        switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::UsingKeyword:
             return this->ParseUsingDeclaration();
@@ -546,7 +546,7 @@ namespace weave::syntax
     StatementSyntax* Parser::ParseStatement(
         SyntaxListView<AttributeListSyntax> attributes)
     {
-        switch (this->Current()->Kind)  // NOLINT(clang-diagnostic-switch-enum)
+        switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::ReturnKeyword:
             return this->ParseReturnStatement(attributes);
@@ -1357,11 +1357,11 @@ namespace weave::syntax
                     continue;
                 }
 
-            //case SyntaxKind::OpenBraceToken:
-            //    {
-            //        expression = this->ParseBraceInitializerClause();
-            //        continue;
-            //    }
+                // case SyntaxKind::OpenBraceToken:
+                //     {
+                //         expression = this->ParseBraceInitializerClause();
+                //         continue;
+                //     }
 
             case SyntaxKind::DotToken:
                 {
@@ -1862,7 +1862,7 @@ namespace weave::syntax
                 break;
             }
 
-            switch (current)  // NOLINT(clang-diagnostic-switch-enum)
+            switch (current) // NOLINT(clang-diagnostic-switch-enum)
             {
                 // Consume opening tokens
             case SyntaxKind::OpenBraceToken:
@@ -2088,5 +2088,160 @@ namespace weave::syntax
         result->ElementType = elementType;
         result->CloseBracketToken = closeBracket;
         return result;
+    }
+
+    PatternSyntax* Parser::ParsePattern()
+    {
+        switch (this->Current()->Kind)  // NOLINT(clang-diagnostic-switch)
+        {
+        case SyntaxKind::UnderscoreToken:
+            return this->ParseWildcardPattern();
+
+        case SyntaxKind::OpenBracketToken:
+            return this->ParseSlicePattern();
+
+        case SyntaxKind::OpenParenToken:
+            return this->ParseTuplePattern();
+
+        case SyntaxKind::IdentifierToken:
+            return this->ParseIdentifierPattern();
+
+        case SyntaxKind::IntegerLiteralToken:
+        case SyntaxKind::CharacterLiteralToken:
+        case SyntaxKind::FloatLiteralToken:
+        case SyntaxKind::StringLiteralToken:
+        case SyntaxKind::TrueKeyword:
+        case SyntaxKind::FalseKeyword:
+            return this->ParseLiteralPattern();
+
+        default:
+            break;
+        }
+
+        return nullptr;
+    }
+
+    WildcardPatternSyntax* Parser::ParseWildcardPattern()
+    {
+        WildcardPatternSyntax* result = this->_factory->CreateNode<WildcardPatternSyntax>();
+        result->WildcardToken = this->Match(SyntaxKind::UnderscoreToken);
+        return result;
+    }
+
+    LiteralPatternSyntax* Parser::ParseLiteralPattern()
+    {
+        LiteralPatternSyntax* result = this->_factory->CreateNode<LiteralPatternSyntax>();
+        result->LiteralToken = this->Next();
+        return result;
+    }
+
+    IdentifierPatternSyntax* Parser::ParseIdentifierPattern()
+    {
+        IdentifierPatternSyntax* result = this->_factory->CreateNode<IdentifierPatternSyntax>();
+        result->Identifier = this->ParseIdentifierName();
+        return result;
+    }
+
+    SlicePatternItemSyntax* Parser::ParseSlicePatternItem()
+    {
+        SlicePatternItemSyntax* result = this->_factory->CreateNode<SlicePatternItemSyntax>();
+        result->Pattern = this->ParsePattern();
+        result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+        return result;
+    }
+
+    SlicePatternSyntax* Parser::ParseSlicePattern()
+    {
+        SlicePatternSyntax* result = this->_factory->CreateNode<SlicePatternSyntax>();
+        result->OpenBracketToken = this->Match(SyntaxKind::OpenBracketToken);
+
+        std::vector<SlicePatternItemSyntax*> items{};
+
+        while (SyntaxToken* current = this->Current())
+        {
+            if ((current->Kind == SyntaxKind::CloseBracketToken) or (current->Kind == SyntaxKind::EndOfFileToken))
+            {
+                break;
+            }
+
+            if (SlicePatternItemSyntax* item = this->ParseSlicePatternItem())
+            {
+                items.push_back(item);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        result->Items = SyntaxListView<SlicePatternItemSyntax>{this->_factory->CreateList(items)};
+
+        result->CloseBracketToken = this->Match(SyntaxKind::CloseBracketToken);
+
+        return result;
+    }
+
+    TuplePatternItemSyntax* Parser::ParseTuplePatternItem()
+    {
+        TuplePatternItemSyntax* result = this->_factory->CreateNode<TuplePatternItemSyntax>();
+
+        if (this->Peek(0)->Kind == SyntaxKind::IdentifierToken and this->Peek(1)->Kind == SyntaxKind::ColonToken)
+        {
+            result->Identifier = this->Match(SyntaxKind::IdentifierToken);
+            result->Colon = this->Match(SyntaxKind::ColonToken);
+        }
+
+        result->Pattern = this->ParsePattern();
+        result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+        return result;
+    }
+
+    TuplePatternSyntax* Parser::ParseTuplePattern()
+    {
+        TuplePatternSyntax* result = this->_factory->CreateNode<TuplePatternSyntax>();
+        result->OpenBraceToken = this->Match(SyntaxKind::OpenParenToken);
+
+        std::vector<TuplePatternItemSyntax*> items{};
+
+        while (SyntaxToken* current = this->Current())
+        {
+            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
+            {
+                break;
+            }
+
+            if (TuplePatternItemSyntax* item = this->ParseTuplePatternItem())
+            {
+                items.push_back(item);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        result->Items = SyntaxListView<TuplePatternItemSyntax>{this->_factory->CreateList(items)};
+
+        result->CloseBraceToken = this->Match(SyntaxKind::CloseParenToken);
+
+        return result;
+    }
+
+    PatternBindingSyntax* Parser::ParsePatternBinding()
+    {
+        PatternSyntax* pattern = this->ParsePattern();
+        TypeClauseSyntax* typeClause = this->ParseOptionalTypeClause();
+        InitializerClauseSyntax* initializerClause = this->ParseOptionalInitializerClause();
+
+        if (pattern or typeClause or initializerClause)
+        {
+            PatternBindingSyntax* result = this->_factory->CreateNode<PatternBindingSyntax>();
+            result->Pattern = pattern;
+            result->Type = typeClause;
+            result->Initializer = initializerClause;
+            return result;
+        }
+
+        return nullptr;
     }
 }

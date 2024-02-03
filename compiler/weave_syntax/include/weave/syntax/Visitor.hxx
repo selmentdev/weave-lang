@@ -170,5 +170,14 @@ namespace weave::syntax
         void OnUncheckedStatementSyntax(UncheckedStatementSyntax* node) override;
         void OnLoopStatementSyntax(LoopStatementSyntax* node) override;
         void OnUnsafeStatementSyntax(UnsafeStatementSyntax* node) override;
+
+        void OnWildcardPatternSyntax(WildcardPatternSyntax* node) override;
+        void OnLiteralPatternSyntax(LiteralPatternSyntax* node) override;
+        void OnIdentifierPatternSyntax(IdentifierPatternSyntax* node) override;
+        void OnSlicePatternSyntax(SlicePatternSyntax* node) override;
+        void OnSlicePatternItemSyntax(SlicePatternItemSyntax* node) override;
+        void OnTuplePatternSyntax(TuplePatternSyntax* node) override;
+        void OnTuplePatternItemSyntax(TuplePatternItemSyntax* node) override;
+        void OnPatternBindingSyntax(PatternBindingSyntax* node) override;
     };
 }

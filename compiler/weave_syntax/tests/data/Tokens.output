@@ -466,7 +466,7 @@
       [token=DotDotDotToken, start=2036, end=2039, position=310:0:310:3, missing=false, text='...']
       [token=DotDotToken, start=2040, end=2042, position=311:0:311:2, missing=false, text='..']
       [token=DotToken, start=2043, end=2044, position=312:0:312:1, missing=false, text='.']
-      [token=IdentifierToken, start=2045, end=2046, position=313:0:313:1, missing=false, text='_']
+      [token=UnderscoreToken, start=2045, end=2046, position=313:0:313:1, missing=false, text='_']
       [token=IdentifierToken, start=2047, end=2054, position=314:0:314:7, missing=false, text='r#class']
       [token=IdentifierToken, start=2055, end=2061, position=315:0:315:6, missing=false, text='r#enum']
       [token=IdentifierToken, start=2062, end=2070, position=316:0:316:8, missing=false, text='r#struct']

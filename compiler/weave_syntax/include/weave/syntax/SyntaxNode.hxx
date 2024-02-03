@@ -144,6 +144,7 @@ namespace weave::syntax
     class StatementSyntax;
     class TypeSyntax;
     class MatchClauseSyntax;
+    class PatternSyntax;
 
 #define WEAVE_SYNTAX_NODE(name, spelling) class name;
 #include "weave/syntax/SyntaxKind.inl"

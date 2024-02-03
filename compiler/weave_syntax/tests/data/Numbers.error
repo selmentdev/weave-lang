@@ -14,17 +14,23 @@ error: Expected '[token:identifier]'
        6 | 3.3.3.3
          |     ^^^
 error: Expected '[token:identifier]'
-        --> <source>:21:1
+        --> <source>:12:3
          |
-      21 | 0.3_e10_
+      12 | 0._
+         |   ^
+error: Unexpected tokens
+        --> <source>:12:3
+         |
+      12 | 0._
+         |   ^
+      13 | 0._3
+         | ^^^^
+      14 | 0._3_
+         | ^^^^^
+     ... |
+     118 | 0x1111.111p+111
+         | ^^^^^^^^^^^^^^^
+     119 | 0b1111_1111.101e+101
+         | ^^^^^^^^^^^^^^^^^^^^
+     120 | 21.37m32
          | ^^^^^^^^
-error: Expected '{'
-        --> <source>:21:1
-         |
-      21 | 0.3_e10_
-         | ^^^^^^^^
-error: Expected '}'
-        --> <source>:121:1
-         |
-     121 | 
-         | ^

@@ -1092,10 +1092,8 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(VariableDeclarationSyntax);
 
     public:
-        SyntaxToken* VarKeyword{};
-        IdentifierNameSyntax* Identifier{};
-        TypeClauseSyntax* TypeClause{};
-        InitializerClauseSyntax* Initializer{};
+        SyntaxToken* BindingSpecifier{};
+        PatternBindingSyntax* Binding{};
 
     public:
         explicit constexpr VariableDeclarationSyntax()
@@ -1566,6 +1564,137 @@ namespace weave::syntax
     public:
         explicit constexpr MatchDefaultClauseSyntax()
             : MatchClauseSyntax{SyntaxKind::MatchDefaultClauseSyntax}
+        {
+        }
+    };
+
+    class PatternSyntax : public SyntaxNode
+    {
+    public:
+        explicit constexpr PatternSyntax(SyntaxKind kind)
+            : SyntaxNode{kind}
+        {
+        }
+    };
+
+    class WildcardPatternSyntax : public PatternSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(WildcardPatternSyntax);
+
+    public:
+        SyntaxToken* WildcardToken{};
+
+    public:
+        explicit constexpr WildcardPatternSyntax()
+            : PatternSyntax{SyntaxKind::WildcardPatternSyntax}
+        {
+        }
+    };
+
+    class LiteralPatternSyntax : public PatternSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(LiteralPatternSyntax);
+
+    public:
+        SyntaxToken* LiteralToken{};
+
+    public:
+        explicit constexpr LiteralPatternSyntax()
+            : PatternSyntax{SyntaxKind::LiteralPatternSyntax}
+        {
+        }
+    };
+
+    class IdentifierPatternSyntax : public PatternSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(IdentifierPatternSyntax);
+
+    public:
+        NameSyntax* Identifier{};
+
+    public:
+        explicit constexpr IdentifierPatternSyntax()
+            : PatternSyntax{SyntaxKind::IdentifierPatternSyntax}
+        {
+        }
+    };
+
+    class SlicePatternItemSyntax : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(SlicePatternItemSyntax);
+
+    public:
+        PatternSyntax* Pattern{};
+        SyntaxToken* TrailingComma{};
+
+    public:
+        explicit constexpr SlicePatternItemSyntax()
+            : SyntaxNode{SyntaxKind::SlicePatternItemSyntax}
+        {
+        }
+    };
+
+    class SlicePatternSyntax : public PatternSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(SlicePatternSyntax);
+
+    public:
+        SyntaxToken* OpenBracketToken{};
+        SyntaxListView<SlicePatternItemSyntax> Items{};
+        SyntaxToken* CloseBracketToken{};
+
+    public:
+        explicit constexpr SlicePatternSyntax()
+            : PatternSyntax{SyntaxKind::SlicePatternSyntax}
+        {
+        }
+    };
+
+    class TuplePatternItemSyntax : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TuplePatternItemSyntax);
+
+    public:
+        SyntaxToken* Identifier{};
+        SyntaxToken* Colon{};
+        PatternSyntax* Pattern{};
+        SyntaxToken* TrailingComma{};
+
+    public:
+        explicit constexpr TuplePatternItemSyntax()
+            : SyntaxNode{SyntaxKind::TuplePatternItemSyntax}
+        {
+        }
+    };
+
+    class TuplePatternSyntax : public PatternSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TuplePatternSyntax);
+
+    public:
+        SyntaxToken* OpenBraceToken{};
+        SyntaxListView<TuplePatternItemSyntax> Items{};
+        SyntaxToken* CloseBraceToken{};
+
+    public:
+        explicit constexpr TuplePatternSyntax()
+            : PatternSyntax{SyntaxKind::TuplePatternSyntax}
+        {
+        }
+    };
+
+    class PatternBindingSyntax : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(PatternBindingSyntax);
+
+    public:
+        PatternSyntax* Pattern{};
+        TypeClauseSyntax* Type{};
+        InitializerClauseSyntax* Initializer{};
+
+    public:
+        explicit constexpr PatternBindingSyntax()
+            : SyntaxNode{SyntaxKind::PatternBindingSyntax}
         {
         }
     };
