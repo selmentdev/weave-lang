@@ -476,11 +476,13 @@ WEAVE_SYNTAX_NODE(MatchCaseClauseSyntax,                        "match case clau
 WEAVE_SYNTAX_NODE(MatchDefaultClauseSyntax,                     "match default clause")
 WEAVE_SYNTAX_NODE(ArrayTypeSyntax,                              "array type")
 WEAVE_SYNTAX_NODE(SliceTypeSyntax,                              "slice type")
-WEAVE_SYNTAX_NODE(ArrayExpressionSyntax,                        "array expression")
+WEAVE_SYNTAX_NODE(BracketInitializerClauseSyntax,               "bracket initializer clause")
+WEAVE_SYNTAX_NODE(BraceInitializerClauseSyntax,                 "brace initializer clause")
 WEAVE_SYNTAX_NODE(LoopStatementSyntax,                          "loop statement")
 WEAVE_SYNTAX_NODE(CheckedStatementSyntax,                       "checked statement")
 WEAVE_SYNTAX_NODE(UncheckedStatementSyntax,                     "unchecked statement")
 WEAVE_SYNTAX_NODE(UnsafeStatementSyntax,                        "unsafe statement")
+WEAVE_SYNTAX_NODE(StructExpressionSyntax,                       "struct expression")
 
 
 // prefix unary expressions

@@ -135,12 +135,14 @@ namespace weave::syntax
 
         SyntaxListView<AttributeListSyntax> ParseAttributesList();
 
-        SyntaxListView<SyntaxToken> ParseMemberModifiersList();
-
         void ParseMemberModifiersList(
             std::vector<SyntaxToken*>& elements);
 
+
+
         SyntaxListView<SyntaxToken> ParseFunctionParameterModifiersList();
+
+        SyntaxListView<SyntaxToken> ParseFunctionArgumentModifierList();
 
         VariableDeclarationSyntax* ParseVariableDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
@@ -264,6 +266,9 @@ namespace weave::syntax
         ExpressionSyntax* ParseExpression(
             Precedence parentPrecedence = Precedence::Expression);
 
+        ExpressionSyntax* ParseOptionalExpression(
+            Precedence parentPrecedence = Precedence::Expression);
+
         ExpressionSyntax* ParseTerm(
             Precedence precedence);
 
@@ -275,7 +280,9 @@ namespace weave::syntax
 
         TupleExpressionSyntax* ParseTupleExpression();
 
-        ArrayExpressionSyntax* ParseArrayExpression();
+        BracketInitializerClauseSyntax* ParseBracketInitializerClause();
+
+        BraceInitializerClauseSyntax* ParseBraceInitializerClause();
 
         LabeledExpressionSyntax* ParseLabeledExpression();
 

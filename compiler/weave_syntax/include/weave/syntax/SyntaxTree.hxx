@@ -32,7 +32,6 @@ namespace weave::syntax
 
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        UnexpectedNodesSyntax* Unexpected{};
     };
 
     class MemberDeclarationSyntax : public DeclarationSyntax
@@ -394,9 +393,13 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ArgumentSyntax);
 
     public:
-        // TODO: Figure out how to handle named arguments
-        SyntaxToken* DirectionKindKeyword{};
+        SyntaxListView<AttributeListSyntax> Attributes{};
+        SyntaxListView<SyntaxToken> Modifiers{};
+
+        SyntaxToken* Label{};
+        SyntaxToken* Colon{};
         ExpressionSyntax* Expression{};
+        SyntaxToken* TrailingComma{};
 
     public:
         explicit constexpr ArgumentSyntax()
@@ -410,8 +413,10 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(ArgumentListSyntax);
 
     public:
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
         SyntaxListView<ArgumentSyntax> Arguments{};
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
         SyntaxToken* CloseParenToken{};
 
     public:
@@ -426,8 +431,10 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(BracketedArgumentListSyntax);
 
     public:
+        UnexpectedNodesSyntax* BeforeOpenBracketToken{};
         SyntaxToken* OpenBracketToken{};
         SyntaxListView<ArgumentSyntax> Arguments{};
+        UnexpectedNodesSyntax* BeforeCloseBracketToken{};
         SyntaxToken* CloseBracketToken{};
 
     public:
@@ -444,7 +451,6 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        UnexpectedNodesSyntax* Unexpected{};
         NameSyntax* Identifier{};
         TypeClauseSyntax* Type{};
         SyntaxToken* TrailingComma{};
@@ -1068,7 +1074,6 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        UnexpectedNodesSyntax* Unexpected{};
     };
 
     class EmptyStatementSyntax final : public StatementSyntax
@@ -1367,9 +1372,18 @@ namespace weave::syntax
         }
     };
 
-    class ArrayExpressionSyntax final : public ExpressionSyntax
+    // TODO: Should be this named like this?
+    class StructExpressionSyntax final : public ExpressionSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(ArrayExpressionSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(StructExpressionSyntax);
+
+    public:
+        NameSyntax* TypeName{};
+    };
+
+    class BracketInitializerClauseSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(BracketInitializerClauseSyntax);
 
     public:
         UnexpectedNodesSyntax* BeforeOpenBracketToken{};
@@ -1379,8 +1393,26 @@ namespace weave::syntax
         SyntaxToken* CloseBracketToken{};
 
     public:
-        explicit constexpr ArrayExpressionSyntax()
-            : ExpressionSyntax{SyntaxKind::ArrayExpressionSyntax}
+        explicit constexpr BracketInitializerClauseSyntax()
+            : ExpressionSyntax{SyntaxKind::BracketInitializerClauseSyntax}
+        {
+        }
+    };
+
+    class BraceInitializerClauseSyntax : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(BraceInitializerClauseSyntax);
+
+    public:
+        UnexpectedNodesSyntax* BeforeOpenBraceToken{};
+        SyntaxToken* OpenBraceToken{};
+        SyntaxListView<LabeledExpressionSyntax> Elements{};
+        UnexpectedNodesSyntax* BeforeCloseBraceToken{};
+        SyntaxToken* CloseBraceToken{};
+
+    public:
+        explicit constexpr BraceInitializerClauseSyntax()
+            : ExpressionSyntax{SyntaxKind::BraceInitializerClauseSyntax}
         {
         }
     };

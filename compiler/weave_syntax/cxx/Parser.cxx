@@ -1,4 +1,5 @@
 // ReSharper disable CppClangTidyMiscNoRecursion
+// ReSharper disable CppMemberFunctionMayBeConst
 #include "weave/syntax/Parser.hxx"
 
 #include "weave/bugcheck/BugCheck.hxx"
@@ -314,13 +315,6 @@ namespace weave::syntax
         return SyntaxListView<AttributeListSyntax>{this->_factory->CreateList(elements)};
     }
 
-    SyntaxListView<SyntaxToken> Parser::ParseMemberModifiersList()
-    {
-        std::vector<SyntaxToken*> elements{};
-        ParseMemberModifiersList(elements);
-        return SyntaxListView<SyntaxToken>{this->_factory->CreateList(elements)};
-    }
-
     void Parser::ParseMemberModifiersList(std::vector<SyntaxToken*>& elements)
     {
         while (SyntaxToken* current = this->Current())
@@ -335,6 +329,23 @@ namespace weave::syntax
     }
 
     SyntaxListView<SyntaxToken> Parser::ParseFunctionParameterModifiersList()
+    {
+        std::vector<SyntaxToken*> elements{};
+
+        while (SyntaxToken* current = this->Current())
+        {
+            if (not SyntaxFacts::IsFunctionParameterModifier(current->Kind))
+            {
+                break;
+            }
+
+            elements.push_back(this->Next());
+        }
+
+        return SyntaxListView<SyntaxToken>{this->_factory->CreateList(elements)};
+    }
+
+    SyntaxListView<SyntaxToken> Parser::ParseFunctionArgumentModifierList()
     {
         std::vector<SyntaxToken*> elements{};
 
@@ -495,7 +506,7 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        switch (this->Current()->Kind)
+        switch (this->Current()->Kind)  // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::UsingKeyword:
             return this->ParseUsingDeclaration();
@@ -535,7 +546,7 @@ namespace weave::syntax
     StatementSyntax* Parser::ParseStatement(
         SyntaxListView<AttributeListSyntax> attributes)
     {
-        switch (this->Current()->Kind)
+        switch (this->Current()->Kind)  // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::ReturnKeyword:
             return this->ParseReturnStatement(attributes);
@@ -663,13 +674,9 @@ namespace weave::syntax
 
         std::vector<ParameterSyntax*> items{};
 
-        while (SyntaxToken* current = this->Current())
+        while (SyntaxToken* const current = this->Current())
         {
-            if (current->Kind == SyntaxKind::CloseParenToken)
-            {
-                break;
-            }
-            else if (current->Kind == SyntaxKind::EndOfFileToken)
+            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
             {
                 break;
             }
@@ -706,7 +713,6 @@ namespace weave::syntax
             ParameterSyntax* result = this->_factory->CreateNode<ParameterSyntax>();
             result->Attributes = attributes;
             result->Modifiers = modifiers;
-            result->Unexpected = nullptr;
             result->Identifier = name;
             result->Type = typeClause;
             result->TrailingComma = trailingComma;
@@ -1004,35 +1010,55 @@ namespace weave::syntax
 
     ArgumentSyntax* Parser::ParseArgument()
     {
-        SyntaxToken* tokenDirectionKind = nullptr;
+        SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
+        SyntaxListView<SyntaxToken> modifiers = this->ParseFunctionArgumentModifierList();
 
-        if (SyntaxFacts::IsFunctionArgumentDirectionKind(this->Current()->Kind))
+        SyntaxToken* label = nullptr;
+        SyntaxToken* colon = nullptr;
+
+        if (SyntaxKind const first = this->Current()->Kind; (first == SyntaxKind::IdentifierToken) or (first == SyntaxKind::IntegerLiteralToken))
         {
-            tokenDirectionKind = this->Next();
+            if (this->Peek(1)->Kind == SyntaxKind::ColonToken)
+            {
+                label = this->Match(first);
+                colon = this->Match(SyntaxKind::ColonToken);
+            }
         }
 
-        ExpressionSyntax* expression = this->ParseExpression();
+        ExpressionSyntax* expression = this->ParseOptionalExpression();
 
-        ArgumentSyntax* result = this->_factory->CreateNode<ArgumentSyntax>();
-        result->DirectionKindKeyword = tokenDirectionKind;
-        result->Expression = expression;
-        return result;
+        SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
+
+        if (label or colon or expression or attributes.GetNode() != nullptr or modifiers.GetNode() != nullptr)
+        {
+            ArgumentSyntax* result = this->_factory->CreateNode<ArgumentSyntax>();
+            result->Label = label;
+            result->Colon = colon;
+            result->Expression = expression;
+            result->TrailingComma = trailingComma;
+            return result;
+        }
+
+        return nullptr;
     }
 
     ArgumentListSyntax* Parser::ParseArgumentList()
     {
-        SyntaxToken* tokenOpenParen = this->Match(SyntaxKind::OpenParenToken);
+        ArgumentListSyntax* result = this->_factory->CreateNode<ArgumentListSyntax>();
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
-        std::vector<SyntaxNode*> nodes{};
+        std::vector<ArgumentSyntax*> children{};
 
-        while ((this->Current()->Kind != SyntaxKind::CloseParenToken) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
+        while (SyntaxToken* current = this->Current())
         {
-            ArgumentSyntax* argument = this->ParseArgument();
-            nodes.push_back(argument);
-
-            if (SyntaxToken* comma = this->TryMatch(SyntaxKind::CommaToken))
+            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
             {
-                nodes.push_back(comma);
+                break;
+            }
+
+            if (ArgumentSyntax* argument = this->ParseArgument())
+            {
+                children.push_back(argument);
             }
             else
             {
@@ -1040,29 +1066,30 @@ namespace weave::syntax
             }
         }
 
-        SyntaxToken* tokenCloseParen = this->Match(SyntaxKind::CloseParenToken);
+        result->Arguments = SyntaxListView<ArgumentSyntax>{this->_factory->CreateList(children)};
 
-        ArgumentListSyntax* result = this->_factory->CreateNode<ArgumentListSyntax>();
-        result->OpenParenToken = tokenOpenParen;
-        result->Arguments = SyntaxListView<ArgumentSyntax>{this->_factory->CreateList(nodes)};
-        result->CloseParenToken = tokenCloseParen;
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
         return result;
     }
 
     BracketedArgumentListSyntax* Parser::ParseBracketedArgumentList()
     {
-        SyntaxToken* tokenOpenBracket = this->Match(SyntaxKind::OpenBracketToken);
+        BracketedArgumentListSyntax* result = this->_factory->CreateNode<BracketedArgumentListSyntax>();
+        this->MatchUntil(result->OpenBracketToken, result->BeforeOpenBracketToken, SyntaxKind::OpenBracketToken);
 
-        std::vector<SyntaxNode*> nodes{};
+        std::vector<ArgumentSyntax*> children{};
 
-        while ((this->Current()->Kind != SyntaxKind::CloseBracketToken) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
+        while (SyntaxToken* current = this->Current())
         {
-            ArgumentSyntax* argument = this->ParseArgument();
-            nodes.push_back(argument);
-
-            if (SyntaxToken* comma = this->TryMatch(SyntaxKind::CommaToken))
+            if ((current->Kind == SyntaxKind::CloseBracketToken) or (current->Kind == SyntaxKind::EndOfFileToken))
             {
-                nodes.push_back(comma);
+                break;
+            }
+
+            if (ArgumentSyntax* argument = this->ParseArgument())
+            {
+                children.push_back(argument);
             }
             else
             {
@@ -1070,12 +1097,10 @@ namespace weave::syntax
             }
         }
 
-        SyntaxToken* tokenCloseBracket = this->Match(SyntaxKind::CloseBracketToken);
+        result->Arguments = SyntaxListView<ArgumentSyntax>{this->_factory->CreateList(children)};
 
-        BracketedArgumentListSyntax* result = this->_factory->CreateNode<BracketedArgumentListSyntax>();
-        result->OpenBracketToken = tokenOpenBracket;
-        result->Arguments = SyntaxListView<ArgumentSyntax>{this->_factory->CreateList(nodes)};
-        result->CloseBracketToken = tokenCloseBracket;
+        this->MatchUntil(result->CloseBracketToken, result->BeforeCloseBracketToken, SyntaxKind::CloseBracketToken);
+
         return result;
     }
 
@@ -1174,16 +1199,7 @@ namespace weave::syntax
     {
         if (SyntaxFacts::IsInvalidSubexpression(this->Current()->Kind))
         {
-#if true
             return nullptr;
-#else
-            SyntaxKind const kind = this->Current()->Kind;
-            ExpressionSyntax* result = CreateMissingIdentifierName();
-            this->_diagnostic->AddError(
-                this->Current()->Source,
-                fmt::format("invalid expression term: {}", GetSpelling(kind)));
-            return result;
-#endif
         }
 
         ExpressionSyntax* result = nullptr;
@@ -1283,37 +1299,8 @@ namespace weave::syntax
             }
 
             break;
-
-#if false
-            SyntaxKind const binaryOperation = SyntaxFacts::GetBinaryExpression(this->Current()->Kind);
-
-            if (binaryOperation == SyntaxKind::None)
-            {
-                break;
-            }
-
-            Precedence const binaryPrecedence = SyntaxFacts::GetPrecedence(binaryOperation);
-
-            if ((binaryPrecedence == Precedence::Expression) || (binaryPrecedence <= parentPrecedence))
-            {
-                break;
-            }
-
-            SyntaxToken* operatorToken = this->Next();
-            ExpressionSyntax* right = this->ParseBinaryExpression(binaryPrecedence);
-
-            BinaryExpressionSyntax* left = this->_factory->CreateNode<BinaryExpressionSyntax>();
-            left->Operation = binaryOperation;
-            left->Left = result;
-            left->OperatorToken = operatorToken;
-            left->Right = right;
-            result = left;
-#endif
         }
 
-#if false
-        return result;
-#else
         if ((this->Current()->Kind != SyntaxKind::QuestionToken) or (parentPrecedence > Precedence::Conditional))
         {
             return result;
@@ -1326,7 +1313,16 @@ namespace weave::syntax
         conditional->ColonToken = this->Match(SyntaxKind::ColonToken);
         conditional->WhenFalse = this->ParseExpression(Precedence::Conditional);
         return conditional;
-#endif
+    }
+
+    ExpressionSyntax* Parser::ParseOptionalExpression(Precedence parentPrecedence)
+    {
+        if (SyntaxFacts::IsStartOfExpression(this->Current()->Kind))
+        {
+            return this->ParseExpression(parentPrecedence);
+        }
+
+        return nullptr;
     }
 
     ExpressionSyntax* Parser::ParseTerm(Precedence precedence)
@@ -1360,6 +1356,12 @@ namespace weave::syntax
                     expression = result;
                     continue;
                 }
+
+            //case SyntaxKind::OpenBraceToken:
+            //    {
+            //        expression = this->ParseBraceInitializerClause();
+            //        continue;
+            //    }
 
             case SyntaxKind::DotToken:
                 {
@@ -1446,10 +1448,11 @@ namespace weave::syntax
             return this->ParseMatchExpression();
 
         case SyntaxKind::OpenBracketToken:
-            return this->ParseArrayExpression();
+            return this->ParseBracketInitializerClause();
 
         case SyntaxKind::OpenBraceToken:
             WEAVE_BUGCHECK("Object initializer is not supported!");
+            // return this->ParseBraceInitializerClause();
 
         default:
             ExpressionSyntax* missing = this->CreateMissingIdentifierName();
@@ -1481,11 +1484,7 @@ namespace weave::syntax
 
         while (SyntaxToken* current = this->Current())
         {
-            if (current->Kind == SyntaxKind::CloseParenToken)
-            {
-                break;
-            }
-            else if (current->Kind == SyntaxKind::EndOfFileToken)
+            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
             {
                 break;
             }
@@ -1507,20 +1506,16 @@ namespace weave::syntax
         return result;
     }
 
-    ArrayExpressionSyntax* Parser::ParseArrayExpression()
+    BracketInitializerClauseSyntax* Parser::ParseBracketInitializerClause()
     {
         std::vector<LabeledExpressionSyntax*> elements{};
 
-        ArrayExpressionSyntax* result = this->_factory->CreateNode<ArrayExpressionSyntax>();
+        BracketInitializerClauseSyntax* result = this->_factory->CreateNode<BracketInitializerClauseSyntax>();
         this->MatchUntil(result->OpenBracketToken, result->BeforeOpenBracketToken, SyntaxKind::OpenBracketToken);
 
         while (SyntaxToken* current = this->Current())
         {
-            if (current->Kind == SyntaxKind::CloseBracketToken)
-            {
-                break;
-            }
-            else if (current->Kind == SyntaxKind::EndOfFileToken)
+            if ((current->Kind == SyntaxKind::CloseBracketToken) or (current->Kind == SyntaxKind::EndOfFileToken))
             {
                 break;
             }
@@ -1542,6 +1537,37 @@ namespace weave::syntax
         return result;
     }
 
+    BraceInitializerClauseSyntax* Parser::ParseBraceInitializerClause()
+    {
+        std::vector<LabeledExpressionSyntax*> elements{};
+
+        BraceInitializerClauseSyntax* result = this->_factory->CreateNode<BraceInitializerClauseSyntax>();
+        this->MatchUntil(result->OpenBraceToken, result->BeforeOpenBraceToken, SyntaxKind::OpenBraceToken);
+
+        while (SyntaxToken* current = this->Current())
+        {
+            if ((current->Kind == SyntaxKind::CloseBraceToken) or (current->Kind == SyntaxKind::EndOfFileToken))
+            {
+                break;
+            }
+
+            if (LabeledExpressionSyntax* element = this->ParseLabeledExpression())
+            {
+                elements.push_back(element);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
+
+        this->MatchUntil(result->CloseBraceToken, result->BeforeCloseBraceToken, SyntaxKind::CloseBraceToken);
+
+        return result;
+    }
+
     LabeledExpressionSyntax* Parser::ParseLabeledExpression()
     {
         SyntaxToken* label = nullptr;
@@ -1556,12 +1582,7 @@ namespace weave::syntax
             }
         }
 
-        ExpressionSyntax* expression = nullptr;
-
-        if (SyntaxFacts::IsStartOfExpression(this->Current()->Kind))
-        {
-            expression = this->ParseExpression();
-        }
+        ExpressionSyntax* expression = this->ParseOptionalExpression();
 
         SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
@@ -1765,13 +1786,12 @@ namespace weave::syntax
 
     ExpressionStatementSyntax* Parser::ParseExpressionStatement(SyntaxListView<AttributeListSyntax> attributes)
     {
-        if (SyntaxFacts::IsStartOfExpression(this->Current()->Kind))
+        if (ExpressionSyntax* expression = this->ParseOptionalExpression())
         {
             ExpressionStatementSyntax* statement = this->_factory->CreateNode<ExpressionStatementSyntax>();
             statement->Attributes = attributes;
             statement->Modifiers = {};
-            statement->Unexpected = {};
-            statement->Expression = this->ParseExpression();
+            statement->Expression = expression;
             return statement;
         }
 
@@ -1842,7 +1862,7 @@ namespace weave::syntax
                 break;
             }
 
-            switch (current)
+            switch (current)  // NOLINT(clang-diagnostic-switch-enum)
             {
                 // Consume opening tokens
             case SyntaxKind::OpenBraceToken:
@@ -1910,11 +1930,7 @@ namespace weave::syntax
 
         while (SyntaxToken* current = this->Current())
         {
-            if (current->Kind == SyntaxKind::CloseParenToken)
-            {
-                break;
-            }
-            else if (current->Kind == SyntaxKind::EndOfFileToken)
+            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
             {
                 break;
             }
@@ -1982,11 +1998,7 @@ namespace weave::syntax
 
             while (SyntaxToken* current = this->Current())
             {
-                if (current->Kind == SyntaxKind::CloseBraceToken)
-                {
-                    break;
-                }
-                else if (current->Kind == SyntaxKind::EndOfFileToken)
+                if ((current->Kind == SyntaxKind::CloseBraceToken) or (current->Kind == SyntaxKind::EndOfFileToken))
                 {
                     break;
                 }

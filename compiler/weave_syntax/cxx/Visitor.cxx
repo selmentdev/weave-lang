@@ -42,7 +42,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->NamespaceKeyword);
         this->Dispatch(node->Name);
@@ -59,7 +58,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->StructKeyword);
         this->Dispatch(node->Name);
@@ -77,7 +75,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->ConceptKeyword);
         this->Dispatch(node->Name);
@@ -94,7 +91,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->ExtendKeyword);
         this->Dispatch(node->Name);
@@ -111,7 +107,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         --this->Depth;
     }
@@ -137,7 +132,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->FunctionKeyword);
         this->Dispatch(node->Name);
@@ -236,7 +230,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->Identifier);
         this->Dispatch(node->Type);
@@ -265,7 +258,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->ConstKeyword);
         this->Dispatch(node->Name);
@@ -379,21 +371,11 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->BeforeOpenParenToken);
         this->Dispatch(node->OpenParenToken);
         this->Dispatch(node->Arguments.GetNode());
+        this->Dispatch(node->BeforeCloseParenToken);
         this->Dispatch(node->CloseParenToken);
-
-        --this->Depth;
-    }
-
-    void SyntaxWalker::OnArgumentSyntax(ArgumentSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->DirectionKindKeyword);
-        this->Dispatch(node->Expression);
 
         --this->Depth;
     }
@@ -404,8 +386,10 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->BeforeOpenBracketToken);
         this->Dispatch(node->OpenBracketToken);
         this->Dispatch(node->Arguments.GetNode());
+        this->Dispatch(node->BeforeCloseBracketToken);
         this->Dispatch(node->CloseBracketToken);
 
         --this->Depth;
@@ -423,6 +407,22 @@ namespace weave::syntax
         --this->Depth;
     }
 
+    void SyntaxWalker::OnArgumentSyntax(ArgumentSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Label);
+        this->Dispatch(node->Colon);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->TrailingComma);
+
+        --this->Depth;
+    }
+
     void SyntaxWalker::OnBlockStatementSyntax(BlockStatementSyntax* node)
     {
         this->OnDefault(node);
@@ -431,7 +431,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->Members);
 
@@ -446,7 +445,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->Expression);
 
@@ -461,7 +459,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->ReturnKeyword);
         this->Dispatch(node->Expression);
@@ -489,7 +486,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->WhileKeyword);
         this->Dispatch(node->ConditionAttributes.GetNode());
@@ -507,7 +503,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->BreakKeyword);
         this->Dispatch(node->Label);
@@ -523,7 +518,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->ContinueKeyword);
 
@@ -538,7 +532,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->GotoKeyword);
         this->Dispatch(node->Label);
@@ -554,7 +547,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->VarKeyword);
         this->Dispatch(node->Identifier);
@@ -611,7 +603,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->DelegateKeyword);
         this->Dispatch(node->Name);
@@ -723,7 +714,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         --this->Depth;
     }
@@ -834,7 +824,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->Name);
         this->Dispatch(node->Colon);
@@ -880,7 +869,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->TypeKeyword);
         this->Dispatch(node->Name);
@@ -1095,7 +1083,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnArrayExpressionSyntax(ArrayExpressionSyntax* node)
+    void SyntaxWalker::OnBracketInitializerClauseSyntax(BracketInitializerClauseSyntax* node)
     {
         this->OnDefault(node);
 
@@ -1108,6 +1096,19 @@ namespace weave::syntax
         this->Dispatch(node->CloseBracketToken);
     }
 
+    void SyntaxWalker::OnBraceInitializerClauseSyntax(BraceInitializerClauseSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->BeforeOpenBraceToken);
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->Elements.GetNode());
+        this->Dispatch(node->BeforeCloseBraceToken);
+        this->Dispatch(node->CloseBraceToken);
+    }
+
     void SyntaxWalker::OnCheckedStatementSyntax(CheckedStatementSyntax* node)
     {
         this->OnDefault(node);
@@ -1116,7 +1117,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->CheckedKeyword);
         this->Dispatch(node->Body);
@@ -1132,7 +1132,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->UncheckedKeyword);
         this->Dispatch(node->Body);
@@ -1148,7 +1147,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->LoopKeyword);
         this->Dispatch(node->Body);
@@ -1164,7 +1162,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Unexpected);
 
         this->Dispatch(node->UnsafeKeyword);
         this->Dispatch(node->Body);

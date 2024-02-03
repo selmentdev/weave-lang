@@ -498,12 +498,12 @@ int main(int argc, const char* argv[])
                     // SyntaxWalker::OnIdentifierNameSyntax(node);
                 }
 
-                void OnArgumentSyntax(syntax::ArgumentSyntax* node) override
-                {
-                    Indent();
-                    fmt::println("{}", __func__);
-                    SyntaxWalker::OnArgumentSyntax(node);
-                }
+                //void OnArgumentSyntax(syntax::ArgumentSyntax* node) override
+                //{
+                //    Indent();
+                //    fmt::println("{}", __func__);
+                //    SyntaxWalker::OnArgumentSyntax(node);
+                //}
 
                 void OnArrowExpressionClauseSyntax(syntax::ArrowExpressionClauseSyntax* node) override
                 {

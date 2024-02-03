@@ -1,0 +1,73 @@
+
+public struct Vector3::[type T]
+{
+    public var Elements: [T] = [0, 0, 0];
+}
+
+public extend Vector3::[type T]
+{
+    public type Element = T;
+
+    public function New(x: T, y: T, z: T) -> Vector3::[T]
+    {
+        return Vector3(
+            Elements: [x, y, z]
+        );
+    }
+}
+
+public struct Vector4F
+{
+    public var X : Float32;
+    public var Y : Float32;
+    public var Z : Float32;
+    public var W : Float32;
+}
+
+public extend Vector4F
+{
+    public function New(
+        x: Float32,
+        y: Float32,
+        z: Float32,
+        w: Float32
+    ) -> Vector4F
+    {
+        return Vector4F(
+            X: x,
+            Y: y,
+            Z: z,
+            W: w
+        );
+    }
+
+    public function Zero() -> Vector4F
+    {
+        return Vector4F(
+            X: 0.0_f32,
+            Y: 0.0_f32,
+            Z: 0.0_f32,
+            W: 0.0_f32,
+        );
+    }
+
+    public function UnitX() -> Vector4F
+    {
+        return Vector4F(
+            X: 1.0_f32,
+            Y: 0.0_f32,
+            Z: 0.0_f32,
+            W: 0.0_f32,
+        );
+    }
+
+    public function UnitY() -> Vector4F
+    {
+        return Vector4F(
+            X: 0.0_f32,
+            Y: 1.0_f32,
+            Z: 0.0_f32,
+            W: 0.0_f32,
+        );
+    }
+}
