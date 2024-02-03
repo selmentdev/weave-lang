@@ -297,35 +297,6 @@ namespace weave::syntax
             return result;
         }
 
-        if (SyntaxFacts::IsStartOfExpression(this->Current()->Kind))
-        {
-            ExpressionStatementSyntax* statement = this->_factory->CreateNode<ExpressionStatementSyntax>();
-            statement->Attributes = attributes;
-            statement->Modifiers = {};
-            statement->Unexpected = {};
-            statement->Expression = this->ParseExpression();
-
-            CodeBlockItemSyntax* result = this->_factory->CreateNode<CodeBlockItemSyntax>();
-
-            if (label)
-            {
-                LabelStatementSyntax* wrapper = this->_factory->CreateNode<LabelStatementSyntax>();
-                wrapper->Name = label->Name;
-                wrapper->Colon = label->Colon;
-                wrapper->Statement = statement;
-
-                result->Item = wrapper;
-            }
-            else
-            {
-                result->Item = statement;
-            }
-
-            result->Semicolon = this->TryMatch(SyntaxKind::SemicolonToken);
-            result->AfterSemicolon = this->ConsumeUnexpected(SyntaxKind::SemicolonToken);
-            return result;
-        }
-
         // No luck, reset parser to original state and stop.
         this->Reset(started);
         return nullptr;
@@ -594,9 +565,7 @@ namespace weave::syntax
             break;
         }
 
-        // return this->ParseExpressionStatement(attributes);
-        // WEAVE_BUGCHECK("Statement '{}' not handled", GetName(this->Current()->Kind));
-        return nullptr;
+        return this->ParseExpressionStatement(attributes);
     }
 
     BlockStatementSyntax* Parser::ParseBlockStatement(
@@ -1705,12 +1674,14 @@ namespace weave::syntax
 
     ExpressionStatementSyntax* Parser::ParseExpressionStatement(SyntaxListView<AttributeListSyntax> attributes)
     {
-        if (ExpressionSyntax* expression = this->ParseExpression())
+        if (SyntaxFacts::IsStartOfExpression(this->Current()->Kind))
         {
-            ExpressionStatementSyntax* result = this->_factory->CreateNode<ExpressionStatementSyntax>();
-            result->Attributes = attributes;
-            result->Expression = expression;
-            return result;
+            ExpressionStatementSyntax* statement = this->_factory->CreateNode<ExpressionStatementSyntax>();
+            statement->Attributes = attributes;
+            statement->Modifiers = {};
+            statement->Unexpected = {};
+            statement->Expression = this->ParseExpression();
+            return statement;
         }
 
         return nullptr;
@@ -1965,7 +1936,7 @@ namespace weave::syntax
     {
         MatchCaseClauseSyntax* result = this->_factory->CreateNode<MatchCaseClauseSyntax>();
         result->CaseKeyword = this->Match(SyntaxKind::CaseKeyword);
-        result->Pattern = this->ParseQualifiedName();
+        result->Pattern = this->ParseExpression();
         result->ColonToken = this->Match(SyntaxKind::ColonToken);
         result->Body = this->ParseStatement({});
         result->TrailingSemicolon = this->Match(SyntaxKind::SemicolonToken);
