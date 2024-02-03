@@ -91,7 +91,7 @@
                   [token=ColonToken, start=209, end=210, position=12:17:12:18, missing=false, text=':']
                   [node=IdentifierNameSyntax]
                     [token=IdentifierToken, start=211, end=230, position=12:19:12:38, missing=false, text='PlayerDeathCallback']
-                [node=EqualsValueClauseSyntax]
+                [node=InitializerClauseSyntax]
                   [token=EqualsToken, start=231, end=232, position=12:39:12:40, missing=false, text='=']
                   [node=MemberAccessExpressionSyntax]
                     [node=IdentifierNameSyntax]

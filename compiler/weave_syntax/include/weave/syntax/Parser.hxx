@@ -239,9 +239,9 @@ namespace weave::syntax
 
         TypeSyntax* ParseType();
 
-        EqualsValueClauseSyntax* ParseEqualsValueClause();
+        InitializerClauseSyntax* ParseInitializerClause();
 
-        EqualsValueClauseSyntax* ParseOptionalEqualsValueClause();
+        InitializerClauseSyntax* ParseOptionalInitializerClause();
 
         ArgumentSyntax* ParseArgument();
 

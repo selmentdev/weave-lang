@@ -267,7 +267,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnEqualsValueClauseSyntax(EqualsValueClauseSyntax* node)
+    void SyntaxWalker::OnInitializerClauseSyntax(InitializerClauseSyntax* node)
     {
         this->OnDefault(node);
 

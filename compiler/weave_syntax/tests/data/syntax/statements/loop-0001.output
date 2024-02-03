@@ -9,7 +9,7 @@
           [token=ColonToken, start=5, end=6, position=0:5:0:6, missing=false, text=':']
           [node=IdentifierNameSyntax]
             [token=IdentifierToken, start=7, end=12, position=0:7:0:12, missing=false, text='Int32']
-        [node=EqualsValueClauseSyntax]
+        [node=InitializerClauseSyntax]
           [token=EqualsToken, start=13, end=14, position=0:13:0:14, missing=false, text='=']
           [node=LiteralExpressionSyntax]
             [token=IntegerLiteralToken, start=15, end=16, position=0:15:0:16, missing=false, text='0']

@@ -188,7 +188,7 @@
                 [token=LetKeyword, start=340, end=343, position=25:4:25:7, missing=false, text='let']
                 [node=IdentifierNameSyntax]
                   [token=IdentifierToken, start=344, end=348, position=25:8:25:12, missing=false, text='temp']
-                [node=EqualsValueClauseSyntax]
+                [node=InitializerClauseSyntax]
                   [token=EqualsToken, start=349, end=350, position=25:13:25:14, missing=false, text='=']
                   [node=IdentifierNameSyntax]
                     [token=IdentifierToken, start=351, end=355, position=25:15:25:19, missing=false, text='left']

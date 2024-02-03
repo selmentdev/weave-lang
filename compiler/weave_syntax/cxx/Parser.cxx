@@ -376,7 +376,7 @@ namespace weave::syntax
         result->VarKeyword = this->Match(expected);
         result->Identifier = this->ParseIdentifierName();
         result->TypeClause = this->ParseOptionalTypeClause();
-        result->Initializer = this->ParseOptionalEqualsValueClause();
+        result->Initializer = this->ParseOptionalInitializerClause();
         return result;
     }
 
@@ -987,22 +987,22 @@ namespace weave::syntax
         return this->CreateMissingIdentifierName();
     }
 
-    EqualsValueClauseSyntax* Parser::ParseEqualsValueClause()
+    InitializerClauseSyntax* Parser::ParseInitializerClause()
     {
         SyntaxToken* tokenEquals = this->Match(SyntaxKind::EqualsToken);
         ExpressionSyntax* expression = this->ParseExpression();
 
-        EqualsValueClauseSyntax* result = this->_factory->CreateNode<EqualsValueClauseSyntax>();
+        InitializerClauseSyntax* result = this->_factory->CreateNode<InitializerClauseSyntax>();
         result->EqualsToken = tokenEquals;
         result->Expression = expression;
         return result;
     }
 
-    EqualsValueClauseSyntax* Parser::ParseOptionalEqualsValueClause()
+    InitializerClauseSyntax* Parser::ParseOptionalInitializerClause()
     {
         if (this->Current()->Is(SyntaxKind::EqualsToken))
         {
-            return this->ParseEqualsValueClause();
+            return this->ParseInitializerClause();
         }
 
         return nullptr;

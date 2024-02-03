@@ -106,7 +106,7 @@ namespace weave::syntax
         void OnParameterSyntax(ParameterSyntax* node) override;
         void OnTypeClauseSyntax(TypeClauseSyntax* node) override;
         void OnConstantDeclarationSyntax(ConstantDeclarationSyntax* node) override;
-        void OnEqualsValueClauseSyntax(EqualsValueClauseSyntax* node) override;
+        void OnInitializerClauseSyntax(InitializerClauseSyntax* node) override;
         void OnLiteralExpressionSyntax(LiteralExpressionSyntax* node) override;
         void OnAssignmentExpressionSyntax(AssignmentExpressionSyntax* node) override;
         void OnBinaryExpressionSyntax(BinaryExpressionSyntax* node) override;

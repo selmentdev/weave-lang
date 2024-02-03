@@ -33,7 +33,7 @@
                         [token=LetKeyword, start=24, end=27, position=4:4:4:7, missing=false, text='let']
                         [node=IdentifierNameSyntax]
                           [token=IdentifierToken, start=28, end=29, position=4:8:4:9, missing=false, text='y']
-                        [node=EqualsValueClauseSyntax]
+                        [node=InitializerClauseSyntax]
                           [token=EqualsToken, start=30, end=31, position=4:10:4:11, missing=false, text='=']
                           [node=LiteralExpressionSyntax]
                             [token=IntegerLiteralToken, start=32, end=34, position=4:12:4:14, missing=false, text='42']

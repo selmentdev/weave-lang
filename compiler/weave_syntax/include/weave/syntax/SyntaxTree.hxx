@@ -304,7 +304,7 @@ namespace weave::syntax
         SyntaxToken* ConstKeyword{};
         NameSyntax* Name{};
         TypeClauseSyntax* Type{};
-        EqualsValueClauseSyntax* Initializer{};
+        InitializerClauseSyntax* Initializer{};
 
     public:
         explicit constexpr ConstantDeclarationSyntax()
@@ -1048,17 +1048,17 @@ namespace weave::syntax
         }
     };
 
-    class EqualsValueClauseSyntax : public SyntaxNode
+    class InitializerClauseSyntax : public SyntaxNode
     {
-        WEAVE_DEFINE_SYNTAX_NODE(EqualsValueClauseSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(InitializerClauseSyntax);
 
     public:
         SyntaxToken* EqualsToken{};
         ExpressionSyntax* Expression{};
 
     public:
-        explicit constexpr EqualsValueClauseSyntax()
-            : SyntaxNode{SyntaxKind::EqualsValueClauseSyntax}
+        explicit constexpr InitializerClauseSyntax()
+            : SyntaxNode{SyntaxKind::InitializerClauseSyntax}
         {
         }
     };
@@ -1095,7 +1095,7 @@ namespace weave::syntax
         SyntaxToken* VarKeyword{};
         IdentifierNameSyntax* Identifier{};
         TypeClauseSyntax* TypeClause{};
-        EqualsValueClauseSyntax* Initializer{};
+        InitializerClauseSyntax* Initializer{};
 
     public:
         explicit constexpr VariableDeclarationSyntax()

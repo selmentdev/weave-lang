@@ -32,7 +32,7 @@
                     [node=IdentifierNameSyntax]
                       [token=IdentifierToken, start=61, end=62, position=3:26:3:27, missing=false, text='T']
                     [token=CloseBracketToken, start=62, end=63, position=3:27:3:28, missing=false, text=']']
-                [node=EqualsValueClauseSyntax]
+                [node=InitializerClauseSyntax]
                   [token=EqualsToken, start=64, end=65, position=3:29:3:30, missing=false, text='=']
                   [node=BracketInitializerClauseSyntax]
                     [token=OpenBracketToken, start=66, end=67, position=3:31:3:32, missing=false, text='[']

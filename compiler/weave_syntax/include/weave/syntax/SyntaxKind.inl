@@ -433,7 +433,7 @@ WEAVE_SYNTAX_NODE(AssignmentExpressionSyntax,                   "[node:assignmen
 WEAVE_SYNTAX_NODE(LiteralExpressionSyntax,                      "[node:literal-expression]")
 WEAVE_SYNTAX_NODE(UnaryExpressionSyntax,                        "[node:unary-expression]")
 WEAVE_SYNTAX_NODE(BinaryExpressionSyntax,                       "[node:binary-expression]")
-WEAVE_SYNTAX_NODE(EqualsValueClauseSyntax,                      "[node:equals-value-clause]")
+WEAVE_SYNTAX_NODE(InitializerClauseSyntax,                      "initializer clause")
 WEAVE_SYNTAX_NODE(PostfixUnaryExpressionSyntax,                 "[node:postfix-unary-expression]")
 WEAVE_SYNTAX_NODE(InvocationExpressionSyntax,                   "[node:invocation-expression]")
 WEAVE_SYNTAX_NODE(ConditionalExpressionSyntax,                  "[node:conditional-expression]")

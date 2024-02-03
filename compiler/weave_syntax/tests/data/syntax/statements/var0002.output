@@ -21,7 +21,7 @@
             [token=DotToken, start=27, end=28, position=0:27:0:28, missing=false, text='.']
             [node=IdentifierNameSyntax]
               [token=IdentifierToken, start=28, end=33, position=0:28:0:33, missing=false, text='DWORD']
-        [node=EqualsValueClauseSyntax]
+        [node=InitializerClauseSyntax]
           [token=EqualsToken, start=34, end=35, position=0:34:0:35, missing=false, text='=']
           [node=LiteralExpressionSyntax]
             [token=IntegerLiteralToken, start=36, end=37, position=0:36:0:37, missing=false, text='0']

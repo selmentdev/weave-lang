@@ -61,7 +61,7 @@
                 [token=LetKeyword, start=107, end=110, position=5:2:5:5, missing=false, text='let']
                 [node=IdentifierNameSyntax]
                   [token=IdentifierToken, start=111, end=117, position=5:6:5:12, missing=false, text='result']
-                [node=EqualsValueClauseSyntax]
+                [node=InitializerClauseSyntax]
                   [token=EqualsToken, start=118, end=119, position=5:13:5:14, missing=false, text='=']
                   [node=ConditionalExpressionSyntax]
                     [node=BinaryExpressionSyntax]
