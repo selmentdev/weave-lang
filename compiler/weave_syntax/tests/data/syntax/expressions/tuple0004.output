@@ -9,4 +9,4 @@
               [node=LiteralExpressionSyntax]
                 [token=IntegerLiteralToken, start=1, end=2, position=0:1:0:2, missing=false, text='2']
           [token=CloseParenToken, start=2, end=3, position=0:2:0:3, missing=false, text=')']
-  [token=EndOfFileToken, start=5, end=5, position=1:0:1:0, missing=false, text='']
+  [token=EndOfFileToken, start=4, end=4, position=1:0:1:0, missing=false, text='']
