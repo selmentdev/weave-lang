@@ -1,0 +1,6 @@
+match x {
+    case (_, 0): WriteLine("Zero");
+    case (1, _): WriteLine("One");
+    case (2, _): WriteLine("Two");
+    default: WriteLine("Many");
+}

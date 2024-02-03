@@ -2039,7 +2039,7 @@ namespace weave::syntax
     {
         MatchCaseClauseSyntax* result = this->_factory->CreateNode<MatchCaseClauseSyntax>();
         result->CaseKeyword = this->Match(SyntaxKind::CaseKeyword);
-        result->Pattern = this->ParseExpression();
+        result->Pattern = this->ParsePattern();
         result->ColonToken = this->Match(SyntaxKind::ColonToken);
         result->Body = this->ParseStatement({});
         result->TrailingSemicolon = this->Match(SyntaxKind::SemicolonToken);

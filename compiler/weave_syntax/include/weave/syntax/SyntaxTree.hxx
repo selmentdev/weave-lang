@@ -1539,7 +1539,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* CaseKeyword{};
-        ExpressionSyntax* Pattern{};
+        PatternSyntax* Pattern{};
         SyntaxToken* ColonToken{};
         StatementSyntax* Body{};
         SyntaxToken* TrailingSemicolon{};
