@@ -1,217 +1,217 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=FunctionDeclarationSyntax]
-        [node=SyntaxList]
-          [token=PublicKeyword, start=0, end=6, position=0:0:0:6, missing=false, text='public']
-        [token=FunctionKeyword, start=7, end=15, position=0:7:0:15, missing=false, text='function']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=16, end=26, position=0:16:0:26, missing=false, text='SwapResult']
-        [node=GenericParametersSyntax]
-          [token=ColonColonOpenBracketToken, start=26, end=29, position=0:26:0:29, missing=false, text='::[']
-          [node=SyntaxList]
-            [node=TypeGenericParameterSyntax]
-              [token=TypeKeyword, start=34, end=38, position=1:4:1:8, missing=false, text='type']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=39, end=44, position=1:9:1:14, missing=false, text='LeftT']
-              [token=CommaToken, start=44, end=45, position=1:14:1:15, missing=false, text=',']
-            [node=TypeGenericParameterSyntax]
-              [token=TypeKeyword, start=50, end=54, position=2:4:2:8, missing=false, text='type']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=55, end=61, position=2:9:2:15, missing=false, text='RightT']
-          [token=CloseBracketToken, start=62, end=63, position=3:0:3:1, missing=false, text=']']
-        [node=ParameterListSyntax]
-          [token=OpenParenToken, start=63, end=64, position=3:1:3:2, missing=false, text='(']
-          [node=SyntaxList]
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=69, end=73, position=4:4:4:8, missing=false, text='left']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=73, end=74, position=4:8:4:9, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=75, end=80, position=4:10:4:15, missing=false, text='LeftT']
-              [token=CommaToken, start=80, end=81, position=4:15:4:16, missing=false, text=',']
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=86, end=91, position=5:4:5:9, missing=false, text='right']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=91, end=92, position=5:9:5:10, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=93, end=99, position=5:11:5:17, missing=false, text='RightT']
-          [token=CloseParenToken, start=100, end=101, position=6:0:6:1, missing=false, text=')']
-        [node=ReturnTypeClauseSyntax]
-          [token=MinusGreaterThanToken, start=102, end=104, position=6:2:6:4, missing=false, text='->']
-          [node=TupleTypeSyntax]
-            [token=OpenParenToken, start=105, end=106, position=6:5:6:6, missing=false, text='(']
-            [node=SyntaxList]
-              [node=TupleTypeElementSyntax]
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=106, end=112, position=6:6:6:12, missing=false, text='RightT']
-                [token=CommaToken, start=112, end=113, position=6:12:6:13, missing=false, text=',']
-              [node=TupleTypeElementSyntax]
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=114, end=119, position=6:14:6:19, missing=false, text='LeftT']
-            [token=CloseParenToken, start=119, end=120, position=6:19:6:20, missing=false, text=')']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=121, end=122, position=7:0:7:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=ReturnStatementSyntax]
-                [token=ReturnKeyword, start=127, end=133, position=8:4:8:10, missing=false, text='return']
-                [node=TupleExpressionSyntax]
-                  [token=OpenParenToken, start=134, end=135, position=8:11:8:12, missing=false, text='(']
-                  [node=SyntaxList]
-                    [node=LabeledExpressionSyntax]
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=135, end=140, position=8:12:8:17, missing=false, text='right']
-                      [token=CommaToken, start=140, end=141, position=8:17:8:18, missing=false, text=',']
-                    [node=LabeledExpressionSyntax]
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=142, end=146, position=8:19:8:23, missing=false, text='left']
-                  [token=CloseParenToken, start=146, end=147, position=8:23:8:24, missing=false, text=')']
-              [token=SemicolonToken, start=147, end=148, position=8:24:8:25, missing=false, text=';']
-          [token=CloseBraceToken, start=149, end=150, position=9:0:9:1, missing=false, text='}']
-    [node=CodeBlockItemSyntax]
-      [node=FunctionDeclarationSyntax]
-        [node=SyntaxList]
-          [token=PublicKeyword, start=152, end=158, position=11:0:11:6, missing=false, text='public']
-        [token=FunctionKeyword, start=159, end=167, position=11:7:11:15, missing=false, text='function']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=168, end=178, position=11:16:11:26, missing=false, text='SwapResult']
-        [node=GenericParametersSyntax]
-          [token=ColonColonOpenBracketToken, start=178, end=181, position=11:26:11:29, missing=false, text='::[']
-          [node=SyntaxList]
-            [node=TypeGenericParameterSyntax]
-              [token=TypeKeyword, start=181, end=185, position=11:29:11:33, missing=false, text='type']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=186, end=187, position=11:34:11:35, missing=false, text='T']
-          [token=CloseBracketToken, start=187, end=188, position=11:35:11:36, missing=false, text=']']
-        [node=ParameterListSyntax]
-          [token=OpenParenToken, start=188, end=189, position=11:36:11:37, missing=false, text='(']
-          [node=SyntaxList]
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=194, end=198, position=12:4:12:8, missing=false, text='left']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=198, end=199, position=12:8:12:9, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=200, end=201, position=12:10:12:11, missing=false, text='T']
-              [token=CommaToken, start=201, end=202, position=12:11:12:12, missing=false, text=',']
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=207, end=212, position=13:4:13:9, missing=false, text='right']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=212, end=213, position=13:9:13:10, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=214, end=215, position=13:11:13:12, missing=false, text='T']
-          [token=CloseParenToken, start=216, end=217, position=14:0:14:1, missing=false, text=')']
-        [node=ReturnTypeClauseSyntax]
-          [token=MinusGreaterThanToken, start=218, end=220, position=14:2:14:4, missing=false, text='->']
-          [node=TupleTypeSyntax]
-            [token=OpenParenToken, start=221, end=222, position=14:5:14:6, missing=false, text='(']
-            [node=SyntaxList]
-              [node=TupleTypeElementSyntax]
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=222, end=223, position=14:6:14:7, missing=false, text='T']
-                [token=CommaToken, start=223, end=224, position=14:7:14:8, missing=false, text=',']
-              [node=TupleTypeElementSyntax]
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=225, end=226, position=14:9:14:10, missing=false, text='T']
-            [token=CloseParenToken, start=226, end=227, position=14:10:14:11, missing=false, text=')']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=228, end=229, position=15:0:15:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=ReturnStatementSyntax]
-                [token=ReturnKeyword, start=234, end=240, position=16:4:16:10, missing=false, text='return']
-                [node=TupleExpressionSyntax]
-                  [token=OpenParenToken, start=241, end=242, position=16:11:16:12, missing=false, text='(']
-                  [node=SyntaxList]
-                    [node=LabeledExpressionSyntax]
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=242, end=247, position=16:12:16:17, missing=false, text='right']
-                      [token=CommaToken, start=247, end=248, position=16:17:16:18, missing=false, text=',']
-                    [node=LabeledExpressionSyntax]
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=249, end=253, position=16:19:16:23, missing=false, text='left']
-                  [token=CloseParenToken, start=253, end=254, position=16:23:16:24, missing=false, text=')']
-              [token=SemicolonToken, start=254, end=255, position=16:24:16:25, missing=false, text=';']
-          [token=CloseBraceToken, start=256, end=257, position=17:0:17:1, missing=false, text='}']
-    [node=CodeBlockItemSyntax]
-      [node=FunctionDeclarationSyntax]
-        [node=SyntaxList]
-          [token=PublicKeyword, start=259, end=265, position=19:0:19:6, missing=false, text='public']
-        [token=FunctionKeyword, start=266, end=274, position=19:7:19:15, missing=false, text='function']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=275, end=279, position=19:16:19:20, missing=false, text='Swap']
-        [node=GenericParametersSyntax]
-          [token=ColonColonOpenBracketToken, start=279, end=282, position=19:20:19:23, missing=false, text='::[']
-          [node=SyntaxList]
-            [node=TypeGenericParameterSyntax]
-              [token=TypeKeyword, start=282, end=286, position=19:23:19:27, missing=false, text='type']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=287, end=288, position=19:28:19:29, missing=false, text='T']
-          [token=CloseBracketToken, start=288, end=289, position=19:29:19:30, missing=false, text=']']
-        [node=ParameterListSyntax]
-          [token=OpenParenToken, start=290, end=291, position=20:0:20:1, missing=false, text='(']
-          [node=SyntaxList]
-            [node=ParameterSyntax]
-              [node=SyntaxList]
-                [token=RefKeyword, start=296, end=299, position=21:4:21:7, missing=false, text='ref']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=300, end=304, position=21:8:21:12, missing=false, text='left']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=304, end=305, position=21:12:21:13, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=306, end=307, position=21:14:21:15, missing=false, text='T']
-              [token=CommaToken, start=307, end=308, position=21:15:21:16, missing=false, text=',']
-            [node=ParameterSyntax]
-              [node=SyntaxList]
-                [token=RefKeyword, start=313, end=316, position=22:4:22:7, missing=false, text='ref']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=317, end=322, position=22:8:22:13, missing=false, text='right']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=322, end=323, position=22:13:22:14, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=324, end=325, position=22:15:22:16, missing=false, text='T']
-          [token=CloseParenToken, start=326, end=327, position=23:0:23:1, missing=false, text=')']
-        [node=ReturnTypeClauseSyntax]
-          [token=MinusGreaterThanToken, start=328, end=330, position=23:2:23:4, missing=false, text='->']
-          [node=TupleTypeSyntax]
-            [token=OpenParenToken, start=331, end=332, position=23:5:23:6, missing=false, text='(']
-            [token=CloseParenToken, start=332, end=333, position=23:6:23:7, missing=false, text=')']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=334, end=335, position=24:0:24:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=VariableDeclarationSyntax]
-                [token=LetKeyword, start=340, end=343, position=25:4:25:7, missing=false, text='let']
-                [node=PatternBindingSyntax]
-                  [node=IdentifierPatternSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=344, end=348, position=25:8:25:12, missing=false, text='temp']
-                  [node=InitializerClauseSyntax]
-                    [token=EqualsToken, start=349, end=350, position=25:13:25:14, missing=false, text='=']
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=351, end=355, position=25:15:25:19, missing=false, text='left']
-              [token=SemicolonToken, start=355, end=356, position=25:19:25:20, missing=false, text=';']
-            [node=CodeBlockItemSyntax]
-              [node=ExpressionStatementSyntax]
-                [node=AssignmentExpressionSyntax]
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=361, end=365, position=26:4:26:8, missing=false, text='left']
-                  [token=EqualsToken, start=366, end=367, position=26:9:26:10, missing=false, text='=']
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=368, end=373, position=26:11:26:16, missing=false, text='right']
-              [token=SemicolonToken, start=373, end=374, position=26:16:26:17, missing=false, text=';']
-            [node=CodeBlockItemSyntax]
-              [node=ExpressionStatementSyntax]
-                [node=AssignmentExpressionSyntax]
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=379, end=384, position=27:4:27:9, missing=false, text='right']
-                  [token=EqualsToken, start=385, end=386, position=27:10:27:11, missing=false, text='=']
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=387, end=391, position=27:12:27:16, missing=false, text='temp']
-              [token=SemicolonToken, start=391, end=392, position=27:16:27:17, missing=false, text=';']
-          [token=CloseBraceToken, start=393, end=394, position=28:0:28:1, missing=false, text='}']
-  [token=EndOfFileToken, start=395, end=395, position=29:0:29:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    SyntaxList
+     PublicKeyword <0:6> [0:0:0:6] 'public'
+    FunctionKeyword <7:15> [0:7:0:15] 'function'
+    IdentifierNameSyntax
+     IdentifierToken <16:26> [0:16:0:26] 'SwapResult'
+    GenericParametersSyntax
+     ColonColonOpenBracketToken <26:29> [0:26:0:29] '::['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <34:38> [1:4:1:8] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <39:44> [1:9:1:14] 'LeftT'
+       CommaToken <44:45> [1:14:1:15] ','
+      TypeGenericParameterSyntax
+       TypeKeyword <50:54> [2:4:2:8] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <55:61> [2:9:2:15] 'RightT'
+     CloseBracketToken <62:63> [3:0:3:1] ']'
+    ParameterListSyntax
+     OpenParenToken <63:64> [3:1:3:2] '('
+     SyntaxList
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <69:73> [4:4:4:8] 'left'
+       TypeClauseSyntax
+        ColonToken <73:74> [4:8:4:9] ':'
+        IdentifierNameSyntax
+         IdentifierToken <75:80> [4:10:4:15] 'LeftT'
+       CommaToken <80:81> [4:15:4:16] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <86:91> [5:4:5:9] 'right'
+       TypeClauseSyntax
+        ColonToken <91:92> [5:9:5:10] ':'
+        IdentifierNameSyntax
+         IdentifierToken <93:99> [5:11:5:17] 'RightT'
+     CloseParenToken <100:101> [6:0:6:1] ')'
+    ReturnTypeClauseSyntax
+     MinusGreaterThanToken <102:104> [6:2:6:4] '->'
+     TupleTypeSyntax
+      OpenParenToken <105:106> [6:5:6:6] '('
+      SyntaxList
+       TupleTypeElementSyntax
+        IdentifierNameSyntax
+         IdentifierToken <106:112> [6:6:6:12] 'RightT'
+        CommaToken <112:113> [6:12:6:13] ','
+       TupleTypeElementSyntax
+        IdentifierNameSyntax
+         IdentifierToken <114:119> [6:14:6:19] 'LeftT'
+      CloseParenToken <119:120> [6:19:6:20] ')'
+    CodeBlockSyntax
+     OpenBraceToken <121:122> [7:0:7:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       ReturnStatementSyntax
+        ReturnKeyword <127:133> [8:4:8:10] 'return'
+        TupleExpressionSyntax
+         OpenParenToken <134:135> [8:11:8:12] '('
+         SyntaxList
+          LabeledExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <135:140> [8:12:8:17] 'right'
+           CommaToken <140:141> [8:17:8:18] ','
+          LabeledExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <142:146> [8:19:8:23] 'left'
+         CloseParenToken <146:147> [8:23:8:24] ')'
+       SemicolonToken <147:148> [8:24:8:25] ';'
+     CloseBraceToken <149:150> [9:0:9:1] '}'
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    SyntaxList
+     PublicKeyword <152:158> [11:0:11:6] 'public'
+    FunctionKeyword <159:167> [11:7:11:15] 'function'
+    IdentifierNameSyntax
+     IdentifierToken <168:178> [11:16:11:26] 'SwapResult'
+    GenericParametersSyntax
+     ColonColonOpenBracketToken <178:181> [11:26:11:29] '::['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <181:185> [11:29:11:33] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <186:187> [11:34:11:35] 'T'
+     CloseBracketToken <187:188> [11:35:11:36] ']'
+    ParameterListSyntax
+     OpenParenToken <188:189> [11:36:11:37] '('
+     SyntaxList
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <194:198> [12:4:12:8] 'left'
+       TypeClauseSyntax
+        ColonToken <198:199> [12:8:12:9] ':'
+        IdentifierNameSyntax
+         IdentifierToken <200:201> [12:10:12:11] 'T'
+       CommaToken <201:202> [12:11:12:12] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <207:212> [13:4:13:9] 'right'
+       TypeClauseSyntax
+        ColonToken <212:213> [13:9:13:10] ':'
+        IdentifierNameSyntax
+         IdentifierToken <214:215> [13:11:13:12] 'T'
+     CloseParenToken <216:217> [14:0:14:1] ')'
+    ReturnTypeClauseSyntax
+     MinusGreaterThanToken <218:220> [14:2:14:4] '->'
+     TupleTypeSyntax
+      OpenParenToken <221:222> [14:5:14:6] '('
+      SyntaxList
+       TupleTypeElementSyntax
+        IdentifierNameSyntax
+         IdentifierToken <222:223> [14:6:14:7] 'T'
+        CommaToken <223:224> [14:7:14:8] ','
+       TupleTypeElementSyntax
+        IdentifierNameSyntax
+         IdentifierToken <225:226> [14:9:14:10] 'T'
+      CloseParenToken <226:227> [14:10:14:11] ')'
+    CodeBlockSyntax
+     OpenBraceToken <228:229> [15:0:15:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       ReturnStatementSyntax
+        ReturnKeyword <234:240> [16:4:16:10] 'return'
+        TupleExpressionSyntax
+         OpenParenToken <241:242> [16:11:16:12] '('
+         SyntaxList
+          LabeledExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <242:247> [16:12:16:17] 'right'
+           CommaToken <247:248> [16:17:16:18] ','
+          LabeledExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <249:253> [16:19:16:23] 'left'
+         CloseParenToken <253:254> [16:23:16:24] ')'
+       SemicolonToken <254:255> [16:24:16:25] ';'
+     CloseBraceToken <256:257> [17:0:17:1] '}'
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    SyntaxList
+     PublicKeyword <259:265> [19:0:19:6] 'public'
+    FunctionKeyword <266:274> [19:7:19:15] 'function'
+    IdentifierNameSyntax
+     IdentifierToken <275:279> [19:16:19:20] 'Swap'
+    GenericParametersSyntax
+     ColonColonOpenBracketToken <279:282> [19:20:19:23] '::['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <282:286> [19:23:19:27] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <287:288> [19:28:19:29] 'T'
+     CloseBracketToken <288:289> [19:29:19:30] ']'
+    ParameterListSyntax
+     OpenParenToken <290:291> [20:0:20:1] '('
+     SyntaxList
+      ParameterSyntax
+       SyntaxList
+        RefKeyword <296:299> [21:4:21:7] 'ref'
+       IdentifierNameSyntax
+        IdentifierToken <300:304> [21:8:21:12] 'left'
+       TypeClauseSyntax
+        ColonToken <304:305> [21:12:21:13] ':'
+        IdentifierNameSyntax
+         IdentifierToken <306:307> [21:14:21:15] 'T'
+       CommaToken <307:308> [21:15:21:16] ','
+      ParameterSyntax
+       SyntaxList
+        RefKeyword <313:316> [22:4:22:7] 'ref'
+       IdentifierNameSyntax
+        IdentifierToken <317:322> [22:8:22:13] 'right'
+       TypeClauseSyntax
+        ColonToken <322:323> [22:13:22:14] ':'
+        IdentifierNameSyntax
+         IdentifierToken <324:325> [22:15:22:16] 'T'
+     CloseParenToken <326:327> [23:0:23:1] ')'
+    ReturnTypeClauseSyntax
+     MinusGreaterThanToken <328:330> [23:2:23:4] '->'
+     TupleTypeSyntax
+      OpenParenToken <331:332> [23:5:23:6] '('
+      CloseParenToken <332:333> [23:6:23:7] ')'
+    CodeBlockSyntax
+     OpenBraceToken <334:335> [24:0:24:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        LetKeyword <340:343> [25:4:25:7] 'let'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <344:348> [25:8:25:12] 'temp'
+         InitializerClauseSyntax
+          EqualsToken <349:350> [25:13:25:14] '='
+          IdentifierNameSyntax
+           IdentifierToken <351:355> [25:15:25:19] 'left'
+       SemicolonToken <355:356> [25:19:25:20] ';'
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        AssignmentExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <361:365> [26:4:26:8] 'left'
+         EqualsToken <366:367> [26:9:26:10] '='
+         IdentifierNameSyntax
+          IdentifierToken <368:373> [26:11:26:16] 'right'
+       SemicolonToken <373:374> [26:16:26:17] ';'
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        AssignmentExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <379:384> [27:4:27:9] 'right'
+         EqualsToken <385:386> [27:10:27:11] '='
+         IdentifierNameSyntax
+          IdentifierToken <387:391> [27:12:27:16] 'temp'
+       SemicolonToken <391:392> [27:16:27:17] ';'
+     CloseBraceToken <393:394> [28:0:28:1] '}'
+ EndOfFileToken <395:395> [29:0:29:0] ''

@@ -1,51 +1,51 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=LabelStatementSyntax]
-        [token=IdentifierToken, start=26, end=38, position=1:0:1:12, missing=false, text='this_is_loop']
-        [token=ColonToken, start=38, end=39, position=1:12:1:13, missing=false, text=':']
-        [node=ExpressionStatementSyntax]
-          [node=IfExpressionSyntax]
-            [token=IfKeyword, start=40, end=42, position=1:14:1:16, missing=false, text='if']
-            [node=BinaryExpressionSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=43, end=44, position=1:17:1:18, missing=false, text='x']
-              [token=LessThanToken, start=45, end=46, position=1:19:1:20, missing=false, text='<']
-              [node=LiteralExpressionSyntax]
-                [token=IntegerLiteralToken, start=47, end=49, position=1:21:1:23, missing=false, text='10']
-            [node=CodeBlockSyntax]
-              [token=OpenBraceToken, start=50, end=51, position=2:0:2:1, missing=false, text='{']
-              [node=SyntaxList]
-                [node=CodeBlockItemSyntax]
-                  [node=GotoStatementSyntax]
-                    [token=GotoKeyword, start=52, end=56, position=3:0:3:4, missing=false, text='goto']
-                    [token=IdentifierToken, start=57, end=71, position=3:5:3:19, missing=false, text='update_counter']
-                  [token=SemicolonToken, start=71, end=72, position=3:19:3:20, missing=false, text=';']
-                [node=CodeBlockItemSyntax]
-                  [node=ExpressionStatementSyntax]
-                    [node=AssignmentExpressionSyntax]
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=77, end=78, position=4:4:4:5, missing=false, text='x']
-                      [token=MinusEqualsToken, start=79, end=81, position=4:6:4:8, missing=false, text='-=']
-                      [node=LiteralExpressionSyntax]
-                        [token=IntegerLiteralToken, start=82, end=86, position=4:9:4:13, missing=false, text='2137']
-                  [token=SemicolonToken, start=86, end=87, position=4:13:4:14, missing=false, text=';']
-                [node=CodeBlockItemSyntax]
-                  [node=LabelStatementSyntax]
-                    [token=IdentifierToken, start=88, end=102, position=5:0:5:14, missing=false, text='update_counter']
-                    [token=ColonToken, start=102, end=103, position=5:14:5:15, missing=false, text=':']
-                    [node=ExpressionStatementSyntax]
-                      [node=AssignmentExpressionSyntax]
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=108, end=109, position=6:4:6:5, missing=false, text='x']
-                        [token=PlusEqualsToken, start=110, end=112, position=6:6:6:8, missing=false, text='+=']
-                        [node=LiteralExpressionSyntax]
-                          [token=IntegerLiteralToken, start=113, end=114, position=6:9:6:10, missing=false, text='1']
-                  [token=SemicolonToken, start=114, end=115, position=6:10:6:11, missing=false, text=';']
-                [node=CodeBlockItemSyntax]
-                  [node=GotoStatementSyntax]
-                    [token=GotoKeyword, start=120, end=124, position=7:4:7:8, missing=false, text='goto']
-                    [token=IdentifierToken, start=125, end=137, position=7:9:7:21, missing=false, text='this_is_loop']
-                  [token=SemicolonToken, start=137, end=138, position=7:21:7:22, missing=false, text=';']
-              [token=CloseBraceToken, start=139, end=140, position=8:0:8:1, missing=false, text='}']
-  [token=EndOfFileToken, start=141, end=141, position=9:0:9:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   LabelStatementSyntax
+    IdentifierToken <26:38> [1:0:1:12] 'this_is_loop'
+    ColonToken <38:39> [1:12:1:13] ':'
+    ExpressionStatementSyntax
+     IfExpressionSyntax
+      IfKeyword <40:42> [1:14:1:16] 'if'
+      BinaryExpressionSyntax
+       IdentifierNameSyntax
+        IdentifierToken <43:44> [1:17:1:18] 'x'
+       LessThanToken <45:46> [1:19:1:20] '<'
+       LiteralExpressionSyntax
+        IntegerLiteralToken <47:49> [1:21:1:23] '10'
+      CodeBlockSyntax
+       OpenBraceToken <50:51> [2:0:2:1] '{'
+       SyntaxList
+        CodeBlockItemSyntax
+         GotoStatementSyntax
+          GotoKeyword <52:56> [3:0:3:4] 'goto'
+          IdentifierToken <57:71> [3:5:3:19] 'update_counter'
+         SemicolonToken <71:72> [3:19:3:20] ';'
+        CodeBlockItemSyntax
+         ExpressionStatementSyntax
+          AssignmentExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <77:78> [4:4:4:5] 'x'
+           MinusEqualsToken <79:81> [4:6:4:8] '-='
+           LiteralExpressionSyntax
+            IntegerLiteralToken <82:86> [4:9:4:13] '2137'
+         SemicolonToken <86:87> [4:13:4:14] ';'
+        CodeBlockItemSyntax
+         LabelStatementSyntax
+          IdentifierToken <88:102> [5:0:5:14] 'update_counter'
+          ColonToken <102:103> [5:14:5:15] ':'
+          ExpressionStatementSyntax
+           AssignmentExpressionSyntax
+            IdentifierNameSyntax
+             IdentifierToken <108:109> [6:4:6:5] 'x'
+            PlusEqualsToken <110:112> [6:6:6:8] '+='
+            LiteralExpressionSyntax
+             IntegerLiteralToken <113:114> [6:9:6:10] '1'
+         SemicolonToken <114:115> [6:10:6:11] ';'
+        CodeBlockItemSyntax
+         GotoStatementSyntax
+          GotoKeyword <120:124> [7:4:7:8] 'goto'
+          IdentifierToken <125:137> [7:9:7:21] 'this_is_loop'
+         SemicolonToken <137:138> [7:21:7:22] ';'
+       CloseBraceToken <139:140> [8:0:8:1] '}'
+ EndOfFileToken <141:141> [9:0:9:0] ''

@@ -1,188 +1,188 @@
-[node=SourceFileSyntax]
-  [node=UnexpectedNodesSyntax]
-    [node=SyntaxList]
-      [token=PublicKeyword, start=0, end=6, position=0:0:0:6, missing=false, text='public']
-      [token=BreakKeyword, start=7, end=12, position=0:7:0:12, missing=false, text='break']
-      [token=HashOpenBracketToken, start=14, end=16, position=2:0:2:2, missing=false, text='#[']
-      [token=IdentifierToken, start=16, end=26, position=2:2:2:12, missing=false, text='Deprecated']
-      [token=CloseBracketToken, start=26, end=27, position=2:12:2:13, missing=false, text=']']
-      [token=FunctionKeyword, start=28, end=36, position=2:14:2:22, missing=false, text='function']
-      [token=IdentifierToken, start=37, end=40, position=2:23:2:26, missing=false, text='qux']
-      [token=OpenParenToken, start=40, end=41, position=2:26:2:27, missing=false, text='(']
-      [token=CloseParenToken, start=41, end=42, position=2:27:2:28, missing=false, text=')']
-      [token=VarKeyword, start=43, end=46, position=3:0:3:3, missing=false, text='var']
-      [token=IdentifierToken, start=47, end=50, position=3:4:3:7, missing=false, text='bar']
-      [token=ColonToken, start=50, end=51, position=3:7:3:8, missing=false, text=':']
-      [token=IdentifierToken, start=51, end=56, position=3:8:3:13, missing=false, text='float']
-      [token=EqualsToken, start=56, end=57, position=3:13:3:14, missing=false, text='=']
-      [token=FloatLiteralToken, start=57, end=65, position=3:14:3:22, missing=false, text='21.37f32']
-      [token=IdentifierToken, start=66, end=67, position=4:0:4:1, missing=false, text='a']
-      [token=PlusEqualsToken, start=68, end=70, position=4:2:4:4, missing=false, text='+=']
-      [token=FloatLiteralToken, start=71, end=79, position=4:5:4:13, missing=false, text='21.38f32']
-      [token=SemicolonToken, start=79, end=80, position=4:13:4:14, missing=false, text=';']
-      [token=VarKeyword, start=81, end=84, position=5:0:5:3, missing=false, text='var']
-      [token=IdentifierToken, start=85, end=88, position=5:4:5:7, missing=false, text='foo']
-      [token=ColonToken, start=88, end=89, position=5:7:5:8, missing=false, text=':']
-      [token=IdentifierToken, start=89, end=92, position=5:8:5:11, missing=false, text='roo']
-      [token=EqualsToken, start=92, end=93, position=5:11:5:12, missing=false, text='=']
-      [token=IntegerLiteralToken, start=93, end=97, position=5:12:5:16, missing=false, text='2000']
-      [token=CloseBracketToken, start=98, end=99, position=5:17:5:18, missing=false, text=']']
-      [token=SemicolonToken, start=99, end=100, position=5:18:5:19, missing=false, text=';']
-      [token=IdentifierToken, start=102, end=112, position=7:0:7:10, missing=false, text='namespacce']
-      [token=OpenBraceToken, start=113, end=114, position=7:11:7:12, missing=false, text='{']
-      [token=StructKeyword, start=115, end=121, position=8:0:8:6, missing=false, text='struct']
-      [token=IdentifierToken, start=122, end=123, position=8:7:8:8, missing=false, text='A']
-      [token=OpenBraceToken, start=123, end=124, position=8:8:8:9, missing=false, text='{']
-      [token=StructKeyword, start=129, end=135, position=9:4:9:10, missing=false, text='struct']
-      [token=IdentifierToken, start=136, end=137, position=9:11:9:12, missing=false, text='B']
-      [token=OpenBraceToken, start=137, end=138, position=9:12:9:13, missing=false, text='{']
-      [token=StructKeyword, start=147, end=153, position=10:8:10:14, missing=false, text='struct']
-      [token=IdentifierToken, start=154, end=155, position=10:15:10:16, missing=false, text='C']
-      [token=OpenBraceToken, start=155, end=156, position=10:16:10:17, missing=false, text='{']
-      [token=ConceptKeyword, start=169, end=176, position=11:12:11:19, missing=false, text='concept']
-      [token=IdentifierToken, start=177, end=178, position=11:20:11:21, missing=false, text='D']
-      [token=OpenBraceToken, start=178, end=179, position=11:21:11:22, missing=false, text='{']
-      [token=ExtendKeyword, start=196, end=202, position=12:16:12:22, missing=false, text='extend']
-      [token=IdentifierToken, start=203, end=204, position=12:23:12:24, missing=false, text='E']
-      [token=OpenBraceToken, start=205, end=206, position=12:25:12:26, missing=false, text='{']
-      [token=FunctionKeyword, start=227, end=235, position=13:20:13:28, missing=false, text='function']
-      [token=IdentifierToken, start=236, end=237, position=13:29:13:30, missing=false, text='E']
-      [token=OpenParenToken, start=237, end=238, position=13:30:13:31, missing=false, text='(']
-      [token=CloseParenToken, start=238, end=239, position=13:31:13:32, missing=false, text=')']
-      [token=MinusGreaterThanToken, start=240, end=242, position=13:33:13:35, missing=false, text='->']
-      [token=IdentifierToken, start=243, end=247, position=13:36:13:40, missing=false, text='Void']
-      [token=OpenBraceToken, start=248, end=249, position=13:41:13:42, missing=false, text='{']
-      [token=CloseBraceToken, start=250, end=251, position=13:43:13:44, missing=false, text='}']
-      [token=CloseBraceToken, start=268, end=269, position=14:16:14:17, missing=false, text='}']
-      [token=CloseBraceToken, start=282, end=283, position=15:12:15:13, missing=false, text='}']
-      [token=CloseBraceToken, start=292, end=293, position=16:8:16:9, missing=false, text='}']
-      [token=CloseBraceToken, start=298, end=299, position=17:4:17:5, missing=false, text='}']
-      [token=CloseBraceToken, start=300, end=301, position=18:0:18:1, missing=false, text='}']
-      [token=CloseBraceToken, start=302, end=303, position=19:0:19:1, missing=false, text='}']
-      [token=StructKeyword, start=305, end=311, position=21:0:21:6, missing=false, text='struct']
-      [token=PublicKeyword, start=314, end=320, position=23:0:23:6, missing=false, text='public']
-      [token=FunctionKeyword, start=321, end=329, position=23:7:23:15, missing=false, text='function']
-      [token=IdentifierToken, start=330, end=333, position=23:16:23:19, missing=false, text='Foo']
-      [token=OpenParenToken, start=333, end=334, position=23:19:23:20, missing=false, text='(']
-      [token=CloseParenToken, start=334, end=335, position=23:20:23:21, missing=false, text=')']
-      [token=MinusGreaterThanToken, start=336, end=338, position=23:22:23:24, missing=false, text='->']
-      [token=IdentifierToken, start=339, end=343, position=23:25:23:29, missing=false, text='Void']
-      [token=OpenBraceToken, start=344, end=345, position=23:30:23:31, missing=false, text='{']
-      [token=CloseBraceToken, start=346, end=347, position=23:32:23:33, missing=false, text='}']
-      [token=PublicKeyword, start=349, end=355, position=25:0:25:6, missing=false, text='public']
-      [token=InternalKeyword, start=356, end=364, position=25:7:25:15, missing=false, text='internal']
-      [token=BreakKeyword, start=365, end=370, position=25:16:25:21, missing=false, text='break']
-      [token=IdentifierToken, start=371, end=372, position=25:22:25:23, missing=false, text='w']
-      [token=ColonToken, start=373, end=374, position=25:24:25:25, missing=false, text=':']
-      [token=IdentifierToken, start=375, end=382, position=25:26:25:33, missing=false, text='Float32']
-      [token=EqualsToken, start=383, end=384, position=25:34:25:35, missing=false, text='=']
-      [token=FloatLiteralToken, start=385, end=394, position=25:36:25:45, missing=false, text='2137.0f32']
-      [token=SemicolonToken, start=394, end=395, position=25:45:25:46, missing=false, text=';']
-      [token=PublicKeyword, start=396, end=402, position=26:0:26:6, missing=false, text='public']
-      [token=InternalKeyword, start=403, end=411, position=26:7:26:15, missing=false, text='internal']
-      [token=ConstKeyword, start=412, end=417, position=26:16:26:21, missing=false, text='const']
-      [token=IdentifierToken, start=418, end=419, position=26:22:26:23, missing=false, text='y']
-      [token=ColonToken, start=420, end=421, position=26:24:26:25, missing=false, text=':']
-      [token=IdentifierToken, start=422, end=429, position=26:26:26:33, missing=false, text='Float32']
-      [token=EqualsToken, start=430, end=431, position=26:34:26:35, missing=false, text='=']
-      [token=FloatLiteralToken, start=432, end=441, position=26:36:26:45, missing=false, text='2137.0f32']
-      [token=SemicolonToken, start=441, end=442, position=26:45:26:46, missing=false, text=';']
-      [token=HashOpenBracketToken, start=444, end=446, position=28:0:28:2, missing=false, text='#[']
-      [token=IdentifierToken, start=446, end=456, position=28:2:28:12, missing=false, text='Deprecated']
-      [token=OpenParenToken, start=456, end=457, position=28:12:28:13, missing=false, text='(']
-      [token=StringLiteralToken, start=457, end=472, position=28:13:28:28, missing=false, text='"Dont use this"']
-      [token=CloseParenToken, start=472, end=473, position=28:28:28:29, missing=false, text=')']
-      [token=PublicKeyword, start=474, end=480, position=28:30:28:36, missing=false, text='public']
-      [token=CloseBracketToken, start=480, end=481, position=28:36:28:37, missing=false, text=']']
-      [token=PrivateKeyword, start=482, end=489, position=28:38:28:45, missing=false, text='private']
-      [token=InternalKeyword, start=490, end=498, position=28:46:28:54, missing=false, text='internal']
-      [token=IdentifierToken, start=499, end=500, position=28:55:28:56, missing=false, text='y']
-      [token=PlusEqualsToken, start=501, end=503, position=28:57:28:59, missing=false, text='+=']
-      [token=FloatLiteralToken, start=504, end=513, position=28:60:28:69, missing=false, text='420.69f32']
-      [token=SemicolonToken, start=513, end=514, position=28:69:28:70, missing=false, text=';']
-      [token=PrivateKeyword, start=516, end=523, position=30:0:30:7, missing=false, text='private']
-      [token=VarKeyword, start=524, end=527, position=30:8:30:11, missing=false, text='var']
-      [token=IdentifierToken, start=528, end=529, position=30:12:30:13, missing=false, text='x']
-      [token=ColonToken, start=530, end=531, position=30:14:30:15, missing=false, text=':']
-      [token=IdentifierToken, start=532, end=537, position=30:16:30:21, missing=false, text='Int32']
-      [token=EqualsToken, start=538, end=539, position=30:22:30:23, missing=false, text='=']
-      [token=IntegerLiteralToken, start=540, end=544, position=30:24:30:28, missing=false, text='2137']
-      [token=SemicolonToken, start=544, end=545, position=30:28:30:29, missing=false, text=';']
-      [token=PublicKeyword, start=547, end=553, position=32:0:32:6, missing=false, text='public']
-      [token=StructKeyword, start=554, end=560, position=32:7:32:13, missing=false, text='struct']
-      [token=IdentifierToken, start=561, end=562, position=32:14:32:15, missing=false, text='X']
-      [token=OpenBraceToken, start=563, end=564, position=32:16:32:17, missing=false, text='{']
-      [token=CloseBraceToken, start=565, end=566, position=32:18:32:19, missing=false, text='}']
-      [token=SemicolonToken, start=566, end=567, position=32:19:32:20, missing=false, text=';']
-      [token=HashOpenBracketToken, start=569, end=571, position=34:0:34:2, missing=false, text='#[']
-      [token=IdentifierToken, start=571, end=580, position=34:2:34:11, missing=false, text='Serialize']
-      [token=OpenParenToken, start=580, end=581, position=34:11:34:12, missing=false, text='(']
-      [token=IdentifierToken, start=586, end=590, position=35:4:35:8, missing=false, text='name']
-      [token=ColonToken, start=590, end=591, position=35:8:35:9, missing=false, text=':']
-      [token=StringLiteralToken, start=592, end=598, position=35:10:35:16, missing=false, text='"Test"']
-      [token=CommaToken, start=598, end=599, position=35:16:35:17, missing=false, text=',']
-      [token=IdentifierToken, start=604, end=608, position=36:4:36:8, missing=false, text='args']
-      [token=ColonToken, start=608, end=609, position=36:8:36:9, missing=false, text=':']
-      [token=OpenBracketToken, start=610, end=611, position=36:10:36:11, missing=false, text='[']
-      [token=IntegerLiteralToken, start=611, end=612, position=36:11:36:12, missing=false, text='2']
-      [token=CommaToken, start=612, end=613, position=36:12:36:13, missing=false, text=',']
-      [token=IntegerLiteralToken, start=614, end=615, position=36:14:36:15, missing=false, text='1']
-      [token=CommaToken, start=615, end=616, position=36:15:36:16, missing=false, text=',']
-      [token=IntegerLiteralToken, start=617, end=618, position=36:17:36:18, missing=false, text='3']
-      [token=CommaToken, start=618, end=619, position=36:18:36:19, missing=false, text=',']
-      [token=IntegerLiteralToken, start=620, end=621, position=36:20:36:21, missing=false, text='7']
-      [token=CloseBracketToken, start=621, end=622, position=36:21:36:22, missing=false, text=']']
-      [token=CommaToken, start=622, end=623, position=36:22:36:23, missing=false, text=',']
-      [token=CloseParenToken, start=624, end=625, position=37:0:37:1, missing=false, text=')']
-      [token=CloseBracketToken, start=625, end=626, position=37:1:37:2, missing=false, text=']']
-      [token=HashOpenBracketToken, start=627, end=629, position=38:0:38:2, missing=false, text='#[']
-      [token=IdentifierToken, start=629, end=640, position=38:2:38:13, missing=false, text='ForceInline']
-      [token=CommaToken, start=640, end=641, position=38:13:38:14, missing=false, text=',']
-      [token=IdentifierToken, start=642, end=652, position=38:15:38:25, missing=false, text='Artificial']
-      [token=CommaToken, start=652, end=653, position=38:25:38:26, missing=false, text=',']
-      [token=IdentifierToken, start=654, end=659, position=38:27:38:32, missing=false, text='Alias']
-      [token=OpenParenToken, start=659, end=660, position=38:32:38:33, missing=false, text='(']
-      [token=StringLiteralToken, start=660, end=679, position=38:33:38:52, missing=false, text='"ThisIsNewFunction"']
-      [token=CloseParenToken, start=679, end=680, position=38:52:38:53, missing=false, text=')']
-      [token=CloseBracketToken, start=680, end=681, position=38:53:38:54, missing=false, text=']']
-      [token=FunctionKeyword, start=682, end=690, position=39:0:39:8, missing=false, text='function']
-      [token=IdentifierToken, start=691, end=695, position=39:9:39:13, missing=false, text='Test']
-      [token=OpenParenToken, start=695, end=696, position=39:13:39:14, missing=false, text='(']
-      [token=CloseParenToken, start=696, end=697, position=39:14:39:15, missing=false, text=')']
-      [token=OpenBraceToken, start=698, end=699, position=40:0:40:1, missing=false, text='{']
-      [token=IfKeyword, start=704, end=706, position=41:4:41:6, missing=false, text='if']
-      [token=WhileKeyword, start=707, end=712, position=41:7:41:12, missing=false, text='while']
-      [token=TrueKeyword, start=713, end=717, position=41:13:41:17, missing=false, text='true']
-      [token=OpenBraceToken, start=722, end=723, position=42:4:42:5, missing=false, text='{']
-      [token=IdentifierToken, start=732, end=737, position=43:8:43:13, missing=false, text='call1']
-      [token=OpenParenToken, start=737, end=738, position=43:13:43:14, missing=false, text='(']
-      [token=CloseParenToken, start=738, end=739, position=43:14:43:15, missing=false, text=')']
-      [token=SemicolonToken, start=739, end=740, position=43:15:43:16, missing=false, text=';']
-      [token=AtToken, start=740, end=741, position=43:16:43:17, missing=false, text='@']
-      [token=OpenParenToken, start=741, end=742, position=43:17:43:18, missing=false, text='(']
-      [token=AsteriskToken, start=742, end=743, position=43:18:43:19, missing=false, text='*']
-      [token=HashToken, start=744, end=745, position=44:0:44:1, missing=false, text='#']
-      [token=PercentToken, start=745, end=746, position=44:1:44:2, missing=false, text='%']
-      [token=AmpersandToken, start=746, end=747, position=44:2:44:3, missing=false, text='&']
-      [token=AsteriskToken, start=747, end=748, position=44:3:44:4, missing=false, text='*']
-      [token=AtToken, start=749, end=750, position=45:0:45:1, missing=false, text='@']
-      [token=HashToken, start=750, end=751, position=45:1:45:2, missing=false, text='#']
-      [token=CloseParenToken, start=751, end=752, position=45:2:45:3, missing=false, text=')']
-      [token=SemicolonToken, start=752, end=753, position=45:3:45:4, missing=false, text=';']
-      [token=IdentifierToken, start=753, end=758, position=45:4:45:9, missing=false, text='call2']
-      [token=OpenParenToken, start=758, end=759, position=45:9:45:10, missing=false, text='(']
-      [token=CloseParenToken, start=759, end=760, position=45:10:45:11, missing=false, text=')']
-      [token=SemicolonToken, start=760, end=761, position=45:11:45:12, missing=false, text=';']
-      [token=CloseBraceToken, start=766, end=767, position=46:4:46:5, missing=false, text='}']
-      [token=CloseBraceToken, start=768, end=769, position=47:0:47:1, missing=false, text='}']
-      [token=CloseBraceToken, start=771, end=772, position=49:0:49:1, missing=false, text='}']
-      [token=CloseBraceToken, start=772, end=773, position=49:1:49:2, missing=false, text='}']
-      [token=CloseBraceToken, start=774, end=775, position=50:0:50:1, missing=false, text='}']
-      [token=CloseBraceToken, start=775, end=776, position=50:1:50:2, missing=false, text='}']
-      [token=CloseBraceToken, start=776, end=777, position=50:2:50:3, missing=false, text='}']
-      [token=StructKeyword, start=986, end=992, position=57:0:57:6, missing=false, text='struct']
-      [token=IdentifierToken, start=993, end=994, position=57:7:57:8, missing=false, text='Y']
-      [token=OpenBraceToken, start=994, end=995, position=57:8:57:9, missing=false, text='{']
-      [token=CloseBraceToken, start=996, end=997, position=57:10:57:11, missing=false, text='}']
-      [token=SemicolonToken, start=997, end=998, position=57:11:57:12, missing=false, text=';']
-  [token=EndOfFileToken, start=999, end=999, position=58:0:58:0, missing=false, text='']
+SourceFileSyntax
+ UnexpectedNodesSyntax
+  SyntaxList
+   PublicKeyword <0:6> [0:0:0:6] 'public'
+   BreakKeyword <7:12> [0:7:0:12] 'break'
+   HashOpenBracketToken <14:16> [2:0:2:2] '#['
+   IdentifierToken <16:26> [2:2:2:12] 'Deprecated'
+   CloseBracketToken <26:27> [2:12:2:13] ']'
+   FunctionKeyword <28:36> [2:14:2:22] 'function'
+   IdentifierToken <37:40> [2:23:2:26] 'qux'
+   OpenParenToken <40:41> [2:26:2:27] '('
+   CloseParenToken <41:42> [2:27:2:28] ')'
+   VarKeyword <43:46> [3:0:3:3] 'var'
+   IdentifierToken <47:50> [3:4:3:7] 'bar'
+   ColonToken <50:51> [3:7:3:8] ':'
+   IdentifierToken <51:56> [3:8:3:13] 'float'
+   EqualsToken <56:57> [3:13:3:14] '='
+   FloatLiteralToken <57:65> [3:14:3:22] '21.37f32'
+   IdentifierToken <66:67> [4:0:4:1] 'a'
+   PlusEqualsToken <68:70> [4:2:4:4] '+='
+   FloatLiteralToken <71:79> [4:5:4:13] '21.38f32'
+   SemicolonToken <79:80> [4:13:4:14] ';'
+   VarKeyword <81:84> [5:0:5:3] 'var'
+   IdentifierToken <85:88> [5:4:5:7] 'foo'
+   ColonToken <88:89> [5:7:5:8] ':'
+   IdentifierToken <89:92> [5:8:5:11] 'roo'
+   EqualsToken <92:93> [5:11:5:12] '='
+   IntegerLiteralToken <93:97> [5:12:5:16] '2000'
+   CloseBracketToken <98:99> [5:17:5:18] ']'
+   SemicolonToken <99:100> [5:18:5:19] ';'
+   IdentifierToken <102:112> [7:0:7:10] 'namespacce'
+   OpenBraceToken <113:114> [7:11:7:12] '{'
+   StructKeyword <115:121> [8:0:8:6] 'struct'
+   IdentifierToken <122:123> [8:7:8:8] 'A'
+   OpenBraceToken <123:124> [8:8:8:9] '{'
+   StructKeyword <129:135> [9:4:9:10] 'struct'
+   IdentifierToken <136:137> [9:11:9:12] 'B'
+   OpenBraceToken <137:138> [9:12:9:13] '{'
+   StructKeyword <147:153> [10:8:10:14] 'struct'
+   IdentifierToken <154:155> [10:15:10:16] 'C'
+   OpenBraceToken <155:156> [10:16:10:17] '{'
+   ConceptKeyword <169:176> [11:12:11:19] 'concept'
+   IdentifierToken <177:178> [11:20:11:21] 'D'
+   OpenBraceToken <178:179> [11:21:11:22] '{'
+   ExtendKeyword <196:202> [12:16:12:22] 'extend'
+   IdentifierToken <203:204> [12:23:12:24] 'E'
+   OpenBraceToken <205:206> [12:25:12:26] '{'
+   FunctionKeyword <227:235> [13:20:13:28] 'function'
+   IdentifierToken <236:237> [13:29:13:30] 'E'
+   OpenParenToken <237:238> [13:30:13:31] '('
+   CloseParenToken <238:239> [13:31:13:32] ')'
+   MinusGreaterThanToken <240:242> [13:33:13:35] '->'
+   IdentifierToken <243:247> [13:36:13:40] 'Void'
+   OpenBraceToken <248:249> [13:41:13:42] '{'
+   CloseBraceToken <250:251> [13:43:13:44] '}'
+   CloseBraceToken <268:269> [14:16:14:17] '}'
+   CloseBraceToken <282:283> [15:12:15:13] '}'
+   CloseBraceToken <292:293> [16:8:16:9] '}'
+   CloseBraceToken <298:299> [17:4:17:5] '}'
+   CloseBraceToken <300:301> [18:0:18:1] '}'
+   CloseBraceToken <302:303> [19:0:19:1] '}'
+   StructKeyword <305:311> [21:0:21:6] 'struct'
+   PublicKeyword <314:320> [23:0:23:6] 'public'
+   FunctionKeyword <321:329> [23:7:23:15] 'function'
+   IdentifierToken <330:333> [23:16:23:19] 'Foo'
+   OpenParenToken <333:334> [23:19:23:20] '('
+   CloseParenToken <334:335> [23:20:23:21] ')'
+   MinusGreaterThanToken <336:338> [23:22:23:24] '->'
+   IdentifierToken <339:343> [23:25:23:29] 'Void'
+   OpenBraceToken <344:345> [23:30:23:31] '{'
+   CloseBraceToken <346:347> [23:32:23:33] '}'
+   PublicKeyword <349:355> [25:0:25:6] 'public'
+   InternalKeyword <356:364> [25:7:25:15] 'internal'
+   BreakKeyword <365:370> [25:16:25:21] 'break'
+   IdentifierToken <371:372> [25:22:25:23] 'w'
+   ColonToken <373:374> [25:24:25:25] ':'
+   IdentifierToken <375:382> [25:26:25:33] 'Float32'
+   EqualsToken <383:384> [25:34:25:35] '='
+   FloatLiteralToken <385:394> [25:36:25:45] '2137.0f32'
+   SemicolonToken <394:395> [25:45:25:46] ';'
+   PublicKeyword <396:402> [26:0:26:6] 'public'
+   InternalKeyword <403:411> [26:7:26:15] 'internal'
+   ConstKeyword <412:417> [26:16:26:21] 'const'
+   IdentifierToken <418:419> [26:22:26:23] 'y'
+   ColonToken <420:421> [26:24:26:25] ':'
+   IdentifierToken <422:429> [26:26:26:33] 'Float32'
+   EqualsToken <430:431> [26:34:26:35] '='
+   FloatLiteralToken <432:441> [26:36:26:45] '2137.0f32'
+   SemicolonToken <441:442> [26:45:26:46] ';'
+   HashOpenBracketToken <444:446> [28:0:28:2] '#['
+   IdentifierToken <446:456> [28:2:28:12] 'Deprecated'
+   OpenParenToken <456:457> [28:12:28:13] '('
+   StringLiteralToken <457:472> [28:13:28:28] '"Dont use this"'
+   CloseParenToken <472:473> [28:28:28:29] ')'
+   PublicKeyword <474:480> [28:30:28:36] 'public'
+   CloseBracketToken <480:481> [28:36:28:37] ']'
+   PrivateKeyword <482:489> [28:38:28:45] 'private'
+   InternalKeyword <490:498> [28:46:28:54] 'internal'
+   IdentifierToken <499:500> [28:55:28:56] 'y'
+   PlusEqualsToken <501:503> [28:57:28:59] '+='
+   FloatLiteralToken <504:513> [28:60:28:69] '420.69f32'
+   SemicolonToken <513:514> [28:69:28:70] ';'
+   PrivateKeyword <516:523> [30:0:30:7] 'private'
+   VarKeyword <524:527> [30:8:30:11] 'var'
+   IdentifierToken <528:529> [30:12:30:13] 'x'
+   ColonToken <530:531> [30:14:30:15] ':'
+   IdentifierToken <532:537> [30:16:30:21] 'Int32'
+   EqualsToken <538:539> [30:22:30:23] '='
+   IntegerLiteralToken <540:544> [30:24:30:28] '2137'
+   SemicolonToken <544:545> [30:28:30:29] ';'
+   PublicKeyword <547:553> [32:0:32:6] 'public'
+   StructKeyword <554:560> [32:7:32:13] 'struct'
+   IdentifierToken <561:562> [32:14:32:15] 'X'
+   OpenBraceToken <563:564> [32:16:32:17] '{'
+   CloseBraceToken <565:566> [32:18:32:19] '}'
+   SemicolonToken <566:567> [32:19:32:20] ';'
+   HashOpenBracketToken <569:571> [34:0:34:2] '#['
+   IdentifierToken <571:580> [34:2:34:11] 'Serialize'
+   OpenParenToken <580:581> [34:11:34:12] '('
+   IdentifierToken <586:590> [35:4:35:8] 'name'
+   ColonToken <590:591> [35:8:35:9] ':'
+   StringLiteralToken <592:598> [35:10:35:16] '"Test"'
+   CommaToken <598:599> [35:16:35:17] ','
+   IdentifierToken <604:608> [36:4:36:8] 'args'
+   ColonToken <608:609> [36:8:36:9] ':'
+   OpenBracketToken <610:611> [36:10:36:11] '['
+   IntegerLiteralToken <611:612> [36:11:36:12] '2'
+   CommaToken <612:613> [36:12:36:13] ','
+   IntegerLiteralToken <614:615> [36:14:36:15] '1'
+   CommaToken <615:616> [36:15:36:16] ','
+   IntegerLiteralToken <617:618> [36:17:36:18] '3'
+   CommaToken <618:619> [36:18:36:19] ','
+   IntegerLiteralToken <620:621> [36:20:36:21] '7'
+   CloseBracketToken <621:622> [36:21:36:22] ']'
+   CommaToken <622:623> [36:22:36:23] ','
+   CloseParenToken <624:625> [37:0:37:1] ')'
+   CloseBracketToken <625:626> [37:1:37:2] ']'
+   HashOpenBracketToken <627:629> [38:0:38:2] '#['
+   IdentifierToken <629:640> [38:2:38:13] 'ForceInline'
+   CommaToken <640:641> [38:13:38:14] ','
+   IdentifierToken <642:652> [38:15:38:25] 'Artificial'
+   CommaToken <652:653> [38:25:38:26] ','
+   IdentifierToken <654:659> [38:27:38:32] 'Alias'
+   OpenParenToken <659:660> [38:32:38:33] '('
+   StringLiteralToken <660:679> [38:33:38:52] '"ThisIsNewFunction"'
+   CloseParenToken <679:680> [38:52:38:53] ')'
+   CloseBracketToken <680:681> [38:53:38:54] ']'
+   FunctionKeyword <682:690> [39:0:39:8] 'function'
+   IdentifierToken <691:695> [39:9:39:13] 'Test'
+   OpenParenToken <695:696> [39:13:39:14] '('
+   CloseParenToken <696:697> [39:14:39:15] ')'
+   OpenBraceToken <698:699> [40:0:40:1] '{'
+   IfKeyword <704:706> [41:4:41:6] 'if'
+   WhileKeyword <707:712> [41:7:41:12] 'while'
+   TrueKeyword <713:717> [41:13:41:17] 'true'
+   OpenBraceToken <722:723> [42:4:42:5] '{'
+   IdentifierToken <732:737> [43:8:43:13] 'call1'
+   OpenParenToken <737:738> [43:13:43:14] '('
+   CloseParenToken <738:739> [43:14:43:15] ')'
+   SemicolonToken <739:740> [43:15:43:16] ';'
+   AtToken <740:741> [43:16:43:17] '@'
+   OpenParenToken <741:742> [43:17:43:18] '('
+   AsteriskToken <742:743> [43:18:43:19] '*'
+   HashToken <744:745> [44:0:44:1] '#'
+   PercentToken <745:746> [44:1:44:2] '%'
+   AmpersandToken <746:747> [44:2:44:3] '&'
+   AsteriskToken <747:748> [44:3:44:4] '*'
+   AtToken <749:750> [45:0:45:1] '@'
+   HashToken <750:751> [45:1:45:2] '#'
+   CloseParenToken <751:752> [45:2:45:3] ')'
+   SemicolonToken <752:753> [45:3:45:4] ';'
+   IdentifierToken <753:758> [45:4:45:9] 'call2'
+   OpenParenToken <758:759> [45:9:45:10] '('
+   CloseParenToken <759:760> [45:10:45:11] ')'
+   SemicolonToken <760:761> [45:11:45:12] ';'
+   CloseBraceToken <766:767> [46:4:46:5] '}'
+   CloseBraceToken <768:769> [47:0:47:1] '}'
+   CloseBraceToken <771:772> [49:0:49:1] '}'
+   CloseBraceToken <772:773> [49:1:49:2] '}'
+   CloseBraceToken <774:775> [50:0:50:1] '}'
+   CloseBraceToken <775:776> [50:1:50:2] '}'
+   CloseBraceToken <776:777> [50:2:50:3] '}'
+   StructKeyword <986:992> [57:0:57:6] 'struct'
+   IdentifierToken <993:994> [57:7:57:8] 'Y'
+   OpenBraceToken <994:995> [57:8:57:9] '{'
+   CloseBraceToken <996:997> [57:10:57:11] '}'
+   SemicolonToken <997:998> [57:11:57:12] ';'
+ EndOfFileToken <999:999> [58:0:58:0] ''

@@ -1,476 +1,476 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=0, end=4, position=0:0:0:4, missing=false, text='bool']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=5, end=9, position=1:0:1:4, missing=false, text='char']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=10, end=16, position=2:0:2:6, missing=false, text='char16']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=17, end=23, position=3:0:3:6, missing=false, text='char32']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=24, end=29, position=4:0:4:5, missing=false, text='char8']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=30, end=40, position=5:0:5:10, missing=false, text='decimal128']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=41, end=50, position=6:0:6:9, missing=false, text='decimal32']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=51, end=60, position=7:0:7:9, missing=false, text='decimal64']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=61, end=68, position=8:0:8:7, missing=false, text='float16']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=69, end=76, position=9:0:9:7, missing=false, text='float32']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=77, end=84, position=10:0:10:7, missing=false, text='float64']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=85, end=91, position=11:0:11:6, missing=false, text='int128']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=92, end=97, position=12:0:12:5, missing=false, text='int16']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=98, end=104, position=13:0:13:6, missing=false, text='int256']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=105, end=110, position=14:0:14:5, missing=false, text='int32']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=111, end=116, position=15:0:15:5, missing=false, text='int64']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=117, end=121, position=16:0:16:4, missing=false, text='int8']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=122, end=126, position=17:0:17:4, missing=false, text='iptr']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=127, end=132, position=18:0:18:5, missing=false, text='isize']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=133, end=139, position=19:0:19:6, missing=false, text='object']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=140, end=146, position=20:0:20:6, missing=false, text='string']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=147, end=154, position=21:0:21:7, missing=false, text='uint128']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=155, end=161, position=22:0:22:6, missing=false, text='uint16']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=162, end=169, position=23:0:23:7, missing=false, text='uint256']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=170, end=176, position=24:0:24:6, missing=false, text='uint32']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=177, end=183, position=25:0:25:6, missing=false, text='uint64']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=184, end=189, position=26:0:26:5, missing=false, text='uint8']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=190, end=194, position=27:0:27:4, missing=false, text='uptr']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=195, end=200, position=28:0:28:5, missing=false, text='usize']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=201, end=205, position=29:0:29:4, missing=false, text='void']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=206, end=210, position=30:0:30:4, missing=false, text='byte']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=211, end=214, position=31:0:31:3, missing=false, text='and']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=215, end=221, position=32:0:32:6, missing=false, text='and_eq']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=222, end=224, position=33:0:33:2, missing=false, text='or']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=225, end=230, position=34:0:34:5, missing=false, text='or_eq']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=231, end=234, position=35:0:35:3, missing=false, text='xor']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=235, end=241, position=36:0:36:6, missing=false, text='xor_eq']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=242, end=245, position=37:0:37:3, missing=false, text='not']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=246, end=252, position=38:0:38:6, missing=false, text='not_eq']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=253, end=260, position=39:0:39:7, missing=false, text='bit_and']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=261, end=267, position=40:0:40:6, missing=false, text='bit_or']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=268, end=277, position=41:0:41:9, missing=false, text='bit_compl']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=278, end=288, position=42:0:42:10, missing=false, text='__column__']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=289, end=297, position=43:0:43:8, missing=false, text='__file__']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=298, end=310, position=44:0:44:12, missing=false, text='__function__']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=311, end=330, position=45:0:45:19, missing=false, text='__function_pretty__']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=331, end=339, position=46:0:46:8, missing=false, text='__line__']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=340, end=350, position=47:0:47:10, missing=false, text='__module__']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=351, end=370, position=48:0:48:19, missing=false, text='__source_location__']
-  [node=UnexpectedNodesSyntax]
-    [node=SyntaxList]
-      [token=AbstractKeyword, start=371, end=379, position=49:0:49:8, missing=false, text='abstract']
-      [token=IdentifierToken, start=380, end=383, position=50:0:50:3, missing=false, text='add']
-      [token=AddressOfKeyword, start=384, end=393, position=51:0:51:9, missing=false, text='addressof']
-      [token=AddressSpaceKeyword, start=394, end=403, position=52:0:52:9, missing=false, text='addrspace']
-      [token=AliasKeyword, start=404, end=409, position=53:0:53:5, missing=false, text='alias']
-      [token=AlignKeyword, start=410, end=415, position=54:0:54:5, missing=false, text='align']
-      [token=AlignasKeyword, start=416, end=423, position=55:0:55:7, missing=false, text='alignas']
-      [token=AlignOfKeyword, start=424, end=431, position=56:0:56:7, missing=false, text='alignof']
-      [token=ArrayKeyword, start=432, end=437, position=57:0:57:5, missing=false, text='array']
-      [token=AsKeyword, start=438, end=440, position=58:0:58:2, missing=false, text='as']
-      [token=AssemblyKeyword, start=441, end=449, position=59:0:59:8, missing=false, text='assembly']
-      [token=AssertKeyword, start=450, end=456, position=60:0:60:6, missing=false, text='assert']
-      [token=AssumeKeyword, start=457, end=463, position=61:0:61:6, missing=false, text='assume']
-      [token=IdentifierToken, start=464, end=469, position=62:0:62:5, missing=false, text='async']
-      [token=AtomicKeyword, start=470, end=476, position=63:0:63:6, missing=false, text='atomic']
-      [token=AttributeKeyword, start=477, end=486, position=64:0:64:9, missing=false, text='attribute']
-      [token=AutoKeyword, start=487, end=491, position=65:0:65:4, missing=false, text='auto']
-      [token=AvailableKeyword, start=492, end=501, position=66:0:66:9, missing=false, text='available']
-      [token=IdentifierToken, start=502, end=507, position=67:0:67:5, missing=false, text='await']
-      [token=BaseKeyword, start=508, end=512, position=68:0:68:4, missing=false, text='base']
-      [token=BecomeKeyword, start=513, end=519, position=69:0:69:6, missing=false, text='become']
-      [token=BitCastKeyword, start=520, end=527, position=70:0:70:7, missing=false, text='bitcast']
-      [token=BodyKeyword, start=528, end=532, position=71:0:71:4, missing=false, text='body']
-      [token=BorrowKeyword, start=533, end=539, position=72:0:72:6, missing=false, text='borrow']
-      [token=BoxKeyword, start=540, end=543, position=73:0:73:3, missing=false, text='box']
-      [token=BreakKeyword, start=544, end=549, position=74:0:74:5, missing=false, text='break']
-      [token=CallConvKeyword, start=550, end=558, position=75:0:75:8, missing=false, text='callconv']
-      [token=CaseKeyword, start=559, end=563, position=76:0:76:4, missing=false, text='case']
-      [token=CastKeyword, start=564, end=568, position=77:0:77:4, missing=false, text='cast']
-      [token=CheckedKeyword, start=569, end=576, position=78:0:78:7, missing=false, text='checked']
-      [token=ClassKeyword, start=577, end=582, position=79:0:79:5, missing=false, text='class']
-      [token=ColumnMajorKeyword, start=583, end=594, position=80:0:80:11, missing=false, text='columnmajor']
-      [token=CompileKeyword, start=595, end=602, position=81:0:81:7, missing=false, text='compile']
-      [token=ConceptKeyword, start=603, end=610, position=82:0:82:7, missing=false, text='concept']
-      [token=ConstKeyword, start=611, end=616, position=83:0:83:5, missing=false, text='const']
-      [token=IdentifierToken, start=617, end=621, position=84:0:84:4, missing=false, text='ctor']
-      [token=ContinueKeyword, start=622, end=630, position=85:0:85:8, missing=false, text='continue']
-      [token=ContravariantKeyword, start=631, end=644, position=86:0:86:13, missing=false, text='contravariant']
-      [token=CovariantKeyword, start=645, end=654, position=87:0:87:9, missing=false, text='covariant']
-      [token=DebugKeyword, start=655, end=660, position=88:0:88:5, missing=false, text='debug']
-      [token=DefaultKeyword, start=661, end=668, position=89:0:89:7, missing=false, text='default']
-      [token=DeferKeyword, start=669, end=674, position=90:0:90:5, missing=false, text='defer']
-      [token=DelegateKeyword, start=675, end=683, position=91:0:91:8, missing=false, text='delegate']
-      [token=DeleteKeyword, start=684, end=690, position=92:0:92:6, missing=false, text='delete']
-      [token=DeprecatedKeyword, start=691, end=701, position=93:0:93:10, missing=false, text='deprecated']
-      [token=IdentifierToken, start=702, end=706, position=94:0:94:4, missing=false, text='dtor']
-      [token=DiscardKeyword, start=707, end=714, position=95:0:95:7, missing=false, text='discard']
-      [token=DoKeyword, start=715, end=717, position=96:0:96:2, missing=false, text='do']
-      [token=DropKeyword, start=718, end=722, position=97:0:97:4, missing=false, text='drop']
-      [token=DynamicKeyword, start=723, end=730, position=98:0:98:7, missing=false, text='dynamic']
-      [token=EagerKeyword, start=731, end=736, position=99:0:99:5, missing=false, text='eager']
-      [token=ElseKeyword, start=737, end=741, position=100:0:100:4, missing=false, text='else']
-      [token=EnumKeyword, start=742, end=746, position=101:0:101:4, missing=false, text='enum']
-      [token=EventKeyword, start=747, end=752, position=102:0:102:5, missing=false, text='event']
-      [token=ExceptKeyword, start=753, end=759, position=103:0:103:6, missing=false, text='except']
-      [token=ExplicitKeyword, start=760, end=768, position=104:0:104:8, missing=false, text='explicit']
-      [token=ExportKeyword, start=769, end=775, position=105:0:105:6, missing=false, text='export']
-      [token=ExpressionKeyword, start=776, end=786, position=106:0:106:10, missing=false, text='expression']
-      [token=ExtensionKeyword, start=787, end=796, position=107:0:107:9, missing=false, text='extension']
-      [token=ExternKeyword, start=797, end=803, position=108:0:108:6, missing=false, text='extern']
-      [token=FalseKeyword, start=804, end=809, position=109:0:109:5, missing=false, text='false']
-      [token=FieldKeyword, start=810, end=815, position=110:0:110:5, missing=false, text='field']
-      [token=FileKeyword, start=816, end=820, position=111:0:111:4, missing=false, text='file']
-      [token=FinalKeyword, start=821, end=826, position=112:0:112:5, missing=false, text='final']
-      [token=FinallyKeyword, start=827, end=834, position=113:0:113:7, missing=false, text='finally']
-      [token=FixedKeyword, start=835, end=840, position=114:0:114:5, missing=false, text='fixed']
-      [token=ForKeyword, start=841, end=844, position=115:0:115:3, missing=false, text='for']
-      [token=ForceKeyword, start=845, end=850, position=116:0:116:5, missing=false, text='force']
-      [token=ForeachKeyword, start=851, end=858, position=117:0:117:7, missing=false, text='foreach']
-      [token=FractionKeyword, start=859, end=867, position=118:0:118:8, missing=false, text='fraction']
-      [token=FragmentKeyword, start=868, end=876, position=119:0:119:8, missing=false, text='fragment']
-      [token=FriendKeyword, start=877, end=883, position=120:0:120:6, missing=false, text='friend']
-      [token=FromKeyword, start=884, end=888, position=121:0:121:4, missing=false, text='from']
-      [token=FunctionKeyword, start=889, end=897, position=122:0:122:8, missing=false, text='function']
-      [token=GenericKeyword, start=898, end=905, position=123:0:123:7, missing=false, text='generic']
-      [token=IdentifierToken, start=906, end=909, position=124:0:124:3, missing=false, text='get']
-      [token=GlobalKeyword, start=910, end=916, position=125:0:125:6, missing=false, text='global']
-      [token=GotoKeyword, start=917, end=921, position=126:0:126:4, missing=false, text='goto']
-      [token=GroupSharedKeyword, start=922, end=933, position=127:0:127:11, missing=false, text='groupshared']
-      [token=IfKeyword, start=934, end=936, position=128:0:128:2, missing=false, text='if']
-      [token=ImmutableKeyword, start=937, end=946, position=129:0:129:9, missing=false, text='immutable']
-      [token=ImplementationKeyword, start=947, end=961, position=130:0:130:14, missing=false, text='implementation']
-      [token=ImplicitKeyword, start=962, end=970, position=131:0:131:8, missing=false, text='implicit']
-      [token=ImportKeyword, start=971, end=977, position=132:0:132:6, missing=false, text='import']
-      [token=InKeyword, start=978, end=980, position=133:0:133:2, missing=false, text='in']
-      [token=InheritKeyword, start=981, end=988, position=134:0:134:7, missing=false, text='inherit']
-      [token=InjectKeyword, start=989, end=995, position=135:0:135:6, missing=false, text='inject']
-      [token=InlineKeyword, start=996, end=1002, position=136:0:136:6, missing=false, text='inline']
-      [token=InOutKeyword, start=1003, end=1008, position=137:0:137:5, missing=false, text='inout']
-      [token=InterfaceKeyword, start=1009, end=1018, position=138:0:138:9, missing=false, text='interface']
-      [token=InternalKeyword, start=1019, end=1027, position=139:0:139:8, missing=false, text='internal']
-      [token=InvariantKeyword, start=1028, end=1037, position=140:0:140:9, missing=false, text='invariant']
-      [token=IsKeyword, start=1038, end=1040, position=141:0:141:2, missing=false, text='is']
-      [token=LazyKeyword, start=1041, end=1045, position=142:0:142:4, missing=false, text='lazy']
-      [token=LetKeyword, start=1046, end=1049, position=143:0:143:3, missing=false, text='let']
-      [token=LikelyKeyword, start=1050, end=1056, position=144:0:144:6, missing=false, text='likely']
-      [token=LinkSectionKeyword, start=1057, end=1068, position=145:0:145:11, missing=false, text='linksection']
-      [token=LockKeyword, start=1069, end=1073, position=146:0:146:4, missing=false, text='lock']
-      [token=LoopKeyword, start=1074, end=1078, position=147:0:147:4, missing=false, text='loop']
-      [token=MacroKeyword, start=1079, end=1084, position=148:0:148:5, missing=false, text='macro']
-      [token=ManagerKeyword, start=1085, end=1092, position=149:0:149:7, missing=false, text='managed']
-      [token=MatchKeyword, start=1093, end=1098, position=150:0:150:5, missing=false, text='match']
-      [token=MatrixKeyword, start=1099, end=1105, position=151:0:151:6, missing=false, text='matrix']
-      [token=MemberKeyword, start=1106, end=1112, position=152:0:152:6, missing=false, text='member']
-      [token=MetaKeyword, start=1113, end=1117, position=153:0:153:4, missing=false, text='meta']
-      [token=MixinKeyword, start=1118, end=1123, position=154:0:154:5, missing=false, text='mixin']
-      [token=ModuleKeyword, start=1124, end=1130, position=155:0:155:6, missing=false, text='module']
-      [token=MoveKeyword, start=1131, end=1135, position=156:0:156:4, missing=false, text='move']
-      [token=MutableKeyword, start=1136, end=1143, position=157:0:157:7, missing=false, text='mutable']
-      [token=NameOfKeyword, start=1144, end=1150, position=158:0:158:6, missing=false, text='nameof']
-      [token=NamespaceKeyword, start=1151, end=1160, position=159:0:159:9, missing=false, text='namespace']
-      [token=NativeKeyword, start=1161, end=1167, position=160:0:160:6, missing=false, text='native']
-      [token=NewKeyword, start=1168, end=1171, position=161:0:161:3, missing=false, text='new']
-      [token=NoAliasKeyword, start=1172, end=1179, position=162:0:162:7, missing=false, text='noalias']
-      [token=NodiscardKeyword, start=1180, end=1189, position=163:0:163:9, missing=false, text='nodiscard']
-      [token=NoInlineKeyword, start=1190, end=1198, position=164:0:164:8, missing=false, text='noinline']
-      [token=NoreturnKeyword, start=1199, end=1207, position=165:0:165:8, missing=false, text='noreturn']
-      [token=NoSuspendKeyword, start=1208, end=1217, position=166:0:166:9, missing=false, text='nosuspend']
-      [token=NotNullKeyword, start=1218, end=1225, position=167:0:167:7, missing=false, text='notnull']
-      [token=NullKeyword, start=1226, end=1230, position=168:0:168:4, missing=false, text='null']
-      [token=NullableKeyword, start=1231, end=1239, position=169:0:169:8, missing=false, text='nullable']
-      [token=OffsetOfKeyword, start=1240, end=1248, position=170:0:170:8, missing=false, text='offsetof']
-      [token=OperatorKeyword, start=1249, end=1257, position=171:0:171:8, missing=false, text='operator']
-      [token=OpqaueKeyword, start=1258, end=1264, position=172:0:172:6, missing=false, text='opaque']
-      [token=OptionalKeyword, start=1265, end=1273, position=173:0:173:8, missing=false, text='optional']
-      [token=OutKeyword, start=1274, end=1277, position=174:0:174:3, missing=false, text='out']
-      [token=OverloadKeyword, start=1278, end=1286, position=175:0:175:8, missing=false, text='overload']
-      [token=OverrideKeyword, start=1287, end=1295, position=176:0:176:8, missing=false, text='override']
-      [token=PackageKeyword, start=1296, end=1303, position=177:0:177:7, missing=false, text='package']
-      [token=PackedKeyword, start=1304, end=1310, position=178:0:178:6, missing=false, text='packed']
-      [token=ParallelKeyword, start=1311, end=1319, position=179:0:179:8, missing=false, text='parallel']
-      [token=ParamsKeyword, start=1320, end=1326, position=180:0:180:6, missing=false, text='params']
-      [token=IdentifierToken, start=1327, end=1334, position=181:0:181:7, missing=false, text='partial']
-      [token=PragmaKeyword, start=1335, end=1341, position=182:0:182:6, missing=false, text='pragma']
-      [token=PreciseKeyword, start=1342, end=1349, position=183:0:183:7, missing=false, text='precise']
-      [token=PrivateKeyword, start=1350, end=1357, position=184:0:184:7, missing=false, text='private']
-      [token=PropertyKeyword, start=1358, end=1366, position=185:0:185:8, missing=false, text='property']
-      [token=ProtectedKeyword, start=1367, end=1376, position=186:0:186:9, missing=false, text='protected']
-      [token=PublicKeyword, start=1377, end=1383, position=187:0:187:6, missing=false, text='public']
-      [token=PureKeyword, start=1384, end=1388, position=188:0:188:4, missing=false, text='pure']
-      [token=RaiseKeyword, start=1389, end=1394, position=189:0:189:5, missing=false, text='raise']
-      [token=ReadonlyKeyword, start=1395, end=1403, position=190:0:190:8, missing=false, text='readonly']
-      [token=RecordKeyword, start=1404, end=1410, position=191:0:191:6, missing=false, text='record']
-      [token=RecursiveKeyword, start=1411, end=1420, position=192:0:192:9, missing=false, text='recursive']
-      [token=RefKeyword, start=1421, end=1424, position=193:0:193:3, missing=false, text='ref']
-      [token=ReflectKeyword, start=1425, end=1432, position=194:0:194:7, missing=false, text='reflect']
-      [token=RegisterKeyword, start=1433, end=1441, position=195:0:195:8, missing=false, text='register']
-      [token=ReinterpretKeyword, start=1442, end=1453, position=196:0:196:11, missing=false, text='reinterpret']
-      [token=IdentifierToken, start=1454, end=1460, position=197:0:197:6, missing=false, text='remove']
-      [token=RequireKeyword, start=1461, end=1468, position=198:0:198:7, missing=false, text='require']
-      [token=RequiredKeyword, start=1469, end=1477, position=199:0:199:8, missing=false, text='required']
-      [token=ResumeKeyword, start=1478, end=1484, position=200:0:200:6, missing=false, text='resume']
-      [token=RetainKeyword, start=1485, end=1491, position=201:0:201:6, missing=false, text='retain']
-      [token=ReturnKeyword, start=1492, end=1498, position=202:0:202:6, missing=false, text='return']
-      [token=RowMajorKeyword, start=1499, end=1507, position=203:0:203:8, missing=false, text='rowmajor']
-      [token=SaturateKeyword, start=1508, end=1516, position=204:0:204:8, missing=false, text='saturate']
-      [token=ScalarKeyword, start=1517, end=1523, position=205:0:205:6, missing=false, text='scalar']
-      [token=ScopeKeyword, start=1524, end=1529, position=206:0:206:5, missing=false, text='scope']
-      [token=SectionKeyword, start=1530, end=1537, position=207:0:207:7, missing=false, text='section']
-      [token=SelfKeyword, start=1538, end=1542, position=208:0:208:4, missing=false, text='self']
-      [token=IdentifierToken, start=1543, end=1546, position=209:0:209:3, missing=false, text='set']
-      [token=SharedKeyword, start=1547, end=1553, position=210:0:210:6, missing=false, text='shared']
-      [token=SizeOfKeyword, start=1554, end=1560, position=211:0:211:6, missing=false, text='sizeof']
-      [token=SliceKeyword, start=1561, end=1566, position=212:0:212:5, missing=false, text='slice']
-      [token=StackallocKeyword, start=1567, end=1577, position=213:0:213:10, missing=false, text='stackalloc']
-      [token=StaticKeyword, start=1578, end=1584, position=214:0:214:6, missing=false, text='static']
-      [token=StructKeyword, start=1585, end=1591, position=215:0:215:6, missing=false, text='struct']
-      [token=SuperKeyword, start=1592, end=1597, position=216:0:216:5, missing=false, text='super']
-      [token=SuspendKeyword, start=1598, end=1605, position=217:0:217:7, missing=false, text='suspend']
-      [token=SwitchKeyword, start=1606, end=1612, position=218:0:218:6, missing=false, text='switch']
-      [token=SynchronizedKeyword, start=1613, end=1625, position=219:0:219:12, missing=false, text='synchronized']
-      [token=TailCallKeyword, start=1626, end=1634, position=220:0:220:8, missing=false, text='tailcall']
-      [token=TemplateKeyword, start=1635, end=1643, position=221:0:221:8, missing=false, text='template']
-      [token=TestKeyword, start=1644, end=1648, position=222:0:222:4, missing=false, text='test']
-      [token=ThisKeyword, start=1649, end=1653, position=223:0:223:4, missing=false, text='this']
-      [token=ThreadLocalKeyword, start=1654, end=1665, position=224:0:224:11, missing=false, text='threadlocal']
-      [token=TraitKeyword, start=1666, end=1671, position=225:0:225:5, missing=false, text='trait']
-      [token=TransferKeyword, start=1672, end=1680, position=226:0:226:8, missing=false, text='transfer']
-      [token=TrueKeyword, start=1681, end=1685, position=227:0:227:4, missing=false, text='true']
-      [token=TryKeyword, start=1686, end=1689, position=228:0:228:3, missing=false, text='try']
-      [token=TupleKeyword, start=1690, end=1695, position=229:0:229:5, missing=false, text='tuple']
-      [token=TypeKeyword, start=1696, end=1700, position=230:0:230:4, missing=false, text='type']
-      [token=TypeOfKeyword, start=1701, end=1707, position=231:0:231:6, missing=false, text='typeof']
-      [token=UnalignedKeyword, start=1708, end=1717, position=232:0:232:9, missing=false, text='unaligned']
-      [token=UnboxKeyword, start=1718, end=1723, position=233:0:233:5, missing=false, text='unbox']
-      [token=UncheckedKeyword, start=1724, end=1733, position=234:0:234:9, missing=false, text='unchecked']
-      [token=UndefinedKeyword, start=1734, end=1743, position=235:0:235:9, missing=false, text='undefined']
-      [token=UniformKeyword, start=1744, end=1751, position=236:0:236:7, missing=false, text='uniform']
-      [token=UnionKeyword, start=1752, end=1757, position=237:0:237:5, missing=false, text='union']
-      [token=UnlikelyKeyword, start=1758, end=1766, position=238:0:238:8, missing=false, text='unlikely']
-      [token=UnmanagedKeyword, start=1767, end=1776, position=239:0:239:9, missing=false, text='unmanaged']
-      [token=UnreachableKeyword, start=1777, end=1788, position=240:0:240:11, missing=false, text='unreachable']
-      [token=UnsafeKeyword, start=1789, end=1795, position=241:0:241:6, missing=false, text='unsafe']
-      [token=UnsizedKeyword, start=1796, end=1803, position=242:0:242:7, missing=false, text='unsized']
-      [token=UsingKeyword, start=1804, end=1809, position=243:0:243:5, missing=false, text='using']
-      [token=UuidOfKeyword, start=1810, end=1816, position=244:0:244:6, missing=false, text='uuidof']
-      [token=IdentifierToken, start=1817, end=1822, position=245:0:245:5, missing=false, text='value']
-      [token=VarKeyword, start=1823, end=1826, position=246:0:246:3, missing=false, text='var']
-      [token=VectorKeyword, start=1827, end=1833, position=247:0:247:6, missing=false, text='vector']
-      [token=VendorKeyword, start=1834, end=1840, position=248:0:248:6, missing=false, text='vendor']
-      [token=VersionKeyword, start=1841, end=1848, position=249:0:249:7, missing=false, text='version']
-      [token=VirtualKeyword, start=1849, end=1856, position=250:0:250:7, missing=false, text='virtual']
-      [token=VolatileKeyword, start=1857, end=1865, position=251:0:251:8, missing=false, text='volatile']
-      [token=VtableKeyword, start=1866, end=1872, position=252:0:252:6, missing=false, text='vtable']
-      [token=WhenKeyword, start=1873, end=1877, position=253:0:253:4, missing=false, text='when']
-      [token=IdentifierToken, start=1878, end=1883, position=254:0:254:5, missing=false, text='where']
-      [token=WhileKeyword, start=1884, end=1889, position=255:0:255:5, missing=false, text='while']
-      [token=WithKeyword, start=1890, end=1894, position=256:0:256:4, missing=false, text='with']
-      [token=YieldKeyword, start=1895, end=1900, position=257:0:257:5, missing=false, text='yield']
-      [token=TildeToken, start=1901, end=1902, position=258:0:258:1, missing=false, text='~']
-      [token=ExclamationEqualsToken, start=1903, end=1905, position=259:0:259:2, missing=false, text='!=']
-      [token=ExclamationToken, start=1906, end=1907, position=260:0:260:1, missing=false, text='!']
-      [token=PlusEqualsToken, start=1908, end=1910, position=261:0:261:2, missing=false, text='+=']
-      [token=PlusPlusToken, start=1911, end=1913, position=262:0:262:2, missing=false, text='++']
-      [token=PlusToken, start=1914, end=1915, position=263:0:263:1, missing=false, text='+']
-      [token=MinusEqualsToken, start=1916, end=1918, position=264:0:264:2, missing=false, text='-=']
-      [token=MinusMinusToken, start=1919, end=1921, position=265:0:265:2, missing=false, text='--']
-      [token=MinusGreaterThanToken, start=1922, end=1924, position=266:0:266:2, missing=false, text='->']
-      [token=MinusToken, start=1925, end=1926, position=267:0:267:1, missing=false, text='-']
-      [token=AsteriskEqualsToken, start=1927, end=1929, position=268:0:268:2, missing=false, text='*=']
-      [token=AsteriskToken, start=1930, end=1931, position=269:0:269:1, missing=false, text='*']
-      [token=SlashEqualsToken, start=1932, end=1934, position=270:0:270:2, missing=false, text='/=']
-      [token=SlashToken, start=1935, end=1936, position=271:0:271:1, missing=false, text='/']
-      [token=OpenParenToken, start=1937, end=1938, position=272:0:272:1, missing=false, text='(']
-      [token=CloseParenToken, start=1939, end=1940, position=273:0:273:1, missing=false, text=')']
-      [token=OpenBraceToken, start=1941, end=1942, position=274:0:274:1, missing=false, text='{']
-      [token=CloseBraceToken, start=1943, end=1944, position=275:0:275:1, missing=false, text='}']
-      [token=OpenBracketToken, start=1945, end=1946, position=276:0:276:1, missing=false, text='[']
-      [token=CloseBracketToken, start=1947, end=1948, position=277:0:277:1, missing=false, text=']']
-      [token=ColonColonToken, start=1949, end=1951, position=278:0:278:2, missing=false, text='::']
-      [token=ColonToken, start=1952, end=1953, position=279:0:279:1, missing=false, text=':']
-      [token=SemicolonToken, start=1954, end=1955, position=280:0:280:1, missing=false, text=';']
-      [token=AtToken, start=1956, end=1957, position=281:0:281:1, missing=false, text='@']
-      [token=DollarToken, start=1958, end=1959, position=282:0:282:1, missing=false, text='$']
-      [token=PercentEqualsToken, start=1960, end=1962, position=283:0:283:2, missing=false, text='%=']
-      [token=PercentToken, start=1963, end=1964, position=284:0:284:1, missing=false, text='%']
-      [token=CaretToken, start=1965, end=1966, position=285:0:285:1, missing=false, text='^']
-      [token=EqualsToken, start=1966, end=1967, position=285:1:285:2, missing=false, text='=']
-      [token=CaretToken, start=1968, end=1969, position=286:0:286:1, missing=false, text='^']
-      [token=AmpersandAmpersandToken, start=1970, end=1972, position=287:0:287:2, missing=false, text='&&']
-      [token=AmpersandEqualsToken, start=1973, end=1975, position=288:0:288:2, missing=false, text='&=']
-      [token=AmpersandToken, start=1976, end=1977, position=289:0:289:1, missing=false, text='&']
-      [token=EqualsEqualsToken, start=1978, end=1980, position=290:0:290:2, missing=false, text='==']
-      [token=EqualsGreaterThanToken, start=1981, end=1983, position=291:0:291:2, missing=false, text='=>']
-      [token=EqualsToken, start=1984, end=1985, position=292:0:292:1, missing=false, text='=']
-      [token=BackslashToken, start=1986, end=1987, position=293:0:293:1, missing=false, text='\']
-      [token=BackslashToken, start=1987, end=1988, position=293:1:293:2, missing=false, text='\']
-      [token=BarBarToken, start=1989, end=1991, position=294:0:294:2, missing=false, text='||']
-      [token=BarEqualsToken, start=1992, end=1994, position=295:0:295:2, missing=false, text='|=']
-      [token=BarToken, start=1995, end=1996, position=296:0:296:1, missing=false, text='|']
-      [token=CommaToken, start=1997, end=1998, position=297:0:297:1, missing=false, text=',']
-      [token=LessThanEqualsToken, start=1999, end=2001, position=298:0:298:2, missing=false, text='<=']
-      [token=LessThanLessThanEqualsToken, start=2002, end=2005, position=299:0:299:3, missing=false, text='<<=']
-      [token=LessThanLessThanToken, start=2006, end=2008, position=300:0:300:2, missing=false, text='<<']
-      [token=LessThanLessThanToken, start=2009, end=2011, position=301:0:301:2, missing=false, text='<<']
-      [token=LessThanToken, start=2011, end=2012, position=301:2:301:3, missing=false, text='<']
-      [token=GreaterThanGreaterThanToken, start=2013, end=2015, position=302:0:302:2, missing=false, text='>>']
-      [token=GreaterThanToken, start=2015, end=2016, position=302:2:302:3, missing=false, text='>']
-      [token=LessThanToken, start=2017, end=2018, position=303:0:303:1, missing=false, text='<']
-      [token=GreaterThanEqualsToken, start=2019, end=2021, position=304:0:304:2, missing=false, text='>=']
-      [token=GreaterThanGreaterThanEqualsToken, start=2022, end=2025, position=305:0:305:3, missing=false, text='>>=']
-      [token=GreaterThanGreaterThanToken, start=2026, end=2028, position=306:0:306:2, missing=false, text='>>']
-      [token=GreaterThanToken, start=2029, end=2030, position=307:0:307:1, missing=false, text='>']
-      [token=QuestionQuestionToken, start=2031, end=2033, position=308:0:308:2, missing=false, text='??']
-      [token=QuestionToken, start=2034, end=2035, position=309:0:309:1, missing=false, text='?']
-      [token=DotDotDotToken, start=2036, end=2039, position=310:0:310:3, missing=false, text='...']
-      [token=DotDotToken, start=2040, end=2042, position=311:0:311:2, missing=false, text='..']
-      [token=DotToken, start=2043, end=2044, position=312:0:312:1, missing=false, text='.']
-      [token=UnderscoreToken, start=2045, end=2046, position=313:0:313:1, missing=false, text='_']
-      [token=IdentifierToken, start=2047, end=2054, position=314:0:314:7, missing=false, text='r#class']
-      [token=IdentifierToken, start=2055, end=2061, position=315:0:315:6, missing=false, text='r#enum']
-      [token=IdentifierToken, start=2062, end=2070, position=316:0:316:8, missing=false, text='r#struct']
-      [token=StringLiteralToken, start=2071, end=2087, position=317:0:317:16, missing=false, text='r"raw string \t"']
-      [token=StringLiteralToken, start=2088, end=2106, position=318:0:318:18, missing=false, text='r#"raw string \n"#']
-      [token=StringLiteralToken, start=2107, end=2139, position=319:0:319:32, missing=false, text='r##" r#"inner\nraw\nstring"# "##']
-  [token=EndOfFileToken, start=2140, end=2140, position=320:0:320:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <0:4> [0:0:0:4] 'bool'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <5:9> [1:0:1:4] 'char'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <10:16> [2:0:2:6] 'char16'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <17:23> [3:0:3:6] 'char32'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <24:29> [4:0:4:5] 'char8'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <30:40> [5:0:5:10] 'decimal128'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <41:50> [6:0:6:9] 'decimal32'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <51:60> [7:0:7:9] 'decimal64'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <61:68> [8:0:8:7] 'float16'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <69:76> [9:0:9:7] 'float32'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <77:84> [10:0:10:7] 'float64'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <85:91> [11:0:11:6] 'int128'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <92:97> [12:0:12:5] 'int16'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <98:104> [13:0:13:6] 'int256'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <105:110> [14:0:14:5] 'int32'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <111:116> [15:0:15:5] 'int64'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <117:121> [16:0:16:4] 'int8'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <122:126> [17:0:17:4] 'iptr'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <127:132> [18:0:18:5] 'isize'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <133:139> [19:0:19:6] 'object'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <140:146> [20:0:20:6] 'string'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <147:154> [21:0:21:7] 'uint128'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <155:161> [22:0:22:6] 'uint16'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <162:169> [23:0:23:7] 'uint256'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <170:176> [24:0:24:6] 'uint32'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <177:183> [25:0:25:6] 'uint64'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <184:189> [26:0:26:5] 'uint8'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <190:194> [27:0:27:4] 'uptr'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <195:200> [28:0:28:5] 'usize'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <201:205> [29:0:29:4] 'void'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <206:210> [30:0:30:4] 'byte'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <211:214> [31:0:31:3] 'and'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <215:221> [32:0:32:6] 'and_eq'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <222:224> [33:0:33:2] 'or'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <225:230> [34:0:34:5] 'or_eq'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <231:234> [35:0:35:3] 'xor'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <235:241> [36:0:36:6] 'xor_eq'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <242:245> [37:0:37:3] 'not'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <246:252> [38:0:38:6] 'not_eq'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <253:260> [39:0:39:7] 'bit_and'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <261:267> [40:0:40:6] 'bit_or'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <268:277> [41:0:41:9] 'bit_compl'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <278:288> [42:0:42:10] '__column__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <289:297> [43:0:43:8] '__file__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <298:310> [44:0:44:12] '__function__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <311:330> [45:0:45:19] '__function_pretty__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <331:339> [46:0:46:8] '__line__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <340:350> [47:0:47:10] '__module__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <351:370> [48:0:48:19] '__source_location__'
+ UnexpectedNodesSyntax
+  SyntaxList
+   AbstractKeyword <371:379> [49:0:49:8] 'abstract'
+   IdentifierToken <380:383> [50:0:50:3] 'add'
+   AddressOfKeyword <384:393> [51:0:51:9] 'addressof'
+   AddressSpaceKeyword <394:403> [52:0:52:9] 'addrspace'
+   AliasKeyword <404:409> [53:0:53:5] 'alias'
+   AlignKeyword <410:415> [54:0:54:5] 'align'
+   AlignasKeyword <416:423> [55:0:55:7] 'alignas'
+   AlignOfKeyword <424:431> [56:0:56:7] 'alignof'
+   ArrayKeyword <432:437> [57:0:57:5] 'array'
+   AsKeyword <438:440> [58:0:58:2] 'as'
+   AssemblyKeyword <441:449> [59:0:59:8] 'assembly'
+   AssertKeyword <450:456> [60:0:60:6] 'assert'
+   AssumeKeyword <457:463> [61:0:61:6] 'assume'
+   IdentifierToken <464:469> [62:0:62:5] 'async'
+   AtomicKeyword <470:476> [63:0:63:6] 'atomic'
+   AttributeKeyword <477:486> [64:0:64:9] 'attribute'
+   AutoKeyword <487:491> [65:0:65:4] 'auto'
+   AvailableKeyword <492:501> [66:0:66:9] 'available'
+   IdentifierToken <502:507> [67:0:67:5] 'await'
+   BaseKeyword <508:512> [68:0:68:4] 'base'
+   BecomeKeyword <513:519> [69:0:69:6] 'become'
+   BitCastKeyword <520:527> [70:0:70:7] 'bitcast'
+   BodyKeyword <528:532> [71:0:71:4] 'body'
+   BorrowKeyword <533:539> [72:0:72:6] 'borrow'
+   BoxKeyword <540:543> [73:0:73:3] 'box'
+   BreakKeyword <544:549> [74:0:74:5] 'break'
+   CallConvKeyword <550:558> [75:0:75:8] 'callconv'
+   CaseKeyword <559:563> [76:0:76:4] 'case'
+   CastKeyword <564:568> [77:0:77:4] 'cast'
+   CheckedKeyword <569:576> [78:0:78:7] 'checked'
+   ClassKeyword <577:582> [79:0:79:5] 'class'
+   ColumnMajorKeyword <583:594> [80:0:80:11] 'columnmajor'
+   CompileKeyword <595:602> [81:0:81:7] 'compile'
+   ConceptKeyword <603:610> [82:0:82:7] 'concept'
+   ConstKeyword <611:616> [83:0:83:5] 'const'
+   IdentifierToken <617:621> [84:0:84:4] 'ctor'
+   ContinueKeyword <622:630> [85:0:85:8] 'continue'
+   ContravariantKeyword <631:644> [86:0:86:13] 'contravariant'
+   CovariantKeyword <645:654> [87:0:87:9] 'covariant'
+   DebugKeyword <655:660> [88:0:88:5] 'debug'
+   DefaultKeyword <661:668> [89:0:89:7] 'default'
+   DeferKeyword <669:674> [90:0:90:5] 'defer'
+   DelegateKeyword <675:683> [91:0:91:8] 'delegate'
+   DeleteKeyword <684:690> [92:0:92:6] 'delete'
+   DeprecatedKeyword <691:701> [93:0:93:10] 'deprecated'
+   IdentifierToken <702:706> [94:0:94:4] 'dtor'
+   DiscardKeyword <707:714> [95:0:95:7] 'discard'
+   DoKeyword <715:717> [96:0:96:2] 'do'
+   DropKeyword <718:722> [97:0:97:4] 'drop'
+   DynamicKeyword <723:730> [98:0:98:7] 'dynamic'
+   EagerKeyword <731:736> [99:0:99:5] 'eager'
+   ElseKeyword <737:741> [100:0:100:4] 'else'
+   EnumKeyword <742:746> [101:0:101:4] 'enum'
+   EventKeyword <747:752> [102:0:102:5] 'event'
+   ExceptKeyword <753:759> [103:0:103:6] 'except'
+   ExplicitKeyword <760:768> [104:0:104:8] 'explicit'
+   ExportKeyword <769:775> [105:0:105:6] 'export'
+   ExpressionKeyword <776:786> [106:0:106:10] 'expression'
+   ExtensionKeyword <787:796> [107:0:107:9] 'extension'
+   ExternKeyword <797:803> [108:0:108:6] 'extern'
+   FalseKeyword <804:809> [109:0:109:5] 'false'
+   FieldKeyword <810:815> [110:0:110:5] 'field'
+   FileKeyword <816:820> [111:0:111:4] 'file'
+   FinalKeyword <821:826> [112:0:112:5] 'final'
+   FinallyKeyword <827:834> [113:0:113:7] 'finally'
+   FixedKeyword <835:840> [114:0:114:5] 'fixed'
+   ForKeyword <841:844> [115:0:115:3] 'for'
+   ForceKeyword <845:850> [116:0:116:5] 'force'
+   ForeachKeyword <851:858> [117:0:117:7] 'foreach'
+   FractionKeyword <859:867> [118:0:118:8] 'fraction'
+   FragmentKeyword <868:876> [119:0:119:8] 'fragment'
+   FriendKeyword <877:883> [120:0:120:6] 'friend'
+   FromKeyword <884:888> [121:0:121:4] 'from'
+   FunctionKeyword <889:897> [122:0:122:8] 'function'
+   GenericKeyword <898:905> [123:0:123:7] 'generic'
+   IdentifierToken <906:909> [124:0:124:3] 'get'
+   GlobalKeyword <910:916> [125:0:125:6] 'global'
+   GotoKeyword <917:921> [126:0:126:4] 'goto'
+   GroupSharedKeyword <922:933> [127:0:127:11] 'groupshared'
+   IfKeyword <934:936> [128:0:128:2] 'if'
+   ImmutableKeyword <937:946> [129:0:129:9] 'immutable'
+   ImplementationKeyword <947:961> [130:0:130:14] 'implementation'
+   ImplicitKeyword <962:970> [131:0:131:8] 'implicit'
+   ImportKeyword <971:977> [132:0:132:6] 'import'
+   InKeyword <978:980> [133:0:133:2] 'in'
+   InheritKeyword <981:988> [134:0:134:7] 'inherit'
+   InjectKeyword <989:995> [135:0:135:6] 'inject'
+   InlineKeyword <996:1002> [136:0:136:6] 'inline'
+   InOutKeyword <1003:1008> [137:0:137:5] 'inout'
+   InterfaceKeyword <1009:1018> [138:0:138:9] 'interface'
+   InternalKeyword <1019:1027> [139:0:139:8] 'internal'
+   InvariantKeyword <1028:1037> [140:0:140:9] 'invariant'
+   IsKeyword <1038:1040> [141:0:141:2] 'is'
+   LazyKeyword <1041:1045> [142:0:142:4] 'lazy'
+   LetKeyword <1046:1049> [143:0:143:3] 'let'
+   LikelyKeyword <1050:1056> [144:0:144:6] 'likely'
+   LinkSectionKeyword <1057:1068> [145:0:145:11] 'linksection'
+   LockKeyword <1069:1073> [146:0:146:4] 'lock'
+   LoopKeyword <1074:1078> [147:0:147:4] 'loop'
+   MacroKeyword <1079:1084> [148:0:148:5] 'macro'
+   ManagerKeyword <1085:1092> [149:0:149:7] 'managed'
+   MatchKeyword <1093:1098> [150:0:150:5] 'match'
+   MatrixKeyword <1099:1105> [151:0:151:6] 'matrix'
+   MemberKeyword <1106:1112> [152:0:152:6] 'member'
+   MetaKeyword <1113:1117> [153:0:153:4] 'meta'
+   MixinKeyword <1118:1123> [154:0:154:5] 'mixin'
+   ModuleKeyword <1124:1130> [155:0:155:6] 'module'
+   MoveKeyword <1131:1135> [156:0:156:4] 'move'
+   MutableKeyword <1136:1143> [157:0:157:7] 'mutable'
+   NameOfKeyword <1144:1150> [158:0:158:6] 'nameof'
+   NamespaceKeyword <1151:1160> [159:0:159:9] 'namespace'
+   NativeKeyword <1161:1167> [160:0:160:6] 'native'
+   NewKeyword <1168:1171> [161:0:161:3] 'new'
+   NoAliasKeyword <1172:1179> [162:0:162:7] 'noalias'
+   NodiscardKeyword <1180:1189> [163:0:163:9] 'nodiscard'
+   NoInlineKeyword <1190:1198> [164:0:164:8] 'noinline'
+   NoreturnKeyword <1199:1207> [165:0:165:8] 'noreturn'
+   NoSuspendKeyword <1208:1217> [166:0:166:9] 'nosuspend'
+   NotNullKeyword <1218:1225> [167:0:167:7] 'notnull'
+   NullKeyword <1226:1230> [168:0:168:4] 'null'
+   NullableKeyword <1231:1239> [169:0:169:8] 'nullable'
+   OffsetOfKeyword <1240:1248> [170:0:170:8] 'offsetof'
+   OperatorKeyword <1249:1257> [171:0:171:8] 'operator'
+   OpqaueKeyword <1258:1264> [172:0:172:6] 'opaque'
+   OptionalKeyword <1265:1273> [173:0:173:8] 'optional'
+   OutKeyword <1274:1277> [174:0:174:3] 'out'
+   OverloadKeyword <1278:1286> [175:0:175:8] 'overload'
+   OverrideKeyword <1287:1295> [176:0:176:8] 'override'
+   PackageKeyword <1296:1303> [177:0:177:7] 'package'
+   PackedKeyword <1304:1310> [178:0:178:6] 'packed'
+   ParallelKeyword <1311:1319> [179:0:179:8] 'parallel'
+   ParamsKeyword <1320:1326> [180:0:180:6] 'params'
+   IdentifierToken <1327:1334> [181:0:181:7] 'partial'
+   PragmaKeyword <1335:1341> [182:0:182:6] 'pragma'
+   PreciseKeyword <1342:1349> [183:0:183:7] 'precise'
+   PrivateKeyword <1350:1357> [184:0:184:7] 'private'
+   PropertyKeyword <1358:1366> [185:0:185:8] 'property'
+   ProtectedKeyword <1367:1376> [186:0:186:9] 'protected'
+   PublicKeyword <1377:1383> [187:0:187:6] 'public'
+   PureKeyword <1384:1388> [188:0:188:4] 'pure'
+   RaiseKeyword <1389:1394> [189:0:189:5] 'raise'
+   ReadonlyKeyword <1395:1403> [190:0:190:8] 'readonly'
+   RecordKeyword <1404:1410> [191:0:191:6] 'record'
+   RecursiveKeyword <1411:1420> [192:0:192:9] 'recursive'
+   RefKeyword <1421:1424> [193:0:193:3] 'ref'
+   ReflectKeyword <1425:1432> [194:0:194:7] 'reflect'
+   RegisterKeyword <1433:1441> [195:0:195:8] 'register'
+   ReinterpretKeyword <1442:1453> [196:0:196:11] 'reinterpret'
+   IdentifierToken <1454:1460> [197:0:197:6] 'remove'
+   RequireKeyword <1461:1468> [198:0:198:7] 'require'
+   RequiredKeyword <1469:1477> [199:0:199:8] 'required'
+   ResumeKeyword <1478:1484> [200:0:200:6] 'resume'
+   RetainKeyword <1485:1491> [201:0:201:6] 'retain'
+   ReturnKeyword <1492:1498> [202:0:202:6] 'return'
+   RowMajorKeyword <1499:1507> [203:0:203:8] 'rowmajor'
+   SaturateKeyword <1508:1516> [204:0:204:8] 'saturate'
+   ScalarKeyword <1517:1523> [205:0:205:6] 'scalar'
+   ScopeKeyword <1524:1529> [206:0:206:5] 'scope'
+   SectionKeyword <1530:1537> [207:0:207:7] 'section'
+   SelfKeyword <1538:1542> [208:0:208:4] 'self'
+   IdentifierToken <1543:1546> [209:0:209:3] 'set'
+   SharedKeyword <1547:1553> [210:0:210:6] 'shared'
+   SizeOfKeyword <1554:1560> [211:0:211:6] 'sizeof'
+   SliceKeyword <1561:1566> [212:0:212:5] 'slice'
+   StackallocKeyword <1567:1577> [213:0:213:10] 'stackalloc'
+   StaticKeyword <1578:1584> [214:0:214:6] 'static'
+   StructKeyword <1585:1591> [215:0:215:6] 'struct'
+   SuperKeyword <1592:1597> [216:0:216:5] 'super'
+   SuspendKeyword <1598:1605> [217:0:217:7] 'suspend'
+   SwitchKeyword <1606:1612> [218:0:218:6] 'switch'
+   SynchronizedKeyword <1613:1625> [219:0:219:12] 'synchronized'
+   TailCallKeyword <1626:1634> [220:0:220:8] 'tailcall'
+   TemplateKeyword <1635:1643> [221:0:221:8] 'template'
+   TestKeyword <1644:1648> [222:0:222:4] 'test'
+   ThisKeyword <1649:1653> [223:0:223:4] 'this'
+   ThreadLocalKeyword <1654:1665> [224:0:224:11] 'threadlocal'
+   TraitKeyword <1666:1671> [225:0:225:5] 'trait'
+   TransferKeyword <1672:1680> [226:0:226:8] 'transfer'
+   TrueKeyword <1681:1685> [227:0:227:4] 'true'
+   TryKeyword <1686:1689> [228:0:228:3] 'try'
+   TupleKeyword <1690:1695> [229:0:229:5] 'tuple'
+   TypeKeyword <1696:1700> [230:0:230:4] 'type'
+   TypeOfKeyword <1701:1707> [231:0:231:6] 'typeof'
+   UnalignedKeyword <1708:1717> [232:0:232:9] 'unaligned'
+   UnboxKeyword <1718:1723> [233:0:233:5] 'unbox'
+   UncheckedKeyword <1724:1733> [234:0:234:9] 'unchecked'
+   UndefinedKeyword <1734:1743> [235:0:235:9] 'undefined'
+   UniformKeyword <1744:1751> [236:0:236:7] 'uniform'
+   UnionKeyword <1752:1757> [237:0:237:5] 'union'
+   UnlikelyKeyword <1758:1766> [238:0:238:8] 'unlikely'
+   UnmanagedKeyword <1767:1776> [239:0:239:9] 'unmanaged'
+   UnreachableKeyword <1777:1788> [240:0:240:11] 'unreachable'
+   UnsafeKeyword <1789:1795> [241:0:241:6] 'unsafe'
+   UnsizedKeyword <1796:1803> [242:0:242:7] 'unsized'
+   UsingKeyword <1804:1809> [243:0:243:5] 'using'
+   UuidOfKeyword <1810:1816> [244:0:244:6] 'uuidof'
+   IdentifierToken <1817:1822> [245:0:245:5] 'value'
+   VarKeyword <1823:1826> [246:0:246:3] 'var'
+   VectorKeyword <1827:1833> [247:0:247:6] 'vector'
+   VendorKeyword <1834:1840> [248:0:248:6] 'vendor'
+   VersionKeyword <1841:1848> [249:0:249:7] 'version'
+   VirtualKeyword <1849:1856> [250:0:250:7] 'virtual'
+   VolatileKeyword <1857:1865> [251:0:251:8] 'volatile'
+   VtableKeyword <1866:1872> [252:0:252:6] 'vtable'
+   WhenKeyword <1873:1877> [253:0:253:4] 'when'
+   IdentifierToken <1878:1883> [254:0:254:5] 'where'
+   WhileKeyword <1884:1889> [255:0:255:5] 'while'
+   WithKeyword <1890:1894> [256:0:256:4] 'with'
+   YieldKeyword <1895:1900> [257:0:257:5] 'yield'
+   TildeToken <1901:1902> [258:0:258:1] '~'
+   ExclamationEqualsToken <1903:1905> [259:0:259:2] '!='
+   ExclamationToken <1906:1907> [260:0:260:1] '!'
+   PlusEqualsToken <1908:1910> [261:0:261:2] '+='
+   PlusPlusToken <1911:1913> [262:0:262:2] '++'
+   PlusToken <1914:1915> [263:0:263:1] '+'
+   MinusEqualsToken <1916:1918> [264:0:264:2] '-='
+   MinusMinusToken <1919:1921> [265:0:265:2] '--'
+   MinusGreaterThanToken <1922:1924> [266:0:266:2] '->'
+   MinusToken <1925:1926> [267:0:267:1] '-'
+   AsteriskEqualsToken <1927:1929> [268:0:268:2] '*='
+   AsteriskToken <1930:1931> [269:0:269:1] '*'
+   SlashEqualsToken <1932:1934> [270:0:270:2] '/='
+   SlashToken <1935:1936> [271:0:271:1] '/'
+   OpenParenToken <1937:1938> [272:0:272:1] '('
+   CloseParenToken <1939:1940> [273:0:273:1] ')'
+   OpenBraceToken <1941:1942> [274:0:274:1] '{'
+   CloseBraceToken <1943:1944> [275:0:275:1] '}'
+   OpenBracketToken <1945:1946> [276:0:276:1] '['
+   CloseBracketToken <1947:1948> [277:0:277:1] ']'
+   ColonColonToken <1949:1951> [278:0:278:2] '::'
+   ColonToken <1952:1953> [279:0:279:1] ':'
+   SemicolonToken <1954:1955> [280:0:280:1] ';'
+   AtToken <1956:1957> [281:0:281:1] '@'
+   DollarToken <1958:1959> [282:0:282:1] '$'
+   PercentEqualsToken <1960:1962> [283:0:283:2] '%='
+   PercentToken <1963:1964> [284:0:284:1] '%'
+   CaretToken <1965:1966> [285:0:285:1] '^'
+   EqualsToken <1966:1967> [285:1:285:2] '='
+   CaretToken <1968:1969> [286:0:286:1] '^'
+   AmpersandAmpersandToken <1970:1972> [287:0:287:2] '&&'
+   AmpersandEqualsToken <1973:1975> [288:0:288:2] '&='
+   AmpersandToken <1976:1977> [289:0:289:1] '&'
+   EqualsEqualsToken <1978:1980> [290:0:290:2] '=='
+   EqualsGreaterThanToken <1981:1983> [291:0:291:2] '=>'
+   EqualsToken <1984:1985> [292:0:292:1] '='
+   BackslashToken <1986:1987> [293:0:293:1] '\'
+   BackslashToken <1987:1988> [293:1:293:2] '\'
+   BarBarToken <1989:1991> [294:0:294:2] '||'
+   BarEqualsToken <1992:1994> [295:0:295:2] '|='
+   BarToken <1995:1996> [296:0:296:1] '|'
+   CommaToken <1997:1998> [297:0:297:1] ','
+   LessThanEqualsToken <1999:2001> [298:0:298:2] '<='
+   LessThanLessThanEqualsToken <2002:2005> [299:0:299:3] '<<='
+   LessThanLessThanToken <2006:2008> [300:0:300:2] '<<'
+   LessThanLessThanToken <2009:2011> [301:0:301:2] '<<'
+   LessThanToken <2011:2012> [301:2:301:3] '<'
+   GreaterThanGreaterThanToken <2013:2015> [302:0:302:2] '>>'
+   GreaterThanToken <2015:2016> [302:2:302:3] '>'
+   LessThanToken <2017:2018> [303:0:303:1] '<'
+   GreaterThanEqualsToken <2019:2021> [304:0:304:2] '>='
+   GreaterThanGreaterThanEqualsToken <2022:2025> [305:0:305:3] '>>='
+   GreaterThanGreaterThanToken <2026:2028> [306:0:306:2] '>>'
+   GreaterThanToken <2029:2030> [307:0:307:1] '>'
+   QuestionQuestionToken <2031:2033> [308:0:308:2] '??'
+   QuestionToken <2034:2035> [309:0:309:1] '?'
+   DotDotDotToken <2036:2039> [310:0:310:3] '...'
+   DotDotToken <2040:2042> [311:0:311:2] '..'
+   DotToken <2043:2044> [312:0:312:1] '.'
+   UnderscoreToken <2045:2046> [313:0:313:1] '_'
+   IdentifierToken <2047:2054> [314:0:314:7] 'r#class'
+   IdentifierToken <2055:2061> [315:0:315:6] 'r#enum'
+   IdentifierToken <2062:2070> [316:0:316:8] 'r#struct'
+   StringLiteralToken <2071:2087> [317:0:317:16] 'r"raw string \t"'
+   StringLiteralToken <2088:2106> [318:0:318:18] 'r#"raw string \n"#'
+   StringLiteralToken <2107:2139> [319:0:319:32] 'r##" r#"inner\nraw\nstring"# "##'
+ EndOfFileToken <2140:2140> [320:0:320:0] ''

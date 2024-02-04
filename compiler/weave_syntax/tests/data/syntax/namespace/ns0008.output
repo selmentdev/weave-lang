@@ -1,12 +1,12 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=NamespaceDeclarationSyntax]
-        [token=NamespaceKeyword, start=0, end=9, position=0:0:0:9, missing=false, text='namespace']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=10, end=11, position=0:10:0:11, missing=false, text='X']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=12, end=13, position=0:12:0:13, missing=false, text='{']
-          [token=CloseBraceToken, start=14, end=15, position=0:14:0:15, missing=false, text='}']
-      [token=SemicolonToken, start=16, end=17, position=0:16:0:17, missing=false, text=';']
-  [token=EndOfFileToken, start=18, end=18, position=1:0:1:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   NamespaceDeclarationSyntax
+    NamespaceKeyword <0:9> [0:0:0:9] 'namespace'
+    IdentifierNameSyntax
+     IdentifierToken <10:11> [0:10:0:11] 'X'
+    CodeBlockSyntax
+     OpenBraceToken <12:13> [0:12:0:13] '{'
+     CloseBraceToken <14:15> [0:14:0:15] '}'
+   SemicolonToken <16:17> [0:16:0:17] ';'
+ EndOfFileToken <18:18> [1:0:1:0] ''

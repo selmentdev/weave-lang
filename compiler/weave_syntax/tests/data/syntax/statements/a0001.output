@@ -1,6 +1,6 @@
-[node=SourceFileSyntax]
-  [node=UnexpectedNodesSyntax]
-    [node=SyntaxList]
-      [token=PublicKeyword, start=0, end=6, position=0:0:0:6, missing=false, text='public']
-      [token=BreakKeyword, start=7, end=12, position=0:7:0:12, missing=false, text='break']
-  [token=EndOfFileToken, start=13, end=13, position=1:0:1:0, missing=false, text='']
+SourceFileSyntax
+ UnexpectedNodesSyntax
+  SyntaxList
+   PublicKeyword <0:6> [0:0:0:6] 'public'
+   BreakKeyword <7:12> [0:7:0:12] 'break'
+ EndOfFileToken <13:13> [1:0:1:0] ''

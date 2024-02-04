@@ -1,91 +1,91 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=BlockStatementSyntax]
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=15, end=16, position=1:0:1:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=ExpressionStatementSyntax]
-                [node=InvocationExpressionSyntax]
-                  [node=MemberAccessExpressionSyntax]
-                    [node=TupleExpressionSyntax]
-                      [token=OpenParenToken, start=17, end=18, position=1:2:1:3, missing=false, text='(']
-                      [node=SyntaxList]
-                        [node=LabeledExpressionSyntax]
-                          [node=BinaryExpressionSyntax]
-                            [node=LiteralExpressionSyntax]
-                              [token=FloatLiteralToken, start=18, end=23, position=1:3:1:8, missing=false, text='21.37']
-                            [token=AsKeyword, start=24, end=26, position=1:9:1:11, missing=false, text='as']
-                            [node=IdentifierNameSyntax]
-                              [token=IdentifierToken, start=27, end=33, position=1:12:1:18, missing=false, text='UInt32']
-                      [token=CloseParenToken, start=33, end=34, position=1:18:1:19, missing=false, text=')']
-                    [token=DotToken, start=34, end=35, position=1:19:1:20, missing=false, text='.']
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=35, end=43, position=1:20:1:28, missing=false, text='ToString']
-                  [node=ArgumentListSyntax]
-                    [token=OpenParenToken, start=43, end=44, position=1:28:1:29, missing=false, text='(']
-                    [token=CloseParenToken, start=44, end=45, position=1:29:1:30, missing=false, text=')']
-              [token=SemicolonToken, start=45, end=46, position=1:30:1:31, missing=false, text=';']
-          [token=CloseBraceToken, start=47, end=48, position=1:32:1:33, missing=false, text='}']
-    [node=CodeBlockItemSyntax]
-      [node=BlockStatementSyntax]
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=49, end=50, position=2:0:2:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=ExpressionStatementSyntax]
-                [node=BinaryExpressionSyntax]
-                  [node=BinaryExpressionSyntax]
-                    [node=LiteralExpressionSyntax]
-                      [token=FloatLiteralToken, start=51, end=56, position=2:2:2:7, missing=false, text='21.37']
-                    [token=AsKeyword, start=57, end=59, position=2:8:2:10, missing=false, text='as']
-                    [node=BinaryExpressionSyntax]
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=60, end=66, position=2:11:2:17, missing=false, text='UInt32']
-                      [token=PlusToken, start=67, end=68, position=2:18:2:19, missing=false, text='+']
-                      [node=LiteralExpressionSyntax]
-                        [token=FloatLiteralToken, start=69, end=75, position=2:20:2:26, missing=false, text='420.69']
-                  [token=AsKeyword, start=76, end=78, position=2:27:2:29, missing=false, text='as']
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=79, end=85, position=2:30:2:36, missing=false, text='UInt32']
-              [token=SemicolonToken, start=85, end=86, position=2:36:2:37, missing=false, text=';']
-          [token=CloseBraceToken, start=87, end=88, position=2:38:2:39, missing=false, text='}']
-    [node=CodeBlockItemSyntax]
-      [node=BlockStatementSyntax]
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=105, end=106, position=5:0:5:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=VariableDeclarationSyntax]
-                [token=LetKeyword, start=107, end=110, position=5:2:5:5, missing=false, text='let']
-                [node=PatternBindingSyntax]
-                  [node=IdentifierPatternSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=111, end=117, position=5:6:5:12, missing=false, text='result']
-                  [node=InitializerClauseSyntax]
-                    [token=EqualsToken, start=118, end=119, position=5:13:5:14, missing=false, text='=']
-                    [node=ConditionalExpressionSyntax]
-                      [node=BinaryExpressionSyntax]
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=120, end=124, position=5:15:5:19, missing=false, text='cond']
-                        [token=IsKeyword, start=125, end=127, position=5:20:5:22, missing=false, text='is']
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=128, end=133, position=5:23:5:28, missing=false, text='Int32']
-                      [token=QuestionToken, start=134, end=135, position=5:29:5:30, missing=false, text='?']
-                      [node=TypeOfExpressionSyntax]
-                        [token=TypeOfKeyword, start=136, end=142, position=5:31:5:37, missing=false, text='typeof']
-                        [token=OpenParenToken, start=142, end=143, position=5:37:5:38, missing=false, text='(']
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=143, end=148, position=5:38:5:43, missing=false, text='Int32']
-                        [token=CloseParenToken, start=148, end=149, position=5:43:5:44, missing=false, text=')']
-                      [token=ColonToken, start=150, end=151, position=5:45:5:46, missing=false, text=':']
-                      [node=TypeOfExpressionSyntax]
-                        [token=TypeOfKeyword, start=152, end=158, position=5:47:5:53, missing=false, text='typeof']
-                        [token=OpenParenToken, start=158, end=159, position=5:53:5:54, missing=false, text='(']
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=159, end=164, position=5:54:5:59, missing=false, text='Int64']
-                        [token=CloseParenToken, start=164, end=165, position=5:59:5:60, missing=false, text=')']
-              [token=SemicolonToken, start=165, end=166, position=5:60:5:61, missing=false, text=';']
-          [token=CloseBraceToken, start=167, end=168, position=5:62:5:63, missing=false, text='}']
-  [token=EndOfFileToken, start=169, end=169, position=6:0:6:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   BlockStatementSyntax
+    CodeBlockSyntax
+     OpenBraceToken <15:16> [1:0:1:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        InvocationExpressionSyntax
+         MemberAccessExpressionSyntax
+          TupleExpressionSyntax
+           OpenParenToken <17:18> [1:2:1:3] '('
+           SyntaxList
+            LabeledExpressionSyntax
+             BinaryExpressionSyntax
+              LiteralExpressionSyntax
+               FloatLiteralToken <18:23> [1:3:1:8] '21.37'
+              AsKeyword <24:26> [1:9:1:11] 'as'
+              IdentifierNameSyntax
+               IdentifierToken <27:33> [1:12:1:18] 'UInt32'
+           CloseParenToken <33:34> [1:18:1:19] ')'
+          DotToken <34:35> [1:19:1:20] '.'
+          IdentifierNameSyntax
+           IdentifierToken <35:43> [1:20:1:28] 'ToString'
+         ArgumentListSyntax
+          OpenParenToken <43:44> [1:28:1:29] '('
+          CloseParenToken <44:45> [1:29:1:30] ')'
+       SemicolonToken <45:46> [1:30:1:31] ';'
+     CloseBraceToken <47:48> [1:32:1:33] '}'
+  CodeBlockItemSyntax
+   BlockStatementSyntax
+    CodeBlockSyntax
+     OpenBraceToken <49:50> [2:0:2:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        BinaryExpressionSyntax
+         BinaryExpressionSyntax
+          LiteralExpressionSyntax
+           FloatLiteralToken <51:56> [2:2:2:7] '21.37'
+          AsKeyword <57:59> [2:8:2:10] 'as'
+          BinaryExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <60:66> [2:11:2:17] 'UInt32'
+           PlusToken <67:68> [2:18:2:19] '+'
+           LiteralExpressionSyntax
+            FloatLiteralToken <69:75> [2:20:2:26] '420.69'
+         AsKeyword <76:78> [2:27:2:29] 'as'
+         IdentifierNameSyntax
+          IdentifierToken <79:85> [2:30:2:36] 'UInt32'
+       SemicolonToken <85:86> [2:36:2:37] ';'
+     CloseBraceToken <87:88> [2:38:2:39] '}'
+  CodeBlockItemSyntax
+   BlockStatementSyntax
+    CodeBlockSyntax
+     OpenBraceToken <105:106> [5:0:5:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        LetKeyword <107:110> [5:2:5:5] 'let'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <111:117> [5:6:5:12] 'result'
+         InitializerClauseSyntax
+          EqualsToken <118:119> [5:13:5:14] '='
+          ConditionalExpressionSyntax
+           BinaryExpressionSyntax
+            IdentifierNameSyntax
+             IdentifierToken <120:124> [5:15:5:19] 'cond'
+            IsKeyword <125:127> [5:20:5:22] 'is'
+            IdentifierNameSyntax
+             IdentifierToken <128:133> [5:23:5:28] 'Int32'
+           QuestionToken <134:135> [5:29:5:30] '?'
+           TypeOfExpressionSyntax
+            TypeOfKeyword <136:142> [5:31:5:37] 'typeof'
+            OpenParenToken <142:143> [5:37:5:38] '('
+            IdentifierNameSyntax
+             IdentifierToken <143:148> [5:38:5:43] 'Int32'
+            CloseParenToken <148:149> [5:43:5:44] ')'
+           ColonToken <150:151> [5:45:5:46] ':'
+           TypeOfExpressionSyntax
+            TypeOfKeyword <152:158> [5:47:5:53] 'typeof'
+            OpenParenToken <158:159> [5:53:5:54] '('
+            IdentifierNameSyntax
+             IdentifierToken <159:164> [5:54:5:59] 'Int64'
+            CloseParenToken <164:165> [5:59:5:60] ')'
+       SemicolonToken <165:166> [5:60:5:61] ';'
+     CloseBraceToken <167:168> [5:62:5:63] '}'
+ EndOfFileToken <169:169> [6:0:6:0] ''

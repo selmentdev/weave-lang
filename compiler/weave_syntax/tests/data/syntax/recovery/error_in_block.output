@@ -1,97 +1,97 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=ExtendDeclarationSyntax]
-        [node=SyntaxList]
-          [token=PublicKeyword, start=0, end=6, position=0:0:0:6, missing=false, text='public']
-        [token=ExtendKeyword, start=7, end=13, position=0:7:0:13, missing=false, text='extend']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=14, end=17, position=0:14:0:17, missing=false, text='Foo']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=18, end=19, position=1:0:1:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=FunctionDeclarationSyntax]
-                [node=SyntaxList]
-                  [token=PublicKeyword, start=24, end=30, position=2:4:2:10, missing=false, text='public']
-                [token=FunctionKeyword, start=31, end=39, position=2:11:2:19, missing=false, text='function']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=40, end=49, position=2:20:2:29, missing=false, text='ThisWorks']
-                [node=ParameterListSyntax]
-                  [token=OpenParenToken, start=49, end=50, position=2:29:2:30, missing=false, text='(']
-                  [token=CloseParenToken, start=50, end=51, position=2:30:2:31, missing=false, text=')']
-                [node=ReturnTypeClauseSyntax]
-                  [token=MinusGreaterThanToken, start=52, end=54, position=2:32:2:34, missing=false, text='->']
-                  [node=TupleTypeSyntax]
-                    [token=OpenParenToken, start=55, end=56, position=2:35:2:36, missing=false, text='(']
-                    [token=CloseParenToken, start=56, end=57, position=2:36:2:37, missing=false, text=')']
-                [node=CodeBlockSyntax]
-                  [token=OpenBraceToken, start=62, end=63, position=3:4:3:5, missing=false, text='{']
-                  [token=CloseBraceToken, start=68, end=69, position=4:4:4:5, missing=false, text='}']
-            [node=CodeBlockItemSyntax]
-              [node=FunctionDeclarationSyntax]
-                [node=SyntaxList]
-                  [token=PublicKeyword, start=75, end=81, position=6:4:6:10, missing=false, text='public']
-                [token=FunctionKeyword, start=82, end=90, position=6:11:6:19, missing=false, text='function']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=91, end=100, position=6:20:6:29, missing=false, text='MakeError']
-                [node=ParameterListSyntax]
-                  [token=OpenParenToken, start=100, end=101, position=6:29:6:30, missing=false, text='(']
-                  [token=CloseParenToken, start=101, end=102, position=6:30:6:31, missing=false, text=')']
-                [node=CodeBlockSyntax]
-                  [token=OpenBraceToken, start=107, end=108, position=7:4:7:5, missing=false, text='{']
-                  [node=SyntaxList]
-                    [node=CodeBlockItemSyntax]
-                      [node=VariableDeclarationSyntax]
-                        [token=VarKeyword, start=117, end=120, position=8:8:8:11, missing=false, text='var']
-                        [node=PatternBindingSyntax]
-                          [node=IdentifierPatternSyntax]
-                            [node=IdentifierNameSyntax]
-                              [token=IdentifierToken, start=121, end=122, position=8:12:8:13, missing=false, text='a']
-                  [node=UnexpectedNodesSyntax]
-                    [node=SyntaxList]
-                      [token=DotToken, start=122, end=123, position=8:13:8:14, missing=false, text='.']
-                      [token=IdentifierToken, start=123, end=124, position=8:14:8:15, missing=false, text='b']
-                      [token=DotToken, start=124, end=125, position=8:15:8:16, missing=false, text='.']
-                      [token=IdentifierToken, start=125, end=126, position=8:16:8:17, missing=false, text='c']
-                      [token=EqualsToken, start=127, end=128, position=8:18:8:19, missing=false, text='=']
-                      [token=IntegerLiteralToken, start=129, end=131, position=8:20:8:22, missing=false, text='42']
-                      [token=SemicolonToken, start=131, end=132, position=8:22:8:23, missing=false, text=';']
-                  [token=CloseBraceToken, start=137, end=138, position=9:4:9:5, missing=false, text='}']
-            [node=CodeBlockItemSyntax]
-              [node=FunctionDeclarationSyntax]
-                [node=SyntaxList]
-                  [token=PublicKeyword, start=144, end=150, position=11:4:11:10, missing=false, text='public']
-                [token=FunctionKeyword, start=151, end=159, position=11:11:11:19, missing=false, text='function']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=160, end=170, position=11:20:11:30, missing=false, text='ShouldWork']
-                [node=ParameterListSyntax]
-                  [token=OpenParenToken, start=170, end=171, position=11:30:11:31, missing=false, text='(']
-                  [token=CloseParenToken, start=171, end=172, position=11:31:11:32, missing=false, text=')']
-                [node=CodeBlockSyntax]
-                  [token=OpenBraceToken, start=177, end=178, position=12:4:12:5, missing=false, text='{']
-                  [node=SyntaxList]
-                    [node=CodeBlockItemSyntax]
-                      [node=ExpressionStatementSyntax]
-                        [node=AssignmentExpressionSyntax]
-                          [node=MemberAccessExpressionSyntax]
-                            [node=MemberAccessExpressionSyntax]
-                              [node=MemberAccessExpressionSyntax]
-                                [node=SelfExpressionSyntax]
-                                  [token=SelfKeyword, start=187, end=191, position=13:8:13:12, missing=false, text='self']
-                                [token=DotToken, start=191, end=192, position=13:12:13:13, missing=false, text='.']
-                                [node=IdentifierNameSyntax]
-                                  [token=IdentifierToken, start=192, end=193, position=13:13:13:14, missing=false, text='a']
-                              [token=DotToken, start=193, end=194, position=13:14:13:15, missing=false, text='.']
-                              [node=IdentifierNameSyntax]
-                                [token=IdentifierToken, start=194, end=195, position=13:15:13:16, missing=false, text='b']
-                            [token=DotToken, start=195, end=196, position=13:16:13:17, missing=false, text='.']
-                            [node=IdentifierNameSyntax]
-                              [token=IdentifierToken, start=196, end=197, position=13:17:13:18, missing=false, text='c']
-                          [token=EqualsToken, start=198, end=199, position=13:19:13:20, missing=false, text='=']
-                          [node=LiteralExpressionSyntax]
-                            [token=IntegerLiteralToken, start=200, end=202, position=13:21:13:23, missing=false, text='42']
-                      [token=SemicolonToken, start=202, end=203, position=13:23:13:24, missing=false, text=';']
-                  [token=CloseBraceToken, start=208, end=209, position=14:4:14:5, missing=false, text='}']
-          [token=CloseBraceToken, start=230, end=230, position=17:0:17:0, missing=true, text='']
-  [token=EndOfFileToken, start=230, end=230, position=17:0:17:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   ExtendDeclarationSyntax
+    SyntaxList
+     PublicKeyword <0:6> [0:0:0:6] 'public'
+    ExtendKeyword <7:13> [0:7:0:13] 'extend'
+    IdentifierNameSyntax
+     IdentifierToken <14:17> [0:14:0:17] 'Foo'
+    CodeBlockSyntax
+     OpenBraceToken <18:19> [1:0:1:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       FunctionDeclarationSyntax
+        SyntaxList
+         PublicKeyword <24:30> [2:4:2:10] 'public'
+        FunctionKeyword <31:39> [2:11:2:19] 'function'
+        IdentifierNameSyntax
+         IdentifierToken <40:49> [2:20:2:29] 'ThisWorks'
+        ParameterListSyntax
+         OpenParenToken <49:50> [2:29:2:30] '('
+         CloseParenToken <50:51> [2:30:2:31] ')'
+        ReturnTypeClauseSyntax
+         MinusGreaterThanToken <52:54> [2:32:2:34] '->'
+         TupleTypeSyntax
+          OpenParenToken <55:56> [2:35:2:36] '('
+          CloseParenToken <56:57> [2:36:2:37] ')'
+        CodeBlockSyntax
+         OpenBraceToken <62:63> [3:4:3:5] '{'
+         CloseBraceToken <68:69> [4:4:4:5] '}'
+      CodeBlockItemSyntax
+       FunctionDeclarationSyntax
+        SyntaxList
+         PublicKeyword <75:81> [6:4:6:10] 'public'
+        FunctionKeyword <82:90> [6:11:6:19] 'function'
+        IdentifierNameSyntax
+         IdentifierToken <91:100> [6:20:6:29] 'MakeError'
+        ParameterListSyntax
+         OpenParenToken <100:101> [6:29:6:30] '('
+         CloseParenToken <101:102> [6:30:6:31] ')'
+        CodeBlockSyntax
+         OpenBraceToken <107:108> [7:4:7:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           VariableDeclarationSyntax
+            VarKeyword <117:120> [8:8:8:11] 'var'
+            PatternBindingSyntax
+             IdentifierPatternSyntax
+              IdentifierNameSyntax
+               IdentifierToken <121:122> [8:12:8:13] 'a'
+         UnexpectedNodesSyntax
+          SyntaxList
+           DotToken <122:123> [8:13:8:14] '.'
+           IdentifierToken <123:124> [8:14:8:15] 'b'
+           DotToken <124:125> [8:15:8:16] '.'
+           IdentifierToken <125:126> [8:16:8:17] 'c'
+           EqualsToken <127:128> [8:18:8:19] '='
+           IntegerLiteralToken <129:131> [8:20:8:22] '42'
+           SemicolonToken <131:132> [8:22:8:23] ';'
+         CloseBraceToken <137:138> [9:4:9:5] '}'
+      CodeBlockItemSyntax
+       FunctionDeclarationSyntax
+        SyntaxList
+         PublicKeyword <144:150> [11:4:11:10] 'public'
+        FunctionKeyword <151:159> [11:11:11:19] 'function'
+        IdentifierNameSyntax
+         IdentifierToken <160:170> [11:20:11:30] 'ShouldWork'
+        ParameterListSyntax
+         OpenParenToken <170:171> [11:30:11:31] '('
+         CloseParenToken <171:172> [11:31:11:32] ')'
+        CodeBlockSyntax
+         OpenBraceToken <177:178> [12:4:12:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           ExpressionStatementSyntax
+            AssignmentExpressionSyntax
+             MemberAccessExpressionSyntax
+              MemberAccessExpressionSyntax
+               MemberAccessExpressionSyntax
+                SelfExpressionSyntax
+                 SelfKeyword <187:191> [13:8:13:12] 'self'
+                DotToken <191:192> [13:12:13:13] '.'
+                IdentifierNameSyntax
+                 IdentifierToken <192:193> [13:13:13:14] 'a'
+               DotToken <193:194> [13:14:13:15] '.'
+               IdentifierNameSyntax
+                IdentifierToken <194:195> [13:15:13:16] 'b'
+              DotToken <195:196> [13:16:13:17] '.'
+              IdentifierNameSyntax
+               IdentifierToken <196:197> [13:17:13:18] 'c'
+             EqualsToken <198:199> [13:19:13:20] '='
+             LiteralExpressionSyntax
+              IntegerLiteralToken <200:202> [13:21:13:23] '42'
+           SemicolonToken <202:203> [13:23:13:24] ';'
+         CloseBraceToken <208:209> [14:4:14:5] '}'
+     CloseBraceToken <230:230> [17:0:17:0] missing ''
+ EndOfFileToken <230:230> [17:0:17:0] ''

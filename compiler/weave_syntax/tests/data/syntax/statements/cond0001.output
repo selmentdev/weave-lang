@@ -1,12 +1,12 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IfExpressionSyntax]
-          [token=IfKeyword, start=0, end=2, position=0:0:0:2, missing=false, text='if']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=3, end=3, position=1:0:1:0, missing=true, text='']
-          [node=CodeBlockSyntax]
-            [token=OpenBraceToken, start=3, end=3, position=1:0:1:0, missing=true, text='']
-            [token=CloseBraceToken, start=3, end=3, position=1:0:1:0, missing=true, text='']
-  [token=EndOfFileToken, start=3, end=3, position=1:0:1:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IfExpressionSyntax
+     IfKeyword <0:2> [0:0:0:2] 'if'
+     IdentifierNameSyntax
+      IdentifierToken <3:3> [1:0:1:0] missing ''
+     CodeBlockSyntax
+      OpenBraceToken <3:3> [1:0:1:0] missing ''
+      CloseBraceToken <3:3> [1:0:1:0] missing ''
+ EndOfFileToken <3:3> [1:0:1:0] ''

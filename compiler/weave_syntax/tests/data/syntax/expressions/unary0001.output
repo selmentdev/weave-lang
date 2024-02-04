@@ -1,144 +1,144 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=0, end=3, position=0:0:0:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=4, end=5, position=0:4:0:5, missing=false, text='x']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=6, end=7, position=0:6:0:7, missing=false, text='=']
-            [node=SizeOfExpressionSyntax]
-              [token=SizeOfKeyword, start=8, end=14, position=0:8:0:14, missing=false, text='sizeof']
-              [token=OpenParenToken, start=14, end=15, position=0:14:0:15, missing=false, text='(']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=15, end=22, position=0:15:0:22, missing=false, text='UInt128']
-              [token=CloseParenToken, start=22, end=23, position=0:22:0:23, missing=false, text=')']
-      [token=SemicolonToken, start=23, end=24, position=0:23:0:24, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=25, end=28, position=1:0:1:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=29, end=30, position=1:4:1:5, missing=false, text='y']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=31, end=32, position=1:6:1:7, missing=false, text='=']
-            [node=BinaryExpressionSyntax]
-              [node=BinaryExpressionSyntax]
-                [node=LiteralExpressionSyntax]
-                  [token=IntegerLiteralToken, start=33, end=34, position=1:8:1:9, missing=false, text='2']
-                [token=AsteriskToken, start=35, end=36, position=1:10:1:11, missing=false, text='*']
-                [node=SizeOfExpressionSyntax]
-                  [token=SizeOfKeyword, start=37, end=43, position=1:12:1:18, missing=false, text='sizeof']
-                  [token=OpenParenToken, start=43, end=44, position=1:18:1:19, missing=false, text='(']
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=44, end=49, position=1:19:1:24, missing=false, text='Int64']
-                  [token=CloseParenToken, start=49, end=50, position=1:24:1:25, missing=false, text=')']
-              [token=PlusToken, start=51, end=52, position=1:26:1:27, missing=false, text='+']
-              [node=SizeOfExpressionSyntax]
-                [token=SizeOfKeyword, start=53, end=59, position=1:28:1:34, missing=false, text='sizeof']
-                [token=OpenParenToken, start=59, end=60, position=1:34:1:35, missing=false, text='(']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=60, end=65, position=1:35:1:40, missing=false, text='Int32']
-                [token=CloseParenToken, start=65, end=66, position=1:40:1:41, missing=false, text=')']
-      [token=SemicolonToken, start=66, end=67, position=1:41:1:42, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=68, end=71, position=2:0:2:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=72, end=73, position=2:4:2:5, missing=false, text='z']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=74, end=75, position=2:6:2:7, missing=false, text='=']
-            [node=NameOfExpressionSyntax]
-              [token=NameOfKeyword, start=76, end=82, position=2:8:2:14, missing=false, text='nameof']
-              [token=OpenParenToken, start=82, end=83, position=2:14:2:15, missing=false, text='(']
-              [node=MemberAccessExpressionSyntax]
-                [node=MemberAccessExpressionSyntax]
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=83, end=87, position=2:15:2:19, missing=false, text='core']
-                  [token=DotToken, start=87, end=88, position=2:19:2:20, missing=false, text='.']
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=88, end=96, position=2:20:2:28, missing=false, text='numerics']
-                [token=DotToken, start=96, end=97, position=2:28:2:29, missing=false, text='.']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=97, end=104, position=2:29:2:36, missing=false, text='UInt128']
-              [token=CloseParenToken, start=104, end=105, position=2:36:2:37, missing=false, text=')']
-      [token=SemicolonToken, start=105, end=106, position=2:37:2:38, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=107, end=110, position=3:0:3:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=111, end=112, position=3:4:3:5, missing=false, text='w']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=113, end=114, position=3:6:3:7, missing=false, text='=']
-            [node=TypeOfExpressionSyntax]
-              [token=TypeOfKeyword, start=115, end=121, position=3:8:3:14, missing=false, text='typeof']
-              [token=OpenParenToken, start=121, end=122, position=3:14:3:15, missing=false, text='(']
-              [node=MemberAccessExpressionSyntax]
-                [node=MemberAccessExpressionSyntax]
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=122, end=125, position=3:15:3:18, missing=false, text='std']
-                  [token=DotToken, start=125, end=126, position=3:18:3:19, missing=false, text='.']
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=126, end=127, position=3:19:3:20, missing=false, text='c']
-                [token=DotToken, start=127, end=128, position=3:20:3:21, missing=false, text='.']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=128, end=137, position=3:21:3:30, missing=false, text='ulonglong']
-              [token=CloseParenToken, start=137, end=138, position=3:30:3:31, missing=false, text=')']
-      [token=SemicolonToken, start=138, end=139, position=3:31:3:32, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=140, end=143, position=4:0:4:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=144, end=145, position=4:4:4:5, missing=false, text='a']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=146, end=147, position=4:6:4:7, missing=false, text='=']
-            [node=AddressOfExpressionSyntax]
-              [token=AddressOfKeyword, start=148, end=157, position=4:8:4:17, missing=false, text='addressof']
-              [node=TupleExpressionSyntax]
-                [token=OpenParenToken, start=157, end=158, position=4:17:4:18, missing=false, text='(']
-                [node=SyntaxList]
-                  [node=LabeledExpressionSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=158, end=159, position=4:18:4:19, missing=false, text='w']
-                [token=CloseParenToken, start=159, end=160, position=4:19:4:20, missing=false, text=')']
-      [token=SemicolonToken, start=160, end=161, position=4:20:4:21, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=162, end=165, position=5:0:5:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=166, end=167, position=5:4:5:5, missing=false, text='c']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=168, end=169, position=5:6:5:7, missing=false, text='=']
-            [node=AlignOfExpressionSyntax]
-              [token=AlignOfKeyword, start=170, end=177, position=5:8:5:15, missing=false, text='alignof']
-              [token=OpenParenToken, start=177, end=178, position=5:15:5:16, missing=false, text='(']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=178, end=179, position=5:16:5:17, missing=false, text='w']
-              [token=CloseParenToken, start=179, end=180, position=5:17:5:18, missing=false, text=')']
-      [token=SemicolonToken, start=180, end=181, position=5:18:5:19, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=182, end=185, position=6:0:6:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=186, end=187, position=6:4:6:5, missing=false, text='e']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=188, end=189, position=6:6:6:7, missing=false, text='=']
-            [node=UnaryExpressionSyntax]
-              [token=AmpersandToken, start=190, end=191, position=6:8:6:9, missing=false, text='&']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=191, end=192, position=6:9:6:10, missing=false, text='x']
-      [token=SemicolonToken, start=192, end=193, position=6:10:6:11, missing=false, text=';']
-  [token=EndOfFileToken, start=194, end=194, position=7:0:7:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <0:3> [0:0:0:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <4:5> [0:4:0:5] 'x'
+     InitializerClauseSyntax
+      EqualsToken <6:7> [0:6:0:7] '='
+      SizeOfExpressionSyntax
+       SizeOfKeyword <8:14> [0:8:0:14] 'sizeof'
+       OpenParenToken <14:15> [0:14:0:15] '('
+       IdentifierNameSyntax
+        IdentifierToken <15:22> [0:15:0:22] 'UInt128'
+       CloseParenToken <22:23> [0:22:0:23] ')'
+   SemicolonToken <23:24> [0:23:0:24] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <25:28> [1:0:1:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <29:30> [1:4:1:5] 'y'
+     InitializerClauseSyntax
+      EqualsToken <31:32> [1:6:1:7] '='
+      BinaryExpressionSyntax
+       BinaryExpressionSyntax
+        LiteralExpressionSyntax
+         IntegerLiteralToken <33:34> [1:8:1:9] '2'
+        AsteriskToken <35:36> [1:10:1:11] '*'
+        SizeOfExpressionSyntax
+         SizeOfKeyword <37:43> [1:12:1:18] 'sizeof'
+         OpenParenToken <43:44> [1:18:1:19] '('
+         IdentifierNameSyntax
+          IdentifierToken <44:49> [1:19:1:24] 'Int64'
+         CloseParenToken <49:50> [1:24:1:25] ')'
+       PlusToken <51:52> [1:26:1:27] '+'
+       SizeOfExpressionSyntax
+        SizeOfKeyword <53:59> [1:28:1:34] 'sizeof'
+        OpenParenToken <59:60> [1:34:1:35] '('
+        IdentifierNameSyntax
+         IdentifierToken <60:65> [1:35:1:40] 'Int32'
+        CloseParenToken <65:66> [1:40:1:41] ')'
+   SemicolonToken <66:67> [1:41:1:42] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <68:71> [2:0:2:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <72:73> [2:4:2:5] 'z'
+     InitializerClauseSyntax
+      EqualsToken <74:75> [2:6:2:7] '='
+      NameOfExpressionSyntax
+       NameOfKeyword <76:82> [2:8:2:14] 'nameof'
+       OpenParenToken <82:83> [2:14:2:15] '('
+       MemberAccessExpressionSyntax
+        MemberAccessExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <83:87> [2:15:2:19] 'core'
+         DotToken <87:88> [2:19:2:20] '.'
+         IdentifierNameSyntax
+          IdentifierToken <88:96> [2:20:2:28] 'numerics'
+        DotToken <96:97> [2:28:2:29] '.'
+        IdentifierNameSyntax
+         IdentifierToken <97:104> [2:29:2:36] 'UInt128'
+       CloseParenToken <104:105> [2:36:2:37] ')'
+   SemicolonToken <105:106> [2:37:2:38] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <107:110> [3:0:3:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <111:112> [3:4:3:5] 'w'
+     InitializerClauseSyntax
+      EqualsToken <113:114> [3:6:3:7] '='
+      TypeOfExpressionSyntax
+       TypeOfKeyword <115:121> [3:8:3:14] 'typeof'
+       OpenParenToken <121:122> [3:14:3:15] '('
+       MemberAccessExpressionSyntax
+        MemberAccessExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <122:125> [3:15:3:18] 'std'
+         DotToken <125:126> [3:18:3:19] '.'
+         IdentifierNameSyntax
+          IdentifierToken <126:127> [3:19:3:20] 'c'
+        DotToken <127:128> [3:20:3:21] '.'
+        IdentifierNameSyntax
+         IdentifierToken <128:137> [3:21:3:30] 'ulonglong'
+       CloseParenToken <137:138> [3:30:3:31] ')'
+   SemicolonToken <138:139> [3:31:3:32] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <140:143> [4:0:4:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <144:145> [4:4:4:5] 'a'
+     InitializerClauseSyntax
+      EqualsToken <146:147> [4:6:4:7] '='
+      AddressOfExpressionSyntax
+       AddressOfKeyword <148:157> [4:8:4:17] 'addressof'
+       TupleExpressionSyntax
+        OpenParenToken <157:158> [4:17:4:18] '('
+        SyntaxList
+         LabeledExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <158:159> [4:18:4:19] 'w'
+        CloseParenToken <159:160> [4:19:4:20] ')'
+   SemicolonToken <160:161> [4:20:4:21] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <162:165> [5:0:5:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <166:167> [5:4:5:5] 'c'
+     InitializerClauseSyntax
+      EqualsToken <168:169> [5:6:5:7] '='
+      AlignOfExpressionSyntax
+       AlignOfKeyword <170:177> [5:8:5:15] 'alignof'
+       OpenParenToken <177:178> [5:15:5:16] '('
+       IdentifierNameSyntax
+        IdentifierToken <178:179> [5:16:5:17] 'w'
+       CloseParenToken <179:180> [5:17:5:18] ')'
+   SemicolonToken <180:181> [5:18:5:19] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <182:185> [6:0:6:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <186:187> [6:4:6:5] 'e'
+     InitializerClauseSyntax
+      EqualsToken <188:189> [6:6:6:7] '='
+      UnaryExpressionSyntax
+       AmpersandToken <190:191> [6:8:6:9] '&'
+       IdentifierNameSyntax
+        IdentifierToken <191:192> [6:9:6:10] 'x'
+   SemicolonToken <192:193> [6:10:6:11] ';'
+ EndOfFileToken <194:194> [7:0:7:0] ''

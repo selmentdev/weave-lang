@@ -1,131 +1,131 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=DelegateDeclarationSyntax]
-        [node=SyntaxList]
-          [token=PublicKeyword, start=0, end=6, position=0:0:0:6, missing=false, text='public']
-        [token=DelegateKeyword, start=7, end=15, position=0:7:0:15, missing=false, text='delegate']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=16, end=35, position=0:16:0:35, missing=false, text='PlayerDeathDelegate']
-        [node=ParameterListSyntax]
-          [token=OpenParenToken, start=35, end=36, position=0:35:0:36, missing=false, text='(']
-          [node=SyntaxList]
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=41, end=47, position=1:4:1:10, missing=false, text='player']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=47, end=48, position=1:10:1:11, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=49, end=55, position=1:12:1:18, missing=false, text='Player']
-              [token=CommaToken, start=55, end=56, position=1:18:1:19, missing=false, text=',']
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=61, end=67, position=2:4:2:10, missing=false, text='killer']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=67, end=68, position=2:10:2:11, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=69, end=75, position=2:12:2:18, missing=false, text='Player']
-              [token=CommaToken, start=75, end=76, position=2:18:2:19, missing=false, text=',']
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=81, end=87, position=3:4:3:10, missing=false, text='weapon']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=87, end=88, position=3:10:3:11, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=89, end=95, position=3:12:3:18, missing=false, text='Weapon']
-          [token=CloseParenToken, start=96, end=97, position=4:0:4:1, missing=false, text=')']
-        [node=ReturnTypeClauseSyntax]
-          [token=MinusGreaterThanToken, start=98, end=100, position=4:2:4:4, missing=false, text='->']
-          [node=TupleTypeSyntax]
-            [token=OpenParenToken, start=101, end=102, position=4:5:4:6, missing=false, text='(']
-            [token=CloseParenToken, start=102, end=103, position=4:6:4:7, missing=false, text=')']
-      [token=SemicolonToken, start=103, end=104, position=4:7:4:8, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=FunctionDeclarationSyntax]
-        [node=SyntaxList]
-          [token=PublicKeyword, start=106, end=112, position=6:0:6:6, missing=false, text='public']
-        [token=FunctionKeyword, start=113, end=121, position=6:7:6:15, missing=false, text='function']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=122, end=126, position=6:16:6:20, missing=false, text='Kill']
-        [node=ParameterListSyntax]
-          [token=OpenParenToken, start=126, end=127, position=6:20:6:21, missing=false, text='(']
-          [node=SyntaxList]
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=132, end=136, position=7:4:7:8, missing=false, text='game']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=136, end=137, position=7:8:7:9, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=138, end=142, position=7:10:7:14, missing=false, text='Game']
-              [token=CommaToken, start=142, end=143, position=7:14:7:15, missing=false, text=',']
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=148, end=154, position=8:4:8:10, missing=false, text='player']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=154, end=155, position=8:10:8:11, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=156, end=162, position=8:12:8:18, missing=false, text='Player']
-              [token=CommaToken, start=162, end=163, position=8:18:8:19, missing=false, text=',']
-            [node=ParameterSyntax]
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=168, end=173, position=9:4:9:9, missing=false, text='other']
-              [node=TypeClauseSyntax]
-                [token=ColonToken, start=173, end=174, position=9:9:9:10, missing=false, text=':']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=175, end=181, position=9:11:9:17, missing=false, text='Player']
-          [token=CloseParenToken, start=182, end=183, position=10:0:10:1, missing=false, text=')']
-        [node=ReturnTypeClauseSyntax]
-          [token=MinusGreaterThanToken, start=184, end=186, position=10:2:10:4, missing=false, text='->']
-          [node=TupleTypeSyntax]
-            [token=OpenParenToken, start=187, end=188, position=10:5:10:6, missing=false, text='(']
-            [token=CloseParenToken, start=188, end=189, position=10:6:10:7, missing=false, text=')']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=190, end=191, position=11:0:11:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=VariableDeclarationSyntax]
-                [token=LetKeyword, start=196, end=199, position=12:4:12:7, missing=false, text='let']
-                [node=PatternBindingSyntax]
-                  [node=IdentifierPatternSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=200, end=208, position=12:8:12:16, missing=false, text='callback']
-                  [node=TypeClauseSyntax]
-                    [token=ColonToken, start=209, end=210, position=12:17:12:18, missing=false, text=':']
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=211, end=230, position=12:19:12:38, missing=false, text='PlayerDeathCallback']
-                  [node=InitializerClauseSyntax]
-                    [token=EqualsToken, start=231, end=232, position=12:39:12:40, missing=false, text='=']
-                    [node=MemberAccessExpressionSyntax]
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=233, end=237, position=12:41:12:45, missing=false, text='game']
-                      [token=DotToken, start=237, end=238, position=12:45:12:46, missing=false, text='.']
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=238, end=249, position=12:46:12:57, missing=false, text='PlayerDeath']
-              [token=SemicolonToken, start=249, end=250, position=12:57:12:58, missing=false, text=';']
-            [node=CodeBlockItemSyntax]
-              [node=ExpressionStatementSyntax]
-                [node=InvocationExpressionSyntax]
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=256, end=264, position=14:4:14:12, missing=false, text='callback']
-                  [node=ArgumentListSyntax]
-                    [token=OpenParenToken, start=264, end=265, position=14:12:14:13, missing=false, text='(']
-                    [node=SyntaxList]
-                      [node=ArgumentSyntax]
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=265, end=271, position=14:13:14:19, missing=false, text='player']
-                        [token=CommaToken, start=271, end=272, position=14:19:14:20, missing=false, text=',']
-                      [node=ArgumentSyntax]
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=273, end=278, position=14:21:14:26, missing=false, text='other']
-                        [token=CommaToken, start=278, end=279, position=14:26:14:27, missing=false, text=',']
-                      [node=ArgumentSyntax]
-                        [node=MemberAccessExpressionSyntax]
-                          [node=IdentifierNameSyntax]
-                            [token=IdentifierToken, start=280, end=286, position=14:28:14:34, missing=false, text='player']
-                          [token=DotToken, start=286, end=287, position=14:34:14:35, missing=false, text='.']
-                          [node=IdentifierNameSyntax]
-                            [token=IdentifierToken, start=287, end=300, position=14:35:14:48, missing=false, text='CurrentWeapon']
-                    [token=CloseParenToken, start=300, end=301, position=14:48:14:49, missing=false, text=')']
-              [token=SemicolonToken, start=301, end=302, position=14:49:14:50, missing=false, text=';']
-          [token=CloseBraceToken, start=303, end=304, position=15:0:15:1, missing=false, text='}']
-  [token=EndOfFileToken, start=305, end=305, position=16:0:16:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   DelegateDeclarationSyntax
+    SyntaxList
+     PublicKeyword <0:6> [0:0:0:6] 'public'
+    DelegateKeyword <7:15> [0:7:0:15] 'delegate'
+    IdentifierNameSyntax
+     IdentifierToken <16:35> [0:16:0:35] 'PlayerDeathDelegate'
+    ParameterListSyntax
+     OpenParenToken <35:36> [0:35:0:36] '('
+     SyntaxList
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <41:47> [1:4:1:10] 'player'
+       TypeClauseSyntax
+        ColonToken <47:48> [1:10:1:11] ':'
+        IdentifierNameSyntax
+         IdentifierToken <49:55> [1:12:1:18] 'Player'
+       CommaToken <55:56> [1:18:1:19] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <61:67> [2:4:2:10] 'killer'
+       TypeClauseSyntax
+        ColonToken <67:68> [2:10:2:11] ':'
+        IdentifierNameSyntax
+         IdentifierToken <69:75> [2:12:2:18] 'Player'
+       CommaToken <75:76> [2:18:2:19] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <81:87> [3:4:3:10] 'weapon'
+       TypeClauseSyntax
+        ColonToken <87:88> [3:10:3:11] ':'
+        IdentifierNameSyntax
+         IdentifierToken <89:95> [3:12:3:18] 'Weapon'
+     CloseParenToken <96:97> [4:0:4:1] ')'
+    ReturnTypeClauseSyntax
+     MinusGreaterThanToken <98:100> [4:2:4:4] '->'
+     TupleTypeSyntax
+      OpenParenToken <101:102> [4:5:4:6] '('
+      CloseParenToken <102:103> [4:6:4:7] ')'
+   SemicolonToken <103:104> [4:7:4:8] ';'
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    SyntaxList
+     PublicKeyword <106:112> [6:0:6:6] 'public'
+    FunctionKeyword <113:121> [6:7:6:15] 'function'
+    IdentifierNameSyntax
+     IdentifierToken <122:126> [6:16:6:20] 'Kill'
+    ParameterListSyntax
+     OpenParenToken <126:127> [6:20:6:21] '('
+     SyntaxList
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <132:136> [7:4:7:8] 'game'
+       TypeClauseSyntax
+        ColonToken <136:137> [7:8:7:9] ':'
+        IdentifierNameSyntax
+         IdentifierToken <138:142> [7:10:7:14] 'Game'
+       CommaToken <142:143> [7:14:7:15] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <148:154> [8:4:8:10] 'player'
+       TypeClauseSyntax
+        ColonToken <154:155> [8:10:8:11] ':'
+        IdentifierNameSyntax
+         IdentifierToken <156:162> [8:12:8:18] 'Player'
+       CommaToken <162:163> [8:18:8:19] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <168:173> [9:4:9:9] 'other'
+       TypeClauseSyntax
+        ColonToken <173:174> [9:9:9:10] ':'
+        IdentifierNameSyntax
+         IdentifierToken <175:181> [9:11:9:17] 'Player'
+     CloseParenToken <182:183> [10:0:10:1] ')'
+    ReturnTypeClauseSyntax
+     MinusGreaterThanToken <184:186> [10:2:10:4] '->'
+     TupleTypeSyntax
+      OpenParenToken <187:188> [10:5:10:6] '('
+      CloseParenToken <188:189> [10:6:10:7] ')'
+    CodeBlockSyntax
+     OpenBraceToken <190:191> [11:0:11:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        LetKeyword <196:199> [12:4:12:7] 'let'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <200:208> [12:8:12:16] 'callback'
+         TypeClauseSyntax
+          ColonToken <209:210> [12:17:12:18] ':'
+          IdentifierNameSyntax
+           IdentifierToken <211:230> [12:19:12:38] 'PlayerDeathCallback'
+         InitializerClauseSyntax
+          EqualsToken <231:232> [12:39:12:40] '='
+          MemberAccessExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <233:237> [12:41:12:45] 'game'
+           DotToken <237:238> [12:45:12:46] '.'
+           IdentifierNameSyntax
+            IdentifierToken <238:249> [12:46:12:57] 'PlayerDeath'
+       SemicolonToken <249:250> [12:57:12:58] ';'
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        InvocationExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <256:264> [14:4:14:12] 'callback'
+         ArgumentListSyntax
+          OpenParenToken <264:265> [14:12:14:13] '('
+          SyntaxList
+           ArgumentSyntax
+            IdentifierNameSyntax
+             IdentifierToken <265:271> [14:13:14:19] 'player'
+            CommaToken <271:272> [14:19:14:20] ','
+           ArgumentSyntax
+            IdentifierNameSyntax
+             IdentifierToken <273:278> [14:21:14:26] 'other'
+            CommaToken <278:279> [14:26:14:27] ','
+           ArgumentSyntax
+            MemberAccessExpressionSyntax
+             IdentifierNameSyntax
+              IdentifierToken <280:286> [14:28:14:34] 'player'
+             DotToken <286:287> [14:34:14:35] '.'
+             IdentifierNameSyntax
+              IdentifierToken <287:300> [14:35:14:48] 'CurrentWeapon'
+          CloseParenToken <300:301> [14:48:14:49] ')'
+       SemicolonToken <301:302> [14:49:14:50] ';'
+     CloseBraceToken <303:304> [15:0:15:1] '}'
+ EndOfFileToken <305:305> [16:0:16:0] ''

@@ -1,199 +1,199 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=StructDeclarationSyntax]
-        [node=SyntaxList]
-          [token=PublicKeyword, start=0, end=6, position=0:0:0:6, missing=false, text='public']
-        [token=StructKeyword, start=7, end=13, position=0:7:0:13, missing=false, text='struct']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=14, end=21, position=0:14:0:21, missing=false, text='Vector3']
-        [node=GenericParametersSyntax]
-          [token=ColonColonOpenBracketToken, start=21, end=24, position=0:21:0:24, missing=false, text='::[']
-          [node=SyntaxList]
-            [node=TypeGenericParameterSyntax]
-              [token=TypeKeyword, start=24, end=28, position=0:24:0:28, missing=false, text='type']
-              [node=IdentifierNameSyntax]
-                [token=IdentifierToken, start=29, end=30, position=0:29:0:30, missing=false, text='T']
-          [token=CloseBracketToken, start=30, end=31, position=0:30:0:31, missing=false, text=']']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=32, end=33, position=1:0:1:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=VariableDeclarationSyntax]
-                [node=SyntaxList]
-                  [token=PublicKeyword, start=38, end=44, position=2:4:2:10, missing=false, text='public']
-                [token=VarKeyword, start=45, end=48, position=2:11:2:14, missing=false, text='var']
-                [node=PatternBindingSyntax]
-                  [node=IdentifierPatternSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=49, end=50, position=2:15:2:16, missing=false, text='X']
-                  [node=TypeClauseSyntax]
-                    [token=ColonToken, start=50, end=51, position=2:16:2:17, missing=false, text=':']
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=52, end=53, position=2:18:2:19, missing=false, text='T']
-              [token=SemicolonToken, start=53, end=54, position=2:19:2:20, missing=false, text=';']
-            [node=CodeBlockItemSyntax]
-              [node=VariableDeclarationSyntax]
-                [node=SyntaxList]
-                  [token=PublicKeyword, start=59, end=65, position=3:4:3:10, missing=false, text='public']
-                [token=VarKeyword, start=66, end=69, position=3:11:3:14, missing=false, text='var']
-                [node=PatternBindingSyntax]
-                  [node=IdentifierPatternSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=70, end=71, position=3:15:3:16, missing=false, text='Y']
-                  [node=TypeClauseSyntax]
-                    [token=ColonToken, start=71, end=72, position=3:16:3:17, missing=false, text=':']
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=73, end=74, position=3:18:3:19, missing=false, text='T']
-              [token=SemicolonToken, start=74, end=75, position=3:19:3:20, missing=false, text=';']
-            [node=CodeBlockItemSyntax]
-              [node=VariableDeclarationSyntax]
-                [node=SyntaxList]
-                  [token=PublicKeyword, start=80, end=86, position=4:4:4:10, missing=false, text='public']
-                [token=VarKeyword, start=87, end=90, position=4:11:4:14, missing=false, text='var']
-                [node=PatternBindingSyntax]
-                  [node=IdentifierPatternSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=91, end=92, position=4:15:4:16, missing=false, text='Z']
-                  [node=TypeClauseSyntax]
-                    [token=ColonToken, start=92, end=93, position=4:16:4:17, missing=false, text=':']
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=94, end=95, position=4:18:4:19, missing=false, text='T']
-              [token=SemicolonToken, start=95, end=96, position=4:19:4:20, missing=false, text=';']
-          [token=CloseBraceToken, start=97, end=98, position=5:0:5:1, missing=false, text='}']
-    [node=CodeBlockItemSyntax]
-      [node=ExtendDeclarationSyntax]
-        [node=SyntaxList]
-          [token=PublicKeyword, start=100, end=106, position=7:0:7:6, missing=false, text='public']
-        [token=ExtendKeyword, start=107, end=113, position=7:7:7:13, missing=false, text='extend']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=114, end=121, position=7:14:7:21, missing=false, text='Vector3']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=132, end=133, position=8:0:8:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=FunctionDeclarationSyntax]
-                [node=SyntaxList]
-                  [token=PublicKeyword, start=138, end=144, position=9:4:9:10, missing=false, text='public']
-                [token=FunctionKeyword, start=145, end=153, position=9:11:9:19, missing=false, text='function']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=154, end=158, position=9:20:9:24, missing=false, text='Zero']
-                [node=ParameterListSyntax]
-                  [token=OpenParenToken, start=158, end=159, position=9:24:9:25, missing=false, text='(']
-                  [token=CloseParenToken, start=159, end=160, position=9:25:9:26, missing=false, text=')']
-                [node=ReturnTypeClauseSyntax]
-                  [token=MinusGreaterThanToken, start=161, end=163, position=9:27:9:29, missing=false, text='->']
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=164, end=171, position=9:30:9:37, missing=false, text='Vector3']
-              [token=SemicolonToken, start=171, end=172, position=9:37:9:38, missing=false, text=';']
-            [node=CodeBlockItemSyntax]
-              [node=FunctionDeclarationSyntax]
-                [node=SyntaxList]
-                  [token=PublicKeyword, start=177, end=183, position=10:4:10:10, missing=false, text='public']
-                [token=FunctionKeyword, start=184, end=192, position=10:11:10:19, missing=false, text='function']
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=193, end=198, position=10:20:10:25, missing=false, text='Splat']
-                [node=ParameterListSyntax]
-                  [token=OpenParenToken, start=198, end=199, position=10:25:10:26, missing=false, text='(']
-                  [node=SyntaxList]
-                    [node=ParameterSyntax]
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=199, end=204, position=10:26:10:31, missing=false, text='value']
-                      [node=TypeClauseSyntax]
-                        [token=ColonToken, start=204, end=205, position=10:31:10:32, missing=false, text=':']
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=206, end=207, position=10:33:10:34, missing=false, text='T']
-                  [token=CloseParenToken, start=207, end=208, position=10:34:10:35, missing=false, text=')']
-                [node=ReturnTypeClauseSyntax]
-                  [token=MinusGreaterThanToken, start=209, end=211, position=10:36:10:38, missing=false, text='->']
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=212, end=219, position=10:39:10:46, missing=false, text='Vector3']
-              [token=SemicolonToken, start=219, end=220, position=10:46:10:47, missing=false, text=';']
-          [token=CloseBraceToken, start=221, end=222, position=11:0:11:1, missing=false, text='}']
-    [node=CodeBlockItemSyntax]
-      [node=FunctionDeclarationSyntax]
-        [node=SyntaxList]
-          [token=PublicKeyword, start=224, end=230, position=13:0:13:6, missing=false, text='public']
-        [token=FunctionKeyword, start=231, end=239, position=13:7:13:15, missing=false, text='function']
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=240, end=244, position=13:16:13:20, missing=false, text='Test']
-        [node=ParameterListSyntax]
-          [token=OpenParenToken, start=244, end=245, position=13:20:13:21, missing=false, text='(']
-          [token=CloseParenToken, start=245, end=246, position=13:21:13:22, missing=false, text=')']
-        [node=ReturnTypeClauseSyntax]
-          [token=MinusGreaterThanToken, start=247, end=249, position=13:23:13:25, missing=false, text='->']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=250, end=257, position=13:26:13:33, missing=false, text='Vector3']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=258, end=259, position=14:0:14:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=VariableDeclarationSyntax]
-                [token=VarKeyword, start=264, end=267, position=15:4:15:7, missing=false, text='var']
-                [node=PatternBindingSyntax]
-                  [node=IdentifierPatternSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=268, end=272, position=15:8:15:12, missing=false, text='zero']
-                  [node=InitializerClauseSyntax]
-                    [token=EqualsToken, start=273, end=274, position=15:13:15:14, missing=false, text='=']
-                    [node=InvocationExpressionSyntax]
-                      [node=MemberAccessExpressionSyntax]
-                        [node=GenericNameSyntax]
-                          [token=IdentifierToken, start=275, end=282, position=15:15:15:22, missing=false, text='Vector3']
-                          [node=GenericArgumentsSyntax]
-                            [token=ColonColonOpenBracketToken, start=282, end=285, position=15:22:15:25, missing=false, text='::[']
-                            [node=SyntaxList]
-                              [node=GenericArgumentSyntax]
-                                [node=IdentifierNameSyntax]
-                                  [token=IdentifierToken, start=285, end=292, position=15:25:15:32, missing=false, text='Float32']
-                            [token=CloseBracketToken, start=292, end=293, position=15:32:15:33, missing=false, text=']']
-                        [token=DotToken, start=293, end=294, position=15:33:15:34, missing=false, text='.']
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=294, end=298, position=15:34:15:38, missing=false, text='Zero']
-                      [node=ArgumentListSyntax]
-                        [token=OpenParenToken, start=298, end=299, position=15:38:15:39, missing=false, text='(']
-                        [token=CloseParenToken, start=299, end=300, position=15:39:15:40, missing=false, text=')']
-              [token=SemicolonToken, start=300, end=301, position=15:40:15:41, missing=false, text=';']
-            [node=CodeBlockItemSyntax]
-              [node=VariableDeclarationSyntax]
-                [token=VarKeyword, start=306, end=309, position=16:4:16:7, missing=false, text='var']
-                [node=PatternBindingSyntax]
-                  [node=IdentifierPatternSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=310, end=314, position=16:8:16:12, missing=false, text='ones']
-                  [node=InitializerClauseSyntax]
-                    [token=EqualsToken, start=315, end=316, position=16:13:16:14, missing=false, text='=']
-                    [node=InvocationExpressionSyntax]
-                      [node=MemberAccessExpressionSyntax]
-                        [node=GenericNameSyntax]
-                          [token=IdentifierToken, start=317, end=324, position=16:15:16:22, missing=false, text='Vector3']
-                          [node=GenericArgumentsSyntax]
-                            [token=ColonColonOpenBracketToken, start=324, end=327, position=16:22:16:25, missing=false, text='::[']
-                            [node=SyntaxList]
-                              [node=GenericArgumentSyntax]
-                                [node=IdentifierNameSyntax]
-                                  [token=IdentifierToken, start=327, end=334, position=16:25:16:32, missing=false, text='Float32']
-                            [token=CloseBracketToken, start=334, end=335, position=16:32:16:33, missing=false, text=']']
-                        [token=DotToken, start=335, end=336, position=16:33:16:34, missing=false, text='.']
-                        [node=IdentifierNameSyntax]
-                          [token=IdentifierToken, start=336, end=341, position=16:34:16:39, missing=false, text='Splat']
-                      [node=ArgumentListSyntax]
-                        [token=OpenParenToken, start=341, end=342, position=16:39:16:40, missing=false, text='(']
-                        [node=SyntaxList]
-                          [node=ArgumentSyntax]
-                            [node=LiteralExpressionSyntax]
-                              [token=FloatLiteralToken, start=342, end=348, position=16:40:16:46, missing=false, text='1.0f32']
-                        [token=CloseParenToken, start=348, end=349, position=16:46:16:47, missing=false, text=')']
-              [token=SemicolonToken, start=349, end=350, position=16:47:16:48, missing=false, text=';']
-            [node=CodeBlockItemSyntax]
-              [node=ReturnStatementSyntax]
-                [token=ReturnKeyword, start=355, end=361, position=17:4:17:10, missing=false, text='return']
-                [node=BinaryExpressionSyntax]
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=362, end=366, position=17:11:17:15, missing=false, text='zero']
-                  [token=PlusToken, start=367, end=368, position=17:16:17:17, missing=false, text='+']
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=369, end=373, position=17:18:17:22, missing=false, text='ones']
-              [token=SemicolonToken, start=373, end=374, position=17:22:17:23, missing=false, text=';']
-          [token=CloseBraceToken, start=375, end=376, position=18:0:18:1, missing=false, text='}']
-  [token=EndOfFileToken, start=377, end=377, position=19:0:19:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   StructDeclarationSyntax
+    SyntaxList
+     PublicKeyword <0:6> [0:0:0:6] 'public'
+    StructKeyword <7:13> [0:7:0:13] 'struct'
+    IdentifierNameSyntax
+     IdentifierToken <14:21> [0:14:0:21] 'Vector3'
+    GenericParametersSyntax
+     ColonColonOpenBracketToken <21:24> [0:21:0:24] '::['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <24:28> [0:24:0:28] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <29:30> [0:29:0:30] 'T'
+     CloseBracketToken <30:31> [0:30:0:31] ']'
+    CodeBlockSyntax
+     OpenBraceToken <32:33> [1:0:1:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <38:44> [2:4:2:10] 'public'
+        VarKeyword <45:48> [2:11:2:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <49:50> [2:15:2:16] 'X'
+         TypeClauseSyntax
+          ColonToken <50:51> [2:16:2:17] ':'
+          IdentifierNameSyntax
+           IdentifierToken <52:53> [2:18:2:19] 'T'
+       SemicolonToken <53:54> [2:19:2:20] ';'
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <59:65> [3:4:3:10] 'public'
+        VarKeyword <66:69> [3:11:3:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <70:71> [3:15:3:16] 'Y'
+         TypeClauseSyntax
+          ColonToken <71:72> [3:16:3:17] ':'
+          IdentifierNameSyntax
+           IdentifierToken <73:74> [3:18:3:19] 'T'
+       SemicolonToken <74:75> [3:19:3:20] ';'
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <80:86> [4:4:4:10] 'public'
+        VarKeyword <87:90> [4:11:4:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <91:92> [4:15:4:16] 'Z'
+         TypeClauseSyntax
+          ColonToken <92:93> [4:16:4:17] ':'
+          IdentifierNameSyntax
+           IdentifierToken <94:95> [4:18:4:19] 'T'
+       SemicolonToken <95:96> [4:19:4:20] ';'
+     CloseBraceToken <97:98> [5:0:5:1] '}'
+  CodeBlockItemSyntax
+   ExtendDeclarationSyntax
+    SyntaxList
+     PublicKeyword <100:106> [7:0:7:6] 'public'
+    ExtendKeyword <107:113> [7:7:7:13] 'extend'
+    IdentifierNameSyntax
+     IdentifierToken <114:121> [7:14:7:21] 'Vector3'
+    CodeBlockSyntax
+     OpenBraceToken <132:133> [8:0:8:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       FunctionDeclarationSyntax
+        SyntaxList
+         PublicKeyword <138:144> [9:4:9:10] 'public'
+        FunctionKeyword <145:153> [9:11:9:19] 'function'
+        IdentifierNameSyntax
+         IdentifierToken <154:158> [9:20:9:24] 'Zero'
+        ParameterListSyntax
+         OpenParenToken <158:159> [9:24:9:25] '('
+         CloseParenToken <159:160> [9:25:9:26] ')'
+        ReturnTypeClauseSyntax
+         MinusGreaterThanToken <161:163> [9:27:9:29] '->'
+         IdentifierNameSyntax
+          IdentifierToken <164:171> [9:30:9:37] 'Vector3'
+       SemicolonToken <171:172> [9:37:9:38] ';'
+      CodeBlockItemSyntax
+       FunctionDeclarationSyntax
+        SyntaxList
+         PublicKeyword <177:183> [10:4:10:10] 'public'
+        FunctionKeyword <184:192> [10:11:10:19] 'function'
+        IdentifierNameSyntax
+         IdentifierToken <193:198> [10:20:10:25] 'Splat'
+        ParameterListSyntax
+         OpenParenToken <198:199> [10:25:10:26] '('
+         SyntaxList
+          ParameterSyntax
+           IdentifierNameSyntax
+            IdentifierToken <199:204> [10:26:10:31] 'value'
+           TypeClauseSyntax
+            ColonToken <204:205> [10:31:10:32] ':'
+            IdentifierNameSyntax
+             IdentifierToken <206:207> [10:33:10:34] 'T'
+         CloseParenToken <207:208> [10:34:10:35] ')'
+        ReturnTypeClauseSyntax
+         MinusGreaterThanToken <209:211> [10:36:10:38] '->'
+         IdentifierNameSyntax
+          IdentifierToken <212:219> [10:39:10:46] 'Vector3'
+       SemicolonToken <219:220> [10:46:10:47] ';'
+     CloseBraceToken <221:222> [11:0:11:1] '}'
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    SyntaxList
+     PublicKeyword <224:230> [13:0:13:6] 'public'
+    FunctionKeyword <231:239> [13:7:13:15] 'function'
+    IdentifierNameSyntax
+     IdentifierToken <240:244> [13:16:13:20] 'Test'
+    ParameterListSyntax
+     OpenParenToken <244:245> [13:20:13:21] '('
+     CloseParenToken <245:246> [13:21:13:22] ')'
+    ReturnTypeClauseSyntax
+     MinusGreaterThanToken <247:249> [13:23:13:25] '->'
+     IdentifierNameSyntax
+      IdentifierToken <250:257> [13:26:13:33] 'Vector3'
+    CodeBlockSyntax
+     OpenBraceToken <258:259> [14:0:14:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        VarKeyword <264:267> [15:4:15:7] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <268:272> [15:8:15:12] 'zero'
+         InitializerClauseSyntax
+          EqualsToken <273:274> [15:13:15:14] '='
+          InvocationExpressionSyntax
+           MemberAccessExpressionSyntax
+            GenericNameSyntax
+             IdentifierToken <275:282> [15:15:15:22] 'Vector3'
+             GenericArgumentsSyntax
+              ColonColonOpenBracketToken <282:285> [15:22:15:25] '::['
+              SyntaxList
+               GenericArgumentSyntax
+                IdentifierNameSyntax
+                 IdentifierToken <285:292> [15:25:15:32] 'Float32'
+              CloseBracketToken <292:293> [15:32:15:33] ']'
+            DotToken <293:294> [15:33:15:34] '.'
+            IdentifierNameSyntax
+             IdentifierToken <294:298> [15:34:15:38] 'Zero'
+           ArgumentListSyntax
+            OpenParenToken <298:299> [15:38:15:39] '('
+            CloseParenToken <299:300> [15:39:15:40] ')'
+       SemicolonToken <300:301> [15:40:15:41] ';'
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        VarKeyword <306:309> [16:4:16:7] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <310:314> [16:8:16:12] 'ones'
+         InitializerClauseSyntax
+          EqualsToken <315:316> [16:13:16:14] '='
+          InvocationExpressionSyntax
+           MemberAccessExpressionSyntax
+            GenericNameSyntax
+             IdentifierToken <317:324> [16:15:16:22] 'Vector3'
+             GenericArgumentsSyntax
+              ColonColonOpenBracketToken <324:327> [16:22:16:25] '::['
+              SyntaxList
+               GenericArgumentSyntax
+                IdentifierNameSyntax
+                 IdentifierToken <327:334> [16:25:16:32] 'Float32'
+              CloseBracketToken <334:335> [16:32:16:33] ']'
+            DotToken <335:336> [16:33:16:34] '.'
+            IdentifierNameSyntax
+             IdentifierToken <336:341> [16:34:16:39] 'Splat'
+           ArgumentListSyntax
+            OpenParenToken <341:342> [16:39:16:40] '('
+            SyntaxList
+             ArgumentSyntax
+              LiteralExpressionSyntax
+               FloatLiteralToken <342:348> [16:40:16:46] '1.0f32'
+            CloseParenToken <348:349> [16:46:16:47] ')'
+       SemicolonToken <349:350> [16:47:16:48] ';'
+      CodeBlockItemSyntax
+       ReturnStatementSyntax
+        ReturnKeyword <355:361> [17:4:17:10] 'return'
+        BinaryExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <362:366> [17:11:17:15] 'zero'
+         PlusToken <367:368> [17:16:17:17] '+'
+         IdentifierNameSyntax
+          IdentifierToken <369:373> [17:18:17:22] 'ones'
+       SemicolonToken <373:374> [17:22:17:23] ';'
+     CloseBraceToken <375:376> [18:0:18:1] '}'
+ EndOfFileToken <377:377> [19:0:19:0] ''

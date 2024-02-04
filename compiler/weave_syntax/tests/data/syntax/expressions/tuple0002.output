@@ -1,211 +1,211 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=0, end=3, position=0:0:0:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=4, end=5, position=0:4:0:5, missing=false, text='v']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=6, end=7, position=0:6:0:7, missing=false, text='=']
-            [node=TupleExpressionSyntax]
-              [token=OpenParenToken, start=8, end=9, position=0:8:0:9, missing=false, text='(']
-              [token=CloseParenToken, start=9, end=10, position=0:9:0:10, missing=false, text=')']
-      [token=SemicolonToken, start=10, end=11, position=0:10:0:11, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=12, end=15, position=1:0:1:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=16, end=17, position=1:4:1:5, missing=false, text='v']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=18, end=19, position=1:6:1:7, missing=false, text='=']
-            [node=TupleExpressionSyntax]
-              [token=OpenParenToken, start=20, end=21, position=1:8:1:9, missing=false, text='(']
-              [node=SyntaxList]
-                [node=LabeledExpressionSyntax]
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=21, end=22, position=1:9:1:10, missing=false, text='a']
-              [token=CloseParenToken, start=22, end=23, position=1:10:1:11, missing=false, text=')']
-      [token=SemicolonToken, start=23, end=24, position=1:11:1:12, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=25, end=28, position=2:0:2:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=29, end=30, position=2:4:2:5, missing=false, text='v']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=31, end=32, position=2:6:2:7, missing=false, text='=']
-            [node=TupleExpressionSyntax]
-              [token=OpenParenToken, start=33, end=34, position=2:8:2:9, missing=false, text='(']
-              [node=SyntaxList]
-                [node=LabeledExpressionSyntax]
-                  [token=IdentifierToken, start=34, end=35, position=2:9:2:10, missing=false, text='a']
-                  [token=ColonToken, start=35, end=36, position=2:10:2:11, missing=false, text=':']
-              [token=CloseParenToken, start=36, end=37, position=2:11:2:12, missing=false, text=')']
-      [token=SemicolonToken, start=37, end=38, position=2:12:2:13, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=39, end=42, position=3:0:3:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=43, end=44, position=3:4:3:5, missing=false, text='v']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=45, end=46, position=3:6:3:7, missing=false, text='=']
-            [node=TupleExpressionSyntax]
-              [token=OpenParenToken, start=47, end=48, position=3:8:3:9, missing=false, text='(']
-              [node=SyntaxList]
-                [node=LabeledExpressionSyntax]
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=48, end=49, position=3:9:3:10, missing=false, text='a']
-                  [token=CommaToken, start=49, end=50, position=3:10:3:11, missing=false, text=',']
-                [node=LabeledExpressionSyntax]
-                  [node=IdentifierNameSyntax]
-                    [token=IdentifierToken, start=51, end=52, position=3:12:3:13, missing=false, text='b']
-              [token=CloseParenToken, start=52, end=53, position=3:13:3:14, missing=false, text=')']
-      [token=SemicolonToken, start=53, end=54, position=3:14:3:15, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=55, end=58, position=4:0:4:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=59, end=60, position=4:4:4:5, missing=false, text='v']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=61, end=62, position=4:6:4:7, missing=false, text='=']
-            [node=TupleExpressionSyntax]
-              [token=OpenParenToken, start=63, end=64, position=4:8:4:9, missing=false, text='(']
-              [node=SyntaxList]
-                [node=LabeledExpressionSyntax]
-                  [token=IdentifierToken, start=64, end=65, position=4:9:4:10, missing=false, text='a']
-                  [token=ColonToken, start=65, end=66, position=4:10:4:11, missing=false, text=':']
-                  [node=BinaryExpressionSyntax]
-                    [node=LiteralExpressionSyntax]
-                      [token=IntegerLiteralToken, start=67, end=68, position=4:12:4:13, missing=false, text='2']
-                    [token=PlusToken, start=69, end=70, position=4:14:4:15, missing=false, text='+']
-                    [node=LiteralExpressionSyntax]
-                      [token=IntegerLiteralToken, start=71, end=72, position=4:16:4:17, missing=false, text='2']
-              [token=CloseParenToken, start=72, end=73, position=4:17:4:18, missing=false, text=')']
-      [token=SemicolonToken, start=73, end=74, position=4:18:4:19, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=75, end=78, position=5:0:5:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=79, end=80, position=5:4:5:5, missing=false, text='v']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=81, end=82, position=5:6:5:7, missing=false, text='=']
-            [node=TupleExpressionSyntax]
-              [token=OpenParenToken, start=83, end=84, position=5:8:5:9, missing=false, text='(']
-              [node=SyntaxList]
-                [node=LabeledExpressionSyntax]
-                  [token=IdentifierToken, start=84, end=85, position=5:9:5:10, missing=false, text='a']
-                  [token=ColonToken, start=85, end=86, position=5:10:5:11, missing=false, text=':']
-                  [node=TupleExpressionSyntax]
-                    [token=OpenParenToken, start=87, end=88, position=5:12:5:13, missing=false, text='(']
-                    [node=SyntaxList]
-                      [node=LabeledExpressionSyntax]
-                        [node=BinaryExpressionSyntax]
-                          [node=LiteralExpressionSyntax]
-                            [token=IntegerLiteralToken, start=88, end=89, position=5:13:5:14, missing=false, text='2']
-                          [token=PlusToken, start=90, end=91, position=5:15:5:16, missing=false, text='+']
-                          [node=LiteralExpressionSyntax]
-                            [token=IntegerLiteralToken, start=92, end=93, position=5:17:5:18, missing=false, text='2']
-                    [token=CloseParenToken, start=93, end=94, position=5:18:5:19, missing=false, text=')']
-              [token=CloseParenToken, start=94, end=95, position=5:19:5:20, missing=false, text=')']
-      [token=SemicolonToken, start=95, end=96, position=5:20:5:21, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=97, end=100, position=6:0:6:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=101, end=102, position=6:4:6:5, missing=false, text='v']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=103, end=104, position=6:6:6:7, missing=false, text='=']
-            [node=TupleExpressionSyntax]
-              [token=OpenParenToken, start=105, end=106, position=6:8:6:9, missing=false, text='(']
-              [node=SyntaxList]
-                [node=LabeledExpressionSyntax]
-                  [token=IdentifierToken, start=106, end=107, position=6:9:6:10, missing=false, text='a']
-                  [token=ColonToken, start=107, end=108, position=6:10:6:11, missing=false, text=':']
-                  [node=TupleExpressionSyntax]
-                    [token=OpenParenToken, start=109, end=110, position=6:12:6:13, missing=false, text='(']
-                    [node=SyntaxList]
-                      [node=LabeledExpressionSyntax]
-                        [token=IdentifierToken, start=110, end=111, position=6:13:6:14, missing=false, text='a']
-                        [token=ColonToken, start=111, end=112, position=6:14:6:15, missing=false, text=':']
-                        [node=LiteralExpressionSyntax]
-                          [token=IntegerLiteralToken, start=113, end=114, position=6:16:6:17, missing=false, text='2']
-                        [token=CommaToken, start=114, end=115, position=6:17:6:18, missing=false, text=',']
-                      [node=LabeledExpressionSyntax]
-                        [token=IdentifierToken, start=116, end=117, position=6:19:6:20, missing=false, text='b']
-                        [token=ColonToken, start=117, end=118, position=6:20:6:21, missing=false, text=':']
-                        [node=LiteralExpressionSyntax]
-                          [token=IntegerLiteralToken, start=119, end=120, position=6:22:6:23, missing=false, text='2']
-                    [token=CloseParenToken, start=120, end=121, position=6:23:6:24, missing=false, text=')']
-                  [token=CommaToken, start=121, end=122, position=6:24:6:25, missing=false, text=',']
-                [node=LabeledExpressionSyntax]
-                  [token=IdentifierToken, start=123, end=124, position=6:26:6:27, missing=false, text='b']
-                  [token=ColonToken, start=124, end=125, position=6:27:6:28, missing=false, text=':']
-                  [node=BinaryExpressionSyntax]
-                    [node=LiteralExpressionSyntax]
-                      [token=IntegerLiteralToken, start=126, end=127, position=6:29:6:30, missing=false, text='2']
-                    [token=PlusToken, start=128, end=129, position=6:31:6:32, missing=false, text='+']
-                    [node=LiteralExpressionSyntax]
-                      [token=IntegerLiteralToken, start=130, end=131, position=6:33:6:34, missing=false, text='2']
-              [token=CloseParenToken, start=131, end=132, position=6:34:6:35, missing=false, text=')']
-      [token=SemicolonToken, start=132, end=133, position=6:35:6:36, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=134, end=137, position=7:0:7:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=138, end=139, position=7:4:7:5, missing=false, text='v']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=140, end=141, position=7:6:7:7, missing=false, text='=']
-            [node=MemberAccessExpressionSyntax]
-              [node=TupleExpressionSyntax]
-                [token=OpenParenToken, start=142, end=143, position=7:8:7:9, missing=false, text='(']
-                [node=SyntaxList]
-                  [node=LabeledExpressionSyntax]
-                    [node=BinaryExpressionSyntax]
-                      [node=MemberAccessExpressionSyntax]
-                        [node=TupleExpressionSyntax]
-                          [token=OpenParenToken, start=143, end=144, position=7:9:7:10, missing=false, text='(']
-                          [node=SyntaxList]
-                            [node=LabeledExpressionSyntax]
-                              [token=IdentifierToken, start=144, end=145, position=7:10:7:11, missing=false, text='a']
-                              [token=ColonToken, start=145, end=146, position=7:11:7:12, missing=false, text=':']
-                              [node=LiteralExpressionSyntax]
-                                [token=IntegerLiteralToken, start=147, end=148, position=7:13:7:14, missing=false, text='2']
-                          [token=CloseParenToken, start=148, end=149, position=7:14:7:15, missing=false, text=')']
-                        [token=DotToken, start=149, end=150, position=7:15:7:16, missing=false, text='.']
-                        [node=TupleIndexSyntax]
-                          [token=IntegerLiteralToken, start=150, end=151, position=7:16:7:17, missing=false, text='0']
-                      [token=PlusToken, start=152, end=153, position=7:18:7:19, missing=false, text='+']
-                      [node=MemberAccessExpressionSyntax]
-                        [node=TupleExpressionSyntax]
-                          [token=OpenParenToken, start=154, end=155, position=7:20:7:21, missing=false, text='(']
-                          [node=SyntaxList]
-                            [node=LabeledExpressionSyntax]
-                              [token=IdentifierToken, start=155, end=156, position=7:21:7:22, missing=false, text='b']
-                              [token=ColonToken, start=156, end=157, position=7:22:7:23, missing=false, text=':']
-                              [node=LiteralExpressionSyntax]
-                                [token=IntegerLiteralToken, start=158, end=159, position=7:24:7:25, missing=false, text='2']
-                          [token=CloseParenToken, start=159, end=160, position=7:25:7:26, missing=false, text=')']
-                        [token=DotToken, start=160, end=161, position=7:26:7:27, missing=false, text='.']
-                        [node=TupleIndexSyntax]
-                          [token=IntegerLiteralToken, start=161, end=162, position=7:27:7:28, missing=false, text='0']
-                [token=CloseParenToken, start=162, end=163, position=7:28:7:29, missing=false, text=')']
-              [token=DotToken, start=163, end=164, position=7:29:7:30, missing=false, text='.']
-              [node=TupleIndexSyntax]
-                [token=IntegerLiteralToken, start=164, end=165, position=7:30:7:31, missing=false, text='0']
-      [token=SemicolonToken, start=165, end=166, position=7:31:7:32, missing=false, text=';']
-  [token=EndOfFileToken, start=167, end=167, position=8:0:8:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <0:3> [0:0:0:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <4:5> [0:4:0:5] 'v'
+     InitializerClauseSyntax
+      EqualsToken <6:7> [0:6:0:7] '='
+      TupleExpressionSyntax
+       OpenParenToken <8:9> [0:8:0:9] '('
+       CloseParenToken <9:10> [0:9:0:10] ')'
+   SemicolonToken <10:11> [0:10:0:11] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <12:15> [1:0:1:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <16:17> [1:4:1:5] 'v'
+     InitializerClauseSyntax
+      EqualsToken <18:19> [1:6:1:7] '='
+      TupleExpressionSyntax
+       OpenParenToken <20:21> [1:8:1:9] '('
+       SyntaxList
+        LabeledExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <21:22> [1:9:1:10] 'a'
+       CloseParenToken <22:23> [1:10:1:11] ')'
+   SemicolonToken <23:24> [1:11:1:12] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <25:28> [2:0:2:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <29:30> [2:4:2:5] 'v'
+     InitializerClauseSyntax
+      EqualsToken <31:32> [2:6:2:7] '='
+      TupleExpressionSyntax
+       OpenParenToken <33:34> [2:8:2:9] '('
+       SyntaxList
+        LabeledExpressionSyntax
+         IdentifierToken <34:35> [2:9:2:10] 'a'
+         ColonToken <35:36> [2:10:2:11] ':'
+       CloseParenToken <36:37> [2:11:2:12] ')'
+   SemicolonToken <37:38> [2:12:2:13] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <39:42> [3:0:3:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <43:44> [3:4:3:5] 'v'
+     InitializerClauseSyntax
+      EqualsToken <45:46> [3:6:3:7] '='
+      TupleExpressionSyntax
+       OpenParenToken <47:48> [3:8:3:9] '('
+       SyntaxList
+        LabeledExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <48:49> [3:9:3:10] 'a'
+         CommaToken <49:50> [3:10:3:11] ','
+        LabeledExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <51:52> [3:12:3:13] 'b'
+       CloseParenToken <52:53> [3:13:3:14] ')'
+   SemicolonToken <53:54> [3:14:3:15] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <55:58> [4:0:4:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <59:60> [4:4:4:5] 'v'
+     InitializerClauseSyntax
+      EqualsToken <61:62> [4:6:4:7] '='
+      TupleExpressionSyntax
+       OpenParenToken <63:64> [4:8:4:9] '('
+       SyntaxList
+        LabeledExpressionSyntax
+         IdentifierToken <64:65> [4:9:4:10] 'a'
+         ColonToken <65:66> [4:10:4:11] ':'
+         BinaryExpressionSyntax
+          LiteralExpressionSyntax
+           IntegerLiteralToken <67:68> [4:12:4:13] '2'
+          PlusToken <69:70> [4:14:4:15] '+'
+          LiteralExpressionSyntax
+           IntegerLiteralToken <71:72> [4:16:4:17] '2'
+       CloseParenToken <72:73> [4:17:4:18] ')'
+   SemicolonToken <73:74> [4:18:4:19] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <75:78> [5:0:5:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <79:80> [5:4:5:5] 'v'
+     InitializerClauseSyntax
+      EqualsToken <81:82> [5:6:5:7] '='
+      TupleExpressionSyntax
+       OpenParenToken <83:84> [5:8:5:9] '('
+       SyntaxList
+        LabeledExpressionSyntax
+         IdentifierToken <84:85> [5:9:5:10] 'a'
+         ColonToken <85:86> [5:10:5:11] ':'
+         TupleExpressionSyntax
+          OpenParenToken <87:88> [5:12:5:13] '('
+          SyntaxList
+           LabeledExpressionSyntax
+            BinaryExpressionSyntax
+             LiteralExpressionSyntax
+              IntegerLiteralToken <88:89> [5:13:5:14] '2'
+             PlusToken <90:91> [5:15:5:16] '+'
+             LiteralExpressionSyntax
+              IntegerLiteralToken <92:93> [5:17:5:18] '2'
+          CloseParenToken <93:94> [5:18:5:19] ')'
+       CloseParenToken <94:95> [5:19:5:20] ')'
+   SemicolonToken <95:96> [5:20:5:21] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <97:100> [6:0:6:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <101:102> [6:4:6:5] 'v'
+     InitializerClauseSyntax
+      EqualsToken <103:104> [6:6:6:7] '='
+      TupleExpressionSyntax
+       OpenParenToken <105:106> [6:8:6:9] '('
+       SyntaxList
+        LabeledExpressionSyntax
+         IdentifierToken <106:107> [6:9:6:10] 'a'
+         ColonToken <107:108> [6:10:6:11] ':'
+         TupleExpressionSyntax
+          OpenParenToken <109:110> [6:12:6:13] '('
+          SyntaxList
+           LabeledExpressionSyntax
+            IdentifierToken <110:111> [6:13:6:14] 'a'
+            ColonToken <111:112> [6:14:6:15] ':'
+            LiteralExpressionSyntax
+             IntegerLiteralToken <113:114> [6:16:6:17] '2'
+            CommaToken <114:115> [6:17:6:18] ','
+           LabeledExpressionSyntax
+            IdentifierToken <116:117> [6:19:6:20] 'b'
+            ColonToken <117:118> [6:20:6:21] ':'
+            LiteralExpressionSyntax
+             IntegerLiteralToken <119:120> [6:22:6:23] '2'
+          CloseParenToken <120:121> [6:23:6:24] ')'
+         CommaToken <121:122> [6:24:6:25] ','
+        LabeledExpressionSyntax
+         IdentifierToken <123:124> [6:26:6:27] 'b'
+         ColonToken <124:125> [6:27:6:28] ':'
+         BinaryExpressionSyntax
+          LiteralExpressionSyntax
+           IntegerLiteralToken <126:127> [6:29:6:30] '2'
+          PlusToken <128:129> [6:31:6:32] '+'
+          LiteralExpressionSyntax
+           IntegerLiteralToken <130:131> [6:33:6:34] '2'
+       CloseParenToken <131:132> [6:34:6:35] ')'
+   SemicolonToken <132:133> [6:35:6:36] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <134:137> [7:0:7:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <138:139> [7:4:7:5] 'v'
+     InitializerClauseSyntax
+      EqualsToken <140:141> [7:6:7:7] '='
+      MemberAccessExpressionSyntax
+       TupleExpressionSyntax
+        OpenParenToken <142:143> [7:8:7:9] '('
+        SyntaxList
+         LabeledExpressionSyntax
+          BinaryExpressionSyntax
+           MemberAccessExpressionSyntax
+            TupleExpressionSyntax
+             OpenParenToken <143:144> [7:9:7:10] '('
+             SyntaxList
+              LabeledExpressionSyntax
+               IdentifierToken <144:145> [7:10:7:11] 'a'
+               ColonToken <145:146> [7:11:7:12] ':'
+               LiteralExpressionSyntax
+                IntegerLiteralToken <147:148> [7:13:7:14] '2'
+             CloseParenToken <148:149> [7:14:7:15] ')'
+            DotToken <149:150> [7:15:7:16] '.'
+            TupleIndexSyntax
+             IntegerLiteralToken <150:151> [7:16:7:17] '0'
+           PlusToken <152:153> [7:18:7:19] '+'
+           MemberAccessExpressionSyntax
+            TupleExpressionSyntax
+             OpenParenToken <154:155> [7:20:7:21] '('
+             SyntaxList
+              LabeledExpressionSyntax
+               IdentifierToken <155:156> [7:21:7:22] 'b'
+               ColonToken <156:157> [7:22:7:23] ':'
+               LiteralExpressionSyntax
+                IntegerLiteralToken <158:159> [7:24:7:25] '2'
+             CloseParenToken <159:160> [7:25:7:26] ')'
+            DotToken <160:161> [7:26:7:27] '.'
+            TupleIndexSyntax
+             IntegerLiteralToken <161:162> [7:27:7:28] '0'
+        CloseParenToken <162:163> [7:28:7:29] ')'
+       DotToken <163:164> [7:29:7:30] '.'
+       TupleIndexSyntax
+        IntegerLiteralToken <164:165> [7:30:7:31] '0'
+   SemicolonToken <165:166> [7:31:7:32] ';'
+ EndOfFileToken <167:167> [8:0:8:0] ''

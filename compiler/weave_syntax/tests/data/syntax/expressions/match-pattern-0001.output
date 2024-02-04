@@ -1,326 +1,326 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MatchExpressionSyntax]
-          [token=MatchKeyword, start=0, end=5, position=0:0:0:5, missing=false, text='match']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=6, end=7, position=0:6:0:7, missing=false, text='x']
-          [token=OpenBraceToken, start=8, end=9, position=1:0:1:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=MatchCaseClauseSyntax]
-              [token=CaseKeyword, start=14, end=18, position=2:4:2:8, missing=false, text='case']
-              [node=TuplePatternSyntax]
-                [token=OpenParenToken, start=19, end=20, position=2:9:2:10, missing=false, text='(']
-                [node=SyntaxList]
-                  [node=TuplePatternItemSyntax]
-                    [node=WildcardPatternSyntax]
-                      [token=UnderscoreToken, start=20, end=21, position=2:10:2:11, missing=false, text='_']
-                    [token=CommaToken, start=21, end=22, position=2:11:2:12, missing=false, text=',']
-                  [node=TuplePatternItemSyntax]
-                    [node=LiteralPatternSyntax]
-                      [token=IntegerLiteralToken, start=23, end=24, position=2:13:2:14, missing=false, text='0']
-                [token=CloseParenToken, start=24, end=25, position=2:14:2:15, missing=false, text=')']
-              [token=ColonToken, start=25, end=26, position=2:15:2:16, missing=false, text=':']
-              [node=CodeBlockItemSyntax]
-                [node=ExpressionStatementSyntax]
-                  [node=InvocationExpressionSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=27, end=36, position=2:17:2:26, missing=false, text='WriteLine']
-                    [node=ArgumentListSyntax]
-                      [token=OpenParenToken, start=36, end=37, position=2:26:2:27, missing=false, text='(']
-                      [node=SyntaxList]
-                        [node=ArgumentSyntax]
-                          [node=LiteralExpressionSyntax]
-                            [token=StringLiteralToken, start=37, end=43, position=2:27:2:33, missing=false, text='"Zero"']
-                      [token=CloseParenToken, start=43, end=44, position=2:33:2:34, missing=false, text=')']
-                [token=SemicolonToken, start=44, end=45, position=2:34:2:35, missing=false, text=';']
-            [node=MatchCaseClauseSyntax]
-              [token=CaseKeyword, start=50, end=54, position=3:4:3:8, missing=false, text='case']
-              [node=TuplePatternSyntax]
-                [token=OpenParenToken, start=55, end=56, position=3:9:3:10, missing=false, text='(']
-                [node=SyntaxList]
-                  [node=TuplePatternItemSyntax]
-                    [node=LiteralPatternSyntax]
-                      [token=IntegerLiteralToken, start=56, end=57, position=3:10:3:11, missing=false, text='1']
-                    [token=CommaToken, start=57, end=58, position=3:11:3:12, missing=false, text=',']
-                  [node=TuplePatternItemSyntax]
-                    [node=WildcardPatternSyntax]
-                      [token=UnderscoreToken, start=59, end=60, position=3:13:3:14, missing=false, text='_']
-                [token=CloseParenToken, start=60, end=61, position=3:14:3:15, missing=false, text=')']
-              [token=ColonToken, start=61, end=62, position=3:15:3:16, missing=false, text=':']
-              [node=CodeBlockItemSyntax]
-                [node=ExpressionStatementSyntax]
-                  [node=InvocationExpressionSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=63, end=72, position=3:17:3:26, missing=false, text='WriteLine']
-                    [node=ArgumentListSyntax]
-                      [token=OpenParenToken, start=72, end=73, position=3:26:3:27, missing=false, text='(']
-                      [node=SyntaxList]
-                        [node=ArgumentSyntax]
-                          [node=LiteralExpressionSyntax]
-                            [token=StringLiteralToken, start=73, end=78, position=3:27:3:32, missing=false, text='"One"']
-                      [token=CloseParenToken, start=78, end=79, position=3:32:3:33, missing=false, text=')']
-                [token=SemicolonToken, start=79, end=80, position=3:33:3:34, missing=false, text=';']
-            [node=MatchCaseClauseSyntax]
-              [token=CaseKeyword, start=85, end=89, position=4:4:4:8, missing=false, text='case']
-              [node=TuplePatternSyntax]
-                [token=OpenParenToken, start=90, end=91, position=4:9:4:10, missing=false, text='(']
-                [node=SyntaxList]
-                  [node=TuplePatternItemSyntax]
-                    [node=LiteralPatternSyntax]
-                      [token=IntegerLiteralToken, start=91, end=92, position=4:10:4:11, missing=false, text='2']
-                    [token=CommaToken, start=92, end=93, position=4:11:4:12, missing=false, text=',']
-                  [node=TuplePatternItemSyntax]
-                    [node=WildcardPatternSyntax]
-                      [token=UnderscoreToken, start=94, end=95, position=4:13:4:14, missing=false, text='_']
-                [token=CloseParenToken, start=95, end=96, position=4:14:4:15, missing=false, text=')']
-              [token=ColonToken, start=96, end=97, position=4:15:4:16, missing=false, text=':']
-              [node=CodeBlockItemSyntax]
-                [node=ExpressionStatementSyntax]
-                  [node=InvocationExpressionSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=98, end=107, position=4:17:4:26, missing=false, text='WriteLine']
-                    [node=ArgumentListSyntax]
-                      [token=OpenParenToken, start=107, end=108, position=4:26:4:27, missing=false, text='(']
-                      [node=SyntaxList]
-                        [node=ArgumentSyntax]
-                          [node=LiteralExpressionSyntax]
-                            [token=StringLiteralToken, start=108, end=113, position=4:27:4:32, missing=false, text='"Two"']
-                      [token=CloseParenToken, start=113, end=114, position=4:32:4:33, missing=false, text=')']
-                [token=SemicolonToken, start=114, end=115, position=4:33:4:34, missing=false, text=';']
-            [node=MatchDefaultClauseSyntax]
-              [token=DefaultKeyword, start=120, end=127, position=5:4:5:11, missing=false, text='default']
-              [token=ColonToken, start=127, end=128, position=5:11:5:12, missing=false, text=':']
-              [node=CodeBlockItemSyntax]
-                [node=ExpressionStatementSyntax]
-                  [node=InvocationExpressionSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=129, end=138, position=5:13:5:22, missing=false, text='WriteLine']
-                    [node=ArgumentListSyntax]
-                      [token=OpenParenToken, start=138, end=139, position=5:22:5:23, missing=false, text='(']
-                      [node=SyntaxList]
-                        [node=ArgumentSyntax]
-                          [node=LiteralExpressionSyntax]
-                            [token=StringLiteralToken, start=139, end=145, position=5:23:5:29, missing=false, text='"Many"']
-                      [token=CloseParenToken, start=145, end=146, position=5:29:5:30, missing=false, text=')']
-                [token=SemicolonToken, start=146, end=147, position=5:30:5:31, missing=false, text=';']
-          [token=CloseBraceToken, start=148, end=149, position=6:0:6:1, missing=false, text='}']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MatchExpressionSyntax]
-          [token=MatchKeyword, start=151, end=156, position=8:0:8:5, missing=false, text='match']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=157, end=158, position=8:6:8:7, missing=false, text='y']
-          [token=OpenBraceToken, start=159, end=160, position=9:0:9:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=MatchCaseClauseSyntax]
-              [token=CaseKeyword, start=165, end=169, position=10:4:10:8, missing=false, text='case']
-              [node=SlicePatternSyntax]
-                [token=OpenBracketToken, start=170, end=171, position=10:9:10:10, missing=false, text='[']
-                [node=SyntaxList]
-                  [node=SlicePatternItemSyntax]
-                    [node=WildcardPatternSyntax]
-                      [token=UnderscoreToken, start=171, end=172, position=10:10:10:11, missing=false, text='_']
-                    [token=CommaToken, start=172, end=173, position=10:11:10:12, missing=false, text=',']
-                  [node=SlicePatternItemSyntax]
-                    [node=TuplePatternSyntax]
-                      [token=OpenParenToken, start=174, end=175, position=10:13:10:14, missing=false, text='(']
-                      [node=SyntaxList]
-                        [node=TuplePatternItemSyntax]
-                          [node=LiteralPatternSyntax]
-                            [token=IntegerLiteralToken, start=175, end=176, position=10:14:10:15, missing=false, text='2']
-                          [token=CommaToken, start=176, end=177, position=10:15:10:16, missing=false, text=',']
-                        [node=TuplePatternItemSyntax]
-                          [node=WildcardPatternSyntax]
-                            [token=UnderscoreToken, start=178, end=179, position=10:17:10:18, missing=false, text='_']
-                          [token=CommaToken, start=179, end=180, position=10:18:10:19, missing=false, text=',']
-                        [node=TuplePatternItemSyntax]
-                          [node=LiteralPatternSyntax]
-                            [token=IntegerLiteralToken, start=181, end=182, position=10:20:10:21, missing=false, text='3']
-                          [token=CommaToken, start=182, end=183, position=10:21:10:22, missing=false, text=',']
-                        [node=TuplePatternItemSyntax]
-                          [node=LiteralPatternSyntax]
-                            [token=IntegerLiteralToken, start=184, end=185, position=10:23:10:24, missing=false, text='7']
-                      [token=CloseParenToken, start=185, end=186, position=10:24:10:25, missing=false, text=')']
-                    [token=CommaToken, start=186, end=187, position=10:25:10:26, missing=false, text=',']
-                  [node=SlicePatternItemSyntax]
-                    [node=LiteralPatternSyntax]
-                      [token=IntegerLiteralToken, start=188, end=190, position=10:27:10:29, missing=false, text='49']
-                [token=CloseBracketToken, start=190, end=191, position=10:29:10:30, missing=false, text=']']
-              [token=ColonToken, start=191, end=192, position=10:30:10:31, missing=false, text=':']
-              [node=CodeBlockItemSyntax]
-                [node=ExpressionStatementSyntax]
-                  [node=InvocationExpressionSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=193, end=202, position=10:32:10:41, missing=false, text='WriteLine']
-                    [node=ArgumentListSyntax]
-                      [token=OpenParenToken, start=202, end=203, position=10:41:10:42, missing=false, text='(']
-                      [node=SyntaxList]
-                        [node=ArgumentSyntax]
-                          [node=LiteralExpressionSyntax]
-                            [token=StringLiteralToken, start=203, end=212, position=10:42:10:51, missing=false, text='"Matched"']
-                      [token=CloseParenToken, start=212, end=213, position=10:51:10:52, missing=false, text=')']
-                [token=SemicolonToken, start=213, end=214, position=10:52:10:53, missing=false, text=';']
-            [node=MatchDefaultClauseSyntax]
-              [token=DefaultKeyword, start=219, end=226, position=11:4:11:11, missing=false, text='default']
-              [token=ColonToken, start=226, end=227, position=11:11:11:12, missing=false, text=':']
-              [node=CodeBlockItemSyntax]
-                [node=ExpressionStatementSyntax]
-                  [node=InvocationExpressionSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=228, end=237, position=11:13:11:22, missing=false, text='WriteLine']
-                    [node=ArgumentListSyntax]
-                      [token=OpenParenToken, start=237, end=238, position=11:22:11:23, missing=false, text='(']
-                      [node=SyntaxList]
-                        [node=ArgumentSyntax]
-                          [node=LiteralExpressionSyntax]
-                            [token=StringLiteralToken, start=238, end=251, position=11:23:11:36, missing=false, text='"Not matched"']
-                      [token=CloseParenToken, start=251, end=252, position=11:36:11:37, missing=false, text=')']
-          [token=CloseBraceToken, start=254, end=255, position=12:0:12:1, missing=false, text='}']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MatchExpressionSyntax]
-          [token=MatchKeyword, start=257, end=262, position=14:0:14:5, missing=false, text='match']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=263, end=264, position=14:6:14:7, missing=false, text='z']
-          [token=OpenBraceToken, start=265, end=266, position=15:0:15:1, missing=false, text='{']
-          [node=SyntaxList]
-            [node=MatchCaseClauseSyntax]
-              [token=CaseKeyword, start=271, end=275, position=16:4:16:8, missing=false, text='case']
-              [node=TuplePatternSyntax]
-                [token=OpenParenToken, start=276, end=277, position=16:9:16:10, missing=false, text='(']
-                [node=SyntaxList]
-                  [node=TuplePatternItemSyntax]
-                    [node=SlicePatternSyntax]
-                      [token=OpenBracketToken, start=277, end=278, position=16:10:16:11, missing=false, text='[']
-                      [node=SyntaxList]
-                        [node=SlicePatternItemSyntax]
-                          [node=WildcardPatternSyntax]
-                            [token=UnderscoreToken, start=278, end=279, position=16:11:16:12, missing=false, text='_']
-                          [token=CommaToken, start=279, end=280, position=16:12:16:13, missing=false, text=',']
-                        [node=SlicePatternItemSyntax]
-                          [node=LiteralPatternSyntax]
-                            [token=IntegerLiteralToken, start=281, end=282, position=16:14:16:15, missing=false, text='2']
-                          [token=CommaToken, start=282, end=283, position=16:15:16:16, missing=false, text=',']
-                        [node=SlicePatternItemSyntax]
-                          [node=WildcardPatternSyntax]
-                            [token=UnderscoreToken, start=284, end=285, position=16:17:16:18, missing=false, text='_']
-                      [token=CloseBracketToken, start=285, end=286, position=16:18:16:19, missing=false, text=']']
-                    [token=CommaToken, start=286, end=287, position=16:19:16:20, missing=false, text=',']
-                  [node=TuplePatternItemSyntax]
-                    [node=SlicePatternSyntax]
-                      [token=OpenBracketToken, start=288, end=289, position=16:21:16:22, missing=false, text='[']
-                      [node=SyntaxList]
-                        [node=SlicePatternItemSyntax]
-                          [node=LiteralPatternSyntax]
-                            [token=IntegerLiteralToken, start=289, end=290, position=16:22:16:23, missing=false, text='1']
-                          [token=CommaToken, start=290, end=291, position=16:23:16:24, missing=false, text=',']
-                        [node=SlicePatternItemSyntax]
-                          [node=WildcardPatternSyntax]
-                            [token=UnderscoreToken, start=292, end=293, position=16:25:16:26, missing=false, text='_']
-                          [token=CommaToken, start=293, end=294, position=16:26:16:27, missing=false, text=',']
-                        [node=SlicePatternItemSyntax]
-                          [node=IdentifierPatternSyntax]
-                            [node=IdentifierNameSyntax]
-                              [token=IdentifierToken, start=295, end=297, position=16:28:16:30, missing=false, text='xx']
-                      [token=CloseBracketToken, start=297, end=298, position=16:30:16:31, missing=false, text=']']
-                    [token=CommaToken, start=298, end=299, position=16:31:16:32, missing=false, text=',']
-                  [node=TuplePatternItemSyntax]
-                    [node=TuplePatternSyntax]
-                      [token=OpenParenToken, start=300, end=301, position=16:33:16:34, missing=false, text='(']
-                      [node=SyntaxList]
-                        [node=TuplePatternItemSyntax]
-                          [node=SlicePatternSyntax]
-                            [token=OpenBracketToken, start=301, end=302, position=16:34:16:35, missing=false, text='[']
-                            [node=SyntaxList]
-                              [node=SlicePatternItemSyntax]
-                                [node=WildcardPatternSyntax]
-                                  [token=UnderscoreToken, start=302, end=303, position=16:35:16:36, missing=false, text='_']
-                                [token=CommaToken, start=303, end=304, position=16:36:16:37, missing=false, text=',']
-                              [node=SlicePatternItemSyntax]
-                                [node=IdentifierPatternSyntax]
-                                  [node=IdentifierNameSyntax]
-                                    [token=IdentifierToken, start=305, end=307, position=16:38:16:40, missing=false, text='yy']
-                            [token=CloseBracketToken, start=307, end=308, position=16:40:16:41, missing=false, text=']']
-                          [token=CommaToken, start=308, end=309, position=16:41:16:42, missing=false, text=',']
-                        [node=TuplePatternItemSyntax]
-                          [node=TuplePatternSyntax]
-                            [token=OpenParenToken, start=310, end=311, position=16:43:16:44, missing=false, text='(']
-                            [node=SyntaxList]
-                              [node=TuplePatternItemSyntax]
-                                [node=IdentifierPatternSyntax]
-                                  [node=IdentifierNameSyntax]
-                                    [token=IdentifierToken, start=311, end=313, position=16:44:16:46, missing=false, text='zz']
-                            [token=CloseParenToken, start=313, end=314, position=16:46:16:47, missing=false, text=')']
-                          [token=CommaToken, start=314, end=315, position=16:47:16:48, missing=false, text=',']
-                        [node=TuplePatternItemSyntax]
-                          [node=SlicePatternSyntax]
-                            [token=OpenBracketToken, start=316, end=317, position=16:49:16:50, missing=false, text='[']
-                            [node=SyntaxList]
-                              [node=SlicePatternItemSyntax]
-                                [node=LiteralPatternSyntax]
-                                  [token=IntegerLiteralToken, start=317, end=318, position=16:50:16:51, missing=false, text='2']
-                                [token=CommaToken, start=318, end=319, position=16:51:16:52, missing=false, text=',']
-                              [node=SlicePatternItemSyntax]
-                                [node=WildcardPatternSyntax]
-                                  [token=UnderscoreToken, start=320, end=321, position=16:53:16:54, missing=false, text='_']
-                                [token=CommaToken, start=321, end=322, position=16:54:16:55, missing=false, text=',']
-                              [node=SlicePatternItemSyntax]
-                                [node=LiteralPatternSyntax]
-                                  [token=IntegerLiteralToken, start=323, end=324, position=16:56:16:57, missing=false, text='3']
-                                [token=CommaToken, start=324, end=325, position=16:57:16:58, missing=false, text=',']
-                              [node=SlicePatternItemSyntax]
-                                [node=WildcardPatternSyntax]
-                                  [token=UnderscoreToken, start=326, end=327, position=16:59:16:60, missing=false, text='_']
-                                [token=CommaToken, start=327, end=328, position=16:60:16:61, missing=false, text=',']
-                              [node=SlicePatternItemSyntax]
-                                [node=LiteralPatternSyntax]
-                                  [token=IntegerLiteralToken, start=329, end=331, position=16:62:16:64, missing=false, text='69']
-                            [token=CloseBracketToken, start=331, end=332, position=16:64:16:65, missing=false, text=']']
-                      [token=CloseParenToken, start=332, end=333, position=16:65:16:66, missing=false, text=')']
-                [token=CloseParenToken, start=333, end=334, position=16:66:16:67, missing=false, text=')']
-              [token=ColonToken, start=334, end=335, position=16:67:16:68, missing=false, text=':']
-              [node=CodeBlockItemSyntax]
-                [node=BlockStatementSyntax]
-                  [node=CodeBlockSyntax]
-                    [token=OpenBraceToken, start=344, end=345, position=17:8:17:9, missing=false, text='{']
-                    [node=SyntaxList]
-                      [node=CodeBlockItemSyntax]
-                        [node=ExpressionStatementSyntax]
-                          [node=InvocationExpressionSyntax]
-                            [node=IdentifierNameSyntax]
-                              [token=IdentifierToken, start=358, end=367, position=18:12:18:21, missing=false, text='WriteLine']
-                            [node=ArgumentListSyntax]
-                              [token=OpenParenToken, start=367, end=368, position=18:21:18:22, missing=false, text='(']
-                              [node=SyntaxList]
-                                [node=ArgumentSyntax]
-                                  [node=LiteralExpressionSyntax]
-                                    [token=StringLiteralToken, start=368, end=377, position=18:22:18:31, missing=false, text='"Matched"']
-                              [token=CloseParenToken, start=377, end=378, position=18:31:18:32, missing=false, text=')']
-                        [token=SemicolonToken, start=378, end=379, position=18:32:18:33, missing=false, text=';']
-                    [token=CloseBraceToken, start=388, end=389, position=19:8:19:9, missing=false, text='}']
-            [node=MatchDefaultClauseSyntax]
-              [token=DefaultKeyword, start=394, end=401, position=20:4:20:11, missing=false, text='default']
-              [token=ColonToken, start=401, end=402, position=20:11:20:12, missing=false, text=':']
-              [node=CodeBlockItemSyntax]
-                [node=BlockStatementSyntax]
-                  [node=CodeBlockSyntax]
-                    [token=OpenBraceToken, start=411, end=412, position=21:8:21:9, missing=false, text='{']
-                    [node=SyntaxList]
-                      [node=CodeBlockItemSyntax]
-                        [node=ExpressionStatementSyntax]
-                          [node=InvocationExpressionSyntax]
-                            [node=IdentifierNameSyntax]
-                              [token=IdentifierToken, start=425, end=434, position=22:12:22:21, missing=false, text='WriteLine']
-                            [node=ArgumentListSyntax]
-                              [token=OpenParenToken, start=434, end=435, position=22:21:22:22, missing=false, text='(']
-                              [node=SyntaxList]
-                                [node=ArgumentSyntax]
-                                  [node=LiteralExpressionSyntax]
-                                    [token=StringLiteralToken, start=435, end=448, position=22:22:22:35, missing=false, text='"Not matched"']
-                              [token=CloseParenToken, start=448, end=449, position=22:35:22:36, missing=false, text=')']
-                        [token=SemicolonToken, start=449, end=450, position=22:36:22:37, missing=false, text=';']
-                    [token=CloseBraceToken, start=459, end=460, position=23:8:23:9, missing=false, text='}']
-          [token=CloseBraceToken, start=461, end=462, position=24:0:24:1, missing=false, text='}']
-  [token=EndOfFileToken, start=463, end=463, position=25:0:25:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MatchExpressionSyntax
+     MatchKeyword <0:5> [0:0:0:5] 'match'
+     IdentifierNameSyntax
+      IdentifierToken <6:7> [0:6:0:7] 'x'
+     OpenBraceToken <8:9> [1:0:1:1] '{'
+     SyntaxList
+      MatchCaseClauseSyntax
+       CaseKeyword <14:18> [2:4:2:8] 'case'
+       TuplePatternSyntax
+        OpenParenToken <19:20> [2:9:2:10] '('
+        SyntaxList
+         TuplePatternItemSyntax
+          WildcardPatternSyntax
+           UnderscoreToken <20:21> [2:10:2:11] '_'
+          CommaToken <21:22> [2:11:2:12] ','
+         TuplePatternItemSyntax
+          LiteralPatternSyntax
+           IntegerLiteralToken <23:24> [2:13:2:14] '0'
+        CloseParenToken <24:25> [2:14:2:15] ')'
+       ColonToken <25:26> [2:15:2:16] ':'
+       CodeBlockItemSyntax
+        ExpressionStatementSyntax
+         InvocationExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <27:36> [2:17:2:26] 'WriteLine'
+          ArgumentListSyntax
+           OpenParenToken <36:37> [2:26:2:27] '('
+           SyntaxList
+            ArgumentSyntax
+             LiteralExpressionSyntax
+              StringLiteralToken <37:43> [2:27:2:33] '"Zero"'
+           CloseParenToken <43:44> [2:33:2:34] ')'
+        SemicolonToken <44:45> [2:34:2:35] ';'
+      MatchCaseClauseSyntax
+       CaseKeyword <50:54> [3:4:3:8] 'case'
+       TuplePatternSyntax
+        OpenParenToken <55:56> [3:9:3:10] '('
+        SyntaxList
+         TuplePatternItemSyntax
+          LiteralPatternSyntax
+           IntegerLiteralToken <56:57> [3:10:3:11] '1'
+          CommaToken <57:58> [3:11:3:12] ','
+         TuplePatternItemSyntax
+          WildcardPatternSyntax
+           UnderscoreToken <59:60> [3:13:3:14] '_'
+        CloseParenToken <60:61> [3:14:3:15] ')'
+       ColonToken <61:62> [3:15:3:16] ':'
+       CodeBlockItemSyntax
+        ExpressionStatementSyntax
+         InvocationExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <63:72> [3:17:3:26] 'WriteLine'
+          ArgumentListSyntax
+           OpenParenToken <72:73> [3:26:3:27] '('
+           SyntaxList
+            ArgumentSyntax
+             LiteralExpressionSyntax
+              StringLiteralToken <73:78> [3:27:3:32] '"One"'
+           CloseParenToken <78:79> [3:32:3:33] ')'
+        SemicolonToken <79:80> [3:33:3:34] ';'
+      MatchCaseClauseSyntax
+       CaseKeyword <85:89> [4:4:4:8] 'case'
+       TuplePatternSyntax
+        OpenParenToken <90:91> [4:9:4:10] '('
+        SyntaxList
+         TuplePatternItemSyntax
+          LiteralPatternSyntax
+           IntegerLiteralToken <91:92> [4:10:4:11] '2'
+          CommaToken <92:93> [4:11:4:12] ','
+         TuplePatternItemSyntax
+          WildcardPatternSyntax
+           UnderscoreToken <94:95> [4:13:4:14] '_'
+        CloseParenToken <95:96> [4:14:4:15] ')'
+       ColonToken <96:97> [4:15:4:16] ':'
+       CodeBlockItemSyntax
+        ExpressionStatementSyntax
+         InvocationExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <98:107> [4:17:4:26] 'WriteLine'
+          ArgumentListSyntax
+           OpenParenToken <107:108> [4:26:4:27] '('
+           SyntaxList
+            ArgumentSyntax
+             LiteralExpressionSyntax
+              StringLiteralToken <108:113> [4:27:4:32] '"Two"'
+           CloseParenToken <113:114> [4:32:4:33] ')'
+        SemicolonToken <114:115> [4:33:4:34] ';'
+      MatchDefaultClauseSyntax
+       DefaultKeyword <120:127> [5:4:5:11] 'default'
+       ColonToken <127:128> [5:11:5:12] ':'
+       CodeBlockItemSyntax
+        ExpressionStatementSyntax
+         InvocationExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <129:138> [5:13:5:22] 'WriteLine'
+          ArgumentListSyntax
+           OpenParenToken <138:139> [5:22:5:23] '('
+           SyntaxList
+            ArgumentSyntax
+             LiteralExpressionSyntax
+              StringLiteralToken <139:145> [5:23:5:29] '"Many"'
+           CloseParenToken <145:146> [5:29:5:30] ')'
+        SemicolonToken <146:147> [5:30:5:31] ';'
+     CloseBraceToken <148:149> [6:0:6:1] '}'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MatchExpressionSyntax
+     MatchKeyword <151:156> [8:0:8:5] 'match'
+     IdentifierNameSyntax
+      IdentifierToken <157:158> [8:6:8:7] 'y'
+     OpenBraceToken <159:160> [9:0:9:1] '{'
+     SyntaxList
+      MatchCaseClauseSyntax
+       CaseKeyword <165:169> [10:4:10:8] 'case'
+       SlicePatternSyntax
+        OpenBracketToken <170:171> [10:9:10:10] '['
+        SyntaxList
+         SlicePatternItemSyntax
+          WildcardPatternSyntax
+           UnderscoreToken <171:172> [10:10:10:11] '_'
+          CommaToken <172:173> [10:11:10:12] ','
+         SlicePatternItemSyntax
+          TuplePatternSyntax
+           OpenParenToken <174:175> [10:13:10:14] '('
+           SyntaxList
+            TuplePatternItemSyntax
+             LiteralPatternSyntax
+              IntegerLiteralToken <175:176> [10:14:10:15] '2'
+             CommaToken <176:177> [10:15:10:16] ','
+            TuplePatternItemSyntax
+             WildcardPatternSyntax
+              UnderscoreToken <178:179> [10:17:10:18] '_'
+             CommaToken <179:180> [10:18:10:19] ','
+            TuplePatternItemSyntax
+             LiteralPatternSyntax
+              IntegerLiteralToken <181:182> [10:20:10:21] '3'
+             CommaToken <182:183> [10:21:10:22] ','
+            TuplePatternItemSyntax
+             LiteralPatternSyntax
+              IntegerLiteralToken <184:185> [10:23:10:24] '7'
+           CloseParenToken <185:186> [10:24:10:25] ')'
+          CommaToken <186:187> [10:25:10:26] ','
+         SlicePatternItemSyntax
+          LiteralPatternSyntax
+           IntegerLiteralToken <188:190> [10:27:10:29] '49'
+        CloseBracketToken <190:191> [10:29:10:30] ']'
+       ColonToken <191:192> [10:30:10:31] ':'
+       CodeBlockItemSyntax
+        ExpressionStatementSyntax
+         InvocationExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <193:202> [10:32:10:41] 'WriteLine'
+          ArgumentListSyntax
+           OpenParenToken <202:203> [10:41:10:42] '('
+           SyntaxList
+            ArgumentSyntax
+             LiteralExpressionSyntax
+              StringLiteralToken <203:212> [10:42:10:51] '"Matched"'
+           CloseParenToken <212:213> [10:51:10:52] ')'
+        SemicolonToken <213:214> [10:52:10:53] ';'
+      MatchDefaultClauseSyntax
+       DefaultKeyword <219:226> [11:4:11:11] 'default'
+       ColonToken <226:227> [11:11:11:12] ':'
+       CodeBlockItemSyntax
+        ExpressionStatementSyntax
+         InvocationExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <228:237> [11:13:11:22] 'WriteLine'
+          ArgumentListSyntax
+           OpenParenToken <237:238> [11:22:11:23] '('
+           SyntaxList
+            ArgumentSyntax
+             LiteralExpressionSyntax
+              StringLiteralToken <238:251> [11:23:11:36] '"Not matched"'
+           CloseParenToken <251:252> [11:36:11:37] ')'
+     CloseBraceToken <254:255> [12:0:12:1] '}'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MatchExpressionSyntax
+     MatchKeyword <257:262> [14:0:14:5] 'match'
+     IdentifierNameSyntax
+      IdentifierToken <263:264> [14:6:14:7] 'z'
+     OpenBraceToken <265:266> [15:0:15:1] '{'
+     SyntaxList
+      MatchCaseClauseSyntax
+       CaseKeyword <271:275> [16:4:16:8] 'case'
+       TuplePatternSyntax
+        OpenParenToken <276:277> [16:9:16:10] '('
+        SyntaxList
+         TuplePatternItemSyntax
+          SlicePatternSyntax
+           OpenBracketToken <277:278> [16:10:16:11] '['
+           SyntaxList
+            SlicePatternItemSyntax
+             WildcardPatternSyntax
+              UnderscoreToken <278:279> [16:11:16:12] '_'
+             CommaToken <279:280> [16:12:16:13] ','
+            SlicePatternItemSyntax
+             LiteralPatternSyntax
+              IntegerLiteralToken <281:282> [16:14:16:15] '2'
+             CommaToken <282:283> [16:15:16:16] ','
+            SlicePatternItemSyntax
+             WildcardPatternSyntax
+              UnderscoreToken <284:285> [16:17:16:18] '_'
+           CloseBracketToken <285:286> [16:18:16:19] ']'
+          CommaToken <286:287> [16:19:16:20] ','
+         TuplePatternItemSyntax
+          SlicePatternSyntax
+           OpenBracketToken <288:289> [16:21:16:22] '['
+           SyntaxList
+            SlicePatternItemSyntax
+             LiteralPatternSyntax
+              IntegerLiteralToken <289:290> [16:22:16:23] '1'
+             CommaToken <290:291> [16:23:16:24] ','
+            SlicePatternItemSyntax
+             WildcardPatternSyntax
+              UnderscoreToken <292:293> [16:25:16:26] '_'
+             CommaToken <293:294> [16:26:16:27] ','
+            SlicePatternItemSyntax
+             IdentifierPatternSyntax
+              IdentifierNameSyntax
+               IdentifierToken <295:297> [16:28:16:30] 'xx'
+           CloseBracketToken <297:298> [16:30:16:31] ']'
+          CommaToken <298:299> [16:31:16:32] ','
+         TuplePatternItemSyntax
+          TuplePatternSyntax
+           OpenParenToken <300:301> [16:33:16:34] '('
+           SyntaxList
+            TuplePatternItemSyntax
+             SlicePatternSyntax
+              OpenBracketToken <301:302> [16:34:16:35] '['
+              SyntaxList
+               SlicePatternItemSyntax
+                WildcardPatternSyntax
+                 UnderscoreToken <302:303> [16:35:16:36] '_'
+                CommaToken <303:304> [16:36:16:37] ','
+               SlicePatternItemSyntax
+                IdentifierPatternSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <305:307> [16:38:16:40] 'yy'
+              CloseBracketToken <307:308> [16:40:16:41] ']'
+             CommaToken <308:309> [16:41:16:42] ','
+            TuplePatternItemSyntax
+             TuplePatternSyntax
+              OpenParenToken <310:311> [16:43:16:44] '('
+              SyntaxList
+               TuplePatternItemSyntax
+                IdentifierPatternSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <311:313> [16:44:16:46] 'zz'
+              CloseParenToken <313:314> [16:46:16:47] ')'
+             CommaToken <314:315> [16:47:16:48] ','
+            TuplePatternItemSyntax
+             SlicePatternSyntax
+              OpenBracketToken <316:317> [16:49:16:50] '['
+              SyntaxList
+               SlicePatternItemSyntax
+                LiteralPatternSyntax
+                 IntegerLiteralToken <317:318> [16:50:16:51] '2'
+                CommaToken <318:319> [16:51:16:52] ','
+               SlicePatternItemSyntax
+                WildcardPatternSyntax
+                 UnderscoreToken <320:321> [16:53:16:54] '_'
+                CommaToken <321:322> [16:54:16:55] ','
+               SlicePatternItemSyntax
+                LiteralPatternSyntax
+                 IntegerLiteralToken <323:324> [16:56:16:57] '3'
+                CommaToken <324:325> [16:57:16:58] ','
+               SlicePatternItemSyntax
+                WildcardPatternSyntax
+                 UnderscoreToken <326:327> [16:59:16:60] '_'
+                CommaToken <327:328> [16:60:16:61] ','
+               SlicePatternItemSyntax
+                LiteralPatternSyntax
+                 IntegerLiteralToken <329:331> [16:62:16:64] '69'
+              CloseBracketToken <331:332> [16:64:16:65] ']'
+           CloseParenToken <332:333> [16:65:16:66] ')'
+        CloseParenToken <333:334> [16:66:16:67] ')'
+       ColonToken <334:335> [16:67:16:68] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <344:345> [17:8:17:9] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              IdentifierNameSyntax
+               IdentifierToken <358:367> [18:12:18:21] 'WriteLine'
+              ArgumentListSyntax
+               OpenParenToken <367:368> [18:21:18:22] '('
+               SyntaxList
+                ArgumentSyntax
+                 LiteralExpressionSyntax
+                  StringLiteralToken <368:377> [18:22:18:31] '"Matched"'
+               CloseParenToken <377:378> [18:31:18:32] ')'
+            SemicolonToken <378:379> [18:32:18:33] ';'
+          CloseBraceToken <388:389> [19:8:19:9] '}'
+      MatchDefaultClauseSyntax
+       DefaultKeyword <394:401> [20:4:20:11] 'default'
+       ColonToken <401:402> [20:11:20:12] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <411:412> [21:8:21:9] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              IdentifierNameSyntax
+               IdentifierToken <425:434> [22:12:22:21] 'WriteLine'
+              ArgumentListSyntax
+               OpenParenToken <434:435> [22:21:22:22] '('
+               SyntaxList
+                ArgumentSyntax
+                 LiteralExpressionSyntax
+                  StringLiteralToken <435:448> [22:22:22:35] '"Not matched"'
+               CloseParenToken <448:449> [22:35:22:36] ')'
+            SemicolonToken <449:450> [22:36:22:37] ';'
+          CloseBraceToken <459:460> [23:8:23:9] '}'
+     CloseBraceToken <461:462> [24:0:24:1] '}'
+ EndOfFileToken <463:463> [25:0:25:0] ''

@@ -1,219 +1,219 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MemberAccessExpressionSyntax]
-          [node=LiteralExpressionSyntax]
-            [token=IntegerLiteralToken, start=0, end=1, position=0:0:0:1, missing=false, text='0']
-          [token=DotToken, start=2, end=3, position=1:0:1:1, missing=false, text='.']
-          [node=TupleIndexSyntax]
-            [token=IntegerLiteralToken, start=3, end=7, position=1:1:1:5, missing=false, text='2137']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MemberAccessExpressionSyntax]
-          [node=LiteralExpressionSyntax]
-            [token=FloatLiteralToken, start=8, end=11, position=2:0:2:3, missing=false, text='3.3']
-          [token=DotToken, start=11, end=12, position=2:3:2:4, missing=false, text='.']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=13, end=16, position=3:0:3:3, missing=true, text='']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MemberAccessExpressionSyntax]
-          [node=LiteralExpressionSyntax]
-            [token=FloatLiteralToken, start=13, end=16, position=3:0:3:3, missing=false, text='3.3']
-          [token=DotToken, start=16, end=17, position=3:3:3:4, missing=false, text='.']
-          [node=TupleIndexSyntax]
-            [token=IntegerLiteralToken, start=17, end=18, position=3:4:3:5, missing=false, text='3']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MemberAccessExpressionSyntax]
-          [node=MemberAccessExpressionSyntax]
-            [node=LiteralExpressionSyntax]
-              [token=FloatLiteralToken, start=19, end=22, position=4:0:4:3, missing=false, text='3.3']
-            [token=DotToken, start=22, end=23, position=4:3:4:4, missing=false, text='.']
-            [node=TupleIndexSyntax]
-              [token=IntegerLiteralToken, start=23, end=24, position=4:4:4:5, missing=false, text='3']
-          [token=DotToken, start=24, end=25, position=4:5:4:6, missing=false, text='.']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=26, end=29, position=5:0:5:3, missing=true, text='']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MemberAccessExpressionSyntax]
-          [node=LiteralExpressionSyntax]
-            [token=FloatLiteralToken, start=26, end=29, position=5:0:5:3, missing=false, text='3.3']
-          [token=DotToken, start=29, end=30, position=5:3:5:4, missing=false, text='.']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=30, end=33, position=5:4:5:7, missing=true, text='']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=FloatLiteralToken, start=30, end=33, position=5:4:5:7, missing=false, text='3.3']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MemberAccessExpressionSyntax]
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=34, end=36, position=6:0:6:2, missing=false, text='_0']
-          [token=DotToken, start=36, end=37, position=6:2:6:3, missing=false, text='.']
-          [node=TupleIndexSyntax]
-            [token=IntegerLiteralToken, start=37, end=38, position=6:3:6:4, missing=false, text='3']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MemberAccessExpressionSyntax]
-          [node=LiteralExpressionSyntax]
-            [token=IntegerLiteralToken, start=39, end=40, position=7:0:7:1, missing=false, text='3']
-          [token=DotToken, start=40, end=41, position=7:1:7:2, missing=false, text='.']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=41, end=42, position=7:2:7:3, missing=false, text='G']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=FloatLiteralToken, start=43, end=49, position=8:0:8:6, missing=false, text='0.2137']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MemberAccessExpressionSyntax]
-          [node=LiteralExpressionSyntax]
-            [token=IntegerLiteralToken, start=50, end=51, position=9:0:9:1, missing=false, text='0']
-          [token=DotToken, start=51, end=52, position=9:1:9:2, missing=false, text='.']
-          [node=TupleIndexSyntax]
-            [token=IntegerLiteralToken, start=53, end=55, position=10:0:10:2, missing=false, text='9x']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=MemberAccessExpressionSyntax]
-          [node=LiteralExpressionSyntax]
-            [token=IntegerLiteralToken, start=56, end=57, position=11:0:11:1, missing=false, text='0']
-          [token=DotToken, start=57, end=58, position=11:1:11:2, missing=false, text='.']
-          [node=IdentifierNameSyntax]
-            [token=IdentifierToken, start=58, end=59, position=11:2:11:3, missing=true, text='']
-  [node=UnexpectedNodesSyntax]
-    [node=SyntaxList]
-      [token=UnderscoreToken, start=58, end=59, position=11:2:11:3, missing=false, text='_']
-      [token=FloatLiteralToken, start=60, end=61, position=12:0:12:1, missing=false, text='0']
-      [token=DotToken, start=61, end=62, position=12:1:12:2, missing=false, text='.']
-      [token=IdentifierToken, start=62, end=64, position=12:2:12:4, missing=false, text='_3']
-      [token=FloatLiteralToken, start=65, end=66, position=13:0:13:1, missing=false, text='0']
-      [token=DotToken, start=66, end=67, position=13:1:13:2, missing=false, text='.']
-      [token=IdentifierToken, start=67, end=70, position=13:2:13:5, missing=false, text='_3_']
-      [token=FloatLiteralToken, start=71, end=72, position=14:0:14:1, missing=false, text='0']
-      [token=DotToken, start=72, end=73, position=14:1:14:2, missing=false, text='.']
-      [token=IdentifierToken, start=73, end=77, position=14:2:14:6, missing=false, text='_3_e']
-      [token=FloatLiteralToken, start=78, end=79, position=15:0:15:1, missing=false, text='0']
-      [token=DotToken, start=79, end=80, position=15:1:15:2, missing=false, text='.']
-      [token=IdentifierToken, start=80, end=86, position=15:2:15:8, missing=false, text='_3_e10']
-      [token=FloatLiteralToken, start=87, end=88, position=16:0:16:1, missing=false, text='0']
-      [token=DotToken, start=88, end=89, position=16:1:16:2, missing=false, text='.']
-      [token=IdentifierToken, start=89, end=99, position=16:2:16:12, missing=false, text='_3_e10_f32']
-      [token=FloatLiteralToken, start=100, end=104, position=17:0:17:4, missing=false, text='0.3_']
-      [token=FloatLiteralToken, start=105, end=111, position=18:0:18:6, missing=false, text='0.3_e_']
-      [token=FloatLiteralToken, start=112, end=118, position=19:0:19:6, missing=false, text='0.3_e_']
-      [token=StructKeyword, start=119, end=125, position=19:7:19:13, missing=false, text='struct']
-      [token=FloatLiteralToken, start=126, end=134, position=20:0:20:8, missing=false, text='0.3_e10_']
-      [token=FloatLiteralToken, start=135, end=146, position=21:0:21:11, missing=false, text='0.3_e10_f32']
-      [token=FloatLiteralToken, start=147, end=151, position=22:0:22:4, missing=false, text='0e10']
-      [token=FloatLiteralToken, start=152, end=156, position=23:0:23:4, missing=false, text='1e10']
-      [token=FloatLiteralToken, start=157, end=162, position=24:0:24:5, missing=false, text='1e+10']
-      [token=FloatLiteralToken, start=163, end=168, position=25:0:25:5, missing=false, text='1e-10']
-      [token=FloatLiteralToken, start=169, end=178, position=26:0:26:9, missing=false, text='0x_1_p-10']
-      [token=IntegerLiteralToken, start=179, end=183, position=27:0:27:4, missing=false, text='10e_']
-      [token=PlusToken, start=183, end=184, position=27:4:27:5, missing=false, text='+']
-      [token=IdentifierToken, start=184, end=191, position=27:5:27:12, missing=false, text='_10_f32']
-      [token=FloatLiteralToken, start=192, end=203, position=28:0:28:11, missing=false, text='10e+_10_f32']
-      [token=FloatLiteralToken, start=204, end=216, position=29:0:29:12, missing=false, text='10_e+_10_f32']
-      [token=IntegerLiteralToken, start=217, end=226, position=30:0:30:9, missing=false, text='10_e+_f32']
-      [token=IntegerLiteralToken, start=227, end=233, position=31:0:31:6, missing=false, text='10u123']
-      [token=FloatLiteralToken, start=234, end=242, position=32:0:32:8, missing=false, text='10.0f123']
-      [token=IntegerLiteralToken, start=243, end=250, position=33:0:33:7, missing=false, text='0b10f32']
-      [token=FloatLiteralToken, start=251, end=260, position=34:0:34:9, missing=false, text='0b10.0f32']
-      [token=IntegerLiteralToken, start=261, end=306, position=35:0:35:45, missing=false, text='999340282366920938463463374607431768211455999']
-      [token=IntegerLiteralToken, start=307, end=365, position=36:0:36:58, missing=false, text='9900000000000000000000000000999999999999999999999999999999']
-      [token=IntegerLiteralToken, start=366, end=497, position=37:0:37:131, missing=false, text='0b111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110']
-      [token=IntegerLiteralToken, start=498, end=544, position=38:0:38:46, missing=false, text='0o37777777777777777777777777777777777777777770']
-      [token=IntegerLiteralToken, start=545, end=580, position=39:0:39:35, missing=false, text='0xffffffffffffffffffffffffffffffff0']
-      [token=IntegerLiteralToken, start=581, end=586, position=40:0:40:5, missing=false, text='0b121']
-      [token=IntegerLiteralToken, start=587, end=597, position=41:0:41:10, missing=false, text='0b10_10301']
-      [token=IntegerLiteralToken, start=598, end=602, position=42:0:42:4, missing=false, text='0b30']
-      [token=IntegerLiteralToken, start=603, end=607, position=43:0:43:4, missing=false, text='0b41']
-      [token=IntegerLiteralToken, start=608, end=611, position=44:0:44:3, missing=false, text='0b5']
-      [token=IntegerLiteralToken, start=612, end=615, position=45:0:45:3, missing=false, text='0b6']
-      [token=IntegerLiteralToken, start=616, end=619, position=46:0:46:3, missing=false, text='0b7']
-      [token=IntegerLiteralToken, start=620, end=623, position=47:0:47:3, missing=false, text='0b8']
-      [token=IntegerLiteralToken, start=624, end=627, position=48:0:48:3, missing=false, text='0b9']
-      [token=FloatLiteralToken, start=628, end=633, position=49:0:49:5, missing=false, text='0o1.0']
-      [token=IntegerLiteralToken, start=634, end=640, position=50:0:50:6, missing=false, text='0o2f32']
-      [token=FloatLiteralToken, start=641, end=649, position=51:0:51:8, missing=false, text='0o3.0f32']
-      [token=DotToken, start=650, end=653, position=52:0:52:3, missing=false, text='0x.']
-      [token=IntegerLiteralToken, start=653, end=657, position=52:3:52:7, missing=false, text='3f32']
-      [token=IntegerLiteralToken, start=658, end=665, position=53:0:53:7, missing=false, text='0xe3f32']
-      [token=FloatLiteralToken, start=666, end=671, position=54:0:54:5, missing=false, text='0o4e4']
-      [token=FloatLiteralToken, start=672, end=679, position=55:0:55:7, missing=false, text='0o5.0e5']
-      [token=FloatLiteralToken, start=680, end=688, position=56:0:56:8, missing=false, text='0o6e6f32']
-      [token=FloatLiteralToken, start=689, end=699, position=57:0:57:10, missing=false, text='0o7.0e7f64']
-      [token=FloatLiteralToken, start=700, end=706, position=58:0:58:6, missing=false, text='0x8.0e']
-      [token=PlusToken, start=706, end=707, position=58:6:58:7, missing=false, text='+']
-      [token=IntegerLiteralToken, start=707, end=708, position=58:7:58:8, missing=false, text='9']
-      [token=FloatLiteralToken, start=709, end=715, position=59:0:59:6, missing=false, text='0x9.0e']
-      [token=MinusToken, start=715, end=716, position=59:6:59:7, missing=false, text='-']
-      [token=IntegerLiteralToken, start=716, end=717, position=59:7:59:8, missing=false, text='9']
-      [token=IntegerLiteralToken, start=718, end=741, position=60:0:60:23, missing=false, text='0xdeadc0dedeadbeefusize']
-      [token=IntegerLiteralToken, start=742, end=744, position=61:0:61:2, missing=false, text='0o']
-      [token=IntegerLiteralToken, start=745, end=748, position=62:0:62:3, missing=false, text='1e+']
-      [token=FloatLiteralToken, start=749, end=753, position=63:0:63:4, missing=false, text='1e+2']
-      [token=FloatLiteralToken, start=754, end=761, position=64:0:64:7, missing=false, text='0x539.0']
-      [token=IntegerLiteralToken, start=762, end=764, position=65:0:65:2, missing=false, text='0x']
-      [token=IntegerLiteralToken, start=765, end=770, position=66:0:66:5, missing=false, text='0xu32']
-      [token=IntegerLiteralToken, start=771, end=776, position=67:0:67:5, missing=false, text='0ou32']
-      [token=IntegerLiteralToken, start=777, end=782, position=68:0:68:5, missing=false, text='0bu32']
-      [token=IntegerLiteralToken, start=783, end=785, position=69:0:69:2, missing=false, text='0b']
-      [token=IntegerLiteralToken, start=786, end=794, position=70:0:70:8, missing=false, text='0o123f64']
-      [token=FloatLiteralToken, start=795, end=804, position=71:0:71:9, missing=false, text='0o123.456']
-      [token=IntegerLiteralToken, start=805, end=813, position=72:0:72:8, missing=false, text='0b101f64']
-      [token=FloatLiteralToken, start=814, end=823, position=73:0:73:9, missing=false, text='0b111.101']
-      [token=IntegerLiteralToken, start=824, end=828, position=74:0:74:4, missing=false, text='0o18']
-      [token=IntegerLiteralToken, start=829, end=842, position=75:0:75:13, missing=false, text='0o1234_9_5670']
-      [token=IntegerLiteralToken, start=843, end=850, position=76:0:76:7, missing=false, text='123X1a3']
-      [token=IntegerLiteralToken, start=851, end=858, position=77:0:77:7, missing=false, text='456O123']
-      [token=IntegerLiteralToken, start=859, end=866, position=78:0:78:7, missing=false, text='789B101']
-      [token=IntegerLiteralToken, start=867, end=871, position=79:0:79:4, missing=false, text='0XYZ']
-      [token=IntegerLiteralToken, start=872, end=876, position=80:0:80:4, missing=false, text='0OPQ']
-      [token=IntegerLiteralToken, start=877, end=881, position=81:0:81:4, missing=false, text='0BCD']
-      [token=IntegerLiteralToken, start=882, end=890, position=82:0:82:8, missing=false, text='0XABCDEF']
-      [token=IntegerLiteralToken, start=891, end=896, position=83:0:83:5, missing=false, text='0O755']
-      [token=IntegerLiteralToken, start=897, end=907, position=84:0:84:10, missing=false, text='0B10101010']
-      [token=IntegerLiteralToken, start=908, end=917, position=85:0:85:9, missing=false, text='0XABC_DEF']
-      [token=IntegerLiteralToken, start=918, end=924, position=86:0:86:6, missing=false, text='0O7_55']
-      [token=IntegerLiteralToken, start=925, end=936, position=87:0:87:11, missing=false, text='0B1010_1010']
-      [token=IntegerLiteralToken, start=937, end=950, position=88:0:88:13, missing=false, text='0XABC_DEF_u64']
-      [token=IntegerLiteralToken, start=951, end=961, position=89:0:89:10, missing=false, text='0O7_55_u32']
-      [token=IntegerLiteralToken, start=962, end=976, position=90:0:90:14, missing=false, text='0B1010_1010_u8']
-      [token=IntegerLiteralToken, start=977, end=988, position=91:0:91:11, missing=false, text='0XABCDEFu64']
-      [token=IntegerLiteralToken, start=989, end=997, position=92:0:92:8, missing=false, text='0O755u32']
-      [token=IntegerLiteralToken, start=998, end=1010, position=93:0:93:12, missing=false, text='0B10101010u8']
-      [token=IntegerLiteralToken, start=1011, end=1022, position=94:0:94:11, missing=false, text='0XABCDEFf64']
-      [token=IntegerLiteralToken, start=1023, end=1034, position=95:0:95:11, missing=false, text='0xABCDEFf64']
-      [token=FloatLiteralToken, start=1035, end=1043, position=96:0:96:8, missing=false, text='1.0E7f64']
-      [token=IntegerLiteralToken, start=1044, end=1054, position=97:0:97:10, missing=false, text='0xffffffff']
-      [token=IntegerLiteralToken, start=1055, end=1065, position=98:0:98:10, missing=false, text='4294967295']
-      [token=IntegerLiteralToken, start=1066, end=1084, position=99:0:99:18, missing=false, text='0xffffffffffffffff']
-      [token=IntegerLiteralToken, start=1085, end=1105, position=100:0:100:20, missing=false, text='18446744073709551615']
-      [token=MinusToken, start=1106, end=1107, position=101:0:101:1, missing=false, text='-']
-      [token=IntegerLiteralToken, start=1107, end=1120, position=101:1:101:14, missing=false, text='2147483648i32']
-      [token=MinusToken, start=1121, end=1122, position=102:0:102:1, missing=false, text='-']
-      [token=FloatLiteralToken, start=1122, end=1140, position=102:1:102:19, missing=false, text='3.40282356e+38_f32']
-      [token=FloatLiteralToken, start=1141, end=1159, position=103:0:103:18, missing=false, text='3.40282356e+38_f32']
-      [token=MinusToken, start=1160, end=1161, position=104:0:104:1, missing=false, text='-']
-      [token=FloatLiteralToken, start=1161, end=1188, position=104:1:104:28, missing=false, text='1.7976931348623158e+308_f64']
-      [token=FloatLiteralToken, start=1189, end=1216, position=105:0:105:27, missing=false, text='1.7976931348623158e+308_f64']
-      [token=IntegerLiteralToken, start=1217, end=1223, position=106:0:106:6, missing=false, text='0b1111']
-      [token=FloatLiteralToken, start=1224, end=1235, position=107:0:107:11, missing=false, text='0b1111.1111']
-      [token=FloatLiteralToken, start=1236, end=1247, position=108:0:108:11, missing=false, text='0b1111e+111']
-      [token=FloatLiteralToken, start=1248, end=1263, position=109:0:109:15, missing=false, text='0b1111.111e+111']
-      [token=IntegerLiteralToken, start=1264, end=1268, position=110:0:110:4, missing=false, text='1111']
-      [token=FloatLiteralToken, start=1269, end=1278, position=111:0:111:9, missing=false, text='1111.1111']
-      [token=FloatLiteralToken, start=1279, end=1288, position=112:0:112:9, missing=false, text='1111e+111']
-      [token=FloatLiteralToken, start=1289, end=1302, position=113:0:113:13, missing=false, text='1111.111e+111']
-      [token=IntegerLiteralToken, start=1303, end=1309, position=114:0:114:6, missing=false, text='0x1111']
-      [token=FloatLiteralToken, start=1310, end=1321, position=115:0:115:11, missing=false, text='0x1111.1111']
-      [token=FloatLiteralToken, start=1322, end=1333, position=116:0:116:11, missing=false, text='0x1111p+111']
-      [token=FloatLiteralToken, start=1334, end=1349, position=117:0:117:15, missing=false, text='0x1111.111p+111']
-      [token=FloatLiteralToken, start=1350, end=1370, position=118:0:118:20, missing=false, text='0b1111_1111.101e+101']
-      [token=FloatLiteralToken, start=1371, end=1379, position=119:0:119:8, missing=false, text='21.37m32']
-  [token=EndOfFileToken, start=1380, end=1380, position=120:0:120:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MemberAccessExpressionSyntax
+     LiteralExpressionSyntax
+      IntegerLiteralToken <0:1> [0:0:0:1] '0'
+     DotToken <2:3> [1:0:1:1] '.'
+     TupleIndexSyntax
+      IntegerLiteralToken <3:7> [1:1:1:5] '2137'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MemberAccessExpressionSyntax
+     LiteralExpressionSyntax
+      FloatLiteralToken <8:11> [2:0:2:3] '3.3'
+     DotToken <11:12> [2:3:2:4] '.'
+     IdentifierNameSyntax
+      IdentifierToken <13:16> [3:0:3:3] missing ''
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MemberAccessExpressionSyntax
+     LiteralExpressionSyntax
+      FloatLiteralToken <13:16> [3:0:3:3] '3.3'
+     DotToken <16:17> [3:3:3:4] '.'
+     TupleIndexSyntax
+      IntegerLiteralToken <17:18> [3:4:3:5] '3'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MemberAccessExpressionSyntax
+     MemberAccessExpressionSyntax
+      LiteralExpressionSyntax
+       FloatLiteralToken <19:22> [4:0:4:3] '3.3'
+      DotToken <22:23> [4:3:4:4] '.'
+      TupleIndexSyntax
+       IntegerLiteralToken <23:24> [4:4:4:5] '3'
+     DotToken <24:25> [4:5:4:6] '.'
+     IdentifierNameSyntax
+      IdentifierToken <26:29> [5:0:5:3] missing ''
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MemberAccessExpressionSyntax
+     LiteralExpressionSyntax
+      FloatLiteralToken <26:29> [5:0:5:3] '3.3'
+     DotToken <29:30> [5:3:5:4] '.'
+     IdentifierNameSyntax
+      IdentifierToken <30:33> [5:4:5:7] missing ''
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     FloatLiteralToken <30:33> [5:4:5:7] '3.3'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MemberAccessExpressionSyntax
+     IdentifierNameSyntax
+      IdentifierToken <34:36> [6:0:6:2] '_0'
+     DotToken <36:37> [6:2:6:3] '.'
+     TupleIndexSyntax
+      IntegerLiteralToken <37:38> [6:3:6:4] '3'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MemberAccessExpressionSyntax
+     LiteralExpressionSyntax
+      IntegerLiteralToken <39:40> [7:0:7:1] '3'
+     DotToken <40:41> [7:1:7:2] '.'
+     IdentifierNameSyntax
+      IdentifierToken <41:42> [7:2:7:3] 'G'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     FloatLiteralToken <43:49> [8:0:8:6] '0.2137'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MemberAccessExpressionSyntax
+     LiteralExpressionSyntax
+      IntegerLiteralToken <50:51> [9:0:9:1] '0'
+     DotToken <51:52> [9:1:9:2] '.'
+     TupleIndexSyntax
+      IntegerLiteralToken <53:55> [10:0:10:2] '9x'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MemberAccessExpressionSyntax
+     LiteralExpressionSyntax
+      IntegerLiteralToken <56:57> [11:0:11:1] '0'
+     DotToken <57:58> [11:1:11:2] '.'
+     IdentifierNameSyntax
+      IdentifierToken <58:59> [11:2:11:3] missing ''
+ UnexpectedNodesSyntax
+  SyntaxList
+   UnderscoreToken <58:59> [11:2:11:3] '_'
+   FloatLiteralToken <60:61> [12:0:12:1] '0'
+   DotToken <61:62> [12:1:12:2] '.'
+   IdentifierToken <62:64> [12:2:12:4] '_3'
+   FloatLiteralToken <65:66> [13:0:13:1] '0'
+   DotToken <66:67> [13:1:13:2] '.'
+   IdentifierToken <67:70> [13:2:13:5] '_3_'
+   FloatLiteralToken <71:72> [14:0:14:1] '0'
+   DotToken <72:73> [14:1:14:2] '.'
+   IdentifierToken <73:77> [14:2:14:6] '_3_e'
+   FloatLiteralToken <78:79> [15:0:15:1] '0'
+   DotToken <79:80> [15:1:15:2] '.'
+   IdentifierToken <80:86> [15:2:15:8] '_3_e10'
+   FloatLiteralToken <87:88> [16:0:16:1] '0'
+   DotToken <88:89> [16:1:16:2] '.'
+   IdentifierToken <89:99> [16:2:16:12] '_3_e10_f32'
+   FloatLiteralToken <100:104> [17:0:17:4] '0.3_'
+   FloatLiteralToken <105:111> [18:0:18:6] '0.3_e_'
+   FloatLiteralToken <112:118> [19:0:19:6] '0.3_e_'
+   StructKeyword <119:125> [19:7:19:13] 'struct'
+   FloatLiteralToken <126:134> [20:0:20:8] '0.3_e10_'
+   FloatLiteralToken <135:146> [21:0:21:11] '0.3_e10_f32'
+   FloatLiteralToken <147:151> [22:0:22:4] '0e10'
+   FloatLiteralToken <152:156> [23:0:23:4] '1e10'
+   FloatLiteralToken <157:162> [24:0:24:5] '1e+10'
+   FloatLiteralToken <163:168> [25:0:25:5] '1e-10'
+   FloatLiteralToken <169:178> [26:0:26:9] '0x_1_p-10'
+   IntegerLiteralToken <179:183> [27:0:27:4] '10e_'
+   PlusToken <183:184> [27:4:27:5] '+'
+   IdentifierToken <184:191> [27:5:27:12] '_10_f32'
+   FloatLiteralToken <192:203> [28:0:28:11] '10e+_10_f32'
+   FloatLiteralToken <204:216> [29:0:29:12] '10_e+_10_f32'
+   IntegerLiteralToken <217:226> [30:0:30:9] '10_e+_f32'
+   IntegerLiteralToken <227:233> [31:0:31:6] '10u123'
+   FloatLiteralToken <234:242> [32:0:32:8] '10.0f123'
+   IntegerLiteralToken <243:250> [33:0:33:7] '0b10f32'
+   FloatLiteralToken <251:260> [34:0:34:9] '0b10.0f32'
+   IntegerLiteralToken <261:306> [35:0:35:45] '999340282366920938463463374607431768211455999'
+   IntegerLiteralToken <307:365> [36:0:36:58] '9900000000000000000000000000999999999999999999999999999999'
+   IntegerLiteralToken <366:497> [37:0:37:131] '0b111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110'
+   IntegerLiteralToken <498:544> [38:0:38:46] '0o37777777777777777777777777777777777777777770'
+   IntegerLiteralToken <545:580> [39:0:39:35] '0xffffffffffffffffffffffffffffffff0'
+   IntegerLiteralToken <581:586> [40:0:40:5] '0b121'
+   IntegerLiteralToken <587:597> [41:0:41:10] '0b10_10301'
+   IntegerLiteralToken <598:602> [42:0:42:4] '0b30'
+   IntegerLiteralToken <603:607> [43:0:43:4] '0b41'
+   IntegerLiteralToken <608:611> [44:0:44:3] '0b5'
+   IntegerLiteralToken <612:615> [45:0:45:3] '0b6'
+   IntegerLiteralToken <616:619> [46:0:46:3] '0b7'
+   IntegerLiteralToken <620:623> [47:0:47:3] '0b8'
+   IntegerLiteralToken <624:627> [48:0:48:3] '0b9'
+   FloatLiteralToken <628:633> [49:0:49:5] '0o1.0'
+   IntegerLiteralToken <634:640> [50:0:50:6] '0o2f32'
+   FloatLiteralToken <641:649> [51:0:51:8] '0o3.0f32'
+   DotToken <650:653> [52:0:52:3] '0x.'
+   IntegerLiteralToken <653:657> [52:3:52:7] '3f32'
+   IntegerLiteralToken <658:665> [53:0:53:7] '0xe3f32'
+   FloatLiteralToken <666:671> [54:0:54:5] '0o4e4'
+   FloatLiteralToken <672:679> [55:0:55:7] '0o5.0e5'
+   FloatLiteralToken <680:688> [56:0:56:8] '0o6e6f32'
+   FloatLiteralToken <689:699> [57:0:57:10] '0o7.0e7f64'
+   FloatLiteralToken <700:706> [58:0:58:6] '0x8.0e'
+   PlusToken <706:707> [58:6:58:7] '+'
+   IntegerLiteralToken <707:708> [58:7:58:8] '9'
+   FloatLiteralToken <709:715> [59:0:59:6] '0x9.0e'
+   MinusToken <715:716> [59:6:59:7] '-'
+   IntegerLiteralToken <716:717> [59:7:59:8] '9'
+   IntegerLiteralToken <718:741> [60:0:60:23] '0xdeadc0dedeadbeefusize'
+   IntegerLiteralToken <742:744> [61:0:61:2] '0o'
+   IntegerLiteralToken <745:748> [62:0:62:3] '1e+'
+   FloatLiteralToken <749:753> [63:0:63:4] '1e+2'
+   FloatLiteralToken <754:761> [64:0:64:7] '0x539.0'
+   IntegerLiteralToken <762:764> [65:0:65:2] '0x'
+   IntegerLiteralToken <765:770> [66:0:66:5] '0xu32'
+   IntegerLiteralToken <771:776> [67:0:67:5] '0ou32'
+   IntegerLiteralToken <777:782> [68:0:68:5] '0bu32'
+   IntegerLiteralToken <783:785> [69:0:69:2] '0b'
+   IntegerLiteralToken <786:794> [70:0:70:8] '0o123f64'
+   FloatLiteralToken <795:804> [71:0:71:9] '0o123.456'
+   IntegerLiteralToken <805:813> [72:0:72:8] '0b101f64'
+   FloatLiteralToken <814:823> [73:0:73:9] '0b111.101'
+   IntegerLiteralToken <824:828> [74:0:74:4] '0o18'
+   IntegerLiteralToken <829:842> [75:0:75:13] '0o1234_9_5670'
+   IntegerLiteralToken <843:850> [76:0:76:7] '123X1a3'
+   IntegerLiteralToken <851:858> [77:0:77:7] '456O123'
+   IntegerLiteralToken <859:866> [78:0:78:7] '789B101'
+   IntegerLiteralToken <867:871> [79:0:79:4] '0XYZ'
+   IntegerLiteralToken <872:876> [80:0:80:4] '0OPQ'
+   IntegerLiteralToken <877:881> [81:0:81:4] '0BCD'
+   IntegerLiteralToken <882:890> [82:0:82:8] '0XABCDEF'
+   IntegerLiteralToken <891:896> [83:0:83:5] '0O755'
+   IntegerLiteralToken <897:907> [84:0:84:10] '0B10101010'
+   IntegerLiteralToken <908:917> [85:0:85:9] '0XABC_DEF'
+   IntegerLiteralToken <918:924> [86:0:86:6] '0O7_55'
+   IntegerLiteralToken <925:936> [87:0:87:11] '0B1010_1010'
+   IntegerLiteralToken <937:950> [88:0:88:13] '0XABC_DEF_u64'
+   IntegerLiteralToken <951:961> [89:0:89:10] '0O7_55_u32'
+   IntegerLiteralToken <962:976> [90:0:90:14] '0B1010_1010_u8'
+   IntegerLiteralToken <977:988> [91:0:91:11] '0XABCDEFu64'
+   IntegerLiteralToken <989:997> [92:0:92:8] '0O755u32'
+   IntegerLiteralToken <998:1010> [93:0:93:12] '0B10101010u8'
+   IntegerLiteralToken <1011:1022> [94:0:94:11] '0XABCDEFf64'
+   IntegerLiteralToken <1023:1034> [95:0:95:11] '0xABCDEFf64'
+   FloatLiteralToken <1035:1043> [96:0:96:8] '1.0E7f64'
+   IntegerLiteralToken <1044:1054> [97:0:97:10] '0xffffffff'
+   IntegerLiteralToken <1055:1065> [98:0:98:10] '4294967295'
+   IntegerLiteralToken <1066:1084> [99:0:99:18] '0xffffffffffffffff'
+   IntegerLiteralToken <1085:1105> [100:0:100:20] '18446744073709551615'
+   MinusToken <1106:1107> [101:0:101:1] '-'
+   IntegerLiteralToken <1107:1120> [101:1:101:14] '2147483648i32'
+   MinusToken <1121:1122> [102:0:102:1] '-'
+   FloatLiteralToken <1122:1140> [102:1:102:19] '3.40282356e+38_f32'
+   FloatLiteralToken <1141:1159> [103:0:103:18] '3.40282356e+38_f32'
+   MinusToken <1160:1161> [104:0:104:1] '-'
+   FloatLiteralToken <1161:1188> [104:1:104:28] '1.7976931348623158e+308_f64'
+   FloatLiteralToken <1189:1216> [105:0:105:27] '1.7976931348623158e+308_f64'
+   IntegerLiteralToken <1217:1223> [106:0:106:6] '0b1111'
+   FloatLiteralToken <1224:1235> [107:0:107:11] '0b1111.1111'
+   FloatLiteralToken <1236:1247> [108:0:108:11] '0b1111e+111'
+   FloatLiteralToken <1248:1263> [109:0:109:15] '0b1111.111e+111'
+   IntegerLiteralToken <1264:1268> [110:0:110:4] '1111'
+   FloatLiteralToken <1269:1278> [111:0:111:9] '1111.1111'
+   FloatLiteralToken <1279:1288> [112:0:112:9] '1111e+111'
+   FloatLiteralToken <1289:1302> [113:0:113:13] '1111.111e+111'
+   IntegerLiteralToken <1303:1309> [114:0:114:6] '0x1111'
+   FloatLiteralToken <1310:1321> [115:0:115:11] '0x1111.1111'
+   FloatLiteralToken <1322:1333> [116:0:116:11] '0x1111p+111'
+   FloatLiteralToken <1334:1349> [117:0:117:15] '0x1111.111p+111'
+   FloatLiteralToken <1350:1370> [118:0:118:20] '0b1111_1111.101e+101'
+   FloatLiteralToken <1371:1379> [119:0:119:8] '21.37m32'
+ EndOfFileToken <1380:1380> [120:0:120:0] ''

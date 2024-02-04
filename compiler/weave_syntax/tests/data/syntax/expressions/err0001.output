@@ -1,55 +1,55 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=SyntaxList]
-          [node=AttributeListSyntax]
-            [token=HashOpenBracketToken, start=0, end=2, position=0:0:0:2, missing=false, text='#[']
-            [node=SyntaxList]
-              [node=AttributeSyntax]
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=2, end=5, position=0:2:0:5, missing=false, text='foo']
-            [token=CloseBracketToken, start=5, end=6, position=0:5:0:6, missing=false, text=']']
-        [node=IfExpressionSyntax]
-          [token=IfKeyword, start=7, end=9, position=0:7:0:9, missing=false, text='if']
-          [node=BinaryExpressionSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=10, end=11, position=0:10:0:11, missing=false, text='x']
-            [token=EqualsEqualsToken, start=12, end=14, position=0:12:0:14, missing=false, text='==']
-            [node=LiteralExpressionSyntax]
-              [token=IntegerLiteralToken, start=15, end=17, position=0:15:0:17, missing=false, text='42']
-          [node=CodeBlockSyntax]
-            [token=OpenBraceToken, start=18, end=19, position=0:18:0:19, missing=false, text='{']
-            [token=CloseBraceToken, start=20, end=21, position=1:0:1:1, missing=false, text='}']
-          [node=ElseClauseSyntax]
-            [token=ElseKeyword, start=22, end=26, position=1:2:1:6, missing=false, text='else']
-            [node=IfExpressionSyntax]
-              [token=IfKeyword, start=27, end=29, position=1:7:1:9, missing=false, text='if']
-              [node=BinaryExpressionSyntax]
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=30, end=31, position=1:10:1:11, missing=false, text='y']
-                [token=EqualsEqualsToken, start=32, end=34, position=1:12:1:14, missing=false, text='==']
-                [node=LiteralExpressionSyntax]
-                  [token=IntegerLiteralToken, start=35, end=39, position=1:15:1:19, missing=false, text='2137']
-              [node=CodeBlockSyntax]
-                [token=OpenBraceToken, start=40, end=41, position=1:20:1:21, missing=false, text='{']
-                [token=CloseBraceToken, start=42, end=43, position=2:0:2:1, missing=false, text='}']
-              [node=ElseClauseSyntax]
-                [token=ElseKeyword, start=44, end=48, position=2:2:2:6, missing=false, text='else']
-                [node=IfExpressionSyntax]
-                  [token=IfKeyword, start=49, end=51, position=2:7:2:9, missing=false, text='if']
-                  [node=BinaryExpressionSyntax]
-                    [node=IdentifierNameSyntax]
-                      [token=IdentifierToken, start=52, end=53, position=2:10:2:11, missing=false, text='z']
-                    [token=EqualsEqualsToken, start=54, end=56, position=2:12:2:14, missing=false, text='==']
-                    [node=LiteralExpressionSyntax]
-                      [token=IntegerLiteralToken, start=57, end=60, position=2:15:2:18, missing=false, text='222']
-                  [node=CodeBlockSyntax]
-                    [token=OpenBraceToken, start=61, end=62, position=2:19:2:20, missing=false, text='{']
-                    [token=CloseBraceToken, start=63, end=64, position=3:0:3:1, missing=false, text='}']
-                  [node=ElseClauseSyntax]
-                    [token=ElseKeyword, start=65, end=69, position=3:2:3:6, missing=false, text='else']
-                    [node=CodeBlockSyntax]
-                      [token=OpenBraceToken, start=70, end=71, position=3:7:3:8, missing=false, text='{']
-                      [token=CloseBraceToken, start=72, end=73, position=4:0:4:1, missing=false, text='}']
-  [token=EndOfFileToken, start=74, end=74, position=5:0:5:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    SyntaxList
+     AttributeListSyntax
+      HashOpenBracketToken <0:2> [0:0:0:2] '#['
+      SyntaxList
+       AttributeSyntax
+        IdentifierNameSyntax
+         IdentifierToken <2:5> [0:2:0:5] 'foo'
+      CloseBracketToken <5:6> [0:5:0:6] ']'
+    IfExpressionSyntax
+     IfKeyword <7:9> [0:7:0:9] 'if'
+     BinaryExpressionSyntax
+      IdentifierNameSyntax
+       IdentifierToken <10:11> [0:10:0:11] 'x'
+      EqualsEqualsToken <12:14> [0:12:0:14] '=='
+      LiteralExpressionSyntax
+       IntegerLiteralToken <15:17> [0:15:0:17] '42'
+     CodeBlockSyntax
+      OpenBraceToken <18:19> [0:18:0:19] '{'
+      CloseBraceToken <20:21> [1:0:1:1] '}'
+     ElseClauseSyntax
+      ElseKeyword <22:26> [1:2:1:6] 'else'
+      IfExpressionSyntax
+       IfKeyword <27:29> [1:7:1:9] 'if'
+       BinaryExpressionSyntax
+        IdentifierNameSyntax
+         IdentifierToken <30:31> [1:10:1:11] 'y'
+        EqualsEqualsToken <32:34> [1:12:1:14] '=='
+        LiteralExpressionSyntax
+         IntegerLiteralToken <35:39> [1:15:1:19] '2137'
+       CodeBlockSyntax
+        OpenBraceToken <40:41> [1:20:1:21] '{'
+        CloseBraceToken <42:43> [2:0:2:1] '}'
+       ElseClauseSyntax
+        ElseKeyword <44:48> [2:2:2:6] 'else'
+        IfExpressionSyntax
+         IfKeyword <49:51> [2:7:2:9] 'if'
+         BinaryExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <52:53> [2:10:2:11] 'z'
+          EqualsEqualsToken <54:56> [2:12:2:14] '=='
+          LiteralExpressionSyntax
+           IntegerLiteralToken <57:60> [2:15:2:18] '222'
+         CodeBlockSyntax
+          OpenBraceToken <61:62> [2:19:2:20] '{'
+          CloseBraceToken <63:64> [3:0:3:1] '}'
+         ElseClauseSyntax
+          ElseKeyword <65:69> [3:2:3:6] 'else'
+          CodeBlockSyntax
+           OpenBraceToken <70:71> [3:7:3:8] '{'
+           CloseBraceToken <72:73> [4:0:4:1] '}'
+ EndOfFileToken <74:74> [5:0:5:0] ''

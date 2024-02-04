@@ -1,51 +1,51 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=VariableDeclarationSyntax]
-        [token=LetKeyword, start=0, end=3, position=0:0:0:3, missing=false, text='let']
-        [node=PatternBindingSyntax]
-          [node=IdentifierPatternSyntax]
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=4, end=5, position=0:4:0:5, missing=false, text='i']
-          [node=TypeClauseSyntax]
-            [token=ColonToken, start=5, end=6, position=0:5:0:6, missing=false, text=':']
-            [node=IdentifierNameSyntax]
-              [token=IdentifierToken, start=7, end=12, position=0:7:0:12, missing=false, text='Int32']
-          [node=InitializerClauseSyntax]
-            [token=EqualsToken, start=13, end=14, position=0:13:0:14, missing=false, text='=']
-            [node=LiteralExpressionSyntax]
-              [token=IntegerLiteralToken, start=15, end=16, position=0:15:0:16, missing=false, text='0']
-      [token=SemicolonToken, start=16, end=17, position=0:16:0:17, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=LoopStatementSyntax]
-        [token=LoopKeyword, start=19, end=23, position=2:0:2:4, missing=false, text='loop']
-        [node=CodeBlockSyntax]
-          [token=OpenBraceToken, start=24, end=25, position=2:5:2:6, missing=false, text='{']
-          [node=SyntaxList]
-            [node=CodeBlockItemSyntax]
-              [node=ExpressionStatementSyntax]
-                [node=PostfixUnaryExpressionSyntax]
-                  [node=IfExpressionSyntax]
-                    [token=IfKeyword, start=30, end=32, position=3:4:3:6, missing=false, text='if']
-                    [node=BinaryExpressionSyntax]
-                      [node=IdentifierNameSyntax]
-                        [token=IdentifierToken, start=33, end=34, position=3:7:3:8, missing=false, text='i']
-                      [token=GreaterThanEqualsToken, start=35, end=37, position=3:9:3:11, missing=false, text='>=']
-                      [node=LiteralExpressionSyntax]
-                        [token=IntegerLiteralToken, start=38, end=40, position=3:12:3:14, missing=false, text='10']
-                    [node=CodeBlockSyntax]
-                      [token=OpenBraceToken, start=41, end=42, position=3:15:3:16, missing=false, text='{']
-                      [node=SyntaxList]
-                        [node=CodeBlockItemSyntax]
-                          [node=BreakStatementSyntax]
-                            [token=BreakKeyword, start=51, end=56, position=4:8:4:13, missing=false, text='break']
-                          [token=SemicolonToken, start=56, end=57, position=4:13:4:14, missing=false, text=';']
-                      [token=CloseBraceToken, start=62, end=63, position=5:4:5:5, missing=false, text='}']
-                  [token=PlusPlusToken, start=69, end=71, position=7:4:7:6, missing=false, text='++']
-            [node=CodeBlockItemSyntax]
-              [node=ExpressionStatementSyntax]
-                [node=IdentifierNameSyntax]
-                  [token=IdentifierToken, start=71, end=72, position=7:6:7:7, missing=false, text='i']
-              [token=SemicolonToken, start=72, end=73, position=7:7:7:8, missing=false, text=';']
-          [token=CloseBraceToken, start=74, end=75, position=8:0:8:1, missing=false, text='}']
-  [token=EndOfFileToken, start=76, end=76, position=9:0:9:0, missing=false, text='']
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <0:3> [0:0:0:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <4:5> [0:4:0:5] 'i'
+     TypeClauseSyntax
+      ColonToken <5:6> [0:5:0:6] ':'
+      IdentifierNameSyntax
+       IdentifierToken <7:12> [0:7:0:12] 'Int32'
+     InitializerClauseSyntax
+      EqualsToken <13:14> [0:13:0:14] '='
+      LiteralExpressionSyntax
+       IntegerLiteralToken <15:16> [0:15:0:16] '0'
+   SemicolonToken <16:17> [0:16:0:17] ';'
+  CodeBlockItemSyntax
+   LoopStatementSyntax
+    LoopKeyword <19:23> [2:0:2:4] 'loop'
+    CodeBlockSyntax
+     OpenBraceToken <24:25> [2:5:2:6] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        PostfixUnaryExpressionSyntax
+         IfExpressionSyntax
+          IfKeyword <30:32> [3:4:3:6] 'if'
+          BinaryExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <33:34> [3:7:3:8] 'i'
+           GreaterThanEqualsToken <35:37> [3:9:3:11] '>='
+           LiteralExpressionSyntax
+            IntegerLiteralToken <38:40> [3:12:3:14] '10'
+          CodeBlockSyntax
+           OpenBraceToken <41:42> [3:15:3:16] '{'
+           SyntaxList
+            CodeBlockItemSyntax
+             BreakStatementSyntax
+              BreakKeyword <51:56> [4:8:4:13] 'break'
+             SemicolonToken <56:57> [4:13:4:14] ';'
+           CloseBraceToken <62:63> [5:4:5:5] '}'
+         PlusPlusToken <69:71> [7:4:7:6] '++'
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        IdentifierNameSyntax
+         IdentifierToken <71:72> [7:6:7:7] 'i'
+       SemicolonToken <72:73> [7:7:7:8] ';'
+     CloseBraceToken <74:75> [8:0:8:1] '}'
+ EndOfFileToken <76:76> [9:0:9:0] ''

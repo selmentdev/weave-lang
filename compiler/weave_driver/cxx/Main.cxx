@@ -117,7 +117,7 @@ class SyntaxTreeStructurePrinter final : public weave::syntax::SyntaxWalker
 private:
     void Indent()
     {
-        fmt::print("{:{}}", "", this->Depth * 2);
+        fmt::print("{:{}}", "", this->Depth);
     }
 
     weave::source::SourceText const& _text;
@@ -133,7 +133,7 @@ public:
     void OnDefault(weave::syntax::SyntaxNode* node) override
     {
         Indent();
-        fmt::println("[node={}]", weave::syntax::GetName(node->Kind));
+        fmt::println("{}", weave::syntax::GetName(node->Kind));
 
         SyntaxWalker::OnDefault(node);
     }
@@ -144,13 +144,13 @@ public:
         Indent();
         auto startPosition = this->_text.GetLinePosition(token->Source.Start);
         auto endPosition = this->_text.GetLinePosition(token->Source.End);
-        fmt::println("[token={}, start={}, end={}, position={}:{}:{}:{}, missing={}, text='{}']",
+        fmt::println("{} <{}:{}> [{}:{}:{}:{}]{} '{}'",
             weave::syntax::GetName(token->Kind),
             token->Source.Start.Offset,
             token->Source.End.Offset,
             startPosition.Line, startPosition.Column,
             endPosition.Line, endPosition.Column,
-            token->IsMissing(),
+            token->IsMissing() ? " missing" : "",
             (not token->IsMissing()) ? this->_text.GetText(token->Source) : "");
 
         // this->Dispatch(token->TrailingTrivia.GetNode());
@@ -161,7 +161,7 @@ public:
         Indent();
         auto startPosition = this->_text.GetLinePosition(trivia->Source.Start);
         auto endPosition = this->_text.GetLinePosition(trivia->Source.End);
-        fmt::println("[trivia={}, start={}, end={}, position={}:{}:{}:{}]",
+        fmt::println("{} <{}:{}> [{}:{}:{}:{}]",
             weave::syntax::GetName(trivia->Kind),
             trivia->Source.Start.Offset,
             trivia->Source.End.Offset,

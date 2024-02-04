@@ -1,327 +1,327 @@
-[node=SourceFileSyntax]
-  [node=SyntaxList]
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=0, end=8, position=0:0:0:8, missing=false, text='u8"test"']
-      [token=SemicolonToken, start=8, end=9, position=0:8:0:9, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=10, end=21, position=1:0:1:11, missing=false, text='u8r#"test"#']
-      [token=SemicolonToken, start=21, end=22, position=1:11:1:12, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=23, end=32, position=2:0:2:9, missing=false, text='u16"test"']
-      [token=SemicolonToken, start=32, end=33, position=2:9:2:10, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=34, end=48, position=3:0:3:14, missing=false, text='u16r##"test"##']
-      [token=SemicolonToken, start=48, end=49, position=3:14:3:15, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=50, end=59, position=4:0:4:9, missing=false, text='u32"test"']
-      [token=SemicolonToken, start=59, end=60, position=4:9:4:10, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=61, end=77, position=5:0:5:16, missing=false, text='u32r###"test"###']
-      [token=SemicolonToken, start=77, end=78, position=5:16:5:17, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=79, end=81, position=6:0:6:2, missing=false, text='''']
-      [token=SemicolonToken, start=81, end=82, position=6:2:6:3, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=83, end=86, position=7:0:7:3, missing=false, text='' '']
-      [token=SemicolonToken, start=86, end=87, position=7:3:7:4, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=88, end=94, position=8:0:8:6, missing=false, text=''    '']
-      [token=SemicolonToken, start=94, end=95, position=8:6:8:7, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=96, end=108, position=9:0:9:12, missing=false, text=''          '']
-      [token=SemicolonToken, start=108, end=109, position=9:12:9:13, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=110, end=116, position=10:0:10:6, missing=false, text=''😂'']
-      [token=SemicolonToken, start=116, end=117, position=10:6:10:7, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=118, end=126, position=11:0:11:8, missing=false, text=''❤️'']
-      [token=SemicolonToken, start=126, end=127, position=11:8:11:9, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=128, end=134, position=12:0:12:6, missing=false, text=''🌍'']
-      [token=SemicolonToken, start=134, end=135, position=12:6:12:7, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=136, end=143, position=13:0:13:7, missing=false, text=''\u{1}'']
-      [token=SemicolonToken, start=143, end=144, position=13:7:13:8, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=145, end=153, position=14:0:14:8, missing=false, text=''\u{12}'']
-      [token=SemicolonToken, start=153, end=154, position=14:8:14:9, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=155, end=164, position=15:0:15:9, missing=false, text=''\u{123}'']
-      [token=SemicolonToken, start=164, end=165, position=15:9:15:10, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=166, end=176, position=16:0:16:10, missing=false, text=''\u{1234}'']
-      [token=SemicolonToken, start=176, end=177, position=16:10:16:11, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=178, end=189, position=17:0:17:11, missing=false, text=''\u{12345}'']
-      [token=SemicolonToken, start=189, end=190, position=17:11:17:12, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=191, end=203, position=18:0:18:12, missing=false, text=''\u{123456}'']
-      [token=SemicolonToken, start=203, end=204, position=18:12:18:13, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=205, end=218, position=19:0:19:13, missing=false, text=''\u{1234567}'']
-      [token=SemicolonToken, start=218, end=219, position=19:13:19:14, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=220, end=234, position=20:0:20:14, missing=false, text=''\u{12345678}'']
-      [token=SemicolonToken, start=234, end=235, position=20:14:20:15, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=236, end=242, position=21:0:21:6, missing=false, text=''\u1}'']
-      [token=SemicolonToken, start=242, end=243, position=21:6:21:7, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=244, end=251, position=22:0:22:7, missing=false, text=''\u12}'']
-      [token=SemicolonToken, start=251, end=252, position=22:7:22:8, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=253, end=261, position=23:0:23:8, missing=false, text=''\u123}'']
-      [token=SemicolonToken, start=261, end=262, position=23:8:23:9, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=263, end=272, position=24:0:24:9, missing=false, text=''\u1234}'']
-      [token=SemicolonToken, start=272, end=273, position=24:9:24:10, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=274, end=284, position=25:0:25:10, missing=false, text=''\u12345}'']
-      [token=SemicolonToken, start=284, end=285, position=25:10:25:11, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=286, end=297, position=26:0:26:11, missing=false, text=''\u123456}'']
-      [token=SemicolonToken, start=297, end=298, position=26:11:26:12, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=299, end=311, position=27:0:27:12, missing=false, text=''\u1234567}'']
-      [token=SemicolonToken, start=311, end=312, position=27:12:27:13, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=313, end=326, position=28:0:28:13, missing=false, text=''\u12345678}'']
-      [token=SemicolonToken, start=326, end=327, position=28:13:28:14, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=328, end=334, position=29:0:29:6, missing=false, text=''\u{1'']
-      [token=SemicolonToken, start=334, end=335, position=29:6:29:7, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=336, end=343, position=30:0:30:7, missing=false, text=''\u{12'']
-      [token=SemicolonToken, start=343, end=344, position=30:7:30:8, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=345, end=353, position=31:0:31:8, missing=false, text=''\u{123'']
-      [token=SemicolonToken, start=353, end=354, position=31:8:31:9, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=355, end=364, position=32:0:32:9, missing=false, text=''\u{1234'']
-      [token=SemicolonToken, start=364, end=365, position=32:9:32:10, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=366, end=376, position=33:0:33:10, missing=false, text=''\u{12345'']
-      [token=SemicolonToken, start=376, end=377, position=33:10:33:11, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=378, end=389, position=34:0:34:11, missing=false, text=''\u{123456'']
-      [token=SemicolonToken, start=389, end=390, position=34:11:34:12, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=391, end=403, position=35:0:35:12, missing=false, text=''\u{1234567'']
-      [token=SemicolonToken, start=403, end=404, position=35:12:35:13, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=405, end=418, position=36:0:36:13, missing=false, text=''\u{12345678'']
-      [token=SemicolonToken, start=418, end=419, position=36:13:36:14, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=420, end=425, position=37:0:37:5, missing=false, text=''\u1'']
-      [token=SemicolonToken, start=425, end=426, position=37:5:37:6, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=427, end=433, position=38:0:38:6, missing=false, text=''\u12'']
-      [token=SemicolonToken, start=433, end=434, position=38:6:38:7, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=435, end=442, position=39:0:39:7, missing=false, text=''\u123'']
-      [token=SemicolonToken, start=442, end=443, position=39:7:39:8, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=444, end=452, position=40:0:40:8, missing=false, text=''\u1234'']
-      [token=SemicolonToken, start=452, end=453, position=40:8:40:9, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=454, end=463, position=41:0:41:9, missing=false, text=''\u12345'']
-      [token=SemicolonToken, start=463, end=464, position=41:9:41:10, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=465, end=475, position=42:0:42:10, missing=false, text=''\u123456'']
-      [token=SemicolonToken, start=475, end=476, position=42:10:42:11, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=477, end=488, position=43:0:43:11, missing=false, text=''\u1234567'']
-      [token=SemicolonToken, start=488, end=489, position=43:11:43:12, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=CharacterLiteralToken, start=490, end=502, position=44:0:44:12, missing=false, text=''\u12345678'']
-      [token=SemicolonToken, start=502, end=503, position=44:12:44:13, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=504, end=506, position=45:0:45:2, missing=false, text='""']
-      [token=SemicolonToken, start=506, end=507, position=45:2:45:3, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=508, end=511, position=46:0:46:3, missing=false, text='" "']
-      [token=SemicolonToken, start=511, end=512, position=46:3:46:4, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=513, end=517, position=47:0:47:4, missing=false, text='"\t"']
-      [token=SemicolonToken, start=517, end=518, position=47:4:47:5, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=519, end=525, position=48:0:48:6, missing=false, text='"\n\n"']
-      [token=SemicolonToken, start=525, end=526, position=48:6:48:7, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=527, end=531, position=49:0:49:4, missing=false, text='"\n"']
-      [token=SemicolonToken, start=531, end=532, position=49:4:49:5, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=533, end=536, position=50:0:50:3, missing=false, text='r""']
-      [token=SemicolonToken, start=536, end=537, position=50:3:50:4, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=538, end=543, position=51:0:51:5, missing=false, text='r#""#']
-      [token=SemicolonToken, start=543, end=544, position=51:5:51:6, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=545, end=552, position=52:0:52:7, missing=false, text='r##""##']
-      [token=SemicolonToken, start=552, end=553, position=52:7:52:8, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=554, end=574, position=53:0:53:20, missing=false, text='r##">>r#"test"#<<"##']
-      [token=SemicolonToken, start=574, end=575, position=53:20:53:21, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=576, end=616, position=54:0:54:40, missing=false, text='r###"here's a long string"# "# "##; "###']
-      [token=SemicolonToken, start=616, end=617, position=54:40:54:41, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=618, end=627, position=55:0:55:9, missing=false, text='r#"abc"##']
-      [token=SemicolonToken, start=627, end=628, position=55:9:55:10, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=629, end=637, position=56:0:56:8, missing=false, text='r#"def"#']
-      [token=SemicolonToken, start=637, end=638, position=56:8:56:9, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=639, end=656, position=57:0:58:6, missing=false, text='r##"ghi"#;
-r#""##']
-      [token=SemicolonToken, start=656, end=657, position=58:6:58:7, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=658, end=668, position=59:0:60:5, missing=false, text='r#";
-"####']
-      [token=SemicolonToken, start=668, end=669, position=60:5:60:6, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=670, end=675, position=61:0:61:5, missing=false, text='r""##']
-      [token=SemicolonToken, start=675, end=676, position=61:5:61:6, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=LiteralExpressionSyntax]
-          [token=StringLiteralToken, start=677, end=720, position=62:0:66:3, missing=false, text='r#" string literal goes on;
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <0:8> [0:0:0:8] 'u8"test"'
+   SemicolonToken <8:9> [0:8:0:9] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <10:21> [1:0:1:11] 'u8r#"test"#'
+   SemicolonToken <21:22> [1:11:1:12] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <23:32> [2:0:2:9] 'u16"test"'
+   SemicolonToken <32:33> [2:9:2:10] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <34:48> [3:0:3:14] 'u16r##"test"##'
+   SemicolonToken <48:49> [3:14:3:15] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <50:59> [4:0:4:9] 'u32"test"'
+   SemicolonToken <59:60> [4:9:4:10] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <61:77> [5:0:5:16] 'u32r###"test"###'
+   SemicolonToken <77:78> [5:16:5:17] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <79:81> [6:0:6:2] ''''
+   SemicolonToken <81:82> [6:2:6:3] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <83:86> [7:0:7:3] '' ''
+   SemicolonToken <86:87> [7:3:7:4] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <88:94> [8:0:8:6] ''    ''
+   SemicolonToken <94:95> [8:6:8:7] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <96:108> [9:0:9:12] ''          ''
+   SemicolonToken <108:109> [9:12:9:13] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <110:116> [10:0:10:6] ''😂''
+   SemicolonToken <116:117> [10:6:10:7] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <118:126> [11:0:11:8] ''❤️''
+   SemicolonToken <126:127> [11:8:11:9] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <128:134> [12:0:12:6] ''🌍''
+   SemicolonToken <134:135> [12:6:12:7] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <136:143> [13:0:13:7] ''\u{1}''
+   SemicolonToken <143:144> [13:7:13:8] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <145:153> [14:0:14:8] ''\u{12}''
+   SemicolonToken <153:154> [14:8:14:9] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <155:164> [15:0:15:9] ''\u{123}''
+   SemicolonToken <164:165> [15:9:15:10] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <166:176> [16:0:16:10] ''\u{1234}''
+   SemicolonToken <176:177> [16:10:16:11] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <178:189> [17:0:17:11] ''\u{12345}''
+   SemicolonToken <189:190> [17:11:17:12] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <191:203> [18:0:18:12] ''\u{123456}''
+   SemicolonToken <203:204> [18:12:18:13] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <205:218> [19:0:19:13] ''\u{1234567}''
+   SemicolonToken <218:219> [19:13:19:14] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <220:234> [20:0:20:14] ''\u{12345678}''
+   SemicolonToken <234:235> [20:14:20:15] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <236:242> [21:0:21:6] ''\u1}''
+   SemicolonToken <242:243> [21:6:21:7] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <244:251> [22:0:22:7] ''\u12}''
+   SemicolonToken <251:252> [22:7:22:8] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <253:261> [23:0:23:8] ''\u123}''
+   SemicolonToken <261:262> [23:8:23:9] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <263:272> [24:0:24:9] ''\u1234}''
+   SemicolonToken <272:273> [24:9:24:10] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <274:284> [25:0:25:10] ''\u12345}''
+   SemicolonToken <284:285> [25:10:25:11] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <286:297> [26:0:26:11] ''\u123456}''
+   SemicolonToken <297:298> [26:11:26:12] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <299:311> [27:0:27:12] ''\u1234567}''
+   SemicolonToken <311:312> [27:12:27:13] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <313:326> [28:0:28:13] ''\u12345678}''
+   SemicolonToken <326:327> [28:13:28:14] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <328:334> [29:0:29:6] ''\u{1''
+   SemicolonToken <334:335> [29:6:29:7] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <336:343> [30:0:30:7] ''\u{12''
+   SemicolonToken <343:344> [30:7:30:8] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <345:353> [31:0:31:8] ''\u{123''
+   SemicolonToken <353:354> [31:8:31:9] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <355:364> [32:0:32:9] ''\u{1234''
+   SemicolonToken <364:365> [32:9:32:10] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <366:376> [33:0:33:10] ''\u{12345''
+   SemicolonToken <376:377> [33:10:33:11] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <378:389> [34:0:34:11] ''\u{123456''
+   SemicolonToken <389:390> [34:11:34:12] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <391:403> [35:0:35:12] ''\u{1234567''
+   SemicolonToken <403:404> [35:12:35:13] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <405:418> [36:0:36:13] ''\u{12345678''
+   SemicolonToken <418:419> [36:13:36:14] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <420:425> [37:0:37:5] ''\u1''
+   SemicolonToken <425:426> [37:5:37:6] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <427:433> [38:0:38:6] ''\u12''
+   SemicolonToken <433:434> [38:6:38:7] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <435:442> [39:0:39:7] ''\u123''
+   SemicolonToken <442:443> [39:7:39:8] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <444:452> [40:0:40:8] ''\u1234''
+   SemicolonToken <452:453> [40:8:40:9] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <454:463> [41:0:41:9] ''\u12345''
+   SemicolonToken <463:464> [41:9:41:10] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <465:475> [42:0:42:10] ''\u123456''
+   SemicolonToken <475:476> [42:10:42:11] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <477:488> [43:0:43:11] ''\u1234567''
+   SemicolonToken <488:489> [43:11:43:12] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     CharacterLiteralToken <490:502> [44:0:44:12] ''\u12345678''
+   SemicolonToken <502:503> [44:12:44:13] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <504:506> [45:0:45:2] '""'
+   SemicolonToken <506:507> [45:2:45:3] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <508:511> [46:0:46:3] '" "'
+   SemicolonToken <511:512> [46:3:46:4] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <513:517> [47:0:47:4] '"\t"'
+   SemicolonToken <517:518> [47:4:47:5] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <519:525> [48:0:48:6] '"\n\n"'
+   SemicolonToken <525:526> [48:6:48:7] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <527:531> [49:0:49:4] '"\n"'
+   SemicolonToken <531:532> [49:4:49:5] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <533:536> [50:0:50:3] 'r""'
+   SemicolonToken <536:537> [50:3:50:4] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <538:543> [51:0:51:5] 'r#""#'
+   SemicolonToken <543:544> [51:5:51:6] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <545:552> [52:0:52:7] 'r##""##'
+   SemicolonToken <552:553> [52:7:52:8] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <554:574> [53:0:53:20] 'r##">>r#"test"#<<"##'
+   SemicolonToken <574:575> [53:20:53:21] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <576:616> [54:0:54:40] 'r###"here's a long string"# "# "##; "###'
+   SemicolonToken <616:617> [54:40:54:41] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <618:627> [55:0:55:9] 'r#"abc"##'
+   SemicolonToken <627:628> [55:9:55:10] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <629:637> [56:0:56:8] 'r#"def"#'
+   SemicolonToken <637:638> [56:8:56:9] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <639:656> [57:0:58:6] 'r##"ghi"#;
+r#""##'
+   SemicolonToken <656:657> [58:6:58:7] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <658:668> [59:0:60:5] 'r#";
+"####'
+   SemicolonToken <668:669> [60:5:60:6] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <670:675> [61:0:61:5] 'r""##'
+   SemicolonToken <675:676> [61:5:61:6] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    LiteralExpressionSyntax
+     StringLiteralToken <677:720> [62:0:66:3] 'r#" string literal goes on;
 and on;
 ;
 ;
-r"#']
-      [token=SemicolonToken, start=720, end=721, position=66:3:66:4, missing=false, text=';']
-    [node=CodeBlockItemSyntax]
-      [node=ExpressionStatementSyntax]
-        [node=IdentifierNameSyntax]
-          [token=IdentifierToken, start=722, end=723, position=67:0:67:1, missing=false, text='r']
-  [node=UnexpectedNodesSyntax]
-    [node=SyntaxList]
-      [token=HashToken, start=723, end=724, position=67:1:67:2, missing=false, text='#']
-      [token=TildeToken, start=724, end=725, position=67:2:67:3, missing=false, text='~']
-      [token=StringLiteralToken, start=725, end=728, position=67:3:67:6, missing=false, text='"#"']
-      [token=TildeToken, start=728, end=729, position=67:6:67:7, missing=false, text='~']
-      [token=HashToken, start=729, end=730, position=67:7:67:8, missing=false, text='#']
-      [token=SemicolonToken, start=730, end=731, position=67:8:67:9, missing=false, text=';']
-      [token=SemicolonToken, start=732, end=733, position=68:0:68:1, missing=false, text=';']
-  [token=EndOfFileToken, start=734, end=734, position=69:0:69:0, missing=false, text='']
+r"#'
+   SemicolonToken <720:721> [66:3:66:4] ';'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <722:723> [67:0:67:1] 'r'
+ UnexpectedNodesSyntax
+  SyntaxList
+   HashToken <723:724> [67:1:67:2] '#'
+   TildeToken <724:725> [67:2:67:3] '~'
+   StringLiteralToken <725:728> [67:3:67:6] '"#"'
+   TildeToken <728:729> [67:6:67:7] '~'
+   HashToken <729:730> [67:7:67:8] '#'
+   SemicolonToken <730:731> [67:8:67:9] ';'
+   SemicolonToken <732:733> [68:0:68:1] ';'
+ EndOfFileToken <734:734> [69:0:69:0] ''
