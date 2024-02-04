@@ -432,6 +432,7 @@ namespace weave::syntax
         case SyntaxKind::LetKeyword:
         case SyntaxKind::NamespaceKeyword:
         case SyntaxKind::TypeKeyword:
+        case SyntaxKind::EnumKeyword:
         case SyntaxKind::DelegateKeyword:
             return true;
 

@@ -536,6 +536,9 @@ namespace weave::syntax
         case SyntaxKind::TypeKeyword:
             return this->ParseTypeAliasDeclaration(attributes, modifiers);
 
+        case SyntaxKind::EnumKeyword:
+            return this->ParseEnumDeclaration(attributes, modifiers);
+
         default:
             break;
         }
@@ -1959,6 +1962,16 @@ namespace weave::syntax
         return result;
     }
 
+    TupleTypeSyntax* Parser::ParseOptionalTupleType()
+    {
+        if (this->Current()->Kind == SyntaxKind::OpenParenToken)
+        {
+            return this->ParseTupleType();
+        }
+
+        return nullptr;
+    }
+
     TupleTypeElementSyntax* Parser::ParseTupleTypeElement()
     {
         TupleTypeElementSyntax* result = this->_factory->CreateNode<TupleTypeElementSyntax>();
@@ -2097,9 +2110,86 @@ namespace weave::syntax
         return result;
     }
 
+    TypeInheritanceClause* Parser::ParseTypeInheritanceClause()
+    {
+        TypeInheritanceClause* result = this->_factory->CreateNode<TypeInheritanceClause>();
+        result->ColonToken = this->Match(SyntaxKind::ColonToken);
+        result->BaseType = this->ParseType();
+        return result;
+    }
+
+    TypeInheritanceClause* Parser::ParseOptionalTypeInheritanceClause()
+    {
+        if (this->Current()->Kind == SyntaxKind::ColonToken)
+        {
+            return this->ParseTypeInheritanceClause();
+        }
+
+        return nullptr;
+    }
+
+    EnumDeclarationSyntax* Parser::ParseEnumDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
+    {
+        EnumDeclarationSyntax* result = this->_factory->CreateNode<EnumDeclarationSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->EnumKeyword = this->Match(SyntaxKind::EnumKeyword);
+        result->Name = this->ParseIdentifierName();
+        result->GenericParameters = this->ParseOptionalGenericParameters();
+        result->BaseType = this->ParseOptionalTypeInheritanceClause();
+
+        this->MatchUntil(result->OpenBraceToken, result->BeforeOpenBrace, SyntaxKind::OpenBraceToken);
+
+        {
+            std::vector<EnumMemberDeclarationSyntax*> items{};
+
+            while (SyntaxToken* current = this->Current())
+            {
+                if ((current->Kind == SyntaxKind::CloseBraceToken) or (current->Kind == SyntaxKind::EndOfFileToken))
+                {
+                    break;
+                }
+
+                if (EnumMemberDeclarationSyntax* item = this->ParseEnumMemberDeclaration())
+                {
+                    items.push_back(item);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            result->Members = SyntaxListView<EnumMemberDeclarationSyntax>{this->_factory->CreateList(items)};
+        }
+
+        this->MatchUntil(result->CloseBraceToken, result->BeforeCloseBrace, SyntaxKind::CloseBraceToken);
+
+        return result;
+    }
+
+    EnumMemberDeclarationSyntax* Parser::ParseEnumMemberDeclaration()
+    {
+        SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
+
+        if ((attributes.GetNode() != nullptr) or this->Current()->Kind == SyntaxKind::IdentifierToken)
+        {
+            EnumMemberDeclarationSyntax* result = this->_factory->CreateNode<EnumMemberDeclarationSyntax>();
+            result->Attributes = attributes;
+            result->Modifiers = {};
+            result->Identifier = this->Match(SyntaxKind::IdentifierToken);
+            result->Tuple = this->ParseOptionalTupleType();
+            result->Discriminator = this->ParseOptionalInitializerClause();
+            result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+            return result;
+        }
+
+        return nullptr;
+    }
+
     PatternSyntax* Parser::ParsePattern()
     {
-        switch (this->Current()->Kind)  // NOLINT(clang-diagnostic-switch)
+        switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::UnderscoreToken:
             return this->ParseWildcardPattern();

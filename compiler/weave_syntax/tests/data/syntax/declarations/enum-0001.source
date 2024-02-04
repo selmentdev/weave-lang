@@ -1,0 +1,17 @@
+public enum Test : Int32
+{
+    #[Description("None")]
+    None = 0,
+
+    #[Description("Name of element")]
+    Name(String) = 1,
+
+    #[Description("Age of element")]
+    Age(Int32) = 2,
+
+    #[Description("Date of element")]
+    Date(DateTime) = 3,
+
+    #[Description("List of elements")]
+    List([Elements: 16]) = 4,
+}

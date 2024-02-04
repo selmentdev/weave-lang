@@ -318,13 +318,41 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(EnumDeclarationSyntax);
 
     public:
-    };
+        SyntaxToken* EnumKeyword{};
+        NameSyntax* Name{};
+        GenericParametersSyntax* GenericParameters{};
+        TypeInheritanceClause* BaseType{};
 
-    class EnumMemberDeclarationSyntax : public MemberDeclarationSyntax
+        UnexpectedNodesSyntax* BeforeOpenBrace{};
+        SyntaxToken* OpenBraceToken{};
+
+        SyntaxListView<EnumMemberDeclarationSyntax> Members{};
+
+        UnexpectedNodesSyntax* BeforeCloseBrace{};
+        SyntaxToken* CloseBraceToken{};
+
+    public:
+        explicit constexpr EnumDeclarationSyntax()
+            : TypeDeclarationSyntax{SyntaxKind::EnumDeclarationSyntax}
+        {
+        }
+    };;
+
+    class EnumMemberDeclarationSyntax : public DeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(EnumMemberDeclarationSyntax);
 
     public:
+        SyntaxToken* Identifier{};
+        TupleTypeSyntax* Tuple{};
+        InitializerClauseSyntax* Discriminator{};
+        SyntaxToken* TrailingComma{};
+
+    public:
+        explicit constexpr EnumMemberDeclarationSyntax()
+            : DeclarationSyntax{SyntaxKind::EnumMemberDeclarationSyntax}
+        {
+        }
     };
 
     class AttributeTargetSpecifierSyntax : public SyntaxNode
@@ -1696,6 +1724,21 @@ namespace weave::syntax
     public:
         explicit constexpr PatternBindingSyntax()
             : SyntaxNode{SyntaxKind::PatternBindingSyntax}
+        {
+        }
+    };
+
+    class TypeInheritanceClause : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TypeInheritanceClause);
+
+    public:
+        SyntaxToken* ColonToken{};
+        TypeSyntax* BaseType{};
+
+    public:
+        explicit constexpr TypeInheritanceClause()
+            : SyntaxNode{SyntaxKind::TypeInheritanceClause}
         {
         }
     };

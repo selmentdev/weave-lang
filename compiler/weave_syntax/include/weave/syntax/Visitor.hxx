@@ -179,5 +179,8 @@ namespace weave::syntax
         void OnTuplePatternSyntax(TuplePatternSyntax* node) override;
         void OnTuplePatternItemSyntax(TuplePatternItemSyntax* node) override;
         void OnPatternBindingSyntax(PatternBindingSyntax* node) override;
+
+        void OnEnumDeclarationSyntax(EnumDeclarationSyntax* node) override;
+        void OnEnumMemberDeclarationSyntax(EnumMemberDeclarationSyntax* node) override;
     };
 }

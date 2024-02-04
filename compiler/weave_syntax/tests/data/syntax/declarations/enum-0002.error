@@ -1,0 +1,14 @@
+error: Unexpected tokens
+        --> <source>:28:5
+         |
+      28 |     public function Foo() -> bool { return true; }
+         |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:31:11
+         |
+      31 |     Value2,
+         |           ^
+      32 |     // Maybe enum cases should be introduced by a keyword, like `case`?
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      33 | }
+         | ^

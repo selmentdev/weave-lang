@@ -448,6 +448,7 @@ WEAVE_SYNTAX_NODE(ExpressionStatementSyntax,                    "[node:expressio
 WEAVE_SYNTAX_NODE(BlockStatementSyntax,                         "[node:block-statement]")
 WEAVE_SYNTAX_NODE(IfExpressionSyntax,                           "if expression")
 WEAVE_SYNTAX_NODE(ElseClauseSyntax,                             "[node:else-clause]")
+WEAVE_SYNTAX_NODE(TypeInheritanceClause,                        "type inheritance clause")
 WEAVE_SYNTAX_NODE(ReturnStatementSyntax,                        "[node:return-statement]")
 WEAVE_SYNTAX_NODE(EmptyStatementSyntax,                         "[node:empty-statement]")
 WEAVE_SYNTAX_NODE(WhileStatementSyntax,                         "[node:while-statement]")

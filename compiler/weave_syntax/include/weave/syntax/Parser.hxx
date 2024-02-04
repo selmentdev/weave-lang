@@ -342,6 +342,8 @@ namespace weave::syntax
 
         TupleTypeSyntax* ParseTupleType();
 
+        TupleTypeSyntax* ParseOptionalTupleType();
+
         TupleTypeElementSyntax* ParseTupleTypeElement();
 
         struct Label
@@ -361,6 +363,16 @@ namespace weave::syntax
         MatchDefaultClauseSyntax* ParseMatchDefaultClause();
 
         TypeSyntax* ParseArrayOrSliceType();
+
+        TypeInheritanceClause* ParseTypeInheritanceClause();
+
+        TypeInheritanceClause* ParseOptionalTypeInheritanceClause();
+
+        EnumDeclarationSyntax* ParseEnumDeclaration(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
+        EnumMemberDeclarationSyntax* ParseEnumMemberDeclaration();
 
     public:
         PatternSyntax* ParsePattern();

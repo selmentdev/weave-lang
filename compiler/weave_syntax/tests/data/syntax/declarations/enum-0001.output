@@ -1,0 +1,148 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   EnumDeclarationSyntax
+    SyntaxList
+     PublicKeyword <0:6> [0:0:0:6] 'public'
+    EnumKeyword <7:11> [0:7:0:11] 'enum'
+    IdentifierNameSyntax
+     IdentifierToken <12:16> [0:12:0:16] 'Test'
+    TypeInheritanceClause
+    OpenBraceToken <25:26> [1:0:1:1] '{'
+    SyntaxList
+     EnumMemberDeclarationSyntax
+      SyntaxList
+       AttributeListSyntax
+        HashOpenBracketToken <31:33> [2:4:2:6] '#['
+        SyntaxList
+         AttributeSyntax
+          IdentifierNameSyntax
+           IdentifierToken <33:44> [2:6:2:17] 'Description'
+          BalancedTokenSequneceSyntax
+           OpenParenToken <44:45> [2:17:2:18] '('
+           SyntaxList
+            StringLiteralToken <45:51> [2:18:2:24] '"None"'
+           CloseParenToken <51:52> [2:24:2:25] ')'
+        CloseBracketToken <52:53> [2:25:2:26] ']'
+      IdentifierToken <58:62> [3:4:3:8] 'None'
+      InitializerClauseSyntax
+       EqualsToken <63:64> [3:9:3:10] '='
+       LiteralExpressionSyntax
+        IntegerLiteralToken <65:66> [3:11:3:12] '0'
+      CommaToken <66:67> [3:12:3:13] ','
+     EnumMemberDeclarationSyntax
+      SyntaxList
+       AttributeListSyntax
+        HashOpenBracketToken <73:75> [5:4:5:6] '#['
+        SyntaxList
+         AttributeSyntax
+          IdentifierNameSyntax
+           IdentifierToken <75:86> [5:6:5:17] 'Description'
+          BalancedTokenSequneceSyntax
+           OpenParenToken <86:87> [5:17:5:18] '('
+           SyntaxList
+            StringLiteralToken <87:104> [5:18:5:35] '"Name of element"'
+           CloseParenToken <104:105> [5:35:5:36] ')'
+        CloseBracketToken <105:106> [5:36:5:37] ']'
+      IdentifierToken <111:115> [6:4:6:8] 'Name'
+      TupleTypeSyntax
+       OpenParenToken <115:116> [6:8:6:9] '('
+       SyntaxList
+        TupleTypeElementSyntax
+         IdentifierNameSyntax
+          IdentifierToken <116:122> [6:9:6:15] 'String'
+       CloseParenToken <122:123> [6:15:6:16] ')'
+      InitializerClauseSyntax
+       EqualsToken <124:125> [6:17:6:18] '='
+       LiteralExpressionSyntax
+        IntegerLiteralToken <126:127> [6:19:6:20] '1'
+      CommaToken <127:128> [6:20:6:21] ','
+     EnumMemberDeclarationSyntax
+      SyntaxList
+       AttributeListSyntax
+        HashOpenBracketToken <134:136> [8:4:8:6] '#['
+        SyntaxList
+         AttributeSyntax
+          IdentifierNameSyntax
+           IdentifierToken <136:147> [8:6:8:17] 'Description'
+          BalancedTokenSequneceSyntax
+           OpenParenToken <147:148> [8:17:8:18] '('
+           SyntaxList
+            StringLiteralToken <148:164> [8:18:8:34] '"Age of element"'
+           CloseParenToken <164:165> [8:34:8:35] ')'
+        CloseBracketToken <165:166> [8:35:8:36] ']'
+      IdentifierToken <171:174> [9:4:9:7] 'Age'
+      TupleTypeSyntax
+       OpenParenToken <174:175> [9:7:9:8] '('
+       SyntaxList
+        TupleTypeElementSyntax
+         IdentifierNameSyntax
+          IdentifierToken <175:180> [9:8:9:13] 'Int32'
+       CloseParenToken <180:181> [9:13:9:14] ')'
+      InitializerClauseSyntax
+       EqualsToken <182:183> [9:15:9:16] '='
+       LiteralExpressionSyntax
+        IntegerLiteralToken <184:185> [9:17:9:18] '2'
+      CommaToken <185:186> [9:18:9:19] ','
+     EnumMemberDeclarationSyntax
+      SyntaxList
+       AttributeListSyntax
+        HashOpenBracketToken <192:194> [11:4:11:6] '#['
+        SyntaxList
+         AttributeSyntax
+          IdentifierNameSyntax
+           IdentifierToken <194:205> [11:6:11:17] 'Description'
+          BalancedTokenSequneceSyntax
+           OpenParenToken <205:206> [11:17:11:18] '('
+           SyntaxList
+            StringLiteralToken <206:223> [11:18:11:35] '"Date of element"'
+           CloseParenToken <223:224> [11:35:11:36] ')'
+        CloseBracketToken <224:225> [11:36:11:37] ']'
+      IdentifierToken <230:234> [12:4:12:8] 'Date'
+      TupleTypeSyntax
+       OpenParenToken <234:235> [12:8:12:9] '('
+       SyntaxList
+        TupleTypeElementSyntax
+         IdentifierNameSyntax
+          IdentifierToken <235:243> [12:9:12:17] 'DateTime'
+       CloseParenToken <243:244> [12:17:12:18] ')'
+      InitializerClauseSyntax
+       EqualsToken <245:246> [12:19:12:20] '='
+       LiteralExpressionSyntax
+        IntegerLiteralToken <247:248> [12:21:12:22] '3'
+      CommaToken <248:249> [12:22:12:23] ','
+     EnumMemberDeclarationSyntax
+      SyntaxList
+       AttributeListSyntax
+        HashOpenBracketToken <255:257> [14:4:14:6] '#['
+        SyntaxList
+         AttributeSyntax
+          IdentifierNameSyntax
+           IdentifierToken <257:268> [14:6:14:17] 'Description'
+          BalancedTokenSequneceSyntax
+           OpenParenToken <268:269> [14:17:14:18] '('
+           SyntaxList
+            StringLiteralToken <269:287> [14:18:14:36] '"List of elements"'
+           CloseParenToken <287:288> [14:36:14:37] ')'
+        CloseBracketToken <288:289> [14:37:14:38] ']'
+      IdentifierToken <294:298> [15:4:15:8] 'List'
+      TupleTypeSyntax
+       OpenParenToken <298:299> [15:8:15:9] '('
+       SyntaxList
+        TupleTypeElementSyntax
+         ArrayTypeSyntax
+          OpenBracketToken <299:300> [15:9:15:10] '['
+          IdentifierNameSyntax
+           IdentifierToken <300:308> [15:10:15:18] 'Elements'
+          ColonToken <308:309> [15:18:15:19] ':'
+          LiteralExpressionSyntax
+           IntegerLiteralToken <310:312> [15:20:15:22] '16'
+          CloseBracketToken <312:313> [15:22:15:23] ']'
+       CloseParenToken <313:314> [15:23:15:24] ')'
+      InitializerClauseSyntax
+       EqualsToken <315:316> [15:25:15:26] '='
+       LiteralExpressionSyntax
+        IntegerLiteralToken <317:318> [15:27:15:28] '4'
+      CommaToken <318:319> [15:28:15:29] ','
+    CloseBraceToken <320:321> [16:0:16:1] '}'
+ EndOfFileToken <322:322> [17:0:17:0] ''

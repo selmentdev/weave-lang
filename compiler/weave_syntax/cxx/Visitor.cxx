@@ -1267,4 +1267,45 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnEnumDeclarationSyntax(EnumDeclarationSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+
+        this->Dispatch(node->EnumKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->GenericParameters);
+        this->Dispatch(node->BaseType);
+
+        this->Dispatch(node->BeforeOpenBrace);
+        this->Dispatch(node->OpenBraceToken);
+
+        this->Dispatch(node->Members.GetNode());
+
+        this->Dispatch(node->BeforeCloseBrace);
+        this->Dispatch(node->CloseBraceToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnEnumMemberDeclarationSyntax(EnumMemberDeclarationSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->Identifier);
+        this->Dispatch(node->Tuple);
+        this->Dispatch(node->Discriminator);
+        this->Dispatch(node->TrailingComma);
+
+        --this->Depth;
+    }
 }

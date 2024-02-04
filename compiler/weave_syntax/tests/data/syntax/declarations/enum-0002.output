@@ -1,0 +1,134 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   EnumDeclarationSyntax
+    SyntaxList
+     PublicKeyword <0:6> [0:0:0:6] 'public'
+    EnumKeyword <7:11> [0:7:0:11] 'enum'
+    IdentifierNameSyntax
+     IdentifierToken <12:17> [0:12:0:17] 'Empty'
+    OpenBraceToken <18:19> [1:0:1:1] '{'
+    CloseBraceToken <21:22> [3:0:3:1] '}'
+  CodeBlockItemSyntax
+   EnumDeclarationSyntax
+    SyntaxList
+     PublicKeyword <24:30> [5:0:5:6] 'public'
+    EnumKeyword <31:35> [5:7:5:11] 'enum'
+    IdentifierNameSyntax
+     IdentifierToken <36:42> [5:12:5:18] 'Result'
+    GenericParametersSyntax
+     ColonColonOpenBracketToken <42:45> [5:18:5:21] '::['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <45:49> [5:21:5:25] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <50:51> [5:26:5:27] 'T'
+       CommaToken <51:52> [5:27:5:28] ','
+      TypeGenericParameterSyntax
+       TypeKeyword <53:57> [5:29:5:33] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <58:59> [5:34:5:35] 'E'
+     CloseBracketToken <59:60> [5:35:5:36] ']'
+    OpenBraceToken <61:62> [6:0:6:1] '{'
+    SyntaxList
+     EnumMemberDeclarationSyntax
+      IdentifierToken <67:69> [7:4:7:6] 'Ok'
+      TupleTypeSyntax
+       OpenParenToken <69:70> [7:6:7:7] '('
+       SyntaxList
+        TupleTypeElementSyntax
+         IdentifierNameSyntax
+          IdentifierToken <70:71> [7:7:7:8] 'T'
+       CloseParenToken <71:72> [7:8:7:9] ')'
+      CommaToken <72:73> [7:9:7:10] ','
+     EnumMemberDeclarationSyntax
+      IdentifierToken <78:83> [8:4:8:9] 'Error'
+      TupleTypeSyntax
+       OpenParenToken <83:84> [8:9:8:10] '('
+       SyntaxList
+        TupleTypeElementSyntax
+         IdentifierNameSyntax
+          IdentifierToken <84:85> [8:10:8:11] 'E'
+       CloseParenToken <85:86> [8:11:8:12] ')'
+      CommaToken <86:87> [8:12:8:13] ','
+    CloseBraceToken <88:89> [9:0:9:1] '}'
+  CodeBlockItemSyntax
+   EnumDeclarationSyntax
+    SyntaxList
+     PublicKeyword <91:97> [11:0:11:6] 'public'
+    EnumKeyword <98:102> [11:7:11:11] 'enum'
+    IdentifierNameSyntax
+     IdentifierToken <103:111> [11:12:11:20] 'Optional'
+    GenericParametersSyntax
+     ColonColonOpenBracketToken <111:114> [11:20:11:23] '::['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <114:118> [11:23:11:27] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <119:120> [11:28:11:29] 'T'
+     CloseBracketToken <120:121> [11:29:11:30] ']'
+    OpenBraceToken <122:123> [12:0:12:1] '{'
+    SyntaxList
+     EnumMemberDeclarationSyntax
+      IdentifierToken <128:132> [13:4:13:8] 'Some'
+      TupleTypeSyntax
+       OpenParenToken <132:133> [13:8:13:9] '('
+       SyntaxList
+        TupleTypeElementSyntax
+         IdentifierNameSyntax
+          IdentifierToken <133:134> [13:9:13:10] 'T'
+       CloseParenToken <134:135> [13:10:13:11] ')'
+      CommaToken <135:136> [13:11:13:12] ','
+     EnumMemberDeclarationSyntax
+      IdentifierToken <141:145> [14:4:14:8] 'None'
+      CommaToken <145:146> [14:8:14:9] ','
+    CloseBraceToken <147:148> [15:0:15:1] '}'
+  CodeBlockItemSyntax
+   EnumDeclarationSyntax
+    SyntaxList
+     PublicKeyword <150:156> [17:0:17:6] 'public'
+    EnumKeyword <157:161> [17:7:17:11] 'enum'
+    IdentifierNameSyntax
+     IdentifierToken <162:177> [17:12:17:27] 'WithInvalidCase'
+    OpenBraceToken <178:179> [18:0:18:1] '{'
+    SyntaxList
+     EnumMemberDeclarationSyntax
+      IdentifierToken <184:197> [19:4:19:17] 'MissingComma1'
+     EnumMemberDeclarationSyntax
+      IdentifierToken <202:215> [20:4:20:17] 'MissingComma2'
+    CloseBraceToken <216:217> [21:0:21:1] '}'
+  CodeBlockItemSyntax
+   EnumDeclarationSyntax
+    SyntaxList
+     PublicKeyword <219:225> [23:0:23:6] 'public'
+    EnumKeyword <226:230> [23:7:23:11] 'enum'
+    IdentifierNameSyntax
+     IdentifierToken <231:254> [23:12:23:35] 'WithFunctionDeclaration'
+    OpenBraceToken <255:256> [24:0:24:1] '{'
+    SyntaxList
+     EnumMemberDeclarationSyntax
+      IdentifierToken <261:267> [25:4:25:10] 'Value1'
+      CommaToken <267:268> [25:10:25:11] ','
+    UnexpectedNodesSyntax
+     SyntaxList
+      PublicKeyword <274:280> [27:4:27:10] 'public'
+      FunctionKeyword <281:289> [27:11:27:19] 'function'
+      IdentifierToken <290:293> [27:20:27:23] 'Foo'
+      OpenParenToken <293:294> [27:23:27:24] '('
+      CloseParenToken <294:295> [27:24:27:25] ')'
+      MinusGreaterThanToken <296:298> [27:26:27:28] '->'
+      IdentifierToken <299:303> [27:29:27:33] 'bool'
+      OpenBraceToken <304:305> [27:34:27:35] '{'
+      ReturnKeyword <306:312> [27:36:27:42] 'return'
+      TrueKeyword <313:317> [27:43:27:47] 'true'
+      SemicolonToken <317:318> [27:47:27:48] ';'
+    CloseBraceToken <319:320> [27:49:27:50] '}'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IdentifierNameSyntax
+     IdentifierToken <447:453> [30:4:30:10] 'Value2'
+ UnexpectedNodesSyntax
+  SyntaxList
+   CommaToken <453:454> [30:10:30:11] ','
+   CloseBraceToken <527:528> [32:0:32:1] '}'
+ EndOfFileToken <529:529> [33:0:33:0] ''

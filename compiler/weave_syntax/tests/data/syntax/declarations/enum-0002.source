@@ -1,0 +1,33 @@
+public enum Empty
+{
+
+}
+
+public enum Result::[type T, type E]
+{
+    Ok(T),
+    Error(E),
+}
+
+public enum Optional::[type T]
+{
+    Some(T),
+    None,
+}
+
+public enum WithInvalidCase
+{
+    MissingComma1
+    MissingComma2
+}
+
+public enum WithFunctionDeclaration
+{
+    Value1,
+
+    public function Foo() -> bool { return true; }
+
+    // Note: this will be wrongly reported as a declaration; instead it should be still considered as a case of the enum
+    Value2,
+    // Maybe enum cases should be introduced by a keyword, like `case`?
+}
