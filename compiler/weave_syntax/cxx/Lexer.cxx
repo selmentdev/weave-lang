@@ -216,7 +216,7 @@ namespace weave::syntax
                 }
                 else
                 {
-                   token.Kind = SyntaxKind::IdentifierToken;
+                    token.Kind = SyntaxKind::IdentifierToken;
                 }
 
                 token.ContextualKeyword = SyntaxKind::None;

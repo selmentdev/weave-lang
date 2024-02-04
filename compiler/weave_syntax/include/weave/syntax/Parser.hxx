@@ -11,7 +11,6 @@ namespace weave::syntax
     class Parser
     {
     private:
-        source::DiagnosticSink* _diagnostic{};
         SyntaxFactory* _factory{};
         std::vector<SyntaxToken*> _tokens{};
         size_t _index{};

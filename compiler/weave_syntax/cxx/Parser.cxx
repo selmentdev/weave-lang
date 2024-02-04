@@ -18,10 +18,9 @@ namespace weave::syntax
         source::DiagnosticSink* diagnostic,
         SyntaxFactory* factory,
         source::SourceText const& source)
-        : _diagnostic{diagnostic}
-        , _factory{factory}
+        : _factory{factory}
     {
-        Lexer lexer{*this->_diagnostic, source, LexerTriviaMode::All};
+        Lexer lexer{*diagnostic, source, LexerTriviaMode::All};
 
         while (SyntaxToken* token = lexer.Lex(*factory))
         {
@@ -78,22 +77,6 @@ namespace weave::syntax
             return this->Next();
         }
 
-        if (this->Current()->Is(SyntaxKind::EndOfFileToken))
-        {
-            this->_diagnostic->AddError(
-                this->Current()->Source,
-                fmt::format("expected '{}'",
-                    GetSpelling(kind)));
-        }
-        else
-        {
-            this->_diagnostic->AddError(
-                this->Current()->Source,
-                fmt::format("unexpected token '{}', expected '{}'",
-                    GetSpelling(this->Current()->Kind),
-                    GetSpelling(kind)));
-        }
-
         return this->_factory->CreateMissingToken(kind, this->Current()->Source);
     }
 
@@ -124,22 +107,6 @@ namespace weave::syntax
 
         // TODO: If we reached starting depth, then report error and return missing token.
         // TODO: Combine all unexpected tokens into single source range and report them as-error.
-
-        if (this->Current()->Kind != SyntaxKind::EndOfFileToken)
-        {
-            this->_diagnostic->AddError(
-                this->Current()->Source,
-                fmt::format("unexpected token '{}', expected '{}'",
-                    GetSpelling(this->Current()->Kind),
-                    GetSpelling(kind)));
-        }
-        else
-        {
-            this->_diagnostic->AddError(
-                this->Current()->Source,
-                fmt::format("unexpected end of file, expected '{}'",
-                    GetSpelling(kind)));
-        }
 
         return this->_factory->CreateMissingToken(
             kind,
@@ -1459,21 +1426,6 @@ namespace weave::syntax
 
         default:
             ExpressionSyntax* missing = this->CreateMissingIdentifierName();
-
-            if (this->Current()->Kind == SyntaxKind::EndOfFileToken)
-            {
-                this->_diagnostic->AddError(
-                    this->Current()->Source,
-                    "expression expected");
-            }
-            else
-            {
-                this->_diagnostic->AddError(
-                    this->Current()->Source,
-                    fmt::format("invalid expression term '{}'", GetSpelling(this->Current()->Kind)));
-            }
-
-
             return missing;
         }
     }
