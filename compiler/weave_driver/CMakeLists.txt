@@ -22,3 +22,5 @@ set_target_properties(weave_driver PROPERTIES OUTPUT_NAME "weave-driver")
 WEAVE_CXX_FORTIFY_CODE(weave_driver)
 
 add_subdirectory(cxx)
+
+install(TARGETS weave_driver DESTINATION bin)
