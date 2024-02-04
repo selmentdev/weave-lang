@@ -15,6 +15,7 @@ namespace weave::syntax
         case SyntaxKind::ValueKeyword:
         case SyntaxKind::MoveKeyword:
         case SyntaxKind::ParamsKeyword:
+        case SyntaxKind::LazyKeyword:
             return true;
 
         default:
@@ -434,6 +435,7 @@ namespace weave::syntax
         case SyntaxKind::TypeKeyword:
         case SyntaxKind::EnumKeyword:
         case SyntaxKind::DelegateKeyword:
+        case SyntaxKind::ConstKeyword:
             return true;
 
         default:

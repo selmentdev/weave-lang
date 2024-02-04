@@ -30,16 +30,18 @@ SourceFileSyntax
           EqualsToken <89:90> [3:18:3:19] '='
           EvalExpressionSyntax
            EvalKeyword <91:95> [3:20:3:24] 'eval'
-           CodeBlockSyntax
-            OpenBraceToken <96:97> [3:25:3:26] '{'
-            SyntaxList
-             CodeBlockItemSyntax
-              YieldStatementSyntax
-               YieldKeyword <98:103> [3:27:3:32] 'yield'
-               LiteralExpressionSyntax
-                IntegerLiteralToken <104:106> [3:33:3:35] '42'
-              SemicolonToken <106:107> [3:35:3:36] ';'
-            CloseBraceToken <110:111> [3:39:3:40] '}'
+           CodeBlockItemSyntax
+            BlockStatementSyntax
+             CodeBlockSyntax
+              OpenBraceToken <96:97> [3:25:3:26] '{'
+              SyntaxList
+               CodeBlockItemSyntax
+                YieldStatementSyntax
+                 YieldKeyword <98:103> [3:27:3:32] 'yield'
+                 LiteralExpressionSyntax
+                  IntegerLiteralToken <104:106> [3:33:3:35] '42'
+                SemicolonToken <106:107> [3:35:3:36] ';'
+              CloseBraceToken <110:111> [3:39:3:40] '}'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <116:119> [4:4:4:7] 'let'
@@ -55,16 +57,18 @@ SourceFileSyntax
           EqualsToken <130:131> [4:18:4:19] '='
           EvalExpressionSyntax
            EvalKeyword <132:136> [4:20:4:24] 'eval'
-           CodeBlockSyntax
-            OpenBraceToken <137:138> [4:25:4:26] '{'
-            SyntaxList
-             CodeBlockItemSyntax
-              YieldStatementSyntax
-               YieldKeyword <139:144> [4:27:4:32] 'yield'
-               LiteralExpressionSyntax
-                IntegerLiteralToken <145:149> [4:33:4:37] '2137'
-              SemicolonToken <149:150> [4:37:4:38] ';'
-            CloseBraceToken <151:152> [4:39:4:40] '}'
+           CodeBlockItemSyntax
+            BlockStatementSyntax
+             CodeBlockSyntax
+              OpenBraceToken <137:138> [4:25:4:26] '{'
+              SyntaxList
+               CodeBlockItemSyntax
+                YieldStatementSyntax
+                 YieldKeyword <139:144> [4:27:4:32] 'yield'
+                 LiteralExpressionSyntax
+                  IntegerLiteralToken <145:149> [4:33:4:37] '2137'
+                SemicolonToken <149:150> [4:37:4:38] ';'
+              CloseBraceToken <151:152> [4:39:4:40] '}'
       CodeBlockItemSyntax
        ReturnStatementSyntax
         ReturnKeyword <158:164> [6:4:6:10] 'return'

@@ -1,0 +1,11 @@
+// const without type and initializer
+public const X;
+
+// const with type but not initializer
+public const Y : Int32;
+
+// const without type but with initializer
+public const Z = 42;
+
+// const with type and initializer
+public const W : Int32 = 42;

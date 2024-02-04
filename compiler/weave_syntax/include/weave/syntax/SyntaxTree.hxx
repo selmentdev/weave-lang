@@ -1343,6 +1343,21 @@ namespace weave::syntax
         }
     };
 
+    class LazyStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(LazyStatementSyntax);
+
+    public:
+        SyntaxToken* LazyKeyword{};
+        CodeBlockSyntax* Body{};
+
+    public:
+        explicit constexpr LazyStatementSyntax()
+            : StatementSyntax{SyntaxKind::LazyStatementSyntax}
+        {
+        }
+    };
+
     class UnexpectedNodesSyntax : public SyntaxNode
     {
     public:
@@ -1522,7 +1537,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* EvalKeyword{};
-        CodeBlockSyntax* Body{};
+        CodeBlockItemSyntax* Body{};
 
     public:
         explicit constexpr EvalExpressionSyntax()

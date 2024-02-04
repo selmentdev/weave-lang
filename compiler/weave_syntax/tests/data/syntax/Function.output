@@ -944,40 +944,83 @@ SourceFileSyntax
     CodeBlockSyntax
      OpenBraceToken <1730:1731> [73:11:73:12] '{'
      CloseBraceToken <1731:1732> [73:12:73:13] '}'
- UnexpectedNodesSyntax
-  SyntaxList
-   ConstKeyword <1734:1739> [75:0:75:5] 'const'
-   IdentifierToken <1740:1741> [75:6:75:7] 'x'
-   EqualsToken <1742:1743> [75:8:75:9] '='
-   IntegerLiteralToken <1744:1746> [75:10:75:12] '42'
-   NamespaceKeyword <1748:1757> [77:0:77:9] 'namespace'
-   NamespaceKeyword <1758:1767> [77:10:77:19] 'namespace'
-   CloseBraceToken <1768:1769> [77:20:77:21] '}'
-   NamespaceKeyword <1771:1780> [79:0:79:9] 'namespace'
-   IdentifierToken <1781:1782> [79:10:79:11] 'X'
-   OpenBraceToken <1783:1784> [79:12:79:13] '{'
-   NamespaceKeyword <1789:1798> [80:4:80:13] 'namespace'
-   IdentifierToken <1799:1800> [80:14:80:15] 'Y'
-   OpenBraceToken <1801:1802> [80:16:80:17] '{'
-   NamespaceKeyword <1811:1820> [81:8:81:17] 'namespace'
-   IdentifierToken <1821:1822> [81:18:81:19] 'Z'
-   OpenBraceToken <1823:1824> [81:20:81:21] '{'
-   FunctionKeyword <1837:1845> [82:12:82:20] 'function'
-   IdentifierToken <1846:1847> [82:21:82:22] 'W'
-   OpenParenToken <1847:1848> [82:22:82:23] '('
-   CloseParenToken <1848:1849> [82:23:82:24] ')'
-   OpenBraceToken <1850:1851> [82:25:82:26] '{'
-   ColonToken <1851:1852> [82:26:82:27] ':'
-   IdentifierToken <1852:1853> [82:27:82:28] 'z'
-   EqualsToken <1853:1854> [82:28:82:29] '='
-   IdentifierToken <1855:1856> [82:30:82:31] 'a'
-   IdentifierToken <1857:1858> [82:32:82:33] 'b'
-   IdentifierToken <1859:1860> [82:34:82:35] 'c'
-   IntegerLiteralToken <1861:1862> [82:36:82:37] '4'
-   IdentifierToken <1875:1876> [83:12:83:13] 'R'
-   IdentifierToken <1889:1890> [84:12:84:13] 'U'
-   IdentifierToken <1910:1911> [92:12:92:13] 'S'
-   IdentifierToken <1924:1925> [93:12:93:13] 'T'
-   NamespaceKeyword <1938:1947> [94:12:94:21] 'namespace'
-   SemicolonToken <1947:1948> [94:21:94:22] ';'
+  CodeBlockItemSyntax
+   ConstantDeclarationSyntax
+    ConstKeyword <1734:1739> [75:0:75:5] 'const'
+    IdentifierNameSyntax
+     IdentifierToken <1740:1741> [75:6:75:7] 'x'
+    InitializerClauseSyntax
+     EqualsToken <1742:1743> [75:8:75:9] '='
+     LiteralExpressionSyntax
+      IntegerLiteralToken <1744:1746> [75:10:75:12] '42'
+  CodeBlockItemSyntax
+   NamespaceDeclarationSyntax
+    NamespaceKeyword <1748:1757> [77:0:77:9] 'namespace'
+    IdentifierNameSyntax
+     IdentifierToken <1758:1767> [77:10:77:19] missing ''
+    CodeBlockSyntax
+     OpenBraceToken <1758:1767> [77:10:77:19] missing ''
+     SyntaxList
+      CodeBlockItemSyntax
+       NamespaceDeclarationSyntax
+        NamespaceKeyword <1758:1767> [77:10:77:19] 'namespace'
+        IdentifierNameSyntax
+         IdentifierToken <1768:1769> [77:20:77:21] missing ''
+        CodeBlockSyntax
+         OpenBraceToken <1768:1769> [77:20:77:21] missing ''
+         CloseBraceToken <1768:1769> [77:20:77:21] '}'
+      CodeBlockItemSyntax
+       NamespaceDeclarationSyntax
+        NamespaceKeyword <1771:1780> [79:0:79:9] 'namespace'
+        IdentifierNameSyntax
+         IdentifierToken <1781:1782> [79:10:79:11] 'X'
+        CodeBlockSyntax
+         OpenBraceToken <1783:1784> [79:12:79:13] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           NamespaceDeclarationSyntax
+            NamespaceKeyword <1789:1798> [80:4:80:13] 'namespace'
+            IdentifierNameSyntax
+             IdentifierToken <1799:1800> [80:14:80:15] 'Y'
+            CodeBlockSyntax
+             OpenBraceToken <1801:1802> [80:16:80:17] '{'
+             SyntaxList
+              CodeBlockItemSyntax
+               NamespaceDeclarationSyntax
+                NamespaceKeyword <1811:1820> [81:8:81:17] 'namespace'
+                IdentifierNameSyntax
+                 IdentifierToken <1821:1822> [81:18:81:19] 'Z'
+                CodeBlockSyntax
+                 OpenBraceToken <1823:1824> [81:20:81:21] '{'
+                 SyntaxList
+                  CodeBlockItemSyntax
+                   FunctionDeclarationSyntax
+                    FunctionKeyword <1837:1845> [82:12:82:20] 'function'
+                    IdentifierNameSyntax
+                     IdentifierToken <1846:1847> [82:21:82:22] 'W'
+                    ParameterListSyntax
+                     OpenParenToken <1847:1848> [82:22:82:23] '('
+                     CloseParenToken <1848:1849> [82:23:82:24] ')'
+                    CodeBlockSyntax
+                     OpenBraceToken <1850:1851> [82:25:82:26] '{'
+                     UnexpectedNodesSyntax
+                      SyntaxList
+                       ColonToken <1851:1852> [82:26:82:27] ':'
+                       IdentifierToken <1852:1853> [82:27:82:28] 'z'
+                       EqualsToken <1853:1854> [82:28:82:29] '='
+                       IdentifierToken <1855:1856> [82:30:82:31] 'a'
+                       IdentifierToken <1857:1858> [82:32:82:33] 'b'
+                       IdentifierToken <1859:1860> [82:34:82:35] 'c'
+                       IntegerLiteralToken <1861:1862> [82:36:82:37] '4'
+                       IdentifierToken <1875:1876> [83:12:83:13] 'R'
+                       IdentifierToken <1889:1890> [84:12:84:13] 'U'
+                       IdentifierToken <1910:1911> [92:12:92:13] 'S'
+                       IdentifierToken <1924:1925> [93:12:93:13] 'T'
+                       NamespaceKeyword <1938:1947> [94:12:94:21] 'namespace'
+                       SemicolonToken <1947:1948> [94:21:94:22] ';'
+                     CloseBraceToken <1970:1970> [95:0:95:0] missing ''
+                 CloseBraceToken <1970:1970> [95:0:95:0] missing ''
+             CloseBraceToken <1970:1970> [95:0:95:0] missing ''
+         CloseBraceToken <1970:1970> [95:0:95:0] missing ''
+     CloseBraceToken <1970:1970> [95:0:95:0] missing ''
  EndOfFileToken <1970:1970> [95:0:95:0] ''

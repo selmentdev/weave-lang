@@ -1,0 +1,67 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    SyntaxList
+     PublicKeyword <0:6> [0:0:0:6] 'public'
+    FunctionKeyword <7:15> [0:7:0:15] 'function'
+    IdentifierNameSyntax
+     IdentifierToken <16:43> [0:16:0:43] 'LazyArgumentsAndExpressions'
+    ParameterListSyntax
+     OpenParenToken <43:44> [0:43:0:44] '('
+     SyntaxList
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <50:57> [1:4:1:11] 'process'
+       TypeClauseSyntax
+        ColonToken <57:58> [1:11:1:12] ':'
+        IdentifierNameSyntax
+         IdentifierToken <59:63> [1:13:1:17] 'bool'
+       CommaToken <63:64> [1:17:1:18] ','
+      ParameterSyntax
+       SyntaxList
+        LazyKeyword <70:74> [2:4:2:8] 'lazy'
+       IdentifierNameSyntax
+        IdentifierToken <75:76> [2:9:2:10] 'x'
+       TypeClauseSyntax
+        ColonToken <76:77> [2:10:2:11] ':'
+        IdentifierNameSyntax
+         IdentifierToken <78:83> [2:12:2:17] 'Int32'
+     CloseParenToken <85:86> [3:0:3:1] ')'
+    ReturnTypeClauseSyntax
+     MinusGreaterThanToken <87:89> [3:2:3:4] '->'
+     TupleTypeSyntax
+      OpenParenToken <90:91> [3:5:3:6] '('
+      CloseParenToken <91:92> [3:6:3:7] ')'
+    CodeBlockSyntax
+     OpenBraceToken <94:95> [4:0:4:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        IfExpressionSyntax
+         IfKeyword <101:103> [5:4:5:6] 'if'
+         IdentifierNameSyntax
+          IdentifierToken <104:111> [5:7:5:14] 'process'
+         CodeBlockSyntax
+          OpenBraceToken <112:113> [5:15:5:16] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              IdentifierNameSyntax
+               IdentifierToken <123:130> [6:8:6:15] 'Consume'
+              ArgumentListSyntax
+               OpenParenToken <130:131> [6:15:6:16] '('
+               SyntaxList
+                ArgumentSyntax
+                 EvalExpressionSyntax
+                  EvalKeyword <131:135> [6:16:6:20] 'eval'
+                  CodeBlockItemSyntax
+                   ExpressionStatementSyntax
+                    IdentifierNameSyntax
+                     IdentifierToken <136:137> [6:21:6:22] 'x'
+               CloseParenToken <137:138> [6:22:6:23] ')'
+            SemicolonToken <138:139> [6:23:6:24] ';'
+          CloseBraceToken <145:146> [7:4:7:5] '}'
+     CloseBraceToken <148:149> [8:0:8:1] '}'
+ EndOfFileToken <151:151> [9:0:9:0] ''

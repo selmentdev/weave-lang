@@ -151,17 +151,19 @@ SourceFileSyntax
           CloseBracketToken <434:435> [11:19:11:20] ']'
         EvalExpressionSyntax
          EvalKeyword <436:440> [11:21:11:25] 'eval'
-         CodeBlockSyntax
-          OpenBraceToken <441:442> [11:26:11:27] '{'
-          SyntaxList
-           CodeBlockItemSyntax
-            YieldStatementSyntax
-             YieldKeyword <443:448> [11:28:11:33] 'yield'
-             LiteralExpressionSyntax
-              IntegerLiteralToken <449:451> [11:34:11:36] '42'
-            SemicolonToken <451:452> [11:36:11:37] ';'
-          CloseBraceToken <453:454> [11:38:11:39] '}'
-       SemicolonToken <454:455> [11:39:11:40] ';'
+         CodeBlockItemSyntax
+          BlockStatementSyntax
+           CodeBlockSyntax
+            OpenBraceToken <441:442> [11:26:11:27] '{'
+            SyntaxList
+             CodeBlockItemSyntax
+              YieldStatementSyntax
+               YieldKeyword <443:448> [11:28:11:33] 'yield'
+               LiteralExpressionSyntax
+                IntegerLiteralToken <449:451> [11:34:11:36] '42'
+              SemicolonToken <451:452> [11:36:11:37] ';'
+            CloseBraceToken <453:454> [11:38:11:39] '}'
+          SemicolonToken <454:455> [11:39:11:40] ';'
      CloseBraceToken <456:457> [12:0:12:1] '}'
   CodeBlockItemSyntax
    VariableDeclarationSyntax

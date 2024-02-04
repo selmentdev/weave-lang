@@ -174,6 +174,10 @@ namespace weave::syntax
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);
 
+        ConstantDeclarationSyntax* ParseConstantDeclaration(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
         DeclarationSyntax* ParseDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);
@@ -200,6 +204,9 @@ namespace weave::syntax
             SyntaxListView<AttributeListSyntax> attributes);
 
         UnsafeStatementSyntax* ParseUnsafeStatement(
+            SyntaxListView<AttributeListSyntax> attributes);
+
+        LazyStatementSyntax* ParseLazyStatement(
             SyntaxListView<AttributeListSyntax> attributes);
 
         ParameterListSyntax* ParseParameterList();

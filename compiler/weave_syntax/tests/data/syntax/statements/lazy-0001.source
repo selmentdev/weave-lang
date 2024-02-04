@@ -1,0 +1,9 @@
+public function LazyArgumentsAndExpressions(
+    process: bool,
+    lazy x: Int32
+) -> ()
+{
+    if process {
+        Consume(eval x);
+    }
+}

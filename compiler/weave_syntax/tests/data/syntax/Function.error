@@ -23,15 +23,35 @@ error: Unexpected tokens
          |
       72 | function EndOfFileDuringStatement() { =42: a=5;}
          |                                          ^^^^^^
-error: Unexpected tokens
-        --> <source>:76:1
+error: Expected '[token:identifier]'
+        --> <source>:78:11
          |
-      76 | const x = 42
-         | ^^^^^^^^^^^^
-      77 | 
-         | 
       78 | namespace namespace }
-         | ^^^^^^^^^^^^^^^^^^^^^
+         |           ^^^^^^^^^
+error: Expected '{'
+        --> <source>:78:11
+         |
+      78 | namespace namespace }
+         |           ^^^^^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:78:21
+         |
+      78 | namespace namespace }
+         |                     ^
+error: Expected '{'
+        --> <source>:78:21
+         |
+      78 | namespace namespace }
+         |                     ^
+error: Unexpected tokens
+        --> <source>:83:27
+         |
+      83 |             function W() {:z= a b c 4
+         |                           ^^^^^^^^^^^
+      84 |             R
+         | ^^^^^^^^^^^^^
+      85 |             U
+         | ^^^^^^^^^^^^^
      ... |
       93 |             S
          | ^^^^^^^^^^^^^
@@ -39,3 +59,28 @@ error: Unexpected tokens
          | ^^^^^^^^^^^^^
       95 |             namespace; // this is commentos
          | ^^^^^^^^^^^^^^^^^^^^^^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^
+error: Expected '}'
+        --> <source>:96:1
+         |
+      96 | 
+         | ^

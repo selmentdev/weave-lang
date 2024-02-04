@@ -484,6 +484,7 @@ WEAVE_SYNTAX_NODE(LoopStatementSyntax,                          "loop statement"
 WEAVE_SYNTAX_NODE(CheckedStatementSyntax,                       "checked statement")
 WEAVE_SYNTAX_NODE(UncheckedStatementSyntax,                     "unchecked statement")
 WEAVE_SYNTAX_NODE(UnsafeStatementSyntax,                        "unsafe statement")
+WEAVE_SYNTAX_NODE(LazyStatementSyntax,                          "lazy statement")
 WEAVE_SYNTAX_NODE(StructExpressionSyntax,                       "struct expression")
 WEAVE_SYNTAX_NODE(PatternBindingSyntax,                         "pattern binding")
 WEAVE_SYNTAX_NODE(WildcardPatternSyntax,                        "wildcard pattern")

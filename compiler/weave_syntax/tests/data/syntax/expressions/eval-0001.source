@@ -22,3 +22,30 @@ public function ExampleEval(
         }
     };
 }
+
+public function Degenerated(
+    x: Int32,
+    y: Int32,
+    z: Int32,
+    w: Int32
+) -> Int32
+{
+    return eval yield x + eval yield y * eval yield z - eval yield w;
+}
+
+public function Degenerated2(
+    x: Int32,
+    y: Int32,
+    z: Int32,
+    w: Int32
+) -> Int32
+{
+    if eval { yield x } + eval { yield y }
+    {
+        return eval { yield z } - eval { yield w };
+    }
+    else
+    {
+        return eval { yield z } * eval { yield w };
+    }
+}

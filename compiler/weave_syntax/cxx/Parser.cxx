@@ -469,6 +469,18 @@ namespace weave::syntax
         return result;
     }
 
+    ConstantDeclarationSyntax* Parser::ParseConstantDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
+    {
+        ConstantDeclarationSyntax* result = this->_factory->CreateNode<ConstantDeclarationSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->ConstKeyword = this->Match(SyntaxKind::ConstKeyword);
+        result->Name = this->ParseIdentifierName();
+        result->Type = this->ParseOptionalTypeClause();
+        result->Initializer = this->ParseOptionalInitializerClause();
+        return result;
+    }
+
     DeclarationSyntax* Parser::ParseDeclaration(
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
@@ -487,6 +499,9 @@ namespace weave::syntax
         case SyntaxKind::VarKeyword:
         case SyntaxKind::LetKeyword:
             return this->ParseVariableDeclaration(attributes, modifiers);
+
+        case SyntaxKind::ConstKeyword:
+            return this->ParseConstantDeclaration(attributes, modifiers);
 
         case SyntaxKind::StructKeyword:
             return this->ParseStructDeclaration(attributes, modifiers);
@@ -554,6 +569,9 @@ namespace weave::syntax
         case SyntaxKind::UnsafeKeyword:
             return this->ParseUnsafeStatement(attributes);
 
+        case SyntaxKind::LazyKeyword:
+            return this->ParseLazyStatement(attributes);
+
         default:
             break;
         }
@@ -578,7 +596,8 @@ namespace weave::syntax
         return result;
     }
 
-    YieldStatementSyntax* Parser::ParseYieldStatement(SyntaxListView<AttributeListSyntax> attributes)
+    YieldStatementSyntax* Parser::ParseYieldStatement(
+        SyntaxListView<AttributeListSyntax> attributes)
     {
         YieldStatementSyntax* result = this->_factory->CreateNode<YieldStatementSyntax>();
         result->Attributes = attributes;
@@ -633,6 +652,15 @@ namespace weave::syntax
         UnsafeStatementSyntax* result = this->_factory->CreateNode<UnsafeStatementSyntax>();
         result->Attributes = attributes;
         result->UnsafeKeyword = this->Match(SyntaxKind::UnsafeKeyword);
+        result->Body = this->ParseCodeBlock();
+        return result;
+    }
+
+    LazyStatementSyntax* Parser::ParseLazyStatement(SyntaxListView<AttributeListSyntax> attributes)
+    {
+        LazyStatementSyntax* result = this->_factory->CreateNode<LazyStatementSyntax>();
+        result->Attributes = attributes;
+        result->LazyKeyword = this->Match(SyntaxKind::LazyKeyword);
         result->Body = this->ParseCodeBlock();
         return result;
     }
@@ -1161,7 +1189,7 @@ namespace weave::syntax
     {
         EvalExpressionSyntax* result = this->_factory->CreateNode<EvalExpressionSyntax>();
         result->EvalKeyword = this->Match(SyntaxKind::EvalKeyword);
-        result->Body = this->ParseCodeBlock();
+        result->Body = this->ParseCodeBlockItem();
         return result;
     }
 
