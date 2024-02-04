@@ -26,7 +26,7 @@ namespace weave::syntax
         {
             this->_tokens.push_back(token);
 
-            if (token->Is(SyntaxKind::EndOfFileToken) or token->Is(SyntaxKind::None))
+            if ((token->Kind == SyntaxKind::EndOfFileToken) or (token->Kind == SyntaxKind::None))
             {
                 break;
             }
@@ -72,7 +72,7 @@ namespace weave::syntax
 
     SyntaxToken* Parser::Match(SyntaxKind kind)
     {
-        if (this->Current()->Is(kind))
+        if (this->Current()->Kind == kind)
         {
             return this->Next();
         }
@@ -82,7 +82,7 @@ namespace weave::syntax
 
     SyntaxToken* Parser::TryMatch(SyntaxKind kind)
     {
-        if (this->Current()->Is(kind))
+        if (this->Current()->Kind == kind)
         {
             return this->Next();
         }
@@ -95,12 +95,12 @@ namespace weave::syntax
         unexpected.clear();
 
         // TODO: Process tokens until started depth is reached. This way we won't process whole file as-is.
-        while ((not this->Current()->Is(kind)) and (not this->Current()->Is(SyntaxKind::EndOfFileToken)))
+        while ((this->Current()->Kind != kind) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
         {
             unexpected.push_back(this->Next());
         }
 
-        if (this->Current()->Is(kind))
+        if (this->Current()->Kind == kind)
         {
             return this->Next();
         }
@@ -132,12 +132,12 @@ namespace weave::syntax
         // TODO:    Process tokens until started depth is reached. This way we won't process whole file as-is.
         //          For example, when matching ')' token we might get out of parent scope by matching '}'.
 
-        while ((not this->Current()->Is(kind)) and (not this->Current()->Is(SyntaxKind::EndOfFileToken)))
+        while ((this->Current()->Kind != kind) and (this->Current()->Kind != SyntaxKind::EndOfFileToken))
         {
             nodes.push_back(this->Next());
         }
 
-        if (this->Current()->Is(kind))
+        if (this->Current()->Kind == kind)
         {
             matched = this->Next();
         }
@@ -168,14 +168,14 @@ namespace weave::syntax
 
         while (SyntaxToken const* current = this->Current())
         {
-            if (current->Is(SyntaxKind::CloseBraceToken))
+            if (current->Kind == SyntaxKind::CloseBraceToken)
             {
                 if (not global)
                 {
                     break;
                 }
             }
-            else if (current->Is(SyntaxKind::EndOfFileToken))
+            else if (current->Kind == SyntaxKind::EndOfFileToken)
             {
                 break;
             }
@@ -363,11 +363,11 @@ namespace weave::syntax
 
         result->ReturnType = this->ParseOptionalReturnTypeClause();
 
-        if (this->Current()->Is(SyntaxKind::OpenBraceToken))
+        if (this->Current()->Kind == SyntaxKind::OpenBraceToken)
         {
             result->Body = this->ParseCodeBlock();
         }
-        else if (this->Current()->Is(SyntaxKind::EqualsGreaterThanToken))
+        else if (this->Current()->Kind == SyntaxKind::EqualsGreaterThanToken)
         {
             result->ExpressionBody = this->ParseArrowExpressionClause();
         }
@@ -842,7 +842,7 @@ namespace weave::syntax
 
     AttributeSyntax* Parser::ParseAttribute()
     {
-        if (this->Current()->Is(SyntaxKind::IdentifierToken))
+        if (this->Current()->Kind == SyntaxKind::IdentifierToken)
         {
             AttributeSyntax* result = this->_factory->CreateNode<AttributeSyntax>();
             result->Name = this->ParseQualifiedName();
@@ -900,7 +900,7 @@ namespace weave::syntax
 
     ReturnTypeClauseSyntax* Parser::ParseOptionalReturnTypeClause()
     {
-        if (this->Current()->Is(SyntaxKind::MinusGreaterThanToken))
+        if (this->Current()->Kind == SyntaxKind::MinusGreaterThanToken)
         {
             return this->ParseReturnTypeClause();
         }
@@ -929,7 +929,7 @@ namespace weave::syntax
 
     TypeClauseSyntax* Parser::ParseOptionalTypeClause()
     {
-        if (this->Current()->Is(SyntaxKind::ColonToken))
+        if (this->Current()->Kind == SyntaxKind::ColonToken)
         {
             return this->ParseTypeClause();
         }
@@ -970,7 +970,7 @@ namespace weave::syntax
 
     InitializerClauseSyntax* Parser::ParseOptionalInitializerClause()
     {
-        if (this->Current()->Is(SyntaxKind::EqualsToken))
+        if (this->Current()->Kind == SyntaxKind::EqualsToken)
         {
             return this->ParseInitializerClause();
         }
@@ -1604,7 +1604,7 @@ namespace weave::syntax
 
     ExpressionSyntax* Parser::ParseBooleanLiteral()
     {
-        bool const isTrue = this->Current()->Is(SyntaxKind::TrueKeyword);
+        bool const isTrue = this->Current()->Kind == SyntaxKind::TrueKeyword;
 
         SyntaxToken* literalToken = isTrue ? this->Match(SyntaxKind::TrueKeyword) : this->Match(SyntaxKind::FalseKeyword);
 
@@ -1734,7 +1734,7 @@ namespace weave::syntax
         SyntaxToken* tokenReturn = this->Match(SyntaxKind::ReturnKeyword);
         ExpressionSyntax* expression = nullptr;
 
-        if (not this->Current()->Is(SyntaxKind::SemicolonToken))
+        if (this->Current()->Kind != SyntaxKind::SemicolonToken)
         {
             expression = this->ParseExpression();
         }
