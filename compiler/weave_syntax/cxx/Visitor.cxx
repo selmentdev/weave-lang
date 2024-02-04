@@ -474,6 +474,7 @@ namespace weave::syntax
 
         this->Dispatch(node->ElseKeyword);
         this->Dispatch(node->Body);
+        this->Dispatch(node->Continuation);
 
         --this->Depth;
     }

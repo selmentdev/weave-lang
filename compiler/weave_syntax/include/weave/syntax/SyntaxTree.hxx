@@ -1168,7 +1168,7 @@ namespace weave::syntax
         SyntaxToken* IfKeyword{};
         SyntaxListView<AttributeListSyntax> ConditionAttributes{};
         ExpressionSyntax* Condition{};
-        SyntaxNode* Body{};
+        CodeBlockSyntax* Body{};
         ElseClauseSyntax* ElseClause{};
 
     public:
@@ -1184,7 +1184,8 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ElseKeyword{};
-        SyntaxNode* Body{};
+        IfExpressionSyntax* Continuation{};
+        CodeBlockSyntax* Body{};
 
     public:
         explicit constexpr ElseClauseSyntax()
@@ -1201,7 +1202,7 @@ namespace weave::syntax
         SyntaxToken* WhileKeyword{};
         SyntaxListView<AttributeListSyntax> ConditionAttributes{};
         ExpressionSyntax* Condition{};
-        SyntaxNode* Body{};
+        CodeBlockSyntax* Body{};
 
     public:
         explicit constexpr WhileStatementSyntax()
@@ -1541,7 +1542,7 @@ namespace weave::syntax
         SyntaxToken* CaseKeyword{};
         PatternSyntax* Pattern{};
         SyntaxToken* ColonToken{};
-        StatementSyntax* Body{};
+        CodeBlockItemSyntax* Body{};
         SyntaxToken* TrailingSemicolon{};
 
     public:
@@ -1558,7 +1559,7 @@ namespace weave::syntax
     public:
         SyntaxToken* DefaultKeyword{};
         SyntaxToken* ColonToken{};
-        StatementSyntax* Body{};
+        CodeBlockItemSyntax* Body{};
         SyntaxToken* TrailingSemicolon{};
 
     public:

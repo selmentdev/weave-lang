@@ -1757,9 +1757,16 @@ namespace weave::syntax
         {
             ElseClauseSyntax* result = this->_factory->CreateNode<ElseClauseSyntax>();
             result->ElseKeyword = tokenElse;
-            result->Body = (this->Current()->Kind == SyntaxKind::IfKeyword)
-                ? static_cast<SyntaxNode*>(this->ParseIfExpression())
-                : static_cast<SyntaxNode*>(this->ParseCodeBlock());
+
+            if (this->Current()->Kind == SyntaxKind::IfKeyword)
+            {
+                result->Continuation = this->ParseIfExpression();
+            }
+            else
+            {
+                result->Body = this->ParseCodeBlock();
+            }
+
             return result;
         }
 
@@ -2041,8 +2048,8 @@ namespace weave::syntax
         result->CaseKeyword = this->Match(SyntaxKind::CaseKeyword);
         result->Pattern = this->ParsePattern();
         result->ColonToken = this->Match(SyntaxKind::ColonToken);
-        result->Body = this->ParseStatement({});
-        result->TrailingSemicolon = this->Match(SyntaxKind::SemicolonToken);
+        result->Body = this->ParseCodeBlockItem();
+        result->TrailingSemicolon = this->TryMatch(SyntaxKind::SemicolonToken);
         return result;
     }
 
@@ -2051,8 +2058,8 @@ namespace weave::syntax
         MatchDefaultClauseSyntax* result = this->_factory->CreateNode<MatchDefaultClauseSyntax>();
         result->DefaultKeyword = this->Match(SyntaxKind::DefaultKeyword);
         result->ColonToken = this->Match(SyntaxKind::ColonToken);
-        result->Body = this->ParseStatement({});
-        result->TrailingSemicolon = this->Match(SyntaxKind::SemicolonToken);
+        result->Body = this->ParseCodeBlockItem();
+        result->TrailingSemicolon = this->TryMatch(SyntaxKind::SemicolonToken);
         return result;
     }
 
