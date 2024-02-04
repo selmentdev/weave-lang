@@ -158,7 +158,7 @@ namespace weave::core
     }
 }
 
-namespace Weave
+namespace weave::core
 {
     template <typename RangeT, typename CharT>
     constexpr void Join(
@@ -198,5 +198,84 @@ namespace Weave
                 result.append(*first);
             }
         }
+    }
+}
+
+namespace weave::core
+{
+    template <typename CharT>
+    [[nodiscard]] constexpr bool MatchWildcard(
+        typename std::basic_string_view<CharT>::const_iterator patternFirst,
+        typename std::basic_string_view<CharT>::const_iterator patternLast,
+        typename std::basic_string_view<CharT>::const_iterator valueFirst,
+        typename std::basic_string_view<CharT>::const_iterator valueLast) noexcept
+    {
+        typename std::basic_string_view<CharT>::const_iterator storedPattern = patternFirst;
+        typename std::basic_string_view<CharT>::const_iterator storedValue = valueFirst;
+
+        bool restartable = false;
+
+        while (valueFirst != valueLast)
+        {
+            if (patternFirst != patternLast && *patternFirst == CharT{'*'})
+            {
+                if (++patternFirst == patternLast)
+                {
+                    // Exit early if we cannot match next pattern character.
+                    return true;
+                }
+
+                // Store pattern and advance value.
+                storedPattern = patternFirst;
+                storedValue = valueFirst + 1;
+
+                // Matching first `*` enables restartable mode.
+                restartable = true;
+            }
+            else if (patternFirst != patternLast && (*patternFirst == CharT{'?'} || tolower(*patternFirst) == tolower(*valueFirst)))
+            {
+                // Pattern matches value
+                ++patternFirst;
+                ++valueFirst;
+            }
+            else if (restartable == false)
+            {
+                // Only `*` matching may restart operation.
+                return false;
+            }
+            else
+            {
+                if (storedValue == valueLast)
+                {
+                    // Can't restart operation.
+                    return false;
+                }
+
+                // Restart matching with stored pattern.
+                patternFirst = storedPattern;
+                valueFirst = storedValue++;
+            }
+        }
+
+        while (patternFirst != patternLast && *patternFirst == CharT{'*'})
+        {
+            // Consume trailing `*`. Compared value matched succesfully.
+            ++patternFirst;
+        }
+
+        // Check if pattern exhausted.
+        return patternFirst == patternLast;
+    }
+
+    template <typename CharT>
+    [[nodiscard]] constexpr bool MatchWildcard(
+        std::basic_string_view<CharT> pattern,
+        std::basic_string_view<CharT> value) noexcept
+    {
+        return MatchWildcard<CharT>(
+            pattern.cbegin(),
+            pattern.cend(),
+            value.cbegin(),
+            value.cend());
     }
 }
