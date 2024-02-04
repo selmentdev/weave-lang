@@ -24,7 +24,8 @@ SourceFileSyntax
             StringLiteralToken <45:51> [2:18:2:24] '"None"'
            CloseParenToken <51:52> [2:24:2:25] ')'
         CloseBracketToken <52:53> [2:25:2:26] ']'
-      IdentifierToken <58:62> [3:4:3:8] 'None'
+      IdentifierNameSyntax
+       IdentifierToken <58:62> [3:4:3:8] 'None'
       InitializerClauseSyntax
        EqualsToken <63:64> [3:9:3:10] '='
        LiteralExpressionSyntax
@@ -44,7 +45,8 @@ SourceFileSyntax
             StringLiteralToken <87:104> [5:18:5:35] '"Name of element"'
            CloseParenToken <104:105> [5:35:5:36] ')'
         CloseBracketToken <105:106> [5:36:5:37] ']'
-      IdentifierToken <111:115> [6:4:6:8] 'Name'
+      IdentifierNameSyntax
+       IdentifierToken <111:115> [6:4:6:8] 'Name'
       TupleTypeSyntax
        OpenParenToken <115:116> [6:8:6:9] '('
        SyntaxList
@@ -71,7 +73,8 @@ SourceFileSyntax
             StringLiteralToken <148:164> [8:18:8:34] '"Age of element"'
            CloseParenToken <164:165> [8:34:8:35] ')'
         CloseBracketToken <165:166> [8:35:8:36] ']'
-      IdentifierToken <171:174> [9:4:9:7] 'Age'
+      IdentifierNameSyntax
+       IdentifierToken <171:174> [9:4:9:7] 'Age'
       TupleTypeSyntax
        OpenParenToken <174:175> [9:7:9:8] '('
        SyntaxList
@@ -98,7 +101,8 @@ SourceFileSyntax
             StringLiteralToken <206:223> [11:18:11:35] '"Date of element"'
            CloseParenToken <223:224> [11:35:11:36] ')'
         CloseBracketToken <224:225> [11:36:11:37] ']'
-      IdentifierToken <230:234> [12:4:12:8] 'Date'
+      IdentifierNameSyntax
+       IdentifierToken <230:234> [12:4:12:8] 'Date'
       TupleTypeSyntax
        OpenParenToken <234:235> [12:8:12:9] '('
        SyntaxList
@@ -125,7 +129,8 @@ SourceFileSyntax
             StringLiteralToken <269:287> [14:18:14:36] '"List of elements"'
            CloseParenToken <287:288> [14:36:14:37] ')'
         CloseBracketToken <288:289> [14:37:14:38] ']'
-      IdentifierToken <294:298> [15:4:15:8] 'List'
+      IdentifierNameSyntax
+       IdentifierToken <294:298> [15:4:15:8] 'List'
       TupleTypeSyntax
        OpenParenToken <298:299> [15:8:15:9] '('
        SyntaxList

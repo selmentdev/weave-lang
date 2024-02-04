@@ -983,14 +983,14 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
         SyntaxListView<SyntaxToken> modifiers = this->ParseFunctionArgumentModifierList();
 
-        SyntaxToken* label = nullptr;
+        NameSyntax* label = nullptr;
         SyntaxToken* colon = nullptr;
 
         if (SyntaxKind const first = this->Current()->Kind; (first == SyntaxKind::IdentifierToken) or (first == SyntaxKind::IntegerLiteralToken))
         {
             if (this->Peek(1)->Kind == SyntaxKind::ColonToken)
             {
-                label = this->Match(first);
+                label = this->ParseIdentifierName();
                 colon = this->Match(SyntaxKind::ColonToken);
             }
         }
@@ -2129,7 +2129,7 @@ namespace weave::syntax
             EnumMemberDeclarationSyntax* result = this->_factory->CreateNode<EnumMemberDeclarationSyntax>();
             result->Attributes = attributes;
             result->Modifiers = {};
-            result->Identifier = this->Match(SyntaxKind::IdentifierToken);
+            result->Identifier = this->ParseIdentifierName();
             result->Tuple = this->ParseOptionalTupleType();
             result->Discriminator = this->ParseOptionalInitializerClause();
             result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);

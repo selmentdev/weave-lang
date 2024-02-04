@@ -343,7 +343,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(EnumMemberDeclarationSyntax);
 
     public:
-        SyntaxToken* Identifier{};
+        NameSyntax* Identifier{};
         TupleTypeSyntax* Tuple{};
         InitializerClauseSyntax* Discriminator{};
         SyntaxToken* TrailingComma{};
@@ -424,7 +424,7 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
 
-        SyntaxToken* Label{};
+        NameSyntax* Label{};
         SyntaxToken* Colon{};
         ExpressionSyntax* Expression{};
         SyntaxToken* TrailingComma{};

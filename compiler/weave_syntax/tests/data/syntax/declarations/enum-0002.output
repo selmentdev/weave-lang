@@ -32,7 +32,8 @@ SourceFileSyntax
     OpenBraceToken <61:62> [6:0:6:1] '{'
     SyntaxList
      EnumMemberDeclarationSyntax
-      IdentifierToken <67:69> [7:4:7:6] 'Ok'
+      IdentifierNameSyntax
+       IdentifierToken <67:69> [7:4:7:6] 'Ok'
       TupleTypeSyntax
        OpenParenToken <69:70> [7:6:7:7] '('
        SyntaxList
@@ -42,7 +43,8 @@ SourceFileSyntax
        CloseParenToken <71:72> [7:8:7:9] ')'
       CommaToken <72:73> [7:9:7:10] ','
      EnumMemberDeclarationSyntax
-      IdentifierToken <78:83> [8:4:8:9] 'Error'
+      IdentifierNameSyntax
+       IdentifierToken <78:83> [8:4:8:9] 'Error'
       TupleTypeSyntax
        OpenParenToken <83:84> [8:9:8:10] '('
        SyntaxList
@@ -70,7 +72,8 @@ SourceFileSyntax
     OpenBraceToken <122:123> [12:0:12:1] '{'
     SyntaxList
      EnumMemberDeclarationSyntax
-      IdentifierToken <128:132> [13:4:13:8] 'Some'
+      IdentifierNameSyntax
+       IdentifierToken <128:132> [13:4:13:8] 'Some'
       TupleTypeSyntax
        OpenParenToken <132:133> [13:8:13:9] '('
        SyntaxList
@@ -80,7 +83,8 @@ SourceFileSyntax
        CloseParenToken <134:135> [13:10:13:11] ')'
       CommaToken <135:136> [13:11:13:12] ','
      EnumMemberDeclarationSyntax
-      IdentifierToken <141:145> [14:4:14:8] 'None'
+      IdentifierNameSyntax
+       IdentifierToken <141:145> [14:4:14:8] 'None'
       CommaToken <145:146> [14:8:14:9] ','
     CloseBraceToken <147:148> [15:0:15:1] '}'
   CodeBlockItemSyntax
@@ -93,9 +97,11 @@ SourceFileSyntax
     OpenBraceToken <178:179> [18:0:18:1] '{'
     SyntaxList
      EnumMemberDeclarationSyntax
-      IdentifierToken <184:197> [19:4:19:17] 'MissingComma1'
+      IdentifierNameSyntax
+       IdentifierToken <184:197> [19:4:19:17] 'MissingComma1'
      EnumMemberDeclarationSyntax
-      IdentifierToken <202:215> [20:4:20:17] 'MissingComma2'
+      IdentifierNameSyntax
+       IdentifierToken <202:215> [20:4:20:17] 'MissingComma2'
     CloseBraceToken <216:217> [21:0:21:1] '}'
   CodeBlockItemSyntax
    EnumDeclarationSyntax
@@ -107,7 +113,8 @@ SourceFileSyntax
     OpenBraceToken <255:256> [24:0:24:1] '{'
     SyntaxList
      EnumMemberDeclarationSyntax
-      IdentifierToken <261:267> [25:4:25:10] 'Value1'
+      IdentifierNameSyntax
+       IdentifierToken <261:267> [25:4:25:10] 'Value1'
       CommaToken <267:268> [25:10:25:11] ','
     UnexpectedNodesSyntax
      SyntaxList

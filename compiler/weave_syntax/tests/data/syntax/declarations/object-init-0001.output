@@ -132,7 +132,8 @@ SourceFileSyntax
                OpenParenToken <230:231> [12:22:12:23] '('
                SyntaxList
                 ArgumentSyntax
-                 IdentifierToken <244:252> [13:12:13:20] 'Elements'
+                 IdentifierNameSyntax
+                  IdentifierToken <244:252> [13:12:13:20] 'Elements'
                  ColonToken <252:253> [13:20:13:21] ':'
                  BracketInitializerClauseSyntax
                   OpenBracketToken <254:255> [13:22:13:23] '['
@@ -289,25 +290,29 @@ SourceFileSyntax
                 OpenParenToken <600:601> [35:23:35:24] '('
                 SyntaxList
                  ArgumentSyntax
-                  IdentifierToken <614:615> [36:12:36:13] 'X'
+                  IdentifierNameSyntax
+                   IdentifierToken <614:615> [36:12:36:13] 'X'
                   ColonToken <615:616> [36:13:36:14] ':'
                   IdentifierNameSyntax
                    IdentifierToken <617:618> [36:15:36:16] 'x'
                   CommaToken <618:619> [36:16:36:17] ','
                  ArgumentSyntax
-                  IdentifierToken <632:633> [37:12:37:13] 'Y'
+                  IdentifierNameSyntax
+                   IdentifierToken <632:633> [37:12:37:13] 'Y'
                   ColonToken <633:634> [37:13:37:14] ':'
                   IdentifierNameSyntax
                    IdentifierToken <635:636> [37:15:37:16] 'y'
                   CommaToken <636:637> [37:16:37:17] ','
                  ArgumentSyntax
-                  IdentifierToken <650:651> [38:12:38:13] 'Z'
+                  IdentifierNameSyntax
+                   IdentifierToken <650:651> [38:12:38:13] 'Z'
                   ColonToken <651:652> [38:13:38:14] ':'
                   IdentifierNameSyntax
                    IdentifierToken <653:654> [38:15:38:16] 'z'
                   CommaToken <654:655> [38:16:38:17] ','
                  ArgumentSyntax
-                  IdentifierToken <668:669> [39:12:39:13] 'W'
+                  IdentifierNameSyntax
+                   IdentifierToken <668:669> [39:12:39:13] 'W'
                   ColonToken <669:670> [39:13:39:14] ':'
                   IdentifierNameSyntax
                    IdentifierToken <671:672> [39:15:39:16] 'w'
@@ -341,25 +346,29 @@ SourceFileSyntax
                 OpenParenToken <759:760> [45:23:45:24] '('
                 SyntaxList
                  ArgumentSyntax
-                  IdentifierToken <773:774> [46:12:46:13] 'X'
+                  IdentifierNameSyntax
+                   IdentifierToken <773:774> [46:12:46:13] 'X'
                   ColonToken <774:775> [46:13:46:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <776:783> [46:15:46:22] '0.0_f32'
                   CommaToken <783:784> [46:22:46:23] ','
                  ArgumentSyntax
-                  IdentifierToken <797:798> [47:12:47:13] 'Y'
+                  IdentifierNameSyntax
+                   IdentifierToken <797:798> [47:12:47:13] 'Y'
                   ColonToken <798:799> [47:13:47:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <800:807> [47:15:47:22] '0.0_f32'
                   CommaToken <807:808> [47:22:47:23] ','
                  ArgumentSyntax
-                  IdentifierToken <821:822> [48:12:48:13] 'Z'
+                  IdentifierNameSyntax
+                   IdentifierToken <821:822> [48:12:48:13] 'Z'
                   ColonToken <822:823> [48:13:48:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <824:831> [48:15:48:22] '0.0_f32'
                   CommaToken <831:832> [48:22:48:23] ','
                  ArgumentSyntax
-                  IdentifierToken <845:846> [49:12:49:13] 'W'
+                  IdentifierNameSyntax
+                   IdentifierToken <845:846> [49:12:49:13] 'W'
                   ColonToken <846:847> [49:13:49:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <848:855> [49:15:49:22] '0.0_f32'
@@ -394,25 +403,29 @@ SourceFileSyntax
                 OpenParenToken <944:945> [55:23:55:24] '('
                 SyntaxList
                  ArgumentSyntax
-                  IdentifierToken <958:959> [56:12:56:13] 'X'
+                  IdentifierNameSyntax
+                   IdentifierToken <958:959> [56:12:56:13] 'X'
                   ColonToken <959:960> [56:13:56:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <961:968> [56:15:56:22] '1.0_f32'
                   CommaToken <968:969> [56:22:56:23] ','
                  ArgumentSyntax
-                  IdentifierToken <982:983> [57:12:57:13] 'Y'
+                  IdentifierNameSyntax
+                   IdentifierToken <982:983> [57:12:57:13] 'Y'
                   ColonToken <983:984> [57:13:57:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <985:992> [57:15:57:22] '0.0_f32'
                   CommaToken <992:993> [57:22:57:23] ','
                  ArgumentSyntax
-                  IdentifierToken <1006:1007> [58:12:58:13] 'Z'
+                  IdentifierNameSyntax
+                   IdentifierToken <1006:1007> [58:12:58:13] 'Z'
                   ColonToken <1007:1008> [58:13:58:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <1009:1016> [58:15:58:22] '0.0_f32'
                   CommaToken <1016:1017> [58:22:58:23] ','
                  ArgumentSyntax
-                  IdentifierToken <1030:1031> [59:12:59:13] 'W'
+                  IdentifierNameSyntax
+                   IdentifierToken <1030:1031> [59:12:59:13] 'W'
                   ColonToken <1031:1032> [59:13:59:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <1033:1040> [59:15:59:22] '0.0_f32'
@@ -447,25 +460,29 @@ SourceFileSyntax
                 OpenParenToken <1129:1130> [65:23:65:24] '('
                 SyntaxList
                  ArgumentSyntax
-                  IdentifierToken <1143:1144> [66:12:66:13] 'X'
+                  IdentifierNameSyntax
+                   IdentifierToken <1143:1144> [66:12:66:13] 'X'
                   ColonToken <1144:1145> [66:13:66:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <1146:1153> [66:15:66:22] '0.0_f32'
                   CommaToken <1153:1154> [66:22:66:23] ','
                  ArgumentSyntax
-                  IdentifierToken <1167:1168> [67:12:67:13] 'Y'
+                  IdentifierNameSyntax
+                   IdentifierToken <1167:1168> [67:12:67:13] 'Y'
                   ColonToken <1168:1169> [67:13:67:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <1170:1177> [67:15:67:22] '1.0_f32'
                   CommaToken <1177:1178> [67:22:67:23] ','
                  ArgumentSyntax
-                  IdentifierToken <1191:1192> [68:12:68:13] 'Z'
+                  IdentifierNameSyntax
+                   IdentifierToken <1191:1192> [68:12:68:13] 'Z'
                   ColonToken <1192:1193> [68:13:68:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <1194:1201> [68:15:68:22] '0.0_f32'
                   CommaToken <1201:1202> [68:22:68:23] ','
                  ArgumentSyntax
-                  IdentifierToken <1215:1216> [69:12:69:13] 'W'
+                  IdentifierNameSyntax
+                   IdentifierToken <1215:1216> [69:12:69:13] 'W'
                   ColonToken <1216:1217> [69:13:69:14] ':'
                   LiteralExpressionSyntax
                    FloatLiteralToken <1218:1225> [69:15:69:22] '0.0_f32'
