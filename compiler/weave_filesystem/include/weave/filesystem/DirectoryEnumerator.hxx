@@ -7,6 +7,7 @@
 #include <string>
 #include <optional>
 #include <string_view>
+#include <vector>
 
 namespace weave::filesystem::impl
 {
@@ -60,4 +61,8 @@ namespace weave::filesystem
             return this->_root;
         }
     };
+
+    auto EnumerateDirectoryRecursive(
+        std::string_view root,
+        std::string_view pattern = "*") -> std::expected<std::vector<std::string>, platform::SystemError>;
 }

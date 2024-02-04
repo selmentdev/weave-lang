@@ -5,6 +5,7 @@ target_include_directories(weave_filesystem PUBLIC include)
 target_link_libraries(weave_filesystem PUBLIC weave_bugcheck)
 target_link_libraries(weave_filesystem PUBLIC weave_platform)
 target_link_libraries(weave_filesystem PUBLIC weave_time)
+target_link_libraries(weave_filesystem PUBLIC weave_core)
 
 WEAVE_CXX_FORTIFY_CODE(weave_filesystem)
 

@@ -28,6 +28,41 @@ struct Options
 
 int main(int argc, const char* argv[])
 {
+    fmt::println("[branch: {}, hash: {}]",
+        WEAVE_PROJECT_BRANCH,
+        WEAVE_PROJECT_HASH);
+
+    fmt::println("weave-docgen");
+
+    if (auto result = Options::Parse(argc, argv))
+    {
+        auto items = weave::filesystem::EnumerateDirectoryRecursive(result->SourcePath, "*.source");
+
+        if (items)
+        {
+            for (auto const& item : *items)
+            {
+                fmt::println("{}", item);
+            }
+        }
+        else
+        {
+            fmt::print("Error: {}\n", std::to_underlying(items.error()));
+        }
+
+        // weave::filesystem::DirectoryEnumerator enumerator{result->SourcePath};
+        // while (auto path = enumerator.Next())
+        //{
+        //     (*path)->Type
+        //     std::string fullpath{enumerator.Root()};
+        //     weave::filesystem::path::Push(fullpath, (*path)->Path);
+        //     fmt::println("{}", fullpath);
+        // }
+    }
+    else
+    {
+        fmt::print("Error: {}\n", result.error().Error);
+    }
 
     return 0;
 }
