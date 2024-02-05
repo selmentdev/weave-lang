@@ -1,7 +1,7 @@
 #include "weave/syntax/SyntaxFacts.hxx"
-
-
 #include "weave/bugcheck/BugCheck.hxx"
+
+#define ENABLE_KEYWORD_BIT_OPERATORS true
 
 namespace weave::syntax
 {
@@ -95,9 +95,15 @@ namespace weave::syntax
         case SyntaxKind::MinusToken:
             return SyntaxKind::UnaryMinusExpression;
 
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::BitComplKeyword:
+#endif
         case SyntaxKind::TildeToken:
             return SyntaxKind::BitwiseNotExpression;
 
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::NotKeyword:
+#endif
         case SyntaxKind::ExclamationToken:
             return SyntaxKind::LogicalNotExpression;
 
@@ -142,44 +148,80 @@ namespace weave::syntax
         {
         case SyntaxKind::QuestionQuestionToken:
             return SyntaxKind::CoalesceExpression;
+
         case SyntaxKind::IsKeyword:
             return SyntaxKind::IsExpression;
+
         case SyntaxKind::AsKeyword:
             return SyntaxKind::AsExpression;
+
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::BitOrKeyword:
+#endif
         case SyntaxKind::BarToken:
             return SyntaxKind::BitwiseOrExpression;
+
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::BitXorKeyword:
+#endif
         case SyntaxKind::CaretToken:
             return SyntaxKind::ExclusiveOrExpression;
+
+
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::BitAndKeyword:
+#endif
         case SyntaxKind::AmpersandToken:
             return SyntaxKind::BitwiseAndExpression;
+
         case SyntaxKind::EqualsEqualsToken:
             return SyntaxKind::EqualsExpression;
+
         case SyntaxKind::ExclamationEqualsToken:
             return SyntaxKind::NotEqualsExpression;
+
         case SyntaxKind::LessThanToken:
             return SyntaxKind::LessThanExpression;
+
         case SyntaxKind::LessThanEqualsToken:
             return SyntaxKind::LessThanOrEqualExpression;
+
         case SyntaxKind::GreaterThanToken:
             return SyntaxKind::GreaterThanExpression;
+
         case SyntaxKind::GreaterThanEqualsToken:
             return SyntaxKind::GreaterThanOrEqualExpression;
+
         case SyntaxKind::LessThanLessThanToken:
             return SyntaxKind::LeftShiftExpression;
+
         case SyntaxKind::GreaterThanGreaterThanToken:
             return SyntaxKind::RightShiftExpression;
+
         case SyntaxKind::PlusToken:
             return SyntaxKind::AddExpression;
+
         case SyntaxKind::MinusToken:
             return SyntaxKind::SubtractExpression;
+
         case SyntaxKind::AsteriskToken:
             return SyntaxKind::MultiplyExpression;
+
         case SyntaxKind::SlashToken:
             return SyntaxKind::DivideExpression;
+
         case SyntaxKind::PercentToken:
             return SyntaxKind::ModuloExpression;
+
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::AndKeyword:
+#endif
         case SyntaxKind::AmpersandAmpersandToken:
             return SyntaxKind::LogicalAndExpression;
+
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::OrKeyword:
+#endif
         case SyntaxKind::BarBarToken:
             return SyntaxKind::LogicalOrExpression;
         default:
@@ -193,28 +235,48 @@ namespace weave::syntax
     {
         switch (token) // NOLINT(clang-diagnostic-switch-enum)
         {
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::OrEqualKeyword:
+#endif
         case SyntaxKind::BarEqualsToken:
             return SyntaxKind::OrAssignmentExpression;
+
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::AndEqualKeyword:
+#endif
         case SyntaxKind::AmpersandEqualsToken:
             return SyntaxKind::AndAssignmentExpression;
+
+#if ENABLE_KEYWORD_BIT_OPERATORS
+        case SyntaxKind::XorEqualKeyword:
+#endif
         case SyntaxKind::CaretEqualsToken:
             return SyntaxKind::ExclusiveOrAssignmentExpression;
+
         case SyntaxKind::LessThanLessThanEqualsToken:
             return SyntaxKind::LeftShiftAssignmentExpression;
+
         case SyntaxKind::GreaterThanGreaterThanEqualsToken:
             return SyntaxKind::RightShiftAssignmentExpression;
+
         case SyntaxKind::PlusEqualsToken:
             return SyntaxKind::AddAssignmentExpression;
+
         case SyntaxKind::MinusEqualsToken:
             return SyntaxKind::SubtractAssignmentExpression;
+
         case SyntaxKind::AsteriskEqualsToken:
             return SyntaxKind::MultiplyAssignmentExpression;
+
         case SyntaxKind::SlashEqualsToken:
             return SyntaxKind::DivideAssignmentExpression;
+
         case SyntaxKind::PercentEqualsToken:
             return SyntaxKind::ModuloAssignmentExpression;
+
         case SyntaxKind::EqualsToken:
             return SyntaxKind::SimpleAssignmentExpression;
+
         case SyntaxKind::QuestionQuestionEqualsToken:
             return SyntaxKind::CoalesceAssignmentExpression;
         default:
@@ -241,6 +303,7 @@ namespace weave::syntax
         case SyntaxKind::RightShiftAssignmentExpression:
         case SyntaxKind::CoalesceAssignmentExpression:
         case SyntaxKind::CoalesceExpression:
+        case SyntaxKind::EvalExpressionSyntax:
             return true;
         default:
             break;
@@ -390,8 +453,8 @@ namespace weave::syntax
         case SyntaxKind::VarKeyword:
         case SyntaxKind::LetKeyword:
         case SyntaxKind::GotoKeyword:
-        //case SyntaxKind::IfKeyword:
-        //case SyntaxKind::ElseKeyword:
+        // case SyntaxKind::IfKeyword:
+        // case SyntaxKind::ElseKeyword:
         case SyntaxKind::TryKeyword:
             return true;
 
