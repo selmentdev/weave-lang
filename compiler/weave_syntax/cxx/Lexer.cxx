@@ -129,6 +129,7 @@ namespace weave::syntax
                     this->_token.Source,
                     this->_token.LeadingTrivia,
                     this->_token.TrailingTrivia,
+                    this->_token.ContextualKeyword,
                     this->_token.Value);
             }
 

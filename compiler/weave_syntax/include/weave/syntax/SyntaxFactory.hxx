@@ -114,6 +114,7 @@ namespace weave::syntax
             source::SourceSpan const& source,
             std::span<SyntaxTrivia const> leadingTrivia,
             std::span<SyntaxTrivia const> trailingTrivia,
+            SyntaxKind contextualKeyword,
             std::string_view value);
 
     public:

@@ -107,6 +107,7 @@ namespace weave::syntax
                 source,
                 leadingTrivia,
                 trailingTrivia,
+                SyntaxKind::None,
                 std::string_view{},
                 SyntaxTokenFlags::Missing);
         }
@@ -200,12 +201,14 @@ namespace weave::syntax
         source::SourceSpan const& source,
         std::span<SyntaxTrivia const> leadingTrivia,
         std::span<SyntaxTrivia const> trailingTrivia,
+        SyntaxKind contextualKeyword,
         std::string_view value)
     {
         return this->IdentifierAllocator.Emplace(
             source,
             this->CreateTriviaList(leadingTrivia),
             this->CreateTriviaList(trailingTrivia),
+            contextualKeyword,
             this->Strings.Get(value));
     }
 

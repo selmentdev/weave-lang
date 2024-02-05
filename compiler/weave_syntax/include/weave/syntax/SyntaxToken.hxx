@@ -267,14 +267,17 @@ namespace weave::syntax
             return ClassOf(token->Kind);
         }
 
+        SyntaxKind ContextualKeyowrd{};
         std::string_view Identifier;
 
         constexpr IdentifierSyntaxToken(
             source::SourceSpan const& source,
             SyntaxListView<SyntaxTrivia> leadingTrivia,
             SyntaxListView<SyntaxTrivia> trailingTrivia,
+            SyntaxKind contextualKeyword,
             std::string_view identifier)
             : SyntaxToken{SyntaxKind::IdentifierToken, source, leadingTrivia, trailingTrivia}
+            , ContextualKeyowrd{contextualKeyword}
             , Identifier{identifier}
         {
         }
@@ -283,9 +286,11 @@ namespace weave::syntax
             source::SourceSpan const& source,
             SyntaxListView<SyntaxTrivia> leadingTrivia,
             SyntaxListView<SyntaxTrivia> trailingTrivia,
+            SyntaxKind contextualKeyword,
             std::string_view identifier,
             bitwise::Flags<SyntaxTokenFlags> flags)
             : SyntaxToken{SyntaxKind::IdentifierToken, source, leadingTrivia, trailingTrivia, flags}
+            , ContextualKeyowrd{contextualKeyword}
             , Identifier{identifier}
         {
         }

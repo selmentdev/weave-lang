@@ -21,6 +21,6 @@ namespace weave::syntax
     static_assert(sizeof(CharacterLiteralSyntaxToken) == 40);
     static_assert(std::is_trivially_destructible_v<CharacterLiteralSyntaxToken>);
 
-    static_assert(sizeof(IdentifierSyntaxToken) == 48);
+    static_assert(sizeof(IdentifierSyntaxToken) == 56);
     static_assert(std::is_trivially_destructible_v<IdentifierSyntaxToken>);
 }
