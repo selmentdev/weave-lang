@@ -400,7 +400,6 @@ namespace weave::syntax
         case SyntaxKind::PostIncrementExpression:
         case SyntaxKind::SimpleMemberAccessExpression:
         case SyntaxKind::StringLiteralExpression:
-        case SyntaxKind::SelfExpression:
         case SyntaxKind::TrueLiteralExpression:
             // case SyntaxKind::CollectionExpression:
             // case SyntaxKind::ConditionalAccessExpression:

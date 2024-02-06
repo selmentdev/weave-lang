@@ -557,7 +557,6 @@ WEAVE_SYNTAX_EXPRESSION(ConditionalExpression,                  "[expr:condition
 WEAVE_SYNTAX_EXPRESSION(InvocationExpression,                   "[expr:invocation]")
 
 // primary expressions
-WEAVE_SYNTAX_EXPRESSION(SelfExpression,                         "[expr:self]")
 WEAVE_SYNTAX_EXPRESSION(IntegerLiteralExpression,               "[expr:integer-literal]")
 WEAVE_SYNTAX_EXPRESSION(FloatLiteralExpression,                 "[expr:float-literal]")
 WEAVE_SYNTAX_EXPRESSION(StringLiteralExpression,                "[expr:string-literal]")
