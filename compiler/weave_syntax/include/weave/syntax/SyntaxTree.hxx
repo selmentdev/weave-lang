@@ -122,24 +122,6 @@ namespace weave::syntax
         }
     };
 
-
-    class CompilationUnitSyntax : public SyntaxNode
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(CompilationUnitSyntax);
-
-    public:
-        SyntaxListView<AttributeListSyntax> AttributeLists{};
-        SyntaxListView<UsingDeclarationSyntax> Usings{};
-        SyntaxListView<MemberDeclarationSyntax> Members{};
-        SyntaxToken* EndOfFileToken{};
-
-    public:
-        explicit constexpr CompilationUnitSyntax()
-            : SyntaxNode{SyntaxKind::CompilationUnitSyntax}
-        {
-        }
-    };
-
     class NamespaceDeclarationSyntax : public MemberDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(NamespaceDeclarationSyntax);

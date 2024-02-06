@@ -88,7 +88,6 @@ namespace weave::syntax
         }
 
     public:
-        void OnCompilationUnitSyntax(CompilationUnitSyntax* node) override;
         void OnSyntaxList(SyntaxList* node) override;
         void OnNamespaceDeclarationSyntax(NamespaceDeclarationSyntax* node) override;
         void OnStructDeclarationSyntax(StructDeclarationSyntax* node) override;

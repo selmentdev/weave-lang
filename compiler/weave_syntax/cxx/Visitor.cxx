@@ -2,21 +2,6 @@
 
 namespace weave::syntax
 {
-    void SyntaxWalker::OnCompilationUnitSyntax(CompilationUnitSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->AttributeLists.GetNode());
-        this->Dispatch(node->Usings.GetNode());
-        this->Dispatch(node->Members.GetNode());
-
-        this->Dispatch(node->EndOfFileToken);
-
-        --this->Depth;
-    }
-
     void SyntaxWalker::OnSyntaxList(SyntaxList* node)
     {
         this->OnDefault(node);

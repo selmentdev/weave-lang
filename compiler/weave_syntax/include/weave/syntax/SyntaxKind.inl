@@ -393,7 +393,6 @@ WEAVE_SYNTAX_KEYWORD(WhileKeyword,                              "while")
 WEAVE_SYNTAX_KEYWORD(WithKeyword,                               "with")
 WEAVE_SYNTAX_KEYWORD(YieldKeyword,                              "yield")
 
-WEAVE_SYNTAX_NODE(CompilationUnitSyntax,                        "[node:compilation-unit]")
 WEAVE_SYNTAX_NODE(SyntaxList,                                   "[node:syntax-list]")
 WEAVE_SYNTAX_NODE(UsingDeclarationSyntax,                       "[node:using-declaration]")
 WEAVE_SYNTAX_NODE(IncompleteDeclarationSyntax,                  "[node:incomplete-declaration]")

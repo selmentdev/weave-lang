@@ -368,13 +368,6 @@ int main(int argc, const char* argv[])
                 source::SourceText& _text;
 
             public:
-                void OnCompilationUnitSyntax(syntax::CompilationUnitSyntax* node) override
-                {
-                    Indent();
-                    fmt::println("{}", __func__);
-                    SyntaxWalker::OnCompilationUnitSyntax(node);
-                }
-
                 void OnNamespaceDeclarationSyntax(syntax::NamespaceDeclarationSyntax* node) override
                 {
                     Indent();
