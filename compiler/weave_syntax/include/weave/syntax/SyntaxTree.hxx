@@ -771,20 +771,6 @@ namespace weave::syntax
         }
     };
 
-    class SelfExpressionSyntax final : public ExpressionSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(SelfExpressionSyntax);
-
-    public:
-        SyntaxToken* SelfKeyword{};
-
-    public:
-        explicit constexpr SelfExpressionSyntax()
-            : ExpressionSyntax{SyntaxKind::SelfExpressionSyntax}
-        {
-        }
-    };
-
     class UnreachableExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(UnreachableExpressionSyntax);

@@ -131,7 +131,6 @@ namespace weave::syntax
         void OnArrowExpressionClauseSyntax(ArrowExpressionClauseSyntax* node) override;
         void OnReturnTypeClauseSyntax(ReturnTypeClauseSyntax* node) override;
         void OnDelegateDeclarationSyntax(DelegateDeclarationSyntax* node) override;
-        void OnSelfExpressionSyntax(SelfExpressionSyntax* node) override;
         void OnToken(SyntaxToken* token) override;
         void OnUnexpectedNodesSyntax(UnexpectedNodesSyntax* node) override;
         void OnBalancedTokenSequneceSyntax(BalancedTokenSequneceSyntax* node) override;

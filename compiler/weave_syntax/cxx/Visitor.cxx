@@ -612,17 +612,6 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnSelfExpressionSyntax(SelfExpressionSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->SelfKeyword);
-
-        --this->Depth;
-    }
-
     void SyntaxWalker::OnToken(weave::syntax::SyntaxToken* token)
     {
         this->OnDefault(token);

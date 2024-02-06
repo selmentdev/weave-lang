@@ -262,8 +262,6 @@ namespace weave::syntax
 
         TupleIndexSyntax* ParseTupleIndex();
 
-        SelfExpressionSyntax* ParseSelfExpression();
-
         UnreachableExpressionSyntax* ParseUnreachableExpression();
 
         EvalExpressionSyntax* ParseEvalExpression();

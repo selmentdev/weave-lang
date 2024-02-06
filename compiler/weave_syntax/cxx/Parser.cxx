@@ -1170,14 +1170,6 @@ namespace weave::syntax
         return result;
     }
 
-    SelfExpressionSyntax* Parser::ParseSelfExpression()
-    {
-        SyntaxToken* tokenSelf = this->Match(SyntaxKind::SelfKeyword);
-        SelfExpressionSyntax* result = this->_factory->CreateNode<SelfExpressionSyntax>();
-        result->SelfKeyword = tokenSelf;
-        return result;
-    }
-
     UnreachableExpressionSyntax* Parser::ParseUnreachableExpression()
     {
         UnreachableExpressionSyntax* result = this->_factory->CreateNode<UnreachableExpressionSyntax>();
@@ -1429,9 +1421,6 @@ namespace weave::syntax
 
         case SyntaxKind::IdentifierToken:
             return this->ParseSimpleName();
-
-        case SyntaxKind::SelfKeyword:
-            return this->ParseSelfExpression();
 
         case SyntaxKind::UnreachableKeyword:
             return this->ParseUnreachableExpression();
