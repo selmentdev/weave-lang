@@ -46,16 +46,16 @@ namespace core
         public function New(lower: UInt64, upper: UInt64) -> UInt128
         {
             return UInt128(
-                Lower = lower,
-                Upper = upper
+                Lower: lower,
+                Upper: upper
             );
         }
 
         public function New(lower: UInt64) -> UInt128
         {
             return UInt128(
-                Lower = lower,
-                Upper = 0
+                Lower: lower,
+                Upper: 0
             );
         }
     }
@@ -65,48 +65,48 @@ namespace core
         public function ZeroLower(self: Self) -> UInt128
         {
             return UInt128(
-                Lower = 0,
-                Upper = self.Upper
+                Lower: 0,
+                Upper: self.Upper
             );
         }
 
         public function ZeroUpper(self: Self) -> UInt128
         {
             return UInt128(
-                Lower = self.Lower,
-                Upper = 0
+                Lower: self.Lower,
+                Upper: 0
             );
         }
 
         public function MoveUpperToLower(self: Self) -> UInt128
         {
             return UInt128(
-                Lower = self.Upper,
-                Upper = 0
+                Lower: self.Upper,
+                Upper: 0
             );
         }
 
         public function MoveLowerToUpper(self: Self) -> UInt128
         {
             return UInt128(
-                Lower = 0,
-                Upper = self.Lower
+                Lower: 0,
+                Upper: self.Lower
             );
         }
 
         public function CombineLower(left: UInt128, right: UInt128) -> UInt128
         {
             return UInt128(
-                Lower = left.Lower,
-                Upper = right.Lower
+                Lower: left.Lower,
+                Upper: right.Lower
             );
         }
 
         public function CombineUpper(left: UInt128, right: UInt128) -> UInt128
         {
             return UInt128(
-                Lower = left.Upper,
-                Upper = right.Upper
+                Lower: left.Upper,
+                Upper: right.Upper
             );
         }
     }
