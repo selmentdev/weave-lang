@@ -1,0 +1,4 @@
+public function MethodOfStruct(in self, in other: Self) -> bool
+{
+    return (self.x == other.x) && (self.y == other.y);
+}

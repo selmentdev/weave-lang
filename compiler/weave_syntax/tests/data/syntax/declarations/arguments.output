@@ -29,10 +29,6 @@ SourceFileSyntax
          CloseBracketToken <43:44> [2:12:2:13] ']'
        IdentifierNameSyntax
         IdentifierToken <45:46> [2:14:2:15] missing ''
-       TypeClauseSyntax
-        ColonToken <45:46> [2:14:2:15] missing ''
-        IdentifierNameSyntax
-         IdentifierToken <45:46> [2:14:2:15] missing ''
        CommaToken <45:46> [2:14:2:15] ','
       ParameterSyntax
        IdentifierNameSyntax

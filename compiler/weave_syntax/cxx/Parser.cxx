@@ -705,7 +705,7 @@ namespace weave::syntax
         if ((this->Current()->Kind == SyntaxKind::IdentifierToken) or (attributes.GetNode() != nullptr) or (modifiers.GetNode() != nullptr))
         {
             NameSyntax* name = this->ParseIdentifierName();
-            TypeClauseSyntax* typeClause = this->ParseTypeClause();
+            TypeClauseSyntax* typeClause = this->ParseOptionalTypeClause();
             SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
             ParameterSyntax* result = this->_factory->CreateNode<ParameterSyntax>();

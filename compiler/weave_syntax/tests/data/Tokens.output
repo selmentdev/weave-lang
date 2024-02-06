@@ -357,7 +357,7 @@ SourceFileSyntax
    ScalarKeyword <1517:1523> [205:0:205:6] 'scalar'
    ScopeKeyword <1524:1529> [206:0:206:5] 'scope'
    SectionKeyword <1530:1537> [207:0:207:7] 'section'
-   SelfKeyword <1538:1542> [208:0:208:4] 'self'
+   IdentifierToken <1538:1542> [208:0:208:4] 'self'
    IdentifierToken <1543:1546> [209:0:209:3] 'set'
    SharedKeyword <1547:1553> [210:0:210:6] 'shared'
    SizeOfKeyword <1554:1560> [211:0:211:6] 'sizeof'

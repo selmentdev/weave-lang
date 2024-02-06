@@ -77,8 +77,8 @@ SourceFileSyntax
              MemberAccessExpressionSyntax
               MemberAccessExpressionSyntax
                MemberAccessExpressionSyntax
-                SelfExpressionSyntax
-                 SelfKeyword <187:191> [13:8:13:12] 'self'
+                IdentifierNameSyntax
+                 IdentifierToken <187:191> [13:8:13:12] 'self'
                 DotToken <191:192> [13:12:13:13] '.'
                 IdentifierNameSyntax
                  IdentifierToken <192:193> [13:13:13:14] 'a'

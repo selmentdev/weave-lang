@@ -648,441 +648,453 @@ SourceFileSyntax
               CodeBlockItemSyntax
                ReturnStatementSyntax
                 ReturnKeyword <1517:1523> [47:12:47:18] 'return'
-                IdentifierNameSyntax
-                 IdentifierToken <1524:1531> [47:19:47:26] 'UInt128'
-              CodeBlockItemSyntax
-               BlockStatementSyntax
-                CodeBlockSyntax
-                 OpenBraceToken <1531:1532> [47:26:47:27] '{'
-                 SyntaxList
-                  CodeBlockItemSyntax
-                   ExpressionStatementSyntax
+                InvocationExpressionSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <1524:1531> [47:19:47:26] 'UInt128'
+                 ArgumentListSyntax
+                  OpenParenToken <1531:1532> [47:26:47:27] '('
+                  SyntaxList
+                   ArgumentSyntax
                     AssignmentExpressionSyntax
                      IdentifierNameSyntax
                       IdentifierToken <1549:1554> [48:16:48:21] 'Lower'
                      EqualsToken <1555:1556> [48:22:48:23] '='
                      IdentifierNameSyntax
                       IdentifierToken <1557:1562> [48:24:48:29] 'lower'
-                 UnexpectedNodesSyntax
-                  SyntaxList
-                   CommaToken <1562:1563> [48:29:48:30] ','
-                   IdentifierToken <1580:1585> [49:16:49:21] 'Upper'
-                   EqualsToken <1586:1587> [49:22:49:23] '='
-                   IdentifierToken <1588:1593> [49:24:49:29] 'upper'
-                   CommaToken <1593:1594> [49:29:49:30] ','
-                 CloseBraceToken <1607:1608> [50:12:50:13] '}'
-               SemicolonToken <1608:1609> [50:13:50:14] ';'
-             CloseBraceToken <1618:1619> [51:8:51:9] '}'
+                    CommaToken <1562:1563> [48:29:48:30] ','
+                   ArgumentSyntax
+                    AssignmentExpressionSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <1580:1585> [49:16:49:21] 'Upper'
+                     EqualsToken <1586:1587> [49:22:49:23] '='
+                     IdentifierNameSyntax
+                      IdentifierToken <1588:1593> [49:24:49:29] 'upper'
+                  CloseParenToken <1606:1607> [50:12:50:13] ')'
+               SemicolonToken <1607:1608> [50:13:50:14] ';'
+             CloseBraceToken <1617:1618> [51:8:51:9] '}'
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <1629:1635> [53:8:53:14] 'public'
-            FunctionKeyword <1636:1644> [53:15:53:23] 'function'
+             PublicKeyword <1628:1634> [53:8:53:14] 'public'
+            FunctionKeyword <1635:1643> [53:15:53:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <1645:1648> [53:24:53:27] 'New'
+             IdentifierToken <1644:1647> [53:24:53:27] 'New'
             ParameterListSyntax
-             OpenParenToken <1648:1649> [53:27:53:28] '('
+             OpenParenToken <1647:1648> [53:27:53:28] '('
              SyntaxList
               ParameterSyntax
                IdentifierNameSyntax
-                IdentifierToken <1649:1654> [53:28:53:33] 'lower'
+                IdentifierToken <1648:1653> [53:28:53:33] 'lower'
                TypeClauseSyntax
-                ColonToken <1654:1655> [53:33:53:34] ':'
+                ColonToken <1653:1654> [53:33:53:34] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <1656:1662> [53:35:53:41] 'UInt64'
-             CloseParenToken <1662:1663> [53:41:53:42] ')'
+                 IdentifierToken <1655:1661> [53:35:53:41] 'UInt64'
+             CloseParenToken <1661:1662> [53:41:53:42] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <1664:1666> [53:43:53:45] '->'
+             MinusGreaterThanToken <1663:1665> [53:43:53:45] '->'
              IdentifierNameSyntax
-              IdentifierToken <1667:1674> [53:46:53:53] 'UInt128'
+              IdentifierToken <1666:1673> [53:46:53:53] 'UInt128'
             CodeBlockSyntax
-             OpenBraceToken <1683:1684> [54:8:54:9] '{'
+             OpenBraceToken <1682:1683> [54:8:54:9] '{'
              SyntaxList
               CodeBlockItemSyntax
                ReturnStatementSyntax
-                ReturnKeyword <1697:1703> [55:12:55:18] 'return'
-                IdentifierNameSyntax
-                 IdentifierToken <1704:1711> [55:19:55:26] 'UInt128'
-              CodeBlockItemSyntax
-               BlockStatementSyntax
-                CodeBlockSyntax
-                 OpenBraceToken <1711:1712> [55:26:55:27] '{'
-                 SyntaxList
-                  CodeBlockItemSyntax
-                   ExpressionStatementSyntax
+                ReturnKeyword <1696:1702> [55:12:55:18] 'return'
+                InvocationExpressionSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <1703:1710> [55:19:55:26] 'UInt128'
+                 ArgumentListSyntax
+                  OpenParenToken <1710:1711> [55:26:55:27] '('
+                  SyntaxList
+                   ArgumentSyntax
                     AssignmentExpressionSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <1729:1734> [56:16:56:21] 'Lower'
-                     EqualsToken <1735:1736> [56:22:56:23] '='
+                      IdentifierToken <1728:1733> [56:16:56:21] 'Lower'
+                     EqualsToken <1734:1735> [56:22:56:23] '='
                      IdentifierNameSyntax
-                      IdentifierToken <1737:1742> [56:24:56:29] 'lower'
-                 UnexpectedNodesSyntax
-                  SyntaxList
-                   CommaToken <1742:1743> [56:29:56:30] ','
-                   IdentifierToken <1760:1765> [57:16:57:21] 'Upper'
-                   EqualsToken <1766:1767> [57:22:57:23] '='
-                   IntegerLiteralToken <1768:1769> [57:24:57:25] '0'
-                   CommaToken <1769:1770> [57:25:57:26] ','
-                 CloseBraceToken <1783:1784> [58:12:58:13] '}'
-               SemicolonToken <1784:1785> [58:13:58:14] ';'
-             CloseBraceToken <1794:1795> [59:8:59:9] '}'
-         CloseBraceToken <1800:1801> [60:4:60:5] '}'
+                      IdentifierToken <1736:1741> [56:24:56:29] 'lower'
+                    CommaToken <1741:1742> [56:29:56:30] ','
+                   ArgumentSyntax
+                    AssignmentExpressionSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <1759:1764> [57:16:57:21] 'Upper'
+                     EqualsToken <1765:1766> [57:22:57:23] '='
+                     LiteralExpressionSyntax
+                      IntegerLiteralToken <1767:1768> [57:24:57:25] '0'
+                  CloseParenToken <1781:1782> [58:12:58:13] ')'
+               SemicolonToken <1782:1783> [58:13:58:14] ';'
+             CloseBraceToken <1792:1793> [59:8:59:9] '}'
+         CloseBraceToken <1798:1799> [60:4:60:5] '}'
       CodeBlockItemSyntax
        ExtendDeclarationSyntax
         SyntaxList
-         PublicKeyword <1807:1813> [62:4:62:10] 'public'
-        ExtendKeyword <1814:1820> [62:11:62:17] 'extend'
+         PublicKeyword <1805:1811> [62:4:62:10] 'public'
+        ExtendKeyword <1812:1818> [62:11:62:17] 'extend'
         IdentifierNameSyntax
-         IdentifierToken <1821:1828> [62:18:62:25] 'UInt128'
+         IdentifierToken <1819:1826> [62:18:62:25] 'UInt128'
         CodeBlockSyntax
-         OpenBraceToken <1833:1834> [63:4:63:5] '{'
+         OpenBraceToken <1831:1832> [63:4:63:5] '{'
          SyntaxList
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <1843:1849> [64:8:64:14] 'public'
-            FunctionKeyword <1850:1858> [64:15:64:23] 'function'
+             PublicKeyword <1841:1847> [64:8:64:14] 'public'
+            FunctionKeyword <1848:1856> [64:15:64:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <1859:1868> [64:24:64:33] 'ZeroLower'
+             IdentifierToken <1857:1866> [64:24:64:33] 'ZeroLower'
             ParameterListSyntax
-             OpenParenToken <1868:1869> [64:33:64:34] '('
-             UnexpectedNodesSyntax
-              SyntaxList
-               SelfKeyword <1869:1873> [64:34:64:38] 'self'
-               ColonToken <1873:1874> [64:38:64:39] ':'
-               IdentifierToken <1875:1879> [64:40:64:44] 'Self'
-             CloseParenToken <1879:1880> [64:44:64:45] ')'
+             OpenParenToken <1866:1867> [64:33:64:34] '('
+             SyntaxList
+              ParameterSyntax
+               IdentifierNameSyntax
+                IdentifierToken <1867:1871> [64:34:64:38] 'self'
+               TypeClauseSyntax
+                ColonToken <1871:1872> [64:38:64:39] ':'
+                IdentifierNameSyntax
+                 IdentifierToken <1873:1877> [64:40:64:44] 'Self'
+             CloseParenToken <1877:1878> [64:44:64:45] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <1881:1883> [64:46:64:48] '->'
+             MinusGreaterThanToken <1879:1881> [64:46:64:48] '->'
              IdentifierNameSyntax
-              IdentifierToken <1884:1891> [64:49:64:56] 'UInt128'
+              IdentifierToken <1882:1889> [64:49:64:56] 'UInt128'
             CodeBlockSyntax
-             OpenBraceToken <1900:1901> [65:8:65:9] '{'
+             OpenBraceToken <1898:1899> [65:8:65:9] '{'
              SyntaxList
               CodeBlockItemSyntax
                ReturnStatementSyntax
-                ReturnKeyword <1914:1920> [66:12:66:18] 'return'
-                IdentifierNameSyntax
-                 IdentifierToken <1921:1928> [66:19:66:26] 'UInt128'
-              CodeBlockItemSyntax
-               BlockStatementSyntax
-                CodeBlockSyntax
-                 OpenBraceToken <1928:1929> [66:26:66:27] '{'
-                 SyntaxList
-                  CodeBlockItemSyntax
-                   ExpressionStatementSyntax
+                ReturnKeyword <1912:1918> [66:12:66:18] 'return'
+                InvocationExpressionSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <1919:1926> [66:19:66:26] 'UInt128'
+                 ArgumentListSyntax
+                  OpenParenToken <1926:1927> [66:26:66:27] '('
+                  SyntaxList
+                   ArgumentSyntax
                     AssignmentExpressionSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <1946:1951> [67:16:67:21] 'Lower'
-                     EqualsToken <1952:1953> [67:22:67:23] '='
+                      IdentifierToken <1944:1949> [67:16:67:21] 'Lower'
+                     EqualsToken <1950:1951> [67:22:67:23] '='
                      LiteralExpressionSyntax
-                      IntegerLiteralToken <1954:1955> [67:24:67:25] '0'
-                 UnexpectedNodesSyntax
-                  SyntaxList
-                   CommaToken <1955:1956> [67:25:67:26] ','
-                   IdentifierToken <1973:1978> [68:16:68:21] 'Upper'
-                   EqualsToken <1979:1980> [68:22:68:23] '='
-                   SelfKeyword <1981:1985> [68:24:68:28] 'self'
-                   DotToken <1985:1986> [68:28:68:29] '.'
-                   IdentifierToken <1986:1991> [68:29:68:34] 'Upper'
-                   CommaToken <1991:1992> [68:34:68:35] ','
-                 CloseBraceToken <2005:2006> [69:12:69:13] '}'
-               SemicolonToken <2006:2007> [69:13:69:14] ';'
-             CloseBraceToken <2016:2017> [70:8:70:9] '}'
-          CodeBlockItemSyntax
-           FunctionDeclarationSyntax
-            SyntaxList
-             PublicKeyword <2027:2033> [72:8:72:14] 'public'
-            FunctionKeyword <2034:2042> [72:15:72:23] 'function'
-            IdentifierNameSyntax
-             IdentifierToken <2043:2052> [72:24:72:33] 'ZeroUpper'
-            ParameterListSyntax
-             OpenParenToken <2052:2053> [72:33:72:34] '('
-             UnexpectedNodesSyntax
-              SyntaxList
-               SelfKeyword <2053:2057> [72:34:72:38] 'self'
-               ColonToken <2057:2058> [72:38:72:39] ':'
-               IdentifierToken <2059:2063> [72:40:72:44] 'Self'
-             CloseParenToken <2063:2064> [72:44:72:45] ')'
-            ReturnTypeClauseSyntax
-             MinusGreaterThanToken <2065:2067> [72:46:72:48] '->'
-             IdentifierNameSyntax
-              IdentifierToken <2068:2075> [72:49:72:56] 'UInt128'
-            CodeBlockSyntax
-             OpenBraceToken <2084:2085> [73:8:73:9] '{'
-             SyntaxList
-              CodeBlockItemSyntax
-               ReturnStatementSyntax
-                ReturnKeyword <2098:2104> [74:12:74:18] 'return'
-                IdentifierNameSyntax
-                 IdentifierToken <2105:2112> [74:19:74:26] 'UInt128'
-              CodeBlockItemSyntax
-               BlockStatementSyntax
-                CodeBlockSyntax
-                 OpenBraceToken <2112:2113> [74:26:74:27] '{'
-                 SyntaxList
-                  CodeBlockItemSyntax
-                   ExpressionStatementSyntax
+                      IntegerLiteralToken <1952:1953> [67:24:67:25] '0'
+                    CommaToken <1953:1954> [67:25:67:26] ','
+                   ArgumentSyntax
                     AssignmentExpressionSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <2130:2135> [75:16:75:21] 'Lower'
-                     EqualsToken <2136:2137> [75:22:75:23] '='
+                      IdentifierToken <1971:1976> [68:16:68:21] 'Upper'
+                     EqualsToken <1977:1978> [68:22:68:23] '='
                      MemberAccessExpressionSyntax
-                      SelfExpressionSyntax
-                       SelfKeyword <2138:2142> [75:24:75:28] 'self'
-                      DotToken <2142:2143> [75:28:75:29] '.'
                       IdentifierNameSyntax
-                       IdentifierToken <2143:2148> [75:29:75:34] 'Lower'
-                 UnexpectedNodesSyntax
-                  SyntaxList
-                   CommaToken <2148:2149> [75:34:75:35] ','
-                   IdentifierToken <2166:2171> [76:16:76:21] 'Upper'
-                   EqualsToken <2172:2173> [76:22:76:23] '='
-                   IntegerLiteralToken <2174:2175> [76:24:76:25] '0'
-                   CommaToken <2175:2176> [76:25:76:26] ','
-                 CloseBraceToken <2189:2190> [77:12:77:13] '}'
-               SemicolonToken <2190:2191> [77:13:77:14] ';'
-             CloseBraceToken <2200:2201> [78:8:78:9] '}'
+                       IdentifierToken <1979:1983> [68:24:68:28] 'self'
+                      DotToken <1983:1984> [68:28:68:29] '.'
+                      IdentifierNameSyntax
+                       IdentifierToken <1984:1989> [68:29:68:34] 'Upper'
+                  CloseParenToken <2002:2003> [69:12:69:13] ')'
+               SemicolonToken <2003:2004> [69:13:69:14] ';'
+             CloseBraceToken <2013:2014> [70:8:70:9] '}'
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <2211:2217> [80:8:80:14] 'public'
-            FunctionKeyword <2218:2226> [80:15:80:23] 'function'
+             PublicKeyword <2024:2030> [72:8:72:14] 'public'
+            FunctionKeyword <2031:2039> [72:15:72:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <2227:2243> [80:24:80:40] 'MoveUpperToLower'
+             IdentifierToken <2040:2049> [72:24:72:33] 'ZeroUpper'
             ParameterListSyntax
-             OpenParenToken <2243:2244> [80:40:80:41] '('
-             UnexpectedNodesSyntax
-              SyntaxList
-               SelfKeyword <2244:2248> [80:41:80:45] 'self'
-               ColonToken <2248:2249> [80:45:80:46] ':'
-               IdentifierToken <2250:2254> [80:47:80:51] 'Self'
-             CloseParenToken <2254:2255> [80:51:80:52] ')'
+             OpenParenToken <2049:2050> [72:33:72:34] '('
+             SyntaxList
+              ParameterSyntax
+               IdentifierNameSyntax
+                IdentifierToken <2050:2054> [72:34:72:38] 'self'
+               TypeClauseSyntax
+                ColonToken <2054:2055> [72:38:72:39] ':'
+                IdentifierNameSyntax
+                 IdentifierToken <2056:2060> [72:40:72:44] 'Self'
+             CloseParenToken <2060:2061> [72:44:72:45] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <2256:2258> [80:53:80:55] '->'
+             MinusGreaterThanToken <2062:2064> [72:46:72:48] '->'
              IdentifierNameSyntax
-              IdentifierToken <2259:2266> [80:56:80:63] 'UInt128'
+              IdentifierToken <2065:2072> [72:49:72:56] 'UInt128'
             CodeBlockSyntax
-             OpenBraceToken <2275:2276> [81:8:81:9] '{'
+             OpenBraceToken <2081:2082> [73:8:73:9] '{'
              SyntaxList
               CodeBlockItemSyntax
                ReturnStatementSyntax
-                ReturnKeyword <2289:2295> [82:12:82:18] 'return'
-                IdentifierNameSyntax
-                 IdentifierToken <2296:2303> [82:19:82:26] 'UInt128'
-              CodeBlockItemSyntax
-               BlockStatementSyntax
-                CodeBlockSyntax
-                 OpenBraceToken <2303:2304> [82:26:82:27] '{'
-                 SyntaxList
-                  CodeBlockItemSyntax
-                   ExpressionStatementSyntax
+                ReturnKeyword <2095:2101> [74:12:74:18] 'return'
+                InvocationExpressionSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <2102:2109> [74:19:74:26] 'UInt128'
+                 ArgumentListSyntax
+                  OpenParenToken <2109:2110> [74:26:74:27] '('
+                  SyntaxList
+                   ArgumentSyntax
                     AssignmentExpressionSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <2321:2326> [83:16:83:21] 'Lower'
-                     EqualsToken <2327:2328> [83:22:83:23] '='
+                      IdentifierToken <2127:2132> [75:16:75:21] 'Lower'
+                     EqualsToken <2133:2134> [75:22:75:23] '='
                      MemberAccessExpressionSyntax
-                      SelfExpressionSyntax
-                       SelfKeyword <2329:2333> [83:24:83:28] 'self'
-                      DotToken <2333:2334> [83:28:83:29] '.'
                       IdentifierNameSyntax
-                       IdentifierToken <2334:2339> [83:29:83:34] 'Upper'
-                 UnexpectedNodesSyntax
-                  SyntaxList
-                   CommaToken <2339:2340> [83:34:83:35] ','
-                   IdentifierToken <2357:2362> [84:16:84:21] 'Upper'
-                   EqualsToken <2363:2364> [84:22:84:23] '='
-                   IntegerLiteralToken <2365:2366> [84:24:84:25] '0'
-                   CommaToken <2366:2367> [84:25:84:26] ','
-                 CloseBraceToken <2380:2381> [85:12:85:13] '}'
-               SemicolonToken <2381:2382> [85:13:85:14] ';'
-             CloseBraceToken <2391:2392> [86:8:86:9] '}'
-          CodeBlockItemSyntax
-           FunctionDeclarationSyntax
-            SyntaxList
-             PublicKeyword <2402:2408> [88:8:88:14] 'public'
-            FunctionKeyword <2409:2417> [88:15:88:23] 'function'
-            IdentifierNameSyntax
-             IdentifierToken <2418:2434> [88:24:88:40] 'MoveLowerToUpper'
-            ParameterListSyntax
-             OpenParenToken <2434:2435> [88:40:88:41] '('
-             UnexpectedNodesSyntax
-              SyntaxList
-               SelfKeyword <2435:2439> [88:41:88:45] 'self'
-               ColonToken <2439:2440> [88:45:88:46] ':'
-               IdentifierToken <2441:2445> [88:47:88:51] 'Self'
-             CloseParenToken <2445:2446> [88:51:88:52] ')'
-            ReturnTypeClauseSyntax
-             MinusGreaterThanToken <2447:2449> [88:53:88:55] '->'
-             IdentifierNameSyntax
-              IdentifierToken <2450:2457> [88:56:88:63] 'UInt128'
-            CodeBlockSyntax
-             OpenBraceToken <2466:2467> [89:8:89:9] '{'
-             SyntaxList
-              CodeBlockItemSyntax
-               ReturnStatementSyntax
-                ReturnKeyword <2480:2486> [90:12:90:18] 'return'
-                IdentifierNameSyntax
-                 IdentifierToken <2487:2494> [90:19:90:26] 'UInt128'
-              CodeBlockItemSyntax
-               BlockStatementSyntax
-                CodeBlockSyntax
-                 OpenBraceToken <2494:2495> [90:26:90:27] '{'
-                 SyntaxList
-                  CodeBlockItemSyntax
-                   ExpressionStatementSyntax
+                       IdentifierToken <2135:2139> [75:24:75:28] 'self'
+                      DotToken <2139:2140> [75:28:75:29] '.'
+                      IdentifierNameSyntax
+                       IdentifierToken <2140:2145> [75:29:75:34] 'Lower'
+                    CommaToken <2145:2146> [75:34:75:35] ','
+                   ArgumentSyntax
                     AssignmentExpressionSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <2512:2517> [91:16:91:21] 'Lower'
-                     EqualsToken <2518:2519> [91:22:91:23] '='
+                      IdentifierToken <2163:2168> [76:16:76:21] 'Upper'
+                     EqualsToken <2169:2170> [76:22:76:23] '='
                      LiteralExpressionSyntax
-                      IntegerLiteralToken <2520:2521> [91:24:91:25] '0'
-                 UnexpectedNodesSyntax
-                  SyntaxList
-                   CommaToken <2521:2522> [91:25:91:26] ','
-                   IdentifierToken <2539:2544> [92:16:92:21] 'Upper'
-                   EqualsToken <2545:2546> [92:22:92:23] '='
-                   SelfKeyword <2547:2551> [92:24:92:28] 'self'
-                   DotToken <2551:2552> [92:28:92:29] '.'
-                   IdentifierToken <2552:2557> [92:29:92:34] 'Lower'
-                   CommaToken <2557:2558> [92:34:92:35] ','
-                 CloseBraceToken <2571:2572> [93:12:93:13] '}'
-               SemicolonToken <2572:2573> [93:13:93:14] ';'
-             CloseBraceToken <2582:2583> [94:8:94:9] '}'
+                      IntegerLiteralToken <2171:2172> [76:24:76:25] '0'
+                  CloseParenToken <2185:2186> [77:12:77:13] ')'
+               SemicolonToken <2186:2187> [77:13:77:14] ';'
+             CloseBraceToken <2196:2197> [78:8:78:9] '}'
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <2593:2599> [96:8:96:14] 'public'
-            FunctionKeyword <2600:2608> [96:15:96:23] 'function'
+             PublicKeyword <2207:2213> [80:8:80:14] 'public'
+            FunctionKeyword <2214:2222> [80:15:80:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <2609:2621> [96:24:96:36] 'CombineLower'
+             IdentifierToken <2223:2239> [80:24:80:40] 'MoveUpperToLower'
             ParameterListSyntax
-             OpenParenToken <2621:2622> [96:36:96:37] '('
+             OpenParenToken <2239:2240> [80:40:80:41] '('
              SyntaxList
               ParameterSyntax
                IdentifierNameSyntax
-                IdentifierToken <2622:2626> [96:37:96:41] 'left'
+                IdentifierToken <2240:2244> [80:41:80:45] 'self'
                TypeClauseSyntax
-                ColonToken <2626:2627> [96:41:96:42] ':'
+                ColonToken <2244:2245> [80:45:80:46] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <2628:2635> [96:43:96:50] 'UInt128'
-               CommaToken <2635:2636> [96:50:96:51] ','
-              ParameterSyntax
-               IdentifierNameSyntax
-                IdentifierToken <2637:2642> [96:52:96:57] 'right'
-               TypeClauseSyntax
-                ColonToken <2642:2643> [96:57:96:58] ':'
-                IdentifierNameSyntax
-                 IdentifierToken <2644:2651> [96:59:96:66] 'UInt128'
-             CloseParenToken <2651:2652> [96:66:96:67] ')'
+                 IdentifierToken <2246:2250> [80:47:80:51] 'Self'
+             CloseParenToken <2250:2251> [80:51:80:52] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <2653:2655> [96:68:96:70] '->'
+             MinusGreaterThanToken <2252:2254> [80:53:80:55] '->'
              IdentifierNameSyntax
-              IdentifierToken <2656:2663> [96:71:96:78] 'UInt128'
+              IdentifierToken <2255:2262> [80:56:80:63] 'UInt128'
             CodeBlockSyntax
-             OpenBraceToken <2672:2673> [97:8:97:9] '{'
+             OpenBraceToken <2271:2272> [81:8:81:9] '{'
              SyntaxList
               CodeBlockItemSyntax
                ReturnStatementSyntax
-                ReturnKeyword <2686:2692> [98:12:98:18] 'return'
-                IdentifierNameSyntax
-                 IdentifierToken <2693:2700> [98:19:98:26] 'UInt128'
-              CodeBlockItemSyntax
-               BlockStatementSyntax
-                CodeBlockSyntax
-                 OpenBraceToken <2700:2701> [98:26:98:27] '{'
-                 SyntaxList
-                  CodeBlockItemSyntax
-                   ExpressionStatementSyntax
+                ReturnKeyword <2285:2291> [82:12:82:18] 'return'
+                InvocationExpressionSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <2292:2299> [82:19:82:26] 'UInt128'
+                 ArgumentListSyntax
+                  OpenParenToken <2299:2300> [82:26:82:27] '('
+                  SyntaxList
+                   ArgumentSyntax
                     AssignmentExpressionSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <2718:2723> [99:16:99:21] 'Lower'
-                     EqualsToken <2724:2725> [99:22:99:23] '='
+                      IdentifierToken <2317:2322> [83:16:83:21] 'Lower'
+                     EqualsToken <2323:2324> [83:22:83:23] '='
                      MemberAccessExpressionSyntax
                       IdentifierNameSyntax
-                       IdentifierToken <2726:2730> [99:24:99:28] 'left'
-                      DotToken <2730:2731> [99:28:99:29] '.'
+                       IdentifierToken <2325:2329> [83:24:83:28] 'self'
+                      DotToken <2329:2330> [83:28:83:29] '.'
                       IdentifierNameSyntax
-                       IdentifierToken <2731:2736> [99:29:99:34] 'Lower'
-                 UnexpectedNodesSyntax
-                  SyntaxList
-                   CommaToken <2736:2737> [99:34:99:35] ','
-                   IdentifierToken <2754:2759> [100:16:100:21] 'Upper'
-                   EqualsToken <2760:2761> [100:22:100:23] '='
-                   IdentifierToken <2762:2767> [100:24:100:29] 'right'
-                   DotToken <2767:2768> [100:29:100:30] '.'
-                   IdentifierToken <2768:2773> [100:30:100:35] 'Lower'
-                   CommaToken <2773:2774> [100:35:100:36] ','
-                 CloseBraceToken <2787:2788> [101:12:101:13] '}'
-               SemicolonToken <2788:2789> [101:13:101:14] ';'
-             CloseBraceToken <2798:2799> [102:8:102:9] '}'
+                       IdentifierToken <2330:2335> [83:29:83:34] 'Upper'
+                    CommaToken <2335:2336> [83:34:83:35] ','
+                   ArgumentSyntax
+                    AssignmentExpressionSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2353:2358> [84:16:84:21] 'Upper'
+                     EqualsToken <2359:2360> [84:22:84:23] '='
+                     LiteralExpressionSyntax
+                      IntegerLiteralToken <2361:2362> [84:24:84:25] '0'
+                  CloseParenToken <2375:2376> [85:12:85:13] ')'
+               SemicolonToken <2376:2377> [85:13:85:14] ';'
+             CloseBraceToken <2386:2387> [86:8:86:9] '}'
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <2809:2815> [104:8:104:14] 'public'
-            FunctionKeyword <2816:2824> [104:15:104:23] 'function'
+             PublicKeyword <2397:2403> [88:8:88:14] 'public'
+            FunctionKeyword <2404:2412> [88:15:88:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <2825:2837> [104:24:104:36] 'CombineUpper'
+             IdentifierToken <2413:2429> [88:24:88:40] 'MoveLowerToUpper'
             ParameterListSyntax
-             OpenParenToken <2837:2838> [104:36:104:37] '('
+             OpenParenToken <2429:2430> [88:40:88:41] '('
              SyntaxList
               ParameterSyntax
                IdentifierNameSyntax
-                IdentifierToken <2838:2842> [104:37:104:41] 'left'
+                IdentifierToken <2430:2434> [88:41:88:45] 'self'
                TypeClauseSyntax
-                ColonToken <2842:2843> [104:41:104:42] ':'
+                ColonToken <2434:2435> [88:45:88:46] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <2844:2851> [104:43:104:50] 'UInt128'
-               CommaToken <2851:2852> [104:50:104:51] ','
-              ParameterSyntax
-               IdentifierNameSyntax
-                IdentifierToken <2853:2858> [104:52:104:57] 'right'
-               TypeClauseSyntax
-                ColonToken <2858:2859> [104:57:104:58] ':'
-                IdentifierNameSyntax
-                 IdentifierToken <2860:2867> [104:59:104:66] 'UInt128'
-             CloseParenToken <2867:2868> [104:66:104:67] ')'
+                 IdentifierToken <2436:2440> [88:47:88:51] 'Self'
+             CloseParenToken <2440:2441> [88:51:88:52] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <2869:2871> [104:68:104:70] '->'
+             MinusGreaterThanToken <2442:2444> [88:53:88:55] '->'
              IdentifierNameSyntax
-              IdentifierToken <2872:2879> [104:71:104:78] 'UInt128'
+              IdentifierToken <2445:2452> [88:56:88:63] 'UInt128'
             CodeBlockSyntax
-             OpenBraceToken <2888:2889> [105:8:105:9] '{'
+             OpenBraceToken <2461:2462> [89:8:89:9] '{'
              SyntaxList
               CodeBlockItemSyntax
                ReturnStatementSyntax
-                ReturnKeyword <2902:2908> [106:12:106:18] 'return'
-                IdentifierNameSyntax
-                 IdentifierToken <2909:2916> [106:19:106:26] 'UInt128'
-              CodeBlockItemSyntax
-               BlockStatementSyntax
-                CodeBlockSyntax
-                 OpenBraceToken <2916:2917> [106:26:106:27] '{'
-                 SyntaxList
-                  CodeBlockItemSyntax
-                   ExpressionStatementSyntax
+                ReturnKeyword <2475:2481> [90:12:90:18] 'return'
+                InvocationExpressionSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <2482:2489> [90:19:90:26] 'UInt128'
+                 ArgumentListSyntax
+                  OpenParenToken <2489:2490> [90:26:90:27] '('
+                  SyntaxList
+                   ArgumentSyntax
                     AssignmentExpressionSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <2934:2939> [107:16:107:21] 'Lower'
-                     EqualsToken <2940:2941> [107:22:107:23] '='
+                      IdentifierToken <2507:2512> [91:16:91:21] 'Lower'
+                     EqualsToken <2513:2514> [91:22:91:23] '='
+                     LiteralExpressionSyntax
+                      IntegerLiteralToken <2515:2516> [91:24:91:25] '0'
+                    CommaToken <2516:2517> [91:25:91:26] ','
+                   ArgumentSyntax
+                    AssignmentExpressionSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2534:2539> [92:16:92:21] 'Upper'
+                     EqualsToken <2540:2541> [92:22:92:23] '='
                      MemberAccessExpressionSyntax
                       IdentifierNameSyntax
-                       IdentifierToken <2942:2946> [107:24:107:28] 'left'
-                      DotToken <2946:2947> [107:28:107:29] '.'
+                       IdentifierToken <2542:2546> [92:24:92:28] 'self'
+                      DotToken <2546:2547> [92:28:92:29] '.'
                       IdentifierNameSyntax
-                       IdentifierToken <2947:2952> [107:29:107:34] 'Upper'
-                 UnexpectedNodesSyntax
+                       IdentifierToken <2547:2552> [92:29:92:34] 'Lower'
+                  CloseParenToken <2565:2566> [93:12:93:13] ')'
+               SemicolonToken <2566:2567> [93:13:93:14] ';'
+             CloseBraceToken <2576:2577> [94:8:94:9] '}'
+          CodeBlockItemSyntax
+           FunctionDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2587:2593> [96:8:96:14] 'public'
+            FunctionKeyword <2594:2602> [96:15:96:23] 'function'
+            IdentifierNameSyntax
+             IdentifierToken <2603:2615> [96:24:96:36] 'CombineLower'
+            ParameterListSyntax
+             OpenParenToken <2615:2616> [96:36:96:37] '('
+             SyntaxList
+              ParameterSyntax
+               IdentifierNameSyntax
+                IdentifierToken <2616:2620> [96:37:96:41] 'left'
+               TypeClauseSyntax
+                ColonToken <2620:2621> [96:41:96:42] ':'
+                IdentifierNameSyntax
+                 IdentifierToken <2622:2629> [96:43:96:50] 'UInt128'
+               CommaToken <2629:2630> [96:50:96:51] ','
+              ParameterSyntax
+               IdentifierNameSyntax
+                IdentifierToken <2631:2636> [96:52:96:57] 'right'
+               TypeClauseSyntax
+                ColonToken <2636:2637> [96:57:96:58] ':'
+                IdentifierNameSyntax
+                 IdentifierToken <2638:2645> [96:59:96:66] 'UInt128'
+             CloseParenToken <2645:2646> [96:66:96:67] ')'
+            ReturnTypeClauseSyntax
+             MinusGreaterThanToken <2647:2649> [96:68:96:70] '->'
+             IdentifierNameSyntax
+              IdentifierToken <2650:2657> [96:71:96:78] 'UInt128'
+            CodeBlockSyntax
+             OpenBraceToken <2666:2667> [97:8:97:9] '{'
+             SyntaxList
+              CodeBlockItemSyntax
+               ReturnStatementSyntax
+                ReturnKeyword <2680:2686> [98:12:98:18] 'return'
+                InvocationExpressionSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <2687:2694> [98:19:98:26] 'UInt128'
+                 ArgumentListSyntax
+                  OpenParenToken <2694:2695> [98:26:98:27] '('
                   SyntaxList
-                   CommaToken <2952:2953> [107:34:107:35] ','
-                   IdentifierToken <2970:2975> [108:16:108:21] 'Upper'
-                   EqualsToken <2976:2977> [108:22:108:23] '='
-                   IdentifierToken <2978:2983> [108:24:108:29] 'right'
-                   DotToken <2983:2984> [108:29:108:30] '.'
-                   IdentifierToken <2984:2989> [108:30:108:35] 'Upper'
-                   CommaToken <2989:2990> [108:35:108:36] ','
-                 CloseBraceToken <3003:3004> [109:12:109:13] '}'
-               SemicolonToken <3004:3005> [109:13:109:14] ';'
-             CloseBraceToken <3014:3015> [110:8:110:9] '}'
-         CloseBraceToken <3020:3021> [111:4:111:5] '}'
-     CloseBraceToken <3022:3023> [112:0:112:1] '}'
- EndOfFileToken <3024:3024> [113:0:113:0] ''
+                   ArgumentSyntax
+                    AssignmentExpressionSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2712:2717> [99:16:99:21] 'Lower'
+                     EqualsToken <2718:2719> [99:22:99:23] '='
+                     MemberAccessExpressionSyntax
+                      IdentifierNameSyntax
+                       IdentifierToken <2720:2724> [99:24:99:28] 'left'
+                      DotToken <2724:2725> [99:28:99:29] '.'
+                      IdentifierNameSyntax
+                       IdentifierToken <2725:2730> [99:29:99:34] 'Lower'
+                    CommaToken <2730:2731> [99:34:99:35] ','
+                   ArgumentSyntax
+                    AssignmentExpressionSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2748:2753> [100:16:100:21] 'Upper'
+                     EqualsToken <2754:2755> [100:22:100:23] '='
+                     MemberAccessExpressionSyntax
+                      IdentifierNameSyntax
+                       IdentifierToken <2756:2761> [100:24:100:29] 'right'
+                      DotToken <2761:2762> [100:29:100:30] '.'
+                      IdentifierNameSyntax
+                       IdentifierToken <2762:2767> [100:30:100:35] 'Lower'
+                  CloseParenToken <2780:2781> [101:12:101:13] ')'
+               SemicolonToken <2781:2782> [101:13:101:14] ';'
+             CloseBraceToken <2791:2792> [102:8:102:9] '}'
+          CodeBlockItemSyntax
+           FunctionDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2802:2808> [104:8:104:14] 'public'
+            FunctionKeyword <2809:2817> [104:15:104:23] 'function'
+            IdentifierNameSyntax
+             IdentifierToken <2818:2830> [104:24:104:36] 'CombineUpper'
+            ParameterListSyntax
+             OpenParenToken <2830:2831> [104:36:104:37] '('
+             SyntaxList
+              ParameterSyntax
+               IdentifierNameSyntax
+                IdentifierToken <2831:2835> [104:37:104:41] 'left'
+               TypeClauseSyntax
+                ColonToken <2835:2836> [104:41:104:42] ':'
+                IdentifierNameSyntax
+                 IdentifierToken <2837:2844> [104:43:104:50] 'UInt128'
+               CommaToken <2844:2845> [104:50:104:51] ','
+              ParameterSyntax
+               IdentifierNameSyntax
+                IdentifierToken <2846:2851> [104:52:104:57] 'right'
+               TypeClauseSyntax
+                ColonToken <2851:2852> [104:57:104:58] ':'
+                IdentifierNameSyntax
+                 IdentifierToken <2853:2860> [104:59:104:66] 'UInt128'
+             CloseParenToken <2860:2861> [104:66:104:67] ')'
+            ReturnTypeClauseSyntax
+             MinusGreaterThanToken <2862:2864> [104:68:104:70] '->'
+             IdentifierNameSyntax
+              IdentifierToken <2865:2872> [104:71:104:78] 'UInt128'
+            CodeBlockSyntax
+             OpenBraceToken <2881:2882> [105:8:105:9] '{'
+             SyntaxList
+              CodeBlockItemSyntax
+               ReturnStatementSyntax
+                ReturnKeyword <2895:2901> [106:12:106:18] 'return'
+                InvocationExpressionSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <2902:2909> [106:19:106:26] 'UInt128'
+                 ArgumentListSyntax
+                  OpenParenToken <2909:2910> [106:26:106:27] '('
+                  SyntaxList
+                   ArgumentSyntax
+                    AssignmentExpressionSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2927:2932> [107:16:107:21] 'Lower'
+                     EqualsToken <2933:2934> [107:22:107:23] '='
+                     MemberAccessExpressionSyntax
+                      IdentifierNameSyntax
+                       IdentifierToken <2935:2939> [107:24:107:28] 'left'
+                      DotToken <2939:2940> [107:28:107:29] '.'
+                      IdentifierNameSyntax
+                       IdentifierToken <2940:2945> [107:29:107:34] 'Upper'
+                    CommaToken <2945:2946> [107:34:107:35] ','
+                   ArgumentSyntax
+                    AssignmentExpressionSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2963:2968> [108:16:108:21] 'Upper'
+                     EqualsToken <2969:2970> [108:22:108:23] '='
+                     MemberAccessExpressionSyntax
+                      IdentifierNameSyntax
+                       IdentifierToken <2971:2976> [108:24:108:29] 'right'
+                      DotToken <2976:2977> [108:29:108:30] '.'
+                      IdentifierNameSyntax
+                       IdentifierToken <2977:2982> [108:30:108:35] 'Upper'
+                  CloseParenToken <2995:2996> [109:12:109:13] ')'
+               SemicolonToken <2996:2997> [109:13:109:14] ';'
+             CloseBraceToken <3006:3007> [110:8:110:9] '}'
+         CloseBraceToken <3012:3013> [111:4:111:5] '}'
+     CloseBraceToken <3014:3015> [112:0:112:1] '}'
+ EndOfFileToken <3016:3016> [113:0:113:0] ''
