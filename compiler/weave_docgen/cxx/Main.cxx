@@ -2,6 +2,8 @@
 #include "weave/CommandLine.hxx"
 #include "weave/filesystem/DirectoryEnumerator.hxx"
 
+#include <utility>
+
 struct Options
 {
     std::string SourcePath{};

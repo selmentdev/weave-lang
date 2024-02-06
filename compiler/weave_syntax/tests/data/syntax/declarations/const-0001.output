@@ -3,49 +3,49 @@ SourceFileSyntax
   CodeBlockItemSyntax
    ConstantDeclarationSyntax
     SyntaxList
-     PublicKeyword <39:45> [1:0:1:6] 'public'
-    ConstKeyword <46:51> [1:7:1:12] 'const'
+     PublicKeyword <38:44> [1:0:1:6] 'public'
+    ConstKeyword <45:50> [1:7:1:12] 'const'
     IdentifierNameSyntax
-     IdentifierToken <52:53> [1:13:1:14] 'X'
-   SemicolonToken <53:54> [1:14:1:15] ';'
+     IdentifierToken <51:52> [1:13:1:14] 'X'
+   SemicolonToken <52:53> [1:14:1:15] ';'
   CodeBlockItemSyntax
    ConstantDeclarationSyntax
     SyntaxList
-     PublicKeyword <98:104> [4:0:4:6] 'public'
-    ConstKeyword <105:110> [4:7:4:12] 'const'
+     PublicKeyword <94:100> [4:0:4:6] 'public'
+    ConstKeyword <101:106> [4:7:4:12] 'const'
     IdentifierNameSyntax
-     IdentifierToken <111:112> [4:13:4:14] 'Y'
+     IdentifierToken <107:108> [4:13:4:14] 'Y'
     TypeClauseSyntax
-     ColonToken <113:114> [4:15:4:16] ':'
+     ColonToken <109:110> [4:15:4:16] ':'
      IdentifierNameSyntax
-      IdentifierToken <115:120> [4:17:4:22] 'Int32'
-   SemicolonToken <120:121> [4:22:4:23] ';'
+      IdentifierToken <111:116> [4:17:4:22] 'Int32'
+   SemicolonToken <116:117> [4:22:4:23] ';'
   CodeBlockItemSyntax
    ConstantDeclarationSyntax
     SyntaxList
-     PublicKeyword <169:175> [7:0:7:6] 'public'
-    ConstKeyword <176:181> [7:7:7:12] 'const'
+     PublicKeyword <162:168> [7:0:7:6] 'public'
+    ConstKeyword <169:174> [7:7:7:12] 'const'
     IdentifierNameSyntax
-     IdentifierToken <182:183> [7:13:7:14] 'Z'
+     IdentifierToken <175:176> [7:13:7:14] 'Z'
     InitializerClauseSyntax
-     EqualsToken <184:185> [7:15:7:16] '='
+     EqualsToken <177:178> [7:15:7:16] '='
      LiteralExpressionSyntax
-      IntegerLiteralToken <186:188> [7:17:7:19] '42'
-   SemicolonToken <188:189> [7:19:7:20] ';'
+      IntegerLiteralToken <179:181> [7:17:7:19] '42'
+   SemicolonToken <181:182> [7:19:7:20] ';'
   CodeBlockItemSyntax
    ConstantDeclarationSyntax
     SyntaxList
-     PublicKeyword <229:235> [10:0:10:6] 'public'
-    ConstKeyword <236:241> [10:7:10:12] 'const'
+     PublicKeyword <219:225> [10:0:10:6] 'public'
+    ConstKeyword <226:231> [10:7:10:12] 'const'
     IdentifierNameSyntax
-     IdentifierToken <242:243> [10:13:10:14] 'W'
+     IdentifierToken <232:233> [10:13:10:14] 'W'
     TypeClauseSyntax
-     ColonToken <244:245> [10:15:10:16] ':'
+     ColonToken <234:235> [10:15:10:16] ':'
      IdentifierNameSyntax
-      IdentifierToken <246:251> [10:17:10:22] 'Int32'
+      IdentifierToken <236:241> [10:17:10:22] 'Int32'
     InitializerClauseSyntax
-     EqualsToken <252:253> [10:23:10:24] '='
+     EqualsToken <242:243> [10:23:10:24] '='
      LiteralExpressionSyntax
-      IntegerLiteralToken <254:256> [10:25:10:27] '42'
-   SemicolonToken <256:257> [10:27:10:28] ';'
- EndOfFileToken <259:259> [11:0:11:0] ''
+      IntegerLiteralToken <244:246> [10:25:10:27] '42'
+   SemicolonToken <246:247> [10:27:10:28] ';'
+ EndOfFileToken <248:248> [11:0:11:0] ''

@@ -1,5 +1,6 @@
 target_sources(weave_filesystem
     PRIVATE
+        "DirectoryEnumerator.cxx"
         "FileReader.cxx"
         "FileSystem.cxx"
         "FileWriter.cxx"
