@@ -2202,6 +2202,12 @@ namespace weave::syntax
     {
         IdentifierPatternSyntax* result = this->_factory->CreateNode<IdentifierPatternSyntax>();
         result->Identifier = this->ParseIdentifierName();
+
+        if (this->Current()->Kind == SyntaxKind::OpenParenToken)
+        {
+            result->Tuple = this->ParseTuplePattern();
+        }
+
         return result;
     }
 

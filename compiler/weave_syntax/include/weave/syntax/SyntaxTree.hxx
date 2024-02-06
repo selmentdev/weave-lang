@@ -1623,6 +1623,7 @@ namespace weave::syntax
 
     public:
         NameSyntax* Identifier{};
+        TuplePatternSyntax* Tuple{};
 
     public:
         explicit constexpr IdentifierPatternSyntax()

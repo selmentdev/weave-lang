@@ -1173,6 +1173,7 @@ namespace weave::syntax
         ++this->Depth;
 
         this->Dispatch(node->Identifier);
+        this->Dispatch(node->Tuple);
 
         --this->Depth;
     }

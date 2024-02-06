@@ -58,19 +58,18 @@ SourceFileSyntax
                   IdentifierPatternSyntax
                    IdentifierNameSyntax
                     IdentifierToken <51:52> [7:11:7:12] 'x'
-               CodeBlockItemSyntax
-                ExpressionStatementSyntax
-                 AssignmentExpressionSyntax
-                  TupleExpressionSyntax
-                   OpenParenToken <52:53> [7:12:7:13] '('
-                   SyntaxList
-                    LabeledExpressionSyntax
-                     IdentifierNameSyntax
-                      IdentifierToken <53:54> [7:13:7:14] 'y'
-                   CloseParenToken <54:55> [7:14:7:15] ')'
-                  EqualsToken <56:57> [7:16:7:17] '='
-                  LiteralExpressionSyntax
-                   IntegerLiteralToken <58:60> [7:18:7:20] '42'
+                   TuplePatternSyntax
+                    OpenParenToken <52:53> [7:12:7:13] '('
+                    SyntaxList
+                     TuplePatternItemSyntax
+                      IdentifierPatternSyntax
+                       IdentifierNameSyntax
+                        IdentifierToken <53:54> [7:13:7:14] 'y'
+                    CloseParenToken <54:55> [7:14:7:15] ')'
+                  InitializerClauseSyntax
+                   EqualsToken <56:57> [7:16:7:17] '='
+                   LiteralExpressionSyntax
+                    IntegerLiteralToken <58:60> [7:18:7:20] '42'
                CodeBlockItemSyntax
                 BlockStatementSyntax
                  CodeBlockSyntax

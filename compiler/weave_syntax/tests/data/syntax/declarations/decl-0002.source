@@ -1,0 +1,63 @@
+namespace Core
+{
+    public enum Option::[type T]
+    {
+        Some(T),
+        None,
+    }
+
+    public extend Option::[type T]
+    {
+        public function ValueOrDefault(ref self: Self, ref defaultValue: T) -> T
+        {
+            return match self
+            {
+                case Some(value):{
+                    yield value;
+                }
+                case None: {
+                    yield defaultValue;
+                }
+            };
+        }
+
+        public function Value(ref self: Self) -> T
+        {
+            return match self
+            {
+                case Some(value):   value;
+                case None:          bugcheck("Option is None");
+            }
+        }
+    }
+
+    public enum Result::[type T, type E]
+    {
+        Ok(T),
+        Error(E),
+    }
+
+    public extend Result::[type T, type E]
+    {
+        public function ValueOrDefault(in self: Self, ref defaultValue: T) -> T
+        {
+            return match self
+            {
+                case Ok(value): value;
+                case Error(_): defaultValue;
+            };
+        }
+    }
+
+    public concept Enumerator::[type T]
+    {
+        public function MoveNext(self: Self) -> bool;
+
+        public function Current(ref self: Self) -> T;
+    }
+
+    public concept Enumerable::[type T]
+    {
+        public function GetEnumerator(ref self: Self) -> Enumerator::[T];
+    }
+}

@@ -47,27 +47,26 @@ SourceFileSyntax
               IdentifierPatternSyntax
                IdentifierNameSyntax
                 IdentifierToken <191:195> [6:11:6:15] 'Some'
-           CodeBlockItemSyntax
-            ExpressionStatementSyntax
-             AssignmentExpressionSyntax
-              TupleExpressionSyntax
-               OpenParenToken <195:196> [6:15:6:16] '('
-               SyntaxList
-                LabeledExpressionSyntax
+               TuplePatternSyntax
+                OpenParenToken <195:196> [6:15:6:16] '('
+                SyntaxList
+                 TuplePatternItemSyntax
+                  IdentifierPatternSyntax
+                   IdentifierNameSyntax
+                    IdentifierToken <196:203> [6:16:6:23] 'comment'
+                CloseParenToken <203:204> [6:23:6:24] ')'
+              InitializerClauseSyntax
+               EqualsToken <222:223> [6:42:6:43] '='
+               InvocationExpressionSyntax
+                MemberAccessExpressionSyntax
                  IdentifierNameSyntax
-                  IdentifierToken <196:203> [6:16:6:23] 'comment'
-               CloseParenToken <203:204> [6:23:6:24] ')'
-              EqualsToken <222:223> [6:42:6:43] '='
-              InvocationExpressionSyntax
-               MemberAccessExpressionSyntax
-                IdentifierNameSyntax
-                 IdentifierToken <251:255> [6:71:6:75] 'self'
-                DotToken <255:256> [6:75:6:76] '.'
-                IdentifierNameSyntax
-                 IdentifierToken <256:270> [6:76:6:90] 'TryReadComment'
-               ArgumentListSyntax
-                OpenParenToken <270:271> [6:90:6:91] '('
-                CloseParenToken <271:272> [6:91:6:92] ')'
+                  IdentifierToken <251:255> [6:71:6:75] 'self'
+                 DotToken <255:256> [6:75:6:76] '.'
+                 IdentifierNameSyntax
+                  IdentifierToken <256:270> [6:76:6:90] 'TryReadComment'
+                ArgumentListSyntax
+                 OpenParenToken <270:271> [6:90:6:91] '('
+                 CloseParenToken <271:272> [6:91:6:92] ')'
            CodeBlockItemSyntax
             BlockStatementSyntax
              CodeBlockSyntax
