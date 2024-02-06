@@ -1219,6 +1219,23 @@ namespace weave::syntax
             result = this->ParseTerm(parentPrecedence);
         }
 
+        auto checkPrecedence = [&](Precedence precedence, SyntaxKind operation)
+        {
+            if (precedence < parentPrecedence)
+            {
+                // Check precedence
+                return true;
+            }
+
+            if ((precedence == parentPrecedence) and (not SyntaxFacts::IsRightAssociative(operation)))
+            {
+                // Check associativity
+                return true;
+            }
+
+            return false;
+        };
+
         while (true)
         {
             SyntaxKind const kind = this->Current()->Kind;
@@ -1227,15 +1244,8 @@ namespace weave::syntax
             {
                 Precedence const precedence = SyntaxFacts::GetPrecedence(operation);
 
-                if (precedence < parentPrecedence)
+                if (checkPrecedence(precedence, operation))
                 {
-                    // Check precedence
-                    break;
-                }
-
-                if ((precedence == parentPrecedence) and (not SyntaxFacts::IsRightAssociative(operation)))
-                {
-                    // Check associativity
                     break;
                 }
 
@@ -1252,21 +1262,8 @@ namespace weave::syntax
             {
                 Precedence const precedence = SyntaxFacts::GetPrecedence(operation);
 
-                // if ((precedence == Precedence::Expression) || (precedence <= parentPrecedence))
-                //{
-                //     break;
-                // }
-
-
-                if (precedence < parentPrecedence)
+                if (checkPrecedence(precedence, operation))
                 {
-                    // Check precedence
-                    break;
-                }
-
-                if ((precedence == parentPrecedence) and (not SyntaxFacts::IsRightAssociative(operation)))
-                {
-                    // Check associativity
                     break;
                 }
 
