@@ -8,140 +8,153 @@ SourceFileSyntax
     IdentifierNameSyntax
      IdentifierToken <14:18> [0:14:0:18] 'Pair'
     GenericParametersSyntax
-     ColonColonOpenBracketToken <18:21> [0:18:0:21] '::['
+     ExclamationOpenBracketToken <18:20> [0:18:0:20] '!['
      SyntaxList
       TypeGenericParameterSyntax
-       TypeKeyword <21:25> [0:21:0:25] 'type'
+       TypeKeyword <20:24> [0:20:0:24] 'type'
        IdentifierNameSyntax
-        IdentifierToken <26:28> [0:26:0:28] 'T1'
-       CommaToken <28:29> [0:28:0:29] ','
+        IdentifierToken <25:27> [0:25:0:27] 'T1'
+       CommaToken <27:28> [0:27:0:28] ','
       TypeGenericParameterSyntax
-       TypeKeyword <30:34> [0:30:0:34] 'type'
+       TypeKeyword <29:33> [0:29:0:33] 'type'
        IdentifierNameSyntax
-        IdentifierToken <35:37> [0:35:0:37] 'T2'
-     CloseBracketToken <37:38> [0:37:0:38] ']'
+        IdentifierToken <34:36> [0:34:0:36] 'T2'
+     CloseBracketToken <36:37> [0:36:0:37] ']'
     CodeBlockSyntax
-     OpenBraceToken <39:40> [1:0:1:1] '{'
+     OpenBraceToken <38:39> [1:0:1:1] '{'
      SyntaxList
       CodeBlockItemSyntax
        TypeAliasDeclarationSyntax
         SyntaxList
-         PublicKeyword <45:51> [2:4:2:10] 'public'
-        TypeKeyword <52:56> [2:11:2:15] 'type'
+         PublicKeyword <44:50> [2:4:2:10] 'public'
+        TypeKeyword <51:55> [2:11:2:15] 'type'
         IdentifierNameSyntax
-         IdentifierToken <57:66> [2:16:2:25] 'FirstType'
-        EqualsToken <67:68> [2:26:2:27] '='
+         IdentifierToken <56:65> [2:16:2:25] 'FirstType'
+        EqualsToken <66:67> [2:26:2:27] '='
         IdentifierNameSyntax
-         IdentifierToken <69:71> [2:28:2:30] 'T1'
-       SemicolonToken <71:72> [2:30:2:31] ';'
+         IdentifierToken <68:70> [2:28:2:30] 'T1'
+       SemicolonToken <70:71> [2:30:2:31] ';'
       CodeBlockItemSyntax
        TypeAliasDeclarationSyntax
         SyntaxList
-         PublicKeyword <77:83> [3:4:3:10] 'public'
-        TypeKeyword <84:88> [3:11:3:15] 'type'
+         PublicKeyword <76:82> [3:4:3:10] 'public'
+        TypeKeyword <83:87> [3:11:3:15] 'type'
         IdentifierNameSyntax
-         IdentifierToken <89:99> [3:16:3:26] 'SecondType'
-        EqualsToken <100:101> [3:27:3:28] '='
+         IdentifierToken <88:98> [3:16:3:26] 'SecondType'
+        EqualsToken <99:100> [3:27:3:28] '='
         IdentifierNameSyntax
-         IdentifierToken <102:104> [3:29:3:31] 'T2'
-       SemicolonToken <104:105> [3:31:3:32] ';'
+         IdentifierToken <101:103> [3:29:3:31] 'T2'
+       SemicolonToken <103:104> [3:31:3:32] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         SyntaxList
-         PublicKeyword <111:117> [5:4:5:10] 'public'
-        VarKeyword <118:121> [5:11:5:14] 'var'
+         PublicKeyword <110:116> [5:4:5:10] 'public'
+        VarKeyword <117:120> [5:11:5:14] 'var'
         PatternBindingSyntax
          IdentifierPatternSyntax
           IdentifierNameSyntax
-           IdentifierToken <122:127> [5:15:5:20] 'First'
+           IdentifierToken <121:126> [5:15:5:20] 'First'
          TypeClauseSyntax
-          ColonToken <127:128> [5:20:5:21] ':'
+          ColonToken <126:127> [5:20:5:21] ':'
           IdentifierNameSyntax
-           IdentifierToken <129:138> [5:22:5:31] 'FirstType'
-       SemicolonToken <138:139> [5:31:5:32] ';'
+           IdentifierToken <128:137> [5:22:5:31] 'FirstType'
+       SemicolonToken <137:138> [5:31:5:32] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         SyntaxList
-         PublicKeyword <144:150> [6:4:6:10] 'public'
-        VarKeyword <151:154> [6:11:6:14] 'var'
+         PublicKeyword <143:149> [6:4:6:10] 'public'
+        VarKeyword <150:153> [6:11:6:14] 'var'
         PatternBindingSyntax
          IdentifierPatternSyntax
           IdentifierNameSyntax
-           IdentifierToken <155:161> [6:15:6:21] 'Second'
+           IdentifierToken <154:160> [6:15:6:21] 'Second'
          TypeClauseSyntax
-          ColonToken <161:162> [6:21:6:22] ':'
+          ColonToken <160:161> [6:21:6:22] ':'
           IdentifierNameSyntax
-           IdentifierToken <163:173> [6:23:6:33] 'SecondType'
-       SemicolonToken <173:174> [6:33:6:34] ';'
-     CloseBraceToken <175:176> [7:0:7:1] '}'
+           IdentifierToken <162:172> [6:23:6:33] 'SecondType'
+       SemicolonToken <172:173> [6:33:6:34] ';'
+     CloseBraceToken <174:175> [7:0:7:1] '}'
   CodeBlockItemSyntax
    ExtendDeclarationSyntax
     SyntaxList
-     PublicKeyword <178:184> [9:0:9:6] 'public'
-    ExtendKeyword <185:191> [9:7:9:13] 'extend'
+     PublicKeyword <177:183> [9:0:9:6] 'public'
+    ExtendKeyword <184:190> [9:7:9:13] 'extend'
     IdentifierNameSyntax
-     IdentifierToken <192:196> [9:14:9:18] 'Pair'
+     IdentifierToken <191:195> [9:14:9:18] 'Pair'
+    GenericParametersSyntax
+     ExclamationOpenBracketToken <195:197> [9:18:9:20] '!['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <197:201> [9:20:9:24] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <202:204> [9:25:9:27] 'T1'
+       CommaToken <204:205> [9:27:9:28] ','
+      TypeGenericParameterSyntax
+       TypeKeyword <206:210> [9:29:9:33] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <211:213> [9:34:9:36] 'T2'
+     CloseBracketToken <213:214> [9:36:9:37] ']'
     CodeBlockSyntax
-     OpenBraceToken <217:218> [10:0:10:1] '{'
+     OpenBraceToken <215:216> [10:0:10:1] '{'
      SyntaxList
       CodeBlockItemSyntax
        FunctionDeclarationSyntax
         SyntaxList
-         PublicKeyword <223:229> [11:4:11:10] 'public'
-        FunctionKeyword <230:238> [11:11:11:19] 'function'
+         PublicKeyword <221:227> [11:4:11:10] 'public'
+        FunctionKeyword <228:236> [11:11:11:19] 'function'
         IdentifierNameSyntax
-         IdentifierToken <239:244> [11:20:11:25] 'Empty'
+         IdentifierToken <237:242> [11:20:11:25] 'Empty'
         ParameterListSyntax
-         OpenParenToken <244:245> [11:25:11:26] '('
-         CloseParenToken <245:246> [11:26:11:27] ')'
+         OpenParenToken <242:243> [11:25:11:26] '('
+         CloseParenToken <243:244> [11:26:11:27] ')'
         CodeBlockSyntax
-         OpenBraceToken <251:252> [12:4:12:5] '{'
+         OpenBraceToken <249:250> [12:4:12:5] '{'
          SyntaxList
           CodeBlockItemSyntax
            ReturnStatementSyntax
-            ReturnKeyword <261:267> [13:8:13:14] 'return'
+            ReturnKeyword <259:265> [13:8:13:14] 'return'
             IdentifierNameSyntax
-             IdentifierToken <268:272> [13:15:13:19] 'Pair'
+             IdentifierToken <266:270> [13:15:13:19] 'Pair'
           CodeBlockItemSyntax
            BlockStatementSyntax
             CodeBlockSyntax
-             OpenBraceToken <272:273> [13:19:13:20] '{'
-             CloseBraceToken <273:274> [13:20:13:21] '}'
-           SemicolonToken <274:275> [13:21:13:22] ';'
-         CloseBraceToken <280:281> [14:4:14:5] '}'
+             OpenBraceToken <270:271> [13:19:13:20] '{'
+             CloseBraceToken <271:272> [13:20:13:21] '}'
+           SemicolonToken <272:273> [13:21:13:22] ';'
+         CloseBraceToken <278:279> [14:4:14:5] '}'
       CodeBlockItemSyntax
        FunctionDeclarationSyntax
         SyntaxList
-         PublicKeyword <287:293> [16:4:16:10] 'public'
-        FunctionKeyword <294:302> [16:11:16:19] 'function'
+         PublicKeyword <285:291> [16:4:16:10] 'public'
+        FunctionKeyword <292:300> [16:11:16:19] 'function'
         IdentifierNameSyntax
-         IdentifierToken <303:306> [16:20:16:23] 'New'
+         IdentifierToken <301:304> [16:20:16:23] 'New'
         ParameterListSyntax
-         OpenParenToken <306:307> [16:23:16:24] '('
+         OpenParenToken <304:305> [16:23:16:24] '('
          SyntaxList
           ParameterSyntax
            IdentifierNameSyntax
-            IdentifierToken <307:312> [16:24:16:29] 'first'
+            IdentifierToken <305:310> [16:24:16:29] 'first'
            TypeClauseSyntax
-            ColonToken <312:313> [16:29:16:30] ':'
+            ColonToken <310:311> [16:29:16:30] ':'
             IdentifierNameSyntax
-             IdentifierToken <314:316> [16:31:16:33] 'T1'
-           CommaToken <316:317> [16:33:16:34] ','
+             IdentifierToken <312:314> [16:31:16:33] 'T1'
+           CommaToken <314:315> [16:33:16:34] ','
           ParameterSyntax
            IdentifierNameSyntax
-            IdentifierToken <318:324> [16:35:16:41] 'second'
+            IdentifierToken <316:322> [16:35:16:41] 'second'
            TypeClauseSyntax
-            ColonToken <324:325> [16:41:16:42] ':'
+            ColonToken <322:323> [16:41:16:42] ':'
             IdentifierNameSyntax
-             IdentifierToken <326:328> [16:43:16:45] 'T2'
-         CloseParenToken <328:329> [16:45:16:46] ')'
+             IdentifierToken <324:326> [16:43:16:45] 'T2'
+         CloseParenToken <326:327> [16:45:16:46] ')'
         ReturnTypeClauseSyntax
-         MinusGreaterThanToken <330:332> [16:47:16:49] '->'
+         MinusGreaterThanToken <328:330> [16:47:16:49] '->'
          IdentifierNameSyntax
-          IdentifierToken <333:337> [16:50:16:54] 'Pair'
+          IdentifierToken <331:335> [16:50:16:54] 'Pair'
         ArrowExpressionClauseSyntax
-         EqualsGreaterThanToken <338:340> [16:55:16:57] '=>'
+         EqualsGreaterThanToken <336:338> [16:55:16:57] '=>'
          UnreachableExpressionSyntax
-       SemicolonToken <352:353> [16:69:16:70] ';'
-     CloseBraceToken <354:355> [17:0:17:1] '}'
- EndOfFileToken <356:356> [18:0:18:0] ''
+       SemicolonToken <350:351> [16:69:16:70] ';'
+     CloseBraceToken <352:353> [17:0:17:1] '}'
+ EndOfFileToken <354:354> [18:0:18:0] ''

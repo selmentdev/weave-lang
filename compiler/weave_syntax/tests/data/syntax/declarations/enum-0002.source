@@ -3,13 +3,13 @@ public enum Empty
 
 }
 
-public enum Result::[type T, type E]
+public enum Result![type T, type E]
 {
     Ok(T),
     Error(E),
 }
 
-public enum Optional::[type T]
+public enum Optional![type T]
 {
     Some(T),
     None,

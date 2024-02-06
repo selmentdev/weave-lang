@@ -1,5 +1,5 @@
 using weave;
-using weave.fs;
+using weave::fs;
 
 namespace weave
 {
@@ -25,7 +25,7 @@ namespace weave
 
     public let papaj : f32 = 2 + 1 * 3 - 7;
 
-    public let Version : weave.core.u32 = uninitialized;
+    public let Version : weave::core::u32 = uninitialized;
     public var Global : i32 = uninitialized;
 
     public function Main()
@@ -52,26 +52,34 @@ namespace weave
         public function New() -> Vector4 { }
     }
 }
-/*
-namespace weave.compiler {
-    using weave.extensions;
 
-    public struct Compiler {
+namespace weave::compiler
+{
+    using weave::extensions;
+
+    public struct Compiler
+    {
     };
 }
 
-namespace core {
-    public struct Vector![T: type, Capacity: usize] {
-        private field _data: [T; Capacity] = uninitialized;
+namespace core
+{
+    public struct Vector![type T, const Capacity: usize]
+    {
+        private var _data: [T] = uninitialized;
 
-        private field _length: usize = 0;
+        private var _length: usize = 0;
 
-        public property (self) length() -> usize {
-            return self._length;
+        public var length: usize
+        {
+            get
+            {
+                return self._length;
+            }
         }
 
-        public function (self) push(value: T) -> void
-            before: (self._length < Capacity)
+        public function push(ref self, move value: T) -> void
+            // before: (self._length < Capacity)
         {
             self._data[self._length] = value;
             self._length += 1;
@@ -81,24 +89,25 @@ namespace core {
 
 namespace std::numerics 
 {
-    public struct Vector2![T: type] {
-        public field x: T = uninitialized;
-        public field y: T = uninitialized;
+    public struct Vector2![type T] {
+        public var x: T = uninitialized;
+        public var y: T = uninitialized;
 
-        public function (self) add(other: vector2![T]) -> vector2![T]
+        public function add(ref self, other: Self) -> Self
             where T : Addable
         {
-            return vector2![T] {
+            return Self(
                 x: self.x + other.x,
                 y: self.y + other.y,
-            };
+            );
         }
     }
 }
 
 namespace std::numerics
 {
-    public function CheckedAdd![T: Addable](a: T, b: T) -> Option![T] {
+    public function CheckedAdd![type T](a: T, b: T) -> Self
+    {
         if a > 0 && b > 0 && a > T::MaxValue - b {
             return None;
         }
@@ -110,4 +119,3 @@ namespace std::numerics
         return Some(a + b);
     }
 }
-*/

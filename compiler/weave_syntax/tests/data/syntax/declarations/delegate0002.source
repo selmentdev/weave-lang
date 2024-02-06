@@ -1,4 +1,4 @@
-public delegate GenericDelegate::[
+public delegate GenericDelegate![
     type T = i32,
     const N : usize = 69
 ](

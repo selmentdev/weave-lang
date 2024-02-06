@@ -1,0 +1,10 @@
+public function Scope(
+    x: Float32,
+    y: Float32
+) -> Float32
+{
+    return Some::Type::Foo(x, y)
+         + Other::Type::Bo![Float32]::Bar(x, y)
+         + (Yet::Another::Value + !Another::One![Float32]::Boolean ? 1.0f32 : 0.0f32)
+         - (Float32::MaxValue - x + !!!(Float32::Epsilon < y) ? 1.0f32 : 0.0f32);
+}

@@ -1,11 +1,11 @@
-public struct Vector3::[type T]
+public struct Vector3![type T]
 {
     public var X: T;
     public var Y: T;
     public var Z: T;
 }
 
-public extend Vector3::[type T]
+public extend Vector3![type T]
 {
     public function Zero() -> Vector3;
     public function Splat(value: T) -> Vector3;
@@ -13,7 +13,7 @@ public extend Vector3::[type T]
 
 public function Test() -> Vector3
 {
-    var zero = Vector3::[Float32].Zero();
-    var ones = Vector3::[Float32].Splat(1.0f32);
+    var zero = Vector3![Float32].Zero();
+    var ones = Vector3![Float32].Splat(1.0f32);
     return zero + ones;
 }

@@ -7,79 +7,79 @@ SourceFileSyntax
      QualifiedNameSyntax
       IdentifierNameSyntax
        IdentifierToken <19:23> [1:10:1:14] 'Core'
-      DotToken <23:24> [1:14:1:15] '.'
+      ColonColonToken <23:25> [1:14:1:16] '::'
       IdentifierNameSyntax
-       IdentifierToken <24:30> [1:15:1:21] 'System'
-     DotToken <30:31> [1:21:1:22] '.'
+       IdentifierToken <25:31> [1:16:1:22] 'System'
+     ColonColonToken <31:33> [1:22:1:24] '::'
      IdentifierNameSyntax
-      IdentifierToken <31:38> [1:22:1:29] 'Windows'
+      IdentifierToken <33:40> [1:24:1:31] 'Windows'
     CodeBlockSyntax
-     OpenBraceToken <39:40> [2:0:2:1] '{'
+     OpenBraceToken <41:42> [2:0:2:1] '{'
      SyntaxList
       CodeBlockItemSyntax
        TypeAliasDeclarationSyntax
         SyntaxList
-         PublicKeyword <45:51> [3:4:3:10] 'public'
-        TypeKeyword <52:56> [3:11:3:15] 'type'
+         PublicKeyword <47:53> [3:4:3:10] 'public'
+        TypeKeyword <54:58> [3:11:3:15] 'type'
         IdentifierNameSyntax
-         IdentifierToken <57:62> [3:16:3:21] 'DWORD'
-        EqualsToken <69:70> [3:28:3:29] '='
+         IdentifierToken <59:64> [3:16:3:21] 'DWORD'
+        EqualsToken <71:72> [3:28:3:29] '='
         QualifiedNameSyntax
          IdentifierNameSyntax
-          IdentifierToken <71:75> [3:30:3:34] 'Core'
-         DotToken <75:76> [3:34:3:35] '.'
+          IdentifierToken <73:77> [3:30:3:34] 'Core'
+         ColonColonToken <77:79> [3:34:3:36] '::'
          IdentifierNameSyntax
-          IdentifierToken <76:82> [3:35:3:41] 'UInt32'
-       SemicolonToken <82:83> [3:41:3:42] ';'
+          IdentifierToken <79:85> [3:36:3:42] 'UInt32'
+       SemicolonToken <85:86> [3:42:3:43] ';'
       CodeBlockItemSyntax
        TypeAliasDeclarationSyntax
         SyntaxList
-         PublicKeyword <88:94> [4:4:4:10] 'public'
-        TypeKeyword <95:99> [4:11:4:15] 'type'
+         PublicKeyword <91:97> [4:4:4:10] 'public'
+        TypeKeyword <98:102> [4:11:4:15] 'type'
         IdentifierNameSyntax
-         IdentifierToken <100:109> [4:16:4:25] 'DWORD_PTR'
-        EqualsToken <112:113> [4:28:4:29] '='
+         IdentifierToken <103:112> [4:16:4:25] 'DWORD_PTR'
+        EqualsToken <115:116> [4:28:4:29] '='
         QualifiedNameSyntax
          IdentifierNameSyntax
-          IdentifierToken <114:118> [4:30:4:34] 'Core'
-         DotToken <118:119> [4:34:4:35] '.'
+          IdentifierToken <117:121> [4:30:4:34] 'Core'
+         ColonColonToken <121:123> [4:34:4:36] '::'
          IdentifierNameSyntax
-          IdentifierToken <119:126> [4:35:4:42] 'UIntPtr'
-       SemicolonToken <126:127> [4:42:4:43] ';'
+          IdentifierToken <123:130> [4:36:4:43] 'UIntPtr'
+       SemicolonToken <130:131> [4:43:4:44] ';'
       CodeBlockItemSyntax
        TypeAliasDeclarationSyntax
         SyntaxList
-         PublicKeyword <132:138> [5:4:5:10] 'public'
-        TypeKeyword <139:143> [5:11:5:15] 'type'
+         PublicKeyword <136:142> [5:4:5:10] 'public'
+        TypeKeyword <143:147> [5:11:5:15] 'type'
         IdentifierNameSyntax
-         IdentifierToken <144:150> [5:16:5:22] 'HANDLE'
-        EqualsToken <156:157> [5:28:5:29] '='
+         IdentifierToken <148:154> [5:16:5:22] 'HANDLE'
+        EqualsToken <160:161> [5:28:5:29] '='
         QualifiedNameSyntax
          IdentifierNameSyntax
-          IdentifierToken <158:162> [5:30:5:34] 'Core'
-         DotToken <162:163> [5:34:5:35] '.'
+          IdentifierToken <162:166> [5:30:5:34] 'Core'
+         ColonColonToken <166:168> [5:34:5:36] '::'
          IdentifierNameSyntax
-          IdentifierToken <163:169> [5:35:5:41] 'IntPtr'
-       SemicolonToken <169:170> [5:41:5:42] ';'
-     CloseBraceToken <171:172> [6:0:6:1] '}'
+          IdentifierToken <168:174> [5:36:5:42] 'IntPtr'
+       SemicolonToken <174:175> [5:42:5:43] ';'
+     CloseBraceToken <176:177> [6:0:6:1] '}'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
-     PublicKeyword <192:198> [9:0:9:6] 'public'
-    TypeKeyword <199:203> [9:7:9:11] 'type'
+     PublicKeyword <197:203> [9:0:9:6] 'public'
+    TypeKeyword <204:208> [9:7:9:11] 'type'
     IdentifierNameSyntax
-     IdentifierToken <204:208> [9:12:9:16] 'Pair'
-    EqualsToken <209:210> [9:17:9:18] '='
+     IdentifierToken <209:213> [9:12:9:16] 'Pair'
+    EqualsToken <214:215> [9:17:9:18] '='
     TupleTypeSyntax
-     OpenParenToken <211:212> [9:19:9:20] '('
+     OpenParenToken <216:217> [9:19:9:20] '('
      SyntaxList
       TupleTypeElementSyntax
        IdentifierNameSyntax
-        IdentifierToken <212:216> [9:20:9:24] 'bool'
-       CommaToken <216:217> [9:24:9:25] ','
+        IdentifierToken <217:221> [9:20:9:24] 'bool'
+       CommaToken <221:222> [9:24:9:25] ','
       TupleTypeElementSyntax
        IdentifierNameSyntax
-        IdentifierToken <218:224> [9:26:9:32] 'string'
-     CloseParenToken <224:225> [9:32:9:33] ')'
-   SemicolonToken <225:226> [9:33:9:34] ';'
- EndOfFileToken <227:227> [10:0:10:0] ''
+        IdentifierToken <223:229> [9:26:9:32] 'string'
+     CloseParenToken <229:230> [9:32:9:33] ')'
+   SemicolonToken <230:231> [9:33:9:34] ';'
+ EndOfFileToken <232:232> [10:0:10:0] ''

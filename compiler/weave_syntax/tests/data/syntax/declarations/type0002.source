@@ -1,4 +1,4 @@
-public struct Pair::[type T1, type T2]
+public struct Pair![type T1, type T2]
 {
     public type FirstType = T1;
     public type SecondType = T2;
@@ -7,7 +7,7 @@ public struct Pair::[type T1, type T2]
     public var Second: SecondType;
 }
 
-public extend Pair::[type T1, type T2]
+public extend Pair![type T1, type T2]
 {
     public function Empty()
     {

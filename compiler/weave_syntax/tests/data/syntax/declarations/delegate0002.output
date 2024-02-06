@@ -8,50 +8,50 @@ SourceFileSyntax
     IdentifierNameSyntax
      IdentifierToken <16:31> [0:16:0:31] 'GenericDelegate'
     GenericParametersSyntax
-     ColonColonOpenBracketToken <31:34> [0:31:0:34] '::['
+     ExclamationOpenBracketToken <31:33> [0:31:0:33] '!['
      SyntaxList
       TypeGenericParameterSyntax
-       TypeKeyword <39:43> [1:4:1:8] 'type'
+       TypeKeyword <38:42> [1:4:1:8] 'type'
        IdentifierNameSyntax
-        IdentifierToken <44:45> [1:9:1:10] 'T'
-       EqualsToken <46:47> [1:11:1:12] '='
+        IdentifierToken <43:44> [1:9:1:10] 'T'
+       EqualsToken <45:46> [1:11:1:12] '='
        IdentifierNameSyntax
-        IdentifierToken <48:51> [1:13:1:16] 'i32'
-       CommaToken <51:52> [1:16:1:17] ','
+        IdentifierToken <47:50> [1:13:1:16] 'i32'
+       CommaToken <50:51> [1:16:1:17] ','
       ConstGenericParameterSyntax
-       ConstKeyword <57:62> [2:4:2:9] 'const'
+       ConstKeyword <56:61> [2:4:2:9] 'const'
        IdentifierNameSyntax
-        IdentifierToken <63:64> [2:10:2:11] 'N'
-       ColonToken <65:66> [2:12:2:13] ':'
+        IdentifierToken <62:63> [2:10:2:11] 'N'
+       ColonToken <64:65> [2:12:2:13] ':'
        IdentifierNameSyntax
-        IdentifierToken <67:72> [2:14:2:19] 'usize'
-       EqualsToken <73:74> [2:20:2:21] '='
+        IdentifierToken <66:71> [2:14:2:19] 'usize'
+       EqualsToken <72:73> [2:20:2:21] '='
        LiteralExpressionSyntax
-        IntegerLiteralToken <75:77> [2:22:2:24] '69'
-     CloseBracketToken <78:79> [3:0:3:1] ']'
+        IntegerLiteralToken <74:76> [2:22:2:24] '69'
+     CloseBracketToken <77:78> [3:0:3:1] ']'
     ParameterListSyntax
-     OpenParenToken <79:80> [3:1:3:2] '('
+     OpenParenToken <78:79> [3:1:3:2] '('
      SyntaxList
       ParameterSyntax
        IdentifierNameSyntax
-        IdentifierToken <85:86> [4:4:4:5] 't'
+        IdentifierToken <84:85> [4:4:4:5] 't'
        TypeClauseSyntax
-        ColonToken <86:87> [4:5:4:6] ':'
+        ColonToken <85:86> [4:5:4:6] ':'
         IdentifierNameSyntax
-         IdentifierToken <88:89> [4:7:4:8] 'T'
-       CommaToken <89:90> [4:8:4:9] ','
+         IdentifierToken <87:88> [4:7:4:8] 'T'
+       CommaToken <88:89> [4:8:4:9] ','
       ParameterSyntax
        IdentifierNameSyntax
-        IdentifierToken <95:96> [5:4:5:5] 'n'
+        IdentifierToken <94:95> [5:4:5:5] 'n'
        TypeClauseSyntax
-        ColonToken <96:97> [5:5:5:6] ':'
+        ColonToken <95:96> [5:5:5:6] ':'
         IdentifierNameSyntax
-         IdentifierToken <98:103> [5:7:5:12] 'usize'
-     CloseParenToken <104:105> [6:0:6:1] ')'
+         IdentifierToken <97:102> [5:7:5:12] 'usize'
+     CloseParenToken <103:104> [6:0:6:1] ')'
     ReturnTypeClauseSyntax
-     MinusGreaterThanToken <106:108> [6:2:6:4] '->'
+     MinusGreaterThanToken <105:107> [6:2:6:4] '->'
      TupleTypeSyntax
-      OpenParenToken <109:110> [6:5:6:6] '('
-      CloseParenToken <110:111> [6:6:6:7] ')'
-   SemicolonToken <111:112> [6:7:6:8] ';'
- EndOfFileToken <113:113> [7:0:7:0] ''
+      OpenParenToken <108:109> [6:5:6:6] '('
+      CloseParenToken <109:110> [6:6:6:7] ')'
+   SemicolonToken <110:111> [6:7:6:8] ';'
+ EndOfFileToken <112:112> [7:0:7:0] ''

@@ -63,6 +63,7 @@ namespace weave::syntax
 
         this->Dispatch(node->ConceptKeyword);
         this->Dispatch(node->Name);
+        this->Dispatch(node->GenericParameters);
         this->Dispatch(node->Members);
 
         --this->Depth;
@@ -79,6 +80,7 @@ namespace weave::syntax
 
         this->Dispatch(node->ExtendKeyword);
         this->Dispatch(node->Name);
+        this->Dispatch(node->GenericParameters);
         this->Dispatch(node->Members);
 
         --this->Depth;

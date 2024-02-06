@@ -8,7 +8,7 @@ function YieldInExpression() -> Int32
 }
 
 // generator with yield return
-function YieldInGenerator(max: Int32) -> Generator::[Int32]
+function YieldInGenerator(max: Int32) -> Generator![Int32]
 {
     var i : Int32 = 0;
 
@@ -21,7 +21,7 @@ function YieldInGenerator(max: Int32) -> Generator::[Int32]
 }
 
 // generator with yield break
-function EmptyGenerator() -> Generator::[Int32]
+function EmptyGenerator() -> Generator![Int32]
 {
     yield break;
 }

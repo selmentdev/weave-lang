@@ -1,7 +1,7 @@
 error: Unexpected tokens
         --> <source>:2:6
          |
-       2 | var a.b.c.d : core.system.linux.off_t = 42;
-         |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       2 | var a.b.c.d : core::system::linux.off_t = 42;
+         |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        3 | let recover : UInt32 = 24;
          | ^^^^^^^^^^^^^^^^^^^^^^^^^^

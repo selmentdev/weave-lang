@@ -16,454 +16,491 @@ SourceFileSyntax
         IdentifierNameSyntax
          IdentifierToken <33:39> [2:16:2:22] 'Option'
         GenericParametersSyntax
-         ColonColonOpenBracketToken <39:42> [2:22:2:25] '::['
+         ExclamationOpenBracketToken <39:41> [2:22:2:24] '!['
          SyntaxList
           TypeGenericParameterSyntax
-           TypeKeyword <42:46> [2:25:2:29] 'type'
+           TypeKeyword <41:45> [2:24:2:28] 'type'
            IdentifierNameSyntax
-            IdentifierToken <47:48> [2:30:2:31] 'T'
-         CloseBracketToken <48:49> [2:31:2:32] ']'
-        OpenBraceToken <54:55> [3:4:3:5] '{'
+            IdentifierToken <46:47> [2:29:2:30] 'T'
+         CloseBracketToken <47:48> [2:30:2:31] ']'
+        OpenBraceToken <53:54> [3:4:3:5] '{'
         SyntaxList
          EnumMemberDeclarationSyntax
           IdentifierNameSyntax
-           IdentifierToken <64:68> [4:8:4:12] 'Some'
+           IdentifierToken <63:67> [4:8:4:12] 'Some'
           TupleTypeSyntax
-           OpenParenToken <68:69> [4:12:4:13] '('
+           OpenParenToken <67:68> [4:12:4:13] '('
            SyntaxList
             TupleTypeElementSyntax
              IdentifierNameSyntax
-              IdentifierToken <69:70> [4:13:4:14] 'T'
-           CloseParenToken <70:71> [4:14:4:15] ')'
-          CommaToken <71:72> [4:15:4:16] ','
+              IdentifierToken <68:69> [4:13:4:14] 'T'
+           CloseParenToken <69:70> [4:14:4:15] ')'
+          CommaToken <70:71> [4:15:4:16] ','
          EnumMemberDeclarationSyntax
           IdentifierNameSyntax
-           IdentifierToken <81:85> [5:8:5:12] 'None'
-          CommaToken <85:86> [5:12:5:13] ','
-        CloseBraceToken <91:92> [6:4:6:5] '}'
+           IdentifierToken <80:84> [5:8:5:12] 'None'
+          CommaToken <84:85> [5:12:5:13] ','
+        CloseBraceToken <90:91> [6:4:6:5] '}'
       CodeBlockItemSyntax
        ExtendDeclarationSyntax
         SyntaxList
-         PublicKeyword <98:104> [8:4:8:10] 'public'
-        ExtendKeyword <105:111> [8:11:8:17] 'extend'
+         PublicKeyword <97:103> [8:4:8:10] 'public'
+        ExtendKeyword <104:110> [8:11:8:17] 'extend'
         IdentifierNameSyntax
-         IdentifierToken <112:118> [8:18:8:24] 'Option'
+         IdentifierToken <111:117> [8:18:8:24] 'Option'
+        GenericParametersSyntax
+         ExclamationOpenBracketToken <117:119> [8:24:8:26] '!['
+         SyntaxList
+          TypeGenericParameterSyntax
+           TypeKeyword <119:123> [8:26:8:30] 'type'
+           IdentifierNameSyntax
+            IdentifierToken <124:125> [8:31:8:32] 'T'
+         CloseBracketToken <125:126> [8:32:8:33] ']'
         CodeBlockSyntax
-         OpenBraceToken <133:134> [9:4:9:5] '{'
+         OpenBraceToken <131:132> [9:4:9:5] '{'
          SyntaxList
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <143:149> [10:8:10:14] 'public'
-            FunctionKeyword <150:158> [10:15:10:23] 'function'
+             PublicKeyword <141:147> [10:8:10:14] 'public'
+            FunctionKeyword <148:156> [10:15:10:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <159:173> [10:24:10:38] 'ValueOrDefault'
+             IdentifierToken <157:171> [10:24:10:38] 'ValueOrDefault'
             ParameterListSyntax
-             OpenParenToken <173:174> [10:38:10:39] '('
+             OpenParenToken <171:172> [10:38:10:39] '('
              SyntaxList
               ParameterSyntax
                SyntaxList
-                RefKeyword <174:177> [10:39:10:42] 'ref'
+                RefKeyword <172:175> [10:39:10:42] 'ref'
                IdentifierNameSyntax
-                IdentifierToken <178:182> [10:43:10:47] 'self'
+                IdentifierToken <176:180> [10:43:10:47] 'self'
                TypeClauseSyntax
-                ColonToken <182:183> [10:47:10:48] ':'
+                ColonToken <180:181> [10:47:10:48] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <184:188> [10:49:10:53] 'Self'
-               CommaToken <188:189> [10:53:10:54] ','
+                 IdentifierToken <182:186> [10:49:10:53] 'Self'
+               CommaToken <186:187> [10:53:10:54] ','
               ParameterSyntax
                SyntaxList
-                RefKeyword <190:193> [10:55:10:58] 'ref'
+                RefKeyword <188:191> [10:55:10:58] 'ref'
                IdentifierNameSyntax
-                IdentifierToken <194:206> [10:59:10:71] 'defaultValue'
+                IdentifierToken <192:204> [10:59:10:71] 'defaultValue'
                TypeClauseSyntax
-                ColonToken <206:207> [10:71:10:72] ':'
+                ColonToken <204:205> [10:71:10:72] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <208:209> [10:73:10:74] 'T'
-             CloseParenToken <209:210> [10:74:10:75] ')'
+                 IdentifierToken <206:207> [10:73:10:74] 'T'
+             CloseParenToken <207:208> [10:74:10:75] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <211:213> [10:76:10:78] '->'
+             MinusGreaterThanToken <209:211> [10:76:10:78] '->'
              IdentifierNameSyntax
-              IdentifierToken <214:215> [10:79:10:80] 'T'
+              IdentifierToken <212:213> [10:79:10:80] 'T'
             CodeBlockSyntax
-             OpenBraceToken <224:225> [11:8:11:9] '{'
+             OpenBraceToken <222:223> [11:8:11:9] '{'
              SyntaxList
               CodeBlockItemSyntax
                ReturnStatementSyntax
-                ReturnKeyword <238:244> [12:12:12:18] 'return'
+                ReturnKeyword <236:242> [12:12:12:18] 'return'
                 MatchExpressionSyntax
-                 MatchKeyword <245:250> [12:19:12:24] 'match'
+                 MatchKeyword <243:248> [12:19:12:24] 'match'
                  IdentifierNameSyntax
-                  IdentifierToken <251:255> [12:25:12:29] 'self'
-                 OpenBraceToken <268:269> [13:12:13:13] '{'
+                  IdentifierToken <249:253> [12:25:12:29] 'self'
+                 OpenBraceToken <266:267> [13:12:13:13] '{'
                  SyntaxList
                   MatchCaseClauseSyntax
-                   CaseKeyword <286:290> [14:16:14:20] 'case'
+                   CaseKeyword <284:288> [14:16:14:20] 'case'
                    IdentifierPatternSyntax
                     IdentifierNameSyntax
-                     IdentifierToken <291:295> [14:21:14:25] 'Some'
+                     IdentifierToken <289:293> [14:21:14:25] 'Some'
                     TuplePatternSyntax
-                     OpenParenToken <295:296> [14:25:14:26] '('
+                     OpenParenToken <293:294> [14:25:14:26] '('
                      SyntaxList
                       TuplePatternItemSyntax
                        IdentifierPatternSyntax
                         IdentifierNameSyntax
-                         IdentifierToken <296:301> [14:26:14:31] 'value'
-                     CloseParenToken <301:302> [14:31:14:32] ')'
-                   ColonToken <302:303> [14:32:14:33] ':'
+                         IdentifierToken <294:299> [14:26:14:31] 'value'
+                     CloseParenToken <299:300> [14:31:14:32] ')'
+                   ColonToken <300:301> [14:32:14:33] ':'
                    CodeBlockItemSyntax
                     BlockStatementSyntax
                      CodeBlockSyntax
-                      OpenBraceToken <303:304> [14:33:14:34] '{'
+                      OpenBraceToken <302:303> [14:34:14:35] '{'
                       SyntaxList
                        CodeBlockItemSyntax
                         YieldStatementSyntax
-                         YieldKeyword <325:330> [15:20:15:25] 'yield'
+                         YieldKeyword <324:329> [15:20:15:25] 'yield'
                          IdentifierNameSyntax
-                          IdentifierToken <331:336> [15:26:15:31] 'value'
-                        SemicolonToken <336:337> [15:31:15:32] ';'
-                      CloseBraceToken <354:355> [16:16:16:17] '}'
+                          IdentifierToken <330:335> [15:26:15:31] 'value'
+                        SemicolonToken <335:336> [15:31:15:32] ';'
+                      CloseBraceToken <353:354> [16:16:16:17] '}'
                   MatchCaseClauseSyntax
-                   CaseKeyword <372:376> [17:16:17:20] 'case'
+                   CaseKeyword <371:375> [17:16:17:20] 'case'
                    IdentifierPatternSyntax
                     IdentifierNameSyntax
-                     IdentifierToken <377:381> [17:21:17:25] 'None'
-                   ColonToken <381:382> [17:25:17:26] ':'
+                     IdentifierToken <376:380> [17:21:17:25] 'None'
+                   ColonToken <380:381> [17:25:17:26] ':'
                    CodeBlockItemSyntax
                     BlockStatementSyntax
                      CodeBlockSyntax
-                      OpenBraceToken <383:384> [17:27:17:28] '{'
+                      OpenBraceToken <382:383> [17:27:17:28] '{'
                       SyntaxList
                        CodeBlockItemSyntax
                         YieldStatementSyntax
-                         YieldKeyword <405:410> [18:20:18:25] 'yield'
+                         YieldKeyword <404:409> [18:20:18:25] 'yield'
                          IdentifierNameSyntax
-                          IdentifierToken <411:423> [18:26:18:38] 'defaultValue'
-                        SemicolonToken <423:424> [18:38:18:39] ';'
-                      CloseBraceToken <441:442> [19:16:19:17] '}'
-                 CloseBraceToken <455:456> [20:12:20:13] '}'
-               SemicolonToken <456:457> [20:13:20:14] ';'
-             CloseBraceToken <466:467> [21:8:21:9] '}'
+                          IdentifierToken <410:422> [18:26:18:38] 'defaultValue'
+                        SemicolonToken <422:423> [18:38:18:39] ';'
+                      CloseBraceToken <440:441> [19:16:19:17] '}'
+                 CloseBraceToken <454:455> [20:12:20:13] '}'
+               SemicolonToken <455:456> [20:13:20:14] ';'
+             CloseBraceToken <465:466> [21:8:21:9] '}'
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <477:483> [23:8:23:14] 'public'
-            FunctionKeyword <484:492> [23:15:23:23] 'function'
+             PublicKeyword <476:482> [23:8:23:14] 'public'
+            FunctionKeyword <483:491> [23:15:23:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <493:498> [23:24:23:29] 'Value'
+             IdentifierToken <492:497> [23:24:23:29] 'Value'
             ParameterListSyntax
-             OpenParenToken <498:499> [23:29:23:30] '('
+             OpenParenToken <497:498> [23:29:23:30] '('
              SyntaxList
               ParameterSyntax
                SyntaxList
-                RefKeyword <499:502> [23:30:23:33] 'ref'
+                RefKeyword <498:501> [23:30:23:33] 'ref'
                IdentifierNameSyntax
-                IdentifierToken <503:507> [23:34:23:38] 'self'
+                IdentifierToken <502:506> [23:34:23:38] 'self'
                TypeClauseSyntax
-                ColonToken <507:508> [23:38:23:39] ':'
+                ColonToken <506:507> [23:38:23:39] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <509:513> [23:40:23:44] 'Self'
-             CloseParenToken <513:514> [23:44:23:45] ')'
+                 IdentifierToken <508:512> [23:40:23:44] 'Self'
+             CloseParenToken <512:513> [23:44:23:45] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <515:517> [23:46:23:48] '->'
+             MinusGreaterThanToken <514:516> [23:46:23:48] '->'
              IdentifierNameSyntax
-              IdentifierToken <518:519> [23:49:23:50] 'T'
+              IdentifierToken <517:518> [23:49:23:50] 'T'
             CodeBlockSyntax
-             OpenBraceToken <528:529> [24:8:24:9] '{'
+             OpenBraceToken <527:528> [24:8:24:9] '{'
              SyntaxList
               CodeBlockItemSyntax
                ReturnStatementSyntax
-                ReturnKeyword <542:548> [25:12:25:18] 'return'
+                ReturnKeyword <541:547> [25:12:25:18] 'return'
                 MatchExpressionSyntax
-                 MatchKeyword <549:554> [25:19:25:24] 'match'
+                 MatchKeyword <548:553> [25:19:25:24] 'match'
                  IdentifierNameSyntax
-                  IdentifierToken <555:559> [25:25:25:29] 'self'
-                 OpenBraceToken <572:573> [26:12:26:13] '{'
+                  IdentifierToken <554:558> [25:25:25:29] 'self'
+                 OpenBraceToken <571:572> [26:12:26:13] '{'
                  SyntaxList
                   MatchCaseClauseSyntax
-                   CaseKeyword <590:594> [27:16:27:20] 'case'
+                   CaseKeyword <589:593> [27:16:27:20] 'case'
                    IdentifierPatternSyntax
                     IdentifierNameSyntax
-                     IdentifierToken <595:599> [27:21:27:25] 'Some'
+                     IdentifierToken <594:598> [27:21:27:25] 'Some'
                     TuplePatternSyntax
-                     OpenParenToken <599:600> [27:25:27:26] '('
+                     OpenParenToken <598:599> [27:25:27:26] '('
                      SyntaxList
                       TuplePatternItemSyntax
                        IdentifierPatternSyntax
                         IdentifierNameSyntax
-                         IdentifierToken <600:605> [27:26:27:31] 'value'
-                     CloseParenToken <605:606> [27:31:27:32] ')'
-                   ColonToken <606:607> [27:32:27:33] ':'
+                         IdentifierToken <599:604> [27:26:27:31] 'value'
+                     CloseParenToken <604:605> [27:31:27:32] ')'
+                   ColonToken <605:606> [27:32:27:33] ':'
                    CodeBlockItemSyntax
                     ExpressionStatementSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <610:615> [27:36:27:41] 'value'
-                    SemicolonToken <615:616> [27:41:27:42] ';'
+                      IdentifierToken <609:614> [27:36:27:41] 'value'
+                    SemicolonToken <614:615> [27:41:27:42] ';'
                   MatchCaseClauseSyntax
-                   CaseKeyword <633:637> [28:16:28:20] 'case'
+                   CaseKeyword <632:636> [28:16:28:20] 'case'
                    IdentifierPatternSyntax
                     IdentifierNameSyntax
-                     IdentifierToken <638:642> [28:21:28:25] 'None'
-                   ColonToken <642:643> [28:25:28:26] ':'
+                     IdentifierToken <637:641> [28:21:28:25] 'None'
+                   ColonToken <641:642> [28:25:28:26] ':'
                    CodeBlockItemSyntax
                     ExpressionStatementSyntax
                      InvocationExpressionSyntax
                       IdentifierNameSyntax
-                       IdentifierToken <653:661> [28:36:28:44] 'bugcheck'
+                       IdentifierToken <652:660> [28:36:28:44] 'bugcheck'
                       ArgumentListSyntax
-                       OpenParenToken <661:662> [28:44:28:45] '('
+                       OpenParenToken <660:661> [28:44:28:45] '('
                        SyntaxList
                         ArgumentSyntax
                          LiteralExpressionSyntax
-                          StringLiteralToken <662:678> [28:45:28:61] '"Option is None"'
-                       CloseParenToken <678:679> [28:61:28:62] ')'
-                    SemicolonToken <679:680> [28:62:28:63] ';'
-                 CloseBraceToken <693:694> [29:12:29:13] '}'
-             CloseBraceToken <703:704> [30:8:30:9] '}'
-         CloseBraceToken <709:710> [31:4:31:5] '}'
+                          StringLiteralToken <661:677> [28:45:28:61] '"Option is None"'
+                       CloseParenToken <677:678> [28:61:28:62] ')'
+                    SemicolonToken <678:679> [28:62:28:63] ';'
+                 CloseBraceToken <692:693> [29:12:29:13] '}'
+             CloseBraceToken <702:703> [30:8:30:9] '}'
+         CloseBraceToken <708:709> [31:4:31:5] '}'
       CodeBlockItemSyntax
        EnumDeclarationSyntax
         SyntaxList
-         PublicKeyword <716:722> [33:4:33:10] 'public'
-        EnumKeyword <723:727> [33:11:33:15] 'enum'
+         PublicKeyword <715:721> [33:4:33:10] 'public'
+        EnumKeyword <722:726> [33:11:33:15] 'enum'
         IdentifierNameSyntax
-         IdentifierToken <728:734> [33:16:33:22] 'Result'
+         IdentifierToken <727:733> [33:16:33:22] 'Result'
         GenericParametersSyntax
-         ColonColonOpenBracketToken <734:737> [33:22:33:25] '::['
+         ExclamationOpenBracketToken <733:735> [33:22:33:24] '!['
          SyntaxList
           TypeGenericParameterSyntax
-           TypeKeyword <737:741> [33:25:33:29] 'type'
+           TypeKeyword <735:739> [33:24:33:28] 'type'
            IdentifierNameSyntax
-            IdentifierToken <742:743> [33:30:33:31] 'T'
-           CommaToken <743:744> [33:31:33:32] ','
+            IdentifierToken <740:741> [33:29:33:30] 'T'
+           CommaToken <741:742> [33:30:33:31] ','
           TypeGenericParameterSyntax
-           TypeKeyword <745:749> [33:33:33:37] 'type'
+           TypeKeyword <743:747> [33:32:33:36] 'type'
            IdentifierNameSyntax
-            IdentifierToken <750:751> [33:38:33:39] 'E'
-         CloseBracketToken <751:752> [33:39:33:40] ']'
-        OpenBraceToken <757:758> [34:4:34:5] '{'
+            IdentifierToken <748:749> [33:37:33:38] 'E'
+         CloseBracketToken <749:750> [33:38:33:39] ']'
+        OpenBraceToken <755:756> [34:4:34:5] '{'
         SyntaxList
          EnumMemberDeclarationSyntax
           IdentifierNameSyntax
-           IdentifierToken <767:769> [35:8:35:10] 'Ok'
+           IdentifierToken <765:767> [35:8:35:10] 'Ok'
           TupleTypeSyntax
-           OpenParenToken <769:770> [35:10:35:11] '('
+           OpenParenToken <767:768> [35:10:35:11] '('
            SyntaxList
             TupleTypeElementSyntax
              IdentifierNameSyntax
-              IdentifierToken <770:771> [35:11:35:12] 'T'
-           CloseParenToken <771:772> [35:12:35:13] ')'
-          CommaToken <772:773> [35:13:35:14] ','
+              IdentifierToken <768:769> [35:11:35:12] 'T'
+           CloseParenToken <769:770> [35:12:35:13] ')'
+          CommaToken <770:771> [35:13:35:14] ','
          EnumMemberDeclarationSyntax
           IdentifierNameSyntax
-           IdentifierToken <782:787> [36:8:36:13] 'Error'
+           IdentifierToken <780:785> [36:8:36:13] 'Error'
           TupleTypeSyntax
-           OpenParenToken <787:788> [36:13:36:14] '('
+           OpenParenToken <785:786> [36:13:36:14] '('
            SyntaxList
             TupleTypeElementSyntax
              IdentifierNameSyntax
-              IdentifierToken <788:789> [36:14:36:15] 'E'
-           CloseParenToken <789:790> [36:15:36:16] ')'
-          CommaToken <790:791> [36:16:36:17] ','
-        CloseBraceToken <796:797> [37:4:37:5] '}'
+              IdentifierToken <786:787> [36:14:36:15] 'E'
+           CloseParenToken <787:788> [36:15:36:16] ')'
+          CommaToken <788:789> [36:16:36:17] ','
+        CloseBraceToken <794:795> [37:4:37:5] '}'
       CodeBlockItemSyntax
        ExtendDeclarationSyntax
         SyntaxList
-         PublicKeyword <803:809> [39:4:39:10] 'public'
-        ExtendKeyword <810:816> [39:11:39:17] 'extend'
+         PublicKeyword <801:807> [39:4:39:10] 'public'
+        ExtendKeyword <808:814> [39:11:39:17] 'extend'
         IdentifierNameSyntax
-         IdentifierToken <817:823> [39:18:39:24] 'Result'
+         IdentifierToken <815:821> [39:18:39:24] 'Result'
+        GenericParametersSyntax
+         ExclamationOpenBracketToken <821:823> [39:24:39:26] '!['
+         SyntaxList
+          TypeGenericParameterSyntax
+           TypeKeyword <823:827> [39:26:39:30] 'type'
+           IdentifierNameSyntax
+            IdentifierToken <828:829> [39:31:39:32] 'T'
+           CommaToken <829:830> [39:32:39:33] ','
+          TypeGenericParameterSyntax
+           TypeKeyword <831:835> [39:34:39:38] 'type'
+           IdentifierNameSyntax
+            IdentifierToken <836:837> [39:39:39:40] 'E'
+         CloseBracketToken <837:838> [39:40:39:41] ']'
         CodeBlockSyntax
-         OpenBraceToken <846:847> [40:4:40:5] '{'
+         OpenBraceToken <843:844> [40:4:40:5] '{'
          SyntaxList
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <856:862> [41:8:41:14] 'public'
-            FunctionKeyword <863:871> [41:15:41:23] 'function'
+             PublicKeyword <853:859> [41:8:41:14] 'public'
+            FunctionKeyword <860:868> [41:15:41:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <872:886> [41:24:41:38] 'ValueOrDefault'
+             IdentifierToken <869:883> [41:24:41:38] 'ValueOrDefault'
             ParameterListSyntax
-             OpenParenToken <886:887> [41:38:41:39] '('
+             OpenParenToken <883:884> [41:38:41:39] '('
              SyntaxList
               ParameterSyntax
                SyntaxList
-                InKeyword <887:889> [41:39:41:41] 'in'
+                InKeyword <884:886> [41:39:41:41] 'in'
                IdentifierNameSyntax
-                IdentifierToken <890:894> [41:42:41:46] 'self'
+                IdentifierToken <887:891> [41:42:41:46] 'self'
                TypeClauseSyntax
-                ColonToken <894:895> [41:46:41:47] ':'
+                ColonToken <891:892> [41:46:41:47] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <896:900> [41:48:41:52] 'Self'
-               CommaToken <900:901> [41:52:41:53] ','
+                 IdentifierToken <893:897> [41:48:41:52] 'Self'
+               CommaToken <897:898> [41:52:41:53] ','
               ParameterSyntax
                SyntaxList
-                RefKeyword <902:905> [41:54:41:57] 'ref'
+                RefKeyword <899:902> [41:54:41:57] 'ref'
                IdentifierNameSyntax
-                IdentifierToken <906:918> [41:58:41:70] 'defaultValue'
+                IdentifierToken <903:915> [41:58:41:70] 'defaultValue'
                TypeClauseSyntax
-                ColonToken <918:919> [41:70:41:71] ':'
+                ColonToken <915:916> [41:70:41:71] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <920:921> [41:72:41:73] 'T'
-             CloseParenToken <921:922> [41:73:41:74] ')'
+                 IdentifierToken <917:918> [41:72:41:73] 'T'
+             CloseParenToken <918:919> [41:73:41:74] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <923:925> [41:75:41:77] '->'
+             MinusGreaterThanToken <920:922> [41:75:41:77] '->'
              IdentifierNameSyntax
-              IdentifierToken <926:927> [41:78:41:79] 'T'
+              IdentifierToken <923:924> [41:78:41:79] 'T'
             CodeBlockSyntax
-             OpenBraceToken <936:937> [42:8:42:9] '{'
+             OpenBraceToken <933:934> [42:8:42:9] '{'
              SyntaxList
               CodeBlockItemSyntax
                ReturnStatementSyntax
-                ReturnKeyword <950:956> [43:12:43:18] 'return'
+                ReturnKeyword <947:953> [43:12:43:18] 'return'
                 MatchExpressionSyntax
-                 MatchKeyword <957:962> [43:19:43:24] 'match'
+                 MatchKeyword <954:959> [43:19:43:24] 'match'
                  IdentifierNameSyntax
-                  IdentifierToken <963:967> [43:25:43:29] 'self'
-                 OpenBraceToken <980:981> [44:12:44:13] '{'
+                  IdentifierToken <960:964> [43:25:43:29] 'self'
+                 OpenBraceToken <977:978> [44:12:44:13] '{'
                  SyntaxList
                   MatchCaseClauseSyntax
-                   CaseKeyword <998:1002> [45:16:45:20] 'case'
+                   CaseKeyword <995:999> [45:16:45:20] 'case'
                    IdentifierPatternSyntax
                     IdentifierNameSyntax
-                     IdentifierToken <1003:1005> [45:21:45:23] 'Ok'
+                     IdentifierToken <1000:1002> [45:21:45:23] 'Ok'
                     TuplePatternSyntax
-                     OpenParenToken <1005:1006> [45:23:45:24] '('
+                     OpenParenToken <1002:1003> [45:23:45:24] '('
                      SyntaxList
                       TuplePatternItemSyntax
                        IdentifierPatternSyntax
                         IdentifierNameSyntax
-                         IdentifierToken <1006:1011> [45:24:45:29] 'value'
-                     CloseParenToken <1011:1012> [45:29:45:30] ')'
-                   ColonToken <1012:1013> [45:30:45:31] ':'
+                         IdentifierToken <1003:1008> [45:24:45:29] 'value'
+                     CloseParenToken <1008:1009> [45:29:45:30] ')'
+                   ColonToken <1009:1010> [45:30:45:31] ':'
                    CodeBlockItemSyntax
                     ExpressionStatementSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <1014:1019> [45:32:45:37] 'value'
-                    SemicolonToken <1019:1020> [45:37:45:38] ';'
+                      IdentifierToken <1011:1016> [45:32:45:37] 'value'
+                    SemicolonToken <1016:1017> [45:37:45:38] ';'
                   MatchCaseClauseSyntax
-                   CaseKeyword <1037:1041> [46:16:46:20] 'case'
+                   CaseKeyword <1034:1038> [46:16:46:20] 'case'
                    IdentifierPatternSyntax
                     IdentifierNameSyntax
-                     IdentifierToken <1042:1047> [46:21:46:26] 'Error'
+                     IdentifierToken <1039:1044> [46:21:46:26] 'Error'
                     TuplePatternSyntax
-                     OpenParenToken <1047:1048> [46:26:46:27] '('
+                     OpenParenToken <1044:1045> [46:26:46:27] '('
                      SyntaxList
                       TuplePatternItemSyntax
                        WildcardPatternSyntax
-                        UnderscoreToken <1048:1049> [46:27:46:28] '_'
-                     CloseParenToken <1049:1050> [46:28:46:29] ')'
-                   ColonToken <1050:1051> [46:29:46:30] ':'
+                        UnderscoreToken <1045:1046> [46:27:46:28] '_'
+                     CloseParenToken <1046:1047> [46:28:46:29] ')'
+                   ColonToken <1047:1048> [46:29:46:30] ':'
                    CodeBlockItemSyntax
                     ExpressionStatementSyntax
                      IdentifierNameSyntax
-                      IdentifierToken <1052:1064> [46:31:46:43] 'defaultValue'
-                    SemicolonToken <1064:1065> [46:43:46:44] ';'
-                 CloseBraceToken <1078:1079> [47:12:47:13] '}'
-               SemicolonToken <1079:1080> [47:13:47:14] ';'
-             CloseBraceToken <1089:1090> [48:8:48:9] '}'
-         CloseBraceToken <1095:1096> [49:4:49:5] '}'
+                      IdentifierToken <1049:1061> [46:31:46:43] 'defaultValue'
+                    SemicolonToken <1061:1062> [46:43:46:44] ';'
+                 CloseBraceToken <1075:1076> [47:12:47:13] '}'
+               SemicolonToken <1076:1077> [47:13:47:14] ';'
+             CloseBraceToken <1086:1087> [48:8:48:9] '}'
+         CloseBraceToken <1092:1093> [49:4:49:5] '}'
       CodeBlockItemSyntax
        ConceptDeclarationSyntax
         SyntaxList
-         PublicKeyword <1102:1108> [51:4:51:10] 'public'
-        ConceptKeyword <1109:1116> [51:11:51:18] 'concept'
+         PublicKeyword <1099:1105> [51:4:51:10] 'public'
+        ConceptKeyword <1106:1113> [51:11:51:18] 'concept'
         IdentifierNameSyntax
-         IdentifierToken <1117:1127> [51:19:51:29] 'Enumerator'
+         IdentifierToken <1114:1124> [51:19:51:29] 'Enumerator'
+        GenericParametersSyntax
+         ExclamationOpenBracketToken <1124:1126> [51:29:51:31] '!['
+         SyntaxList
+          TypeGenericParameterSyntax
+           TypeKeyword <1126:1130> [51:31:51:35] 'type'
+           IdentifierNameSyntax
+            IdentifierToken <1131:1132> [51:36:51:37] 'T'
+         CloseBracketToken <1132:1133> [51:37:51:38] ']'
         CodeBlockSyntax
-         OpenBraceToken <1142:1143> [52:4:52:5] '{'
+         OpenBraceToken <1138:1139> [52:4:52:5] '{'
          SyntaxList
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <1152:1158> [53:8:53:14] 'public'
-            FunctionKeyword <1159:1167> [53:15:53:23] 'function'
+             PublicKeyword <1148:1154> [53:8:53:14] 'public'
+            FunctionKeyword <1155:1163> [53:15:53:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <1168:1176> [53:24:53:32] 'MoveNext'
+             IdentifierToken <1164:1172> [53:24:53:32] 'MoveNext'
             ParameterListSyntax
-             OpenParenToken <1176:1177> [53:32:53:33] '('
+             OpenParenToken <1172:1173> [53:32:53:33] '('
              SyntaxList
               ParameterSyntax
                IdentifierNameSyntax
-                IdentifierToken <1177:1181> [53:33:53:37] 'self'
+                IdentifierToken <1173:1177> [53:33:53:37] 'self'
                TypeClauseSyntax
-                ColonToken <1181:1182> [53:37:53:38] ':'
+                ColonToken <1177:1178> [53:37:53:38] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <1183:1187> [53:39:53:43] 'Self'
-             CloseParenToken <1187:1188> [53:43:53:44] ')'
+                 IdentifierToken <1179:1183> [53:39:53:43] 'Self'
+             CloseParenToken <1183:1184> [53:43:53:44] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <1189:1191> [53:45:53:47] '->'
+             MinusGreaterThanToken <1185:1187> [53:45:53:47] '->'
              IdentifierNameSyntax
-              IdentifierToken <1192:1196> [53:48:53:52] 'bool'
-           SemicolonToken <1196:1197> [53:52:53:53] ';'
+              IdentifierToken <1188:1192> [53:48:53:52] 'bool'
+           SemicolonToken <1192:1193> [53:52:53:53] ';'
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <1207:1213> [55:8:55:14] 'public'
-            FunctionKeyword <1214:1222> [55:15:55:23] 'function'
+             PublicKeyword <1203:1209> [55:8:55:14] 'public'
+            FunctionKeyword <1210:1218> [55:15:55:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <1223:1230> [55:24:55:31] 'Current'
+             IdentifierToken <1219:1226> [55:24:55:31] 'Current'
             ParameterListSyntax
-             OpenParenToken <1230:1231> [55:31:55:32] '('
+             OpenParenToken <1226:1227> [55:31:55:32] '('
              SyntaxList
               ParameterSyntax
                SyntaxList
-                RefKeyword <1231:1234> [55:32:55:35] 'ref'
+                RefKeyword <1227:1230> [55:32:55:35] 'ref'
                IdentifierNameSyntax
-                IdentifierToken <1235:1239> [55:36:55:40] 'self'
+                IdentifierToken <1231:1235> [55:36:55:40] 'self'
                TypeClauseSyntax
-                ColonToken <1239:1240> [55:40:55:41] ':'
+                ColonToken <1235:1236> [55:40:55:41] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <1241:1245> [55:42:55:46] 'Self'
-             CloseParenToken <1245:1246> [55:46:55:47] ')'
+                 IdentifierToken <1237:1241> [55:42:55:46] 'Self'
+             CloseParenToken <1241:1242> [55:46:55:47] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <1247:1249> [55:48:55:50] '->'
+             MinusGreaterThanToken <1243:1245> [55:48:55:50] '->'
              IdentifierNameSyntax
-              IdentifierToken <1250:1251> [55:51:55:52] 'T'
-           SemicolonToken <1251:1252> [55:52:55:53] ';'
-         CloseBraceToken <1257:1258> [56:4:56:5] '}'
+              IdentifierToken <1246:1247> [55:51:55:52] 'T'
+           SemicolonToken <1247:1248> [55:52:55:53] ';'
+         CloseBraceToken <1253:1254> [56:4:56:5] '}'
       CodeBlockItemSyntax
        ConceptDeclarationSyntax
         SyntaxList
-         PublicKeyword <1264:1270> [58:4:58:10] 'public'
-        ConceptKeyword <1271:1278> [58:11:58:18] 'concept'
+         PublicKeyword <1260:1266> [58:4:58:10] 'public'
+        ConceptKeyword <1267:1274> [58:11:58:18] 'concept'
         IdentifierNameSyntax
-         IdentifierToken <1279:1289> [58:19:58:29] 'Enumerable'
+         IdentifierToken <1275:1285> [58:19:58:29] 'Enumerable'
+        GenericParametersSyntax
+         ExclamationOpenBracketToken <1285:1287> [58:29:58:31] '!['
+         SyntaxList
+          TypeGenericParameterSyntax
+           TypeKeyword <1287:1291> [58:31:58:35] 'type'
+           IdentifierNameSyntax
+            IdentifierToken <1292:1293> [58:36:58:37] 'T'
+         CloseBracketToken <1293:1294> [58:37:58:38] ']'
         CodeBlockSyntax
-         OpenBraceToken <1304:1305> [59:4:59:5] '{'
+         OpenBraceToken <1299:1300> [59:4:59:5] '{'
          SyntaxList
           CodeBlockItemSyntax
            FunctionDeclarationSyntax
             SyntaxList
-             PublicKeyword <1314:1320> [60:8:60:14] 'public'
-            FunctionKeyword <1321:1329> [60:15:60:23] 'function'
+             PublicKeyword <1309:1315> [60:8:60:14] 'public'
+            FunctionKeyword <1316:1324> [60:15:60:23] 'function'
             IdentifierNameSyntax
-             IdentifierToken <1330:1343> [60:24:60:37] 'GetEnumerator'
+             IdentifierToken <1325:1338> [60:24:60:37] 'GetEnumerator'
             ParameterListSyntax
-             OpenParenToken <1343:1344> [60:37:60:38] '('
+             OpenParenToken <1338:1339> [60:37:60:38] '('
              SyntaxList
               ParameterSyntax
                SyntaxList
-                RefKeyword <1344:1347> [60:38:60:41] 'ref'
+                RefKeyword <1339:1342> [60:38:60:41] 'ref'
                IdentifierNameSyntax
-                IdentifierToken <1348:1352> [60:42:60:46] 'self'
+                IdentifierToken <1343:1347> [60:42:60:46] 'self'
                TypeClauseSyntax
-                ColonToken <1352:1353> [60:46:60:47] ':'
+                ColonToken <1347:1348> [60:46:60:47] ':'
                 IdentifierNameSyntax
-                 IdentifierToken <1354:1358> [60:48:60:52] 'Self'
-             CloseParenToken <1358:1359> [60:52:60:53] ')'
+                 IdentifierToken <1349:1353> [60:48:60:52] 'Self'
+             CloseParenToken <1353:1354> [60:52:60:53] ')'
             ReturnTypeClauseSyntax
-             MinusGreaterThanToken <1360:1362> [60:54:60:56] '->'
+             MinusGreaterThanToken <1355:1357> [60:54:60:56] '->'
              GenericNameSyntax
-              IdentifierToken <1363:1373> [60:57:60:67] 'Enumerator'
+              IdentifierToken <1358:1368> [60:57:60:67] 'Enumerator'
               GenericArgumentsSyntax
-               ColonColonOpenBracketToken <1373:1376> [60:67:60:70] '::['
+               ExclamationOpenBracketToken <1368:1370> [60:67:60:69] '!['
                SyntaxList
                 GenericArgumentSyntax
                  IdentifierNameSyntax
-                  IdentifierToken <1376:1377> [60:70:60:71] 'T'
-               CloseBracketToken <1377:1378> [60:71:60:72] ']'
-           SemicolonToken <1378:1379> [60:72:60:73] ';'
-         CloseBraceToken <1384:1385> [61:4:61:5] '}'
-     CloseBraceToken <1386:1387> [62:0:62:1] '}'
- EndOfFileToken <1388:1388> [63:0:63:0] ''
+                  IdentifierToken <1370:1371> [60:69:60:70] 'T'
+               CloseBracketToken <1371:1372> [60:70:60:71] ']'
+           SemicolonToken <1372:1373> [60:71:60:72] ';'
+         CloseBraceToken <1378:1379> [61:4:61:5] '}'
+     CloseBraceToken <1380:1381> [62:0:62:1] '}'
+ EndOfFileToken <1382:1382> [63:0:63:0] ''

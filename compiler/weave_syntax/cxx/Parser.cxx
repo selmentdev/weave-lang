@@ -724,7 +724,7 @@ namespace weave::syntax
     {
         GenericParametersSyntax* result = this->_factory->CreateNode<GenericParametersSyntax>();
 
-        this->MatchUntil(result->OpenToken, result->BeforeOpenToken, SyntaxKind::ColonColonOpenBracketToken);
+        this->MatchUntil(result->OpenToken, result->BeforeOpenToken, SyntaxKind::ExclamationOpenBracketToken);
 
         std::vector<GenericParameterSyntax*> parameters{};
 
@@ -774,7 +774,7 @@ namespace weave::syntax
 
     GenericParametersSyntax* Parser::ParseOptionalGenericParameters()
     {
-        if (this->Current()->Kind == SyntaxKind::ColonColonOpenBracketToken)
+        if (this->Current()->Kind == SyntaxKind::ExclamationOpenBracketToken)
         {
             return this->ParseGenericParameters();
         }
@@ -834,7 +834,7 @@ namespace weave::syntax
     GenericArgumentsSyntax* Parser::ParseGenericArguments()
     {
         GenericArgumentsSyntax* result = this->_factory->CreateNode<GenericArgumentsSyntax>();
-        this->MatchUntil(result->OpenToken, result->BeforeOpenToken, SyntaxKind::ColonColonOpenBracketToken);
+        this->MatchUntil(result->OpenToken, result->BeforeOpenToken, SyntaxKind::ExclamationOpenBracketToken);
 
         std::vector<GenericArgumentSyntax*> arguments{};
 
@@ -1111,9 +1111,8 @@ namespace weave::syntax
             SyntaxToken* tokenDot = this->Peek(0);
             SyntaxToken* tokenRight = this->Peek(1);
 
-            if ((tokenDot->Kind == SyntaxKind::DotToken) and (tokenRight->Kind == SyntaxKind::IdentifierToken))
+            if ((tokenDot->Kind == SyntaxKind::ColonColonToken) and (tokenRight->Kind == SyntaxKind::IdentifierToken))
             {
-                // Consume dot token.
                 this->Next();
 
                 SimpleNameSyntax* right = this->ParseSimpleName();
@@ -1142,7 +1141,7 @@ namespace weave::syntax
 
         if (this->Current()->Kind == SyntaxKind::IdentifierToken)
         {
-            if (this->Peek(1)->Kind == SyntaxKind::ColonColonOpenBracketToken)
+            if (this->Peek(1)->Kind == SyntaxKind::ExclamationOpenBracketToken)
             {
                 GenericNameSyntax* result = this->_factory->CreateNode<GenericNameSyntax>();
                 result->Identifier = this->Match(SyntaxKind::IdentifierToken);
@@ -1417,7 +1416,7 @@ namespace weave::syntax
             return this->ParseCharacterLiteral();
 
         case SyntaxKind::IdentifierToken:
-            return this->ParseSimpleName();
+            return this->ParseQualifiedName();
 
         case SyntaxKind::UnreachableKeyword:
             return this->ParseUnreachableExpression();

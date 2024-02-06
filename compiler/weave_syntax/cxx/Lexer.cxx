@@ -587,9 +587,9 @@ namespace weave::syntax
                 {
                     token.Kind = SyntaxKind::ExclamationEqualsToken;
                 }
-                else if (this->_cursor.First(U'('))
+                else if (this->_cursor.First(U'['))
                 {
-                    token.Kind = SyntaxKind::ExclamationOpenParenToken;
+                    token.Kind = SyntaxKind::ExclamationOpenBracketToken;
                 }
                 else
                 {

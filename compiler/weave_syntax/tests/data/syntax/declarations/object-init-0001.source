@@ -1,14 +1,13 @@
-
-public struct Vector3::[type T]
+public struct Vector3![type T]
 {
     public var Elements: [T] = [0, 0, 0];
 }
 
-public extend Vector3::[type T]
+public extend Vector3![type T]
 {
     public type Element = T;
 
-    public function New(x: T, y: T, z: T) -> Vector3::[T]
+    public function New(x: T, y: T, z: T) -> Vector3![T]
     {
         return Vector3(
             Elements: [x, y, z]
