@@ -163,7 +163,6 @@ namespace weave::syntax
         void OnArrayTypeSyntax(ArrayTypeSyntax* node) override;
         void OnSliceTypeSyntax(SliceTypeSyntax* node) override;
         void OnTypePointerSyntax(TypePointerSyntax* node) override;
-        void OnTypeReferenceSyntax(TypeReferenceSyntax* node) override;
         void OnBracketInitializerClauseSyntax(BracketInitializerClauseSyntax* node) override;
         void OnBraceInitializerClauseSyntax(BraceInitializerClauseSyntax* node) override;
         void OnCheckedStatementSyntax(CheckedStatementSyntax* node) override;

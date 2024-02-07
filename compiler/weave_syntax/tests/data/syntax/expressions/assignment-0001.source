@@ -1,0 +1,8 @@
+public function Test(condition: bool, c: Int32) -> Int32
+{
+    var a : Int32 = 42;
+    var b : Int32 = 2137;
+
+    (condition ? a : b) = c;
+    return (not condition ? a : b);
+}
