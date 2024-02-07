@@ -879,6 +879,22 @@ namespace weave::syntax
         }
     };
 
+    class TypePointerSyntax : public TypeSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TypePointerSyntax);
+
+    public:
+        SyntaxToken* AsteriskToken{};
+        SyntaxListView<SyntaxToken> Qualifiers{};
+        TypeSyntax* Type{};
+
+    public:
+        explicit constexpr TypePointerSyntax()
+            : TypeSyntax{SyntaxKind::TypePointerSyntax}
+        {
+        }
+    };
+
     class TupleTypeSyntax final : public TypeSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TupleTypeSyntax);

@@ -1,0 +1,400 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   ExtendDeclarationSyntax
+    SyntaxList
+     PublicKeyword <0:6> [0:0:0:6] 'public'
+    ExtendKeyword <7:13> [0:7:0:13] 'extend'
+    IdentifierNameSyntax
+     IdentifierToken <14:25> [0:14:0:25] 'ExampleType'
+    CodeBlockSyntax
+     OpenBraceToken <27:28> [1:0:1:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       FunctionDeclarationSyntax
+        SyntaxList
+         PublicKeyword <34:40> [2:4:2:10] 'public'
+        FunctionKeyword <41:49> [2:11:2:19] 'function'
+        IdentifierNameSyntax
+         IdentifierToken <50:53> [2:20:2:23] 'Bar'
+        ParameterListSyntax
+         OpenParenToken <53:54> [2:23:2:24] '('
+         SyntaxList
+          ParameterSyntax
+           SyntaxList
+            RefKeyword <54:57> [2:24:2:27] 'ref'
+           IdentifierNameSyntax
+            IdentifierToken <58:62> [2:28:2:32] 'self'
+           TypeClauseSyntax
+            ColonToken <62:63> [2:32:2:33] ':'
+            IdentifierNameSyntax
+             IdentifierToken <64:68> [2:34:2:38] 'Self'
+           CommaToken <68:69> [2:38:2:39] ','
+          ParameterSyntax
+           SyntaxList
+            RefKeyword <70:73> [2:40:2:43] 'ref'
+           IdentifierNameSyntax
+            IdentifierToken <74:79> [2:44:2:49] 'other'
+           TypeClauseSyntax
+            ColonToken <79:80> [2:49:2:50] ':'
+            IdentifierNameSyntax
+             IdentifierToken <81:85> [2:51:2:55] 'Self'
+         CloseParenToken <85:86> [2:55:2:56] ')'
+        ReturnTypeClauseSyntax
+         MinusGreaterThanToken <87:89> [2:57:2:59] '->'
+         IdentifierNameSyntax
+          IdentifierToken <90:94> [2:60:2:64] 'Self'
+        CodeBlockSyntax
+         OpenBraceToken <100:101> [3:4:3:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           ReturnStatementSyntax
+            ReturnKeyword <111:117> [4:8:4:14] 'return'
+            BinaryExpressionSyntax
+             IdentifierNameSyntax
+              IdentifierToken <118:122> [4:15:4:19] 'self'
+             PlusToken <123:124> [4:20:4:21] '+'
+             IdentifierNameSyntax
+              IdentifierToken <125:130> [4:22:4:27] 'other'
+           SemicolonToken <130:131> [4:27:4:28] ';'
+         CloseBraceToken <137:138> [5:4:5:5] '}'
+      CodeBlockItemSyntax
+       FunctionDeclarationSyntax
+        SyntaxList
+         PublicKeyword <146:152> [7:4:7:10] 'public'
+         UnsafeKeyword <153:159> [7:11:7:17] 'unsafe'
+        FunctionKeyword <160:168> [7:18:7:26] 'function'
+        IdentifierNameSyntax
+         IdentifierToken <169:172> [7:27:7:30] 'Baz'
+        ParameterListSyntax
+         OpenParenToken <172:173> [7:30:7:31] '('
+         SyntaxList
+          ParameterSyntax
+           SyntaxList
+            InKeyword <173:175> [7:31:7:33] 'in'
+           IdentifierNameSyntax
+            IdentifierToken <176:180> [7:34:7:38] 'left'
+           TypeClauseSyntax
+            ColonToken <180:181> [7:38:7:39] ':'
+            TypePointerSyntax
+             AsteriskToken <182:183> [7:40:7:41] '*'
+             SyntaxList
+              ConstKeyword <183:188> [7:41:7:46] 'const'
+             IdentifierNameSyntax
+              IdentifierToken <189:193> [7:47:7:51] 'Self'
+           CommaToken <193:194> [7:51:7:52] ','
+          ParameterSyntax
+           SyntaxList
+            InKeyword <195:197> [7:53:7:55] 'in'
+           IdentifierNameSyntax
+            IdentifierToken <198:203> [7:56:7:61] 'right'
+           TypeClauseSyntax
+            ColonToken <203:204> [7:61:7:62] ':'
+            TypePointerSyntax
+             AsteriskToken <205:206> [7:63:7:64] '*'
+             SyntaxList
+              ConstKeyword <206:211> [7:64:7:69] 'const'
+             IdentifierNameSyntax
+              IdentifierToken <212:216> [7:70:7:74] 'Self'
+         CloseParenToken <216:217> [7:74:7:75] ')'
+        ReturnTypeClauseSyntax
+         MinusGreaterThanToken <218:220> [7:76:7:78] '->'
+         TypePointerSyntax
+          AsteriskToken <221:222> [7:79:7:80] '*'
+          SyntaxList
+           ConstKeyword <222:227> [7:80:7:85] 'const'
+          IdentifierNameSyntax
+           IdentifierToken <228:232> [7:86:7:90] 'Self'
+        CodeBlockSyntax
+         OpenBraceToken <238:239> [8:4:8:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           ReturnStatementSyntax
+            ReturnKeyword <249:255> [9:8:9:14] 'return'
+            ConditionalExpressionSyntax
+             TupleExpressionSyntax
+              OpenParenToken <256:257> [9:15:9:16] '('
+              SyntaxList
+               LabeledExpressionSyntax
+                BinaryExpressionSyntax
+                 IdentifierNameSyntax
+                  IdentifierToken <257:261> [9:16:9:20] 'left'
+                 LessThanToken <262:263> [9:21:9:22] '<'
+                 IdentifierNameSyntax
+                  IdentifierToken <264:269> [9:23:9:28] 'right'
+              CloseParenToken <269:270> [9:28:9:29] ')'
+             QuestionToken <271:272> [9:30:9:31] '?'
+             IdentifierNameSyntax
+              IdentifierToken <273:277> [9:32:9:36] 'left'
+             ColonToken <278:279> [9:37:9:38] ':'
+             IdentifierNameSyntax
+              IdentifierToken <280:285> [9:39:9:44] 'right'
+           SemicolonToken <285:286> [9:44:9:45] ';'
+         CloseBraceToken <292:293> [10:4:10:5] '}'
+     CloseBraceToken <295:296> [11:0:11:1] '}'
+  CodeBlockItemSyntax
+   StructDeclarationSyntax
+    SyntaxList
+     PublicKeyword <300:306> [13:0:13:6] 'public'
+     UnsafeKeyword <307:313> [13:7:13:13] 'unsafe'
+     ExplicitKeyword <314:322> [13:14:13:22] 'explicit'
+    StructKeyword <323:329> [13:23:13:29] 'struct'
+    IdentifierNameSyntax
+     IdentifierToken <330:346> [13:30:13:46] 'RawObjectPointer'
+    CodeBlockSyntax
+     OpenBraceToken <348:349> [14:0:14:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <355:361> [15:4:15:10] 'public'
+        VarKeyword <362:365> [15:11:15:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <366:372> [15:15:15:21] 'VTable'
+         TypeClauseSyntax
+          ColonToken <375:376> [15:24:15:25] ':'
+          TypePointerSyntax
+           AsteriskToken <377:378> [15:26:15:27] '*'
+           SyntaxList
+            ConstKeyword <378:383> [15:27:15:32] 'const'
+           IdentifierNameSyntax
+            IdentifierToken <386:390> [15:35:15:39] 'void'
+       SemicolonToken <390:391> [15:39:15:40] ';'
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <397:403> [16:4:16:10] 'public'
+        VarKeyword <404:407> [16:11:16:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <408:416> [16:15:16:23] 'Instance'
+         TypeClauseSyntax
+          ColonToken <417:418> [16:24:16:25] ':'
+          TypePointerSyntax
+           AsteriskToken <419:420> [16:26:16:27] '*'
+           SyntaxList
+            MutableKeyword <420:427> [16:27:16:34] 'mutable'
+           IdentifierNameSyntax
+            IdentifierToken <428:432> [16:35:16:39] 'void'
+       SemicolonToken <432:433> [16:39:16:40] ';'
+     CloseBraceToken <435:436> [17:0:17:1] '}'
+  CodeBlockItemSyntax
+   StructDeclarationSyntax
+    SyntaxList
+     PublicKeyword <440:446> [19:0:19:6] 'public'
+     UnsafeKeyword <447:453> [19:7:19:13] 'unsafe'
+     ExplicitKeyword <454:462> [19:14:19:22] 'explicit'
+    StructKeyword <463:469> [19:23:19:29] 'struct'
+    IdentifierNameSyntax
+     IdentifierToken <470:486> [19:30:19:46] 'RawStringPointer'
+    CodeBlockSyntax
+     OpenBraceToken <488:489> [20:0:20:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <495:501> [21:4:21:10] 'public'
+        VarKeyword <502:505> [21:11:21:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <506:510> [21:15:21:19] 'Data'
+         TypeClauseSyntax
+          ColonToken <515:516> [21:24:21:25] ':'
+          TypePointerSyntax
+           AsteriskToken <517:518> [21:26:21:27] '*'
+           SyntaxList
+            MutableKeyword <518:525> [21:27:21:34] 'mutable'
+           IdentifierNameSyntax
+            IdentifierToken <526:530> [21:35:21:39] 'char'
+       SemicolonToken <530:531> [21:39:21:40] ';'
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <537:543> [22:4:22:10] 'public'
+        VarKeyword <544:547> [22:11:22:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <548:554> [22:15:22:21] 'Length'
+         TypeClauseSyntax
+          ColonToken <557:558> [22:24:22:25] ':'
+          IdentifierNameSyntax
+           IdentifierToken <559:566> [22:26:22:33] 'UIntPtr'
+       SemicolonToken <566:567> [22:33:22:34] ';'
+     CloseBraceToken <569:570> [23:0:23:1] '}'
+  CodeBlockItemSyntax
+   StructDeclarationSyntax
+    SyntaxList
+     PublicKeyword <574:580> [25:0:25:6] 'public'
+     UnsafeKeyword <581:587> [25:7:25:13] 'unsafe'
+     ExplicitKeyword <588:596> [25:14:25:22] 'explicit'
+    StructKeyword <597:603> [25:23:25:29] 'struct'
+    IdentifierNameSyntax
+     IdentifierToken <604:612> [25:30:25:38] 'RawArray'
+    GenericParametersSyntax
+     ExclamationOpenBracketToken <612:614> [25:38:25:40] '!['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <614:618> [25:40:25:44] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <619:620> [25:45:25:46] 'T'
+     CloseBracketToken <620:621> [25:46:25:47] ']'
+    CodeBlockSyntax
+     OpenBraceToken <623:624> [26:0:26:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <630:636> [27:4:27:10] 'public'
+        VarKeyword <637:640> [27:11:27:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <641:645> [27:15:27:19] 'Data'
+         TypeClauseSyntax
+          ColonToken <650:651> [27:24:27:25] ':'
+          TypePointerSyntax
+           AsteriskToken <652:653> [27:26:27:27] '*'
+           SyntaxList
+            MutableKeyword <653:660> [27:27:27:34] 'mutable'
+           IdentifierNameSyntax
+            IdentifierToken <661:662> [27:35:27:36] 'T'
+       SemicolonToken <662:663> [27:36:27:37] ';'
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <669:675> [28:4:28:10] 'public'
+        VarKeyword <676:679> [28:11:28:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <680:685> [28:15:28:20] 'Count'
+         TypeClauseSyntax
+          ColonToken <689:690> [28:24:28:25] ':'
+          IdentifierNameSyntax
+           IdentifierToken <691:698> [28:26:28:33] 'UIntPtr'
+       SemicolonToken <698:699> [28:33:28:34] ';'
+     CloseBraceToken <701:702> [29:0:29:1] '}'
+  CodeBlockItemSyntax
+   StructDeclarationSyntax
+    SyntaxList
+     PublicKeyword <706:712> [31:0:31:6] 'public'
+     UnsafeKeyword <713:719> [31:7:31:13] 'unsafe'
+     ExplicitKeyword <720:728> [31:14:31:22] 'explicit'
+    StructKeyword <729:735> [31:23:31:29] 'struct'
+    IdentifierNameSyntax
+     IdentifierToken <736:744> [31:30:31:38] 'RawSlice'
+    GenericParametersSyntax
+     ExclamationOpenBracketToken <744:746> [31:38:31:40] '!['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <746:750> [31:40:31:44] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <751:752> [31:45:31:46] 'T'
+     CloseBracketToken <752:753> [31:46:31:47] ']'
+    CodeBlockSyntax
+     OpenBraceToken <755:756> [32:0:32:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <762:768> [33:4:33:10] 'public'
+        VarKeyword <769:772> [33:11:33:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <773:777> [33:15:33:19] 'Data'
+         TypeClauseSyntax
+          ColonToken <782:783> [33:24:33:25] ':'
+          TypePointerSyntax
+           AsteriskToken <784:785> [33:26:33:27] '*'
+           SyntaxList
+            MutableKeyword <785:792> [33:27:33:34] 'mutable'
+           IdentifierNameSyntax
+            IdentifierToken <793:794> [33:35:33:36] 'T'
+       SemicolonToken <794:795> [33:36:33:37] ';'
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <801:807> [34:4:34:10] 'public'
+        VarKeyword <808:811> [34:11:34:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <812:817> [34:15:34:20] 'Count'
+         TypeClauseSyntax
+          ColonToken <821:822> [34:24:34:25] ':'
+          IdentifierNameSyntax
+           IdentifierToken <823:830> [34:26:34:33] 'UIntPtr'
+       SemicolonToken <830:831> [34:33:34:34] ';'
+     CloseBraceToken <833:834> [35:0:35:1] '}'
+  CodeBlockItemSyntax
+   ExtendDeclarationSyntax
+    SyntaxList
+     PublicKeyword <838:844> [37:0:37:6] 'public'
+    ExtendKeyword <845:851> [37:7:37:13] 'extend'
+    IdentifierNameSyntax
+     IdentifierToken <852:861> [37:14:37:23] 'ConvertTo'
+    GenericParametersSyntax
+     ExclamationOpenBracketToken <861:863> [37:23:37:25] '!['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <863:867> [37:25:37:29] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <868:869> [37:30:37:31] 'T'
+     CloseBracketToken <869:870> [37:31:37:32] ']'
+    CodeBlockSyntax
+     OpenBraceToken <872:873> [38:0:38:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       FunctionDeclarationSyntax
+        SyntaxList
+         PublicKeyword <879:885> [39:4:39:10] 'public'
+        FunctionKeyword <886:894> [39:11:39:19] 'function'
+        IdentifierNameSyntax
+         IdentifierToken <895:899> [39:20:39:24] 'From'
+        GenericParametersSyntax
+         ExclamationOpenBracketToken <899:901> [39:24:39:26] '!['
+         SyntaxList
+          TypeGenericParameterSyntax
+           TypeKeyword <901:905> [39:26:39:30] 'type'
+           IdentifierNameSyntax
+            IdentifierToken <906:907> [39:31:39:32] 'U'
+         CloseBracketToken <907:908> [39:32:39:33] ']'
+        ParameterListSyntax
+         OpenParenToken <908:909> [39:33:39:34] '('
+         SyntaxList
+          ParameterSyntax
+           SyntaxList
+            InKeyword <909:911> [39:34:39:36] 'in'
+           IdentifierNameSyntax
+            IdentifierToken <912:917> [39:37:39:42] 'value'
+           TypeClauseSyntax
+            ColonToken <917:918> [39:42:39:43] ':'
+            IdentifierNameSyntax
+             IdentifierToken <919:920> [39:44:39:45] 'U'
+         CloseParenToken <920:921> [39:45:39:46] ')'
+        ReturnTypeClauseSyntax
+         MinusGreaterThanToken <922:924> [39:47:39:49] '->'
+         IdentifierNameSyntax
+          IdentifierToken <925:926> [39:50:39:51] 'T'
+        CodeBlockSyntax
+         OpenBraceToken <932:933> [40:4:40:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           ReturnStatementSyntax
+            ReturnKeyword <943:949> [41:8:41:14] 'return'
+            BinaryExpressionSyntax
+             IdentifierNameSyntax
+              IdentifierToken <950:955> [41:15:41:20] 'value'
+             AsKeyword <956:958> [41:21:41:23] 'as'
+             IdentifierNameSyntax
+              IdentifierToken <959:960> [41:24:41:25] 'T'
+           SemicolonToken <960:961> [41:25:41:26] ';'
+         CloseBraceToken <967:968> [42:4:42:5] '}'
+     CloseBraceToken <970:971> [43:0:43:1] '}'
+ EndOfFileToken <973:973> [44:0:44:0] ''

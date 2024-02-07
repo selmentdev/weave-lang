@@ -284,13 +284,8 @@ namespace weave::syntax
 
     void Parser::ParseMemberModifiersList(std::vector<SyntaxToken*>& elements)
     {
-        while (SyntaxToken* current = this->Current())
+        while (SyntaxFacts::IsMemberModifier(this->Current()->Kind))
         {
-            if (not SyntaxFacts::IsMemberModifier(current->Kind))
-            {
-                break;
-            }
-
             elements.push_back(this->Next());
         }
     }
@@ -299,13 +294,8 @@ namespace weave::syntax
     {
         std::vector<SyntaxToken*> elements{};
 
-        while (SyntaxToken* current = this->Current())
+        while (SyntaxFacts::IsFunctionParameterModifier(this->Current()->Kind))
         {
-            if (not SyntaxFacts::IsFunctionParameterModifier(current->Kind))
-            {
-                break;
-            }
-
             elements.push_back(this->Next());
         }
 
@@ -316,13 +306,20 @@ namespace weave::syntax
     {
         std::vector<SyntaxToken*> elements{};
 
-        while (SyntaxToken* current = this->Current())
+        while (SyntaxFacts::IsFunctionParameterModifier(this->Current()->Kind))
         {
-            if (not SyntaxFacts::IsFunctionParameterModifier(current->Kind))
-            {
-                break;
-            }
+            elements.push_back(this->Next());
+        }
 
+        return SyntaxListView<SyntaxToken>{this->_factory->CreateList(elements)};
+    }
+
+    SyntaxListView<SyntaxToken> Parser::ParseTypeQualifiers()
+    {
+        std::vector<SyntaxToken*> elements{};
+
+        while (SyntaxFacts::IsTypeQualifier(this->Current()->Kind))
+        {
             elements.push_back(this->Next());
         }
 
@@ -965,21 +962,33 @@ namespace weave::syntax
         return nullptr;
     }
 
+    TypePointerSyntax* Parser::ParsePointerType()
+    {
+        TypePointerSyntax* result = this->_factory->CreateNode<TypePointerSyntax>();
+        result->AsteriskToken = this->Match(SyntaxKind::AsteriskToken);
+        result->Qualifiers = this->ParseTypeQualifiers();
+        result->Type = this->ParseType();
+        return result;
+    }
+
     TypeSyntax* Parser::ParseType()
     {
-        if (this->Current()->Kind == SyntaxKind::IdentifierToken)
+        switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
         {
+        case SyntaxKind::IdentifierToken:
             return this->ParseQualifiedName();
-        }
 
-        if (this->Current()->Kind == SyntaxKind::OpenParenToken)
-        {
+        case SyntaxKind::OpenParenToken:
             return this->ParseTupleType();
-        }
 
-        if (this->Current()->Kind == SyntaxKind::OpenBracketToken)
-        {
+        case SyntaxKind::OpenBracketToken:
             return this->ParseArrayOrSliceType();
+
+        case SyntaxKind::AsteriskToken:
+            return this->ParsePointerType();
+
+        default:
+            break;
         }
 
         return this->CreateMissingIdentifierName();

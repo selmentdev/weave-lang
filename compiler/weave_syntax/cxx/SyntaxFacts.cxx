@@ -68,7 +68,6 @@ namespace weave::syntax
         case SyntaxKind::ReadonlyKeyword:
         case SyntaxKind::RecursiveKeyword:
         case SyntaxKind::RefKeyword:
-        case SyntaxKind::RestrictedKeyword:
         case SyntaxKind::SynchronizedKeyword:
         case SyntaxKind::TailCallKeyword:
         case SyntaxKind::ThreadLocalKeyword:
@@ -76,6 +75,23 @@ namespace weave::syntax
         case SyntaxKind::TrustedKeyword:
         case SyntaxKind::UnalignedKeyword:
         case SyntaxKind::UniformKeyword:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
+
+    bool SyntaxFacts::IsTypeQualifier(SyntaxKind kind)
+    {
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::ConstKeyword:
+        case SyntaxKind::MutableKeyword:
+        case SyntaxKind::RestrictKeyword:
+        case SyntaxKind::AtomicKeyword:
             return true;
 
         default:

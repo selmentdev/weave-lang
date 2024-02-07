@@ -1,0 +1,44 @@
+public extend ExampleType
+{
+    public function Bar(ref self: Self, ref other: Self) -> Self
+    {
+        return self + other;
+    }
+
+    public unsafe function Baz(in left: *const Self, in right: *const Self) -> *const Self
+    {
+        return (left < right) ? left : right;
+    }
+}
+
+public unsafe explicit struct RawObjectPointer
+{
+    public var VTable   : *const   void;
+    public var Instance : *mutable void;
+}
+
+public unsafe explicit struct RawStringPointer
+{
+    public var Data     : *mutable char;
+    public var Length   : UIntPtr;
+}
+
+public unsafe explicit struct RawArray![type T]
+{
+    public var Data     : *mutable T;
+    public var Count    : UIntPtr;
+}
+
+public unsafe explicit struct RawSlice![type T]
+{
+    public var Data     : *mutable T;
+    public var Count    : UIntPtr;
+}
+
+public extend ConvertTo![type T]
+{
+    public function From![type U](in value: U) -> T
+    {
+        return value as T;
+    }
+}

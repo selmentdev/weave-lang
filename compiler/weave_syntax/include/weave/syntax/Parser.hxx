@@ -142,6 +142,8 @@ namespace weave::syntax
 
         SyntaxListView<SyntaxToken> ParseFunctionArgumentModifierList();
 
+        SyntaxListView<SyntaxToken> ParseTypeQualifiers();
+
         VariableDeclarationSyntax* ParseVariableDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);
@@ -241,6 +243,8 @@ namespace weave::syntax
         TypeClauseSyntax* ParseTypeClause();
 
         TypeClauseSyntax* ParseOptionalTypeClause();
+
+        TypePointerSyntax* ParsePointerType();
 
         TypeSyntax* ParseType();
 
