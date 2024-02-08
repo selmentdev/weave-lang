@@ -81,6 +81,8 @@ namespace weave::syntax
         this->Dispatch(node->ExtendKeyword);
         this->Dispatch(node->Name);
         this->Dispatch(node->GenericParameters);
+        this->Dispatch(node->AsKeyword);
+        this->Dispatch(node->ConceptType);
         this->Dispatch(node->Members);
 
         --this->Depth;

@@ -252,6 +252,8 @@ namespace weave::syntax
         NameSyntax* Name{};
         GenericParametersSyntax* GenericParameters{};
         CodeBlockSyntax* Members{};
+        SyntaxToken* AsKeyword{};
+        TypeSyntax* ConceptType{};
 
     public:
         explicit constexpr ExtendDeclarationSyntax()

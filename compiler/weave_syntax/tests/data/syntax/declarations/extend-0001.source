@@ -1,0 +1,43 @@
+public concept Addable![type T]
+{
+    public function Add(self: T, other: T) -> T;
+}
+
+public struct Vector4F
+{
+    public var X : Float32;
+    public var Y : Float32;
+    public var Z : Float32;
+    public var W : Float32;
+}
+
+public extend Vector4F as Addable![Vector4F]
+{
+    public function Add(self: Self, other: Self) -> Self
+    {
+        return Self(
+            X: self.X + other.X,
+            Y: self.Y + other.Y,
+            Z: self.Z + other.Z,
+            W: self.W + other.W,
+        );
+    }
+}
+
+public extend Vector4F
+{
+    public function New(
+        x: Float32,
+        y: Float32,
+        z: Float32,
+        w: Float32
+    ) -> Self
+    {
+        return Self(
+            X: x,
+            Y: y,
+            Z: z,
+            W: w,
+        );
+    }
+}

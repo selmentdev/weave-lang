@@ -431,6 +431,13 @@ namespace weave::syntax
         result->ExtendKeyword = this->Match(SyntaxKind::ExtendKeyword);
         result->Name = this->ParseIdentifierName();
         result->GenericParameters = this->ParseOptionalGenericParameters();
+
+        if (this->Current()->Kind == SyntaxKind::AsKeyword)
+        {
+            result->AsKeyword = this->Match(SyntaxKind::AsKeyword);
+            result->ConceptType = this->ParseQualifiedName();
+        }
+
         result->Members = this->ParseCodeBlock();
         return result;
     }
