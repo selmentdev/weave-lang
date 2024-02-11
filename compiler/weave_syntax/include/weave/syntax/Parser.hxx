@@ -303,6 +303,8 @@ namespace weave::syntax
 
         AddressOfExpressionSyntax* ParseAddressOfExpression();
 
+        OldExpressionSyntax* ParseOldExpression();
+
         ExpressionSyntax* ParseBooleanLiteral();
 
         ExpressionSyntax* ParseIntegerLiteral();

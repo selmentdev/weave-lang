@@ -407,7 +407,7 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        std::vector<ConstraintSyntax*> constraints{};
+        //std::vector<ConstraintSyntax*> constraints{};
 
         ConceptDeclarationSyntax* result = this->_factory->CreateNode<ConceptDeclarationSyntax>();
         result->Attributes = attributes;
@@ -423,7 +423,7 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        std::vector<ConstraintSyntax*> constraints{};
+        //std::vector<ConstraintSyntax*> constraints{};
 
         ExtendDeclarationSyntax* result = this->_factory->CreateNode<ExtendDeclarationSyntax>();
         result->Attributes = attributes;
@@ -1415,6 +1415,9 @@ namespace weave::syntax
         case SyntaxKind::AddressOfKeyword:
             return this->ParseAddressOfExpression();
 
+        case SyntaxKind::OldKeyword:
+            return this->ParseOldExpression();
+
         case SyntaxKind::TrueKeyword:
         case SyntaxKind::FalseKeyword:
             return this->ParseBooleanLiteral();
@@ -1628,6 +1631,16 @@ namespace weave::syntax
         AddressOfExpressionSyntax* result = this->_factory->CreateNode<AddressOfExpressionSyntax>();
         result->AddressOfKeyword = this->Match(SyntaxKind::AddressOfKeyword);
         result->Expression = this->ParseExpression();
+        return result;
+    }
+
+    OldExpressionSyntax* Parser::ParseOldExpression()
+    {
+        OldExpressionSyntax* result = this->_factory->CreateNode<OldExpressionSyntax>();
+        result->OldKeyword = this->Match(SyntaxKind::OldKeyword);
+        result->OpenParenToken = this->Match(SyntaxKind::OpenParenToken);
+        result->Expression = this->ParseExpression();
+        result->CloseParenToken = this->Match(SyntaxKind::CloseParenToken);
         return result;
     }
 

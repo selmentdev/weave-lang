@@ -837,6 +837,23 @@ namespace weave::syntax
         }
     };
 
+    class OldExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(OldExpressionSyntax);
+
+    public:
+        SyntaxToken* OldKeyword{};
+        SyntaxToken* OpenParenToken{};
+        ExpressionSyntax* Expression{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr OldExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::OldExpressionSyntax}
+        {
+        }
+    };
+
     class AddressOfExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(AddressOfExpressionSyntax);
