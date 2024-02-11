@@ -93,12 +93,11 @@ SourceFileSyntax
          OpenParenToken <150:151> [6:11:6:12] '('
          SyntaxList
           LabeledExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <151:154> [6:12:6:15] 'not'
-          LabeledExpressionSyntax
            ConditionalExpressionSyntax
-            IdentifierNameSyntax
-             IdentifierToken <155:164> [6:16:6:25] 'condition'
+            UnaryExpressionSyntax
+             NotKeyword <151:154> [6:12:6:15] 'not'
+             IdentifierNameSyntax
+              IdentifierToken <155:164> [6:16:6:25] 'condition'
             QuestionToken <165:166> [6:26:6:27] '?'
             IdentifierNameSyntax
              IdentifierToken <167:168> [6:28:6:29] 'a'

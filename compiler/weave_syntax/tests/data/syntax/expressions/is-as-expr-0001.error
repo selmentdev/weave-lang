@@ -1,0 +1,5 @@
+error: Trailing comma is not allowed in argument list.
+        --> <source>:8:16
+         |
+       8 | consume(a, b, c,);
+         |                ^

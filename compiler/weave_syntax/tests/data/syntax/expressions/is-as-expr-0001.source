@@ -1,0 +1,8 @@
+let x = y is X or Y or Z;
+let x = (y is X) and (y is Y) and (y is Z);
+
+if (x is Y z) {
+    consume(z.a);
+}
+
+consume(a, b, c,);

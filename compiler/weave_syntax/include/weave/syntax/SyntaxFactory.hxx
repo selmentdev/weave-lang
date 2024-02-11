@@ -63,6 +63,10 @@ namespace weave::syntax
             SyntaxListView<SyntaxTrivia> leadingTrivia,
             SyntaxListView<SyntaxTrivia> trailingTrivia);
 
+        SyntaxToken* CreateMissingContextualKeyword(
+            SyntaxKind kind,
+            source::SourceSpan const& source);
+
         SyntaxToken* CreateMissingToken(
             SyntaxKind kind,
             source::SourceSpan const& source)

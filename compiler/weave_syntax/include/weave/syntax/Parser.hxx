@@ -69,6 +69,9 @@ namespace weave::syntax
         [[nodiscard]] SyntaxToken* Match(SyntaxKind kind);
         [[nodiscard]] SyntaxToken* TryMatch(SyntaxKind kind);
 
+        [[nodiscard]] SyntaxToken* MatchContextualKeyword(SyntaxKind kind);
+        [[nodiscard]] SyntaxToken* TryMatchContextualKeyword(SyntaxKind kind);
+
     private:
         [[nodiscard]] SyntaxToken* MatchUntil(std::vector<SyntaxNode*>& unexpected, SyntaxKind kind);
 

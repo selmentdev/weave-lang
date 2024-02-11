@@ -120,6 +120,19 @@ namespace weave::syntax
             SyntaxTokenFlags::Missing);
     }
 
+    SyntaxToken* SyntaxFactory::CreateMissingContextualKeyword(
+        SyntaxKind kind,
+        source::SourceSpan const& source)
+    {
+        return this->IdentifierAllocator.Emplace(
+            source,
+            SyntaxListView<SyntaxTrivia>{},
+            SyntaxListView<SyntaxTrivia> {},
+            kind,
+            std::string_view{},
+            SyntaxTokenFlags::Missing);
+    }
+
     SyntaxToken* SyntaxFactory::CreateMissingToken(
         SyntaxKind kind,
         source::SourceSpan const& source,

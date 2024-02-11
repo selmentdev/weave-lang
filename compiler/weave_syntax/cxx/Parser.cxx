@@ -90,6 +90,36 @@ namespace weave::syntax
         return nullptr;
     }
 
+    SyntaxToken* Parser::MatchContextualKeyword(SyntaxKind kind)
+    {
+        WEAVE_ASSERT(IsContextualKeyword(kind));
+
+        if (syntax::IdentifierSyntaxToken* id = this->Current()->TryCast<syntax::IdentifierSyntaxToken>())
+        {
+            if (id->ContextualKeyowrd == kind)
+            {
+                return this->Next();
+            }
+        }
+
+        return this->_factory->CreateMissingContextualKeyword(kind, this->Current()->Source);
+    }
+
+    SyntaxToken* Parser::TryMatchContextualKeyword(SyntaxKind kind)
+    {
+        WEAVE_ASSERT(IsContextualKeyword(kind));
+
+        if (syntax::IdentifierSyntaxToken* id = this->Current()->TryCast<syntax::IdentifierSyntaxToken>())
+        {
+            if (id->ContextualKeyowrd == kind)
+            {
+                return this->Next();
+            }
+        }
+
+        return nullptr;
+    }
+
     SyntaxToken* Parser::MatchUntil(std::vector<SyntaxNode*>& unexpected, SyntaxKind kind)
     {
         unexpected.clear();
