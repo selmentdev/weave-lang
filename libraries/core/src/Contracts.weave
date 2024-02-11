@@ -1,0 +1,45 @@
+namespace Core.Contracts
+{
+    public enum ContractSemantics
+    {
+        Ignore,
+        Observe,
+        Enforce,
+    }
+
+    public enum ContractKind
+    {
+        Precondition,
+        Postcondition,
+        Invariant,
+        Assertion,
+    }
+
+    public enum ContractViolationSource
+    {
+        //! The contract violation failed due to an unknown reason.
+        Unknown,
+
+        //! The contract violation failed due to a assertion failure.
+        Failure,
+
+        //! The contract violation failed due to a undefined behavior.
+        UndefinedBehavior,
+    }
+
+    public struct ContractViolation
+    {
+        private var _message : String;
+        private var _kind : ContractKind;
+        private var _semantics : ContractSemantics;
+        private var _location : SourceLocation;
+    }
+
+    public extend ContractViolation
+    {
+        public property Message(in self) -> String { return self._message; }
+        public property Kind(in self) -> ContractKind { return self._kind; }
+        public property Semantics(in self) -> ContractSemantics { return self._semantics; }
+        public property Location(in self) -> SourceLocation { return self._location; }
+    }
+}
