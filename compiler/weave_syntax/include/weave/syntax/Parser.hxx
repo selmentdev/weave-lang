@@ -8,6 +8,85 @@
 
 namespace weave::syntax
 {
+    struct ParserContext
+    {
+        SyntaxFactory* Factory;
+        std::span<SyntaxToken*> Tokens{};
+    };
+
+    struct ParserState
+    {
+        ParserContext* Context;
+        SyntaxToken* Current{};
+        SyntaxToken* Last{};
+    };
+
+    constexpr ParserState Fork(ParserState const& state)
+    {
+        return ParserState{state.Context, state.Current, state.Last};
+    }
+
+    constexpr void Join(ParserState& state, ParserState const& other)
+    {
+        WEAVE_ASSERT(state.Context == other.Context, "Cannot join states from different contexts");
+        WEAVE_ASSERT(state.Last == other.Last, "Cannot join states with different last tokens");
+        state.Current = other.Current;
+    }
+
+    constexpr bool Advance(ParserState& self)
+    {
+        if (self.Current->Kind == SyntaxKind::EndOfFileToken)
+        {
+            return false;
+        }
+
+        self.Current = std::min(self.Current + 1, self.Last);
+
+        return true;
+    }
+
+    constexpr SyntaxToken* Next(ParserState& self)
+    {
+        SyntaxToken* const current = self.Current;
+
+        self.Current = std::min(self.Current + 1, self.Last);
+
+        return current;
+    }
+
+    constexpr SyntaxToken* Current(ParserState const& self)
+    {
+        return self.Current;
+    }
+
+    constexpr SyntaxToken* Peek(ParserState const& self, size_t offset)
+    {
+        return std::min(self.Current + offset, self.Last);
+    }
+
+    inline SyntaxToken* Match(ParserState& self, SyntaxKind kind)
+    {
+        if (self.Current->Kind == kind)
+        {
+            return Next(self);
+        }
+
+        return self.Context->Factory->CreateMissingToken(kind, self.Current->Source);
+    }
+
+    inline SyntaxToken* TryMatch(ParserState& self, SyntaxKind kind)
+    {
+        if (self.Current->Kind == kind)
+        {
+            return Next(self);
+        }
+
+        return nullptr;
+    }
+}
+
+namespace weave::syntax
+{
     class Parser
     {
     private:
