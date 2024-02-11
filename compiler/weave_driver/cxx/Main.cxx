@@ -287,8 +287,8 @@ int main(int argc, const char* argv[])
                     printer.Dispatch(root);
                 }
                 {
-                    // HACK: Remove with parser error reporting.
-                    diagnostic.Items.clear();
+                    weave::syntax::Validate(root, &diagnostic);
+
                     ErrorReporter error{diagnostic};
                     error.Dispatch(root);
                     std::vector<std::string> diag{};

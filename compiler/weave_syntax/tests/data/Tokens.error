@@ -1,12 +1,32 @@
-error: Unexpected tokens
-        --> <source>:50:1
+error: Expected '[token:identifier]'
+        --> <source>:33:1
          |
-      50 | abstract
-         | ^^^^^^^^
-      51 | add
+      33 | and_eq
+         | ^^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:34:1
+         |
+      34 | or
+         | ^^
+error: Expected '[token:identifier]'
+        --> <source>:35:1
+         |
+      35 | or_eq
+         | ^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:36:1
+         |
+      36 | xor
          | ^^^
-      52 | addressof
-         | ^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:36:1
+         |
+      36 | xor
+         | ^^^
+      37 | xor_eq
+         | ^^^^^^
+      38 | not
+         | ^^^
      ... |
      318 | r"raw string \t"
          | ^^^^^^^^^^^^^^^^

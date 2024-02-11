@@ -1,0 +1,10 @@
+error: Trailing comma is not allowed in argument list.
+        --> <source>:22:32
+         |
+      22 |             W: self.W + other.W,
+         |                                ^
+error: Trailing comma is not allowed in argument list.
+        --> <source>:40:17
+         |
+      40 |             W: w,
+         |                 ^

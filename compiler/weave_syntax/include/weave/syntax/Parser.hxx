@@ -395,4 +395,8 @@ namespace weave::syntax
         TuplePatternSyntax* ParseTuplePattern();
         PatternBindingSyntax* ParsePatternBinding();
     };
+
+    void Validate(
+        SourceFileSyntax* source,
+        source::DiagnosticSink* diagnostic);
 }

@@ -122,82 +122,40 @@ SourceFileSyntax
      IdentifierToken <201:205> [29:0:29:4] 'void'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <206:210> [30:0:30:4] 'byte'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <211:214> [31:0:31:3] 'and'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <215:221> [32:0:32:6] 'and_eq'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <222:224> [33:0:33:2] 'or'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <225:230> [34:0:34:5] 'or_eq'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <231:234> [35:0:35:3] 'xor'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <235:241> [36:0:36:6] 'xor_eq'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <242:245> [37:0:37:3] 'not'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <246:252> [38:0:38:6] 'not_eq'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <253:260> [39:0:39:7] 'bit_and'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <261:267> [40:0:40:6] 'bit_or'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <268:277> [41:0:41:9] 'bit_compl'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <278:288> [42:0:42:10] '__column__'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <289:297> [43:0:43:8] '__file__'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <298:310> [44:0:44:12] '__function__'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <311:330> [45:0:45:19] '__function_pretty__'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <331:339> [46:0:46:8] '__line__'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <340:350> [47:0:47:10] '__module__'
-  CodeBlockItemSyntax
-   ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <351:370> [48:0:48:19] '__source_location__'
+    AssignmentExpressionSyntax
+     BinaryExpressionSyntax
+      IdentifierNameSyntax
+       IdentifierToken <206:210> [30:0:30:4] 'byte'
+      AndKeyword <211:214> [31:0:31:3] 'and'
+      IdentifierNameSyntax
+       IdentifierToken <215:221> [32:0:32:6] missing ''
+     AndEqualKeyword <215:221> [32:0:32:6] 'and_eq'
+     AssignmentExpressionSyntax
+      BinaryExpressionSyntax
+       IdentifierNameSyntax
+        IdentifierToken <222:224> [33:0:33:2] missing ''
+       OrKeyword <222:224> [33:0:33:2] 'or'
+       IdentifierNameSyntax
+        IdentifierToken <225:230> [34:0:34:5] missing ''
+      OrEqualKeyword <225:230> [34:0:34:5] 'or_eq'
+      IdentifierNameSyntax
+       IdentifierToken <231:234> [35:0:35:3] missing ''
  UnexpectedNodesSyntax
   SyntaxList
+   XorKeyword <231:234> [35:0:35:3] 'xor'
+   XorEqualKeyword <235:241> [36:0:36:6] 'xor_eq'
+   NotKeyword <242:245> [37:0:37:3] 'not'
+   NotEqKeyword <246:252> [38:0:38:6] 'not_eq'
+   BitAndKeyword <253:260> [39:0:39:7] 'bit_and'
+   BitOrKeyword <261:267> [40:0:40:6] 'bit_or'
+   BitComplKeyword <268:277> [41:0:41:9] 'bit_compl'
+   IdentifierToken <278:288> [42:0:42:10] '__column__'
+   IdentifierToken <289:297> [43:0:43:8] '__file__'
+   IdentifierToken <298:310> [44:0:44:12] '__function__'
+   IdentifierToken <311:330> [45:0:45:19] '__function_pretty__'
+   IdentifierToken <331:339> [46:0:46:8] '__line__'
+   IdentifierToken <340:350> [47:0:47:10] '__module__'
+   IdentifierToken <351:370> [48:0:48:19] '__source_location__'
    AbstractKeyword <371:379> [49:0:49:8] 'abstract'
    IdentifierToken <380:383> [50:0:50:3] 'add'
    AddressOfKeyword <384:393> [51:0:51:9] 'addressof'
@@ -211,12 +169,12 @@ SourceFileSyntax
    AssemblyKeyword <441:449> [59:0:59:8] 'assembly'
    AssertKeyword <450:456> [60:0:60:6] 'assert'
    AssumeKeyword <457:463> [61:0:61:6] 'assume'
-   IdentifierToken <464:469> [62:0:62:5] 'async'
+   AsyncKeyword <464:469> [62:0:62:5] 'async'
    AtomicKeyword <470:476> [63:0:63:6] 'atomic'
    AttributeKeyword <477:486> [64:0:64:9] 'attribute'
    AutoKeyword <487:491> [65:0:65:4] 'auto'
    AvailableKeyword <492:501> [66:0:66:9] 'available'
-   IdentifierToken <502:507> [67:0:67:5] 'await'
+   AwaitKeyword <502:507> [67:0:67:5] 'await'
    BaseKeyword <508:512> [68:0:68:4] 'base'
    BecomeKeyword <513:519> [69:0:69:6] 'become'
    BitCastKeyword <520:527> [70:0:70:7] 'bitcast'
@@ -330,7 +288,7 @@ SourceFileSyntax
    PackedKeyword <1304:1310> [178:0:178:6] 'packed'
    ParallelKeyword <1311:1319> [179:0:179:8] 'parallel'
    ParamsKeyword <1320:1326> [180:0:180:6] 'params'
-   IdentifierToken <1327:1334> [181:0:181:7] 'partial'
+   PartialKeyword <1327:1334> [181:0:181:7] 'partial'
    PragmaKeyword <1335:1341> [182:0:182:6] 'pragma'
    PreciseKeyword <1342:1349> [183:0:183:7] 'precise'
    PrivateKeyword <1350:1357> [184:0:184:7] 'private'

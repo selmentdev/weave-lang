@@ -2342,3 +2342,75 @@ namespace weave::syntax
         return nullptr;
     }
 }
+
+#include "weave/syntax/Visitor.hxx"
+
+namespace weave::syntax
+{
+    class SyntaxValidator : public SyntaxVisitor<void>
+    {
+    private:
+        source::DiagnosticSink* _diagnostic;
+
+    public:
+        SyntaxValidator(source::DiagnosticSink* diagnostic)
+            : _diagnostic(diagnostic)
+        {
+        }
+
+    public:
+        void OnArgumentListSyntax(ArgumentListSyntax* node) override
+        {
+            size_t const count = node->Arguments.GetCount();
+
+            if (count > 1)
+            {
+                /*
+                for (size_t i = 0; i < (count - 1); ++i)
+                {
+                    ArgumentSyntax* item = node->Arguments.GetElement(i);
+
+                    if (item->TrailingComma == nullptr)
+                    {
+                        this->_diagnostic->AddError(item->Expression->)
+                    }
+                }
+                */
+            }
+
+            if (count != 0)
+            {
+                ArgumentSyntax* last = node->Arguments.GetElement(count - 1);
+
+                if (last->TrailingComma != nullptr)
+                {
+                    this->_diagnostic->AddError(last->TrailingComma->Source, "Trailing comma is not allowed in argument list.");
+                }
+            }
+        }
+    };
+
+    class SyntaxValidatorWalker : public SyntaxWalker
+    {
+    private:
+        SyntaxValidator validator;
+
+    public:
+        SyntaxValidatorWalker(source::DiagnosticSink* diagnostic)
+            : validator(diagnostic)
+        {
+        }
+
+    public:
+        void OnDefault(SyntaxNode* node) override
+        {
+            
+            validator.Dispatch(node);
+        }
+    };
+
+    void Validate(SourceFileSyntax* source, source::DiagnosticSink* diagnostic)
+    {
+        SyntaxValidatorWalker{diagnostic}.Dispatch(source);
+    }
+}

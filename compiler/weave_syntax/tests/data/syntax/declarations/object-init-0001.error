@@ -1,0 +1,15 @@
+error: Trailing comma is not allowed in argument list.
+        --> <source>:49:23
+         |
+      49 |             W: 0.0_f32,
+         |                       ^
+error: Trailing comma is not allowed in argument list.
+        --> <source>:59:23
+         |
+      59 |             W: 0.0_f32,
+         |                       ^
+error: Trailing comma is not allowed in argument list.
+        --> <source>:69:23
+         |
+      69 |             W: 0.0_f32,
+         |                       ^
