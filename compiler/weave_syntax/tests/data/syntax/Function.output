@@ -20,21 +20,44 @@ SourceFileSyntax
      IdentifierToken <50:56> [2:30:2:36] 'Empty1'
     ParameterListSyntax
      OpenParenToken <56:57> [2:36:2:37] '('
+     SyntaxList
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <57:58> [2:37:2:38] missing ''
+       CommaToken <57:58> [2:37:2:38] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <58:59> [2:38:2:39] 'a'
+       TypeClauseSyntax
+        ColonToken <59:60> [2:39:2:40] ':'
+        IdentifierNameSyntax
+         IdentifierToken <60:61> [2:40:2:41] 'A'
+       CommaToken <61:62> [2:41:2:42] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <63:64> [2:43:2:44] 'b'
+       TypeClauseSyntax
+        ColonToken <64:65> [2:44:2:45] ':'
+        IdentifierNameSyntax
+         IdentifierToken <65:66> [2:45:2:46] 'B'
+       CommaToken <66:67> [2:46:2:47] ','
+      ParameterSyntax
+       SyntaxList
+        AttributeListSyntax
+         HashOpenBracketToken <68:70> [2:48:2:50] '#['
+         SyntaxList
+          AttributeSyntax
+           IdentifierNameSyntax
+            IdentifierToken <70:73> [2:50:2:53] 'foo'
+         CloseBracketToken <73:74> [2:53:2:54] ']'
+       IdentifierNameSyntax
+        IdentifierToken <75:76> [2:55:2:56] missing ''
+       CommaToken <75:76> [2:55:2:56] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <77:78> [2:57:2:58] missing ''
      UnexpectedNodesSyntax
       SyntaxList
-       CommaToken <57:58> [2:37:2:38] ','
-       IdentifierToken <58:59> [2:38:2:39] 'a'
-       ColonToken <59:60> [2:39:2:40] ':'
-       IdentifierToken <60:61> [2:40:2:41] 'A'
-       CommaToken <61:62> [2:41:2:42] ','
-       IdentifierToken <63:64> [2:43:2:44] 'b'
-       ColonToken <64:65> [2:44:2:45] ':'
-       IdentifierToken <65:66> [2:45:2:46] 'B'
-       CommaToken <66:67> [2:46:2:47] ','
-       HashOpenBracketToken <68:70> [2:48:2:50] '#['
-       IdentifierToken <70:73> [2:50:2:53] 'foo'
-       CloseBracketToken <73:74> [2:53:2:54] ']'
-       CommaToken <75:76> [2:55:2:56] ','
        OpenBraceToken <77:78> [2:57:2:58] '{'
        CloseBraceToken <78:79> [2:58:2:59] '}'
      CloseParenToken <79:80> [2:59:2:60] ')'

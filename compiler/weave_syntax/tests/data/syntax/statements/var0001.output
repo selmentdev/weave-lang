@@ -8,6 +8,10 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <6:9> [1:4:1:7] 'let'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <10:12> [1:8:1:10] missing ''
       CodeBlockItemSyntax
        ExpressionStatementSyntax
         IfExpressionSyntax

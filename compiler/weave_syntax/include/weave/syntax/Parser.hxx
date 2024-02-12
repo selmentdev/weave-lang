@@ -197,6 +197,31 @@ namespace weave::syntax
             return this->Current();
         }
 
+        class LoopProgressCondition final
+        {
+        private:
+            SyntaxToken* _current{};
+
+        public:
+            LoopProgressCondition(SyntaxToken* current)
+                : _current{current}
+            {
+            }
+
+            [[nodiscard]] bool Evaluate(SyntaxToken* current)
+            {
+                bool const advanced = this->_current != current;
+
+                if (advanced)
+                {
+                    this->_current = current;
+                }
+
+                WEAVE_ASSERT(advanced, "Loop did not advance");
+                return advanced;
+            }
+        };
+
     private:
         // NOTE:
         //      This is public only for unit test purposes.
@@ -301,9 +326,11 @@ namespace weave::syntax
 
         GenericParametersSyntax* ParseOptionalGenericParameters();
 
-        TypeGenericParameterSyntax* ParseTypeGenericParameter();
+        TypeGenericParameterSyntax* ParseTypeGenericParameter(bool& last);
 
-        ConstGenericParameterSyntax* ParseConstGenericParameter();
+        ConstGenericParameterSyntax* ParseConstGenericParameter(bool& last);
+
+        GenericParameterSyntax* ParseGenericParameter(bool& last);
 
         GenericArgumentSyntax* ParseGenericArgument();
 

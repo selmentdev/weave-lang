@@ -1,15 +1,15 @@
-error: Trailing comma is not allowed in argument list.
-        --> <source>:49:23
+error: Expected '[token:identifier]'
+        --> <source>:50:9
          |
-      49 |             W: 0.0_f32,
-         |                       ^
-error: Trailing comma is not allowed in argument list.
-        --> <source>:59:23
+      50 |         );
+         |         ^
+error: Expected '[token:identifier]'
+        --> <source>:60:9
          |
-      59 |             W: 0.0_f32,
-         |                       ^
-error: Trailing comma is not allowed in argument list.
-        --> <source>:69:23
+      60 |         );
+         |         ^
+error: Expected '[token:identifier]'
+        --> <source>:70:9
          |
-      69 |             W: 0.0_f32,
-         |                       ^
+      70 |         );
+         |         ^

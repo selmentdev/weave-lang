@@ -1,5 +1,10 @@
-error: Trailing comma is not allowed in argument list.
-        --> <source>:8:16
+error: Unexpected tokens
+        --> <source>:4:12
+         |
+       4 | if (x is Y z) {
+         |            ^
+error: Expected '[token:identifier]'
+        --> <source>:8:17
          |
        8 | consume(a, b, c,);
-         |                ^
+         |                 ^

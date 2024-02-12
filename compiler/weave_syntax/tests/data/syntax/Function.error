@@ -1,8 +1,23 @@
-error: Unexpected tokens
+error: Expected '[token:identifier]'
         --> <source>:3:38
          |
        3 | #[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {})
-         |                                      ^^^^^^^^^^^^^^^^^^^^^^
+         |                                      ^
+error: Expected '[token:identifier]'
+        --> <source>:3:56
+         |
+       3 | #[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {})
+         |                                                        ^
+error: Expected '[token:identifier]'
+        --> <source>:3:58
+         |
+       3 | #[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {})
+         |                                                          ^
+error: Unexpected tokens
+        --> <source>:3:58
+         |
+       3 | #[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {})
+         |                                                          ^^
 error: Expected ':'
         --> <source>:19:27
          |

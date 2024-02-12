@@ -437,8 +437,6 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        //std::vector<ConstraintSyntax*> constraints{};
-
         ConceptDeclarationSyntax* result = this->_factory->CreateNode<ConceptDeclarationSyntax>();
         result->Attributes = attributes;
         result->Modifiers = modifiers;
@@ -453,8 +451,6 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
     {
-        //std::vector<ConstraintSyntax*> constraints{};
-
         ExtendDeclarationSyntax* result = this->_factory->CreateNode<ExtendDeclarationSyntax>();
         result->Attributes = attributes;
         result->Modifiers = modifiers;
@@ -706,21 +702,20 @@ namespace weave::syntax
 
         std::vector<ParameterSyntax*> items{};
 
-        while (SyntaxToken* const current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseParenToken)
         {
-            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
 
-            if (ParameterSyntax* parameter = this->ParseParameter())
+            do
             {
-                items.push_back(parameter);
-            }
-            else
-            {
-                break;
-            }
+                ParameterSyntax* parameter = this->ParseParameter();
+                items.emplace_back(parameter);
+
+                if (parameter->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Parameters = SyntaxListView<ParameterSyntax>{this->_factory->CreateList(items)};
@@ -732,26 +727,20 @@ namespace weave::syntax
 
     ParameterSyntax* Parser::ParseParameter()
     {
-        // TODO: Reset this state
         SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
         SyntaxListView<SyntaxToken> modifiers = this->ParseFunctionParameterModifiersList();
 
-        if ((this->Current()->Kind == SyntaxKind::IdentifierToken) or (attributes.GetNode() != nullptr) or (modifiers.GetNode() != nullptr))
-        {
-            NameSyntax* name = this->ParseIdentifierName();
-            TypeClauseSyntax* typeClause = this->ParseOptionalTypeClause();
-            SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
+        NameSyntax* name = this->ParseIdentifierName();
+        TypeClauseSyntax* typeClause = this->ParseOptionalTypeClause();
+        SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
-            ParameterSyntax* result = this->_factory->CreateNode<ParameterSyntax>();
-            result->Attributes = attributes;
-            result->Modifiers = modifiers;
-            result->Identifier = name;
-            result->Type = typeClause;
-            result->TrailingComma = trailingComma;
-            return result;
-        }
-
-        return nullptr;
+        ParameterSyntax* result = this->_factory->CreateNode<ParameterSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->Identifier = name;
+        result->Type = typeClause;
+        result->TrailingComma = trailingComma;
+        return result;
     }
 
     GenericParametersSyntax* Parser::ParseGenericParameters()
@@ -762,42 +751,21 @@ namespace weave::syntax
 
         std::vector<GenericParameterSyntax*> parameters{};
 
-        while (SyntaxToken* current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseBracketToken)
         {
-            if (current->Kind == SyntaxKind::LessThanToken)
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
+            bool last = false;
 
-            if (current->Kind == SyntaxKind::EndOfFileToken)
+            do
             {
-                break;
-            }
+                GenericParameterSyntax* parameter = this->ParseGenericParameter(last);
+                parameters.emplace_back(parameter);
 
-            if (current->Kind == SyntaxKind::TypeKeyword)
-            {
-                if (TypeGenericParameterSyntax* parameter = this->ParseTypeGenericParameter())
-                {
-                    parameters.push_back(parameter);
-                }
-                else
+                if (last)
                 {
                     break;
                 }
-            }
-            else if (current->Kind == SyntaxKind::ConstKeyword)
-            {
-                if (ConstGenericParameterSyntax* parameter = this->ParseConstGenericParameter())
-                {
-                    parameters.push_back(parameter);
-                }
-
-                break;
-            }
-            else
-            {
-                break;
-            }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Parameters = SyntaxListView<GenericParameterSyntax>{this->_factory->CreateList(parameters)};
@@ -816,7 +784,7 @@ namespace weave::syntax
         return nullptr;
     }
 
-    TypeGenericParameterSyntax* Parser::ParseTypeGenericParameter()
+    TypeGenericParameterSyntax* Parser::ParseTypeGenericParameter(bool& last)
     {
         TypeGenericParameterSyntax* result = this->_factory->CreateNode<TypeGenericParameterSyntax>();
         result->TypeKeyword = this->Match(SyntaxKind::TypeKeyword);
@@ -830,10 +798,11 @@ namespace weave::syntax
         }
 
         result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+        last = result->TrailingComma == nullptr;
         return result;
     }
 
-    ConstGenericParameterSyntax* Parser::ParseConstGenericParameter()
+    ConstGenericParameterSyntax* Parser::ParseConstGenericParameter(bool& last)
     {
         ConstGenericParameterSyntax* result = this->_factory->CreateNode<ConstGenericParameterSyntax>();
         result->ConstKeyword = this->Match(SyntaxKind::ConstKeyword);
@@ -854,7 +823,23 @@ namespace weave::syntax
         }
 
         result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+        last = result->TrailingComma == nullptr;
         return result;
+    }
+
+    GenericParameterSyntax* Parser::ParseGenericParameter(bool& last)
+    {
+        if (this->Current()->Kind == SyntaxKind::TypeKeyword)
+        {
+            return this->ParseTypeGenericParameter(last);
+        }
+
+        if (this->Current()->Kind == SyntaxKind::ConstKeyword)
+        {
+            return this->ParseConstGenericParameter(last);
+        }
+
+        return nullptr;
     }
 
     GenericArgumentSyntax* Parser::ParseGenericArgument()
@@ -872,26 +857,20 @@ namespace weave::syntax
 
         std::vector<GenericArgumentSyntax*> arguments{};
 
-        while (SyntaxToken* current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseBracketToken)
         {
-            if (current->Kind == SyntaxKind::CloseBracketToken)
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
 
-            if (current->Kind == SyntaxKind::EndOfFileToken)
+            do
             {
-                break;
-            }
+                GenericArgumentSyntax* argument = this->ParseGenericArgument();
+                arguments.emplace_back(argument);
 
-            if (GenericArgumentSyntax* argument = this->ParseGenericArgument())
-            {
-                arguments.push_back(argument);
-            }
-            else
-            {
-                break;
-            }
+                if (argument->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Arguments = SyntaxListView<GenericArgumentSyntax>{this->_factory->CreateList(arguments)};
@@ -1069,21 +1048,16 @@ namespace weave::syntax
             }
         }
 
-        ExpressionSyntax* expression = this->ParseOptionalExpression();
+        ExpressionSyntax* expression = this->ParseExpression();
 
         SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
-        if (label or colon or expression or attributes.GetNode() != nullptr or modifiers.GetNode() != nullptr)
-        {
-            ArgumentSyntax* result = this->_factory->CreateNode<ArgumentSyntax>();
-            result->Label = label;
-            result->Colon = colon;
-            result->Expression = expression;
-            result->TrailingComma = trailingComma;
-            return result;
-        }
-
-        return nullptr;
+        ArgumentSyntax* result = this->_factory->CreateNode<ArgumentSyntax>();
+        result->Label = label;
+        result->Colon = colon;
+        result->Expression = expression;
+        result->TrailingComma = trailingComma;
+        return result;
     }
 
     ArgumentListSyntax* Parser::ParseArgumentList()
@@ -1093,21 +1067,20 @@ namespace weave::syntax
 
         std::vector<ArgumentSyntax*> children{};
 
-        while (SyntaxToken* current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseParenToken)
         {
-            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
 
-            if (ArgumentSyntax* argument = this->ParseArgument())
+            do
             {
-                children.push_back(argument);
-            }
-            else
-            {
-                break;
-            }
+                ArgumentSyntax* argument = this->ParseArgument();
+                children.emplace_back(argument);
+
+                if (argument->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Arguments = SyntaxListView<ArgumentSyntax>{this->_factory->CreateList(children)};
@@ -1124,21 +1097,20 @@ namespace weave::syntax
 
         std::vector<ArgumentSyntax*> children{};
 
-        while (SyntaxToken* current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseBracketToken)
         {
-            if ((current->Kind == SyntaxKind::CloseBracketToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
 
-            if (ArgumentSyntax* argument = this->ParseArgument())
+            do
             {
-                children.push_back(argument);
-            }
-            else
-            {
-                break;
-            }
+                ArgumentSyntax* argument = this->ParseArgument();
+                children.emplace_back(argument);
+
+                if (argument->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Arguments = SyntaxListView<ArgumentSyntax>{this->_factory->CreateList(children)};
@@ -1151,6 +1123,8 @@ namespace weave::syntax
     NameSyntax* Parser::ParseQualifiedName()
     {
         NameSyntax* left = this->ParseSimpleName();
+
+        LoopProgressCondition progress{this->Current()};
 
         do
         {
@@ -1173,7 +1147,7 @@ namespace weave::syntax
             {
                 break;
             }
-        } while (true);
+        } while (progress.Evaluate(this->Current()));
 
         return left;
     }
@@ -1499,21 +1473,20 @@ namespace weave::syntax
         TupleExpressionSyntax* result = this->_factory->CreateNode<TupleExpressionSyntax>();
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
-        while (SyntaxToken* current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseParenToken)
         {
-            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
 
-            if (LabeledExpressionSyntax* element = this->ParseLabeledExpression())
+            do
             {
+                LabeledExpressionSyntax* element = this->ParseLabeledExpression();
                 elements.push_back(element);
-            }
-            else
-            {
-                break;
-            }
+
+                if (element->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
@@ -1530,21 +1503,26 @@ namespace weave::syntax
         BracketInitializerClauseSyntax* result = this->_factory->CreateNode<BracketInitializerClauseSyntax>();
         this->MatchUntil(result->OpenBracketToken, result->BeforeOpenBracketToken, SyntaxKind::OpenBracketToken);
 
-        while (SyntaxToken* current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseBracketToken)
         {
-            if ((current->Kind == SyntaxKind::CloseBracketToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
 
-            if (LabeledExpressionSyntax* element = this->ParseLabeledExpression())
+            do
             {
+                if (this->Current()->Kind == SyntaxKind::CloseBracketToken)
+                {
+                    // Matched optional ',' and then ']'. This might be a trailing comma.
+                    break;
+                }
+
+                LabeledExpressionSyntax* element = this->ParseLabeledExpression();
                 elements.push_back(element);
-            }
-            else
-            {
-                break;
-            }
+
+                if (element->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
@@ -1561,21 +1539,25 @@ namespace weave::syntax
         BraceInitializerClauseSyntax* result = this->_factory->CreateNode<BraceInitializerClauseSyntax>();
         this->MatchUntil(result->OpenBraceToken, result->BeforeOpenBraceToken, SyntaxKind::OpenBraceToken);
 
-        while (SyntaxToken* current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseBraceToken)
         {
-            if ((current->Kind == SyntaxKind::CloseBraceToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
 
-            if (LabeledExpressionSyntax* element = this->ParseLabeledExpression())
+            do
             {
+                if (this->Current()->Kind == SyntaxKind::CloseBraceToken)
+                {
+                    break;
+                }
+
+                LabeledExpressionSyntax* element = this->ParseLabeledExpression();
                 elements.push_back(element);
-            }
-            else
-            {
-                break;
-            }
+
+                if (element->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
@@ -1603,17 +1585,12 @@ namespace weave::syntax
 
         SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
-        if (label or colon or expression)
-        {
-            LabeledExpressionSyntax* result = this->_factory->CreateNode<LabeledExpressionSyntax>();
-            result->Label = label;
-            result->Colon = colon;
-            result->Expression = expression;
-            result->TrailingComma = trailingComma;
-            return result;
-        }
-
-        return nullptr;
+        LabeledExpressionSyntax* result = this->_factory->CreateNode<LabeledExpressionSyntax>();
+        result->Label = label;
+        result->Colon = colon;
+        result->Expression = expression;
+        result->TrailingComma = trailingComma;
+        return result;
     }
 
     SizeOfExpressionSyntax* Parser::ParseSizeOfExpression()
@@ -1947,11 +1924,6 @@ namespace weave::syntax
             tokens.push_back(this->Next());
         }
 
-        // We got here only in two cases:
-        // - matches terminator
-        // - end of file
-
-        // return this->Match(terminator); // verify
         return this->MatchUntil(unexpected, terminator);
     }
 
@@ -1962,21 +1934,20 @@ namespace weave::syntax
 
         std::vector<TupleTypeElementSyntax*> elements{};
 
-        while (SyntaxToken* current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseParenToken)
         {
-            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
 
-            if (TupleTypeElementSyntax* element = this->ParseTupleTypeElement())
+            do
             {
+                TupleTypeElementSyntax* element = this->ParseTupleTypeElement();
                 elements.push_back(element);
-            }
-            else
-            {
-                break;
-            }
+
+                if (element->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Elements = SyntaxListView<TupleTypeElementSyntax>{this->_factory->CreateList(elements)};
@@ -2040,21 +2011,21 @@ namespace weave::syntax
         {
             std::vector<MatchClauseSyntax*> items{};
 
-            while (SyntaxToken* current = this->Current())
+            if (this->Current()->Kind != SyntaxKind::CloseBraceToken)
             {
-                if ((current->Kind == SyntaxKind::CloseBraceToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-                {
-                    break;
-                }
+                LoopProgressCondition progress{this->Current()};
 
-                if (MatchClauseSyntax* item = this->ParseMatchClause())
+                do
                 {
-                    items.push_back(item);
-                }
-                else
-                {
-                    break;
-                }
+                    if (MatchClauseSyntax* item = this->ParseMatchClause())
+                    {
+                        items.push_back(item);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                } while (progress.Evaluate(this->Current()));
             }
 
             result->Elements = SyntaxListView<MatchClauseSyntax>{this->_factory->CreateList(items)};
@@ -2167,21 +2138,21 @@ namespace weave::syntax
         {
             std::vector<EnumMemberDeclarationSyntax*> items{};
 
-            while (SyntaxToken* current = this->Current())
+            if (this->Current()->Kind != SyntaxKind::CloseBraceToken)
             {
-                if ((current->Kind == SyntaxKind::CloseBraceToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-                {
-                    break;
-                }
+                LoopProgressCondition progress{this->Current()};
 
-                if (EnumMemberDeclarationSyntax* item = this->ParseEnumMemberDeclaration())
+                do
                 {
-                    items.push_back(item);
-                }
-                else
-                {
-                    break;
-                }
+                    if (EnumMemberDeclarationSyntax* item = this->ParseEnumMemberDeclaration())
+                    {
+                        items.push_back(item);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                } while (progress.Evaluate(this->Current()));
             }
 
             result->Members = SyntaxListView<EnumMemberDeclarationSyntax>{this->_factory->CreateList(items)};
@@ -2225,7 +2196,8 @@ namespace weave::syntax
             return this->ParseTuplePattern();
 
         case SyntaxKind::IdentifierToken:
-            return this->ParseIdentifierPattern();
+            // Default to identifier pattern
+            break;
 
         case SyntaxKind::IntegerLiteralToken:
         case SyntaxKind::CharacterLiteralToken:
@@ -2239,7 +2211,7 @@ namespace weave::syntax
             break;
         }
 
-        return nullptr;
+        return this->ParseIdentifierPattern();
     }
 
     WildcardPatternSyntax* Parser::ParseWildcardPattern()
@@ -2284,21 +2256,20 @@ namespace weave::syntax
 
         std::vector<SlicePatternItemSyntax*> items{};
 
-        while (SyntaxToken* current = this->Current())
+        if (this->Current()->Kind != SyntaxKind::CloseBracketToken)
         {
-            if ((current->Kind == SyntaxKind::CloseBracketToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-            {
-                break;
-            }
+            LoopProgressCondition progress{this->Current()};
 
-            if (SlicePatternItemSyntax* item = this->ParseSlicePatternItem())
+            do
             {
+                SlicePatternItemSyntax* item = this->ParseSlicePatternItem();
                 items.push_back(item);
-            }
-            else
-            {
-                break;
-            }
+
+                if (item->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Items = SyntaxListView<SlicePatternItemSyntax>{this->_factory->CreateList(items)};
@@ -2330,21 +2301,21 @@ namespace weave::syntax
 
         std::vector<TuplePatternItemSyntax*> items{};
 
-        while (SyntaxToken* current = this->Current())
-        {
-            if ((current->Kind == SyntaxKind::CloseParenToken) or (current->Kind == SyntaxKind::EndOfFileToken))
-            {
-                break;
-            }
+        LoopProgressCondition progress{this->Current()};
 
-            if (TuplePatternItemSyntax* item = this->ParseTuplePatternItem())
+        if (this->Current()->Kind != SyntaxKind::CloseParenToken)
+        {
+            do
             {
+                TuplePatternItemSyntax* item = this->ParseTuplePatternItem();
                 items.push_back(item);
-            }
-            else
-            {
-                break;
-            }
+
+                if (item->TrailingComma == nullptr)
+                {
+                    break;
+                }
+
+            } while (progress.Evaluate(this->Current()));
         }
 
         result->Items = SyntaxListView<TuplePatternItemSyntax>{this->_factory->CreateList(items)};
@@ -2389,35 +2360,6 @@ namespace weave::syntax
         }
 
     public:
-        void OnArgumentListSyntax(ArgumentListSyntax* node) override
-        {
-            size_t const count = node->Arguments.GetCount();
-
-            if (count > 1)
-            {
-                /*
-                for (size_t i = 0; i < (count - 1); ++i)
-                {
-                    ArgumentSyntax* item = node->Arguments.GetElement(i);
-
-                    if (item->TrailingComma == nullptr)
-                    {
-                        this->_diagnostic->AddError(item->Expression->)
-                    }
-                }
-                */
-            }
-
-            if (count != 0)
-            {
-                ArgumentSyntax* last = node->Arguments.GetElement(count - 1);
-
-                if (last->TrailingComma != nullptr)
-                {
-                    this->_diagnostic->AddError(last->TrailingComma->Source, "Trailing comma is not allowed in argument list.");
-                }
-            }
-        }
     };
 
     class SyntaxValidatorWalker : public SyntaxWalker
@@ -2434,7 +2376,6 @@ namespace weave::syntax
     public:
         void OnDefault(SyntaxNode* node) override
         {
-            
             validator.Dispatch(node);
         }
     };

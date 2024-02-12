@@ -2,9 +2,17 @@ namespace Core.Contracts
 {
     public enum ContractSemantics
     {
+        //! Do not notify contract violation handler, continue execution.
         Ignore,
+
+        //! Notify contract violation handler, continue execution.
         Observe,
+
+        //! Notify contract violation handler, terminate execution.
         Enforce,
+
+        //! Assume contract is always true, continue execution.
+        Assume,
     }
 
     public enum ContractKind

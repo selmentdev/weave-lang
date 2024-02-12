@@ -1,5 +1,5 @@
-error: Trailing comma is not allowed in argument list.
-        --> <source>:101:36
+error: Expected '[token:identifier]'
+        --> <source>:102:13
          |
-     101 |                 y: self.y + other.y,
-         |                                    ^
+     102 |             );
+         |             ^

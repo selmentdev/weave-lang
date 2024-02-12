@@ -1046,6 +1046,9 @@ SourceFileSyntax
                       IdentifierNameSyntax
                        IdentifierToken <2163:2164> [100:34:100:35] 'y'
                     CommaToken <2164:2165> [100:35:100:36] ','
+                   ArgumentSyntax
+                    IdentifierNameSyntax
+                     IdentifierToken <2178:2179> [101:12:101:13] missing ''
                   CloseParenToken <2178:2179> [101:12:101:13] ')'
                SemicolonToken <2179:2180> [101:13:101:14] ';'
              CloseBraceToken <2189:2190> [102:8:102:9] '}'

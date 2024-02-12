@@ -255,6 +255,9 @@ SourceFileSyntax
                   IdentifierNameSyntax
                    IdentifierToken <486:487> [21:30:21:31] 'W'
                 CommaToken <487:488> [21:31:21:32] ','
+               ArgumentSyntax
+                IdentifierNameSyntax
+                 IdentifierToken <497:498> [22:8:22:9] missing ''
               CloseParenToken <497:498> [22:8:22:9] ')'
            SemicolonToken <498:499> [22:9:22:10] ';'
          CloseBraceToken <504:505> [23:4:23:5] '}'
@@ -355,6 +358,9 @@ SourceFileSyntax
                 IdentifierNameSyntax
                  IdentifierToken <748:749> [39:15:39:16] 'w'
                 CommaToken <749:750> [39:16:39:17] ','
+               ArgumentSyntax
+                IdentifierNameSyntax
+                 IdentifierToken <759:760> [40:8:40:9] missing ''
               CloseParenToken <759:760> [40:8:40:9] ')'
            SemicolonToken <760:761> [40:9:40:10] ';'
          CloseBraceToken <766:767> [41:4:41:5] '}'

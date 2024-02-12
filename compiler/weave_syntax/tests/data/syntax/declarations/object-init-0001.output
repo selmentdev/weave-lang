@@ -381,6 +381,9 @@ SourceFileSyntax
                   LiteralExpressionSyntax
                    FloatLiteralToken <844:851> [48:15:48:22] '0.0_f32'
                   CommaToken <851:852> [48:22:48:23] ','
+                 ArgumentSyntax
+                  IdentifierNameSyntax
+                   IdentifierToken <861:862> [49:8:49:9] missing ''
                 CloseParenToken <861:862> [49:8:49:9] ')'
              SemicolonToken <862:863> [49:9:49:10] ';'
            CloseBraceToken <868:869> [50:4:50:5] '}'
@@ -438,6 +441,9 @@ SourceFileSyntax
                   LiteralExpressionSyntax
                    FloatLiteralToken <1029:1036> [58:15:58:22] '0.0_f32'
                   CommaToken <1036:1037> [58:22:58:23] ','
+                 ArgumentSyntax
+                  IdentifierNameSyntax
+                   IdentifierToken <1046:1047> [59:8:59:9] missing ''
                 CloseParenToken <1046:1047> [59:8:59:9] ')'
              SemicolonToken <1047:1048> [59:9:59:10] ';'
            CloseBraceToken <1053:1054> [60:4:60:5] '}'
@@ -495,6 +501,9 @@ SourceFileSyntax
                   LiteralExpressionSyntax
                    FloatLiteralToken <1214:1221> [68:15:68:22] '0.0_f32'
                   CommaToken <1221:1222> [68:22:68:23] ','
+                 ArgumentSyntax
+                  IdentifierNameSyntax
+                   IdentifierToken <1231:1232> [69:8:69:9] missing ''
                 CloseParenToken <1231:1232> [69:8:69:9] ')'
              SemicolonToken <1232:1233> [69:9:69:10] ';'
            CloseBraceToken <1238:1239> [70:4:70:5] '}'

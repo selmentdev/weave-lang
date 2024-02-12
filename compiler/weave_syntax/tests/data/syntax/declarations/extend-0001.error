@@ -1,10 +1,10 @@
-error: Trailing comma is not allowed in argument list.
-        --> <source>:22:32
+error: Expected '[token:identifier]'
+        --> <source>:23:9
          |
-      22 |             W: self.W + other.W,
-         |                                ^
-error: Trailing comma is not allowed in argument list.
-        --> <source>:40:17
+      23 |         );
+         |         ^
+error: Expected '[token:identifier]'
+        --> <source>:41:9
          |
-      40 |             W: w,
-         |                 ^
+      41 |         );
+         |         ^

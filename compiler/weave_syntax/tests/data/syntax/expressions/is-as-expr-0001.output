@@ -85,9 +85,9 @@ SourceFileSyntax
          IsKeyword <77:79> [3:6:3:8] 'is'
          IdentifierNameSyntax
           IdentifierToken <80:81> [3:9:3:10] 'Y'
-       LabeledExpressionSyntax
-        IdentifierNameSyntax
-         IdentifierToken <82:83> [3:11:3:12] 'z'
+      UnexpectedNodesSyntax
+       SyntaxList
+        IdentifierToken <82:83> [3:11:3:12] 'z'
       CloseParenToken <83:84> [3:12:3:13] ')'
      CodeBlockSyntax
       OpenBraceToken <85:86> [3:14:3:15] '{'
@@ -130,6 +130,9 @@ SourceFileSyntax
         IdentifierNameSyntax
          IdentifierToken <122:123> [7:14:7:15] 'c'
         CommaToken <123:124> [7:15:7:16] ','
+       ArgumentSyntax
+        IdentifierNameSyntax
+         IdentifierToken <124:125> [7:16:7:17] missing ''
       CloseParenToken <124:125> [7:16:7:17] ')'
    SemicolonToken <125:126> [7:17:7:18] ';'
  EndOfFileToken <127:127> [8:0:8:0] ''
