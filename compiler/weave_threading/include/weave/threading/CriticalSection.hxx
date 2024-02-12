@@ -43,5 +43,29 @@ namespace weave::threading
         void Enter();
         bool TryEnter();
         void Leave();
+
+    public:
+        class Lock final
+        {
+        private:
+            CriticalSection& _lock;
+
+        public:
+            Lock(CriticalSection& lock)
+                : _lock(lock)
+            {
+                _lock.Enter();
+            }
+
+            ~Lock()
+            {
+                _lock.Leave();
+            }
+
+            Lock(Lock const&) = delete;
+            Lock(Lock&&) = delete;
+            Lock& operator=(Lock const&) = delete;
+            Lock& operator=(Lock&&) = delete;
+        };
     };
 }

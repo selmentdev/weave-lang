@@ -44,4 +44,50 @@ namespace weave::threading
         bool TryEnterWrite();
         void LeaveWrite();
     };
+    
+    class LockRead final
+    {
+    private:
+        ReaderWriterLock& _lock;
+
+    public:
+        LockRead(ReaderWriterLock& lock)
+            : _lock(lock)
+        {
+            _lock.EnterRead();
+        }
+
+        ~LockRead()
+        {
+            _lock.LeaveRead();
+        }
+
+        LockRead(LockRead const&) = delete;
+        LockRead(LockRead&&) = delete;
+        LockRead& operator=(LockRead const&) = delete;
+        LockRead& operator=(LockRead&&) = delete;
+    };
+
+    class LockWrite final
+    {
+    private:
+        ReaderWriterLock& _lock;
+
+    public:
+        LockWrite(ReaderWriterLock& lock)
+            : _lock(lock)
+        {
+            _lock.EnterWrite();
+        }
+
+        ~LockWrite()
+        {
+            _lock.LeaveWrite();
+        }
+
+        LockWrite(LockWrite const&) = delete;
+        LockWrite(LockWrite&&) = delete;
+        LockWrite& operator=(LockWrite const&) = delete;
+        LockWrite& operator=(LockWrite&&) = delete;
+    };
 }
