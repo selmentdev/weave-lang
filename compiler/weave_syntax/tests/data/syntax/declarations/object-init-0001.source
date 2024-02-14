@@ -1,6 +1,6 @@
 public struct Vector3![type T]
 {
-    public var Elements: [T] = [0, 0, 0];
+    public var Elements: [T: 3] = [0, 0, 0];
 }
 
 public extend Vector3![type T]

@@ -1,0 +1,6 @@
+public function RefFunction1(
+    x: ref X
+) -> ref Z {
+    var z : ref Z = ref x.y.z;
+    return ref z;
+}

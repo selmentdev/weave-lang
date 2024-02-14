@@ -21,22 +21,22 @@ SourceFileSyntax
          OpenParenToken <51:52> [2:23:2:24] '('
          SyntaxList
           ParameterSyntax
-           SyntaxList
-            RefKeyword <52:55> [2:24:2:27] 'ref'
            IdentifierNameSyntax
-            IdentifierToken <56:60> [2:28:2:32] 'self'
+            IdentifierToken <52:56> [2:24:2:28] 'self'
            TypeClauseSyntax
-            ColonToken <60:61> [2:32:2:33] ':'
+            ColonToken <56:57> [2:28:2:29] ':'
+            SyntaxList
+             RefKeyword <58:61> [2:30:2:33] 'ref'
             IdentifierNameSyntax
              IdentifierToken <62:66> [2:34:2:38] 'Self'
            CommaToken <66:67> [2:38:2:39] ','
           ParameterSyntax
-           SyntaxList
-            RefKeyword <68:71> [2:40:2:43] 'ref'
            IdentifierNameSyntax
-            IdentifierToken <72:77> [2:44:2:49] 'other'
+            IdentifierToken <68:73> [2:40:2:45] 'other'
            TypeClauseSyntax
-            ColonToken <77:78> [2:49:2:50] ':'
+            ColonToken <73:74> [2:45:2:46] ':'
+            SyntaxList
+             RefKeyword <75:78> [2:47:2:50] 'ref'
             IdentifierNameSyntax
              IdentifierToken <79:83> [2:51:2:55] 'Self'
          CloseParenToken <83:84> [2:55:2:56] ')'
@@ -70,12 +70,12 @@ SourceFileSyntax
          OpenParenToken <165:166> [7:30:7:31] '('
          SyntaxList
           ParameterSyntax
-           SyntaxList
-            InKeyword <166:168> [7:31:7:33] 'in'
            IdentifierNameSyntax
-            IdentifierToken <169:173> [7:34:7:38] 'left'
+            IdentifierToken <166:170> [7:31:7:35] 'left'
            TypeClauseSyntax
-            ColonToken <173:174> [7:38:7:39] ':'
+            ColonToken <170:171> [7:35:7:36] ':'
+            SyntaxList
+             InKeyword <172:174> [7:37:7:39] 'in'
             TypePointerSyntax
              AsteriskToken <175:176> [7:40:7:41] '*'
              SyntaxList
@@ -84,12 +84,12 @@ SourceFileSyntax
               IdentifierToken <182:186> [7:47:7:51] 'Self'
            CommaToken <186:187> [7:51:7:52] ','
           ParameterSyntax
-           SyntaxList
-            InKeyword <188:190> [7:53:7:55] 'in'
            IdentifierNameSyntax
-            IdentifierToken <191:196> [7:56:7:61] 'right'
+            IdentifierToken <188:193> [7:53:7:58] 'right'
            TypeClauseSyntax
-            ColonToken <196:197> [7:61:7:62] ':'
+            ColonToken <193:194> [7:58:7:59] ':'
+            SyntaxList
+             InKeyword <195:197> [7:60:7:62] 'in'
             TypePointerSyntax
              AsteriskToken <198:199> [7:63:7:64] '*'
              SyntaxList
@@ -369,12 +369,12 @@ SourceFileSyntax
          OpenParenToken <869:870> [39:33:39:34] '('
          SyntaxList
           ParameterSyntax
-           SyntaxList
-            InKeyword <870:872> [39:34:39:36] 'in'
            IdentifierNameSyntax
-            IdentifierToken <873:878> [39:37:39:42] 'value'
+            IdentifierToken <870:875> [39:34:39:39] 'value'
            TypeClauseSyntax
-            ColonToken <878:879> [39:42:39:43] ':'
+            ColonToken <875:876> [39:39:39:40] ':'
+            SyntaxList
+             InKeyword <877:879> [39:41:39:43] 'in'
             IdentifierNameSyntax
              IdentifierToken <880:881> [39:44:39:45] 'U'
          CloseParenToken <881:882> [39:45:39:46] ')'

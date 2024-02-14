@@ -1,0 +1,29 @@
+// Expected: move (x.y.z)
+public function MoveFunction1(
+    x: move X
+) -> move Z {
+    var z : Z = move x.y.z;
+    return move z;
+}
+
+public function MoveFunction2(
+    x: move X
+) -> move Z {
+    var z : Z = move (x.y.z);
+    return move z;
+}
+
+// Expected: ref (x.y.z)
+public function RefFunction1(
+    x: ref X
+) -> ref Z {
+    var z : ref Z = ref x.y.z;
+    return ref z;
+}
+
+public function RefFunction2(
+    x: ref X
+) -> ref Z {
+    var z : ref Z = ref (x.y.z);
+    return ref z;
+}

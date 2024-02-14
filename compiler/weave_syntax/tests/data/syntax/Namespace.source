@@ -39,7 +39,12 @@ namespace weave
         public var Z: f32;
         public var W: f32;
 
-        public function From(in x: f32, in y: f32, in z: f32, in w: f32) -> Vector4 { }
+        public function From(
+            x: in f32,
+            y: in f32,
+            z: in f32,
+            w: in f32
+        ) -> Vector4;
     }
 
     public concept Addable
@@ -78,7 +83,7 @@ namespace core
             }
         }
 
-        public function push(ref self, move value: T) -> void
+        public function push(ref self, value: move T) -> void
             // before: (self._length < Capacity)
         {
             self._data[self._length] = value;
@@ -93,7 +98,7 @@ namespace std::numerics
         public var x: T = uninitialized;
         public var y: T = uninitialized;
 
-        public function add(ref self, other: Self) -> Self
+        public function add(self, other: in Self) -> Self
             where T : Addable
         {
             return Self(

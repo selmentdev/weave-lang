@@ -33,9 +33,9 @@ namespace weave::syntax
     {
     public:
         static bool IsFunctionParameterModifier(SyntaxKind kind);
-        static bool IsFunctionArgumentDirectionKind(SyntaxKind kind);
         static bool IsMemberModifier(SyntaxKind kind);
         static bool IsTypeQualifier(SyntaxKind kind);
+        static bool IsTypeSpecifier(SyntaxKind kind);
 
         static SyntaxKind GetPrefixUnaryExpression(SyntaxKind token);
         static SyntaxKind GetPostfixUnaryExpression(SyntaxKind token);

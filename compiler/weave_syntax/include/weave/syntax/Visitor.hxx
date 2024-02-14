@@ -181,5 +181,9 @@ namespace weave::syntax
 
         void OnEnumDeclarationSyntax(EnumDeclarationSyntax* node) override;
         void OnEnumMemberDeclarationSyntax(EnumMemberDeclarationSyntax* node) override;
+
+        void OnMoveExpressionSyntax(MoveExpressionSyntax* node) override;
+        void OnRefExpressionSyntax(RefExpressionSyntax* node) override;
+        void OnOutExpressionSyntax(OutExpressionSyntax* node) override;
     };
 }

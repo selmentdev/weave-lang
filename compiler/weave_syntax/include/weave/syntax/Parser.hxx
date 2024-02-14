@@ -251,6 +251,8 @@ namespace weave::syntax
 
         SyntaxListView<SyntaxToken> ParseTypeQualifiers();
 
+        SyntaxListView<SyntaxToken> ParseTypeSpecifierList();
+
         VariableDeclarationSyntax* ParseVariableDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);
@@ -413,6 +415,12 @@ namespace weave::syntax
         AddressOfExpressionSyntax* ParseAddressOfExpression();
 
         OldExpressionSyntax* ParseOldExpression();
+
+        OutExpressionSyntax* ParseOutExpression();
+
+        RefExpressionSyntax* ParseRefExpression();
+
+        MoveExpressionSyntax* ParseMoveExpression();
 
         ExpressionSyntax* ParseBooleanLiteral();
 

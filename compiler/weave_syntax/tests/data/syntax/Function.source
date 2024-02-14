@@ -27,7 +27,7 @@ function Select2(a: bool, b: float, c: float, d: float, e: float) -> float {
     return a ? b + c * d : d + e / c;
 }
 
-function foo(x: int, y: int, z: int, c: int, out w: int) -> void {
+function foo(x: int, y: int, z: int, c: int, w: out int) -> void {
     w = x = y = z + c;
 }
 

@@ -15,9 +15,9 @@ namespace core
         let productMiddle2 : UInt64 = leftUpper * rightLower;
         let productUpper : UInt64 = leftUpper * rightUpper;
 
-        var carry : UInt64 = (productLower >> 32) + productMiddle1 + (productMiddle2 & 0xFFFFFFFF);
+        let carry : UInt64 = (productLower >> 32) + productMiddle1 + (productMiddle2 & 0xFFFFFFFF);
         let lower : UInt64 = (productLower & 0xFFFFFFFF) | (carry << 32);
-        var upper : UInt64 = (carry >> 32) + (productMiddle2 >> 32) + productUpper;
+        let upper : UInt64 = (carry >> 32) + (productMiddle2 >> 32) + productUpper;
 
         return (lower, upper);
     }

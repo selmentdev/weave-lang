@@ -1,0 +1,8 @@
+// valid; explicit specifier and explicit type
+public function F1(     self:   in  Self, other: in Self) -> result: Self;
+// valid; explicit specifier with implicit type
+public function F2(in   self            , other: in Self) -> result: Self;
+// valid; implicit specifier and implicit type
+public function F3(     self            , other: in Self) -> result: Self;
+// invalid; duplicated specifier with explicit type
+public function F4(in   self:   in  Self, other: in Self) -> result: Self;

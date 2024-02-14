@@ -1,5 +1,5 @@
 error: Expected '[token:identifier]'
-        --> <source>:102:13
+        --> <source>:107:13
          |
-     102 |             );
+     107 |             );
          |             ^

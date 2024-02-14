@@ -1,11 +1,11 @@
 public extend ExampleType
 {
-    public function Bar(ref self: Self, ref other: Self) -> Self
+    public function Bar(self: ref Self, other: ref Self) -> Self
     {
         return self + other;
     }
 
-    public unsafe function Baz(in left: *const Self, in right: *const Self) -> *const Self
+    public unsafe function Baz(left: in *const Self, right: in *const Self) -> *const Self
     {
         return (left < right) ? left : right;
     }
@@ -37,7 +37,7 @@ public unsafe explicit struct RawSlice![type T]
 
 public extend ConvertTo![type T]
 {
-    public function From![type U](in value: U) -> T
+    public function From![type U](value: in U) -> T
     {
         return value as T;
     }

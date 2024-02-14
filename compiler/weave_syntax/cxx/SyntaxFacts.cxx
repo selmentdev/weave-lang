@@ -9,28 +9,12 @@ namespace weave::syntax
     {
         switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
+        case SyntaxKind::ParamsKeyword:
+        case SyntaxKind::LazyKeyword:
+
         case SyntaxKind::RefKeyword:
         case SyntaxKind::OutKeyword:
         case SyntaxKind::InKeyword:
-        case SyntaxKind::ValueKeyword:
-        case SyntaxKind::MoveKeyword:
-        case SyntaxKind::ParamsKeyword:
-        case SyntaxKind::LazyKeyword:
-            return true;
-
-        default:
-            break;
-        }
-
-        return false;
-    }
-
-    bool SyntaxFacts::IsFunctionArgumentDirectionKind(SyntaxKind kind)
-    {
-        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
-        {
-        case SyntaxKind::RefKeyword:
-        case SyntaxKind::OutKeyword:
         case SyntaxKind::MoveKeyword:
             return true;
 
@@ -92,6 +76,23 @@ namespace weave::syntax
         case SyntaxKind::MutableKeyword:
         case SyntaxKind::RestrictKeyword:
         case SyntaxKind::AtomicKeyword:
+            return true;
+
+        default:
+            break;
+        }
+
+        return false;
+    }
+
+    bool SyntaxFacts::IsTypeSpecifier(SyntaxKind kind)
+    {
+        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
+        {
+        case SyntaxKind::RefKeyword:
+        case SyntaxKind::OutKeyword:
+        case SyntaxKind::InKeyword:
+        case SyntaxKind::MoveKeyword:
             return true;
 
         default:

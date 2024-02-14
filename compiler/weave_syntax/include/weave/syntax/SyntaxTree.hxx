@@ -158,17 +158,23 @@ namespace weave::syntax
         }
     };
 
-    class ReturnTypeClauseSyntax : public MemberDeclarationSyntax
+    class ReturnTypeClauseSyntax : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(ReturnTypeClauseSyntax);
 
     public:
         SyntaxToken* ArrowToken{};
+
+        SyntaxListView<SyntaxToken> Specifiers{};
+
+        NameSyntax* Identifier{};
+        SyntaxToken* Colon{};
+
         TypeSyntax* Type{};
 
     public:
         explicit constexpr ReturnTypeClauseSyntax()
-            : MemberDeclarationSyntax{SyntaxKind::ReturnTypeClauseSyntax}
+            : SyntaxNode{SyntaxKind::ReturnTypeClauseSyntax}
         {
         }
     };
@@ -854,6 +860,51 @@ namespace weave::syntax
         }
     };
 
+    class RefExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(RefExpressionSyntax);
+
+    public:
+        SyntaxToken* RefKeyword{};
+        ExpressionSyntax* Expression{};
+
+    public:
+        explicit constexpr RefExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::RefExpressionSyntax}
+        {
+        }
+    };
+
+    class MoveExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(MoveExpressionSyntax);
+
+    public:
+        SyntaxToken* MoveKeyword{};
+        ExpressionSyntax* Expression{};
+
+    public:
+        explicit constexpr MoveExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::MoveExpressionSyntax}
+        {
+        }
+    };
+
+    class OutExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(OutExpressionSyntax);
+
+    public:
+        SyntaxToken* OutKeyword{};
+        ExpressionSyntax* Expression{};
+
+    public:
+        explicit constexpr OutExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::OutExpressionSyntax}
+        {
+        }
+    };
+
     class AddressOfExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(AddressOfExpressionSyntax);
@@ -1003,6 +1054,7 @@ namespace weave::syntax
     class SimpleNameSyntax : public NameSyntax
     {
     public:
+        UnexpectedNodesSyntax* BeforeIdentifier{};
         SyntaxToken* Identifier{};
 
     public:
@@ -1070,6 +1122,8 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ColonToken{};
+
+        SyntaxListView<SyntaxToken> Specifiers{};
         TypeSyntax* Type{};
 
     public:

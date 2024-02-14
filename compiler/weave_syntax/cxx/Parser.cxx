@@ -356,6 +356,18 @@ namespace weave::syntax
         return SyntaxListView<SyntaxToken>{this->_factory->CreateList(elements)};
     }
 
+    SyntaxListView<SyntaxToken> Parser::ParseTypeSpecifierList()
+    {
+        std::vector<SyntaxToken*> elements{};
+
+        while (SyntaxFacts::IsTypeSpecifier(this->Current()->Kind))
+        {
+            elements.push_back(this->Next());
+        }
+
+        return SyntaxListView<SyntaxToken>{this->_factory->CreateList(elements)};
+    }
+
     VariableDeclarationSyntax* Parser::ParseVariableDeclaration(
         SyntaxListView<AttributeListSyntax> attributes,
         SyntaxListView<SyntaxToken> modifiers)
@@ -935,6 +947,15 @@ namespace weave::syntax
     {
         ReturnTypeClauseSyntax* result = this->_factory->CreateNode<ReturnTypeClauseSyntax>();
         result->ArrowToken = this->Match(SyntaxKind::MinusGreaterThanToken);
+
+        result->Specifiers = this->ParseTypeSpecifierList();
+
+        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
+        {
+            result->Identifier = this->ParseIdentifierName();
+            result->Colon = this->Match(SyntaxKind::ColonToken);
+        }
+
         result->Type = this->ParseType();
         return result;
     }
@@ -959,12 +980,10 @@ namespace weave::syntax
 
     TypeClauseSyntax* Parser::ParseTypeClause()
     {
-        SyntaxToken* tokenColon = this->Match(SyntaxKind::ColonToken);
-        TypeSyntax* type = this->ParseType();
-
         TypeClauseSyntax* result = this->_factory->CreateNode<TypeClauseSyntax>();
-        result->ColonToken = tokenColon;
-        result->Type = type;
+        result->ColonToken = this->Match(SyntaxKind::ColonToken);
+        result->Specifiers = this->ParseTypeSpecifierList();
+        result->Type = this->ParseType();
         return result;
     }
 
@@ -1422,6 +1441,15 @@ namespace weave::syntax
         case SyntaxKind::OldKeyword:
             return this->ParseOldExpression();
 
+        case SyntaxKind::OutKeyword:
+            return this->ParseOutExpression();
+
+        case SyntaxKind::RefKeyword:
+            return this->ParseRefExpression();
+
+        case SyntaxKind::MoveKeyword:
+            return this->ParseMoveExpression();
+
         case SyntaxKind::TrueKeyword:
         case SyntaxKind::FalseKeyword:
             return this->ParseBooleanLiteral();
@@ -1648,6 +1676,30 @@ namespace weave::syntax
         result->OpenParenToken = this->Match(SyntaxKind::OpenParenToken);
         result->Expression = this->ParseExpression();
         result->CloseParenToken = this->Match(SyntaxKind::CloseParenToken);
+        return result;
+    }
+
+    OutExpressionSyntax* Parser::ParseOutExpression()
+    {
+        OutExpressionSyntax* result = this->_factory->CreateNode<OutExpressionSyntax>();
+        result->OutKeyword = this->Match(SyntaxKind::OutKeyword);
+        result->Expression = this->ParseExpression();
+        return result;
+    }
+
+    RefExpressionSyntax* Parser::ParseRefExpression()
+    {
+        RefExpressionSyntax* result = this->_factory->CreateNode<RefExpressionSyntax>();
+        result->RefKeyword = this->Match(SyntaxKind::RefKeyword);
+        result->Expression = this->ParseExpression();
+        return result;
+    }
+
+    MoveExpressionSyntax* Parser::ParseMoveExpression()
+    {
+        MoveExpressionSyntax* result = this->_factory->CreateNode<MoveExpressionSyntax>();
+        result->MoveKeyword = this->Match(SyntaxKind::MoveKeyword);
+        result->Expression = this->ParseExpression();
         return result;
     }
 

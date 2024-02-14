@@ -1,0 +1,35 @@
+public type u8      = UInt8;
+public type u16     = UInt16;
+public type u32     = UInt32;
+public type u64     = UInt64;
+public type u128    = UInt128;
+public type u256    = UInt256;
+public type u512    = UInt512;
+public type usize   = UIntSize;
+public type uptr    = UIntPtr;
+
+public type i8      = Int8;
+public type i16     = Int16;
+public type i32     = Int32;
+public type i64     = Int64;
+public type i128    = Int128;
+public type i256    = Int256;
+public type i512    = Int512;
+public type isize   = IntSize;
+public type iptr    = IntPtr;
+
+public type f16     = Float16;
+public type f32     = Float32;
+public type f64     = Float64;
+public type f128    = Float128;
+
+public type d128    = Decimal128;
+public type d256    = Decimal256;
+
+public type u8x16   = vector(u8, 16);
+public type u8x32   = vector(u8, 32);
+public type u8x64   = vector(u8, 64);
+
+public type f32x4   = vector(f32, 4);
+public type f32x8   = vector(f32, 8);
+public type f32x16  = vector(f32, 16);

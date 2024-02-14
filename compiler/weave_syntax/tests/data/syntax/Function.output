@@ -450,12 +450,12 @@ SourceFileSyntax
          IdentifierToken <698:701> [29:40:29:43] 'int'
        CommaToken <701:702> [29:43:29:44] ','
       ParameterSyntax
-       SyntaxList
-        OutKeyword <703:706> [29:45:29:48] 'out'
        IdentifierNameSyntax
-        IdentifierToken <707:708> [29:49:29:50] 'w'
+        IdentifierToken <703:704> [29:45:29:46] 'w'
        TypeClauseSyntax
-        ColonToken <708:709> [29:50:29:51] ':'
+        ColonToken <704:705> [29:46:29:47] ':'
+        SyntaxList
+         OutKeyword <706:709> [29:48:29:51] 'out'
         IdentifierNameSyntax
          IdentifierToken <710:713> [29:52:29:55] 'int'
      CloseParenToken <713:714> [29:55:29:56] ')'

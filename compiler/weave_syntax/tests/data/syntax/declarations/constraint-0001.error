@@ -1,0 +1,16 @@
+error: Unexpected tokens
+        --> <source>:53:22
+         |
+      53 |     where T: Concept1, Concept2, Concept3
+         |                      ^^^^^^^^^^^^^^^^^^^^
+      54 |     where U: Concept4, Concept5
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      55 |     where V: Concept6
+         | ^^^^^^^^^^^^^^^^^^^^^
+     ... |
+     251 | 
+         | 
+     252 |     return c;
+         | ^^^^^^^^^^^^^
+     253 | }
+         | ^

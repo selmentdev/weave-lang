@@ -252,7 +252,7 @@ SourceFileSyntax
            SemicolonToken <642:643> [15:58:15:59] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
-            VarKeyword <653:656> [17:8:17:11] 'var'
+            LetKeyword <653:656> [17:8:17:11] 'let'
             PatternBindingSyntax
              IdentifierPatternSyntax
               IdentifierNameSyntax
@@ -332,7 +332,7 @@ SourceFileSyntax
            SemicolonToken <817:818> [18:72:18:73] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
-            VarKeyword <827:830> [19:8:19:11] 'var'
+            LetKeyword <827:830> [19:8:19:11] 'let'
             PatternBindingSyntax
              IdentifierPatternSyntax
               IdentifierNameSyntax

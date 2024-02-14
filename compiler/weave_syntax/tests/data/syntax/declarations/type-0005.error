@@ -1,0 +1,22 @@
+error: Expected '[token:identifier]'
+        --> <source>:29:23
+         |
+      29 | public type u8x16   = vector(u8, 16);
+         |                       ^^^^^^
+error: Unexpected tokens
+        --> <source>:29:23
+         |
+      29 | public type u8x16   = vector(u8, 16);
+         |                       ^^^^^^^^^^^^^^^
+      30 | public type u8x32   = vector(u8, 32);
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      31 | public type u8x64   = vector(u8, 64);
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      32 | 
+         | 
+      33 | public type f32x4   = vector(f32, 4);
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      34 | public type f32x8   = vector(f32, 8);
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      35 | public type f32x16  = vector(f32, 16);
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

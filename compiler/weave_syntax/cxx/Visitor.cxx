@@ -151,6 +151,7 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->BeforeIdentifier);
         this->Dispatch(node->Identifier);
 
         --this->Depth;
@@ -162,6 +163,7 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->BeforeIdentifier);
         this->Dispatch(node->Identifier);
 
         --this->Depth;
@@ -234,6 +236,7 @@ namespace weave::syntax
         ++this->Depth;
 
         this->Dispatch(node->ColonToken);
+        this->Dispatch(node->Specifiers.GetNode());
         this->Dispatch(node->Type);
 
         --this->Depth;
@@ -578,6 +581,12 @@ namespace weave::syntax
         ++this->Depth;
 
         this->Dispatch(node->ArrowToken);
+
+        this->Dispatch(node->Specifiers.GetNode());
+
+        this->Dispatch(node->Identifier);
+        this->Dispatch(node->Colon);
+
         this->Dispatch(node->Type);
 
         --this->Depth;
@@ -938,6 +947,7 @@ namespace weave::syntax
 
         ++this->Depth;
 
+        this->Dispatch(node->BeforeIdentifier);
         this->Dispatch(node->Identifier);
         this->Dispatch(node->GenericArguments);
 
@@ -1297,6 +1307,42 @@ namespace weave::syntax
         this->Dispatch(node->Tuple);
         this->Dispatch(node->Discriminator);
         this->Dispatch(node->TrailingComma);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnMoveExpressionSyntax(MoveExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->MoveKeyword);
+        this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnRefExpressionSyntax(RefExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->RefKeyword);
+        this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnOutExpressionSyntax(OutExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->OutKeyword);
+        this->Dispatch(node->Expression);
 
         --this->Depth;
     }
