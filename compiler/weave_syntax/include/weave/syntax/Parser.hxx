@@ -501,6 +501,10 @@ namespace weave::syntax
 
         EnumMemberDeclarationSyntax* ParseEnumMemberDeclaration();
 
+        WhereClauseSyntax* ParseWhereClause();
+
+        WherePredicateSyntax* ParseWherePredicate();
+
     public:
         PatternSyntax* ParsePattern();
         WildcardPatternSyntax* ParseWildcardPattern();

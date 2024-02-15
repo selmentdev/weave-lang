@@ -402,6 +402,30 @@ namespace weave::syntax
 
         result->ReturnType = this->ParseOptionalReturnTypeClause();
 
+        {
+            std::vector<ConstraintClauseSyntax*> constraints{};
+
+            LoopProgressCondition progress{this->Current()};
+
+            do
+            {
+                IdentifierSyntaxToken const* current = this->Current()->TryCast<IdentifierSyntaxToken>();
+
+                if ((current != nullptr) and (current->ContextualKeyowrd == SyntaxKind::WhereKeyword))
+                {
+                    WhereClauseSyntax* where = this->ParseWhereClause();
+                    constraints.emplace_back(where);
+                }
+                else
+                {
+                    break;
+                }
+
+            } while (progress.Evaluate(this->Current()));
+
+            result->Constraints = SyntaxListView<ConstraintClauseSyntax>{this->_factory->CreateList(constraints)};
+        }
+
         if (this->Current()->Kind == SyntaxKind::OpenBraceToken)
         {
             result->Body = this->ParseCodeBlock();
@@ -2232,6 +2256,57 @@ namespace weave::syntax
         }
 
         return nullptr;
+    }
+
+    WhereClauseSyntax* Parser::ParseWhereClause()
+    {
+        WhereClauseSyntax* result = this->_factory->CreateNode<WhereClauseSyntax>();
+        result->WhereKeyword = this->MatchContextualKeyword(SyntaxKind::WhereKeyword);
+
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        result->Type = this->ParseIdentifierName();
+
+        this->MatchUntil(result->Colon, result->BeforeColon, SyntaxKind::ColonToken);
+
+        if (this->Current()->Kind != SyntaxKind::CloseParenToken)
+        {
+            std::vector<WherePredicateSyntax*> predicates{};
+
+            LoopProgressCondition progress{this->Current()};
+
+            do
+            {
+                /*
+                if (this->Current()->Kind == SyntaxKind::CloseParenToken)
+                {
+                    break;
+                }
+                */
+
+                WherePredicateSyntax* item = this->ParseWherePredicate();
+                predicates.emplace_back(item);
+
+                if (item->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
+
+            result->Predicates = SyntaxListView<WherePredicateSyntax>{this->_factory->CreateList(predicates)};
+        }
+
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        return result;
+    }
+
+    WherePredicateSyntax* Parser::ParseWherePredicate()
+    {
+        WherePredicateSyntax* result = this->_factory->CreateNode<WherePredicateSyntax>();
+        result->Type = this->ParseQualifiedName();
+        result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+        return result;
     }
 
     PatternSyntax* Parser::ParsePattern()

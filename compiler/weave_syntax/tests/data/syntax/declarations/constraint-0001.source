@@ -50,9 +50,9 @@ public function Foo![type T, type U, type V](
     out u: U,
     ref v: v
 ) -> Int32
-    where T: Concept1, Concept2, Concept3
-    where U: Concept4, Concept5
-    where V: Concept6
+    where (T: Concept1, Concept2, Concept3)
+    where (U: Concept4, Concept5)
+    where (V: Concept6)
 {
     contracts {
         requires    (   t > 0       )

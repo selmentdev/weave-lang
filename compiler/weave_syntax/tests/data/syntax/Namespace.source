@@ -99,7 +99,9 @@ namespace std::numerics
         public var y: T = uninitialized;
 
         public function add(self, other: in Self) -> Self
-            where T : Addable
+            // FIXME: Missing `(` and `)` will make parser to consume
+            // everything until the end of the file as unexpected tokens.
+            where (T : Addable)
         {
             return Self(
                 x: self.x + other.x,

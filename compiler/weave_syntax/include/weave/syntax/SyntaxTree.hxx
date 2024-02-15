@@ -148,6 +148,7 @@ namespace weave::syntax
         GenericParametersSyntax* GenericParameters{};
         ParameterListSyntax* Parameters{};
         ReturnTypeClauseSyntax* ReturnType{};
+        SyntaxListView<ConstraintClauseSyntax> Constraints{};
         CodeBlockSyntax* Body{};
         ArrowExpressionClauseSyntax* ExpressionBody{};
 
@@ -616,13 +617,6 @@ namespace weave::syntax
             : SyntaxNode{SyntaxKind::GenericParametersSyntax}
         {
         }
-    };
-
-    class ConstraintSyntax : public SyntaxNode
-    {
-    };
-    class ConstraintListSyntax : public SyntaxNode
-    {
     };
 
     class ExpressionSyntax : public SyntaxNode
@@ -1533,43 +1527,116 @@ namespace weave::syntax
         }
     };
 
-    class ContractClauseSyntax : public SyntaxNode
-    {
-    };
 
-    // in-contract-clause
-    //      : 'in' ':'     expression ';'
-    //      | 'in' '{' statement-list '}'
+    //
+    //  constraint-clause
+    //      : precondition-clause
+    //      | postcondition-clause
+    //      | where-clause
     //      ;
-    class ContractPreconditionClauseSyntax final : public ContractClauseSyntax
+    //
+    //  constraint-clause-list
+    //      : constraint-clause (',' constraint-clause)*
+    //      ;
+    //
+    //  precondition-clause
+    //      : 'requires' '(' expression (',' string-literal)? ')'
+    //      ;
+    //
+    //  postcondition-clause
+    //      : 'ensures' '(' expression (',' string-literal)? ')'
+    //      ;
+    //
+    //  invariant-clause
+    //      : 'invariant' '(' expression (',' string-literal)? ')'
+    //      ;
+    //
+    //  generic-constraint
+    //      : name ':' type (',' type)* ','?
+    //      ;
+    //  generic-constraint-list
+    //      : generic-constraint (',' generic-constraint)*
+    //      ;
+    //  where-clause
+    //      : 'where' '(' type-reference ':' (
+    //
+    class ConstraintClauseSyntax : public SyntaxNode
     {
     public:
-        SyntaxToken* InKeyword{};
-        SyntaxToken* ColonToken{};
+        SyntaxToken* Introducer{};
+
+    public:
+        explicit constexpr ConstraintClauseSyntax(SyntaxKind kind)
+            : SyntaxNode{kind}
+        {
+        }
     };
 
-    // out-contract-clause
-    //      : 'out' identifier? ':'     expression ';'
-    //      | 'out' identifier? '{' statement-list '}'
-    //      ;
-    class ContractPostconditionClauseSyntax final : public ContractClauseSyntax
+    class PreconditionClauseSyntax final : public ConstraintClauseSyntax
     {
+    public:
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
+
+        ExpressionSyntax* Expression{};
+
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
     };
 
-    // generic-constraint
-    //      : name ':' expression
-    //      ;
-    //
-    // generic-constraint-list
-    //      : generic-constraint
-    //      | generic-constraint-list ',' generic-constraint
-    //      ;
-    //
-    // where-clause
-    //      : 'where' generic-constraint-list
-    //      ;
-    class WhereClauseSyntax final : public ContractClauseSyntax
+    class PostconditionClauseSyntax final : public ConstraintClauseSyntax
     {
+    public:
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
+
+        IdentifierNameSyntax* Identifier{};
+
+        ExpressionSyntax* Expression{};
+
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
+    };
+
+    class WherePredicateSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(WherePredicateSyntax);
+    public:
+        NameSyntax* Type{};
+        SyntaxToken* TrailingComma{};
+
+    public:
+        explicit constexpr WherePredicateSyntax()
+            : SyntaxNode{SyntaxKind::WherePredicateSyntax}
+        {
+        }
+    };
+
+    class WhereClauseSyntax final : public ConstraintClauseSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(WhereClauseSyntax);
+
+    public:
+        SyntaxToken* WhereKeyword{};
+
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
+
+        IdentifierNameSyntax* Type{};
+
+        UnexpectedNodesSyntax* BeforeColon{};
+        SyntaxToken* Colon{};
+
+        SyntaxListView<WherePredicateSyntax> Predicates{};
+
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr WhereClauseSyntax()
+            : ConstraintClauseSyntax{SyntaxKind::WhereClauseSyntax}
+        {
+        }
     };
 
     class YieldStatementSyntax final : public StatementSyntax

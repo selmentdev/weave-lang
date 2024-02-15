@@ -428,8 +428,6 @@ WEAVE_SYNTAX_NODE(GenericParametersSyntax,                      "generic paramet
 
 WEAVE_SYNTAX_NODE(FunctionDeclarationSyntax,                    "[node:function-declaration]")
 WEAVE_SYNTAX_NODE(DelegateDeclarationSyntax,                    "[node:delegate-declaration]")
-WEAVE_SYNTAX_NODE(ConstraintSyntax,                             "[node:constraint]")
-WEAVE_SYNTAX_NODE(ConstraintListSyntax,                         "[node:constraint-list]")
 WEAVE_SYNTAX_NODE(ConstantDeclarationSyntax,                    "[node:constant-declaration]")
 WEAVE_SYNTAX_NODE(TypeClauseSyntax,                             "[node:type-clause]")
 WEAVE_SYNTAX_NODE(AssignmentExpressionSyntax,                   "[node:assignment-expression]")
@@ -500,6 +498,9 @@ WEAVE_SYNTAX_NODE(TuplePatternItemSyntax,                       "tuple pattern i
 WEAVE_SYNTAX_NODE(MoveExpressionSyntax,                         "move expression")
 WEAVE_SYNTAX_NODE(RefExpressionSyntax,                          "ref expression")
 WEAVE_SYNTAX_NODE(OutExpressionSyntax,                          "out expression")
+
+WEAVE_SYNTAX_NODE(WherePredicateSyntax,                         "where predicate")
+WEAVE_SYNTAX_NODE(WhereClauseSyntax,                            "where clause")
 
 // prefix unary expressions
 WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    "[expr:unary-plus]")

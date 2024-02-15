@@ -146,6 +146,7 @@ namespace weave::syntax
     class MatchClauseSyntax;
     class PatternSyntax;
     class GenericParameterSyntax;
+    class ConstraintClauseSyntax;
 
 #define WEAVE_SYNTAX_NODE(name, spelling) class name;
 #include "weave/syntax/SyntaxKind.inl"

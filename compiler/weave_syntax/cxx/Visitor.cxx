@@ -127,6 +127,7 @@ namespace weave::syntax
         this->Dispatch(node->GenericParameters);
         this->Dispatch(node->Parameters);
         this->Dispatch(node->ReturnType);
+        this->Dispatch(node->Constraints.GetNode());
         this->Dispatch(node->Body);
         this->Dispatch(node->ExpressionBody);
 
@@ -1343,6 +1344,42 @@ namespace weave::syntax
 
         this->Dispatch(node->OutKeyword);
         this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnWhereClauseSyntax(WhereClauseSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->WhereKeyword);
+
+        this->Dispatch(node->BeforeOpenParenToken);
+        this->Dispatch(node->OpenParenToken);
+
+        this->Dispatch(node->Type);
+
+        this->Dispatch(node->BeforeColon);
+        this->Dispatch(node->Colon);
+
+        this->Dispatch(node->Predicates.GetNode());
+
+        this->Dispatch(node->BeforeCloseParenToken);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnWherePredicateSyntax(WherePredicateSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Type);
+        this->Dispatch(node->TrailingComma);
 
         --this->Depth;
     }

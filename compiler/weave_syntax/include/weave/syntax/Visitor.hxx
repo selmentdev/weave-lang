@@ -185,5 +185,8 @@ namespace weave::syntax
         void OnMoveExpressionSyntax(MoveExpressionSyntax* node) override;
         void OnRefExpressionSyntax(RefExpressionSyntax* node) override;
         void OnOutExpressionSyntax(OutExpressionSyntax* node) override;
+
+        void OnWhereClauseSyntax(WhereClauseSyntax* node) override;
+        void OnWherePredicateSyntax(WherePredicateSyntax* node) override;
     };
 }
