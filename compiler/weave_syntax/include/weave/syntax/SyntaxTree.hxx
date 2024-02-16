@@ -149,6 +149,7 @@ namespace weave::syntax
         ParameterListSyntax* Parameters{};
         ReturnTypeClauseSyntax* ReturnType{};
         SyntaxListView<ConstraintClauseSyntax> Constraints{};
+        UnexpectedNodesSyntax* BeforeBody{};
         CodeBlockSyntax* Body{};
         ArrowExpressionClauseSyntax* ExpressionBody{};
 

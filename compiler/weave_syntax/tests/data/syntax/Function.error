@@ -18,6 +18,17 @@ error: Unexpected tokens
          |
        3 | #[Inline, NoInline,] function Empty1(,a:A, b:B, #[foo] , {})
          |                                                          ^^
+error: Unexpected tokens
+        --> <source>:6:1
+         |
+       6 | #[Foo, Deprecated("Reason")]
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       7 | function Bar(
+         | ^^^^^^^^^^^^^
+       8 |     #[Unused] a: Int32,
+         | ^^^^^^^^^^^^^^^^^^^^^^^
+       9 |     #[Unused] b: Float32);
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^
 error: Expected ':'
         --> <source>:19:27
          |

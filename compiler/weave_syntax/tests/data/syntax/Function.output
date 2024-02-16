@@ -61,63 +61,33 @@ SourceFileSyntax
        OpenBraceToken <77:78> [2:57:2:58] '{'
        CloseBraceToken <78:79> [2:58:2:59] '}'
      CloseParenToken <79:80> [2:59:2:60] ')'
-  CodeBlockItemSyntax
-   FunctionDeclarationSyntax
-    SyntaxList
-     AttributeListSyntax
-      HashOpenBracketToken <106:108> [5:0:5:2] '#['
-      SyntaxList
-       AttributeSyntax
-        IdentifierNameSyntax
-         IdentifierToken <108:111> [5:2:5:5] 'Foo'
-        CommaToken <111:112> [5:5:5:6] ','
-       AttributeSyntax
-        IdentifierNameSyntax
-         IdentifierToken <113:123> [5:7:5:17] 'Deprecated'
-        BalancedTokenSequneceSyntax
-         OpenParenToken <123:124> [5:17:5:18] '('
-         SyntaxList
-          StringLiteralToken <124:132> [5:18:5:26] '"Reason"'
-         CloseParenToken <132:133> [5:26:5:27] ')'
-      CloseBracketToken <133:134> [5:27:5:28] ']'
-    FunctionKeyword <135:143> [6:0:6:8] 'function'
-    IdentifierNameSyntax
-     IdentifierToken <144:147> [6:9:6:12] 'Bar'
-    ParameterListSyntax
-     OpenParenToken <147:148> [6:12:6:13] '('
+    UnexpectedNodesSyntax
      SyntaxList
-      ParameterSyntax
-       SyntaxList
-        AttributeListSyntax
-         HashOpenBracketToken <153:155> [7:4:7:6] '#['
-         SyntaxList
-          AttributeSyntax
-           IdentifierNameSyntax
-            IdentifierToken <155:161> [7:6:7:12] 'Unused'
-         CloseBracketToken <161:162> [7:12:7:13] ']'
-       IdentifierNameSyntax
-        IdentifierToken <163:164> [7:14:7:15] 'a'
-       TypeClauseSyntax
-        ColonToken <164:165> [7:15:7:16] ':'
-        IdentifierNameSyntax
-         IdentifierToken <166:171> [7:17:7:22] 'Int32'
-       CommaToken <171:172> [7:22:7:23] ','
-      ParameterSyntax
-       SyntaxList
-        AttributeListSyntax
-         HashOpenBracketToken <177:179> [8:4:8:6] '#['
-         SyntaxList
-          AttributeSyntax
-           IdentifierNameSyntax
-            IdentifierToken <179:185> [8:6:8:12] 'Unused'
-         CloseBracketToken <185:186> [8:12:8:13] ']'
-       IdentifierNameSyntax
-        IdentifierToken <187:188> [8:14:8:15] 'b'
-       TypeClauseSyntax
-        ColonToken <188:189> [8:15:8:16] ':'
-        IdentifierNameSyntax
-         IdentifierToken <190:197> [8:17:8:24] 'Float32'
-     CloseParenToken <197:198> [8:24:8:25] ')'
+      HashOpenBracketToken <106:108> [5:0:5:2] '#['
+      IdentifierToken <108:111> [5:2:5:5] 'Foo'
+      CommaToken <111:112> [5:5:5:6] ','
+      IdentifierToken <113:123> [5:7:5:17] 'Deprecated'
+      OpenParenToken <123:124> [5:17:5:18] '('
+      StringLiteralToken <124:132> [5:18:5:26] '"Reason"'
+      CloseParenToken <132:133> [5:26:5:27] ')'
+      CloseBracketToken <133:134> [5:27:5:28] ']'
+      FunctionKeyword <135:143> [6:0:6:8] 'function'
+      IdentifierToken <144:147> [6:9:6:12] 'Bar'
+      OpenParenToken <147:148> [6:12:6:13] '('
+      HashOpenBracketToken <153:155> [7:4:7:6] '#['
+      IdentifierToken <155:161> [7:6:7:12] 'Unused'
+      CloseBracketToken <161:162> [7:12:7:13] ']'
+      IdentifierToken <163:164> [7:14:7:15] 'a'
+      ColonToken <164:165> [7:15:7:16] ':'
+      IdentifierToken <166:171> [7:17:7:22] 'Int32'
+      CommaToken <171:172> [7:22:7:23] ','
+      HashOpenBracketToken <177:179> [8:4:8:6] '#['
+      IdentifierToken <179:185> [8:6:8:12] 'Unused'
+      CloseBracketToken <185:186> [8:12:8:13] ']'
+      IdentifierToken <187:188> [8:14:8:15] 'b'
+      ColonToken <188:189> [8:15:8:16] ':'
+      IdentifierToken <190:197> [8:17:8:24] 'Float32'
+      CloseParenToken <197:198> [8:24:8:25] ')'
    SemicolonToken <198:199> [8:25:8:26] ';'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax

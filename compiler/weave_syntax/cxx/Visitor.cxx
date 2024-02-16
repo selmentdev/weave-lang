@@ -128,6 +128,7 @@ namespace weave::syntax
         this->Dispatch(node->Parameters);
         this->Dispatch(node->ReturnType);
         this->Dispatch(node->Constraints.GetNode());
+        this->Dispatch(node->BeforeBody);
         this->Dispatch(node->Body);
         this->Dispatch(node->ExpressionBody);
 

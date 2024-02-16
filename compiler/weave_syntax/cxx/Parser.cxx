@@ -426,6 +426,12 @@ namespace weave::syntax
             result->Constraints = SyntaxListView<ConstraintClauseSyntax>{this->_factory->CreateList(constraints)};
         }
 
+        // Function declaration will either have a body, expression body or semicolon.
+        result->BeforeBody = this->ConsumeUnexpectedIf([](SyntaxKind kind)
+            {
+                return (kind != SyntaxKind::OpenBraceToken) && (kind != SyntaxKind::EqualsGreaterThanToken) && (kind != SyntaxKind::SemicolonToken);
+            });
+
         if (this->Current()->Kind == SyntaxKind::OpenBraceToken)
         {
             result->Body = this->ParseCodeBlock();
