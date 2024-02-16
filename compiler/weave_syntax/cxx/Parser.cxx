@@ -409,12 +409,11 @@ namespace weave::syntax
 
             do
             {
-                IdentifierSyntaxToken const* current = this->Current()->TryCast<IdentifierSyntaxToken>();
+                ConstraintClauseSyntax* constraint = this->ParseConstraintClause();
 
-                if ((current != nullptr) and (current->ContextualKeyowrd == SyntaxKind::WhereKeyword))
+                if (constraint != nullptr)
                 {
-                    WhereClauseSyntax* where = this->ParseWhereClause();
-                    constraints.emplace_back(where);
+                    constraints.emplace_back(constraint);
                 }
                 else
                 {
@@ -2264,10 +2263,52 @@ namespace weave::syntax
         return nullptr;
     }
 
+    RequiresClauseSyntax* Parser::ParseRequiresClause()
+    {
+        RequiresClauseSyntax* result = this->_factory->CreateNode<RequiresClauseSyntax>();
+        result->RequiresKeyword = this->Match(SyntaxKind::RequiresKeyword);
+
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        result->Condition = this->ParseExpression();
+
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        return result;
+    }
+
+    EnsuresClauseSyntax* Parser::ParseEnsuresClause()
+    {
+        EnsuresClauseSyntax* result = this->_factory->CreateNode<EnsuresClauseSyntax>();
+        result->EnsuresKeyword = this->Match(SyntaxKind::RequiresKeyword);
+
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        result->Condition = this->ParseExpression();
+
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        return result;
+    }
+
+    InvariantClauseSyntax* Parser::ParseInvariantClause()
+    {
+        InvariantClauseSyntax* result = this->_factory->CreateNode<InvariantClauseSyntax>();
+        result->InvariantKeyword = this->Match(SyntaxKind::RequiresKeyword);
+
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        result->Condition = this->ParseExpression();
+
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        return result;
+    }
+
     WhereClauseSyntax* Parser::ParseWhereClause()
     {
         WhereClauseSyntax* result = this->_factory->CreateNode<WhereClauseSyntax>();
-        result->WhereKeyword = this->MatchContextualKeyword(SyntaxKind::WhereKeyword);
+        result->WhereKeyword = this->Match(SyntaxKind::WhereKeyword);
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
@@ -2313,6 +2354,29 @@ namespace weave::syntax
         result->Type = this->ParseQualifiedName();
         result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
         return result;
+    }
+
+    ConstraintClauseSyntax* Parser::ParseConstraintClause()
+    {
+        switch (this->Current()->Kind)
+        {
+        case SyntaxKind::WhereKeyword:
+            return this->ParseWhereClause();
+
+        case SyntaxKind::RequiresKeyword:
+            return this->ParseRequiresClause();
+
+        case SyntaxKind::EnsuresKeyword:
+            return this->ParseEnsuresClause();
+
+        case SyntaxKind::InvariantKeyword:
+            return this->ParseInvariantClause();
+
+        default:
+            break;
+        }
+
+        return nullptr;
     }
 
     PatternSyntax* Parser::ParsePattern()

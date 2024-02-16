@@ -983,7 +983,7 @@ SourceFileSyntax
               IdentifierToken <2076:2080> [100:53:100:57] 'Self'
             SyntaxList
              WhereClauseSyntax
-              IdentifierToken <2237:2242> [103:12:103:17] 'where'
+              WhereKeyword <2237:2242> [103:12:103:17] 'where'
               OpenParenToken <2243:2244> [103:18:103:19] '('
               IdentifierNameSyntax
                IdentifierToken <2244:2245> [103:19:103:20] 'T'

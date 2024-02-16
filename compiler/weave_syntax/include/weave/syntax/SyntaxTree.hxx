@@ -1573,30 +1573,70 @@ namespace weave::syntax
         }
     };
 
-    class PreconditionClauseSyntax final : public ConstraintClauseSyntax
+    class RequiresClauseSyntax final : public ConstraintClauseSyntax
     {
+        WEAVE_DEFINE_SYNTAX_NODE(RequiresClauseSyntax);
+
     public:
+        SyntaxToken* RequiresKeyword{};
+
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
 
-        ExpressionSyntax* Expression{};
+        ExpressionSyntax* Condition{};
 
         UnexpectedNodesSyntax* BeforeCloseParenToken{};
         SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr RequiresClauseSyntax()
+            : ConstraintClauseSyntax{SyntaxKind::RequiresClauseSyntax}
+        {
+        }
     };
 
-    class PostconditionClauseSyntax final : public ConstraintClauseSyntax
+    class EnsuresClauseSyntax final : public ConstraintClauseSyntax
     {
+        WEAVE_DEFINE_SYNTAX_NODE(EnsuresClauseSyntax);
+
     public:
+        SyntaxToken* EnsuresKeyword{};
+
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
 
-        IdentifierNameSyntax* Identifier{};
-
-        ExpressionSyntax* Expression{};
+        ExpressionSyntax* Condition{};
 
         UnexpectedNodesSyntax* BeforeCloseParenToken{};
         SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr EnsuresClauseSyntax()
+            : ConstraintClauseSyntax{SyntaxKind::EnsuresClauseSyntax}
+        {
+        }
+    };
+
+    class InvariantClauseSyntax final : public ConstraintClauseSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(InvariantClauseSyntax);
+
+    public:
+        SyntaxToken* InvariantKeyword{};
+
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
+
+        ExpressionSyntax* Condition{};
+
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr InvariantClauseSyntax()
+            : ConstraintClauseSyntax{SyntaxKind::InvariantClauseSyntax}
+        {
+        }
     };
 
     class WherePredicateSyntax final : public SyntaxNode

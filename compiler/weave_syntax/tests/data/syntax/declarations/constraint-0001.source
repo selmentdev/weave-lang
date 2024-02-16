@@ -55,21 +55,21 @@ public function Foo![type T, type U, type V](
     where (V: Concept6)
 {
     contracts {
-        requires    (   t > 0       )
-        requires    (   t < 100     )
-        ensures     (   u > 21      )
-        ensures     (   v < 37      )
-        ensures     (   return  r   :   r > 0           )
-        ensures     (                   v == old(v)     )
-        invariant   (                   v >= 10         )
+        r#requires    (   t > 0       )
+        r#requires    (   t < 100     )
+        r#ensures     (   u > 21      )
+        r#ensures     (   v < 37      )
+        r#ensures     (     r > 0           )
+        r#ensures     (                   v == old(v)     )
+        r#invariant   (                   v >= 10         )
     }
 
-    assert(t > 0);
+    // assert(t > 0); // TODO: Implement assert expression
 }
 
 
 
-call(x, _);
+call(x, _x);
 
 public function Foo![type T, type U, type V](
     in  t: T,
@@ -77,7 +77,7 @@ public function Foo![type T, type U, type V](
     ref v: v
 ) -> result: Int32
     where (T: Concept1, Concept2, Concept3  )
-    where (U: Concept4, Concept5,           )   // allow trailing comma
+    where (U: Concept4, Concept5            )   // allow trailing comma?
     where (V: Concept6                      )
 
     requires    debug       (   t > 0       )
@@ -89,7 +89,7 @@ public function Foo![type T, type U, type V](
     ensures                 (   v == old(v) )
     invariant               (   v >= 10     )
 {
-    assert(t > 0);
+    // assert(t > 0);
 }
 
 public function Quaz![type T, type U, type V](
@@ -100,20 +100,20 @@ public function Quaz![type T, type U, type V](
     where (T: Concept1, Concept2, Concept3)
     where (U: Concept4, Concept5)
     where (V: Concept6)
-    #[config("DEBUG")]      requires    (                           t > 0                           )
-    #[config("CHECKED")]    ensures     (                           u > 21 && v < 37                )
-    #[config("RELEASE")]    ensures     (   return  [rt, ru, rv]:   rt > 0 && ru > 0 && rv < old(v) )
-    #[config("DEBUG")]      invariant   (                           v >= 10                         )
+    /*#[config("DEBUG")]   */   requires    ( t > 0                           )
+    /*#[config("CHECKED")] */   ensures     ( u > 21 && v < 37                )
+    /*#[config("RELEASE")] */   ensures     ( rt > 0 && ru > 0 && rv < old(v) )
+    /*#[config("DEBUG")]   */   invariant   ( v >= 10                         )
 ;
 
 {
-    assert(debug: t > 0);
-    assert(checked: t < 100, "t must be less than 100");
+    // assert(debug: t > 0);
+    // assert(checked: t < 100, "t must be less than 100");
 }
 
-#[requires(t > 0)]
-#[ensures(return r: u > 21, v < 37, r > 0, v == old(v))]
-#[invariant(v >= 10)]
+#[Requires(t > 0)]
+#[Ensures(return r: u > 21, v < 37, r > 0, v == old(v))]
+#[Invariant(v >= 10)]
 public function Quaz![type T, type U, type V](
     in t: T,
     ref u: U,
@@ -161,19 +161,19 @@ public function Update![type T, const N: Int32](
     in b: T,
     out c: T,
     ref d: T
-) -> T
-    where T: Addable, Multiplicable)
+) -> r: T
+    where (T: Addable, Multiplicable)
     requires(a != c)
     requires(b >= 0)
     ensures(c > 10)
-    ensures(r: r < 100)
-    ensures(r: r > 10)
+    ensures(r < 100)
+    ensures(r > 10)
     invariant(25 <= d)
     invariant(d <= 75)
 {
-    assert(debug: a >= 42);
-    assert(checked: b < 2137);
-    assert(release: (a <= d) && (d <= c));
+    // assert(debug: a >= 42);
+    // assert(checked: b < 2137);
+    // assert(release: (a <= d) && (d <= c));
 
     // code
 
@@ -181,30 +181,22 @@ public function Update![type T, const N: Int32](
 }
 
 // variant 2 - full assert blocks with explicit body
-private extern function sqrtf(x: Float32) -> Float32
-    requires
-    {
-        assert(x >= 0);
-    }
-    ensures (r) {
-        assert(r * r == x);
-    }
-//; trailing semicolon? is it necessary?
+private extern function sqrtf(x: Float32) -> r: Float32
+    requires (x >= 0)
+    ensures (r * r == x)
+;// trailing semicolon? is it necessary?
 
 public function SquareRoot![type T](
     in a: T
 ) -> T
-where
-    T: FloatingPoint
-requires
-{
-    assert(a >= 0);
-}
-ensures (r)
-{
-    assert(r * r == a);
-}
-body
+where (T: FloatingPoint)
+requires(
+    a >= 0
+)
+ensures
+(
+    r * r == a
+)
 {
     if (a is Float32) {
         return sqrtf(a);
@@ -213,41 +205,4 @@ body
     } else {
         bugcheck("Unsupported type");
     }
-}
-
-public function Update![type T, const N: Int32](
-    in a: T,
-    in b: T,
-    out c: T,
-    ref d: T
-) -> T
-where
-{
-    T: Addable, Multiplicable
-}
-requires
-{
-    assert(a != c);
-    assert(b >= 0);
-}
-ensures (r)
-{
-    assert(c > 10);
-    assert(r < 100);
-    assert(r > 10);
-}
-invariant
-{
-    assert(25 <= d);
-    assert(d <= 75);
-}
-body
-{
-    assert(debug: a >= 42);
-    assert(checked: b < 2137);
-    assert(release: (a <= d) && (d <= c));
-
-    // code
-
-    return c;
 }
