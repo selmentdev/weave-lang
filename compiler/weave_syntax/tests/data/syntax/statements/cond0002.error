@@ -1,0 +1,20 @@
+error: Expected '('
+        --> <source>:12:4
+         |
+      12 | if true
+         |    ^^^^
+error: Expected ')'
+        --> <source>:13:1
+         |
+      13 | {
+         | ^
+error: Expected '('
+        --> <source>:16:4
+         |
+      16 | if false
+         |    ^^^^^
+error: Expected ')'
+        --> <source>:17:1
+         |
+      17 | {
+         | ^

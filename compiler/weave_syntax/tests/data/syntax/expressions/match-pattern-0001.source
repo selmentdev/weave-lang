@@ -1,4 +1,4 @@
-match x
+match (x)
 {
     case (_, 0): WriteLine("Zero");
     case (1, _): WriteLine("One");
@@ -6,13 +6,13 @@ match x
     default: WriteLine("Many");
 }
 
-match y
+match (y)
 {
     case [_, (2, _, 3, 7), 49]: WriteLine("Matched");
     default: WriteLine("Not matched") 
 }
 
-match z
+match (z)
 {
     case ([_, 2, _], [1, _, xx], ([_, yy], (zz), [2, _, 3, _, 69])):
         {

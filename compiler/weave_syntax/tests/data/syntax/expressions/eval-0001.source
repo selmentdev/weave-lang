@@ -40,7 +40,7 @@ public function Degenerated2(
     w: Int32
 ) -> Int32
 {
-    if eval { yield x } + eval { yield y }
+    if (eval { yield x } + eval { yield y })
     {
         return eval { yield z } - eval { yield w };
     }

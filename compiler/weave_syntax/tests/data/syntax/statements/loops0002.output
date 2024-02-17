@@ -7,45 +7,47 @@ SourceFileSyntax
     ExpressionStatementSyntax
      IfExpressionSyntax
       IfKeyword <40:42> [1:14:1:16] 'if'
+      OpenParenToken <43:44> [1:17:1:18] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
-        IdentifierToken <43:44> [1:17:1:18] 'x'
-       LessThanToken <45:46> [1:19:1:20] '<'
+        IdentifierToken <44:45> [1:18:1:19] 'x'
+       LessThanToken <46:47> [1:20:1:21] '<'
        LiteralExpressionSyntax
-        IntegerLiteralToken <47:49> [1:21:1:23] '10'
+        IntegerLiteralToken <48:50> [1:22:1:24] '10'
+      CloseParenToken <50:51> [1:24:1:25] ')'
       CodeBlockSyntax
-       OpenBraceToken <50:51> [2:0:2:1] '{'
+       OpenBraceToken <52:53> [2:0:2:1] '{'
        SyntaxList
         CodeBlockItemSyntax
          GotoStatementSyntax
-          GotoKeyword <52:56> [3:0:3:4] 'goto'
-          IdentifierToken <57:71> [3:5:3:19] 'update_counter'
-         SemicolonToken <71:72> [3:19:3:20] ';'
+          GotoKeyword <54:58> [3:0:3:4] 'goto'
+          IdentifierToken <59:73> [3:5:3:19] 'update_counter'
+         SemicolonToken <73:74> [3:19:3:20] ';'
         CodeBlockItemSyntax
          ExpressionStatementSyntax
           AssignmentExpressionSyntax
            IdentifierNameSyntax
-            IdentifierToken <77:78> [4:4:4:5] 'x'
-           MinusEqualsToken <79:81> [4:6:4:8] '-='
+            IdentifierToken <79:80> [4:4:4:5] 'x'
+           MinusEqualsToken <81:83> [4:6:4:8] '-='
            LiteralExpressionSyntax
-            IntegerLiteralToken <82:86> [4:9:4:13] '2137'
-         SemicolonToken <86:87> [4:13:4:14] ';'
+            IntegerLiteralToken <84:88> [4:9:4:13] '2137'
+         SemicolonToken <88:89> [4:13:4:14] ';'
         CodeBlockItemSyntax
          LabeledStatementSyntax
-          IdentifierToken <88:102> [5:0:5:14] 'update_counter'
-          ColonToken <102:103> [5:14:5:15] ':'
+          IdentifierToken <90:104> [5:0:5:14] 'update_counter'
+          ColonToken <104:105> [5:14:5:15] ':'
           ExpressionStatementSyntax
            AssignmentExpressionSyntax
             IdentifierNameSyntax
-             IdentifierToken <108:109> [6:4:6:5] 'x'
-            PlusEqualsToken <110:112> [6:6:6:8] '+='
+             IdentifierToken <110:111> [6:4:6:5] 'x'
+            PlusEqualsToken <112:114> [6:6:6:8] '+='
             LiteralExpressionSyntax
-             IntegerLiteralToken <113:114> [6:9:6:10] '1'
-         SemicolonToken <114:115> [6:10:6:11] ';'
+             IntegerLiteralToken <115:116> [6:9:6:10] '1'
+         SemicolonToken <116:117> [6:10:6:11] ';'
         CodeBlockItemSyntax
          GotoStatementSyntax
-          GotoKeyword <120:124> [7:4:7:8] 'goto'
-          IdentifierToken <125:137> [7:9:7:21] 'this_is_loop'
-         SemicolonToken <137:138> [7:21:7:22] ';'
-       CloseBraceToken <139:140> [8:0:8:1] '}'
- EndOfFileToken <141:141> [9:0:9:0] ''
+          GotoKeyword <122:126> [7:4:7:8] 'goto'
+          IdentifierToken <127:139> [7:9:7:21] 'this_is_loop'
+         SemicolonToken <139:140> [7:21:7:22] ';'
+       CloseBraceToken <141:142> [8:0:8:1] '}'
+ EndOfFileToken <143:143> [9:0:9:0] ''

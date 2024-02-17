@@ -290,107 +290,109 @@ SourceFileSyntax
        ExpressionStatementSyntax
         IfExpressionSyntax
          IfKeyword <655:657> [42:4:42:6] 'if'
+         OpenParenToken <658:659> [42:7:42:8] '('
          BinaryExpressionSyntax
           EvalExpressionSyntax
-           EvalKeyword <658:662> [42:7:42:11] 'eval'
+           EvalKeyword <659:663> [42:8:42:12] 'eval'
            CodeBlockItemSyntax
             BlockStatementSyntax
              CodeBlockSyntax
-              OpenBraceToken <663:664> [42:12:42:13] '{'
+              OpenBraceToken <664:665> [42:13:42:14] '{'
               SyntaxList
                CodeBlockItemSyntax
                 YieldStatementSyntax
-                 YieldKeyword <665:670> [42:14:42:19] 'yield'
+                 YieldKeyword <666:671> [42:15:42:20] 'yield'
                  IdentifierNameSyntax
-                  IdentifierToken <671:672> [42:20:42:21] 'x'
-              CloseBraceToken <673:674> [42:22:42:23] '}'
-          PlusToken <675:676> [42:24:42:25] '+'
+                  IdentifierToken <672:673> [42:21:42:22] 'x'
+              CloseBraceToken <674:675> [42:23:42:24] '}'
+          PlusToken <676:677> [42:25:42:26] '+'
           EvalExpressionSyntax
-           EvalKeyword <677:681> [42:26:42:30] 'eval'
+           EvalKeyword <678:682> [42:27:42:31] 'eval'
            CodeBlockItemSyntax
             BlockStatementSyntax
              CodeBlockSyntax
-              OpenBraceToken <682:683> [42:31:42:32] '{'
+              OpenBraceToken <683:684> [42:32:42:33] '{'
               SyntaxList
                CodeBlockItemSyntax
                 YieldStatementSyntax
-                 YieldKeyword <684:689> [42:33:42:38] 'yield'
+                 YieldKeyword <685:690> [42:34:42:39] 'yield'
                  IdentifierNameSyntax
-                  IdentifierToken <690:691> [42:39:42:40] 'y'
-              CloseBraceToken <692:693> [42:41:42:42] '}'
+                  IdentifierToken <691:692> [42:40:42:41] 'y'
+              CloseBraceToken <693:694> [42:42:42:43] '}'
+         CloseParenToken <694:695> [42:43:42:44] ')'
          CodeBlockSyntax
-          OpenBraceToken <698:699> [43:4:43:5] '{'
+          OpenBraceToken <700:701> [43:4:43:5] '{'
           SyntaxList
            CodeBlockItemSyntax
             ReturnStatementSyntax
-             ReturnKeyword <708:714> [44:8:44:14] 'return'
+             ReturnKeyword <710:716> [44:8:44:14] 'return'
              BinaryExpressionSyntax
               EvalExpressionSyntax
-               EvalKeyword <715:719> [44:15:44:19] 'eval'
+               EvalKeyword <717:721> [44:15:44:19] 'eval'
                CodeBlockItemSyntax
                 BlockStatementSyntax
                  CodeBlockSyntax
-                  OpenBraceToken <720:721> [44:20:44:21] '{'
+                  OpenBraceToken <722:723> [44:20:44:21] '{'
                   SyntaxList
                    CodeBlockItemSyntax
                     YieldStatementSyntax
-                     YieldKeyword <722:727> [44:22:44:27] 'yield'
+                     YieldKeyword <724:729> [44:22:44:27] 'yield'
                      IdentifierNameSyntax
-                      IdentifierToken <728:729> [44:28:44:29] 'z'
-                  CloseBraceToken <730:731> [44:30:44:31] '}'
-              MinusToken <732:733> [44:32:44:33] '-'
+                      IdentifierToken <730:731> [44:28:44:29] 'z'
+                  CloseBraceToken <732:733> [44:30:44:31] '}'
+              MinusToken <734:735> [44:32:44:33] '-'
               EvalExpressionSyntax
-               EvalKeyword <734:738> [44:34:44:38] 'eval'
+               EvalKeyword <736:740> [44:34:44:38] 'eval'
                CodeBlockItemSyntax
                 BlockStatementSyntax
                  CodeBlockSyntax
-                  OpenBraceToken <739:740> [44:39:44:40] '{'
+                  OpenBraceToken <741:742> [44:39:44:40] '{'
                   SyntaxList
                    CodeBlockItemSyntax
                     YieldStatementSyntax
-                     YieldKeyword <741:746> [44:41:44:46] 'yield'
+                     YieldKeyword <743:748> [44:41:44:46] 'yield'
                      IdentifierNameSyntax
-                      IdentifierToken <747:748> [44:47:44:48] 'w'
-                  CloseBraceToken <749:750> [44:49:44:50] '}'
-                SemicolonToken <750:751> [44:50:44:51] ';'
-          CloseBraceToken <756:757> [45:4:45:5] '}'
+                      IdentifierToken <749:750> [44:47:44:48] 'w'
+                  CloseBraceToken <751:752> [44:49:44:50] '}'
+                SemicolonToken <752:753> [44:50:44:51] ';'
+          CloseBraceToken <758:759> [45:4:45:5] '}'
          ElseClauseSyntax
-          ElseKeyword <762:766> [46:4:46:8] 'else'
+          ElseKeyword <764:768> [46:4:46:8] 'else'
           CodeBlockSyntax
-           OpenBraceToken <771:772> [47:4:47:5] '{'
+           OpenBraceToken <773:774> [47:4:47:5] '{'
            SyntaxList
             CodeBlockItemSyntax
              ReturnStatementSyntax
-              ReturnKeyword <781:787> [48:8:48:14] 'return'
+              ReturnKeyword <783:789> [48:8:48:14] 'return'
               BinaryExpressionSyntax
                EvalExpressionSyntax
-                EvalKeyword <788:792> [48:15:48:19] 'eval'
+                EvalKeyword <790:794> [48:15:48:19] 'eval'
                 CodeBlockItemSyntax
                  BlockStatementSyntax
                   CodeBlockSyntax
-                   OpenBraceToken <793:794> [48:20:48:21] '{'
+                   OpenBraceToken <795:796> [48:20:48:21] '{'
                    SyntaxList
                     CodeBlockItemSyntax
                      YieldStatementSyntax
-                      YieldKeyword <795:800> [48:22:48:27] 'yield'
+                      YieldKeyword <797:802> [48:22:48:27] 'yield'
                       IdentifierNameSyntax
-                       IdentifierToken <801:802> [48:28:48:29] 'z'
-                   CloseBraceToken <803:804> [48:30:48:31] '}'
-               AsteriskToken <805:806> [48:32:48:33] '*'
+                       IdentifierToken <803:804> [48:28:48:29] 'z'
+                   CloseBraceToken <805:806> [48:30:48:31] '}'
+               AsteriskToken <807:808> [48:32:48:33] '*'
                EvalExpressionSyntax
-                EvalKeyword <807:811> [48:34:48:38] 'eval'
+                EvalKeyword <809:813> [48:34:48:38] 'eval'
                 CodeBlockItemSyntax
                  BlockStatementSyntax
                   CodeBlockSyntax
-                   OpenBraceToken <812:813> [48:39:48:40] '{'
+                   OpenBraceToken <814:815> [48:39:48:40] '{'
                    SyntaxList
                     CodeBlockItemSyntax
                      YieldStatementSyntax
-                      YieldKeyword <814:819> [48:41:48:46] 'yield'
+                      YieldKeyword <816:821> [48:41:48:46] 'yield'
                       IdentifierNameSyntax
-                       IdentifierToken <820:821> [48:47:48:48] 'w'
-                   CloseBraceToken <822:823> [48:49:48:50] '}'
-                 SemicolonToken <823:824> [48:50:48:51] ';'
-           CloseBraceToken <829:830> [49:4:49:5] '}'
-     CloseBraceToken <831:832> [50:0:50:1] '}'
- EndOfFileToken <833:833> [51:0:51:0] ''
+                       IdentifierToken <822:823> [48:47:48:48] 'w'
+                   CloseBraceToken <824:825> [48:49:48:50] '}'
+                 SemicolonToken <825:826> [48:50:48:51] ';'
+           CloseBraceToken <831:832> [49:4:49:5] '}'
+     CloseBraceToken <833:834> [50:0:50:1] '}'
+ EndOfFileToken <835:835> [51:0:51:0] ''

@@ -75,39 +75,31 @@ SourceFileSyntax
    ExpressionStatementSyntax
     IfExpressionSyntax
      IfKeyword <71:73> [3:0:3:2] 'if'
-     TupleExpressionSyntax
-      OpenParenToken <74:75> [3:3:3:4] '('
-      SyntaxList
-       LabeledExpressionSyntax
-        BinaryExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <75:76> [3:4:3:5] 'x'
-         IsKeyword <77:79> [3:6:3:8] 'is'
-         IdentifierNameSyntax
-          IdentifierToken <80:81> [3:9:3:10] 'Y'
-      UnexpectedNodesSyntax
-       SyntaxList
-        IdentifierToken <82:83> [3:11:3:12] 'z'
-      CloseParenToken <83:84> [3:12:3:13] ')'
+     OpenParenToken <74:75> [3:3:3:4] '('
+     BinaryExpressionSyntax
+      IdentifierNameSyntax
+       IdentifierToken <75:76> [3:4:3:5] 'x'
+      IsKeyword <77:79> [3:6:3:8] 'is'
+      IdentifierNameSyntax
+       IdentifierToken <80:81> [3:9:3:10] 'Y'
+     CloseParenToken <82:83> [3:11:3:12] missing ''
      CodeBlockSyntax
-      OpenBraceToken <85:86> [3:14:3:15] '{'
+      OpenBraceToken <82:83> [3:11:3:12] missing ''
       SyntaxList
        CodeBlockItemSyntax
         ExpressionStatementSyntax
-         InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <91:98> [4:4:4:11] 'consume'
-          ArgumentListSyntax
-           OpenParenToken <98:99> [4:11:4:12] '('
-           SyntaxList
-            ArgumentSyntax
-             MemberAccessExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <99:100> [4:12:4:13] 'z'
-              DotToken <100:101> [4:13:4:14] '.'
-              IdentifierNameSyntax
-               IdentifierToken <101:102> [4:14:4:15] 'a'
-           CloseParenToken <102:103> [4:15:4:16] ')'
+         IdentifierNameSyntax
+          IdentifierToken <82:83> [3:11:3:12] 'z'
+      UnexpectedNodesSyntax
+       SyntaxList
+        CloseParenToken <83:84> [3:12:3:13] ')'
+        OpenBraceToken <85:86> [3:14:3:15] '{'
+        IdentifierToken <91:98> [4:4:4:11] 'consume'
+        OpenParenToken <98:99> [4:11:4:12] '('
+        IdentifierToken <99:100> [4:12:4:13] 'z'
+        DotToken <100:101> [4:13:4:14] '.'
+        IdentifierToken <101:102> [4:14:4:15] 'a'
+        CloseParenToken <102:103> [4:15:4:16] ')'
         SemicolonToken <103:104> [4:16:4:17] ';'
       CloseBraceToken <105:106> [5:0:5:1] '}'
   CodeBlockItemSyntax

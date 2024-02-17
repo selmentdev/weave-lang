@@ -38,111 +38,115 @@ SourceFileSyntax
         ReturnKeyword <75:81> [2:4:2:10] 'return'
         MatchExpressionSyntax
          MatchKeyword <82:87> [2:11:2:16] 'match'
+         OpenParenToken <88:89> [2:17:2:18] '('
          IdentifierNameSyntax
-          IdentifierToken <88:89> [2:17:2:18] 'x'
-         OpenBraceToken <94:95> [3:4:3:5] '{'
+          IdentifierToken <89:90> [2:18:2:19] 'x'
+         CloseParenToken <90:91> [2:19:2:20] ')'
+         OpenBraceToken <96:97> [3:4:3:5] '{'
          SyntaxList
           MatchCaseClauseSyntax
-           CaseKeyword <104:108> [4:8:4:12] 'case'
+           CaseKeyword <106:110> [4:8:4:12] 'case'
            LiteralPatternSyntax
-            IntegerLiteralToken <109:110> [4:13:4:14] '0'
-           ColonToken <110:111> [4:14:4:15] ':'
+            IntegerLiteralToken <111:112> [4:13:4:14] '0'
+           ColonToken <112:113> [4:14:4:15] ':'
            CodeBlockItemSyntax
             YieldStatementSyntax
-             YieldKeyword <112:117> [4:16:4:21] 'yield'
+             YieldKeyword <114:119> [4:16:4:21] 'yield'
              LiteralExpressionSyntax
-              StringLiteralToken <118:123> [4:22:4:27] '"One"'
-            SemicolonToken <123:124> [4:27:4:28] ';'
+              StringLiteralToken <120:125> [4:22:4:27] '"One"'
+            SemicolonToken <125:126> [4:27:4:28] ';'
           MatchCaseClauseSyntax
-           CaseKeyword <133:137> [5:8:5:12] 'case'
+           CaseKeyword <135:139> [5:8:5:12] 'case'
            LiteralPatternSyntax
-            IntegerLiteralToken <138:139> [5:13:5:14] '1'
-           ColonToken <139:140> [5:14:5:15] ':'
+            IntegerLiteralToken <140:141> [5:13:5:14] '1'
+           ColonToken <141:142> [5:14:5:15] ':'
            CodeBlockItemSyntax
             YieldStatementSyntax
-             YieldKeyword <141:146> [5:16:5:21] 'yield'
+             YieldKeyword <143:148> [5:16:5:21] 'yield'
              LiteralExpressionSyntax
-              StringLiteralToken <147:152> [5:22:5:27] '"Two"'
-            SemicolonToken <152:153> [5:27:5:28] ';'
+              StringLiteralToken <149:154> [5:22:5:27] '"Two"'
+            SemicolonToken <154:155> [5:27:5:28] ';'
           MatchCaseClauseSyntax
-           CaseKeyword <162:166> [6:8:6:12] 'case'
+           CaseKeyword <164:168> [6:8:6:12] 'case'
            LiteralPatternSyntax
-            IntegerLiteralToken <167:168> [6:13:6:14] '2'
-           ColonToken <168:169> [6:14:6:15] ':'
+            IntegerLiteralToken <169:170> [6:13:6:14] '2'
+           ColonToken <170:171> [6:14:6:15] ':'
            CodeBlockItemSyntax
             YieldStatementSyntax
-             YieldKeyword <182:187> [7:12:7:17] 'yield'
+             YieldKeyword <184:189> [7:12:7:17] 'yield'
              MatchExpressionSyntax
-              MatchKeyword <188:193> [7:18:7:23] 'match'
+              MatchKeyword <190:195> [7:18:7:23] 'match'
+              OpenParenToken <196:197> [7:24:7:25] '('
               IdentifierNameSyntax
-               IdentifierToken <194:195> [7:24:7:25] 'y'
-              OpenBraceToken <208:209> [8:12:8:13] '{'
+               IdentifierToken <197:198> [7:25:7:26] 'y'
+              CloseParenToken <198:199> [7:26:7:27] ')'
+              OpenBraceToken <212:213> [8:12:8:13] '{'
               SyntaxList
                MatchCaseClauseSyntax
-                CaseKeyword <226:230> [9:16:9:20] 'case'
+                CaseKeyword <230:234> [9:16:9:20] 'case'
                 LiteralPatternSyntax
-                 IntegerLiteralToken <231:232> [9:21:9:22] '0'
-                ColonToken <232:233> [9:22:9:23] ':'
+                 IntegerLiteralToken <235:236> [9:21:9:22] '0'
+                ColonToken <236:237> [9:22:9:23] ':'
                 CodeBlockItemSyntax
                  YieldStatementSyntax
-                  YieldKeyword <234:239> [9:24:9:29] 'yield'
+                  YieldKeyword <238:243> [9:24:9:29] 'yield'
                   LiteralExpressionSyntax
-                   StringLiteralToken <240:254> [9:30:9:44] '"Two and Zero"'
-                 SemicolonToken <254:255> [9:44:9:45] ';'
+                   StringLiteralToken <244:258> [9:30:9:44] '"Two and Zero"'
+                 SemicolonToken <258:259> [9:44:9:45] ';'
                MatchCaseClauseSyntax
-                CaseKeyword <272:276> [10:16:10:20] 'case'
+                CaseKeyword <276:280> [10:16:10:20] 'case'
                 LiteralPatternSyntax
-                 IntegerLiteralToken <277:278> [10:21:10:22] '1'
-                ColonToken <278:279> [10:22:10:23] ':'
+                 IntegerLiteralToken <281:282> [10:21:10:22] '1'
+                ColonToken <282:283> [10:22:10:23] ':'
                 CodeBlockItemSyntax
                  YieldStatementSyntax
-                  YieldKeyword <280:285> [10:24:10:29] 'yield'
+                  YieldKeyword <284:289> [10:24:10:29] 'yield'
                   LiteralExpressionSyntax
-                   StringLiteralToken <286:299> [10:30:10:43] '"Two and One"'
-                 SemicolonToken <299:300> [10:43:10:44] ';'
+                   StringLiteralToken <290:303> [10:30:10:43] '"Two and One"'
+                 SemicolonToken <303:304> [10:43:10:44] ';'
                MatchCaseClauseSyntax
-                CaseKeyword <317:321> [11:16:11:20] 'case'
+                CaseKeyword <321:325> [11:16:11:20] 'case'
                 LiteralPatternSyntax
-                 IntegerLiteralToken <322:323> [11:21:11:22] '2'
-                ColonToken <323:324> [11:22:11:23] ':'
+                 IntegerLiteralToken <326:327> [11:21:11:22] '2'
+                ColonToken <327:328> [11:22:11:23] ':'
                 CodeBlockItemSyntax
                  YieldStatementSyntax
-                  YieldKeyword <325:330> [11:24:11:29] 'yield'
+                  YieldKeyword <329:334> [11:24:11:29] 'yield'
                   LiteralExpressionSyntax
-                   StringLiteralToken <331:344> [11:30:11:43] '"Two and Two"'
-                 SemicolonToken <344:345> [11:43:11:44] ';'
+                   StringLiteralToken <335:348> [11:30:11:43] '"Two and Two"'
+                 SemicolonToken <348:349> [11:43:11:44] ';'
                MatchDefaultClauseSyntax
-                DefaultKeyword <362:369> [12:16:12:23] 'default'
-                ColonToken <369:370> [12:23:12:24] ':'
+                DefaultKeyword <366:373> [12:16:12:23] 'default'
+                ColonToken <373:374> [12:23:12:24] ':'
                 CodeBlockItemSyntax
                  YieldStatementSyntax
-                  YieldKeyword <371:376> [12:25:12:30] 'yield'
+                  YieldKeyword <375:380> [12:25:12:30] 'yield'
                   LiteralExpressionSyntax
-                   StringLiteralToken <377:401> [12:31:12:55] '"Two and something else"'
-                 SemicolonToken <401:402> [12:55:12:56] ';'
-              CloseBraceToken <415:416> [13:12:13:13] '}'
-            SemicolonToken <416:417> [13:13:13:14] ';'
+                   StringLiteralToken <381:405> [12:31:12:55] '"Two and something else"'
+                 SemicolonToken <405:406> [12:55:12:56] ';'
+              CloseBraceToken <419:420> [13:12:13:13] '}'
+            SemicolonToken <420:421> [13:13:13:14] ';'
           MatchCaseClauseSyntax
-           CaseKeyword <426:430> [14:8:14:12] 'case'
+           CaseKeyword <430:434> [14:8:14:12] 'case'
            LiteralPatternSyntax
-            IntegerLiteralToken <431:432> [14:13:14:14] '3'
-           ColonToken <432:433> [14:14:14:15] ':'
+            IntegerLiteralToken <435:436> [14:13:14:14] '3'
+           ColonToken <436:437> [14:14:14:15] ':'
            CodeBlockItemSyntax
             YieldStatementSyntax
-             YieldKeyword <434:439> [14:16:14:21] 'yield'
+             YieldKeyword <438:443> [14:16:14:21] 'yield'
              LiteralExpressionSyntax
-              StringLiteralToken <440:447> [14:22:14:29] '"Three"'
-            SemicolonToken <447:448> [14:29:14:30] ';'
+              StringLiteralToken <444:451> [14:22:14:29] '"Three"'
+            SemicolonToken <451:452> [14:29:14:30] ';'
           MatchDefaultClauseSyntax
-           DefaultKeyword <457:464> [15:8:15:15] 'default'
-           ColonToken <464:465> [15:15:15:16] ':'
+           DefaultKeyword <461:468> [15:8:15:15] 'default'
+           ColonToken <468:469> [15:15:15:16] ':'
            CodeBlockItemSyntax
             YieldStatementSyntax
-             YieldKeyword <466:471> [15:17:15:22] 'yield'
+             YieldKeyword <470:475> [15:17:15:22] 'yield'
              LiteralExpressionSyntax
-              StringLiteralToken <472:488> [15:23:15:39] '"Something else"'
-            SemicolonToken <488:489> [15:39:15:40] ';'
-         CloseBraceToken <494:495> [16:4:16:5] '}'
-       SemicolonToken <495:496> [16:5:16:6] ';'
-     CloseBraceToken <497:498> [17:0:17:1] '}'
- EndOfFileToken <499:499> [18:0:18:0] ''
+              StringLiteralToken <476:492> [15:23:15:39] '"Something else"'
+            SemicolonToken <492:493> [15:39:15:40] ';'
+         CloseBraceToken <498:499> [16:4:16:5] '}'
+       SemicolonToken <499:500> [16:5:16:6] ';'
+     CloseBraceToken <501:502> [17:0:17:1] '}'
+ EndOfFileToken <503:503> [18:0:18:0] ''

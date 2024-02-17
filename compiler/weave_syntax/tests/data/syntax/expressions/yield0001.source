@@ -12,7 +12,7 @@ function YieldInGenerator(max: Int32) -> Generator![Int32]
 {
     var i : Int32 = 0;
 
-    while i < max
+    while (i < max)
     {
         yield return i;
 

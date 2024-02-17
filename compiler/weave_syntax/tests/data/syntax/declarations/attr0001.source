@@ -1,7 +1,7 @@
 #[FunctionAttribute] public function Function()
 {
-    #[IfAttribute] if #[ConditionAttribute] true { }
-    #[WhileAttribute] while #[ConditionAttribute] true { }
+    #[IfAttribute] if #[ConditionAttribute] (true) { }
+    #[WhileAttribute] while #[ConditionAttribute] (true) { }
     #[YieldReturnAttribute] yield return 42;
     #[YieldBreakAttribute] yield break;
     #[ReturnAttribute] return 42;

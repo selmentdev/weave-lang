@@ -1,5 +1,19 @@
-error: Unexpected tokens
+error: Expected ')'
         --> <source>:21:19
          |
       21 |     if (x is E::A y)
          |                   ^
+error: Expected '{'
+        --> <source>:21:19
+         |
+      21 |     if (x is E::A y)
+         |                   ^
+error: Unexpected tokens
+        --> <source>:21:20
+         |
+      21 |     if (x is E::A y)
+         |                    ^
+      22 |     {
+         | ^^^^^
+      23 |         return y.x;
+         | ^^^^^^^^^^^^^^^^^^^

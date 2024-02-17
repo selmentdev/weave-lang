@@ -16,8 +16,10 @@ SourceFileSyntax
        ExpressionStatementSyntax
         IfExpressionSyntax
          IfKeyword <10:12> [1:8:1:10] 'if'
+         OpenParenToken <13:14> [1:11:1:12] missing ''
          IdentifierNameSyntax
           IdentifierToken <13:14> [1:11:1:12] 'y'
+         CloseParenToken <14:15> [1:12:1:13] missing ''
          CodeBlockSyntax
           OpenBraceToken <14:15> [1:12:1:13] missing ''
           SyntaxList
@@ -52,6 +54,8 @@ SourceFileSyntax
            ExpressionStatementSyntax
             IfExpressionSyntax
              IfKeyword <44:46> [7:4:7:6] 'if'
+             OpenParenToken <47:50> [7:7:7:10] missing ''
+             CloseParenToken <47:50> [7:7:7:10] missing ''
              CodeBlockSyntax
               OpenBraceToken <47:50> [7:7:7:10] missing ''
               SyntaxList

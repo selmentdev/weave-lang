@@ -115,11 +115,11 @@ namespace std::numerics
 {
     public function CheckedAdd![type T](a: T, b: T) -> Self
     {
-        if a > 0 && b > 0 && a > T::MaxValue - b {
+        if (a > 0 && b > 0 && a > T::MaxValue - b) {
             return None;
         }
 
-        if a < 0 && b < 0 && a < T::MinValue - b {
+        if (a < 0 && b < 0 && a < T::MinValue - b) {
             return None;
         }
 

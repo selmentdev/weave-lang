@@ -4,7 +4,7 @@ function YieldInIfExpression(x: Int32) -> Int32
     // this should be parsed as a return statement
     // if/match expressions must have a yield in all branches
     // semicolon after return is optional in this case?
-    return if x > 0 {
+    return if (x > 0) {
         yield 42;
     } else {
         yield 2137;
@@ -14,7 +14,7 @@ function YieldInIfExpression(x: Int32) -> Int32
 // yield in return match expressions
 function YieldInMatchExpression(x: Int32) -> Int32
 {
-    return match x
+    return match (x)
     {
         case 0:
         {

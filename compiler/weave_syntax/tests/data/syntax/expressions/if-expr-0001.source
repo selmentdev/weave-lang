@@ -1,6 +1,6 @@
 public function IfExpressionExample(x: Int32) -> Int32
 {
-    return if x > 42 {
+    return if (x > 42) {
         yield 42;
     } else {
         yield x;

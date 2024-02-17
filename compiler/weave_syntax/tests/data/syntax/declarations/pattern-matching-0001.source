@@ -7,7 +7,7 @@ enum E
 
 function A(x: E) -> r: bool
 {
-    return match x
+    return match (x)
     {
         case A(x, y): (x + y) < 21.0;
         case B(z): (z + 21) < 37.0;

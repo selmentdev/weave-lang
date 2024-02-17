@@ -10,7 +10,7 @@ namespace Core
     {
         public function ValueOrDefault(self: ref Self, defaultValue: ref T) -> ref T
         {
-            return match self
+            return match (self)
             {
                 case Some(value): {
                     yield value;
@@ -23,7 +23,7 @@ namespace Core
 
         public function Value(self: ref Self) -> ref T
         {
-            return match self
+            return match (self)
             {
                 case Some(value):   value;
                 case None:          bugcheck("Option is None");
@@ -41,7 +41,7 @@ namespace Core
     {
         public function ValueOrDefault(self: ref Self, defaultValue: ref T) -> T
         {
-            return match self
+            return match (self)
             {
                 case Ok(value): value;
                 case Error(_): defaultValue;

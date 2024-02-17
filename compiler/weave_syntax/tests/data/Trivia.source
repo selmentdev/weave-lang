@@ -4,7 +4,7 @@ public function TryReadTrivia(
     trivia: out Trivia          // Comment for argument 'trivia'
 )
 {
-    if let Some(comment) /* for Some() */ = /* for TryReadComment() */ self.TryReadComment() {
+    if (self.TryReadComment() /* for Some() */ is /* for TryReadComment() */ Some(comment)) {
         trivia = Trivia.Comment(comment);
     } else {
         /* before assignment */ trivia = Trivia.None /* after assignment */

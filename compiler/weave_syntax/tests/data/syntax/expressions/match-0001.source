@@ -1,11 +1,11 @@
 public function MatchExpressionExample(x: Int32, y: Int32) -> String
 {
-    match x
+    match (x)
     {
     case 0: return "One";
     case 1: return "Two";
     case 2:
-        match y
+        match (y)
         {
             case 0: return "Two and Zero";
             case 1: return "Two and One";
@@ -19,7 +19,7 @@ public function MatchExpressionExample(x: Int32, y: Int32) -> String
 
 public function WithErrors(x: Int32) -> Int32
 {
-    match x
+    match (x)
     {
     case 0: return 0;
     case 1: return 1;

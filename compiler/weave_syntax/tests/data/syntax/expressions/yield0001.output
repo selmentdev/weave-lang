@@ -129,57 +129,59 @@ SourceFileSyntax
       CodeBlockItemSyntax
        WhileStatementSyntax
         WhileKeyword <295:300> [14:4:14:9] 'while'
+        OpenParenToken <301:302> [14:10:14:11] '('
         BinaryExpressionSyntax
          IdentifierNameSyntax
-          IdentifierToken <301:302> [14:10:14:11] 'i'
-         LessThanToken <303:304> [14:12:14:13] '<'
+          IdentifierToken <302:303> [14:11:14:12] 'i'
+         LessThanToken <304:305> [14:13:14:14] '<'
          IdentifierNameSyntax
-          IdentifierToken <305:308> [14:14:14:17] 'max'
+          IdentifierToken <306:309> [14:15:14:18] 'max'
+        CloseParenToken <309:310> [14:18:14:19] ')'
         CodeBlockSyntax
-         OpenBraceToken <313:314> [15:4:15:5] '{'
+         OpenBraceToken <315:316> [15:4:15:5] '{'
          SyntaxList
           CodeBlockItemSyntax
            YieldStatementSyntax
-            YieldKeyword <323:328> [16:8:16:13] 'yield'
-            ReturnKeyword <329:335> [16:14:16:20] 'return'
+            YieldKeyword <325:330> [16:8:16:13] 'yield'
+            ReturnKeyword <331:337> [16:14:16:20] 'return'
             IdentifierNameSyntax
-             IdentifierToken <336:337> [16:21:16:22] 'i'
-           SemicolonToken <337:338> [16:22:16:23] ';'
+             IdentifierToken <338:339> [16:21:16:22] 'i'
+           SemicolonToken <339:340> [16:22:16:23] ';'
           CodeBlockItemSyntax
            ExpressionStatementSyntax
             UnaryExpressionSyntax
-             PlusPlusToken <348:350> [18:8:18:10] '++'
+             PlusPlusToken <350:352> [18:8:18:10] '++'
              IdentifierNameSyntax
-              IdentifierToken <350:351> [18:10:18:11] 'i'
-           SemicolonToken <351:352> [18:11:18:12] ';'
-         CloseBraceToken <357:358> [19:4:19:5] '}'
-     CloseBraceToken <359:360> [20:0:20:1] '}'
+              IdentifierToken <352:353> [18:10:18:11] 'i'
+           SemicolonToken <353:354> [18:11:18:12] ';'
+         CloseBraceToken <359:360> [19:4:19:5] '}'
+     CloseBraceToken <361:362> [20:0:20:1] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
-    FunctionKeyword <392:400> [23:0:23:8] 'function'
+    FunctionKeyword <394:402> [23:0:23:8] 'function'
     IdentifierNameSyntax
-     IdentifierToken <401:415> [23:9:23:23] 'EmptyGenerator'
+     IdentifierToken <403:417> [23:9:23:23] 'EmptyGenerator'
     ParameterListSyntax
-     OpenParenToken <415:416> [23:23:23:24] '('
-     CloseParenToken <416:417> [23:24:23:25] ')'
+     OpenParenToken <417:418> [23:23:23:24] '('
+     CloseParenToken <418:419> [23:24:23:25] ')'
     ReturnTypeClauseSyntax
-     MinusGreaterThanToken <418:420> [23:26:23:28] '->'
+     MinusGreaterThanToken <420:422> [23:26:23:28] '->'
      GenericNameSyntax
-      IdentifierToken <421:430> [23:29:23:38] 'Generator'
+      IdentifierToken <423:432> [23:29:23:38] 'Generator'
       GenericArgumentsSyntax
-       ExclamationOpenBracketToken <430:432> [23:38:23:40] '!['
+       ExclamationOpenBracketToken <432:434> [23:38:23:40] '!['
        SyntaxList
         GenericArgumentSyntax
          IdentifierNameSyntax
-          IdentifierToken <432:437> [23:40:23:45] 'Int32'
-       CloseBracketToken <437:438> [23:45:23:46] ']'
+          IdentifierToken <434:439> [23:40:23:45] 'Int32'
+       CloseBracketToken <439:440> [23:45:23:46] ']'
     CodeBlockSyntax
-     OpenBraceToken <439:440> [24:0:24:1] '{'
+     OpenBraceToken <441:442> [24:0:24:1] '{'
      SyntaxList
       CodeBlockItemSyntax
        YieldStatementSyntax
-        YieldKeyword <445:450> [25:4:25:9] 'yield'
-        BreakKeyword <451:456> [25:10:25:15] 'break'
-       SemicolonToken <456:457> [25:15:25:16] ';'
-     CloseBraceToken <458:459> [26:0:26:1] '}'
- EndOfFileToken <460:460> [27:0:27:0] ''
+        YieldKeyword <447:452> [25:4:25:9] 'yield'
+        BreakKeyword <453:458> [25:10:25:15] 'break'
+       SemicolonToken <458:459> [25:15:25:16] ';'
+     CloseBraceToken <460:461> [26:0:26:1] '}'
+ EndOfFileToken <462:462> [27:0:27:0] ''

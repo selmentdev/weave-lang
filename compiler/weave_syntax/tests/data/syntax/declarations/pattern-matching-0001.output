@@ -83,166 +83,165 @@ SourceFileSyntax
         ReturnKeyword <111:117> [9:4:9:10] 'return'
         MatchExpressionSyntax
          MatchKeyword <118:123> [9:11:9:16] 'match'
+         OpenParenToken <124:125> [9:17:9:18] '('
          IdentifierNameSyntax
-          IdentifierToken <124:125> [9:17:9:18] 'x'
-         OpenBraceToken <131:132> [10:4:10:5] '{'
+          IdentifierToken <125:126> [9:18:9:19] 'x'
+         CloseParenToken <126:127> [9:19:9:20] ')'
+         OpenBraceToken <133:134> [10:4:10:5] '{'
          SyntaxList
           MatchCaseClauseSyntax
-           CaseKeyword <142:146> [11:8:11:12] 'case'
+           CaseKeyword <144:148> [11:8:11:12] 'case'
            IdentifierPatternSyntax
             IdentifierNameSyntax
-             IdentifierToken <147:148> [11:13:11:14] 'A'
+             IdentifierToken <149:150> [11:13:11:14] 'A'
             TuplePatternSyntax
-             OpenParenToken <148:149> [11:14:11:15] '('
+             OpenParenToken <150:151> [11:14:11:15] '('
              SyntaxList
               TuplePatternItemSyntax
                IdentifierPatternSyntax
                 IdentifierNameSyntax
-                 IdentifierToken <149:150> [11:15:11:16] 'x'
-               CommaToken <150:151> [11:16:11:17] ','
+                 IdentifierToken <151:152> [11:15:11:16] 'x'
+               CommaToken <152:153> [11:16:11:17] ','
               TuplePatternItemSyntax
                IdentifierPatternSyntax
                 IdentifierNameSyntax
-                 IdentifierToken <152:153> [11:18:11:19] 'y'
-             CloseParenToken <153:154> [11:19:11:20] ')'
-           ColonToken <154:155> [11:20:11:21] ':'
+                 IdentifierToken <154:155> [11:18:11:19] 'y'
+             CloseParenToken <155:156> [11:19:11:20] ')'
+           ColonToken <156:157> [11:20:11:21] ':'
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              BinaryExpressionSyntax
               TupleExpressionSyntax
-               OpenParenToken <156:157> [11:22:11:23] '('
+               OpenParenToken <158:159> [11:22:11:23] '('
                SyntaxList
                 LabeledExpressionSyntax
                  BinaryExpressionSyntax
                   IdentifierNameSyntax
-                   IdentifierToken <157:158> [11:23:11:24] 'x'
-                  PlusToken <159:160> [11:25:11:26] '+'
+                   IdentifierToken <159:160> [11:23:11:24] 'x'
+                  PlusToken <161:162> [11:25:11:26] '+'
                   IdentifierNameSyntax
-                   IdentifierToken <161:162> [11:27:11:28] 'y'
-               CloseParenToken <162:163> [11:28:11:29] ')'
-              LessThanToken <164:165> [11:30:11:31] '<'
+                   IdentifierToken <163:164> [11:27:11:28] 'y'
+               CloseParenToken <164:165> [11:28:11:29] ')'
+              LessThanToken <166:167> [11:30:11:31] '<'
               LiteralExpressionSyntax
-               FloatLiteralToken <166:170> [11:32:11:36] '21.0'
-            SemicolonToken <170:171> [11:36:11:37] ';'
+               FloatLiteralToken <168:172> [11:32:11:36] '21.0'
+            SemicolonToken <172:173> [11:36:11:37] ';'
           MatchCaseClauseSyntax
-           CaseKeyword <181:185> [12:8:12:12] 'case'
+           CaseKeyword <183:187> [12:8:12:12] 'case'
            IdentifierPatternSyntax
             IdentifierNameSyntax
-             IdentifierToken <186:187> [12:13:12:14] 'B'
+             IdentifierToken <188:189> [12:13:12:14] 'B'
             TuplePatternSyntax
-             OpenParenToken <187:188> [12:14:12:15] '('
+             OpenParenToken <189:190> [12:14:12:15] '('
              SyntaxList
               TuplePatternItemSyntax
                IdentifierPatternSyntax
                 IdentifierNameSyntax
-                 IdentifierToken <188:189> [12:15:12:16] 'z'
-             CloseParenToken <189:190> [12:16:12:17] ')'
-           ColonToken <190:191> [12:17:12:18] ':'
+                 IdentifierToken <190:191> [12:15:12:16] 'z'
+             CloseParenToken <191:192> [12:16:12:17] ')'
+           ColonToken <192:193> [12:17:12:18] ':'
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              BinaryExpressionSyntax
               TupleExpressionSyntax
-               OpenParenToken <192:193> [12:19:12:20] '('
+               OpenParenToken <194:195> [12:19:12:20] '('
                SyntaxList
                 LabeledExpressionSyntax
                  BinaryExpressionSyntax
                   IdentifierNameSyntax
-                   IdentifierToken <193:194> [12:20:12:21] 'z'
-                  PlusToken <195:196> [12:22:12:23] '+'
+                   IdentifierToken <195:196> [12:20:12:21] 'z'
+                  PlusToken <197:198> [12:22:12:23] '+'
                   LiteralExpressionSyntax
-                   IntegerLiteralToken <197:199> [12:24:12:26] '21'
-               CloseParenToken <199:200> [12:26:12:27] ')'
-              LessThanToken <201:202> [12:28:12:29] '<'
+                   IntegerLiteralToken <199:201> [12:24:12:26] '21'
+               CloseParenToken <201:202> [12:26:12:27] ')'
+              LessThanToken <203:204> [12:28:12:29] '<'
               LiteralExpressionSyntax
-               FloatLiteralToken <203:207> [12:30:12:34] '37.0'
-            SemicolonToken <207:208> [12:34:12:35] ';'
+               FloatLiteralToken <205:209> [12:30:12:34] '37.0'
+            SemicolonToken <209:210> [12:34:12:35] ';'
           MatchCaseClauseSyntax
-           CaseKeyword <218:222> [13:8:13:12] 'case'
+           CaseKeyword <220:224> [13:8:13:12] 'case'
            IdentifierPatternSyntax
             IdentifierNameSyntax
-             IdentifierToken <223:224> [13:13:13:14] 'C'
-           ColonToken <224:225> [13:14:13:15] ':'
+             IdentifierToken <225:226> [13:13:13:14] 'C'
+           ColonToken <226:227> [13:14:13:15] ':'
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              LiteralExpressionSyntax
-              TrueKeyword <226:230> [13:16:13:20] 'true'
-            SemicolonToken <230:231> [13:20:13:21] ';'
+              TrueKeyword <228:232> [13:16:13:20] 'true'
+            SemicolonToken <232:233> [13:20:13:21] ';'
           MatchDefaultClauseSyntax
-           DefaultKeyword <241:248> [14:8:14:15] 'default'
-           ColonToken <248:249> [14:15:14:16] ':'
+           DefaultKeyword <243:250> [14:8:14:15] 'default'
+           ColonToken <250:251> [14:15:14:16] ':'
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              LiteralExpressionSyntax
-              FalseKeyword <250:255> [14:17:14:22] 'false'
-            SemicolonToken <255:256> [14:22:14:23] ';'
-         CloseBraceToken <262:263> [15:4:15:5] '}'
-     CloseBraceToken <265:266> [16:0:16:1] '}'
+              FalseKeyword <252:257> [14:17:14:22] 'false'
+            SemicolonToken <257:258> [14:22:14:23] ';'
+         CloseBraceToken <264:265> [15:4:15:5] '}'
+     CloseBraceToken <267:268> [16:0:16:1] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
-    FunctionKeyword <270:278> [18:0:18:8] 'function'
+    FunctionKeyword <272:280> [18:0:18:8] 'function'
     IdentifierNameSyntax
-     IdentifierToken <279:280> [18:9:18:10] 'B'
+     IdentifierToken <281:282> [18:9:18:10] 'B'
     ParameterListSyntax
-     OpenParenToken <280:281> [18:10:18:11] '('
+     OpenParenToken <282:283> [18:10:18:11] '('
      SyntaxList
       ParameterSyntax
        IdentifierNameSyntax
-        IdentifierToken <281:282> [18:11:18:12] 'x'
+        IdentifierToken <283:284> [18:11:18:12] 'x'
        TypeClauseSyntax
-        ColonToken <282:283> [18:12:18:13] ':'
+        ColonToken <284:285> [18:12:18:13] ':'
         IdentifierNameSyntax
-         IdentifierToken <284:285> [18:14:18:15] 'E'
-     CloseParenToken <285:286> [18:15:18:16] ')'
+         IdentifierToken <286:287> [18:14:18:15] 'E'
+     CloseParenToken <287:288> [18:15:18:16] ')'
     CodeBlockSyntax
-     OpenBraceToken <288:289> [19:0:19:1] '{'
+     OpenBraceToken <290:291> [19:0:19:1] '{'
      SyntaxList
       CodeBlockItemSyntax
        ExpressionStatementSyntax
         IfExpressionSyntax
-         IfKeyword <295:297> [20:4:20:6] 'if'
-         TupleExpressionSyntax
-          OpenParenToken <298:299> [20:7:20:8] '('
-          SyntaxList
-           LabeledExpressionSyntax
-            BinaryExpressionSyntax
-             IdentifierNameSyntax
-              IdentifierToken <299:300> [20:8:20:9] 'x'
-             IsKeyword <301:303> [20:10:20:12] 'is'
-             QualifiedNameSyntax
-              IdentifierNameSyntax
-               IdentifierToken <304:305> [20:13:20:14] 'E'
-              ColonColonToken <305:307> [20:14:20:16] '::'
-              IdentifierNameSyntax
-               IdentifierToken <307:308> [20:16:20:17] 'A'
-          UnexpectedNodesSyntax
-           SyntaxList
-            IdentifierToken <309:310> [20:18:20:19] 'y'
-          CloseParenToken <310:311> [20:19:20:20] ')'
+         IfKeyword <297:299> [20:4:20:6] 'if'
+         OpenParenToken <300:301> [20:7:20:8] '('
+         BinaryExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <301:302> [20:8:20:9] 'x'
+          IsKeyword <303:305> [20:10:20:12] 'is'
+          QualifiedNameSyntax
+           IdentifierNameSyntax
+            IdentifierToken <306:307> [20:13:20:14] 'E'
+           ColonColonToken <307:309> [20:14:20:16] '::'
+           IdentifierNameSyntax
+            IdentifierToken <309:310> [20:16:20:17] 'A'
+         CloseParenToken <311:312> [20:18:20:19] missing ''
          CodeBlockSyntax
-          OpenBraceToken <317:318> [21:4:21:5] '{'
+          OpenBraceToken <311:312> [20:18:20:19] missing ''
           SyntaxList
            CodeBlockItemSyntax
-            ReturnStatementSyntax
-             ReturnKeyword <328:334> [22:8:22:14] 'return'
-             MemberAccessExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <335:336> [22:15:22:16] 'y'
-              DotToken <336:337> [22:16:22:17] '.'
-              IdentifierNameSyntax
-               IdentifierToken <337:338> [22:17:22:18] 'x'
-            SemicolonToken <338:339> [22:18:22:19] ';'
-          CloseBraceToken <345:346> [23:4:23:5] '}'
+            ExpressionStatementSyntax
+             IdentifierNameSyntax
+              IdentifierToken <311:312> [20:18:20:19] 'y'
+          UnexpectedNodesSyntax
+           SyntaxList
+            CloseParenToken <312:313> [20:19:20:20] ')'
+            OpenBraceToken <319:320> [21:4:21:5] '{'
+            ReturnKeyword <330:336> [22:8:22:14] 'return'
+            IdentifierToken <337:338> [22:15:22:16] 'y'
+            DotToken <338:339> [22:16:22:17] '.'
+            IdentifierToken <339:340> [22:17:22:18] 'x'
+            SemicolonToken <340:341> [22:18:22:19] ';'
+          CloseBraceToken <347:348> [23:4:23:5] '}'
          ElseClauseSyntax
-          ElseKeyword <352:356> [24:4:24:8] 'else'
+          ElseKeyword <354:358> [24:4:24:8] 'else'
           CodeBlockSyntax
-           OpenBraceToken <362:363> [25:4:25:5] '{'
+           OpenBraceToken <364:365> [25:4:25:5] '{'
            SyntaxList
             CodeBlockItemSyntax
              ReturnStatementSyntax
-              ReturnKeyword <373:379> [26:8:26:14] 'return'
+              ReturnKeyword <375:381> [26:8:26:14] 'return'
               LiteralExpressionSyntax
-               FloatLiteralToken <380:383> [26:15:26:18] '0.0'
-             SemicolonToken <383:384> [26:18:26:19] ';'
-           CloseBraceToken <390:391> [27:4:27:5] '}'
-     CloseBraceToken <393:394> [28:0:28:1] '}'
- EndOfFileToken <396:396> [29:0:29:0] ''
+               FloatLiteralToken <382:385> [26:15:26:18] '0.0'
+             SemicolonToken <385:386> [26:18:26:19] ';'
+           CloseBraceToken <392:393> [27:4:27:5] '}'
+     CloseBraceToken <395:396> [28:0:28:1] '}'
+ EndOfFileToken <398:398> [29:0:29:0] ''

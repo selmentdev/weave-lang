@@ -482,7 +482,9 @@ namespace weave::syntax
 
         this->Dispatch(node->WhileKeyword);
         this->Dispatch(node->ConditionAttributes.GetNode());
+        this->Dispatch(node->OpenParenToken);
         this->Dispatch(node->Condition);
+        this->Dispatch(node->CloseParenToken);
         this->Dispatch(node->Body);
 
         --this->Depth;
@@ -985,7 +987,9 @@ namespace weave::syntax
 
         this->Dispatch(node->IfKeyword);
         this->Dispatch(node->ConditionAttributes.GetNode());
+        this->Dispatch(node->OpenParenToken);
         this->Dispatch(node->Condition);
+        this->Dispatch(node->CloseParenToken);
         this->Dispatch(node->Body);
         this->Dispatch(node->ElseClause);
 
@@ -1029,7 +1033,9 @@ namespace weave::syntax
 
         this->Dispatch(node->MatchKeyword);
         this->Dispatch(node->ConditionAttributes.GetNode());
+        this->Dispatch(node->OpenParenToken);
         this->Dispatch(node->Condition);
+        this->Dispatch(node->CloseParenToken);
 
         this->Dispatch(node->BeforeLeftBrace);
         this->Dispatch(node->LeftBrace);

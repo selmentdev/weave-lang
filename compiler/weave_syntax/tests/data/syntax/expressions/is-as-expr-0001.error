@@ -1,8 +1,20 @@
-error: Unexpected tokens
+error: Expected ')'
         --> <source>:4:12
          |
        4 | if (x is Y z) {
          |            ^
+error: Expected '{'
+        --> <source>:4:12
+         |
+       4 | if (x is Y z) {
+         |            ^
+error: Unexpected tokens
+        --> <source>:4:13
+         |
+       4 | if (x is Y z) {
+         |             ^^^
+       5 |     consume(z.a);
+         | ^^^^^^^^^^^^^^^^^
 error: Expected '[token:identifier]'
         --> <source>:8:17
          |

@@ -1759,7 +1759,9 @@ namespace weave::syntax
         IfExpressionSyntax* result = this->_factory->CreateNode<IfExpressionSyntax>();
         result->IfKeyword = this->Match(SyntaxKind::IfKeyword);
         result->ConditionAttributes = this->ParseAttributesList();
+        result->OpenParenToken = this->Match(SyntaxKind::OpenParenToken);
         result->Condition = this->ParseExpression();
+        result->CloseParenToken = this->Match(SyntaxKind::CloseParenToken);
         result->Body = this->ParseCodeBlock();
         result->ElseClause = this->ParseOptionalElseClause();
 
@@ -1773,7 +1775,9 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->WhileKeyword = this->Match(SyntaxKind::WhileKeyword);
         result->ConditionAttributes = this->ParseAttributesList();
+        result->OpenParenToken = this->Match(SyntaxKind::OpenParenToken);
         result->Condition = this->ParseExpression();
+        result->CloseParenToken = this->Match(SyntaxKind::CloseParenToken);
         result->Body = this->ParseCodeBlock();
         return result;
     }
@@ -2079,7 +2083,9 @@ namespace weave::syntax
         MatchExpressionSyntax* result = this->_factory->CreateNode<MatchExpressionSyntax>();
         result->MatchKeyword = this->Match(SyntaxKind::MatchKeyword);
         result->ConditionAttributes = this->ParseAttributesList();
+        result->OpenParenToken = this->Match(SyntaxKind::OpenParenToken);
         result->Condition = this->ParseExpression();
+        result->CloseParenToken = this->Match(SyntaxKind::CloseParenToken);
         this->MatchUntil(result->LeftBrace, result->BeforeLeftBrace, SyntaxKind::OpenBraceToken);
 
         {

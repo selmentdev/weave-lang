@@ -1,10 +1,10 @@
 // attributes on if-else expressions
 
-if #[Likely] x == 42
+if #[Likely] (x == 42)
 {
     a();
 }
-else if #[Unlikely] x == 43
+else if #[Unlikely] (x == 43)
 {
     b();
 }
@@ -15,7 +15,7 @@ else
 
 // loop condition expressions
 
-while #[Likely] x < 42
+while #[Likely] (x < 42)
 {
     a();
     ++x;

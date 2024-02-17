@@ -28,118 +28,122 @@ SourceFileSyntax
         ReturnKeyword <257:263> [6:4:6:10] 'return'
         IfExpressionSyntax
          IfKeyword <264:266> [6:11:6:13] 'if'
+         OpenParenToken <267:268> [6:14:6:15] '('
          BinaryExpressionSyntax
           IdentifierNameSyntax
-           IdentifierToken <267:268> [6:14:6:15] 'x'
-          GreaterThanToken <269:270> [6:16:6:17] '>'
+           IdentifierToken <268:269> [6:15:6:16] 'x'
+          GreaterThanToken <270:271> [6:17:6:18] '>'
           LiteralExpressionSyntax
-           IntegerLiteralToken <271:272> [6:18:6:19] '0'
+           IntegerLiteralToken <272:273> [6:19:6:20] '0'
+         CloseParenToken <273:274> [6:20:6:21] ')'
          CodeBlockSyntax
-          OpenBraceToken <273:274> [6:20:6:21] '{'
+          OpenBraceToken <275:276> [6:22:6:23] '{'
           SyntaxList
            CodeBlockItemSyntax
             YieldStatementSyntax
-             YieldKeyword <283:288> [7:8:7:13] 'yield'
+             YieldKeyword <285:290> [7:8:7:13] 'yield'
              LiteralExpressionSyntax
-              IntegerLiteralToken <289:291> [7:14:7:16] '42'
-            SemicolonToken <291:292> [7:16:7:17] ';'
-          CloseBraceToken <297:298> [8:4:8:5] '}'
+              IntegerLiteralToken <291:293> [7:14:7:16] '42'
+            SemicolonToken <293:294> [7:16:7:17] ';'
+          CloseBraceToken <299:300> [8:4:8:5] '}'
          ElseClauseSyntax
-          ElseKeyword <299:303> [8:6:8:10] 'else'
+          ElseKeyword <301:305> [8:6:8:10] 'else'
           CodeBlockSyntax
-           OpenBraceToken <304:305> [8:11:8:12] '{'
+           OpenBraceToken <306:307> [8:11:8:12] '{'
            SyntaxList
             CodeBlockItemSyntax
              YieldStatementSyntax
-              YieldKeyword <314:319> [9:8:9:13] 'yield'
+              YieldKeyword <316:321> [9:8:9:13] 'yield'
               LiteralExpressionSyntax
-               IntegerLiteralToken <320:324> [9:14:9:18] '2137'
-             SemicolonToken <324:325> [9:18:9:19] ';'
-           CloseBraceToken <330:331> [10:4:10:5] '}'
-       SemicolonToken <331:332> [10:5:10:6] ';'
-     CloseBraceToken <333:334> [11:0:11:1] '}'
+               IntegerLiteralToken <322:326> [9:14:9:18] '2137'
+             SemicolonToken <326:327> [9:18:9:19] ';'
+           CloseBraceToken <332:333> [10:4:10:5] '}'
+       SemicolonToken <333:334> [10:5:10:6] ';'
+     CloseBraceToken <335:336> [11:0:11:1] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
-    FunctionKeyword <373:381> [14:0:14:8] 'function'
+    FunctionKeyword <375:383> [14:0:14:8] 'function'
     IdentifierNameSyntax
-     IdentifierToken <382:404> [14:9:14:31] 'YieldInMatchExpression'
+     IdentifierToken <384:406> [14:9:14:31] 'YieldInMatchExpression'
     ParameterListSyntax
-     OpenParenToken <404:405> [14:31:14:32] '('
+     OpenParenToken <406:407> [14:31:14:32] '('
      SyntaxList
       ParameterSyntax
        IdentifierNameSyntax
-        IdentifierToken <405:406> [14:32:14:33] 'x'
+        IdentifierToken <407:408> [14:32:14:33] 'x'
        TypeClauseSyntax
-        ColonToken <406:407> [14:33:14:34] ':'
+        ColonToken <408:409> [14:33:14:34] ':'
         IdentifierNameSyntax
-         IdentifierToken <408:413> [14:35:14:40] 'Int32'
-     CloseParenToken <413:414> [14:40:14:41] ')'
+         IdentifierToken <410:415> [14:35:14:40] 'Int32'
+     CloseParenToken <415:416> [14:40:14:41] ')'
     ReturnTypeClauseSyntax
-     MinusGreaterThanToken <415:417> [14:42:14:44] '->'
+     MinusGreaterThanToken <417:419> [14:42:14:44] '->'
      IdentifierNameSyntax
-      IdentifierToken <418:423> [14:45:14:50] 'Int32'
+      IdentifierToken <420:425> [14:45:14:50] 'Int32'
     CodeBlockSyntax
-     OpenBraceToken <424:425> [15:0:15:1] '{'
+     OpenBraceToken <426:427> [15:0:15:1] '{'
      SyntaxList
       CodeBlockItemSyntax
        ReturnStatementSyntax
-        ReturnKeyword <430:436> [16:4:16:10] 'return'
+        ReturnKeyword <432:438> [16:4:16:10] 'return'
         MatchExpressionSyntax
-         MatchKeyword <437:442> [16:11:16:16] 'match'
+         MatchKeyword <439:444> [16:11:16:16] 'match'
+         OpenParenToken <445:446> [16:17:16:18] '('
          IdentifierNameSyntax
-          IdentifierToken <443:444> [16:17:16:18] 'x'
-         OpenBraceToken <449:450> [17:4:17:5] '{'
+          IdentifierToken <446:447> [16:18:16:19] 'x'
+         CloseParenToken <447:448> [16:19:16:20] ')'
+         OpenBraceToken <453:454> [17:4:17:5] '{'
          SyntaxList
           MatchCaseClauseSyntax
-           CaseKeyword <459:463> [18:8:18:12] 'case'
+           CaseKeyword <463:467> [18:8:18:12] 'case'
            LiteralPatternSyntax
-            IntegerLiteralToken <464:465> [18:13:18:14] '0'
-           ColonToken <465:466> [18:14:18:15] ':'
+            IntegerLiteralToken <468:469> [18:13:18:14] '0'
+           ColonToken <469:470> [18:14:18:15] ':'
            CodeBlockItemSyntax
             BlockStatementSyntax
              CodeBlockSyntax
-              OpenBraceToken <475:476> [19:8:19:9] '{'
+              OpenBraceToken <479:480> [19:8:19:9] '{'
               SyntaxList
                CodeBlockItemSyntax
                 YieldStatementSyntax
-                 YieldKeyword <489:494> [20:12:20:17] 'yield'
+                 YieldKeyword <493:498> [20:12:20:17] 'yield'
                  LiteralExpressionSyntax
-                  IntegerLiteralToken <495:497> [20:18:20:20] '42'
-                SemicolonToken <497:498> [20:20:20:21] ';'
-              CloseBraceToken <507:508> [21:8:21:9] '}'
+                  IntegerLiteralToken <499:501> [20:18:20:20] '42'
+                SemicolonToken <501:502> [20:20:20:21] ';'
+              CloseBraceToken <511:512> [21:8:21:9] '}'
           MatchCaseClauseSyntax
-           CaseKeyword <517:521> [22:8:22:12] 'case'
+           CaseKeyword <521:525> [22:8:22:12] 'case'
            LiteralPatternSyntax
-            IntegerLiteralToken <522:523> [22:13:22:14] '1'
-           ColonToken <523:524> [22:14:22:15] ':'
+            IntegerLiteralToken <526:527> [22:13:22:14] '1'
+           ColonToken <527:528> [22:14:22:15] ':'
            CodeBlockItemSyntax
             BlockStatementSyntax
              CodeBlockSyntax
-              OpenBraceToken <533:534> [23:8:23:9] '{'
+              OpenBraceToken <537:538> [23:8:23:9] '{'
               SyntaxList
                CodeBlockItemSyntax
                 YieldStatementSyntax
-                 YieldKeyword <547:552> [24:12:24:17] 'yield'
+                 YieldKeyword <551:556> [24:12:24:17] 'yield'
                  LiteralExpressionSyntax
-                  IntegerLiteralToken <553:555> [24:18:24:20] '69'
-                SemicolonToken <555:556> [24:20:24:21] ';'
-              CloseBraceToken <565:566> [25:8:25:9] '}'
+                  IntegerLiteralToken <557:559> [24:18:24:20] '69'
+                SemicolonToken <559:560> [24:20:24:21] ';'
+              CloseBraceToken <569:570> [25:8:25:9] '}'
           MatchDefaultClauseSyntax
-           DefaultKeyword <575:582> [26:8:26:15] 'default'
-           ColonToken <582:583> [26:15:26:16] ':'
+           DefaultKeyword <579:586> [26:8:26:15] 'default'
+           ColonToken <586:587> [26:15:26:16] ':'
            CodeBlockItemSyntax
             BlockStatementSyntax
              CodeBlockSyntax
-              OpenBraceToken <592:593> [27:8:27:9] '{'
+              OpenBraceToken <596:597> [27:8:27:9] '{'
               SyntaxList
                CodeBlockItemSyntax
                 YieldStatementSyntax
-                 YieldKeyword <606:611> [28:12:28:17] 'yield'
+                 YieldKeyword <610:615> [28:12:28:17] 'yield'
                  LiteralExpressionSyntax
-                  IntegerLiteralToken <612:616> [28:18:28:22] '2137'
-                SemicolonToken <616:617> [28:22:28:23] ';'
-              CloseBraceToken <626:627> [29:8:29:9] '}'
-         CloseBraceToken <632:633> [30:4:30:5] '}'
-       SemicolonToken <633:634> [30:5:30:6] ';'
-     CloseBraceToken <635:636> [31:0:31:1] '}'
- EndOfFileToken <637:637> [32:0:32:0] ''
+                  IntegerLiteralToken <616:620> [28:18:28:22] '2137'
+                SemicolonToken <620:621> [28:22:28:23] ';'
+              CloseBraceToken <630:631> [29:8:29:9] '}'
+         CloseBraceToken <636:637> [30:4:30:5] '}'
+       SemicolonToken <637:638> [30:5:30:6] ';'
+     CloseBraceToken <639:640> [31:0:31:1] '}'
+ EndOfFileToken <641:641> [32:0:32:0] ''

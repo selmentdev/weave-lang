@@ -1,5 +1,5 @@
-#[foo] if x == 42 {
-} else if y == 2137 {
-} else if z == 222 {
+#[foo] if (x == 42) {
+} else if (y == 2137) {
+} else if (z == 222) {
 } else {
 }

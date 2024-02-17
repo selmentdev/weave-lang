@@ -1118,108 +1118,112 @@ SourceFileSyntax
            ExpressionStatementSyntax
             IfExpressionSyntax
              IfKeyword <2500:2502> [117:8:117:10] 'if'
+             OpenParenToken <2503:2504> [117:11:117:12] '('
              BinaryExpressionSyntax
               BinaryExpressionSyntax
                BinaryExpressionSyntax
                 IdentifierNameSyntax
-                 IdentifierToken <2503:2504> [117:11:117:12] 'a'
-                GreaterThanToken <2505:2506> [117:13:117:14] '>'
+                 IdentifierToken <2504:2505> [117:12:117:13] 'a'
+                GreaterThanToken <2506:2507> [117:14:117:15] '>'
                 LiteralExpressionSyntax
-                 IntegerLiteralToken <2507:2508> [117:15:117:16] '0'
-               AmpersandAmpersandToken <2509:2511> [117:17:117:19] '&&'
+                 IntegerLiteralToken <2508:2509> [117:16:117:17] '0'
+               AmpersandAmpersandToken <2510:2512> [117:18:117:20] '&&'
                BinaryExpressionSyntax
                 IdentifierNameSyntax
-                 IdentifierToken <2512:2513> [117:20:117:21] 'b'
-                GreaterThanToken <2514:2515> [117:22:117:23] '>'
+                 IdentifierToken <2513:2514> [117:21:117:22] 'b'
+                GreaterThanToken <2515:2516> [117:23:117:24] '>'
                 LiteralExpressionSyntax
-                 IntegerLiteralToken <2516:2517> [117:24:117:25] '0'
-              AmpersandAmpersandToken <2518:2520> [117:26:117:28] '&&'
+                 IntegerLiteralToken <2517:2518> [117:25:117:26] '0'
+              AmpersandAmpersandToken <2519:2521> [117:27:117:29] '&&'
               BinaryExpressionSyntax
                IdentifierNameSyntax
-                IdentifierToken <2521:2522> [117:29:117:30] 'a'
-               GreaterThanToken <2523:2524> [117:31:117:32] '>'
+                IdentifierToken <2522:2523> [117:30:117:31] 'a'
+               GreaterThanToken <2524:2525> [117:32:117:33] '>'
                BinaryExpressionSyntax
                 QualifiedNameSyntax
                  IdentifierNameSyntax
-                  IdentifierToken <2525:2526> [117:33:117:34] 'T'
-                 ColonColonToken <2526:2528> [117:34:117:36] '::'
+                  IdentifierToken <2526:2527> [117:34:117:35] 'T'
+                 ColonColonToken <2527:2529> [117:35:117:37] '::'
                  IdentifierNameSyntax
-                  IdentifierToken <2528:2536> [117:36:117:44] 'MaxValue'
-                MinusToken <2537:2538> [117:45:117:46] '-'
+                  IdentifierToken <2529:2537> [117:37:117:45] 'MaxValue'
+                MinusToken <2538:2539> [117:46:117:47] '-'
                 IdentifierNameSyntax
-                 IdentifierToken <2539:2540> [117:47:117:48] 'b'
+                 IdentifierToken <2540:2541> [117:48:117:49] 'b'
+             CloseParenToken <2541:2542> [117:49:117:50] ')'
              CodeBlockSyntax
-              OpenBraceToken <2541:2542> [117:49:117:50] '{'
+              OpenBraceToken <2543:2544> [117:51:117:52] '{'
               SyntaxList
                CodeBlockItemSyntax
                 ReturnStatementSyntax
-                 ReturnKeyword <2555:2561> [118:12:118:18] 'return'
+                 ReturnKeyword <2557:2563> [118:12:118:18] 'return'
                  IdentifierNameSyntax
-                  IdentifierToken <2562:2566> [118:19:118:23] 'None'
-                SemicolonToken <2566:2567> [118:23:118:24] ';'
-              CloseBraceToken <2576:2577> [119:8:119:9] '}'
+                  IdentifierToken <2564:2568> [118:19:118:23] 'None'
+                SemicolonToken <2568:2569> [118:23:118:24] ';'
+              CloseBraceToken <2578:2579> [119:8:119:9] '}'
           CodeBlockItemSyntax
            ExpressionStatementSyntax
             IfExpressionSyntax
-             IfKeyword <2587:2589> [121:8:121:10] 'if'
+             IfKeyword <2589:2591> [121:8:121:10] 'if'
+             OpenParenToken <2592:2593> [121:11:121:12] '('
              BinaryExpressionSyntax
               BinaryExpressionSyntax
                BinaryExpressionSyntax
                 IdentifierNameSyntax
-                 IdentifierToken <2590:2591> [121:11:121:12] 'a'
-                LessThanToken <2592:2593> [121:13:121:14] '<'
+                 IdentifierToken <2593:2594> [121:12:121:13] 'a'
+                LessThanToken <2595:2596> [121:14:121:15] '<'
                 LiteralExpressionSyntax
-                 IntegerLiteralToken <2594:2595> [121:15:121:16] '0'
-               AmpersandAmpersandToken <2596:2598> [121:17:121:19] '&&'
+                 IntegerLiteralToken <2597:2598> [121:16:121:17] '0'
+               AmpersandAmpersandToken <2599:2601> [121:18:121:20] '&&'
                BinaryExpressionSyntax
                 IdentifierNameSyntax
-                 IdentifierToken <2599:2600> [121:20:121:21] 'b'
-                LessThanToken <2601:2602> [121:22:121:23] '<'
+                 IdentifierToken <2602:2603> [121:21:121:22] 'b'
+                LessThanToken <2604:2605> [121:23:121:24] '<'
                 LiteralExpressionSyntax
-                 IntegerLiteralToken <2603:2604> [121:24:121:25] '0'
-              AmpersandAmpersandToken <2605:2607> [121:26:121:28] '&&'
+                 IntegerLiteralToken <2606:2607> [121:25:121:26] '0'
+              AmpersandAmpersandToken <2608:2610> [121:27:121:29] '&&'
               BinaryExpressionSyntax
                IdentifierNameSyntax
-                IdentifierToken <2608:2609> [121:29:121:30] 'a'
-               LessThanToken <2610:2611> [121:31:121:32] '<'
+                IdentifierToken <2611:2612> [121:30:121:31] 'a'
+               LessThanToken <2613:2614> [121:32:121:33] '<'
                BinaryExpressionSyntax
                 QualifiedNameSyntax
                  IdentifierNameSyntax
-                  IdentifierToken <2612:2613> [121:33:121:34] 'T'
-                 ColonColonToken <2613:2615> [121:34:121:36] '::'
+                  IdentifierToken <2615:2616> [121:34:121:35] 'T'
+                 ColonColonToken <2616:2618> [121:35:121:37] '::'
                  IdentifierNameSyntax
-                  IdentifierToken <2615:2623> [121:36:121:44] 'MinValue'
-                MinusToken <2624:2625> [121:45:121:46] '-'
+                  IdentifierToken <2618:2626> [121:37:121:45] 'MinValue'
+                MinusToken <2627:2628> [121:46:121:47] '-'
                 IdentifierNameSyntax
-                 IdentifierToken <2626:2627> [121:47:121:48] 'b'
+                 IdentifierToken <2629:2630> [121:48:121:49] 'b'
+             CloseParenToken <2630:2631> [121:49:121:50] ')'
              CodeBlockSyntax
-              OpenBraceToken <2628:2629> [121:49:121:50] '{'
+              OpenBraceToken <2632:2633> [121:51:121:52] '{'
               SyntaxList
                CodeBlockItemSyntax
                 ReturnStatementSyntax
-                 ReturnKeyword <2642:2648> [122:12:122:18] 'return'
+                 ReturnKeyword <2646:2652> [122:12:122:18] 'return'
                  IdentifierNameSyntax
-                  IdentifierToken <2649:2653> [122:19:122:23] 'None'
-                SemicolonToken <2653:2654> [122:23:122:24] ';'
-              CloseBraceToken <2663:2664> [123:8:123:9] '}'
+                  IdentifierToken <2653:2657> [122:19:122:23] 'None'
+                SemicolonToken <2657:2658> [122:23:122:24] ';'
+              CloseBraceToken <2667:2668> [123:8:123:9] '}'
           CodeBlockItemSyntax
            ReturnStatementSyntax
-            ReturnKeyword <2674:2680> [125:8:125:14] 'return'
+            ReturnKeyword <2678:2684> [125:8:125:14] 'return'
             InvocationExpressionSyntax
              IdentifierNameSyntax
-              IdentifierToken <2681:2685> [125:15:125:19] 'Some'
+              IdentifierToken <2685:2689> [125:15:125:19] 'Some'
              ArgumentListSyntax
-              OpenParenToken <2685:2686> [125:19:125:20] '('
+              OpenParenToken <2689:2690> [125:19:125:20] '('
               SyntaxList
                ArgumentSyntax
                 BinaryExpressionSyntax
                  IdentifierNameSyntax
-                  IdentifierToken <2686:2687> [125:20:125:21] 'a'
-                 PlusToken <2688:2689> [125:22:125:23] '+'
+                  IdentifierToken <2690:2691> [125:20:125:21] 'a'
+                 PlusToken <2692:2693> [125:22:125:23] '+'
                  IdentifierNameSyntax
-                  IdentifierToken <2690:2691> [125:24:125:25] 'b'
-              CloseParenToken <2691:2692> [125:25:125:26] ')'
-           SemicolonToken <2692:2693> [125:26:125:27] ';'
-         CloseBraceToken <2698:2699> [126:4:126:5] '}'
-     CloseBraceToken <2700:2701> [127:0:127:1] '}'
- EndOfFileToken <2702:2702> [128:0:128:0] ''
+                  IdentifierToken <2694:2695> [125:24:125:25] 'b'
+              CloseParenToken <2695:2696> [125:25:125:26] ')'
+           SemicolonToken <2696:2697> [125:26:125:27] ';'
+         CloseBraceToken <2702:2703> [126:4:126:5] '}'
+     CloseBraceToken <2704:2705> [127:0:127:1] '}'
+ EndOfFileToken <2706:2706> [128:0:128:0] ''

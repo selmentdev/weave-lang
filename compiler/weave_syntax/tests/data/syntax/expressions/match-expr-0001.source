@@ -1,11 +1,11 @@
 public function MatchExpressionExample(x: Int32, y: Int32) -> String
 {
-    return match x
+    return match (x)
     {
         case 0: yield "One";
         case 1: yield "Two";
         case 2:
-            yield match y
+            yield match (y)
             {
                 case 0: yield "Two and Zero";
                 case 1: yield "Two and One";

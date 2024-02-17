@@ -32,7 +32,7 @@ function foo(x: int, y: int, z: int, c: int, w: out int) -> void {
 }
 
 function before(y: bool) -> void {
-    if /*let Some(y)*/ = y {
+    if (/*let Some(y)*/ = y) {
         Console.WriteLine("Got something");
     } else {
         Console.WriteLine("Got nothing");
@@ -62,7 +62,7 @@ public private tailcall unsafe export transient trusted function mul_high(
 function after() -> void {}
 
 function Testing(a: int32, b: int32) -> int32 {
-    if a < b {
+    if (a < b) {
         return a;
     } else {
         return b;

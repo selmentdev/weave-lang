@@ -1880,17 +1880,14 @@ SourceFileSyntax
        ExpressionStatementSyntax
         IfExpressionSyntax
          IfKeyword <5223:5225> [200:4:200:6] 'if'
-         TupleExpressionSyntax
-          OpenParenToken <5226:5227> [200:7:200:8] '('
-          SyntaxList
-           LabeledExpressionSyntax
-            BinaryExpressionSyntax
-             IdentifierNameSyntax
-              IdentifierToken <5227:5228> [200:8:200:9] 'a'
-             IsKeyword <5229:5231> [200:10:200:12] 'is'
-             IdentifierNameSyntax
-              IdentifierToken <5232:5239> [200:13:200:20] 'Float32'
-          CloseParenToken <5239:5240> [200:20:200:21] ')'
+         OpenParenToken <5226:5227> [200:7:200:8] '('
+         BinaryExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <5227:5228> [200:8:200:9] 'a'
+          IsKeyword <5229:5231> [200:10:200:12] 'is'
+          IdentifierNameSyntax
+           IdentifierToken <5232:5239> [200:13:200:20] 'Float32'
+         CloseParenToken <5239:5240> [200:20:200:21] ')'
          CodeBlockSyntax
           OpenBraceToken <5241:5242> [200:22:200:23] '{'
           SyntaxList
@@ -1913,17 +1910,14 @@ SourceFileSyntax
           ElseKeyword <5274:5278> [202:6:202:10] 'else'
           IfExpressionSyntax
            IfKeyword <5279:5281> [202:11:202:13] 'if'
-           TupleExpressionSyntax
-            OpenParenToken <5282:5283> [202:14:202:15] '('
-            SyntaxList
-             LabeledExpressionSyntax
-              BinaryExpressionSyntax
-               IdentifierNameSyntax
-                IdentifierToken <5283:5284> [202:15:202:16] 'a'
-               IsKeyword <5285:5287> [202:17:202:19] 'is'
-               IdentifierNameSyntax
-                IdentifierToken <5288:5295> [202:20:202:27] 'Float64'
-            CloseParenToken <5295:5296> [202:27:202:28] ')'
+           OpenParenToken <5282:5283> [202:14:202:15] '('
+           BinaryExpressionSyntax
+            IdentifierNameSyntax
+             IdentifierToken <5283:5284> [202:15:202:16] 'a'
+            IsKeyword <5285:5287> [202:17:202:19] 'is'
+            IdentifierNameSyntax
+             IdentifierToken <5288:5295> [202:20:202:27] 'Float64'
+           CloseParenToken <5295:5296> [202:27:202:28] ')'
            CodeBlockSyntax
             OpenBraceToken <5297:5298> [202:29:202:30] '{'
             SyntaxList

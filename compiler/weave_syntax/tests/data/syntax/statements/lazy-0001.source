@@ -3,7 +3,7 @@ public function LazyArgumentsAndExpressions(
     lazy x: Int32
 ) -> ()
 {
-    if process {
+    if (process) {
         Consume(eval x);
     }
 }

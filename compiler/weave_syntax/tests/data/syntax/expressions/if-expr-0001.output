@@ -30,34 +30,36 @@ SourceFileSyntax
         ReturnKeyword <61:67> [2:4:2:10] 'return'
         IfExpressionSyntax
          IfKeyword <68:70> [2:11:2:13] 'if'
+         OpenParenToken <71:72> [2:14:2:15] '('
          BinaryExpressionSyntax
           IdentifierNameSyntax
-           IdentifierToken <71:72> [2:14:2:15] 'x'
-          GreaterThanToken <73:74> [2:16:2:17] '>'
+           IdentifierToken <72:73> [2:15:2:16] 'x'
+          GreaterThanToken <74:75> [2:17:2:18] '>'
           LiteralExpressionSyntax
-           IntegerLiteralToken <75:77> [2:18:2:20] '42'
+           IntegerLiteralToken <76:78> [2:19:2:21] '42'
+         CloseParenToken <78:79> [2:21:2:22] ')'
          CodeBlockSyntax
-          OpenBraceToken <78:79> [2:21:2:22] '{'
+          OpenBraceToken <80:81> [2:23:2:24] '{'
           SyntaxList
            CodeBlockItemSyntax
             YieldStatementSyntax
-             YieldKeyword <88:93> [3:8:3:13] 'yield'
+             YieldKeyword <90:95> [3:8:3:13] 'yield'
              LiteralExpressionSyntax
-              IntegerLiteralToken <94:96> [3:14:3:16] '42'
-            SemicolonToken <96:97> [3:16:3:17] ';'
-          CloseBraceToken <102:103> [4:4:4:5] '}'
+              IntegerLiteralToken <96:98> [3:14:3:16] '42'
+            SemicolonToken <98:99> [3:16:3:17] ';'
+          CloseBraceToken <104:105> [4:4:4:5] '}'
          ElseClauseSyntax
-          ElseKeyword <104:108> [4:6:4:10] 'else'
+          ElseKeyword <106:110> [4:6:4:10] 'else'
           CodeBlockSyntax
-           OpenBraceToken <109:110> [4:11:4:12] '{'
+           OpenBraceToken <111:112> [4:11:4:12] '{'
            SyntaxList
             CodeBlockItemSyntax
              YieldStatementSyntax
-              YieldKeyword <119:124> [5:8:5:13] 'yield'
+              YieldKeyword <121:126> [5:8:5:13] 'yield'
               IdentifierNameSyntax
-               IdentifierToken <125:126> [5:14:5:15] 'x'
-             SemicolonToken <126:127> [5:15:5:16] ';'
-           CloseBraceToken <132:133> [6:4:6:5] '}'
-       SemicolonToken <133:134> [6:5:6:6] ';'
-     CloseBraceToken <135:136> [7:0:7:1] '}'
- EndOfFileToken <137:137> [8:0:8:0] ''
+               IdentifierToken <127:128> [5:14:5:15] 'x'
+             SemicolonToken <128:129> [5:15:5:16] ';'
+           CloseBraceToken <134:135> [6:4:6:5] '}'
+       SemicolonToken <135:136> [6:5:6:6] ';'
+     CloseBraceToken <137:138> [7:0:7:1] '}'
+ EndOfFileToken <139:139> [8:0:8:0] ''

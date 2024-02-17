@@ -1244,7 +1244,9 @@ namespace weave::syntax
     public:
         SyntaxToken* IfKeyword{};
         SyntaxListView<AttributeListSyntax> ConditionAttributes{};
+        SyntaxToken* OpenParenToken{};
         ExpressionSyntax* Condition{};
+        SyntaxToken* CloseParenToken{};
         CodeBlockSyntax* Body{};
         ElseClauseSyntax* ElseClause{};
 
@@ -1278,7 +1280,9 @@ namespace weave::syntax
     public:
         SyntaxToken* WhileKeyword{};
         SyntaxListView<AttributeListSyntax> ConditionAttributes{};
+        SyntaxToken* OpenParenToken{};
         ExpressionSyntax* Condition{};
+        SyntaxToken* CloseParenToken{};
         CodeBlockSyntax* Body{};
 
     public:
@@ -1754,7 +1758,9 @@ namespace weave::syntax
     public:
         SyntaxToken* MatchKeyword{};
         SyntaxListView<AttributeListSyntax> ConditionAttributes{};
+        SyntaxToken* OpenParenToken{};
         ExpressionSyntax* Condition{};
+        SyntaxToken* CloseParenToken{};
 
         UnexpectedNodesSyntax* BeforeLeftBrace{};
         SyntaxToken* LeftBrace{};
