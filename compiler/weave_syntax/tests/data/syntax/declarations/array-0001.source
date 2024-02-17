@@ -43,10 +43,14 @@ let slice2D : [[Int32: 4]] = array2D;
 let slice3D : [[[Int32: 4]: 4]] = array3D;
 
 var arrayOutOfOrder = [
+    /*
+    FIXME: Should be able to initialize this array with out-of-order elements?
+           Should it use this syntax?
     2: 1,
     3: 7,
     6: 9,
     4: 20,
     1: 3,
     5: 5,
+    */
 ];

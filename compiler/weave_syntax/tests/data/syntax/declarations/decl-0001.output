@@ -40,14 +40,18 @@ SourceFileSyntax
           OpenParenToken <101:102> [4:67:4:68] '('
           SyntaxList
            TupleTypeElementSyntax
-            IdentifierToken <102:107> [4:68:4:73] 'lower'
-            ColonToken <107:108> [4:73:4:74] ':'
+            NameColonSyntax
+             IdentifierNameSyntax
+              IdentifierToken <102:107> [4:68:4:73] 'lower'
+             ColonToken <107:108> [4:73:4:74] ':'
             IdentifierNameSyntax
              IdentifierToken <109:115> [4:75:4:81] 'UInt64'
             CommaToken <115:116> [4:81:4:82] ','
            TupleTypeElementSyntax
-            IdentifierToken <117:122> [4:83:4:88] 'upper'
-            ColonToken <122:123> [4:88:4:89] ':'
+            NameColonSyntax
+             IdentifierNameSyntax
+              IdentifierToken <117:122> [4:83:4:88] 'upper'
+             ColonToken <122:123> [4:88:4:89] ':'
             IdentifierNameSyntax
              IdentifierToken <124:130> [4:90:4:96] 'UInt64'
           CloseParenToken <130:131> [4:96:4:97] ')'
@@ -655,16 +659,18 @@ SourceFileSyntax
                   OpenParenToken <1531:1532> [47:26:47:27] '('
                   SyntaxList
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <1549:1554> [48:16:48:21] 'Lower'
-                    ColonToken <1554:1555> [48:21:48:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <1549:1554> [48:16:48:21] 'Lower'
+                     ColonToken <1554:1555> [48:21:48:22] ':'
                     IdentifierNameSyntax
                      IdentifierToken <1556:1561> [48:23:48:28] 'lower'
                     CommaToken <1561:1562> [48:28:48:29] ','
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <1579:1584> [49:16:49:21] 'Upper'
-                    ColonToken <1584:1585> [49:21:49:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <1579:1584> [49:16:49:21] 'Upper'
+                     ColonToken <1584:1585> [49:21:49:22] ':'
                     IdentifierNameSyntax
                      IdentifierToken <1586:1591> [49:23:49:28] 'upper'
                   CloseParenToken <1604:1605> [50:12:50:13] ')'
@@ -705,16 +711,18 @@ SourceFileSyntax
                   OpenParenToken <1708:1709> [55:26:55:27] '('
                   SyntaxList
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <1726:1731> [56:16:56:21] 'Lower'
-                    ColonToken <1731:1732> [56:21:56:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <1726:1731> [56:16:56:21] 'Lower'
+                     ColonToken <1731:1732> [56:21:56:22] ':'
                     IdentifierNameSyntax
                      IdentifierToken <1733:1738> [56:23:56:28] 'lower'
                     CommaToken <1738:1739> [56:28:56:29] ','
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <1756:1761> [57:16:57:21] 'Upper'
-                    ColonToken <1761:1762> [57:21:57:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <1756:1761> [57:16:57:21] 'Upper'
+                     ColonToken <1761:1762> [57:21:57:22] ':'
                     LiteralExpressionSyntax
                      IntegerLiteralToken <1763:1764> [57:23:57:24] '0'
                   CloseParenToken <1777:1778> [58:12:58:13] ')'
@@ -766,16 +774,18 @@ SourceFileSyntax
                   OpenParenToken <1922:1923> [66:26:66:27] '('
                   SyntaxList
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <1940:1945> [67:16:67:21] 'Lower'
-                    ColonToken <1945:1946> [67:21:67:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <1940:1945> [67:16:67:21] 'Lower'
+                     ColonToken <1945:1946> [67:21:67:22] ':'
                     LiteralExpressionSyntax
                      IntegerLiteralToken <1947:1948> [67:23:67:24] '0'
                     CommaToken <1948:1949> [67:24:67:25] ','
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <1966:1971> [68:16:68:21] 'Upper'
-                    ColonToken <1971:1972> [68:21:68:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <1966:1971> [68:16:68:21] 'Upper'
+                     ColonToken <1971:1972> [68:21:68:22] ':'
                     MemberAccessExpressionSyntax
                      IdentifierNameSyntax
                       IdentifierToken <1973:1977> [68:23:68:27] 'self'
@@ -820,9 +830,10 @@ SourceFileSyntax
                   OpenParenToken <2103:2104> [74:26:74:27] '('
                   SyntaxList
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2121:2126> [75:16:75:21] 'Lower'
-                    ColonToken <2126:2127> [75:21:75:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2121:2126> [75:16:75:21] 'Lower'
+                     ColonToken <2126:2127> [75:21:75:22] ':'
                     MemberAccessExpressionSyntax
                      IdentifierNameSyntax
                       IdentifierToken <2128:2132> [75:23:75:27] 'self'
@@ -831,9 +842,10 @@ SourceFileSyntax
                       IdentifierToken <2133:2138> [75:28:75:33] 'Lower'
                     CommaToken <2138:2139> [75:33:75:34] ','
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2156:2161> [76:16:76:21] 'Upper'
-                    ColonToken <2161:2162> [76:21:76:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2156:2161> [76:16:76:21] 'Upper'
+                     ColonToken <2161:2162> [76:21:76:22] ':'
                     LiteralExpressionSyntax
                      IntegerLiteralToken <2163:2164> [76:23:76:24] '0'
                   CloseParenToken <2177:2178> [77:12:77:13] ')'
@@ -874,9 +886,10 @@ SourceFileSyntax
                   OpenParenToken <2291:2292> [82:26:82:27] '('
                   SyntaxList
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2309:2314> [83:16:83:21] 'Lower'
-                    ColonToken <2314:2315> [83:21:83:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2309:2314> [83:16:83:21] 'Lower'
+                     ColonToken <2314:2315> [83:21:83:22] ':'
                     MemberAccessExpressionSyntax
                      IdentifierNameSyntax
                       IdentifierToken <2316:2320> [83:23:83:27] 'self'
@@ -885,9 +898,10 @@ SourceFileSyntax
                       IdentifierToken <2321:2326> [83:28:83:33] 'Upper'
                     CommaToken <2326:2327> [83:33:83:34] ','
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2344:2349> [84:16:84:21] 'Upper'
-                    ColonToken <2349:2350> [84:21:84:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2344:2349> [84:16:84:21] 'Upper'
+                     ColonToken <2349:2350> [84:21:84:22] ':'
                     LiteralExpressionSyntax
                      IntegerLiteralToken <2351:2352> [84:23:84:24] '0'
                   CloseParenToken <2365:2366> [85:12:85:13] ')'
@@ -928,16 +942,18 @@ SourceFileSyntax
                   OpenParenToken <2479:2480> [90:26:90:27] '('
                   SyntaxList
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2497:2502> [91:16:91:21] 'Lower'
-                    ColonToken <2502:2503> [91:21:91:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2497:2502> [91:16:91:21] 'Lower'
+                     ColonToken <2502:2503> [91:21:91:22] ':'
                     LiteralExpressionSyntax
                      IntegerLiteralToken <2504:2505> [91:23:91:24] '0'
                     CommaToken <2505:2506> [91:24:91:25] ','
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2523:2528> [92:16:92:21] 'Upper'
-                    ColonToken <2528:2529> [92:21:92:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2523:2528> [92:16:92:21] 'Upper'
+                     ColonToken <2528:2529> [92:21:92:22] ':'
                     MemberAccessExpressionSyntax
                      IdentifierNameSyntax
                       IdentifierToken <2530:2534> [92:23:92:27] 'self'
@@ -990,9 +1006,10 @@ SourceFileSyntax
                   OpenParenToken <2682:2683> [98:26:98:27] '('
                   SyntaxList
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2700:2705> [99:16:99:21] 'Lower'
-                    ColonToken <2705:2706> [99:21:99:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2700:2705> [99:16:99:21] 'Lower'
+                     ColonToken <2705:2706> [99:21:99:22] ':'
                     MemberAccessExpressionSyntax
                      IdentifierNameSyntax
                       IdentifierToken <2707:2711> [99:23:99:27] 'left'
@@ -1001,9 +1018,10 @@ SourceFileSyntax
                       IdentifierToken <2712:2717> [99:28:99:33] 'Lower'
                     CommaToken <2717:2718> [99:33:99:34] ','
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2735:2740> [100:16:100:21] 'Upper'
-                    ColonToken <2740:2741> [100:21:100:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2735:2740> [100:16:100:21] 'Upper'
+                     ColonToken <2740:2741> [100:21:100:22] ':'
                     MemberAccessExpressionSyntax
                      IdentifierNameSyntax
                       IdentifierToken <2742:2747> [100:23:100:28] 'right'
@@ -1056,9 +1074,10 @@ SourceFileSyntax
                   OpenParenToken <2895:2896> [106:26:106:27] '('
                   SyntaxList
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2913:2918> [107:16:107:21] 'Lower'
-                    ColonToken <2918:2919> [107:21:107:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2913:2918> [107:16:107:21] 'Lower'
+                     ColonToken <2918:2919> [107:21:107:22] ':'
                     MemberAccessExpressionSyntax
                      IdentifierNameSyntax
                       IdentifierToken <2920:2924> [107:23:107:27] 'left'
@@ -1067,9 +1086,10 @@ SourceFileSyntax
                       IdentifierToken <2925:2930> [107:28:107:33] 'Upper'
                     CommaToken <2930:2931> [107:33:107:34] ','
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2948:2953> [108:16:108:21] 'Upper'
-                    ColonToken <2953:2954> [108:21:108:22] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2948:2953> [108:16:108:21] 'Upper'
+                     ColonToken <2953:2954> [108:21:108:22] ':'
                     MemberAccessExpressionSyntax
                      IdentifierNameSyntax
                       IdentifierToken <2955:2960> [108:23:108:28] 'right'

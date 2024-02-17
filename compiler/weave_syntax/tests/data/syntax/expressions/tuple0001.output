@@ -42,26 +42,34 @@ SourceFileSyntax
        OpenParenToken <32:33> [1:9:1:10] '('
        SyntaxList
         LabeledExpressionSyntax
-         IdentifierToken <33:34> [1:10:1:11] 'a'
-         ColonToken <34:35> [1:11:1:12] ':'
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <33:34> [1:10:1:11] 'a'
+          ColonToken <34:35> [1:11:1:12] ':'
          LiteralExpressionSyntax
           IntegerLiteralToken <36:37> [1:13:1:14] '2'
          CommaToken <37:38> [1:14:1:15] ','
         LabeledExpressionSyntax
-         IdentifierToken <39:40> [1:16:1:17] 'b'
-         ColonToken <40:41> [1:17:1:18] ':'
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <39:40> [1:16:1:17] 'b'
+          ColonToken <40:41> [1:17:1:18] ':'
          LiteralExpressionSyntax
           IntegerLiteralToken <42:43> [1:19:1:20] '1'
          CommaToken <43:44> [1:20:1:21] ','
         LabeledExpressionSyntax
-         IdentifierToken <45:46> [1:22:1:23] 'c'
-         ColonToken <46:47> [1:23:1:24] ':'
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <45:46> [1:22:1:23] 'c'
+          ColonToken <46:47> [1:23:1:24] ':'
          LiteralExpressionSyntax
           IntegerLiteralToken <48:49> [1:25:1:26] '3'
          CommaToken <49:50> [1:26:1:27] ','
         LabeledExpressionSyntax
-         IdentifierToken <51:52> [1:28:1:29] 'd'
-         ColonToken <52:53> [1:29:1:30] ':'
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <51:52> [1:28:1:29] 'd'
+          ColonToken <52:53> [1:29:1:30] ':'
          LiteralExpressionSyntax
           IntegerLiteralToken <54:55> [1:31:1:32] '7'
        CloseParenToken <55:56> [1:32:1:33] ')'

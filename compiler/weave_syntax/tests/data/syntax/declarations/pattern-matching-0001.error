@@ -1,0 +1,5 @@
+error: Unexpected tokens
+        --> <source>:21:19
+         |
+      21 |     if (x is E::A y)
+         |                   ^

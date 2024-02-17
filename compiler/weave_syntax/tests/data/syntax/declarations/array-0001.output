@@ -39,640 +39,603 @@ SourceFileSyntax
           IntegerLiteralToken <69:70> [3:13:3:14] '4'
          CommaToken <70:71> [3:14:3:15] ','
        CloseBracketToken <72:73> [4:0:4:1] ']'
-    SemicolonToken <73:74> [4:1:4:2] ';'
-   CodeBlockItemSyntax
-    VariableDeclarationSyntax
-     VarKeyword <76:79> [6:0:6:3] 'var'
-     PatternBindingSyntax
-      IdentifierPatternSyntax
-       IdentifierNameSyntax
-        IdentifierToken <80:87> [6:4:6:11] 'array2D'
-      TypeClauseSyntax
-       ColonToken <88:89> [6:12:6:13] ':'
+   SemicolonToken <73:74> [4:1:4:2] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    VarKeyword <76:79> [6:0:6:3] 'var'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <80:87> [6:4:6:11] 'array2D'
+     TypeClauseSyntax
+      ColonToken <88:89> [6:12:6:13] ':'
+      ArrayTypeSyntax
+       OpenBracketToken <90:91> [6:14:6:15] '['
        ArrayTypeSyntax
-        OpenBracketToken <90:91> [6:14:6:15] '['
-        ArrayTypeSyntax
-         OpenBracketToken <91:92> [6:15:6:16] '['
-         IdentifierNameSyntax
-          IdentifierToken <92:97> [6:16:6:21] 'Int32'
-         ColonToken <97:98> [6:21:6:22] ':'
-         LiteralExpressionSyntax
-          IntegerLiteralToken <99:100> [6:23:6:24] '4'
-         CloseBracketToken <100:101> [6:24:6:25] ']'
-        ColonToken <101:102> [6:25:6:26] ':'
+        OpenBracketToken <91:92> [6:15:6:16] '['
+        IdentifierNameSyntax
+         IdentifierToken <92:97> [6:16:6:21] 'Int32'
+        ColonToken <97:98> [6:21:6:22] ':'
         LiteralExpressionSyntax
-         IntegerLiteralToken <103:104> [6:27:6:28] '4'
-        CloseBracketToken <104:105> [6:28:6:29] ']'
-      InitializerClauseSyntax
-       EqualsToken <106:107> [6:30:6:31] '='
-       BracketInitializerClauseSyntax
-        OpenBracketToken <108:109> [6:32:6:33] '['
-        SyntaxList
-         LabeledExpressionSyntax
-          BracketInitializerClauseSyntax
-           OpenBracketToken <114:115> [7:4:7:5] '['
-           SyntaxList
-            LabeledExpressionSyntax
-             LiteralExpressionSyntax
-              IntegerLiteralToken <116:117> [7:6:7:7] '1'
-             CommaToken <117:118> [7:7:7:8] ','
-            LabeledExpressionSyntax
-             LiteralExpressionSyntax
-              IntegerLiteralToken <120:121> [7:10:7:11] '2'
-             CommaToken <121:122> [7:11:7:12] ','
-            LabeledExpressionSyntax
-             LiteralExpressionSyntax
-              IntegerLiteralToken <124:125> [7:14:7:15] '3'
-             CommaToken <125:126> [7:15:7:16] ','
-            LabeledExpressionSyntax
-             LiteralExpressionSyntax
-              IntegerLiteralToken <128:129> [7:18:7:19] '4'
-           CloseBracketToken <129:130> [7:19:7:20] ']'
-           CommaToken <130:131> [7:20:7:21] ','
-          LabeledExpressionSyntax
-           BracketInitializerClauseSyntax
-            OpenBracketToken <136:137> [8:4:8:5] '['
-            SyntaxList
-             LabeledExpressionSyntax
-              LiteralExpressionSyntax
-               IntegerLiteralToken <138:139> [8:6:8:7] '5'
-              CommaToken <139:140> [8:7:8:8] ','
-             LabeledExpressionSyntax
-              LiteralExpressionSyntax
-               IntegerLiteralToken <142:143> [8:10:8:11] '6'
-              CommaToken <143:144> [8:11:8:12] ','
-             LabeledExpressionSyntax
-              LiteralExpressionSyntax
-               IntegerLiteralToken <146:147> [8:14:8:15] '7'
-              CommaToken <147:148> [8:15:8:16] ','
-             LabeledExpressionSyntax
-              LiteralExpressionSyntax
-               IntegerLiteralToken <150:151> [8:18:8:19] '8'
-            CloseBracketToken <151:152> [8:19:8:20] ']'
-            CommaToken <152:153> [8:20:8:21] ','
+         IntegerLiteralToken <99:100> [6:23:6:24] '4'
+        CloseBracketToken <100:101> [6:24:6:25] ']'
+       ColonToken <101:102> [6:25:6:26] ':'
+       LiteralExpressionSyntax
+        IntegerLiteralToken <103:104> [6:27:6:28] '4'
+       CloseBracketToken <104:105> [6:28:6:29] ']'
+     InitializerClauseSyntax
+      EqualsToken <106:107> [6:30:6:31] '='
+      BracketInitializerClauseSyntax
+       OpenBracketToken <108:109> [6:32:6:33] '['
+       SyntaxList
+        LabeledExpressionSyntax
+         BracketInitializerClauseSyntax
+          OpenBracketToken <114:115> [7:4:7:5] '['
+          SyntaxList
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <116:117> [7:6:7:7] '1'
+            CommaToken <117:118> [7:7:7:8] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <120:121> [7:10:7:11] '2'
+            CommaToken <121:122> [7:11:7:12] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <124:125> [7:14:7:15] '3'
+            CommaToken <125:126> [7:15:7:16] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <128:129> [7:18:7:19] '4'
+          CloseBracketToken <129:130> [7:19:7:20] ']'
+         CommaToken <130:131> [7:20:7:21] ','
+        LabeledExpressionSyntax
+         BracketInitializerClauseSyntax
+          OpenBracketToken <136:137> [8:4:8:5] '['
+          SyntaxList
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <138:139> [8:6:8:7] '5'
+            CommaToken <139:140> [8:7:8:8] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <142:143> [8:10:8:11] '6'
+            CommaToken <143:144> [8:11:8:12] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <146:147> [8:14:8:15] '7'
+            CommaToken <147:148> [8:15:8:16] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <150:151> [8:18:8:19] '8'
+          CloseBracketToken <151:152> [8:19:8:20] ']'
+         CommaToken <152:153> [8:20:8:21] ','
+        LabeledExpressionSyntax
+         BracketInitializerClauseSyntax
+          OpenBracketToken <158:159> [9:4:9:5] '['
+          SyntaxList
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <160:161> [9:6:9:7] '9'
+            CommaToken <161:162> [9:7:9:8] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <163:165> [9:9:9:11] '10'
+            CommaToken <165:166> [9:11:9:12] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <167:169> [9:13:9:15] '11'
+            CommaToken <169:170> [9:15:9:16] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <171:173> [9:17:9:19] '12'
+          CloseBracketToken <173:174> [9:19:9:20] ']'
+         CommaToken <174:175> [9:20:9:21] ','
+        LabeledExpressionSyntax
+         BracketInitializerClauseSyntax
+          OpenBracketToken <180:181> [10:4:10:5] '['
+          SyntaxList
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <181:183> [10:5:10:7] '13'
+            CommaToken <183:184> [10:7:10:8] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <185:187> [10:9:10:11] '14'
+            CommaToken <187:188> [10:11:10:12] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <189:191> [10:13:10:15] '15'
+            CommaToken <191:192> [10:15:10:16] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <193:195> [10:17:10:19] '16'
+          CloseBracketToken <195:196> [10:19:10:20] ']'
+         CommaToken <196:197> [10:20:10:21] ','
+       CloseBracketToken <198:199> [11:0:11:1] ']'
+   SemicolonToken <199:200> [11:1:11:2] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    VarKeyword <202:205> [13:0:13:3] 'var'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <206:213> [13:4:13:11] 'array3D'
+     TypeClauseSyntax
+      ColonToken <214:215> [13:12:13:13] ':'
+      ArrayTypeSyntax
+       OpenBracketToken <216:217> [13:14:13:15] '['
+       ArrayTypeSyntax
+        OpenBracketToken <217:218> [13:15:13:16] '['
+        ArrayTypeSyntax
+         OpenBracketToken <218:219> [13:16:13:17] '['
+         IdentifierNameSyntax
+          IdentifierToken <219:224> [13:17:13:22] 'Int32'
+         ColonToken <224:225> [13:22:13:23] ':'
+         LiteralExpressionSyntax
+          IntegerLiteralToken <226:227> [13:24:13:25] '4'
+         CloseBracketToken <227:228> [13:25:13:26] ']'
+        ColonToken <228:229> [13:26:13:27] ':'
+        LiteralExpressionSyntax
+         IntegerLiteralToken <230:231> [13:28:13:29] '4'
+        CloseBracketToken <231:232> [13:29:13:30] ']'
+       ColonToken <232:233> [13:30:13:31] ':'
+       LiteralExpressionSyntax
+        IntegerLiteralToken <234:235> [13:32:13:33] '4'
+       CloseBracketToken <235:236> [13:33:13:34] ']'
+     InitializerClauseSyntax
+      EqualsToken <237:238> [13:35:13:36] '='
+      BracketInitializerClauseSyntax
+       OpenBracketToken <239:240> [13:37:13:38] '['
+       SyntaxList
+        LabeledExpressionSyntax
+         BracketInitializerClauseSyntax
+          OpenBracketToken <245:246> [14:4:14:5] '['
+          SyntaxList
            LabeledExpressionSyntax
             BracketInitializerClauseSyntax
-             OpenBracketToken <158:159> [9:4:9:5] '['
+             OpenBracketToken <255:256> [15:8:15:9] '['
              SyntaxList
               LabeledExpressionSyntax
                LiteralExpressionSyntax
-                IntegerLiteralToken <160:161> [9:6:9:7] '9'
-               CommaToken <161:162> [9:7:9:8] ','
+                IntegerLiteralToken <257:258> [15:10:15:11] '1'
+               CommaToken <258:259> [15:11:15:12] ','
               LabeledExpressionSyntax
                LiteralExpressionSyntax
-                IntegerLiteralToken <163:165> [9:9:9:11] '10'
-               CommaToken <165:166> [9:11:9:12] ','
+                IntegerLiteralToken <261:262> [15:14:15:15] '2'
+               CommaToken <262:263> [15:15:15:16] ','
               LabeledExpressionSyntax
                LiteralExpressionSyntax
-                IntegerLiteralToken <167:169> [9:13:9:15] '11'
-               CommaToken <169:170> [9:15:9:16] ','
+                IntegerLiteralToken <265:266> [15:18:15:19] '3'
+               CommaToken <266:267> [15:19:15:20] ','
               LabeledExpressionSyntax
                LiteralExpressionSyntax
-                IntegerLiteralToken <171:173> [9:17:9:19] '12'
-             CloseBracketToken <173:174> [9:19:9:20] ']'
-             CommaToken <174:175> [9:20:9:21] ','
-            LabeledExpressionSyntax
-             BracketInitializerClauseSyntax
-              OpenBracketToken <180:181> [10:4:10:5] '['
-              SyntaxList
-               LabeledExpressionSyntax
-                LiteralExpressionSyntax
-                 IntegerLiteralToken <181:183> [10:5:10:7] '13'
-                CommaToken <183:184> [10:7:10:8] ','
-               LabeledExpressionSyntax
-                LiteralExpressionSyntax
-                 IntegerLiteralToken <185:187> [10:9:10:11] '14'
-                CommaToken <187:188> [10:11:10:12] ','
-               LabeledExpressionSyntax
-                LiteralExpressionSyntax
-                 IntegerLiteralToken <189:191> [10:13:10:15] '15'
-                CommaToken <191:192> [10:15:10:16] ','
-               LabeledExpressionSyntax
-                LiteralExpressionSyntax
-                 IntegerLiteralToken <193:195> [10:17:10:19] '16'
-              CloseBracketToken <195:196> [10:19:10:20] ']'
-              CommaToken <196:197> [10:20:10:21] ','
-            CloseBracketToken <198:199> [11:0:11:1] ']'
-         SemicolonToken <199:200> [11:1:11:2] ';'
-        CodeBlockItemSyntax
-         VariableDeclarationSyntax
-          VarKeyword <202:205> [13:0:13:3] 'var'
-          PatternBindingSyntax
-           IdentifierPatternSyntax
-            IdentifierNameSyntax
-             IdentifierToken <206:213> [13:4:13:11] 'array3D'
-           TypeClauseSyntax
-            ColonToken <214:215> [13:12:13:13] ':'
-            ArrayTypeSyntax
-             OpenBracketToken <216:217> [13:14:13:15] '['
-             ArrayTypeSyntax
-              OpenBracketToken <217:218> [13:15:13:16] '['
-              ArrayTypeSyntax
-               OpenBracketToken <218:219> [13:16:13:17] '['
-               IdentifierNameSyntax
-                IdentifierToken <219:224> [13:17:13:22] 'Int32'
-               ColonToken <224:225> [13:22:13:23] ':'
-               LiteralExpressionSyntax
-                IntegerLiteralToken <226:227> [13:24:13:25] '4'
-               CloseBracketToken <227:228> [13:25:13:26] ']'
-              ColonToken <228:229> [13:26:13:27] ':'
-              LiteralExpressionSyntax
-               IntegerLiteralToken <230:231> [13:28:13:29] '4'
-              CloseBracketToken <231:232> [13:29:13:30] ']'
-             ColonToken <232:233> [13:30:13:31] ':'
-             LiteralExpressionSyntax
-              IntegerLiteralToken <234:235> [13:32:13:33] '4'
-             CloseBracketToken <235:236> [13:33:13:34] ']'
-           InitializerClauseSyntax
-            EqualsToken <237:238> [13:35:13:36] '='
+                IntegerLiteralToken <269:270> [15:22:15:23] '4'
+             CloseBracketToken <270:271> [15:23:15:24] ']'
+            CommaToken <271:272> [15:24:15:25] ','
+           LabeledExpressionSyntax
             BracketInitializerClauseSyntax
-             OpenBracketToken <239:240> [13:37:13:38] '['
+             OpenBracketToken <281:282> [16:8:16:9] '['
              SyntaxList
               LabeledExpressionSyntax
-               BracketInitializerClauseSyntax
-                OpenBracketToken <245:246> [14:4:14:5] '['
-                SyntaxList
-                 LabeledExpressionSyntax
-                  BracketInitializerClauseSyntax
-                   OpenBracketToken <255:256> [15:8:15:9] '['
-                   SyntaxList
-                    LabeledExpressionSyntax
-                     LiteralExpressionSyntax
-                      IntegerLiteralToken <257:258> [15:10:15:11] '1'
-                     CommaToken <258:259> [15:11:15:12] ','
-                    LabeledExpressionSyntax
-                     LiteralExpressionSyntax
-                      IntegerLiteralToken <261:262> [15:14:15:15] '2'
-                     CommaToken <262:263> [15:15:15:16] ','
-                    LabeledExpressionSyntax
-                     LiteralExpressionSyntax
-                      IntegerLiteralToken <265:266> [15:18:15:19] '3'
-                     CommaToken <266:267> [15:19:15:20] ','
-                    LabeledExpressionSyntax
-                     LiteralExpressionSyntax
-                      IntegerLiteralToken <269:270> [15:22:15:23] '4'
-                   CloseBracketToken <270:271> [15:23:15:24] ']'
-                   CommaToken <271:272> [15:24:15:25] ','
-                  LabeledExpressionSyntax
-                   BracketInitializerClauseSyntax
-                    OpenBracketToken <281:282> [16:8:16:9] '['
-                    SyntaxList
-                     LabeledExpressionSyntax
-                      LiteralExpressionSyntax
-                       IntegerLiteralToken <283:284> [16:10:16:11] '5'
-                      CommaToken <284:285> [16:11:16:12] ','
-                     LabeledExpressionSyntax
-                      LiteralExpressionSyntax
-                       IntegerLiteralToken <287:288> [16:14:16:15] '6'
-                      CommaToken <288:289> [16:15:16:16] ','
-                     LabeledExpressionSyntax
-                      LiteralExpressionSyntax
-                       IntegerLiteralToken <291:292> [16:18:16:19] '7'
-                      CommaToken <292:293> [16:19:16:20] ','
-                     LabeledExpressionSyntax
-                      LiteralExpressionSyntax
-                       IntegerLiteralToken <295:296> [16:22:16:23] '8'
-                    CloseBracketToken <296:297> [16:23:16:24] ']'
-                    CommaToken <297:298> [16:24:16:25] ','
-                   LabeledExpressionSyntax
-                    BracketInitializerClauseSyntax
-                     OpenBracketToken <307:308> [17:8:17:9] '['
-                     SyntaxList
-                      LabeledExpressionSyntax
-                       LiteralExpressionSyntax
-                        IntegerLiteralToken <309:310> [17:10:17:11] '9'
-                       CommaToken <310:311> [17:11:17:12] ','
-                      LabeledExpressionSyntax
-                       LiteralExpressionSyntax
-                        IntegerLiteralToken <312:314> [17:13:17:15] '10'
-                       CommaToken <314:315> [17:15:17:16] ','
-                      LabeledExpressionSyntax
-                       LiteralExpressionSyntax
-                        IntegerLiteralToken <316:318> [17:17:17:19] '11'
-                       CommaToken <318:319> [17:19:17:20] ','
-                      LabeledExpressionSyntax
-                       LiteralExpressionSyntax
-                        IntegerLiteralToken <320:322> [17:21:17:23] '12'
-                     CloseBracketToken <322:323> [17:23:17:24] ']'
-                     CommaToken <323:324> [17:24:17:25] ','
-                    LabeledExpressionSyntax
-                     BracketInitializerClauseSyntax
-                      OpenBracketToken <333:334> [18:8:18:9] '['
-                      SyntaxList
-                       LabeledExpressionSyntax
-                        LiteralExpressionSyntax
-                         IntegerLiteralToken <334:336> [18:9:18:11] '13'
-                        CommaToken <336:337> [18:11:18:12] ','
-                       LabeledExpressionSyntax
-                        LiteralExpressionSyntax
-                         IntegerLiteralToken <338:340> [18:13:18:15] '14'
-                        CommaToken <340:341> [18:15:18:16] ','
-                       LabeledExpressionSyntax
-                        LiteralExpressionSyntax
-                         IntegerLiteralToken <342:344> [18:17:18:19] '15'
-                        CommaToken <344:345> [18:19:18:20] ','
-                       LabeledExpressionSyntax
-                        LiteralExpressionSyntax
-                         IntegerLiteralToken <346:348> [18:21:18:23] '16'
-                      CloseBracketToken <348:349> [18:23:18:24] ']'
-                      CommaToken <349:350> [18:24:18:25] ','
-                    CloseBracketToken <355:356> [19:4:19:5] ']'
-                    CommaToken <356:357> [19:5:19:6] ','
-                   LabeledExpressionSyntax
-                    BracketInitializerClauseSyntax
-                     OpenBracketToken <362:363> [20:4:20:5] '['
-                     SyntaxList
-                      LabeledExpressionSyntax
-                       BracketInitializerClauseSyntax
-                        OpenBracketToken <372:373> [21:8:21:9] '['
-                        SyntaxList
-                         LabeledExpressionSyntax
-                          LiteralExpressionSyntax
-                           IntegerLiteralToken <373:375> [21:9:21:11] '17'
-                          CommaToken <375:376> [21:11:21:12] ','
-                         LabeledExpressionSyntax
-                          LiteralExpressionSyntax
-                           IntegerLiteralToken <377:379> [21:13:21:15] '18'
-                          CommaToken <379:380> [21:15:21:16] ','
-                         LabeledExpressionSyntax
-                          LiteralExpressionSyntax
-                           IntegerLiteralToken <381:383> [21:17:21:19] '19'
-                          CommaToken <383:384> [21:19:21:20] ','
-                         LabeledExpressionSyntax
-                          LiteralExpressionSyntax
-                           IntegerLiteralToken <385:387> [21:21:21:23] '20'
-                        CloseBracketToken <387:388> [21:23:21:24] ']'
-                        CommaToken <388:389> [21:24:21:25] ','
-                       LabeledExpressionSyntax
-                        BracketInitializerClauseSyntax
-                         OpenBracketToken <398:399> [22:8:22:9] '['
-                         SyntaxList
-                          LabeledExpressionSyntax
-                           LiteralExpressionSyntax
-                            IntegerLiteralToken <399:401> [22:9:22:11] '21'
-                           CommaToken <401:402> [22:11:22:12] ','
-                          LabeledExpressionSyntax
-                           LiteralExpressionSyntax
-                            IntegerLiteralToken <403:405> [22:13:22:15] '22'
-                           CommaToken <405:406> [22:15:22:16] ','
-                          LabeledExpressionSyntax
-                           LiteralExpressionSyntax
-                            IntegerLiteralToken <407:409> [22:17:22:19] '23'
-                           CommaToken <409:410> [22:19:22:20] ','
-                          LabeledExpressionSyntax
-                           LiteralExpressionSyntax
-                            IntegerLiteralToken <411:413> [22:21:22:23] '24'
-                         CloseBracketToken <413:414> [22:23:22:24] ']'
-                         CommaToken <414:415> [22:24:22:25] ','
-                        LabeledExpressionSyntax
-                         BracketInitializerClauseSyntax
-                          OpenBracketToken <424:425> [23:8:23:9] '['
-                          SyntaxList
-                           LabeledExpressionSyntax
-                            LiteralExpressionSyntax
-                             IntegerLiteralToken <425:427> [23:9:23:11] '25'
-                            CommaToken <427:428> [23:11:23:12] ','
-                           LabeledExpressionSyntax
-                            LiteralExpressionSyntax
-                             IntegerLiteralToken <429:431> [23:13:23:15] '26'
-                            CommaToken <431:432> [23:15:23:16] ','
-                           LabeledExpressionSyntax
-                            LiteralExpressionSyntax
-                             IntegerLiteralToken <433:435> [23:17:23:19] '27'
-                            CommaToken <435:436> [23:19:23:20] ','
-                           LabeledExpressionSyntax
-                            LiteralExpressionSyntax
-                             IntegerLiteralToken <437:439> [23:21:23:23] '28'
-                          CloseBracketToken <439:440> [23:23:23:24] ']'
-                          CommaToken <440:441> [23:24:23:25] ','
-                         LabeledExpressionSyntax
-                          BracketInitializerClauseSyntax
-                           OpenBracketToken <450:451> [24:8:24:9] '['
-                           SyntaxList
-                            LabeledExpressionSyntax
-                             LiteralExpressionSyntax
-                              IntegerLiteralToken <451:453> [24:9:24:11] '29'
-                             CommaToken <453:454> [24:11:24:12] ','
-                            LabeledExpressionSyntax
-                             LiteralExpressionSyntax
-                              IntegerLiteralToken <455:457> [24:13:24:15] '30'
-                             CommaToken <457:458> [24:15:24:16] ','
-                            LabeledExpressionSyntax
-                             LiteralExpressionSyntax
-                              IntegerLiteralToken <459:461> [24:17:24:19] '31'
-                             CommaToken <461:462> [24:19:24:20] ','
-                            LabeledExpressionSyntax
-                             LiteralExpressionSyntax
-                              IntegerLiteralToken <463:465> [24:21:24:23] '32'
-                           CloseBracketToken <465:466> [24:23:24:24] ']'
-                           CommaToken <466:467> [24:24:24:25] ','
-                         CloseBracketToken <472:473> [25:4:25:5] ']'
-                         CommaToken <473:474> [25:5:25:6] ','
-                        LabeledExpressionSyntax
-                         BracketInitializerClauseSyntax
-                          OpenBracketToken <479:480> [26:4:26:5] '['
-                          SyntaxList
-                           LabeledExpressionSyntax
-                            BracketInitializerClauseSyntax
-                             OpenBracketToken <489:490> [27:8:27:9] '['
-                             SyntaxList
-                              LabeledExpressionSyntax
-                               LiteralExpressionSyntax
-                                IntegerLiteralToken <490:492> [27:9:27:11] '33'
-                               CommaToken <492:493> [27:11:27:12] ','
-                              LabeledExpressionSyntax
-                               LiteralExpressionSyntax
-                                IntegerLiteralToken <494:496> [27:13:27:15] '34'
-                               CommaToken <496:497> [27:15:27:16] ','
-                              LabeledExpressionSyntax
-                               LiteralExpressionSyntax
-                                IntegerLiteralToken <498:500> [27:17:27:19] '35'
-                               CommaToken <500:501> [27:19:27:20] ','
-                              LabeledExpressionSyntax
-                               LiteralExpressionSyntax
-                                IntegerLiteralToken <502:504> [27:21:27:23] '36'
-                             CloseBracketToken <504:505> [27:23:27:24] ']'
-                             CommaToken <505:506> [27:24:27:25] ','
-                            LabeledExpressionSyntax
-                             BracketInitializerClauseSyntax
-                              OpenBracketToken <515:516> [28:8:28:9] '['
-                              SyntaxList
-                               LabeledExpressionSyntax
-                                LiteralExpressionSyntax
-                                 IntegerLiteralToken <516:518> [28:9:28:11] '37'
-                                CommaToken <518:519> [28:11:28:12] ','
-                               LabeledExpressionSyntax
-                                LiteralExpressionSyntax
-                                 IntegerLiteralToken <520:522> [28:13:28:15] '38'
-                                CommaToken <522:523> [28:15:28:16] ','
-                               LabeledExpressionSyntax
-                                LiteralExpressionSyntax
-                                 IntegerLiteralToken <524:526> [28:17:28:19] '39'
-                                CommaToken <526:527> [28:19:28:20] ','
-                               LabeledExpressionSyntax
-                                LiteralExpressionSyntax
-                                 IntegerLiteralToken <528:530> [28:21:28:23] '40'
-                              CloseBracketToken <530:531> [28:23:28:24] ']'
-                              CommaToken <531:532> [28:24:28:25] ','
-                             LabeledExpressionSyntax
-                              BracketInitializerClauseSyntax
-                               OpenBracketToken <541:542> [29:8:29:9] '['
-                               SyntaxList
-                                LabeledExpressionSyntax
-                                 LiteralExpressionSyntax
-                                  IntegerLiteralToken <542:544> [29:9:29:11] '41'
-                                 CommaToken <544:545> [29:11:29:12] ','
-                                LabeledExpressionSyntax
-                                 LiteralExpressionSyntax
-                                  IntegerLiteralToken <546:548> [29:13:29:15] '42'
-                                 CommaToken <548:549> [29:15:29:16] ','
-                                LabeledExpressionSyntax
-                                 LiteralExpressionSyntax
-                                  IntegerLiteralToken <550:552> [29:17:29:19] '43'
-                                 CommaToken <552:553> [29:19:29:20] ','
-                                LabeledExpressionSyntax
-                                 LiteralExpressionSyntax
-                                  IntegerLiteralToken <554:556> [29:21:29:23] '44'
-                               CloseBracketToken <556:557> [29:23:29:24] ']'
-                               CommaToken <557:558> [29:24:29:25] ','
-                              LabeledExpressionSyntax
-                               BracketInitializerClauseSyntax
-                                OpenBracketToken <567:568> [30:8:30:9] '['
-                                SyntaxList
-                                 LabeledExpressionSyntax
-                                  LiteralExpressionSyntax
-                                   IntegerLiteralToken <568:570> [30:9:30:11] '45'
-                                  CommaToken <570:571> [30:11:30:12] ','
-                                 LabeledExpressionSyntax
-                                  LiteralExpressionSyntax
-                                   IntegerLiteralToken <572:574> [30:13:30:15] '46'
-                                  CommaToken <574:575> [30:15:30:16] ','
-                                 LabeledExpressionSyntax
-                                  LiteralExpressionSyntax
-                                   IntegerLiteralToken <576:578> [30:17:30:19] '47'
-                                  CommaToken <578:579> [30:19:30:20] ','
-                                 LabeledExpressionSyntax
-                                  LiteralExpressionSyntax
-                                   IntegerLiteralToken <580:582> [30:21:30:23] '48'
-                                CloseBracketToken <582:583> [30:23:30:24] ']'
-                                CommaToken <583:584> [30:24:30:25] ','
-                              CloseBracketToken <589:590> [31:4:31:5] ']'
-                              CommaToken <590:591> [31:5:31:6] ','
-                             LabeledExpressionSyntax
-                              BracketInitializerClauseSyntax
-                               OpenBracketToken <596:597> [32:4:32:5] '['
-                               SyntaxList
-                                LabeledExpressionSyntax
-                                 BracketInitializerClauseSyntax
-                                  OpenBracketToken <606:607> [33:8:33:9] '['
-                                  SyntaxList
-                                   LabeledExpressionSyntax
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <607:609> [33:9:33:11] '49'
-                                    CommaToken <609:610> [33:11:33:12] ','
-                                   LabeledExpressionSyntax
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <611:613> [33:13:33:15] '50'
-                                    CommaToken <613:614> [33:15:33:16] ','
-                                   LabeledExpressionSyntax
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <615:617> [33:17:33:19] '51'
-                                    CommaToken <617:618> [33:19:33:20] ','
-                                   LabeledExpressionSyntax
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <619:621> [33:21:33:23] '52'
-                                  CloseBracketToken <621:622> [33:23:33:24] ']'
-                                  CommaToken <622:623> [33:24:33:25] ','
-                                 LabeledExpressionSyntax
-                                  BracketInitializerClauseSyntax
-                                   OpenBracketToken <632:633> [34:8:34:9] '['
-                                   SyntaxList
-                                    LabeledExpressionSyntax
-                                     LiteralExpressionSyntax
-                                      IntegerLiteralToken <633:635> [34:9:34:11] '53'
-                                     CommaToken <635:636> [34:11:34:12] ','
-                                    LabeledExpressionSyntax
-                                     LiteralExpressionSyntax
-                                      IntegerLiteralToken <637:639> [34:13:34:15] '54'
-                                     CommaToken <639:640> [34:15:34:16] ','
-                                    LabeledExpressionSyntax
-                                     LiteralExpressionSyntax
-                                      IntegerLiteralToken <641:643> [34:17:34:19] '55'
-                                     CommaToken <643:644> [34:19:34:20] ','
-                                    LabeledExpressionSyntax
-                                     LiteralExpressionSyntax
-                                      IntegerLiteralToken <645:647> [34:21:34:23] '56'
-                                   CloseBracketToken <647:648> [34:23:34:24] ']'
-                                   CommaToken <648:649> [34:24:34:25] ','
-                                  LabeledExpressionSyntax
-                                   BracketInitializerClauseSyntax
-                                    OpenBracketToken <658:659> [35:8:35:9] '['
-                                    SyntaxList
-                                     LabeledExpressionSyntax
-                                      LiteralExpressionSyntax
-                                       IntegerLiteralToken <659:661> [35:9:35:11] '57'
-                                      CommaToken <661:662> [35:11:35:12] ','
-                                     LabeledExpressionSyntax
-                                      LiteralExpressionSyntax
-                                       IntegerLiteralToken <663:665> [35:13:35:15] '58'
-                                      CommaToken <665:666> [35:15:35:16] ','
-                                     LabeledExpressionSyntax
-                                      LiteralExpressionSyntax
-                                       IntegerLiteralToken <667:669> [35:17:35:19] '59'
-                                      CommaToken <669:670> [35:19:35:20] ','
-                                     LabeledExpressionSyntax
-                                      LiteralExpressionSyntax
-                                       IntegerLiteralToken <671:673> [35:21:35:23] '60'
-                                    CloseBracketToken <673:674> [35:23:35:24] ']'
-                                    CommaToken <674:675> [35:24:35:25] ','
-                                   LabeledExpressionSyntax
-                                    BracketInitializerClauseSyntax
-                                     OpenBracketToken <684:685> [36:8:36:9] '['
-                                     SyntaxList
-                                      LabeledExpressionSyntax
-                                       LiteralExpressionSyntax
-                                        IntegerLiteralToken <685:687> [36:9:36:11] '61'
-                                       CommaToken <687:688> [36:11:36:12] ','
-                                      LabeledExpressionSyntax
-                                       LiteralExpressionSyntax
-                                        IntegerLiteralToken <689:691> [36:13:36:15] '62'
-                                       CommaToken <691:692> [36:15:36:16] ','
-                                      LabeledExpressionSyntax
-                                       LiteralExpressionSyntax
-                                        IntegerLiteralToken <693:695> [36:17:36:19] '63'
-                                       CommaToken <695:696> [36:19:36:20] ','
-                                      LabeledExpressionSyntax
-                                       LiteralExpressionSyntax
-                                        IntegerLiteralToken <697:699> [36:21:36:23] '64'
-                                     CloseBracketToken <699:700> [36:23:36:24] ']'
-                                     CommaToken <700:701> [36:24:36:25] ','
-                                   CloseBracketToken <706:707> [37:4:37:5] ']'
-                                   CommaToken <707:708> [37:5:37:6] ','
-                                 CloseBracketToken <709:710> [38:0:38:1] ']'
-                              SemicolonToken <710:711> [38:1:38:2] ';'
-                             CodeBlockItemSyntax
-                              VariableDeclarationSyntax
-                               LetKeyword <713:716> [40:0:40:3] 'let'
-                               PatternBindingSyntax
-                                IdentifierPatternSyntax
-                                 IdentifierNameSyntax
-                                  IdentifierToken <717:724> [40:4:40:11] 'slice1D'
-                                TypeClauseSyntax
-                                 ColonToken <725:726> [40:12:40:13] ':'
-                                 SliceTypeSyntax
-                                  OpenBracketToken <727:728> [40:14:40:15] '['
-                                  IdentifierNameSyntax
-                                   IdentifierToken <728:733> [40:15:40:20] 'Int32'
-                                  CloseBracketToken <733:734> [40:20:40:21] ']'
-                                InitializerClauseSyntax
-                                 EqualsToken <735:736> [40:22:40:23] '='
-                                 IdentifierNameSyntax
-                                  IdentifierToken <737:744> [40:24:40:31] 'array1D'
-                              SemicolonToken <744:745> [40:31:40:32] ';'
-                             CodeBlockItemSyntax
-                              VariableDeclarationSyntax
-                               LetKeyword <746:749> [41:0:41:3] 'let'
-                               PatternBindingSyntax
-                                IdentifierPatternSyntax
-                                 IdentifierNameSyntax
-                                  IdentifierToken <750:757> [41:4:41:11] 'slice2D'
-                                TypeClauseSyntax
-                                 ColonToken <758:759> [41:12:41:13] ':'
-                                 SliceTypeSyntax
-                                  OpenBracketToken <760:761> [41:14:41:15] '['
-                                  ArrayTypeSyntax
-                                   OpenBracketToken <761:762> [41:15:41:16] '['
-                                   IdentifierNameSyntax
-                                    IdentifierToken <762:767> [41:16:41:21] 'Int32'
-                                   ColonToken <767:768> [41:21:41:22] ':'
-                                   LiteralExpressionSyntax
-                                    IntegerLiteralToken <769:770> [41:23:41:24] '4'
-                                   CloseBracketToken <770:771> [41:24:41:25] ']'
-                                  CloseBracketToken <771:772> [41:25:41:26] ']'
-                                InitializerClauseSyntax
-                                 EqualsToken <773:774> [41:27:41:28] '='
-                                 IdentifierNameSyntax
-                                  IdentifierToken <775:782> [41:29:41:36] 'array2D'
-                              SemicolonToken <782:783> [41:36:41:37] ';'
-                             CodeBlockItemSyntax
-                              VariableDeclarationSyntax
-                               LetKeyword <784:787> [42:0:42:3] 'let'
-                               PatternBindingSyntax
-                                IdentifierPatternSyntax
-                                 IdentifierNameSyntax
-                                  IdentifierToken <788:795> [42:4:42:11] 'slice3D'
-                                TypeClauseSyntax
-                                 ColonToken <796:797> [42:12:42:13] ':'
-                                 SliceTypeSyntax
-                                  OpenBracketToken <798:799> [42:14:42:15] '['
-                                  ArrayTypeSyntax
-                                   OpenBracketToken <799:800> [42:15:42:16] '['
-                                   ArrayTypeSyntax
-                                    OpenBracketToken <800:801> [42:16:42:17] '['
-                                    IdentifierNameSyntax
-                                     IdentifierToken <801:806> [42:17:42:22] 'Int32'
-                                    ColonToken <806:807> [42:22:42:23] ':'
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <808:809> [42:24:42:25] '4'
-                                    CloseBracketToken <809:810> [42:25:42:26] ']'
-                                   ColonToken <810:811> [42:26:42:27] ':'
-                                   LiteralExpressionSyntax
-                                    IntegerLiteralToken <812:813> [42:28:42:29] '4'
-                                   CloseBracketToken <813:814> [42:29:42:30] ']'
-                                  CloseBracketToken <814:815> [42:30:42:31] ']'
-                                InitializerClauseSyntax
-                                 EqualsToken <816:817> [42:32:42:33] '='
-                                 IdentifierNameSyntax
-                                  IdentifierToken <818:825> [42:34:42:41] 'array3D'
-                              SemicolonToken <825:826> [42:41:42:42] ';'
-                             CodeBlockItemSyntax
-                              VariableDeclarationSyntax
-                               VarKeyword <828:831> [44:0:44:3] 'var'
-                               PatternBindingSyntax
-                                IdentifierPatternSyntax
-                                 IdentifierNameSyntax
-                                  IdentifierToken <832:847> [44:4:44:19] 'arrayOutOfOrder'
-                                InitializerClauseSyntax
-                                 EqualsToken <848:849> [44:20:44:21] '='
-                                 BracketInitializerClauseSyntax
-                                  OpenBracketToken <850:851> [44:22:44:23] '['
-                                  SyntaxList
-                                   LabeledExpressionSyntax
-                                    IntegerLiteralToken <856:857> [45:4:45:5] '2'
-                                    ColonToken <857:858> [45:5:45:6] ':'
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <859:860> [45:7:45:8] '1'
-                                    CommaToken <860:861> [45:8:45:9] ','
-                                   LabeledExpressionSyntax
-                                    IntegerLiteralToken <866:867> [46:4:46:5] '3'
-                                    ColonToken <867:868> [46:5:46:6] ':'
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <869:870> [46:7:46:8] '7'
-                                    CommaToken <870:871> [46:8:46:9] ','
-                                   LabeledExpressionSyntax
-                                    IntegerLiteralToken <876:877> [47:4:47:5] '6'
-                                    ColonToken <877:878> [47:5:47:6] ':'
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <879:880> [47:7:47:8] '9'
-                                    CommaToken <880:881> [47:8:47:9] ','
-                                   LabeledExpressionSyntax
-                                    IntegerLiteralToken <886:887> [48:4:48:5] '4'
-                                    ColonToken <887:888> [48:5:48:6] ':'
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <889:891> [48:7:48:9] '20'
-                                    CommaToken <891:892> [48:9:48:10] ','
-                                   LabeledExpressionSyntax
-                                    IntegerLiteralToken <897:898> [49:4:49:5] '1'
-                                    ColonToken <898:899> [49:5:49:6] ':'
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <900:901> [49:7:49:8] '3'
-                                    CommaToken <901:902> [49:8:49:9] ','
-                                   LabeledExpressionSyntax
-                                    IntegerLiteralToken <907:908> [50:4:50:5] '5'
-                                    ColonToken <908:909> [50:5:50:6] ':'
-                                    LiteralExpressionSyntax
-                                     IntegerLiteralToken <910:911> [50:7:50:8] '5'
-                                    CommaToken <911:912> [50:8:50:9] ','
-                                  CloseBracketToken <913:914> [51:0:51:1] ']'
-                               SemicolonToken <914:915> [51:1:51:2] ';'
-                             EndOfFileToken <916:916> [52:0:52:0] ''
+               LiteralExpressionSyntax
+                IntegerLiteralToken <283:284> [16:10:16:11] '5'
+               CommaToken <284:285> [16:11:16:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <287:288> [16:14:16:15] '6'
+               CommaToken <288:289> [16:15:16:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <291:292> [16:18:16:19] '7'
+               CommaToken <292:293> [16:19:16:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <295:296> [16:22:16:23] '8'
+             CloseBracketToken <296:297> [16:23:16:24] ']'
+            CommaToken <297:298> [16:24:16:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <307:308> [17:8:17:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <309:310> [17:10:17:11] '9'
+               CommaToken <310:311> [17:11:17:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <312:314> [17:13:17:15] '10'
+               CommaToken <314:315> [17:15:17:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <316:318> [17:17:17:19] '11'
+               CommaToken <318:319> [17:19:17:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <320:322> [17:21:17:23] '12'
+             CloseBracketToken <322:323> [17:23:17:24] ']'
+            CommaToken <323:324> [17:24:17:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <333:334> [18:8:18:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <334:336> [18:9:18:11] '13'
+               CommaToken <336:337> [18:11:18:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <338:340> [18:13:18:15] '14'
+               CommaToken <340:341> [18:15:18:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <342:344> [18:17:18:19] '15'
+               CommaToken <344:345> [18:19:18:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <346:348> [18:21:18:23] '16'
+             CloseBracketToken <348:349> [18:23:18:24] ']'
+            CommaToken <349:350> [18:24:18:25] ','
+          CloseBracketToken <355:356> [19:4:19:5] ']'
+         CommaToken <356:357> [19:5:19:6] ','
+        LabeledExpressionSyntax
+         BracketInitializerClauseSyntax
+          OpenBracketToken <362:363> [20:4:20:5] '['
+          SyntaxList
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <372:373> [21:8:21:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <373:375> [21:9:21:11] '17'
+               CommaToken <375:376> [21:11:21:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <377:379> [21:13:21:15] '18'
+               CommaToken <379:380> [21:15:21:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <381:383> [21:17:21:19] '19'
+               CommaToken <383:384> [21:19:21:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <385:387> [21:21:21:23] '20'
+             CloseBracketToken <387:388> [21:23:21:24] ']'
+            CommaToken <388:389> [21:24:21:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <398:399> [22:8:22:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <399:401> [22:9:22:11] '21'
+               CommaToken <401:402> [22:11:22:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <403:405> [22:13:22:15] '22'
+               CommaToken <405:406> [22:15:22:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <407:409> [22:17:22:19] '23'
+               CommaToken <409:410> [22:19:22:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <411:413> [22:21:22:23] '24'
+             CloseBracketToken <413:414> [22:23:22:24] ']'
+            CommaToken <414:415> [22:24:22:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <424:425> [23:8:23:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <425:427> [23:9:23:11] '25'
+               CommaToken <427:428> [23:11:23:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <429:431> [23:13:23:15] '26'
+               CommaToken <431:432> [23:15:23:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <433:435> [23:17:23:19] '27'
+               CommaToken <435:436> [23:19:23:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <437:439> [23:21:23:23] '28'
+             CloseBracketToken <439:440> [23:23:23:24] ']'
+            CommaToken <440:441> [23:24:23:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <450:451> [24:8:24:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <451:453> [24:9:24:11] '29'
+               CommaToken <453:454> [24:11:24:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <455:457> [24:13:24:15] '30'
+               CommaToken <457:458> [24:15:24:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <459:461> [24:17:24:19] '31'
+               CommaToken <461:462> [24:19:24:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <463:465> [24:21:24:23] '32'
+             CloseBracketToken <465:466> [24:23:24:24] ']'
+            CommaToken <466:467> [24:24:24:25] ','
+          CloseBracketToken <472:473> [25:4:25:5] ']'
+         CommaToken <473:474> [25:5:25:6] ','
+        LabeledExpressionSyntax
+         BracketInitializerClauseSyntax
+          OpenBracketToken <479:480> [26:4:26:5] '['
+          SyntaxList
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <489:490> [27:8:27:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <490:492> [27:9:27:11] '33'
+               CommaToken <492:493> [27:11:27:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <494:496> [27:13:27:15] '34'
+               CommaToken <496:497> [27:15:27:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <498:500> [27:17:27:19] '35'
+               CommaToken <500:501> [27:19:27:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <502:504> [27:21:27:23] '36'
+             CloseBracketToken <504:505> [27:23:27:24] ']'
+            CommaToken <505:506> [27:24:27:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <515:516> [28:8:28:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <516:518> [28:9:28:11] '37'
+               CommaToken <518:519> [28:11:28:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <520:522> [28:13:28:15] '38'
+               CommaToken <522:523> [28:15:28:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <524:526> [28:17:28:19] '39'
+               CommaToken <526:527> [28:19:28:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <528:530> [28:21:28:23] '40'
+             CloseBracketToken <530:531> [28:23:28:24] ']'
+            CommaToken <531:532> [28:24:28:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <541:542> [29:8:29:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <542:544> [29:9:29:11] '41'
+               CommaToken <544:545> [29:11:29:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <546:548> [29:13:29:15] '42'
+               CommaToken <548:549> [29:15:29:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <550:552> [29:17:29:19] '43'
+               CommaToken <552:553> [29:19:29:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <554:556> [29:21:29:23] '44'
+             CloseBracketToken <556:557> [29:23:29:24] ']'
+            CommaToken <557:558> [29:24:29:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <567:568> [30:8:30:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <568:570> [30:9:30:11] '45'
+               CommaToken <570:571> [30:11:30:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <572:574> [30:13:30:15] '46'
+               CommaToken <574:575> [30:15:30:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <576:578> [30:17:30:19] '47'
+               CommaToken <578:579> [30:19:30:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <580:582> [30:21:30:23] '48'
+             CloseBracketToken <582:583> [30:23:30:24] ']'
+            CommaToken <583:584> [30:24:30:25] ','
+          CloseBracketToken <589:590> [31:4:31:5] ']'
+         CommaToken <590:591> [31:5:31:6] ','
+        LabeledExpressionSyntax
+         BracketInitializerClauseSyntax
+          OpenBracketToken <596:597> [32:4:32:5] '['
+          SyntaxList
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <606:607> [33:8:33:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <607:609> [33:9:33:11] '49'
+               CommaToken <609:610> [33:11:33:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <611:613> [33:13:33:15] '50'
+               CommaToken <613:614> [33:15:33:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <615:617> [33:17:33:19] '51'
+               CommaToken <617:618> [33:19:33:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <619:621> [33:21:33:23] '52'
+             CloseBracketToken <621:622> [33:23:33:24] ']'
+            CommaToken <622:623> [33:24:33:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <632:633> [34:8:34:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <633:635> [34:9:34:11] '53'
+               CommaToken <635:636> [34:11:34:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <637:639> [34:13:34:15] '54'
+               CommaToken <639:640> [34:15:34:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <641:643> [34:17:34:19] '55'
+               CommaToken <643:644> [34:19:34:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <645:647> [34:21:34:23] '56'
+             CloseBracketToken <647:648> [34:23:34:24] ']'
+            CommaToken <648:649> [34:24:34:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <658:659> [35:8:35:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <659:661> [35:9:35:11] '57'
+               CommaToken <661:662> [35:11:35:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <663:665> [35:13:35:15] '58'
+               CommaToken <665:666> [35:15:35:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <667:669> [35:17:35:19] '59'
+               CommaToken <669:670> [35:19:35:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <671:673> [35:21:35:23] '60'
+             CloseBracketToken <673:674> [35:23:35:24] ']'
+            CommaToken <674:675> [35:24:35:25] ','
+           LabeledExpressionSyntax
+            BracketInitializerClauseSyntax
+             OpenBracketToken <684:685> [36:8:36:9] '['
+             SyntaxList
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <685:687> [36:9:36:11] '61'
+               CommaToken <687:688> [36:11:36:12] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <689:691> [36:13:36:15] '62'
+               CommaToken <691:692> [36:15:36:16] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <693:695> [36:17:36:19] '63'
+               CommaToken <695:696> [36:19:36:20] ','
+              LabeledExpressionSyntax
+               LiteralExpressionSyntax
+                IntegerLiteralToken <697:699> [36:21:36:23] '64'
+             CloseBracketToken <699:700> [36:23:36:24] ']'
+            CommaToken <700:701> [36:24:36:25] ','
+          CloseBracketToken <706:707> [37:4:37:5] ']'
+         CommaToken <707:708> [37:5:37:6] ','
+       CloseBracketToken <709:710> [38:0:38:1] ']'
+   SemicolonToken <710:711> [38:1:38:2] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <713:716> [40:0:40:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <717:724> [40:4:40:11] 'slice1D'
+     TypeClauseSyntax
+      ColonToken <725:726> [40:12:40:13] ':'
+      SliceTypeSyntax
+       OpenBracketToken <727:728> [40:14:40:15] '['
+       IdentifierNameSyntax
+        IdentifierToken <728:733> [40:15:40:20] 'Int32'
+       CloseBracketToken <733:734> [40:20:40:21] ']'
+     InitializerClauseSyntax
+      EqualsToken <735:736> [40:22:40:23] '='
+      IdentifierNameSyntax
+       IdentifierToken <737:744> [40:24:40:31] 'array1D'
+   SemicolonToken <744:745> [40:31:40:32] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <746:749> [41:0:41:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <750:757> [41:4:41:11] 'slice2D'
+     TypeClauseSyntax
+      ColonToken <758:759> [41:12:41:13] ':'
+      SliceTypeSyntax
+       OpenBracketToken <760:761> [41:14:41:15] '['
+       ArrayTypeSyntax
+        OpenBracketToken <761:762> [41:15:41:16] '['
+        IdentifierNameSyntax
+         IdentifierToken <762:767> [41:16:41:21] 'Int32'
+        ColonToken <767:768> [41:21:41:22] ':'
+        LiteralExpressionSyntax
+         IntegerLiteralToken <769:770> [41:23:41:24] '4'
+        CloseBracketToken <770:771> [41:24:41:25] ']'
+       CloseBracketToken <771:772> [41:25:41:26] ']'
+     InitializerClauseSyntax
+      EqualsToken <773:774> [41:27:41:28] '='
+      IdentifierNameSyntax
+       IdentifierToken <775:782> [41:29:41:36] 'array2D'
+   SemicolonToken <782:783> [41:36:41:37] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <784:787> [42:0:42:3] 'let'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <788:795> [42:4:42:11] 'slice3D'
+     TypeClauseSyntax
+      ColonToken <796:797> [42:12:42:13] ':'
+      SliceTypeSyntax
+       OpenBracketToken <798:799> [42:14:42:15] '['
+       ArrayTypeSyntax
+        OpenBracketToken <799:800> [42:15:42:16] '['
+        ArrayTypeSyntax
+         OpenBracketToken <800:801> [42:16:42:17] '['
+         IdentifierNameSyntax
+          IdentifierToken <801:806> [42:17:42:22] 'Int32'
+         ColonToken <806:807> [42:22:42:23] ':'
+         LiteralExpressionSyntax
+          IntegerLiteralToken <808:809> [42:24:42:25] '4'
+         CloseBracketToken <809:810> [42:25:42:26] ']'
+        ColonToken <810:811> [42:26:42:27] ':'
+        LiteralExpressionSyntax
+         IntegerLiteralToken <812:813> [42:28:42:29] '4'
+        CloseBracketToken <813:814> [42:29:42:30] ']'
+       CloseBracketToken <814:815> [42:30:42:31] ']'
+     InitializerClauseSyntax
+      EqualsToken <816:817> [42:32:42:33] '='
+      IdentifierNameSyntax
+       IdentifierToken <818:825> [42:34:42:41] 'array3D'
+   SemicolonToken <825:826> [42:41:42:42] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    VarKeyword <828:831> [44:0:44:3] 'var'
+    PatternBindingSyntax
+     IdentifierPatternSyntax
+      IdentifierNameSyntax
+       IdentifierToken <832:847> [44:4:44:19] 'arrayOutOfOrder'
+     InitializerClauseSyntax
+      EqualsToken <848:849> [44:20:44:21] '='
+      BracketInitializerClauseSyntax
+       OpenBracketToken <850:851> [44:22:44:23] '['
+       CloseBracketToken <1044:1045> [55:0:55:1] ']'
+   SemicolonToken <1045:1046> [55:1:55:2] ';'
+ EndOfFileToken <1047:1047> [56:0:56:0] ''

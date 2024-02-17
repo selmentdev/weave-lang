@@ -56,10 +56,14 @@ SourceFileSyntax
                  IdentifierToken <78:80> [5:29:5:31] 'g5'
                 CommaToken <80:81> [5:31:5:32] ','
                ArgumentSyntax
+                SyntaxList
+                 MoveKeyword <82:86> [5:33:5:37] 'move'
                 IdentifierNameSyntax
                  IdentifierToken <87:89> [5:38:5:40] 'g6'
                 CommaToken <89:90> [5:40:5:41] ','
                ArgumentSyntax
+                SyntaxList
+                 OutKeyword <91:94> [5:42:5:45] 'out'
                 IdentifierNameSyntax
                  IdentifierToken <95:101> [5:46:5:52] 'result'
               CloseParenToken <101:102> [5:52:5:53] ')'
@@ -137,10 +141,14 @@ SourceFileSyntax
                         IdentifierToken <163:165> [7:38:7:40] 'g5'
                        CommaToken <165:166> [7:40:7:41] ','
                       ArgumentSyntax
+                       SyntaxList
+                        MoveKeyword <167:171> [7:42:7:46] 'move'
                        IdentifierNameSyntax
                         IdentifierToken <172:174> [7:47:7:49] 'g6'
                        CommaToken <174:175> [7:49:7:50] ','
                       ArgumentSyntax
+                       SyntaxList
+                        OutKeyword <176:179> [7:51:7:54] 'out'
                        IdentifierNameSyntax
                         IdentifierToken <180:186> [7:55:7:61] 'result'
                      CloseParenToken <186:187> [7:61:7:62] ')'
@@ -1006,9 +1014,10 @@ SourceFileSyntax
                   OpenParenToken <2290:2291> [105:23:105:24] '('
                   SyntaxList
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2308:2309> [106:16:106:17] 'x'
-                    ColonToken <2309:2310> [106:17:106:18] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2308:2309> [106:16:106:17] 'x'
+                     ColonToken <2309:2310> [106:17:106:18] ':'
                     BinaryExpressionSyntax
                      MemberAccessExpressionSyntax
                       IdentifierNameSyntax
@@ -1025,9 +1034,10 @@ SourceFileSyntax
                        IdentifierToken <2326:2327> [106:34:106:35] 'x'
                     CommaToken <2327:2328> [106:35:106:36] ','
                    ArgumentSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <2345:2346> [107:16:107:17] 'y'
-                    ColonToken <2346:2347> [107:17:107:18] ':'
+                    NameColonSyntax
+                     IdentifierNameSyntax
+                      IdentifierToken <2345:2346> [107:16:107:17] 'y'
+                     ColonToken <2346:2347> [107:17:107:18] ':'
                     BinaryExpressionSyntax
                      MemberAccessExpressionSyntax
                       IdentifierNameSyntax

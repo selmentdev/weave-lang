@@ -1,7 +1,7 @@
 SourceFileSyntax
  SyntaxList
   CodeBlockItemSyntax
-   LabelStatementSyntax
+   LabeledStatementSyntax
     IdentifierToken <26:38> [1:0:1:12] 'this_is_loop'
     ColonToken <38:39> [1:12:1:13] ':'
     ExpressionStatementSyntax
@@ -31,7 +31,7 @@ SourceFileSyntax
             IntegerLiteralToken <82:86> [4:9:4:13] '2137'
          SemicolonToken <86:87> [4:13:4:14] ';'
         CodeBlockItemSyntax
-         LabelStatementSyntax
+         LabeledStatementSyntax
           IdentifierToken <88:102> [5:0:5:14] 'update_counter'
           ColonToken <102:103> [5:14:5:15] ':'
           ExpressionStatementSyntax

@@ -1,0 +1,29 @@
+enum E
+{
+    A(x: Float32, y: Float32),
+    B(z: Int32),
+    C,
+};
+
+function A(x: E) -> r: bool
+{
+    return match x
+    {
+        case A(x, y): (x + y) < 21.0;
+        case B(z): (z + 21) < 37.0;
+        case C: true;
+        default: false;
+    }
+}
+
+function B(x: E)
+{
+    if (x is E::A y)
+    {
+        return y.x;
+    }
+    else
+    {
+        return 0.0;
+    }
+}

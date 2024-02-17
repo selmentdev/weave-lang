@@ -169,9 +169,10 @@ SourceFileSyntax
      MinusGreaterThanToken <523:525> [7:56:7:58] '->'
      SyntaxList
       MoveKeyword <527:531> [7:60:7:64] 'move'
-     IdentifierNameSyntax
-      IdentifierToken <535:541> [7:68:7:74] 'result'
-     ColonToken <541:542> [7:74:7:75] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <535:541> [7:68:7:74] 'result'
+      ColonToken <541:542> [7:74:7:75] ':'
      IdentifierNameSyntax
       IdentifierToken <543:548> [7:76:7:81] 'Int32'
     CodeBlockSyntax
@@ -243,9 +244,10 @@ SourceFileSyntax
      MinusGreaterThanToken <751:753> [9:56:9:58] '->'
      SyntaxList
       RefKeyword <755:758> [9:60:9:63] 'ref'
-     IdentifierNameSyntax
-      IdentifierToken <763:769> [9:68:9:74] 'result'
-     ColonToken <769:770> [9:74:9:75] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <763:769> [9:68:9:74] 'result'
+      ColonToken <769:770> [9:74:9:75] ':'
      IdentifierNameSyntax
       IdentifierToken <771:776> [9:76:9:81] 'Int32'
     CodeBlockSyntax
@@ -284,9 +286,10 @@ SourceFileSyntax
      MinusGreaterThanToken <865:867> [10:56:10:58] '->'
      SyntaxList
       InKeyword <869:871> [10:60:10:62] 'in'
-     IdentifierNameSyntax
-      IdentifierToken <877:883> [10:68:10:74] 'result'
-     ColonToken <883:884> [10:74:10:75] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <877:883> [10:68:10:74] 'result'
+      ColonToken <883:884> [10:74:10:75] ':'
      IdentifierNameSyntax
       IdentifierToken <885:890> [10:76:10:81] 'Int32'
     CodeBlockSyntax
@@ -323,9 +326,10 @@ SourceFileSyntax
      MinusGreaterThanToken <1139:1141> [15:56:15:58] '->'
      SyntaxList
       MoveKeyword <1143:1147> [15:60:15:64] 'move'
-     IdentifierNameSyntax
-      IdentifierToken <1151:1157> [15:68:15:74] 'result'
-     ColonToken <1157:1158> [15:74:15:75] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <1151:1157> [15:68:15:74] 'result'
+      ColonToken <1157:1158> [15:74:15:75] ':'
      IdentifierNameSyntax
       IdentifierToken <1159:1164> [15:76:15:81] 'Int32'
     CodeBlockSyntax
@@ -400,9 +404,10 @@ SourceFileSyntax
      MinusGreaterThanToken <1399:1401> [17:56:17:58] '->'
      SyntaxList
       RefKeyword <1403:1406> [17:60:17:63] 'ref'
-     IdentifierNameSyntax
-      IdentifierToken <1411:1417> [17:68:17:74] 'result'
-     ColonToken <1417:1418> [17:74:17:75] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <1411:1417> [17:68:17:74] 'result'
+      ColonToken <1417:1418> [17:74:17:75] ':'
      IdentifierNameSyntax
       IdentifierToken <1419:1424> [17:76:17:81] 'Int32'
     CodeBlockSyntax
@@ -444,9 +449,10 @@ SourceFileSyntax
      MinusGreaterThanToken <1529:1531> [18:56:18:58] '->'
      SyntaxList
       InKeyword <1533:1535> [18:60:18:62] 'in'
-     IdentifierNameSyntax
-      IdentifierToken <1541:1547> [18:68:18:74] 'result'
-     ColonToken <1547:1548> [18:74:18:75] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <1541:1547> [18:68:18:74] 'result'
+      ColonToken <1547:1548> [18:74:18:75] ':'
      IdentifierNameSyntax
       IdentifierToken <1549:1554> [18:76:18:81] 'Int32'
     CodeBlockSyntax
@@ -624,18 +630,26 @@ SourceFileSyntax
           OpenParenToken <1837:1838> [39:5:39:6] '('
           SyntaxList
            ArgumentSyntax
+            SyntaxList
+             InKeyword <1847:1849> [40:8:40:10] 'in'
             IdentifierNameSyntax
              IdentifierToken <1850:1851> [40:11:40:12] 'x'
             CommaToken <1851:1852> [40:12:40:13] ','
            ArgumentSyntax
+            SyntaxList
+             RefKeyword <1861:1864> [41:8:41:11] 'ref'
             IdentifierNameSyntax
              IdentifierToken <1865:1866> [41:12:41:13] 'y'
             CommaToken <1866:1867> [41:13:41:14] ','
            ArgumentSyntax
+            SyntaxList
+             OutKeyword <1876:1879> [42:8:42:11] 'out'
             IdentifierNameSyntax
              IdentifierToken <1880:1881> [42:12:42:13] 'z'
             CommaToken <1881:1882> [42:13:42:14] ','
            ArgumentSyntax
+            SyntaxList
+             MoveKeyword <1891:1895> [43:8:43:12] 'move'
             IdentifierNameSyntax
              IdentifierToken <1896:1897> [43:13:43:14] 'w'
           CloseParenToken <1897:1898> [43:14:43:15] ')'
@@ -965,9 +979,10 @@ SourceFileSyntax
      CloseParenToken <2581:2582> [77:0:77:1] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <2583:2585> [77:2:77:4] '->'
-     IdentifierNameSyntax
-      IdentifierToken <2586:2592> [77:5:77:11] 'result'
-     ColonToken <2592:2593> [77:11:77:12] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <2586:2592> [77:5:77:11] 'result'
+      ColonToken <2592:2593> [77:11:77:12] ':'
      IdentifierNameSyntax
       IdentifierToken <2594:2599> [77:13:77:18] 'Int32'
     SyntaxList
@@ -1578,9 +1593,10 @@ SourceFileSyntax
      CloseParenToken <4581:4582> [163:0:163:1] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <4583:4585> [163:2:163:4] '->'
-     IdentifierNameSyntax
-      IdentifierToken <4586:4587> [163:5:163:6] 'r'
-     ColonToken <4587:4588> [163:6:163:7] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <4586:4587> [163:5:163:6] 'r'
+      ColonToken <4587:4588> [163:6:163:7] ':'
      IdentifierNameSyntax
       IdentifierToken <4589:4590> [163:8:163:9] 'T'
     SyntaxList
@@ -1757,9 +1773,10 @@ SourceFileSyntax
      CloseParenToken <4981:4982> [183:40:183:41] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <4983:4985> [183:42:183:44] '->'
-     IdentifierNameSyntax
-      IdentifierToken <4986:4987> [183:45:183:46] 'r'
-     ColonToken <4987:4988> [183:46:183:47] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <4986:4987> [183:45:183:46] 'r'
+      ColonToken <4987:4988> [183:46:183:47] ':'
      IdentifierNameSyntax
       IdentifierToken <4989:4996> [183:48:183:55] 'Float32'
     SyntaxList

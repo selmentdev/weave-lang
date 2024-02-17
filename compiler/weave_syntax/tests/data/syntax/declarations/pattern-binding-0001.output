@@ -49,14 +49,18 @@ SourceFileSyntax
       OpenParenToken <52:53> [2:4:2:5] '('
       SyntaxList
        TuplePatternItemSyntax
-        IdentifierToken <54:55> [2:6:2:7] 'x'
-        ColonToken <55:56> [2:7:2:8] ':'
+        NameColonSyntax
+         IdentifierNameSyntax
+          IdentifierToken <54:55> [2:6:2:7] 'x'
+         ColonToken <55:56> [2:7:2:8] ':'
         LiteralPatternSyntax
          IntegerLiteralToken <57:59> [2:9:2:11] '42'
         CommaToken <59:60> [2:11:2:12] ','
        TuplePatternItemSyntax
-        IdentifierToken <61:62> [2:13:2:14] 'y'
-        ColonToken <62:63> [2:14:2:15] ':'
+        NameColonSyntax
+         IdentifierNameSyntax
+          IdentifierToken <61:62> [2:13:2:14] 'y'
+         ColonToken <62:63> [2:14:2:15] ':'
         LiteralPatternSyntax
          IntegerLiteralToken <64:68> [2:16:2:20] '1337'
       CloseParenToken <69:70> [2:21:2:22] ')'

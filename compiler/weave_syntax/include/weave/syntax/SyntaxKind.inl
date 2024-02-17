@@ -447,6 +447,7 @@ WEAVE_SYNTAX_NODE(ArrowExpressionClauseSyntax,                  "[node:arrow-exp
 WEAVE_SYNTAX_NODE(ReturnTypeClauseSyntax,                       "[node:return-type-clause]")
 WEAVE_SYNTAX_NODE(VariableDeclarationSyntax,                    "variable declaration")
 WEAVE_SYNTAX_NODE(ExpressionStatementSyntax,                    "[node:expression-statement]")
+WEAVE_SYNTAX_NODE(LabeledStatementSyntax,                       "[node:labeled-statement]")
 WEAVE_SYNTAX_NODE(BlockStatementSyntax,                         "[node:block-statement]")
 WEAVE_SYNTAX_NODE(IfExpressionSyntax,                           "if expression")
 WEAVE_SYNTAX_NODE(ElseClauseSyntax,                             "[node:else-clause]")
@@ -472,7 +473,6 @@ WEAVE_SYNTAX_NODE(CodeBlockItemSyntax,                          "code block item
 WEAVE_SYNTAX_NODE(TypePointerSyntax,                            "pointer type")
 WEAVE_SYNTAX_NODE(TupleTypeSyntax,                              "tuple type")
 WEAVE_SYNTAX_NODE(TupleTypeElementSyntax,                       "tuple type element")
-WEAVE_SYNTAX_NODE(LabelStatementSyntax,                         "label statement")
 WEAVE_SYNTAX_NODE(TupleExpressionSyntax,                        "tuple expression")
 WEAVE_SYNTAX_NODE(LabeledExpressionSyntax,                      "labeled expression")
 WEAVE_SYNTAX_NODE(EvalExpressionSyntax,                         "eval expression")
@@ -507,6 +507,7 @@ WEAVE_SYNTAX_NODE(RequiresClauseSyntax,                         "requires clause
 WEAVE_SYNTAX_NODE(EnsuresClauseSyntax,                          "ensures clause")
 WEAVE_SYNTAX_NODE(InvariantClauseSyntax,                        "invariant clause")
 WEAVE_SYNTAX_NODE(AssertExpressionSyntax,                       "assert expression")
+WEAVE_SYNTAX_NODE(NameColonSyntax,                              "name colon")
 
 // prefix unary expressions
 WEAVE_SYNTAX_EXPRESSION(UnaryPlusExpression,                    "[expr:unary-plus]")

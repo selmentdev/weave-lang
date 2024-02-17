@@ -193,7 +193,6 @@ namespace weave::syntax
         ++this->Depth;
 
         this->Dispatch(node->Name);
-        this->Dispatch(node->Colon);
         this->Dispatch(node->Type);
         this->Dispatch(node->TrailingComma);
 
@@ -409,8 +408,7 @@ namespace weave::syntax
 
         this->Dispatch(node->Attributes.GetNode());
         this->Dispatch(node->Modifiers.GetNode());
-        this->Dispatch(node->Label);
-        this->Dispatch(node->Colon);
+        this->Dispatch(node->Name);
         this->Dispatch(node->Expression);
         this->Dispatch(node->TrailingComma);
 
@@ -586,8 +584,7 @@ namespace weave::syntax
 
         this->Dispatch(node->Specifiers.GetNode());
 
-        this->Dispatch(node->Identifier);
-        this->Dispatch(node->Colon);
+        this->Dispatch(node->Name);
 
         this->Dispatch(node->Type);
 
@@ -804,7 +801,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnLabelStatementSyntax(LabelStatementSyntax* node)
+    void SyntaxWalker::OnLabeledStatementSyntax(LabeledStatementSyntax* node)
     {
         this->OnDefault(node);
 
@@ -841,8 +838,7 @@ namespace weave::syntax
 
         ++this->Depth;
 
-        this->Dispatch(node->Label);
-        this->Dispatch(node->Colon);
+        this->Dispatch(node->Name);
         this->Dispatch(node->Expression);
         this->Dispatch(node->TrailingComma);
 
@@ -1096,6 +1092,8 @@ namespace weave::syntax
         this->Dispatch(node->Elements.GetNode());
         this->Dispatch(node->BeforeCloseBracketToken);
         this->Dispatch(node->CloseBracketToken);
+
+        --this->Depth;
     }
 
     void SyntaxWalker::OnBraceInitializerClauseSyntax(BraceInitializerClauseSyntax* node)
@@ -1109,6 +1107,8 @@ namespace weave::syntax
         this->Dispatch(node->Elements.GetNode());
         this->Dispatch(node->BeforeCloseBraceToken);
         this->Dispatch(node->CloseBraceToken);
+
+        --this->Depth;
     }
 
     void SyntaxWalker::OnCheckedStatementSyntax(CheckedStatementSyntax* node)
@@ -1251,8 +1251,7 @@ namespace weave::syntax
 
         ++this->Depth;
 
-        this->Dispatch(node->Identifier);
-        this->Dispatch(node->Colon);
+        this->Dispatch(node->Name);
         this->Dispatch(node->Pattern);
         this->Dispatch(node->TrailingComma);
 
@@ -1397,7 +1396,6 @@ namespace weave::syntax
         this->Dispatch(node->OpenParenToken);
 
         this->Dispatch(node->Level);
-        this->Dispatch(node->ColonToken);
 
         this->Dispatch(node->Condition);
 
@@ -1419,7 +1417,6 @@ namespace weave::syntax
         this->Dispatch(node->OpenParenToken);
 
         this->Dispatch(node->Level);
-        this->Dispatch(node->ColonToken);
 
         this->Dispatch(node->Condition);
 
@@ -1441,7 +1438,6 @@ namespace weave::syntax
         this->Dispatch(node->OpenParenToken);
 
         this->Dispatch(node->Level);
-        this->Dispatch(node->ColonToken);
 
         this->Dispatch(node->Condition);
 
@@ -1463,12 +1459,23 @@ namespace weave::syntax
         this->Dispatch(node->OpenParenToken);
 
         this->Dispatch(node->Level);
-        this->Dispatch(node->ColonToken);
 
         this->Dispatch(node->Condition);
 
         this->Dispatch(node->BeforeCloseParenToken);
         this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnNameColonSyntax(NameColonSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Name);
+        this->Dispatch(node->ColonToken);
 
         --this->Depth;
     }

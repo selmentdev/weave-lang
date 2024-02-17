@@ -32,9 +32,10 @@ SourceFileSyntax
      CloseParenToken <103:104> [1:56:1:57] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <105:107> [1:58:1:60] '->'
-     IdentifierNameSyntax
-      IdentifierToken <108:114> [1:61:1:67] 'result'
-     ColonToken <114:115> [1:67:1:68] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <108:114> [1:61:1:67] 'result'
+      ColonToken <114:115> [1:67:1:68] ':'
      IdentifierNameSyntax
       IdentifierToken <116:120> [1:69:1:73] 'Self'
    SemicolonToken <120:121> [1:73:1:74] ';'
@@ -66,9 +67,10 @@ SourceFileSyntax
      CloseParenToken <226:227> [3:56:3:57] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <228:230> [3:58:3:60] '->'
-     IdentifierNameSyntax
-      IdentifierToken <231:237> [3:61:3:67] 'result'
-     ColonToken <237:238> [3:67:3:68] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <231:237> [3:61:3:67] 'result'
+      ColonToken <237:238> [3:67:3:68] ':'
      IdentifierNameSyntax
       IdentifierToken <239:243> [3:69:3:73] 'Self'
    SemicolonToken <243:244> [3:73:3:74] ';'
@@ -98,9 +100,10 @@ SourceFileSyntax
      CloseParenToken <348:349> [5:56:5:57] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <350:352> [5:58:5:60] '->'
-     IdentifierNameSyntax
-      IdentifierToken <353:359> [5:61:5:67] 'result'
-     ColonToken <359:360> [5:67:5:68] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <353:359> [5:61:5:67] 'result'
+      ColonToken <359:360> [5:67:5:68] ':'
      IdentifierNameSyntax
       IdentifierToken <361:365> [5:69:5:73] 'Self'
    SemicolonToken <365:366> [5:73:5:74] ';'
@@ -138,9 +141,10 @@ SourceFileSyntax
      CloseParenToken <475:476> [7:56:7:57] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <477:479> [7:58:7:60] '->'
-     IdentifierNameSyntax
-      IdentifierToken <480:486> [7:61:7:67] 'result'
-     ColonToken <486:487> [7:67:7:68] ':'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <480:486> [7:61:7:67] 'result'
+      ColonToken <486:487> [7:67:7:68] ':'
      IdentifierNameSyntax
       IdentifierToken <488:492> [7:69:7:73] 'Self'
    SemicolonToken <492:493> [7:73:7:74] ';'

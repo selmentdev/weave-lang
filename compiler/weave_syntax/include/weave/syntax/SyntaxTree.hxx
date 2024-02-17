@@ -169,8 +169,7 @@ namespace weave::syntax
 
         SyntaxListView<SyntaxToken> Specifiers{};
 
-        NameSyntax* Identifier{};
-        SyntaxToken* Colon{};
+        NameColonSyntax* Name{};
 
         TypeSyntax* Type{};
 
@@ -416,8 +415,7 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
 
-        NameSyntax* Label{};
-        SyntaxToken* Colon{};
+        NameColonSyntax* Name{};
         ExpressionSyntax* Expression{};
         SyntaxToken* TrailingComma{};
 
@@ -983,8 +981,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(TupleTypeElementSyntax);
 
     public:
-        SyntaxToken* Name{};
-        SyntaxToken* Colon{};
+        NameColonSyntax* Name{};
         TypeSyntax* Type{};
         SyntaxToken* TrailingComma{};
 
@@ -1420,8 +1417,7 @@ namespace weave::syntax
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
 
-        SyntaxToken* Level{};
-        SyntaxToken* ColonToken{};
+        NameColonSyntax* Level{};
 
         ExpressionSyntax* Condition{};
 
@@ -1457,9 +1453,9 @@ namespace weave::syntax
         }
     };
 
-    class LabelStatementSyntax final : public StatementSyntax
+    class LabeledStatementSyntax final : public StatementSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(LabelStatementSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(LabeledStatementSyntax);
 
     public:
         SyntaxToken* Name{};
@@ -1467,8 +1463,8 @@ namespace weave::syntax
         StatementSyntax* Statement{};
 
     public:
-        explicit constexpr LabelStatementSyntax()
-            : StatementSyntax{SyntaxKind::LabelStatementSyntax}
+        explicit constexpr LabeledStatementSyntax()
+            : StatementSyntax{SyntaxKind::LabeledStatementSyntax}
         {
         }
     };
@@ -1541,8 +1537,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(LabeledExpressionSyntax);
 
     public:
-        SyntaxToken* Label{};
-        SyntaxToken* Colon{};
+        NameColonSyntax* Name{};
         ExpressionSyntax* Expression{};
         SyntaxToken* TrailingComma{};
 
@@ -1608,8 +1603,7 @@ namespace weave::syntax
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
 
-        SyntaxToken* Level{};
-        SyntaxToken* ColonToken{};
+        NameColonSyntax* Level{};
 
         ExpressionSyntax* Condition{};
 
@@ -1633,8 +1627,7 @@ namespace weave::syntax
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
 
-        SyntaxToken* Level{};
-        SyntaxToken* ColonToken{};
+        NameColonSyntax* Level{};
 
         ExpressionSyntax* Condition{};
 
@@ -1658,8 +1651,7 @@ namespace weave::syntax
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
 
-        SyntaxToken* Level{};
-        SyntaxToken* ColonToken{};
+        NameColonSyntax* Level{};
 
         ExpressionSyntax* Condition{};
 
@@ -1900,8 +1892,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(TuplePatternItemSyntax);
 
     public:
-        SyntaxToken* Identifier{};
-        SyntaxToken* Colon{};
+        NameColonSyntax* Name{};
         PatternSyntax* Pattern{};
         SyntaxToken* TrailingComma{};
 
@@ -1955,6 +1946,21 @@ namespace weave::syntax
     public:
         explicit constexpr TypeInheritanceClause()
             : SyntaxNode{SyntaxKind::TypeInheritanceClause}
+        {
+        }
+    };
+
+    class NameColonSyntax : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(NameColonSyntax);
+
+    public:
+        IdentifierNameSyntax* Name{};
+        SyntaxToken* ColonToken{};
+
+    public:
+        explicit constexpr NameColonSyntax()
+            : SyntaxNode{SyntaxKind::NameColonSyntax}
         {
         }
     };

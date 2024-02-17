@@ -481,6 +481,10 @@ namespace weave::syntax
 
         std::optional<Label> ParseOptionalLabel();
 
+        NameColonSyntax* ParseNameColon();
+
+        NameColonSyntax* ParseOptionalNameColon();
+
         MatchExpressionSyntax* ParseMatchExpression();
 
         AssertExpressionSyntax* ParseAssertExpression();

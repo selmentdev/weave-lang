@@ -43,8 +43,10 @@ SourceFileSyntax
        OpenParenToken <33:34> [2:8:2:9] '('
        SyntaxList
         LabeledExpressionSyntax
-         IdentifierToken <34:35> [2:9:2:10] 'a'
-         ColonToken <35:36> [2:10:2:11] ':'
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <34:35> [2:9:2:10] 'a'
+          ColonToken <35:36> [2:10:2:11] ':'
        CloseParenToken <36:37> [2:11:2:12] ')'
    SemicolonToken <37:38> [2:12:2:13] ';'
   CodeBlockItemSyntax
@@ -81,8 +83,10 @@ SourceFileSyntax
        OpenParenToken <63:64> [4:8:4:9] '('
        SyntaxList
         LabeledExpressionSyntax
-         IdentifierToken <64:65> [4:9:4:10] 'a'
-         ColonToken <65:66> [4:10:4:11] ':'
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <64:65> [4:9:4:10] 'a'
+          ColonToken <65:66> [4:10:4:11] ':'
          BinaryExpressionSyntax
           LiteralExpressionSyntax
            IntegerLiteralToken <67:68> [4:12:4:13] '2'
@@ -104,8 +108,10 @@ SourceFileSyntax
        OpenParenToken <83:84> [5:8:5:9] '('
        SyntaxList
         LabeledExpressionSyntax
-         IdentifierToken <84:85> [5:9:5:10] 'a'
-         ColonToken <85:86> [5:10:5:11] ':'
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <84:85> [5:9:5:10] 'a'
+          ColonToken <85:86> [5:10:5:11] ':'
          TupleExpressionSyntax
           OpenParenToken <87:88> [5:12:5:13] '('
           SyntaxList
@@ -132,27 +138,35 @@ SourceFileSyntax
        OpenParenToken <105:106> [6:8:6:9] '('
        SyntaxList
         LabeledExpressionSyntax
-         IdentifierToken <106:107> [6:9:6:10] 'a'
-         ColonToken <107:108> [6:10:6:11] ':'
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <106:107> [6:9:6:10] 'a'
+          ColonToken <107:108> [6:10:6:11] ':'
          TupleExpressionSyntax
           OpenParenToken <109:110> [6:12:6:13] '('
           SyntaxList
            LabeledExpressionSyntax
-            IdentifierToken <110:111> [6:13:6:14] 'a'
-            ColonToken <111:112> [6:14:6:15] ':'
+            NameColonSyntax
+             IdentifierNameSyntax
+              IdentifierToken <110:111> [6:13:6:14] 'a'
+             ColonToken <111:112> [6:14:6:15] ':'
             LiteralExpressionSyntax
              IntegerLiteralToken <113:114> [6:16:6:17] '2'
             CommaToken <114:115> [6:17:6:18] ','
            LabeledExpressionSyntax
-            IdentifierToken <116:117> [6:19:6:20] 'b'
-            ColonToken <117:118> [6:20:6:21] ':'
+            NameColonSyntax
+             IdentifierNameSyntax
+              IdentifierToken <116:117> [6:19:6:20] 'b'
+             ColonToken <117:118> [6:20:6:21] ':'
             LiteralExpressionSyntax
              IntegerLiteralToken <119:120> [6:22:6:23] '2'
           CloseParenToken <120:121> [6:23:6:24] ')'
          CommaToken <121:122> [6:24:6:25] ','
         LabeledExpressionSyntax
-         IdentifierToken <123:124> [6:26:6:27] 'b'
-         ColonToken <124:125> [6:27:6:28] ':'
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <123:124> [6:26:6:27] 'b'
+          ColonToken <124:125> [6:27:6:28] ':'
          BinaryExpressionSyntax
           LiteralExpressionSyntax
            IntegerLiteralToken <126:127> [6:29:6:30] '2'
@@ -181,8 +195,10 @@ SourceFileSyntax
              OpenParenToken <143:144> [7:9:7:10] '('
              SyntaxList
               LabeledExpressionSyntax
-               IdentifierToken <144:145> [7:10:7:11] 'a'
-               ColonToken <145:146> [7:11:7:12] ':'
+               NameColonSyntax
+                IdentifierNameSyntax
+                 IdentifierToken <144:145> [7:10:7:11] 'a'
+                ColonToken <145:146> [7:11:7:12] ':'
                LiteralExpressionSyntax
                 IntegerLiteralToken <147:148> [7:13:7:14] '2'
              CloseParenToken <148:149> [7:14:7:15] ')'
@@ -195,8 +211,10 @@ SourceFileSyntax
              OpenParenToken <154:155> [7:20:7:21] '('
              SyntaxList
               LabeledExpressionSyntax
-               IdentifierToken <155:156> [7:21:7:22] 'b'
-               ColonToken <156:157> [7:22:7:23] ':'
+               NameColonSyntax
+                IdentifierNameSyntax
+                 IdentifierToken <155:156> [7:21:7:22] 'b'
+                ColonToken <156:157> [7:22:7:23] ':'
                LiteralExpressionSyntax
                 IntegerLiteralToken <158:159> [7:24:7:25] '2'
              CloseParenToken <159:160> [7:25:7:26] ')'

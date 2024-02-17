@@ -278,7 +278,7 @@ namespace weave::syntax
 
             if (label)
             {
-                LabelStatementSyntax* wrapper = this->_factory->CreateNode<LabelStatementSyntax>();
+                LabeledStatementSyntax* wrapper = this->_factory->CreateNode<LabeledStatementSyntax>();
                 wrapper->Name = label->Name;
                 wrapper->Colon = label->Colon;
                 wrapper->Statement = statement;
@@ -979,11 +979,7 @@ namespace weave::syntax
 
         result->Specifiers = this->ParseTypeSpecifierList();
 
-        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
-        {
-            result->Identifier = this->ParseIdentifierName();
-            result->Colon = this->Match(SyntaxKind::ColonToken);
-        }
+        result->Name = this->ParseOptionalNameColon();
 
         result->Type = this->ParseType();
         return result;
@@ -1084,25 +1080,16 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
         SyntaxListView<SyntaxToken> modifiers = this->ParseFunctionArgumentModifierList();
 
-        NameSyntax* label = nullptr;
-        SyntaxToken* colon = nullptr;
-
-        if (SyntaxKind const first = this->Current()->Kind; (first == SyntaxKind::IdentifierToken) or (first == SyntaxKind::IntegerLiteralToken))
-        {
-            if (this->Peek(1)->Kind == SyntaxKind::ColonToken)
-            {
-                label = this->ParseIdentifierName();
-                colon = this->Match(SyntaxKind::ColonToken);
-            }
-        }
+        NameColonSyntax* name = this->ParseOptionalNameColon();
 
         ExpressionSyntax* expression = this->ParseExpression();
 
         SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
         ArgumentSyntax* result = this->_factory->CreateNode<ArgumentSyntax>();
-        result->Label = label;
-        result->Colon = colon;
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->Name = name;
         result->Expression = expression;
         result->TrailingComma = trailingComma;
         return result;
@@ -1629,25 +1616,14 @@ namespace weave::syntax
 
     LabeledExpressionSyntax* Parser::ParseLabeledExpression()
     {
-        SyntaxToken* label = nullptr;
-        SyntaxToken* colon = nullptr;
-
-        if (SyntaxKind const first = this->Current()->Kind; (first == SyntaxKind::IdentifierToken) or (first == SyntaxKind::IntegerLiteralToken))
-        {
-            if (this->Peek(1)->Kind == SyntaxKind::ColonToken)
-            {
-                label = this->Match(first);
-                colon = this->Match(SyntaxKind::ColonToken);
-            }
-        }
+        NameColonSyntax* name = this->ParseOptionalNameColon();
 
         ExpressionSyntax* expression = this->ParseOptionalExpression();
 
         SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
         LabeledExpressionSyntax* result = this->_factory->CreateNode<LabeledExpressionSyntax>();
-        result->Label = label;
-        result->Colon = colon;
+        result->Name = name;
         result->Expression = expression;
         result->TrailingComma = trailingComma;
         return result;
@@ -2055,11 +2031,7 @@ namespace weave::syntax
     {
         TupleTypeElementSyntax* result = this->_factory->CreateNode<TupleTypeElementSyntax>();
 
-        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
-        {
-            result->Name = this->Match(SyntaxKind::IdentifierToken);
-            result->Colon = this->Match(SyntaxKind::ColonToken);
-        }
+        result->Name = this->ParseOptionalNameColon();
 
         result->Type = this->ParseType();
 
@@ -2082,6 +2054,24 @@ namespace weave::syntax
         }
 
         return std::nullopt;
+    }
+
+    NameColonSyntax* Parser::ParseNameColon()
+    {
+        NameColonSyntax* result = this->_factory->CreateNode<NameColonSyntax>();
+        result->Name = this->ParseIdentifierName();
+        result->ColonToken = this->Match(SyntaxKind::ColonToken);
+        return result;
+    }
+
+    NameColonSyntax* Parser::ParseOptionalNameColon()
+    {
+        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
+        {
+            return this->ParseNameColon();
+        }
+
+        return nullptr;
     }
 
     MatchExpressionSyntax* Parser::ParseMatchExpression()
@@ -2126,11 +2116,7 @@ namespace weave::syntax
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
-        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
-        {
-            result->Level = this->Match(SyntaxKind::IdentifierToken);
-            result->ColonToken = this->Match(SyntaxKind::ColonToken);
-        }
+        result->Level = this->ParseOptionalNameColon();
 
         result->Condition = this->ParseExpression();
 
@@ -2293,11 +2279,7 @@ namespace weave::syntax
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
-        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
-        {
-            result->Level = this->Match(SyntaxKind::IdentifierToken);
-            result->ColonToken = this->Match(SyntaxKind::ColonToken);
-        }
+        result->Level = this->ParseOptionalNameColon();
 
         result->Condition = this->ParseExpression();
 
@@ -2313,11 +2295,7 @@ namespace weave::syntax
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
-        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
-        {
-            result->Level = this->Match(SyntaxKind::IdentifierToken);
-            result->ColonToken = this->Match(SyntaxKind::ColonToken);
-        }
+        result->Level = this->ParseOptionalNameColon();
 
         result->Condition = this->ParseExpression();
 
@@ -2333,11 +2311,7 @@ namespace weave::syntax
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
-        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
-        {
-            result->Level = this->Match(SyntaxKind::IdentifierToken);
-            result->ColonToken = this->Match(SyntaxKind::ColonToken);
-        }
+        result->Level = this->ParseOptionalNameColon();
 
         result->Condition = this->ParseExpression();
 
@@ -2521,11 +2495,7 @@ namespace weave::syntax
     {
         TuplePatternItemSyntax* result = this->_factory->CreateNode<TuplePatternItemSyntax>();
 
-        if (this->Peek(0)->Kind == SyntaxKind::IdentifierToken and this->Peek(1)->Kind == SyntaxKind::ColonToken)
-        {
-            result->Identifier = this->Match(SyntaxKind::IdentifierToken);
-            result->Colon = this->Match(SyntaxKind::ColonToken);
-        }
+        result->Name = this->ParseOptionalNameColon();
 
         result->Pattern = this->ParsePattern();
         result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
