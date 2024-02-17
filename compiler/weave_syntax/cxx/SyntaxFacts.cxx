@@ -546,6 +546,7 @@ namespace weave::syntax
         case SyntaxKind::EvalKeyword:
         case SyntaxKind::IfKeyword:
         case SyntaxKind::MatchKeyword:
+        case SyntaxKind::AssertKeyword:
             return true;
 
         default:

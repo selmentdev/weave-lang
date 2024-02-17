@@ -328,7 +328,7 @@ namespace weave::syntax
             : TypeDeclarationSyntax{SyntaxKind::EnumDeclarationSyntax}
         {
         }
-    };;
+    };
 
     class EnumMemberDeclarationSyntax : public DeclarationSyntax
     {
@@ -1410,6 +1410,31 @@ namespace weave::syntax
         }
     };
 
+    class AssertExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(AssertExpressionSyntax);
+
+    public:
+        SyntaxToken* AssertKeyword{};
+
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
+
+        SyntaxToken* Level{};
+        SyntaxToken* ColonToken{};
+
+        ExpressionSyntax* Condition{};
+
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr AssertExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::AssertExpressionSyntax}
+        {
+        }
+    };
+
     class UnexpectedNodesSyntax : public SyntaxNode
     {
     public:
@@ -1583,6 +1608,9 @@ namespace weave::syntax
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
 
+        SyntaxToken* Level{};
+        SyntaxToken* ColonToken{};
+
         ExpressionSyntax* Condition{};
 
         UnexpectedNodesSyntax* BeforeCloseParenToken{};
@@ -1604,6 +1632,9 @@ namespace weave::syntax
 
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
+
+        SyntaxToken* Level{};
+        SyntaxToken* ColonToken{};
 
         ExpressionSyntax* Condition{};
 
@@ -1627,6 +1658,9 @@ namespace weave::syntax
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
 
+        SyntaxToken* Level{};
+        SyntaxToken* ColonToken{};
+
         ExpressionSyntax* Condition{};
 
         UnexpectedNodesSyntax* BeforeCloseParenToken{};
@@ -1642,6 +1676,7 @@ namespace weave::syntax
     class WherePredicateSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(WherePredicateSyntax);
+
     public:
         NameSyntax* Type{};
         SyntaxToken* TrailingComma{};

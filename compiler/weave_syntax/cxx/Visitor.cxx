@@ -1384,4 +1384,92 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnRequiresClauseSyntax(RequiresClauseSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->RequiresKeyword);
+
+        this->Dispatch(node->BeforeOpenParenToken);
+        this->Dispatch(node->OpenParenToken);
+
+        this->Dispatch(node->Level);
+        this->Dispatch(node->ColonToken);
+
+        this->Dispatch(node->Condition);
+
+        this->Dispatch(node->BeforeCloseParenToken);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnEnsuresClauseSyntax(EnsuresClauseSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->EnsuresKeyword);
+
+        this->Dispatch(node->BeforeOpenParenToken);
+        this->Dispatch(node->OpenParenToken);
+
+        this->Dispatch(node->Level);
+        this->Dispatch(node->ColonToken);
+
+        this->Dispatch(node->Condition);
+
+        this->Dispatch(node->BeforeCloseParenToken);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnAssertExpressionSyntax(AssertExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->AssertKeyword);
+
+        this->Dispatch(node->BeforeOpenParenToken);
+        this->Dispatch(node->OpenParenToken);
+
+        this->Dispatch(node->Level);
+        this->Dispatch(node->ColonToken);
+
+        this->Dispatch(node->Condition);
+
+        this->Dispatch(node->BeforeCloseParenToken);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnInvariantClauseSyntax(InvariantClauseSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->InvariantKeyword);
+
+        this->Dispatch(node->BeforeOpenParenToken);
+        this->Dispatch(node->OpenParenToken);
+
+        this->Dispatch(node->Level);
+        this->Dispatch(node->ColonToken);
+
+        this->Dispatch(node->Condition);
+
+        this->Dispatch(node->BeforeCloseParenToken);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
 }

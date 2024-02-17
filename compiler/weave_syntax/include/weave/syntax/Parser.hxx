@@ -483,6 +483,8 @@ namespace weave::syntax
 
         MatchExpressionSyntax* ParseMatchExpression();
 
+        AssertExpressionSyntax* ParseAssertExpression();
+
         MatchClauseSyntax* ParseMatchClause();
 
         MatchCaseClauseSyntax* ParseMatchCaseClause();

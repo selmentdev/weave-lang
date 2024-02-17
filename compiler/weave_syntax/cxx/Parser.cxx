@@ -1510,6 +1510,9 @@ namespace weave::syntax
         case SyntaxKind::MatchKeyword:
             return this->ParseMatchExpression();
 
+        case SyntaxKind::AssertKeyword:
+            return this->ParseAssertExpression();
+
         case SyntaxKind::OpenBracketToken:
             return this->ParseBracketInitializerClause();
 
@@ -2116,6 +2119,26 @@ namespace weave::syntax
         return result;
     }
 
+    AssertExpressionSyntax* Parser::ParseAssertExpression()
+    {
+        AssertExpressionSyntax* result = this->_factory->CreateNode<AssertExpressionSyntax>();
+        result->AssertKeyword = this->Match(SyntaxKind::AssertKeyword);
+
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
+        {
+            result->Level = this->Match(SyntaxKind::IdentifierToken);
+            result->ColonToken = this->Match(SyntaxKind::ColonToken);
+        }
+
+        result->Condition = this->ParseExpression();
+
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        return result;
+    }
+
     MatchClauseSyntax* Parser::ParseMatchClause()
     {
         if (this->Current()->Kind == SyntaxKind::CaseKeyword)
@@ -2270,6 +2293,12 @@ namespace weave::syntax
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
+        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
+        {
+            result->Level = this->Match(SyntaxKind::IdentifierToken);
+            result->ColonToken = this->Match(SyntaxKind::ColonToken);
+        }
+
         result->Condition = this->ParseExpression();
 
         this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
@@ -2280,9 +2309,15 @@ namespace weave::syntax
     EnsuresClauseSyntax* Parser::ParseEnsuresClause()
     {
         EnsuresClauseSyntax* result = this->_factory->CreateNode<EnsuresClauseSyntax>();
-        result->EnsuresKeyword = this->Match(SyntaxKind::RequiresKeyword);
+        result->EnsuresKeyword = this->Match(SyntaxKind::EnsuresKeyword);
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
+        {
+            result->Level = this->Match(SyntaxKind::IdentifierToken);
+            result->ColonToken = this->Match(SyntaxKind::ColonToken);
+        }
 
         result->Condition = this->ParseExpression();
 
@@ -2294,9 +2329,15 @@ namespace weave::syntax
     InvariantClauseSyntax* Parser::ParseInvariantClause()
     {
         InvariantClauseSyntax* result = this->_factory->CreateNode<InvariantClauseSyntax>();
-        result->InvariantKeyword = this->Match(SyntaxKind::RequiresKeyword);
+        result->InvariantKeyword = this->Match(SyntaxKind::InvariantKeyword);
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        if ((this->Peek(0)->Kind == SyntaxKind::IdentifierToken) and (this->Peek(1)->Kind == SyntaxKind::ColonToken))
+        {
+            result->Level = this->Match(SyntaxKind::IdentifierToken);
+            result->ColonToken = this->Match(SyntaxKind::ColonToken);
+        }
 
         result->Condition = this->ParseExpression();
 

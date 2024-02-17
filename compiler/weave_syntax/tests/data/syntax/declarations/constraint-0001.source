@@ -62,9 +62,9 @@ public function Foo![type T, type U, type V](
         r#ensures     (     r > 0           )
         r#ensures     (                   v == old(v)     )
         r#invariant   (                   v >= 10         )
-    }
+    };
 
-    // assert(t > 0); // TODO: Implement assert expression
+    assert(t > 0);
 }
 
 
@@ -80,8 +80,8 @@ public function Foo![type T, type U, type V](
     where (U: Concept4, Concept5            )   // allow trailing comma?
     where (V: Concept6                      )
 
-    requires    debug       (   t > 0       )
-    requires    debug       (   t < 100     )
+    requires                (   t > 0       )
+    requires                (   t < 100     )
 
     ensures                 (   u > 21      )
     ensures                 (   v < 37      )
@@ -89,7 +89,7 @@ public function Foo![type T, type U, type V](
     ensures                 (   v == old(v) )
     invariant               (   v >= 10     )
 {
-    // assert(t > 0);
+    assert(t > 0);
 }
 
 public function Quaz![type T, type U, type V](
@@ -107,8 +107,8 @@ public function Quaz![type T, type U, type V](
 ;
 
 {
-    // assert(debug: t > 0);
-    // assert(checked: t < 100, "t must be less than 100");
+    assert(t > 0);
+    assert(t < 100);
 }
 
 #[Requires(t > 0)]
@@ -171,9 +171,9 @@ public function Update![type T, const N: Int32](
     invariant(25 <= d)
     invariant(d <= 75)
 {
-    // assert(debug: a >= 42);
-    // assert(checked: b < 2137);
-    // assert(release: (a <= d) && (d <= c));
+    assert(a >= 42);
+    assert(b < 2137);
+    assert((a <= d) && (d <= c));
 
     // code
 

@@ -195,7 +195,7 @@ SourceFileSyntax
    ContinueKeyword <622:630> [85:0:85:8] 'continue'
    ContravariantKeyword <631:644> [86:0:86:13] 'contravariant'
    CovariantKeyword <645:654> [87:0:87:9] 'covariant'
-   DebugKeyword <655:660> [88:0:88:5] 'debug'
+   IdentifierToken <655:660> [88:0:88:5] 'debug'
    DefaultKeyword <661:668> [89:0:89:7] 'default'
    DeferKeyword <669:674> [90:0:90:5] 'defer'
    DelegateKeyword <675:683> [91:0:91:8] 'delegate'
