@@ -467,7 +467,6 @@ namespace weave::syntax
         case SyntaxKind::SwitchKeyword:
         case SyntaxKind::UsingKeyword:
         case SyntaxKind::VarKeyword:
-        case SyntaxKind::LetKeyword:
         case SyntaxKind::GotoKeyword:
         // case SyntaxKind::IfKeyword:
         // case SyntaxKind::ElseKeyword:
@@ -547,6 +546,7 @@ namespace weave::syntax
         case SyntaxKind::IfKeyword:
         case SyntaxKind::MatchKeyword:
         case SyntaxKind::AssertKeyword:
+        case SyntaxKind::LetKeyword:
             return true;
 
         default:

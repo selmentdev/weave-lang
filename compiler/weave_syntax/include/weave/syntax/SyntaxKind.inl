@@ -500,6 +500,7 @@ WEAVE_SYNTAX_NODE(TuplePatternItemSyntax,                       "tuple pattern i
 WEAVE_SYNTAX_NODE(MoveExpressionSyntax,                         "move expression")
 WEAVE_SYNTAX_NODE(RefExpressionSyntax,                          "ref expression")
 WEAVE_SYNTAX_NODE(OutExpressionSyntax,                          "out expression")
+WEAVE_SYNTAX_NODE(LetExpressionSyntax,                          "let expression")
 
 WEAVE_SYNTAX_NODE(WherePredicateSyntax,                         "where predicate")
 WEAVE_SYNTAX_NODE(WhereClauseSyntax,                            "where clause")

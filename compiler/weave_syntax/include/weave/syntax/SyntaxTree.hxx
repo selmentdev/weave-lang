@@ -1970,4 +1970,19 @@ namespace weave::syntax
         {
         }
     };
+
+    class LetExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(LetExpressionSyntax);
+
+    public:
+        SyntaxToken* BindingSpecifier{};
+        PatternBindingSyntax* Binding{};
+
+    public:
+        explicit constexpr LetExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::LetExpressionSyntax}
+        {
+        }
+    };
 }

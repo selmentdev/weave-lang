@@ -35,11 +35,6 @@ error: Expected ':'
       19 |     return a ? b + c * d  d + e / c;
          |                           ^
 error: Expected '[token:identifier]'
-        --> <source>:35:25
-         |
-      35 |     if (/*let Some(y)*/ = y) {
-         |                         ^
-error: Expected '[token:identifier]'
         --> <source>:72:39
          |
       72 | function EndOfFileDuringStatement() { =42: a=5;}

@@ -24,20 +24,10 @@ error: Expected '('
        8 |     if let x(y) = 42 { }
          |        ^^^
 error: Expected ')'
-        --> <source>:8:8
+        --> <source>:8:22
          |
        8 |     if let x(y) = 42 { }
-         |        ^^^
-error: Expected '{'
-        --> <source>:8:8
-         |
-       8 |     if let x(y) = 42 { }
-         |        ^^^
-error: Expected '}'
-        --> <source>:10:1
-         |
-      10 | 
-         | ^
+         |                      ^
 error: Expected '}'
         --> <source>:10:1
          |

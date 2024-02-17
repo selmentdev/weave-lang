@@ -1500,6 +1500,9 @@ namespace weave::syntax
         case SyntaxKind::AssertKeyword:
             return this->ParseAssertExpression();
 
+        case SyntaxKind::LetKeyword:
+            return this->ParseLetExpression();
+
         case SyntaxKind::OpenBracketToken:
             return this->ParseBracketInitializerClause();
 
@@ -2131,6 +2134,14 @@ namespace weave::syntax
         return result;
     }
 
+    LetExpressionSyntax* Parser::ParseLetExpression()
+    {
+        LetExpressionSyntax* result = this->_factory->CreateNode<LetExpressionSyntax>();
+        result->BindingSpecifier = this->Match(SyntaxKind::LetKeyword);
+        result->Binding = this->ParsePatternBinding();
+        return result;
+    }
+
     MatchClauseSyntax* Parser::ParseMatchClause()
     {
         if (this->Current()->Kind == SyntaxKind::CaseKeyword)
@@ -2379,7 +2390,7 @@ namespace weave::syntax
 
     ConstraintClauseSyntax* Parser::ParseConstraintClause()
     {
-        switch (this->Current()->Kind)
+        switch (this->Current()->Kind)  // NOLINT(clang-diagnostic-switch-enum)
         {
         case SyntaxKind::WhereKeyword:
             return this->ParseWhereClause();

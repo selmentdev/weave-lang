@@ -1,0 +1,55 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    IfExpressionSyntax
+     IfKeyword <0:2> [0:0:0:2] 'if'
+     OpenParenToken <3:4> [0:3:0:4] '('
+     LetExpressionSyntax
+      LetKeyword <4:7> [0:4:0:7] 'let'
+      PatternBindingSyntax
+       IdentifierPatternSyntax
+        IdentifierNameSyntax
+         IdentifierToken <8:12> [0:8:0:12] 'Some'
+        TuplePatternSyntax
+         OpenParenToken <12:13> [0:12:0:13] '('
+         SyntaxList
+          TuplePatternItemSyntax
+           IdentifierPatternSyntax
+            IdentifierNameSyntax
+             IdentifierToken <13:14> [0:13:0:14] 'x'
+         CloseParenToken <14:15> [0:14:0:15] ')'
+       InitializerClauseSyntax
+        EqualsToken <16:17> [0:16:0:17] '='
+        IdentifierNameSyntax
+         IdentifierToken <18:19> [0:18:0:19] 'y'
+     CloseParenToken <19:20> [0:19:0:20] ')'
+     CodeBlockSyntax
+      OpenBraceToken <21:22> [0:21:0:22] '{'
+      SyntaxList
+       CodeBlockItemSyntax
+        ExpressionStatementSyntax
+         InvocationExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <27:34> [1:4:1:11] 'matches'
+          ArgumentListSyntax
+           OpenParenToken <34:35> [1:11:1:12] '('
+           CloseParenToken <35:36> [1:12:1:13] ')'
+        SemicolonToken <36:37> [1:13:1:14] ';'
+      CloseBraceToken <38:39> [2:0:2:1] '}'
+     ElseClauseSyntax
+      ElseKeyword <40:44> [2:2:2:6] 'else'
+      CodeBlockSyntax
+       OpenBraceToken <45:46> [2:7:2:8] '{'
+       SyntaxList
+        CodeBlockItemSyntax
+         ExpressionStatementSyntax
+          InvocationExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <51:59> [3:4:3:12] 'bugcheck'
+           ArgumentListSyntax
+            OpenParenToken <59:60> [3:12:3:13] '('
+            CloseParenToken <60:61> [3:13:3:14] ')'
+         SemicolonToken <61:62> [3:14:3:15] ';'
+       CloseBraceToken <63:64> [4:0:4:1] '}'
+ EndOfFileToken <65:65> [5:0:5:0] ''

@@ -1485,4 +1485,16 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnLetExpressionSyntax(LetExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->BindingSpecifier);
+        this->Dispatch(node->Binding);
+
+        --this->Depth;
+    }
 }

@@ -1,0 +1,7 @@
+if (let Some(x) = y) { // immutable reference
+    matches();
+}
+
+if (let ref Some(x) = y) { // mutable reference
+    matches();
+}
