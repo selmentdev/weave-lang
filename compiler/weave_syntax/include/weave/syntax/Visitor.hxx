@@ -195,5 +195,7 @@ namespace weave::syntax
         void OnInvariantClauseSyntax(InvariantClauseSyntax* node) override;
         void OnNameColonSyntax(NameColonSyntax* node) override;
         void OnLetExpressionSyntax(LetExpressionSyntax* node) override;
+        void OnExpressionReferenceSyntax(ExpressionReferenceSyntax* node) override;
+        void OnTypeReferenceSyntax(TypeReferenceSyntax* node) override;
     };
 }

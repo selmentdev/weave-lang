@@ -1,0 +1,32 @@
+let     immutable_value1    :   Int32 = 1;
+let     immutable_value2    :   Int32 = 2;
+var     mutable_value1      :   Int32 = 3;
+var     mutable_value2      :   Int32 = 4;
+
+let unbindable_immutable_reference_to_immutable_value   = &let immutable_value1;    // valid: const -> const
+let unbindable_immutable_reference_to_mutable_value     = &let mutable_value1;      // valid: mut -> const
+let unbindable_mutable_reference_to_immutable_value     = &var immutable_value1;    // invalid: const -> mut
+let unbindable_mutable_reference_to_mutable_value       = &var mutable_value1;      // valid: mut -> mut
+
+    unbindable_immutable_reference_to_immutable_value   = &let immutable_value2;    // invalid: cannot rebind a `let` reference
+    unbindable_immutable_reference_to_mutable_value     = &let mutable_value2;      // invalid: cannot rebind a `let` reference
+    unbindable_mutable_reference_to_immutable_value     = &var immutable_value2;    // invalid: cannot rebind a `let` reference
+    unbindable_mutable_reference_to_mutable_value       = &var mutable_value2;      // invalid: cannot rebind a `let` reference
+
+var bindable_immutable_reference_to_immutable_value     = &let immutable_value1;    // valid: const -> const
+var bindable_immutable_reference_to_mutable_value       = &let mutable_value1;      // valid: mut -> const
+var bindable_mutable_reference_to_immutable_value       = &var immutable_value1;    // invalid: const -> mut
+var bindable_mutable_reference_to_mutable_value         = &var mutable_value1;      // valid: mut -> mut
+
+    bindable_immutable_reference_to_immutable_value     = &let immutable_value2;    // valid: binding a immutable reference to immutable value
+    bindable_immutable_reference_to_mutable_value       = &let mutable_value2;      // valid: binding a immutable reference to mutable value
+    bindable_mutable_reference_to_immutable_value       = &var immutable_value2;    // invalid: cannot rebind a `let` reference to a `var` reference
+    bindable_mutable_reference_to_mutable_value         = &var mutable_value2;      // valid: binding a mutable reference to mutable value
+
+var q = a
+    ? b
+        ? &var x
+        : &var y
+    : c
+        ? &var z
+        : &var w;

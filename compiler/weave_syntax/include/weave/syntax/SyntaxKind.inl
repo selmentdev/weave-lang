@@ -471,6 +471,7 @@ WEAVE_SYNTAX_NODE(SourceFileSyntax,                             "[node:source-fi
 WEAVE_SYNTAX_NODE(CodeBlockSyntax,                              "code block")
 WEAVE_SYNTAX_NODE(CodeBlockItemSyntax,                          "code block item")
 WEAVE_SYNTAX_NODE(TypePointerSyntax,                            "pointer type")
+WEAVE_SYNTAX_NODE(TypeReferenceSyntax,                          "reference type")
 WEAVE_SYNTAX_NODE(TupleTypeSyntax,                              "tuple type")
 WEAVE_SYNTAX_NODE(TupleTypeElementSyntax,                       "tuple type element")
 WEAVE_SYNTAX_NODE(TupleExpressionSyntax,                        "tuple expression")
@@ -501,6 +502,7 @@ WEAVE_SYNTAX_NODE(MoveExpressionSyntax,                         "move expression
 WEAVE_SYNTAX_NODE(RefExpressionSyntax,                          "ref expression")
 WEAVE_SYNTAX_NODE(OutExpressionSyntax,                          "out expression")
 WEAVE_SYNTAX_NODE(LetExpressionSyntax,                          "let expression")
+WEAVE_SYNTAX_NODE(ExpressionReferenceSyntax,                    "expression reference")
 
 WEAVE_SYNTAX_NODE(WherePredicateSyntax,                         "where predicate")
 WEAVE_SYNTAX_NODE(WhereClauseSyntax,                            "where clause")

@@ -136,7 +136,7 @@ SourceFileSyntax
        IdentifierToken <186:187> [6:4:6:5] 'e'
      InitializerClauseSyntax
       EqualsToken <188:189> [6:6:6:7] '='
-      UnaryExpressionSyntax
+      ExpressionReferenceSyntax
        AmpersandToken <190:191> [6:8:6:9] '&'
        IdentifierNameSyntax
         IdentifierToken <191:192> [6:9:6:10] 'x'

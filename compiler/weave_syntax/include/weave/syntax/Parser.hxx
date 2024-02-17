@@ -147,6 +147,7 @@ namespace weave::syntax
         SyntaxToken* Next();
         [[nodiscard]] SyntaxToken* Match(SyntaxKind kind);
         [[nodiscard]] SyntaxToken* TryMatch(SyntaxKind kind);
+        [[nodiscard]] SyntaxToken* TryMatch(SyntaxKind k1, SyntaxKind k2);
 
         [[nodiscard]] SyntaxToken* MatchContextualKeyword(SyntaxKind kind);
         [[nodiscard]] SyntaxToken* TryMatchContextualKeyword(SyntaxKind kind);
@@ -356,6 +357,10 @@ namespace weave::syntax
         TypeClauseSyntax* ParseOptionalTypeClause();
 
         TypePointerSyntax* ParsePointerType();
+
+        TypeReferenceSyntax* ParseTypeReference();
+
+        ExpressionReferenceSyntax* ParseExpressionReference();
 
         TypeSyntax* ParseType();
 

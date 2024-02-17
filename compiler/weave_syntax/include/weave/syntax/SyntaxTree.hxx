@@ -958,6 +958,22 @@ namespace weave::syntax
         }
     };
 
+    class TypeReferenceSyntax : public TypeSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TypeReferenceSyntax);
+
+    public:
+        SyntaxToken* AmpersandToken{};
+        SyntaxListView<SyntaxToken> Qualifiers{};
+        TypeSyntax* Type{};
+
+    public:
+        explicit constexpr TypeReferenceSyntax()
+            : TypeSyntax{SyntaxKind::TypeReferenceSyntax}
+        {
+        }
+    };
+
     class TupleTypeSyntax final : public TypeSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TupleTypeSyntax);
@@ -1982,6 +1998,22 @@ namespace weave::syntax
     public:
         explicit constexpr LetExpressionSyntax()
             : ExpressionSyntax{SyntaxKind::LetExpressionSyntax}
+        {
+        }
+    };
+
+    class ExpressionReferenceSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ExpressionReferenceSyntax);
+
+    public:
+        SyntaxToken* AmpersandToken{};
+        SyntaxToken* QualifierToken{};
+        ExpressionSyntax* Expression{};
+
+    public:
+        explicit constexpr ExpressionReferenceSyntax()
+            : ExpressionSyntax{SyntaxKind::ExpressionReferenceSyntax}
         {
         }
     };

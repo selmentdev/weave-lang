@@ -9,7 +9,9 @@ namespace weave::syntax
     {
         switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
+            // `F(params x: [int])` -> `F(2, 1, 3, 7)` -> `F([2, 1, 3, 7])`
         case SyntaxKind::ParamsKeyword:
+            // `F(lazy x: int)`
         case SyntaxKind::LazyKeyword:
 
         case SyntaxKind::RefKeyword:
@@ -72,8 +74,15 @@ namespace weave::syntax
     {
         switch (kind) // NOLINT(clang-diagnostic-switch-enum)
         {
+            // immutable type qualifier
+        case SyntaxKind::LetKeyword:
         case SyntaxKind::ConstKeyword:
+
+            // mutable type qualifier
+        case SyntaxKind::VarKeyword:
         case SyntaxKind::MutableKeyword:
+
+            // usage type qualifiers
         case SyntaxKind::RestrictKeyword:
         case SyntaxKind::AtomicKeyword:
             return true;
@@ -129,9 +138,6 @@ namespace weave::syntax
 
         case SyntaxKind::MinusMinusToken:
             return SyntaxKind::PreDecrementExpression;
-
-        case SyntaxKind::AmpersandToken:
-            return SyntaxKind::AddressOfExpression;
 
         case SyntaxKind::AsteriskToken:
             return SyntaxKind::DereferenceExpression;

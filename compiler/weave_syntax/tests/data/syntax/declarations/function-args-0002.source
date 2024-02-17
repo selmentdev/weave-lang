@@ -1,0 +1,17 @@
+struct Vec2
+{
+    public var X: Float;
+    public var Y: Float;
+}
+
+extend Vec2
+{
+    public function Add(
+        self: &var Self,
+        other: &let Self
+    )
+    {
+        self.X += other.X;
+        self.Y += other.Y;
+    }
+}

@@ -31,25 +31,10 @@ SourceFileSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
           IdentifierNameSyntax
-           IdentifierToken <27:34> [1:4:1:11] 'matches'
+           IdentifierToken <50:57> [1:4:1:11] 'matches'
           ArgumentListSyntax
-           OpenParenToken <34:35> [1:11:1:12] '('
-           CloseParenToken <35:36> [1:12:1:13] ')'
-        SemicolonToken <36:37> [1:13:1:14] ';'
-      CloseBraceToken <38:39> [2:0:2:1] '}'
-     ElseClauseSyntax
-      ElseKeyword <40:44> [2:2:2:6] 'else'
-      CodeBlockSyntax
-       OpenBraceToken <45:46> [2:7:2:8] '{'
-       SyntaxList
-        CodeBlockItemSyntax
-         ExpressionStatementSyntax
-          InvocationExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <51:59> [3:4:3:12] 'bugcheck'
-           ArgumentListSyntax
-            OpenParenToken <59:60> [3:12:3:13] '('
-            CloseParenToken <60:61> [3:13:3:14] ')'
-         SemicolonToken <61:62> [3:14:3:15] ';'
-       CloseBraceToken <63:64> [4:0:4:1] '}'
- EndOfFileToken <65:65> [5:0:5:0] ''
+           OpenParenToken <57:58> [1:11:1:12] '('
+           CloseParenToken <58:59> [1:12:1:13] ')'
+        SemicolonToken <59:60> [1:13:1:14] ';'
+      CloseBraceToken <61:62> [2:0:2:1] '}'
+ EndOfFileToken <63:63> [3:0:3:0] ''

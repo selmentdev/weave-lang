@@ -90,6 +90,21 @@ namespace weave::syntax
         return nullptr;
     }
 
+    SyntaxToken* Parser::TryMatch(SyntaxKind k1, SyntaxKind k2)
+    {
+        if (this->Current()->Kind == k1)
+        {
+            return this->Next();
+        }
+
+        if (this->Current()->Kind == k2)
+        {
+            return this->Next();
+        }
+
+        return nullptr;
+    }
+
     SyntaxToken* Parser::MatchContextualKeyword(SyntaxKind kind)
     {
         WEAVE_ASSERT(IsContextualKeyword(kind));
@@ -1031,6 +1046,24 @@ namespace weave::syntax
         return result;
     }
 
+    TypeReferenceSyntax* Parser::ParseTypeReference()
+    {
+        TypeReferenceSyntax* result = this->_factory->CreateNode<TypeReferenceSyntax>();
+        result->AmpersandToken = this->Match(SyntaxKind::AmpersandToken);
+        result->Qualifiers = this->ParseTypeQualifiers();
+        result->Type = this->ParseType();
+        return result;
+    }
+
+    ExpressionReferenceSyntax* Parser::ParseExpressionReference()
+    {
+        ExpressionReferenceSyntax* result = this->_factory->CreateNode<ExpressionReferenceSyntax>();
+        result->AmpersandToken = this->Match(SyntaxKind::AmpersandToken);
+        result->QualifierToken = this->TryMatch(SyntaxKind::LetKeyword, SyntaxKind::VarKeyword);
+        result->Expression = this->ParseExpression();
+        return result;
+    }
+
     TypeSyntax* Parser::ParseType()
     {
         switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
@@ -1046,6 +1079,9 @@ namespace weave::syntax
 
         case SyntaxKind::AsteriskToken:
             return this->ParsePointerType();
+
+        case SyntaxKind::AmpersandToken:
+            return this->ParseTypeReference();
 
         default:
             break;
@@ -1502,6 +1538,9 @@ namespace weave::syntax
 
         case SyntaxKind::LetKeyword:
             return this->ParseLetExpression();
+
+        case SyntaxKind::AmpersandToken:
+            return this->ParseExpressionReference();
 
         case SyntaxKind::OpenBracketToken:
             return this->ParseBracketInitializerClause();

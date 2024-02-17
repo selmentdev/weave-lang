@@ -1497,4 +1497,30 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnExpressionReferenceSyntax(ExpressionReferenceSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->AmpersandToken);
+        this->Dispatch(node->QualifierToken);
+        this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnTypeReferenceSyntax(TypeReferenceSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->AmpersandToken);
+        this->Dispatch(node->Qualifiers.GetNode());
+        this->Dispatch(node->Type);
+
+        --this->Depth;
+    }
 }

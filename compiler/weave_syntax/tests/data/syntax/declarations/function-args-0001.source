@@ -1,0 +1,33 @@
+// Signature with possible combinations of `&var` and `&let` qualifiers
+// Note: qualifiers might be specified as many times as needed
+function F(
+    a1:                 T,
+    a2:         &var    T,
+    a3:         &let    T,
+    a4: &var    &var    T,
+    a5: &var    &let    T,
+    a6: &let    &var    T,
+    a7: &let    &let    T
+) -> &let T;
+
+
+{
+    var x : int = 42;
+    var y : &var int = &var x;
+    var z : &var &var int = &var y;
+
+    **z = 2137;
+    assert(*y == 2137);
+    assert(x == 2137);
+}
+
+function C(
+    out x: int,             // invalid: `out` qualifier must be used with reference type
+    out y: &let int,        // valid: caller must return a reference to immutable integer
+    out z: &var int         // valid: caller must return a reference to mutable integer
+)
+{
+    x = 42;
+    y = &let x;
+    z = &var x;
+}

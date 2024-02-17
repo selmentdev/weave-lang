@@ -552,4 +552,605 @@ SourceFileSyntax
            SemicolonToken <2194:2195> [43:83:43:84] ';'
          CloseBraceToken <2200:2201> [44:4:44:5] '}'
      CloseBraceToken <2202:2203> [45:0:45:1] '}'
- EndOfFileToken <2204:2204> [46:0:46:0] ''
+  CodeBlockItemSyntax
+   NamespaceDeclarationSyntax
+    NamespaceKeyword <2205:2214> [47:0:47:9] 'namespace'
+    IdentifierNameSyntax
+     IdentifierToken <2215:2225> [47:10:47:20] 'References'
+    CodeBlockSyntax
+     OpenBraceToken <2226:2227> [48:0:48:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       NamespaceDeclarationSyntax
+        NamespaceKeyword <2232:2241> [49:4:49:13] 'namespace'
+        IdentifierNameSyntax
+         IdentifierToken <2242:2247> [49:14:49:19] 'Valid'
+        CodeBlockSyntax
+         OpenBraceToken <2252:2253> [50:4:50:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2262:2268> [51:8:51:14] 'public'
+            TypeKeyword <2269:2273> [51:15:51:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2274:2282> [51:20:51:28] 'T_P_cmra'
+            EqualsToken <2283:2284> [51:29:51:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2285:2286> [51:31:51:32] '&'
+             IdentifierNameSyntax
+              IdentifierToken <2316:2319> [51:62:51:65] 'Int'
+           SemicolonToken <2319:2320> [51:65:51:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2329:2335> [52:8:52:14] 'public'
+            TypeKeyword <2336:2340> [52:15:52:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2341:2349> [52:20:52:28] 'T_P_Cmra'
+            EqualsToken <2350:2351> [52:29:52:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2352:2353> [52:31:52:32] '&'
+             SyntaxList
+              ConstKeyword <2353:2358> [52:32:52:37] 'const'
+             IdentifierNameSyntax
+              IdentifierToken <2383:2386> [52:62:52:65] 'Int'
+           SemicolonToken <2386:2387> [52:65:52:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2396:2402> [53:8:53:14] 'public'
+            TypeKeyword <2403:2407> [53:15:53:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2408:2416> [53:20:53:28] 'T_P_cMra'
+            EqualsToken <2417:2418> [53:29:53:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2419:2420> [53:31:53:32] '&'
+             SyntaxList
+              MutableKeyword <2426:2433> [53:38:53:45] 'mutable'
+             IdentifierNameSyntax
+              IdentifierToken <2450:2453> [53:62:53:65] 'Int'
+           SemicolonToken <2453:2454> [53:65:53:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2463:2469> [54:8:54:14] 'public'
+            TypeKeyword <2470:2474> [54:15:54:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2475:2483> [54:20:54:28] 'T_P_CMra'
+            EqualsToken <2484:2485> [54:29:54:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2486:2487> [54:31:54:32] '&'
+             SyntaxList
+              ConstKeyword <2487:2492> [54:32:54:37] 'const'
+              MutableKeyword <2493:2500> [54:38:54:45] 'mutable'
+             IdentifierNameSyntax
+              IdentifierToken <2517:2520> [54:62:54:65] 'Int'
+           SemicolonToken <2520:2521> [54:65:54:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2530:2536> [55:8:55:14] 'public'
+            TypeKeyword <2537:2541> [55:15:55:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2542:2550> [55:20:55:28] 'T_P_cmRa'
+            EqualsToken <2551:2552> [55:29:55:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2553:2554> [55:31:55:32] '&'
+             SyntaxList
+              RestrictKeyword <2568:2576> [55:46:55:54] 'restrict'
+             IdentifierNameSyntax
+              IdentifierToken <2584:2587> [55:62:55:65] 'Int'
+           SemicolonToken <2587:2588> [55:65:55:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2597:2603> [56:8:56:14] 'public'
+            TypeKeyword <2604:2608> [56:15:56:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2609:2617> [56:20:56:28] 'T_P_CmRa'
+            EqualsToken <2618:2619> [56:29:56:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2620:2621> [56:31:56:32] '&'
+             SyntaxList
+              ConstKeyword <2621:2626> [56:32:56:37] 'const'
+              RestrictKeyword <2635:2643> [56:46:56:54] 'restrict'
+             IdentifierNameSyntax
+              IdentifierToken <2651:2654> [56:62:56:65] 'Int'
+           SemicolonToken <2654:2655> [56:65:56:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2664:2670> [57:8:57:14] 'public'
+            TypeKeyword <2671:2675> [57:15:57:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2676:2684> [57:20:57:28] 'T_P_cMRa'
+            EqualsToken <2685:2686> [57:29:57:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2687:2688> [57:31:57:32] '&'
+             SyntaxList
+              MutableKeyword <2694:2701> [57:38:57:45] 'mutable'
+              RestrictKeyword <2702:2710> [57:46:57:54] 'restrict'
+             IdentifierNameSyntax
+              IdentifierToken <2718:2721> [57:62:57:65] 'Int'
+           SemicolonToken <2721:2722> [57:65:57:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2731:2737> [58:8:58:14] 'public'
+            TypeKeyword <2738:2742> [58:15:58:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2743:2751> [58:20:58:28] 'T_P_CMRa'
+            EqualsToken <2752:2753> [58:29:58:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2754:2755> [58:31:58:32] '&'
+             SyntaxList
+              ConstKeyword <2755:2760> [58:32:58:37] 'const'
+              MutableKeyword <2761:2768> [58:38:58:45] 'mutable'
+              RestrictKeyword <2769:2777> [58:46:58:54] 'restrict'
+             IdentifierNameSyntax
+              IdentifierToken <2785:2788> [58:62:58:65] 'Int'
+           SemicolonToken <2788:2789> [58:65:58:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2798:2804> [59:8:59:14] 'public'
+            TypeKeyword <2805:2809> [59:15:59:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2810:2818> [59:20:59:28] 'T_P_cmrA'
+            EqualsToken <2819:2820> [59:29:59:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2821:2822> [59:31:59:32] '&'
+             SyntaxList
+              AtomicKeyword <2845:2851> [59:55:59:61] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <2852:2855> [59:62:59:65] 'Int'
+           SemicolonToken <2855:2856> [59:65:59:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2865:2871> [60:8:60:14] 'public'
+            TypeKeyword <2872:2876> [60:15:60:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2877:2885> [60:20:60:28] 'T_P_CmrA'
+            EqualsToken <2886:2887> [60:29:60:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2888:2889> [60:31:60:32] '&'
+             SyntaxList
+              ConstKeyword <2889:2894> [60:32:60:37] 'const'
+              AtomicKeyword <2912:2918> [60:55:60:61] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <2919:2922> [60:62:60:65] 'Int'
+           SemicolonToken <2922:2923> [60:65:60:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2932:2938> [61:8:61:14] 'public'
+            TypeKeyword <2939:2943> [61:15:61:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <2944:2952> [61:20:61:28] 'T_P_cMrA'
+            EqualsToken <2953:2954> [61:29:61:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <2955:2956> [61:31:61:32] '&'
+             SyntaxList
+              MutableKeyword <2962:2969> [61:38:61:45] 'mutable'
+              AtomicKeyword <2979:2985> [61:55:61:61] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <2986:2989> [61:62:61:65] 'Int'
+           SemicolonToken <2989:2990> [61:65:61:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <2999:3005> [62:8:62:14] 'public'
+            TypeKeyword <3006:3010> [62:15:62:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3011:3019> [62:20:62:28] 'T_P_CMrA'
+            EqualsToken <3020:3021> [62:29:62:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3022:3023> [62:31:62:32] '&'
+             SyntaxList
+              ConstKeyword <3023:3028> [62:32:62:37] 'const'
+              MutableKeyword <3029:3036> [62:38:62:45] 'mutable'
+              AtomicKeyword <3046:3052> [62:55:62:61] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <3053:3056> [62:62:62:65] 'Int'
+           SemicolonToken <3056:3057> [62:65:62:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3066:3072> [63:8:63:14] 'public'
+            TypeKeyword <3073:3077> [63:15:63:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3078:3086> [63:20:63:28] 'T_P_cmRA'
+            EqualsToken <3087:3088> [63:29:63:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3089:3090> [63:31:63:32] '&'
+             SyntaxList
+              RestrictKeyword <3104:3112> [63:46:63:54] 'restrict'
+              AtomicKeyword <3113:3119> [63:55:63:61] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <3120:3123> [63:62:63:65] 'Int'
+           SemicolonToken <3123:3124> [63:65:63:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3133:3139> [64:8:64:14] 'public'
+            TypeKeyword <3140:3144> [64:15:64:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3145:3153> [64:20:64:28] 'T_P_CmRA'
+            EqualsToken <3154:3155> [64:29:64:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3156:3157> [64:31:64:32] '&'
+             SyntaxList
+              ConstKeyword <3157:3162> [64:32:64:37] 'const'
+              RestrictKeyword <3171:3179> [64:46:64:54] 'restrict'
+              AtomicKeyword <3180:3186> [64:55:64:61] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <3187:3190> [64:62:64:65] 'Int'
+           SemicolonToken <3190:3191> [64:65:64:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3200:3206> [65:8:65:14] 'public'
+            TypeKeyword <3207:3211> [65:15:65:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3212:3220> [65:20:65:28] 'T_P_cMRA'
+            EqualsToken <3221:3222> [65:29:65:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3223:3224> [65:31:65:32] '&'
+             SyntaxList
+              MutableKeyword <3230:3237> [65:38:65:45] 'mutable'
+              RestrictKeyword <3238:3246> [65:46:65:54] 'restrict'
+              AtomicKeyword <3247:3253> [65:55:65:61] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <3254:3257> [65:62:65:65] 'Int'
+           SemicolonToken <3257:3258> [65:65:65:66] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3267:3273> [66:8:66:14] 'public'
+            TypeKeyword <3274:3278> [66:15:66:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3279:3287> [66:20:66:28] 'T_P_CMRA'
+            EqualsToken <3288:3289> [66:29:66:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3290:3291> [66:31:66:32] '&'
+             SyntaxList
+              ConstKeyword <3291:3296> [66:32:66:37] 'const'
+              MutableKeyword <3297:3304> [66:38:66:45] 'mutable'
+              RestrictKeyword <3305:3313> [66:46:66:54] 'restrict'
+              AtomicKeyword <3314:3320> [66:55:66:61] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <3321:3324> [66:62:66:65] 'Int'
+           SemicolonToken <3324:3325> [66:65:66:66] ';'
+         CloseBraceToken <3330:3331> [67:4:67:5] '}'
+      CodeBlockItemSyntax
+       NamespaceDeclarationSyntax
+        NamespaceKeyword <3337:3346> [69:4:69:13] 'namespace'
+        IdentifierNameSyntax
+         IdentifierToken <3347:3352> [69:14:69:19] 'Mixed'
+        CodeBlockSyntax
+         OpenBraceToken <3357:3358> [70:4:70:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3367:3373> [71:8:71:14] 'public'
+            TypeKeyword <3374:3378> [71:15:71:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3379:3387> [71:20:71:28] 'T_P_CMRA'
+            EqualsToken <3388:3389> [71:29:71:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3390:3391> [71:31:71:32] '&'
+             SyntaxList
+              ConstKeyword <3392:3397> [71:33:71:38] 'const'
+              MutableKeyword <3404:3411> [71:45:71:52] 'mutable'
+              RestrictKeyword <3416:3424> [71:57:71:65] 'restrict'
+              AtomicKeyword <3428:3434> [71:69:71:75] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <3440:3443> [71:81:71:84] 'Int'
+           SemicolonToken <3443:3444> [71:84:71:85] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3453:3459> [72:8:72:14] 'public'
+            TypeKeyword <3460:3464> [72:15:72:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3465:3473> [72:20:72:28] 'T_P_MRAC'
+            EqualsToken <3474:3475> [72:29:72:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3476:3477> [72:31:72:32] '&'
+             SyntaxList
+              MutableKeyword <3478:3485> [72:33:72:40] 'mutable'
+              RestrictKeyword <3490:3498> [72:45:72:53] 'restrict'
+              AtomicKeyword <3502:3508> [72:57:72:63] 'atomic'
+              ConstKeyword <3514:3519> [72:69:72:74] 'const'
+             IdentifierNameSyntax
+              IdentifierToken <3526:3529> [72:81:72:84] 'Int'
+           SemicolonToken <3529:3530> [72:84:72:85] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3539:3545> [73:8:73:14] 'public'
+            TypeKeyword <3546:3550> [73:15:73:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3551:3559> [73:20:73:28] 'T_P_RACM'
+            EqualsToken <3560:3561> [73:29:73:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3562:3563> [73:31:73:32] '&'
+             SyntaxList
+              RestrictKeyword <3564:3572> [73:33:73:41] 'restrict'
+              AtomicKeyword <3576:3582> [73:45:73:51] 'atomic'
+              ConstKeyword <3588:3593> [73:57:73:62] 'const'
+              MutableKeyword <3600:3607> [73:69:73:76] 'mutable'
+             IdentifierNameSyntax
+              IdentifierToken <3612:3615> [73:81:73:84] 'Int'
+           SemicolonToken <3615:3616> [73:84:73:85] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3625:3631> [74:8:74:14] 'public'
+            TypeKeyword <3632:3636> [74:15:74:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3637:3645> [74:20:74:28] 'T_P_ACMR'
+            EqualsToken <3646:3647> [74:29:74:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3648:3649> [74:31:74:32] '&'
+             SyntaxList
+              AtomicKeyword <3650:3656> [74:33:74:39] 'atomic'
+              ConstKeyword <3662:3667> [74:45:74:50] 'const'
+              MutableKeyword <3674:3681> [74:57:74:64] 'mutable'
+              RestrictKeyword <3686:3694> [74:69:74:77] 'restrict'
+             IdentifierNameSyntax
+              IdentifierToken <3698:3701> [74:81:74:84] 'Int'
+           SemicolonToken <3701:3702> [74:84:74:85] ';'
+         CloseBraceToken <3707:3708> [75:4:75:5] '}'
+      CodeBlockItemSyntax
+       NamespaceDeclarationSyntax
+        NamespaceKeyword <3714:3723> [77:4:77:13] 'namespace'
+        IdentifierNameSyntax
+         IdentifierToken <3724:3734> [77:14:77:24] 'Duplicated'
+        CodeBlockSyntax
+         OpenBraceToken <3739:3740> [78:4:78:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3749:3755> [79:8:79:14] 'public'
+            TypeKeyword <3756:3760> [79:15:79:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3761:3769> [79:20:79:28] 'T_P_CMRC'
+            EqualsToken <3770:3771> [79:29:79:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3772:3773> [79:31:79:32] '&'
+             SyntaxList
+              ConstKeyword <3773:3778> [79:32:79:37] 'const'
+              MutableKeyword <3782:3789> [79:41:79:48] 'mutable'
+              RestrictKeyword <3790:3798> [79:49:79:57] 'restrict'
+              ConstKeyword <3799:3804> [79:58:79:63] 'const'
+             IdentifierNameSyntax
+              IdentifierToken <3807:3810> [79:66:79:69] 'Int'
+           SemicolonToken <3810:3811> [79:69:79:70] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3820:3826> [80:8:80:14] 'public'
+            TypeKeyword <3827:3831> [80:15:80:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3832:3840> [80:20:80:28] 'T_P_CMRM'
+            EqualsToken <3841:3842> [80:29:80:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3843:3844> [80:31:80:32] '&'
+             SyntaxList
+              ConstKeyword <3844:3849> [80:32:80:37] 'const'
+              MutableKeyword <3853:3860> [80:41:80:48] 'mutable'
+              RestrictKeyword <3861:3869> [80:49:80:57] 'restrict'
+              MutableKeyword <3870:3877> [80:58:80:65] 'mutable'
+             IdentifierNameSyntax
+              IdentifierToken <3878:3881> [80:66:80:69] 'Int'
+           SemicolonToken <3881:3882> [80:69:80:70] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3891:3897> [81:8:81:14] 'public'
+            TypeKeyword <3898:3902> [81:15:81:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3903:3911> [81:20:81:28] 'T_P_RMRA'
+            EqualsToken <3912:3913> [81:29:81:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3914:3915> [81:31:81:32] '&'
+             SyntaxList
+              RestrictKeyword <3915:3923> [81:32:81:40] 'restrict'
+              MutableKeyword <3924:3931> [81:41:81:48] 'mutable'
+              RestrictKeyword <3932:3940> [81:49:81:57] 'restrict'
+              AtomicKeyword <3941:3947> [81:58:81:64] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <3949:3952> [81:66:81:69] 'Int'
+           SemicolonToken <3952:3953> [81:69:81:70] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <3962:3968> [82:8:82:14] 'public'
+            TypeKeyword <3969:3973> [82:15:82:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <3974:3982> [82:20:82:28] 'T_P_AMRA'
+            EqualsToken <3983:3984> [82:29:82:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <3985:3986> [82:31:82:32] '&'
+             SyntaxList
+              AtomicKeyword <3986:3992> [82:32:82:38] 'atomic'
+              MutableKeyword <3995:4002> [82:41:82:48] 'mutable'
+              RestrictKeyword <4003:4011> [82:49:82:57] 'restrict'
+              AtomicKeyword <4012:4018> [82:58:82:64] 'atomic'
+             IdentifierNameSyntax
+              IdentifierToken <4020:4023> [82:66:82:69] 'Int'
+           SemicolonToken <4023:4024> [82:69:82:70] ';'
+         CloseBraceToken <4029:4030> [83:4:83:5] '}'
+      CodeBlockItemSyntax
+       NamespaceDeclarationSyntax
+        NamespaceKeyword <4036:4045> [85:4:85:13] 'namespace'
+        IdentifierNameSyntax
+         IdentifierToken <4046:4056> [85:14:85:24] 'MultiLevel'
+        CodeBlockSyntax
+         OpenBraceToken <4061:4062> [86:4:86:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <4071:4077> [87:8:87:14] 'public'
+            TypeKeyword <4078:4082> [87:15:87:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <4083:4091> [87:20:87:28] 'T_P_CMRA'
+            EqualsToken <4092:4093> [87:29:87:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <4094:4095> [87:31:87:32] '&'
+             SyntaxList
+              ConstKeyword <4095:4100> [87:32:87:37] 'const'
+             TypeReferenceSyntax
+              AmpersandToken <4107:4108> [87:44:87:45] '&'
+              SyntaxList
+               MutableKeyword <4108:4115> [87:45:87:52] 'mutable'
+              TypeReferenceSyntax
+               AmpersandToken <4119:4120> [87:56:87:57] '&'
+               SyntaxList
+                RestrictKeyword <4120:4128> [87:57:87:65] 'restrict'
+               TypeReferenceSyntax
+                AmpersandToken <4131:4132> [87:68:87:69] '&'
+                SyntaxList
+                 AtomicKeyword <4132:4138> [87:69:87:75] 'atomic'
+                IdentifierNameSyntax
+                 IdentifierToken <4143:4146> [87:80:87:83] 'Int'
+           SemicolonToken <4146:4147> [87:83:87:84] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <4156:4162> [88:8:88:14] 'public'
+            TypeKeyword <4163:4167> [88:15:88:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <4168:4176> [88:20:88:28] 'T_P_MRAC'
+            EqualsToken <4177:4178> [88:29:88:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <4179:4180> [88:31:88:32] '&'
+             SyntaxList
+              MutableKeyword <4180:4187> [88:32:88:39] 'mutable'
+             TypeReferenceSyntax
+              AmpersandToken <4192:4193> [88:44:88:45] '&'
+              SyntaxList
+               RestrictKeyword <4193:4201> [88:45:88:53] 'restrict'
+              TypeReferenceSyntax
+               AmpersandToken <4204:4205> [88:56:88:57] '&'
+               SyntaxList
+                AtomicKeyword <4205:4211> [88:57:88:63] 'atomic'
+               TypeReferenceSyntax
+                AmpersandToken <4216:4217> [88:68:88:69] '&'
+                SyntaxList
+                 ConstKeyword <4217:4222> [88:69:88:74] 'const'
+                IdentifierNameSyntax
+                 IdentifierToken <4228:4231> [88:80:88:83] 'Int'
+           SemicolonToken <4231:4232> [88:83:88:84] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <4241:4247> [89:8:89:14] 'public'
+            TypeKeyword <4248:4252> [89:15:89:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <4253:4261> [89:20:89:28] 'T_P_RACM'
+            EqualsToken <4262:4263> [89:29:89:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <4264:4265> [89:31:89:32] '&'
+             SyntaxList
+              RestrictKeyword <4265:4273> [89:32:89:40] 'restrict'
+             TypeReferenceSyntax
+              AmpersandToken <4277:4278> [89:44:89:45] '&'
+              SyntaxList
+               AtomicKeyword <4278:4284> [89:45:89:51] 'atomic'
+              TypeReferenceSyntax
+               AmpersandToken <4289:4290> [89:56:89:57] '&'
+               SyntaxList
+                ConstKeyword <4290:4295> [89:57:89:62] 'const'
+               TypeReferenceSyntax
+                AmpersandToken <4301:4302> [89:68:89:69] '&'
+                SyntaxList
+                 MutableKeyword <4302:4309> [89:69:89:76] 'mutable'
+                IdentifierNameSyntax
+                 IdentifierToken <4313:4316> [89:80:89:83] 'Int'
+           SemicolonToken <4316:4317> [89:83:89:84] ';'
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            SyntaxList
+             PublicKeyword <4326:4332> [90:8:90:14] 'public'
+            TypeKeyword <4333:4337> [90:15:90:19] 'type'
+            IdentifierNameSyntax
+             IdentifierToken <4338:4346> [90:20:90:28] 'T_P_ACMR'
+            EqualsToken <4347:4348> [90:29:90:30] '='
+            TypeReferenceSyntax
+             AmpersandToken <4349:4350> [90:31:90:32] '&'
+             SyntaxList
+              AtomicKeyword <4350:4356> [90:32:90:38] 'atomic'
+             TypeReferenceSyntax
+              AmpersandToken <4362:4363> [90:44:90:45] '&'
+              SyntaxList
+               ConstKeyword <4363:4368> [90:45:90:50] 'const'
+              TypeReferenceSyntax
+               AmpersandToken <4374:4375> [90:56:90:57] '&'
+               SyntaxList
+                MutableKeyword <4375:4382> [90:57:90:64] 'mutable'
+               TypeReferenceSyntax
+                AmpersandToken <4386:4387> [90:68:90:69] '&'
+                SyntaxList
+                 RestrictKeyword <4387:4395> [90:69:90:77] 'restrict'
+                IdentifierNameSyntax
+                 IdentifierToken <4398:4401> [90:80:90:83] 'Int'
+           SemicolonToken <4401:4402> [90:83:90:84] ';'
+         CloseBraceToken <4407:4408> [91:4:91:5] '}'
+     CloseBraceToken <4409:4410> [92:0:92:1] '}'
+  CodeBlockItemSyntax
+   NamespaceDeclarationSyntax
+    NamespaceKeyword <4412:4421> [94:0:94:9] 'namespace'
+    IdentifierNameSyntax
+     IdentifierToken <4422:4427> [94:10:94:15] 'Mixed'
+    CodeBlockSyntax
+     OpenBraceToken <4428:4429> [95:0:95:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       TypeAliasDeclarationSyntax
+        SyntaxList
+         PublicKeyword <4434:4440> [96:4:96:10] 'public'
+        TypeKeyword <4441:4445> [96:11:96:15] 'type'
+        IdentifierNameSyntax
+         IdentifierToken <4446:4448> [96:16:96:18] 'T1'
+        EqualsToken <4449:4450> [96:19:96:20] '='
+        TypeReferenceSyntax
+         AmpersandToken <4451:4452> [96:21:96:22] '&'
+         SyntaxList
+          MutableKeyword <4452:4459> [96:22:96:29] 'mutable'
+         TypePointerSyntax
+          AsteriskToken <4460:4461> [96:30:96:31] '*'
+          SyntaxList
+           ConstKeyword <4461:4466> [96:31:96:36] 'const'
+          IdentifierNameSyntax
+           IdentifierToken <4467:4470> [96:37:96:40] 'Int'
+       SemicolonToken <4470:4471> [96:40:96:41] ';'
+      CodeBlockItemSyntax
+       TypeAliasDeclarationSyntax
+        SyntaxList
+         PublicKeyword <4476:4482> [97:4:97:10] 'public'
+        TypeKeyword <4483:4487> [97:11:97:15] 'type'
+        IdentifierNameSyntax
+         IdentifierToken <4488:4490> [97:16:97:18] 'T2'
+        EqualsToken <4491:4492> [97:19:97:20] '='
+        TypeReferenceSyntax
+         AmpersandToken <4493:4494> [97:21:97:22] '&'
+         SyntaxList
+          MutableKeyword <4494:4501> [97:22:97:29] 'mutable'
+          RestrictKeyword <4502:4510> [97:30:97:38] 'restrict'
+         TypePointerSyntax
+          AsteriskToken <4511:4512> [97:39:97:40] '*'
+          SyntaxList
+           MutableKeyword <4512:4519> [97:40:97:47] 'mutable'
+           AtomicKeyword <4520:4526> [97:48:97:54] 'atomic'
+          IdentifierNameSyntax
+           IdentifierToken <4527:4530> [97:55:97:58] 'Int'
+       SemicolonToken <4530:4531> [97:58:97:59] ';'
+     CloseBraceToken <4532:4533> [98:0:98:1] '}'
+ EndOfFileToken <4534:4534> [99:0:99:0] ''
