@@ -514,17 +514,15 @@ namespace weave::syntax
 
         EnumMemberDeclarationSyntax* ParseEnumMemberDeclaration();
 
-        RequiresClauseSyntax* ParseRequiresClause();
-
-        EnsuresClauseSyntax* ParseEnsuresClause();
-
-        InvariantClauseSyntax* ParseInvariantClause();
-
         WhereClauseSyntax* ParseWhereClause();
 
         WherePredicateSyntax* ParseWherePredicate();
 
+        ContractClauseSyntax* ParseContractClause();
+
         ConstraintClauseSyntax* ParseConstraintClause();
+
+        SyntaxListView<ConstraintClauseSyntax> ParseConstraintClauseSequence();
 
     public:
         PatternSyntax* ParsePattern();

@@ -189,10 +189,8 @@ namespace weave::syntax
         void OnWhereClauseSyntax(WhereClauseSyntax* node) override;
         void OnWherePredicateSyntax(WherePredicateSyntax* node) override;
 
-        void OnRequiresClauseSyntax(RequiresClauseSyntax* node) override;
-        void OnEnsuresClauseSyntax(EnsuresClauseSyntax* node) override;
+        void OnContractClauseSyntax(ContractClauseSyntax* node) override;
         void OnAssertExpressionSyntax(AssertExpressionSyntax* node) override;
-        void OnInvariantClauseSyntax(InvariantClauseSyntax* node) override;
         void OnNameColonSyntax(NameColonSyntax* node) override;
         void OnLetExpressionSyntax(LetExpressionSyntax* node) override;
         void OnExpressionReferenceSyntax(ExpressionReferenceSyntax* node) override;

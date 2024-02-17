@@ -417,28 +417,7 @@ namespace weave::syntax
 
         result->ReturnType = this->ParseOptionalReturnTypeClause();
 
-        {
-            std::vector<ConstraintClauseSyntax*> constraints{};
-
-            LoopProgressCondition progress{this->Current()};
-
-            do
-            {
-                ConstraintClauseSyntax* constraint = this->ParseConstraintClause();
-
-                if (constraint != nullptr)
-                {
-                    constraints.emplace_back(constraint);
-                }
-                else
-                {
-                    break;
-                }
-
-            } while (progress.Evaluate(this->Current()));
-
-            result->Constraints = SyntaxListView<ConstraintClauseSyntax>{this->_factory->CreateList(constraints)};
-        }
+        result->Constraints = this->ParseConstraintClauseSequence();
 
         // Function declaration will either have a body, expression body or semicolon.
         result->BeforeBody = this->ConsumeUnexpectedIf([](SyntaxKind kind)
@@ -499,6 +478,7 @@ namespace weave::syntax
         result->ConceptKeyword = this->Match(SyntaxKind::ConceptKeyword);
         result->Name = this->ParseIdentifierName();
         result->GenericParameters = this->ParseOptionalGenericParameters();
+        result->Constraints = this->ParseConstraintClauseSequence();
         result->Members = this->ParseCodeBlock();
         return result;
     }
@@ -520,6 +500,8 @@ namespace weave::syntax
             result->ConceptType = this->ParseQualifiedName();
         }
 
+        result->Constraints = this->ParseConstraintClauseSequence();
+
         result->Members = this->ParseCodeBlock();
         return result;
     }
@@ -534,6 +516,7 @@ namespace weave::syntax
         result->StructKeyword = this->Match(SyntaxKind::StructKeyword);
         result->Name = this->ParseIdentifierName();
         result->GenericParameters = this->ParseOptionalGenericParameters();
+        result->Constraints = this->ParseConstraintClauseSequence();
         result->Members = this->ParseCodeBlock();
         return result;
     }
@@ -2328,58 +2311,12 @@ namespace weave::syntax
         return nullptr;
     }
 
-    RequiresClauseSyntax* Parser::ParseRequiresClause()
-    {
-        RequiresClauseSyntax* result = this->_factory->CreateNode<RequiresClauseSyntax>();
-        result->RequiresKeyword = this->Match(SyntaxKind::RequiresKeyword);
-
-        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
-
-        result->Level = this->ParseOptionalNameColon();
-
-        result->Condition = this->ParseExpression();
-
-        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
-
-        return result;
-    }
-
-    EnsuresClauseSyntax* Parser::ParseEnsuresClause()
-    {
-        EnsuresClauseSyntax* result = this->_factory->CreateNode<EnsuresClauseSyntax>();
-        result->EnsuresKeyword = this->Match(SyntaxKind::EnsuresKeyword);
-
-        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
-
-        result->Level = this->ParseOptionalNameColon();
-
-        result->Condition = this->ParseExpression();
-
-        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
-
-        return result;
-    }
-
-    InvariantClauseSyntax* Parser::ParseInvariantClause()
-    {
-        InvariantClauseSyntax* result = this->_factory->CreateNode<InvariantClauseSyntax>();
-        result->InvariantKeyword = this->Match(SyntaxKind::InvariantKeyword);
-
-        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
-
-        result->Level = this->ParseOptionalNameColon();
-
-        result->Condition = this->ParseExpression();
-
-        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
-
-        return result;
-    }
-
     WhereClauseSyntax* Parser::ParseWhereClause()
     {
+        WEAVE_ASSERT(this->Current()->TryCast<IdentifierSyntaxToken>()->ContextualKeyowrd == SyntaxKind::WhereKeyword, "Expected 'where' keyword");
+
         WhereClauseSyntax* result = this->_factory->CreateNode<WhereClauseSyntax>();
-        result->WhereKeyword = this->Match(SyntaxKind::WhereKeyword);
+        result->WhereKeyword = this->Next();
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
@@ -2427,27 +2364,66 @@ namespace weave::syntax
         return result;
     }
 
+    ContractClauseSyntax* Parser::ParseContractClause()
+    {
+        ContractClauseSyntax* result = this->_factory->CreateNode<ContractClauseSyntax>();
+        result->Introducer = this->Next();
+
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        result->Level = this->ParseOptionalNameColon();
+
+        result->Condition = this->ParseExpression();
+
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        return result;
+    }
+
     ConstraintClauseSyntax* Parser::ParseConstraintClause()
     {
-        switch (this->Current()->Kind)  // NOLINT(clang-diagnostic-switch-enum)
+        if (IdentifierSyntaxToken* token = this->Current()->TryCast<IdentifierSyntaxToken>())
         {
-        case SyntaxKind::WhereKeyword:
-            return this->ParseWhereClause();
+            switch (token->ContextualKeyowrd) // NOLINT(clang-diagnostic-switch-enum)
+            {
+            case SyntaxKind::WhereKeyword:
+                return this->ParseWhereClause();
 
-        case SyntaxKind::RequiresKeyword:
-            return this->ParseRequiresClause();
+            case SyntaxKind::RequiresKeyword:
+            case SyntaxKind::EnsuresKeyword:
+            case SyntaxKind::InvariantKeyword:
+                return this->ParseContractClause();
 
-        case SyntaxKind::EnsuresKeyword:
-            return this->ParseEnsuresClause();
-
-        case SyntaxKind::InvariantKeyword:
-            return this->ParseInvariantClause();
-
-        default:
-            break;
+            default:
+                break;
+            }
         }
 
         return nullptr;
+    }
+
+    SyntaxListView<ConstraintClauseSyntax> Parser::ParseConstraintClauseSequence()
+    {
+        std::vector<ConstraintClauseSyntax*> constraints{};
+
+        LoopProgressCondition progress{this->Current()};
+
+        do
+        {
+            ConstraintClauseSyntax* constraint = this->ParseConstraintClause();
+
+            if (constraint != nullptr)
+            {
+                constraints.emplace_back(constraint);
+            }
+            else
+            {
+                break;
+            }
+
+        } while (progress.Evaluate(this->Current()));
+
+        return SyntaxListView<ConstraintClauseSyntax>{this->_factory->CreateList(constraints)};
     }
 
     PatternSyntax* Parser::ParsePattern()

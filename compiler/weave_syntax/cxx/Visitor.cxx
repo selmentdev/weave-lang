@@ -47,6 +47,7 @@ namespace weave::syntax
         this->Dispatch(node->StructKeyword);
         this->Dispatch(node->Name);
         this->Dispatch(node->GenericParameters);
+        this->Dispatch(node->Constraints.GetNode());
         this->Dispatch(node->Members);
 
         --this->Depth;
@@ -64,6 +65,7 @@ namespace weave::syntax
         this->Dispatch(node->ConceptKeyword);
         this->Dispatch(node->Name);
         this->Dispatch(node->GenericParameters);
+        this->Dispatch(node->Constraints.GetNode());
         this->Dispatch(node->Members);
 
         --this->Depth;
@@ -83,6 +85,7 @@ namespace weave::syntax
         this->Dispatch(node->GenericParameters);
         this->Dispatch(node->AsKeyword);
         this->Dispatch(node->ConceptType);
+        this->Dispatch(node->Constraints.GetNode());
         this->Dispatch(node->Members);
 
         --this->Depth;
@@ -1390,34 +1393,13 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnRequiresClauseSyntax(RequiresClauseSyntax* node)
+    void SyntaxWalker::OnContractClauseSyntax(ContractClauseSyntax* node)
     {
         this->OnDefault(node);
 
         ++this->Depth;
 
-        this->Dispatch(node->RequiresKeyword);
-
-        this->Dispatch(node->BeforeOpenParenToken);
-        this->Dispatch(node->OpenParenToken);
-
-        this->Dispatch(node->Level);
-
-        this->Dispatch(node->Condition);
-
-        this->Dispatch(node->BeforeCloseParenToken);
-        this->Dispatch(node->CloseParenToken);
-
-        --this->Depth;
-    }
-
-    void SyntaxWalker::OnEnsuresClauseSyntax(EnsuresClauseSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->EnsuresKeyword);
+        this->Dispatch(node->Introducer);
 
         this->Dispatch(node->BeforeOpenParenToken);
         this->Dispatch(node->OpenParenToken);
@@ -1439,27 +1421,6 @@ namespace weave::syntax
         ++this->Depth;
 
         this->Dispatch(node->AssertKeyword);
-
-        this->Dispatch(node->BeforeOpenParenToken);
-        this->Dispatch(node->OpenParenToken);
-
-        this->Dispatch(node->Level);
-
-        this->Dispatch(node->Condition);
-
-        this->Dispatch(node->BeforeCloseParenToken);
-        this->Dispatch(node->CloseParenToken);
-
-        --this->Depth;
-    }
-
-    void SyntaxWalker::OnInvariantClauseSyntax(InvariantClauseSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->InvariantKeyword);
 
         this->Dispatch(node->BeforeOpenParenToken);
         this->Dispatch(node->OpenParenToken);

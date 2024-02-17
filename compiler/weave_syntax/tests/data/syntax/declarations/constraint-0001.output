@@ -719,7 +719,7 @@ SourceFileSyntax
       IdentifierToken <1996:2001> [51:5:51:10] 'Int32'
     SyntaxList
      WhereClauseSyntax
-      WhereKeyword <2006:2011> [52:4:52:9] 'where'
+      IdentifierToken <2006:2011> [52:4:52:9] 'where'
       OpenParenToken <2012:2013> [52:10:52:11] '('
       IdentifierNameSyntax
        IdentifierToken <2013:2014> [52:11:52:12] 'T'
@@ -738,7 +738,7 @@ SourceFileSyntax
          IdentifierToken <2036:2044> [52:34:52:42] 'Concept3'
       CloseParenToken <2044:2045> [52:42:52:43] ')'
      WhereClauseSyntax
-      WhereKeyword <2050:2055> [53:4:53:9] 'where'
+      IdentifierToken <2050:2055> [53:4:53:9] 'where'
       OpenParenToken <2056:2057> [53:10:53:11] '('
       IdentifierNameSyntax
        IdentifierToken <2057:2058> [53:11:53:12] 'U'
@@ -753,7 +753,7 @@ SourceFileSyntax
          IdentifierToken <2070:2078> [53:24:53:32] 'Concept5'
       CloseParenToken <2078:2079> [53:32:53:33] ')'
      WhereClauseSyntax
-      WhereKeyword <2084:2089> [54:4:54:9] 'where'
+      IdentifierToken <2084:2089> [54:4:54:9] 'where'
       OpenParenToken <2090:2091> [54:10:54:11] '('
       IdentifierNameSyntax
        IdentifierToken <2091:2092> [54:11:54:12] 'V'
@@ -987,7 +987,7 @@ SourceFileSyntax
       IdentifierToken <2594:2599> [77:13:77:18] 'Int32'
     SyntaxList
      WhereClauseSyntax
-      WhereKeyword <2604:2609> [78:4:78:9] 'where'
+      IdentifierToken <2604:2609> [78:4:78:9] 'where'
       OpenParenToken <2610:2611> [78:10:78:11] '('
       IdentifierNameSyntax
        IdentifierToken <2611:2612> [78:11:78:12] 'T'
@@ -1006,7 +1006,7 @@ SourceFileSyntax
          IdentifierToken <2634:2642> [78:34:78:42] 'Concept3'
       CloseParenToken <2644:2645> [78:44:78:45] ')'
      WhereClauseSyntax
-      WhereKeyword <2650:2655> [79:4:79:9] 'where'
+      IdentifierToken <2650:2655> [79:4:79:9] 'where'
       OpenParenToken <2656:2657> [79:10:79:11] '('
       IdentifierNameSyntax
        IdentifierToken <2657:2658> [79:11:79:12] 'U'
@@ -1021,7 +1021,7 @@ SourceFileSyntax
          IdentifierToken <2670:2678> [79:24:79:32] 'Concept5'
       CloseParenToken <2690:2691> [79:44:79:45] ')'
      WhereClauseSyntax
-      WhereKeyword <2723:2728> [80:4:80:9] 'where'
+      IdentifierToken <2723:2728> [80:4:80:9] 'where'
       OpenParenToken <2729:2730> [80:10:80:11] '('
       IdentifierNameSyntax
        IdentifierToken <2730:2731> [80:11:80:12] 'V'
@@ -1031,8 +1031,8 @@ SourceFileSyntax
         IdentifierNameSyntax
          IdentifierToken <2733:2741> [80:14:80:22] 'Concept6'
       CloseParenToken <2763:2764> [80:44:80:45] ')'
-     RequiresClauseSyntax
-      RequiresKeyword <2770:2778> [82:4:82:12] 'requires'
+     ContractClauseSyntax
+      IdentifierToken <2770:2778> [82:4:82:12] 'requires'
       OpenParenToken <2794:2795> [82:28:82:29] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1041,8 +1041,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <2802:2803> [82:36:82:37] '0'
       CloseParenToken <2810:2811> [82:44:82:45] ')'
-     RequiresClauseSyntax
-      RequiresKeyword <2816:2824> [83:4:83:12] 'requires'
+     ContractClauseSyntax
+      IdentifierToken <2816:2824> [83:4:83:12] 'requires'
       OpenParenToken <2840:2841> [83:28:83:29] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1051,8 +1051,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <2848:2851> [83:36:83:39] '100'
       CloseParenToken <2856:2857> [83:44:83:45] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <2863:2870> [85:4:85:11] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <2863:2870> [85:4:85:11] 'ensures'
       OpenParenToken <2887:2888> [85:28:85:29] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1061,8 +1061,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <2895:2897> [85:36:85:38] '21'
       CloseParenToken <2903:2904> [85:44:85:45] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <2909:2916> [86:4:86:11] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <2909:2916> [86:4:86:11] 'ensures'
       OpenParenToken <2933:2934> [86:28:86:29] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1071,8 +1071,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <2941:2943> [86:36:86:38] '37'
       CloseParenToken <2949:2950> [86:44:86:45] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <2955:2962> [87:4:87:11] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <2955:2962> [87:4:87:11] 'ensures'
       OpenParenToken <2979:2980> [87:28:87:29] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1081,8 +1081,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <2992:2993> [87:41:87:42] '0'
       CloseParenToken <2995:2996> [87:44:87:45] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <3001:3008> [88:4:88:11] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <3001:3008> [88:4:88:11] 'ensures'
       OpenParenToken <3025:3026> [88:28:88:29] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1090,8 +1090,8 @@ SourceFileSyntax
        EqualsEqualsToken <3031:3033> [88:34:88:36] '=='
        OldExpressionSyntax
       CloseParenToken <3041:3042> [88:44:88:45] ')'
-     InvariantClauseSyntax
-      InvariantKeyword <3047:3056> [89:4:89:13] 'invariant'
+     ContractClauseSyntax
+      IdentifierToken <3047:3056> [89:4:89:13] 'invariant'
       OpenParenToken <3071:3072> [89:28:89:29] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1197,7 +1197,7 @@ SourceFileSyntax
       CloseParenToken <3215:3216> [98:15:98:16] ')'
     SyntaxList
      WhereClauseSyntax
-      WhereKeyword <3221:3226> [99:4:99:9] 'where'
+      IdentifierToken <3221:3226> [99:4:99:9] 'where'
       OpenParenToken <3227:3228> [99:10:99:11] '('
       IdentifierNameSyntax
        IdentifierToken <3228:3229> [99:11:99:12] 'T'
@@ -1216,7 +1216,7 @@ SourceFileSyntax
          IdentifierToken <3251:3259> [99:34:99:42] 'Concept3'
       CloseParenToken <3259:3260> [99:42:99:43] ')'
      WhereClauseSyntax
-      WhereKeyword <3265:3270> [100:4:100:9] 'where'
+      IdentifierToken <3265:3270> [100:4:100:9] 'where'
       OpenParenToken <3271:3272> [100:10:100:11] '('
       IdentifierNameSyntax
        IdentifierToken <3272:3273> [100:11:100:12] 'U'
@@ -1231,7 +1231,7 @@ SourceFileSyntax
          IdentifierToken <3285:3293> [100:24:100:32] 'Concept5'
       CloseParenToken <3293:3294> [100:32:100:33] ')'
      WhereClauseSyntax
-      WhereKeyword <3299:3304> [101:4:101:9] 'where'
+      IdentifierToken <3299:3304> [101:4:101:9] 'where'
       OpenParenToken <3305:3306> [101:10:101:11] '('
       IdentifierNameSyntax
        IdentifierToken <3306:3307> [101:11:101:12] 'V'
@@ -1241,8 +1241,8 @@ SourceFileSyntax
         IdentifierNameSyntax
          IdentifierToken <3309:3317> [101:14:101:22] 'Concept6'
       CloseParenToken <3317:3318> [101:22:101:23] ')'
-     RequiresClauseSyntax
-      RequiresKeyword <3351:3359> [102:32:102:40] 'requires'
+     ContractClauseSyntax
+      IdentifierToken <3351:3359> [102:32:102:40] 'requires'
       OpenParenToken <3363:3364> [102:44:102:45] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1251,8 +1251,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <3369:3370> [102:50:102:51] '0'
       CloseParenToken <3397:3398> [102:78:102:79] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <3431:3438> [103:32:103:39] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <3431:3438> [103:32:103:39] 'ensures'
       OpenParenToken <3443:3444> [103:44:103:45] '('
       BinaryExpressionSyntax
        BinaryExpressionSyntax
@@ -1269,8 +1269,8 @@ SourceFileSyntax
         LiteralExpressionSyntax
          IntegerLiteralToken <3459:3461> [103:60:103:62] '37'
       CloseParenToken <3477:3478> [103:78:103:79] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <3511:3518> [104:32:104:39] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <3511:3518> [104:32:104:39] 'ensures'
       OpenParenToken <3523:3524> [104:44:104:45] '('
       BinaryExpressionSyntax
        BinaryExpressionSyntax
@@ -1294,8 +1294,8 @@ SourceFileSyntax
         LessThanToken <3548:3549> [104:69:104:70] '<'
         OldExpressionSyntax
       CloseParenToken <3557:3558> [104:78:104:79] ')'
-     InvariantClauseSyntax
-      InvariantKeyword <3591:3600> [105:32:105:41] 'invariant'
+     ContractClauseSyntax
+      IdentifierToken <3591:3600> [105:32:105:41] 'invariant'
       OpenParenToken <3603:3604> [105:44:105:45] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1478,7 +1478,7 @@ SourceFileSyntax
       CloseParenToken <3887:3888> [120:15:120:16] ')'
     SyntaxList
      WhereClauseSyntax
-      WhereKeyword <3893:3898> [121:4:121:9] 'where'
+      IdentifierToken <3893:3898> [121:4:121:9] 'where'
       OpenParenToken <3899:3900> [121:10:121:11] '('
       IdentifierNameSyntax
        IdentifierToken <3900:3901> [121:11:121:12] 'T'
@@ -1497,7 +1497,7 @@ SourceFileSyntax
          IdentifierToken <3923:3931> [121:34:121:42] 'Concept3'
       CloseParenToken <3931:3932> [121:42:121:43] ')'
      WhereClauseSyntax
-      WhereKeyword <3937:3942> [122:4:122:9] 'where'
+      IdentifierToken <3937:3942> [122:4:122:9] 'where'
       OpenParenToken <3943:3944> [122:10:122:11] '('
       IdentifierNameSyntax
        IdentifierToken <3944:3945> [122:11:122:12] 'U'
@@ -1512,7 +1512,7 @@ SourceFileSyntax
          IdentifierToken <3957:3965> [122:24:122:32] 'Concept5'
       CloseParenToken <3965:3966> [122:32:122:33] ')'
      WhereClauseSyntax
-      WhereKeyword <3971:3976> [123:4:123:9] 'where'
+      IdentifierToken <3971:3976> [123:4:123:9] 'where'
       OpenParenToken <3977:3978> [123:10:123:11] '('
       IdentifierNameSyntax
        IdentifierToken <3978:3979> [123:11:123:12] 'V'
@@ -1601,7 +1601,7 @@ SourceFileSyntax
       IdentifierToken <4589:4590> [163:8:163:9] 'T'
     SyntaxList
      WhereClauseSyntax
-      WhereKeyword <4595:4600> [164:4:164:9] 'where'
+      IdentifierToken <4595:4600> [164:4:164:9] 'where'
       OpenParenToken <4601:4602> [164:10:164:11] '('
       IdentifierNameSyntax
        IdentifierToken <4602:4603> [164:11:164:12] 'T'
@@ -1615,8 +1615,8 @@ SourceFileSyntax
         IdentifierNameSyntax
          IdentifierToken <4614:4627> [164:23:164:36] 'Multiplicable'
       CloseParenToken <4627:4628> [164:36:164:37] ')'
-     RequiresClauseSyntax
-      RequiresKeyword <4633:4641> [165:4:165:12] 'requires'
+     ContractClauseSyntax
+      IdentifierToken <4633:4641> [165:4:165:12] 'requires'
       OpenParenToken <4641:4642> [165:12:165:13] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1625,8 +1625,8 @@ SourceFileSyntax
        IdentifierNameSyntax
         IdentifierToken <4647:4648> [165:18:165:19] 'c'
       CloseParenToken <4648:4649> [165:19:165:20] ')'
-     RequiresClauseSyntax
-      RequiresKeyword <4654:4662> [166:4:166:12] 'requires'
+     ContractClauseSyntax
+      IdentifierToken <4654:4662> [166:4:166:12] 'requires'
       OpenParenToken <4662:4663> [166:12:166:13] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1635,8 +1635,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <4668:4669> [166:18:166:19] '0'
       CloseParenToken <4669:4670> [166:19:166:20] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <4675:4682> [167:4:167:11] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <4675:4682> [167:4:167:11] 'ensures'
       OpenParenToken <4682:4683> [167:11:167:12] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1645,8 +1645,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <4687:4689> [167:16:167:18] '10'
       CloseParenToken <4689:4690> [167:18:167:19] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <4695:4702> [168:4:168:11] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <4695:4702> [168:4:168:11] 'ensures'
       OpenParenToken <4702:4703> [168:11:168:12] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1655,8 +1655,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <4707:4710> [168:16:168:19] '100'
       CloseParenToken <4710:4711> [168:19:168:20] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <4716:4723> [169:4:169:11] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <4716:4723> [169:4:169:11] 'ensures'
       OpenParenToken <4723:4724> [169:11:169:12] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1665,8 +1665,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <4728:4730> [169:16:169:18] '10'
       CloseParenToken <4730:4731> [169:18:169:19] ')'
-     InvariantClauseSyntax
-      InvariantKeyword <4736:4745> [170:4:170:13] 'invariant'
+     ContractClauseSyntax
+      IdentifierToken <4736:4745> [170:4:170:13] 'invariant'
       OpenParenToken <4745:4746> [170:13:170:14] '('
       BinaryExpressionSyntax
        LiteralExpressionSyntax
@@ -1675,8 +1675,8 @@ SourceFileSyntax
        IdentifierNameSyntax
         IdentifierToken <4752:4753> [170:20:170:21] 'd'
       CloseParenToken <4753:4754> [170:21:170:22] ')'
-     InvariantClauseSyntax
-      InvariantKeyword <4759:4768> [171:4:171:13] 'invariant'
+     ContractClauseSyntax
+      IdentifierToken <4759:4768> [171:4:171:13] 'invariant'
       OpenParenToken <4768:4769> [171:13:171:14] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1780,8 +1780,8 @@ SourceFileSyntax
      IdentifierNameSyntax
       IdentifierToken <4989:4996> [183:48:183:55] 'Float32'
     SyntaxList
-     RequiresClauseSyntax
-      RequiresKeyword <5001:5009> [184:4:184:12] 'requires'
+     ContractClauseSyntax
+      IdentifierToken <5001:5009> [184:4:184:12] 'requires'
       OpenParenToken <5010:5011> [184:13:184:14] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1790,8 +1790,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <5016:5017> [184:19:184:20] '0'
       CloseParenToken <5017:5018> [184:20:184:21] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <5023:5030> [185:4:185:11] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <5023:5030> [185:4:185:11] 'ensures'
       OpenParenToken <5031:5032> [185:12:185:13] '('
       BinaryExpressionSyntax
        BinaryExpressionSyntax
@@ -1839,7 +1839,7 @@ SourceFileSyntax
       IdentifierToken <5140:5141> [190:5:190:6] 'T'
     SyntaxList
      WhereClauseSyntax
-      WhereKeyword <5142:5147> [191:0:191:5] 'where'
+      IdentifierToken <5142:5147> [191:0:191:5] 'where'
       OpenParenToken <5148:5149> [191:6:191:7] '('
       IdentifierNameSyntax
        IdentifierToken <5149:5150> [191:7:191:8] 'T'
@@ -1849,8 +1849,8 @@ SourceFileSyntax
         IdentifierNameSyntax
          IdentifierToken <5152:5165> [191:10:191:23] 'FloatingPoint'
       CloseParenToken <5165:5166> [191:23:191:24] ')'
-     RequiresClauseSyntax
-      RequiresKeyword <5167:5175> [192:0:192:8] 'requires'
+     ContractClauseSyntax
+      IdentifierToken <5167:5175> [192:0:192:8] 'requires'
       OpenParenToken <5175:5176> [192:8:192:9] '('
       BinaryExpressionSyntax
        IdentifierNameSyntax
@@ -1859,8 +1859,8 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <5186:5187> [193:9:193:10] '0'
       CloseParenToken <5188:5189> [194:0:194:1] ')'
-     EnsuresClauseSyntax
-      EnsuresKeyword <5190:5197> [195:0:195:7] 'ensures'
+     ContractClauseSyntax
+      IdentifierToken <5190:5197> [195:0:195:7] 'ensures'
       OpenParenToken <5198:5199> [196:0:196:1] '('
       BinaryExpressionSyntax
        BinaryExpressionSyntax
@@ -1956,4 +1956,145 @@ SourceFileSyntax
                SemicolonToken <5372:5373> [205:36:205:37] ';'
              CloseBraceToken <5378:5379> [206:4:206:5] '}'
      CloseBraceToken <5380:5381> [207:0:207:1] '}'
- EndOfFileToken <5382:5382> [208:0:208:0] ''
+  CodeBlockItemSyntax
+   StructDeclarationSyntax
+    SyntaxList
+     PublicKeyword <5383:5389> [209:0:209:6] 'public'
+    StructKeyword <5390:5396> [209:7:209:13] 'struct'
+    IdentifierNameSyntax
+     IdentifierToken <5397:5402> [209:14:209:19] 'Index'
+    GenericParametersSyntax
+     ExclamationOpenBracketToken <5402:5404> [209:19:209:21] '!['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <5404:5408> [209:21:209:25] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <5409:5410> [209:26:209:27] 'T'
+     CloseBracketToken <5410:5411> [209:27:209:28] ']'
+    SyntaxList
+     WhereClauseSyntax
+      IdentifierToken <5416:5421> [210:4:210:9] 'where'
+      OpenParenToken <5422:5423> [210:10:210:11] '('
+      IdentifierNameSyntax
+       IdentifierToken <5423:5424> [210:11:210:12] 'T'
+      ColonToken <5424:5425> [210:12:210:13] ':'
+      SyntaxList
+       WherePredicateSyntax
+        IdentifierNameSyntax
+         IdentifierToken <5426:5433> [210:14:210:21] 'Numeric'
+      CloseParenToken <5433:5434> [210:21:210:22] ')'
+     ContractClauseSyntax
+      IdentifierToken <5439:5448> [211:4:211:13] 'invariant'
+      OpenParenToken <5448:5449> [211:13:211:14] '('
+      BinaryExpressionSyntax
+       TupleExpressionSyntax
+        OpenParenToken <5449:5450> [211:14:211:15] '('
+        SyntaxList
+         LabeledExpressionSyntax
+          BinaryExpressionSyntax
+           LiteralExpressionSyntax
+            IntegerLiteralToken <5450:5451> [211:15:211:16] '0'
+           LessThanEqualsToken <5452:5454> [211:17:211:19] '<='
+           IdentifierNameSyntax
+            IdentifierToken <5455:5460> [211:20:211:25] 'Value'
+        CloseParenToken <5460:5461> [211:25:211:26] ')'
+       AmpersandAmpersandToken <5462:5464> [211:27:211:29] '&&'
+       TupleExpressionSyntax
+        OpenParenToken <5465:5466> [211:30:211:31] '('
+        SyntaxList
+         LabeledExpressionSyntax
+          BinaryExpressionSyntax
+           IdentifierNameSyntax
+            IdentifierToken <5466:5471> [211:31:211:36] 'Value'
+           LessThanToken <5472:5473> [211:37:211:38] '<'
+           LiteralExpressionSyntax
+            IntegerLiteralToken <5474:5478> [211:39:211:43] '1000'
+        CloseParenToken <5478:5479> [211:43:211:44] ')'
+      CloseParenToken <5479:5480> [211:44:211:45] ')'
+    CodeBlockSyntax
+     OpenBraceToken <5481:5482> [212:0:212:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <5487:5493> [213:4:213:10] 'public'
+        VarKeyword <5494:5497> [213:11:213:14] 'var'
+        PatternBindingSyntax
+         IdentifierPatternSyntax
+          IdentifierNameSyntax
+           IdentifierToken <5498:5503> [213:15:213:20] 'Value'
+         TypeClauseSyntax
+          ColonToken <5503:5504> [213:20:213:21] ':'
+          IdentifierNameSyntax
+           IdentifierToken <5505:5506> [213:22:213:23] 'T'
+       SemicolonToken <5506:5507> [213:23:213:24] ';'
+     CloseBraceToken <5508:5509> [214:0:214:1] '}'
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    SyntaxList
+     PublicKeyword <5511:5517> [216:0:216:6] 'public'
+    FunctionKeyword <5518:5526> [216:7:216:15] 'function'
+    IdentifierNameSyntax
+     IdentifierToken <5527:5530> [216:16:216:19] 'Add'
+    GenericParametersSyntax
+     ExclamationOpenBracketToken <5530:5532> [216:19:216:21] '!['
+     SyntaxList
+      TypeGenericParameterSyntax
+       TypeKeyword <5532:5536> [216:21:216:25] 'type'
+       IdentifierNameSyntax
+        IdentifierToken <5537:5538> [216:26:216:27] 'T'
+     CloseBracketToken <5538:5539> [216:27:216:28] ']'
+    ParameterListSyntax
+     OpenParenToken <5539:5540> [216:28:216:29] '('
+     SyntaxList
+      ParameterSyntax
+       SyntaxList
+        InKeyword <5540:5542> [216:29:216:31] 'in'
+       IdentifierNameSyntax
+        IdentifierToken <5543:5544> [216:32:216:33] 'a'
+       TypeClauseSyntax
+        ColonToken <5544:5545> [216:33:216:34] ':'
+        IdentifierNameSyntax
+         IdentifierToken <5546:5547> [216:35:216:36] 'T'
+       CommaToken <5547:5548> [216:36:216:37] ','
+      ParameterSyntax
+       SyntaxList
+        InKeyword <5549:5551> [216:38:216:40] 'in'
+       IdentifierNameSyntax
+        IdentifierToken <5552:5553> [216:41:216:42] 'b'
+       TypeClauseSyntax
+        ColonToken <5553:5554> [216:42:216:43] ':'
+        IdentifierNameSyntax
+         IdentifierToken <5555:5556> [216:44:216:45] 'T'
+     CloseParenToken <5556:5557> [216:45:216:46] ')'
+    ReturnTypeClauseSyntax
+     MinusGreaterThanToken <5558:5560> [216:47:216:49] '->'
+     IdentifierNameSyntax
+      IdentifierToken <5561:5562> [216:50:216:51] 'T'
+    SyntaxList
+     WhereClauseSyntax
+      IdentifierToken <5567:5572> [217:4:217:9] 'where'
+      OpenParenToken <5573:5574> [217:10:217:11] '('
+      IdentifierNameSyntax
+       IdentifierToken <5574:5575> [217:11:217:12] 'T'
+      ColonToken <5575:5576> [217:12:217:13] ':'
+      SyntaxList
+       WherePredicateSyntax
+        IdentifierNameSyntax
+         IdentifierToken <5577:5584> [217:14:217:21] 'Addable'
+      CloseParenToken <5584:5585> [217:21:217:22] ')'
+    CodeBlockSyntax
+     OpenBraceToken <5586:5587> [218:0:218:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       ReturnStatementSyntax
+        ReturnKeyword <5592:5598> [219:4:219:10] 'return'
+        BinaryExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <5599:5600> [219:11:219:12] 'a'
+         PlusToken <5601:5602> [219:13:219:14] '+'
+         IdentifierNameSyntax
+          IdentifierToken <5603:5604> [219:15:219:16] 'b'
+       SemicolonToken <5604:5605> [219:16:219:17] ';'
+     CloseBraceToken <5606:5607> [220:0:220:1] '}'
+ EndOfFileToken <5608:5608> [221:0:221:0] ''

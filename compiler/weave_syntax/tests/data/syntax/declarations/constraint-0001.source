@@ -206,3 +206,16 @@ ensures
         bugcheck("Unsupported type");
     }
 }
+
+public struct Index![type T]
+    where (T: Numeric)
+    invariant((0 <= Value) && (Value < 1000))
+{
+    public var Value: T;
+}
+
+public function Add![type T](in a: T, in b: T) -> T
+    where (T: Addable)
+{
+    return a + b;
+}

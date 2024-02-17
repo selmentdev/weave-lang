@@ -224,6 +224,7 @@ namespace weave::syntax
         SyntaxToken* StructKeyword{};
         NameSyntax* Name{};
         GenericParametersSyntax* GenericParameters{};
+        SyntaxListView<ConstraintClauseSyntax> Constraints{};
         CodeBlockSyntax* Members{};
 
     public:
@@ -241,6 +242,7 @@ namespace weave::syntax
         SyntaxToken* ConceptKeyword{};
         NameSyntax* Name{};
         GenericParametersSyntax* GenericParameters{};
+        SyntaxListView<ConstraintClauseSyntax> Constraints{};
         CodeBlockSyntax* Members{};
 
     public:
@@ -261,6 +263,7 @@ namespace weave::syntax
         CodeBlockSyntax* Members{};
         SyntaxToken* AsKeyword{};
         TypeSyntax* ConceptType{};
+        SyntaxListView<ConstraintClauseSyntax> Constraints{};
 
     public:
         explicit constexpr ExtendDeclarationSyntax()
@@ -1604,21 +1607,16 @@ namespace weave::syntax
     class ConstraintClauseSyntax : public SyntaxNode
     {
     public:
-        SyntaxToken* Introducer{};
-
-    public:
         explicit constexpr ConstraintClauseSyntax(SyntaxKind kind)
             : SyntaxNode{kind}
         {
         }
     };
 
-    class RequiresClauseSyntax final : public ConstraintClauseSyntax
+    class ContractClauseSyntax : public ConstraintClauseSyntax 
     {
-        WEAVE_DEFINE_SYNTAX_NODE(RequiresClauseSyntax);
-
     public:
-        SyntaxToken* RequiresKeyword{};
+        SyntaxToken* Introducer{};
 
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
@@ -1631,56 +1629,8 @@ namespace weave::syntax
         SyntaxToken* CloseParenToken{};
 
     public:
-        explicit constexpr RequiresClauseSyntax()
-            : ConstraintClauseSyntax{SyntaxKind::RequiresClauseSyntax}
-        {
-        }
-    };
-
-    class EnsuresClauseSyntax final : public ConstraintClauseSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(EnsuresClauseSyntax);
-
-    public:
-        SyntaxToken* EnsuresKeyword{};
-
-        UnexpectedNodesSyntax* BeforeOpenParenToken{};
-        SyntaxToken* OpenParenToken{};
-
-        NameColonSyntax* Level{};
-
-        ExpressionSyntax* Condition{};
-
-        UnexpectedNodesSyntax* BeforeCloseParenToken{};
-        SyntaxToken* CloseParenToken{};
-
-    public:
-        explicit constexpr EnsuresClauseSyntax()
-            : ConstraintClauseSyntax{SyntaxKind::EnsuresClauseSyntax}
-        {
-        }
-    };
-
-    class InvariantClauseSyntax final : public ConstraintClauseSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(InvariantClauseSyntax);
-
-    public:
-        SyntaxToken* InvariantKeyword{};
-
-        UnexpectedNodesSyntax* BeforeOpenParenToken{};
-        SyntaxToken* OpenParenToken{};
-
-        NameColonSyntax* Level{};
-
-        ExpressionSyntax* Condition{};
-
-        UnexpectedNodesSyntax* BeforeCloseParenToken{};
-        SyntaxToken* CloseParenToken{};
-
-    public:
-        explicit constexpr InvariantClauseSyntax()
-            : ConstraintClauseSyntax{SyntaxKind::InvariantClauseSyntax}
+        explicit constexpr ContractClauseSyntax()
+            : ConstraintClauseSyntax{SyntaxKind::ContractClauseSyntax}
         {
         }
     };
@@ -1700,7 +1650,7 @@ namespace weave::syntax
         }
     };
 
-    class WhereClauseSyntax final : public ConstraintClauseSyntax
+    class WhereClauseSyntax final : public ConstraintClauseSyntax 
     {
         WEAVE_DEFINE_SYNTAX_NODE(WhereClauseSyntax);
 
