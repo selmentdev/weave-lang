@@ -329,4 +329,97 @@ SourceFileSyntax
             SemicolonToken <455:456> [22:36:22:37] ';'
           CloseBraceToken <465:466> [23:8:23:9] '}'
      CloseBraceToken <467:468> [24:0:24:1] '}'
- EndOfFileToken <469:469> [25:0:25:0] ''
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MatchExpressionSyntax
+     MatchKeyword <470:475> [26:0:26:5] 'match'
+     OpenParenToken <476:477> [26:6:26:7] '('
+     IdentifierNameSyntax
+      IdentifierToken <477:478> [26:7:26:8] 'w'
+     CloseParenToken <478:479> [26:8:26:9] ')'
+     OpenBraceToken <480:481> [27:0:27:1] '{'
+     SyntaxList
+      MatchCaseClauseSyntax
+       CaseKeyword <486:490> [28:4:28:8] 'case'
+       IdentifierPatternSyntax
+        IdentifierNameSyntax
+         IdentifierToken <491:501> [28:9:28:19] 'SomeStruct'
+        StructPatternSyntax
+         OpenBraceToken <501:502> [28:19:28:20] '{'
+         SyntaxList
+          FieldPatternSyntax
+           IdentifierNameSyntax
+            IdentifierToken <503:504> [28:21:28:22] 'a'
+           ColonToken <504:505> [28:22:28:23] ':'
+           IdentifierPatternSyntax
+            IdentifierNameSyntax
+             IdentifierToken <506:510> [28:24:28:28] 'Some'
+            TuplePatternSyntax
+             OpenParenToken <510:511> [28:28:28:29] '('
+             SyntaxList
+              TuplePatternItemSyntax
+               IdentifierPatternSyntax
+                IdentifierNameSyntax
+                 IdentifierToken <511:512> [28:29:28:30] 'n'
+             CloseParenToken <512:513> [28:30:28:31] ')'
+           CommaToken <513:514> [28:31:28:32] ','
+          FieldPatternSyntax
+           IdentifierNameSyntax
+            IdentifierToken <515:516> [28:33:28:34] 'b'
+           ColonToken <516:517> [28:34:28:35] ':'
+           SlicePatternSyntax
+            OpenBracketToken <518:519> [28:36:28:37] '['
+            SyntaxList
+             SlicePatternItemSyntax
+              WildcardPatternSyntax
+               UnderscoreToken <519:520> [28:37:28:38] '_'
+              CommaToken <520:521> [28:38:28:39] ','
+             SlicePatternItemSyntax
+              LiteralPatternSyntax
+               IntegerLiteralToken <522:524> [28:40:28:42] '21'
+              CommaToken <524:525> [28:42:28:43] ','
+             SlicePatternItemSyntax
+              WildcardPatternSyntax
+               UnderscoreToken <526:527> [28:44:28:45] '_'
+              CommaToken <527:528> [28:45:28:46] ','
+             SlicePatternItemSyntax
+              LiteralPatternSyntax
+               IntegerLiteralToken <529:531> [28:47:28:49] '37'
+            CloseBracketToken <531:532> [28:49:28:50] ']'
+         CloseBraceToken <532:533> [28:50:28:51] '}'
+       ColonToken <533:534> [28:51:28:52] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <543:544> [29:8:29:9] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              IdentifierNameSyntax
+               IdentifierToken <557:564> [30:12:30:19] 'matched'
+              ArgumentListSyntax
+               OpenParenToken <564:565> [30:19:30:20] '('
+               CloseParenToken <565:566> [30:20:30:21] ')'
+            SemicolonToken <566:567> [30:21:30:22] ';'
+          CloseBraceToken <576:577> [31:8:31:9] '}'
+      MatchDefaultClauseSyntax
+       DefaultKeyword <582:589> [32:4:32:11] 'default'
+       ColonToken <589:590> [32:11:32:12] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <595:596> [33:4:33:5] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              IdentifierNameSyntax
+               IdentifierToken <605:614> [34:8:34:17] 'unmatched'
+              ArgumentListSyntax
+               OpenParenToken <614:615> [34:17:34:18] '('
+               CloseParenToken <615:616> [34:18:34:19] ')'
+            SemicolonToken <616:617> [34:19:34:20] ';'
+          CloseBraceToken <622:623> [35:4:35:5] '}'
+     CloseBraceToken <624:625> [36:0:36:1] '}'
+ EndOfFileToken <626:626> [37:0:37:0] ''

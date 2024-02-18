@@ -498,6 +498,8 @@ WEAVE_SYNTAX_NODE(SlicePatternItemSyntax,                       "slice pattern i
 WEAVE_SYNTAX_NODE(SlicePatternSyntax,                           "slice pattern")
 WEAVE_SYNTAX_NODE(TuplePatternSyntax,                           "tuple pattern")
 WEAVE_SYNTAX_NODE(TuplePatternItemSyntax,                       "tuple pattern item")
+WEAVE_SYNTAX_NODE(StructPatternSyntax,                          "struct pattern")
+WEAVE_SYNTAX_NODE(FieldPatternSyntax,                           "field pattern")
 WEAVE_SYNTAX_NODE(MoveExpressionSyntax,                         "move expression")
 WEAVE_SYNTAX_NODE(RefExpressionSyntax,                          "ref expression")
 WEAVE_SYNTAX_NODE(OutExpressionSyntax,                          "out expression")

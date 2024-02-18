@@ -196,5 +196,7 @@ namespace weave::syntax
         void OnExpressionReferenceSyntax(ExpressionReferenceSyntax* node) override;
         void OnTypeReferenceSyntax(TypeReferenceSyntax* node) override;
         void OnStructExpressionSyntax(StructExpressionSyntax* node) override;
+        void OnStructPatternSyntax(StructPatternSyntax* node) override;
+        void OnFieldPatternSyntax(FieldPatternSyntax* node) override;
     };
 }

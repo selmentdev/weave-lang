@@ -1620,7 +1620,7 @@ namespace weave::syntax
         }
     };
 
-    class ContractClauseSyntax : public ConstraintClauseSyntax 
+    class ContractClauseSyntax : public ConstraintClauseSyntax
     {
     public:
         SyntaxToken* Introducer{};
@@ -1657,7 +1657,7 @@ namespace weave::syntax
         }
     };
 
-    class WhereClauseSyntax final : public ConstraintClauseSyntax 
+    class WhereClauseSyntax final : public ConstraintClauseSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(WhereClauseSyntax);
 
@@ -1826,7 +1826,7 @@ namespace weave::syntax
 
     public:
         NameSyntax* Identifier{};
-        TuplePatternSyntax* Tuple{};
+        PatternSyntax* Pattern{};
 
     public:
         explicit constexpr IdentifierPatternSyntax()
@@ -1887,13 +1887,52 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(TuplePatternSyntax);
 
     public:
-        SyntaxToken* OpenBraceToken{};
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
         SyntaxListView<TuplePatternItemSyntax> Items{};
-        SyntaxToken* CloseBraceToken{};
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
 
     public:
         explicit constexpr TuplePatternSyntax()
             : PatternSyntax{SyntaxKind::TuplePatternSyntax}
+        {
+        }
+    };
+
+    class FieldPatternSyntax : public PatternSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(FieldPatternSyntax);
+
+    public:
+        NameSyntax* Name{};
+        SyntaxToken* ColonToken{};
+        PatternSyntax* Pattern{};
+        SyntaxToken* TrailingComma{};
+
+    public:
+        explicit constexpr FieldPatternSyntax()
+            : PatternSyntax{SyntaxKind::FieldPatternSyntax}
+        {
+        }
+    };
+
+    class StructPatternSyntax : public PatternSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(StructPatternSyntax);
+
+    public:
+        UnexpectedNodesSyntax* BeforeOpenBraceToken{};
+        SyntaxToken* OpenBraceToken{};
+
+        SyntaxListView<FieldPatternSyntax> Fields{};
+
+        UnexpectedNodesSyntax* BeforeCloseBraceToken{};
+        SyntaxToken* CloseBraceToken{};
+
+    public:
+        explicit constexpr StructPatternSyntax()
+            : PatternSyntax{SyntaxKind::StructPatternSyntax}
         {
         }
     };

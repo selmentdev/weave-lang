@@ -533,6 +533,8 @@ namespace weave::syntax
         SlicePatternSyntax* ParseSlicePattern();
         TuplePatternItemSyntax* ParseTuplePatternItem();
         TuplePatternSyntax* ParseTuplePattern();
+        FieldPatternSyntax* ParseFieldPattern();
+        StructPatternSyntax* ParseStructPattern();
         PatternBindingSyntax* ParsePatternBinding();
     };
 

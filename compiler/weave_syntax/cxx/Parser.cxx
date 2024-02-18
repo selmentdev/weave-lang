@@ -2482,11 +2482,15 @@ namespace weave::syntax
     IdentifierPatternSyntax* Parser::ParseIdentifierPattern()
     {
         IdentifierPatternSyntax* result = this->_factory->CreateNode<IdentifierPatternSyntax>();
-        result->Identifier = this->ParseIdentifierName();
+        result->Identifier = this->ParseQualifiedName();
 
         if (this->Current()->Kind == SyntaxKind::OpenParenToken)
         {
-            result->Tuple = this->ParseTuplePattern();
+            result->Pattern = this->ParseTuplePattern();
+        }
+        else if (this->Current()->Kind == SyntaxKind::OpenBraceToken)
+        {
+            result->Pattern = this->ParseStructPattern();
         }
 
         return result;
@@ -2544,7 +2548,7 @@ namespace weave::syntax
     TuplePatternSyntax* Parser::ParseTuplePattern()
     {
         TuplePatternSyntax* result = this->_factory->CreateNode<TuplePatternSyntax>();
-        result->OpenBraceToken = this->Match(SyntaxKind::OpenParenToken);
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
         std::vector<TuplePatternItemSyntax*> items{};
 
@@ -2567,7 +2571,54 @@ namespace weave::syntax
 
         result->Items = SyntaxListView<TuplePatternItemSyntax>{this->_factory->CreateList(items)};
 
-        result->CloseBraceToken = this->Match(SyntaxKind::CloseParenToken);
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        return result;
+    }
+
+    FieldPatternSyntax* Parser::ParseFieldPattern()
+    {
+        FieldPatternSyntax* result = this->_factory->CreateNode<FieldPatternSyntax>();
+        result->Name = this->ParseIdentifierName();
+
+        if (this->Current()->Kind == SyntaxKind::ColonToken)
+        {
+            result->ColonToken = this->Next();
+            result->Pattern = this->ParsePattern();
+        }
+
+        result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
+
+        return result;
+    }
+
+    StructPatternSyntax* Parser::ParseStructPattern()
+    {
+        StructPatternSyntax* result = this->_factory->CreateNode<StructPatternSyntax>();
+        this->MatchUntil(result->OpenBraceToken, result->BeforeOpenBraceToken, SyntaxKind::OpenBraceToken);
+
+        std::vector<FieldPatternSyntax*> items{};
+
+        LoopProgressCondition progress{this->Current()};
+
+        if (this->Current()->Kind != SyntaxKind::CloseBraceToken)
+        {
+            do
+            {
+                FieldPatternSyntax* item = this->ParseFieldPattern();
+                items.push_back(item);
+
+                if (item->TrailingComma == nullptr)
+                {
+                    break;
+                }
+
+            } while (progress.Evaluate(this->Current()));
+        }
+
+        result->Fields = SyntaxListView<FieldPatternSyntax>{this->_factory->CreateList(items)};
+
+        this->MatchUntil(result->CloseBraceToken, result->BeforeOpenBraceToken, SyntaxKind::CloseBraceToken);
 
         return result;
     }

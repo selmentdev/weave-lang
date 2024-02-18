@@ -23,3 +23,15 @@ match (z)
             WriteLine("Not matched");
         }
 }
+
+match (w)
+{
+    case SomeStruct{ a: Some(n), b: [_, 21, _, 37]}:
+        {
+            matched();
+        }
+    default:
+    {
+        unmatched();
+    }
+}
