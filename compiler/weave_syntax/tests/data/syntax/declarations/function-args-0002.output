@@ -6,116 +6,116 @@ SourceFileSyntax
     IdentifierNameSyntax
      IdentifierToken <7:11> [0:7:0:11] 'Vec2'
     CodeBlockSyntax
-     OpenBraceToken <13:14> [1:0:1:1] '{'
+     OpenBraceToken <12:13> [1:0:1:1] '{'
      SyntaxList
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         SyntaxList
-         PublicKeyword <20:26> [2:4:2:10] 'public'
-        VarKeyword <27:30> [2:11:2:14] 'var'
+         PublicKeyword <18:24> [2:4:2:10] 'public'
+        VarKeyword <25:28> [2:11:2:14] 'var'
         PatternBindingSyntax
          IdentifierPatternSyntax
           IdentifierNameSyntax
-           IdentifierToken <31:32> [2:15:2:16] 'X'
+           IdentifierToken <29:30> [2:15:2:16] 'X'
          TypeClauseSyntax
-          ColonToken <32:33> [2:16:2:17] ':'
+          ColonToken <30:31> [2:16:2:17] ':'
           IdentifierNameSyntax
-           IdentifierToken <34:39> [2:18:2:23] 'Float'
-       SemicolonToken <39:40> [2:23:2:24] ';'
+           IdentifierToken <32:37> [2:18:2:23] 'Float'
+       SemicolonToken <37:38> [2:23:2:24] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         SyntaxList
-         PublicKeyword <46:52> [3:4:3:10] 'public'
-        VarKeyword <53:56> [3:11:3:14] 'var'
+         PublicKeyword <43:49> [3:4:3:10] 'public'
+        VarKeyword <50:53> [3:11:3:14] 'var'
         PatternBindingSyntax
          IdentifierPatternSyntax
           IdentifierNameSyntax
-           IdentifierToken <57:58> [3:15:3:16] 'Y'
+           IdentifierToken <54:55> [3:15:3:16] 'Y'
          TypeClauseSyntax
-          ColonToken <58:59> [3:16:3:17] ':'
+          ColonToken <55:56> [3:16:3:17] ':'
           IdentifierNameSyntax
-           IdentifierToken <60:65> [3:18:3:23] 'Float'
-       SemicolonToken <65:66> [3:23:3:24] ';'
-     CloseBraceToken <68:69> [4:0:4:1] '}'
+           IdentifierToken <57:62> [3:18:3:23] 'Float'
+       SemicolonToken <62:63> [3:23:3:24] ';'
+     CloseBraceToken <64:65> [4:0:4:1] '}'
   CodeBlockItemSyntax
    ExtendDeclarationSyntax
-    ExtendKeyword <73:79> [6:0:6:6] 'extend'
+    ExtendKeyword <67:73> [6:0:6:6] 'extend'
     IdentifierNameSyntax
-     IdentifierToken <80:84> [6:7:6:11] 'Vec2'
+     IdentifierToken <74:78> [6:7:6:11] 'Vec2'
     CodeBlockSyntax
-     OpenBraceToken <86:87> [7:0:7:1] '{'
+     OpenBraceToken <79:80> [7:0:7:1] '{'
      SyntaxList
       CodeBlockItemSyntax
        FunctionDeclarationSyntax
         SyntaxList
-         PublicKeyword <93:99> [8:4:8:10] 'public'
-        FunctionKeyword <100:108> [8:11:8:19] 'function'
+         PublicKeyword <85:91> [8:4:8:10] 'public'
+        FunctionKeyword <92:100> [8:11:8:19] 'function'
         IdentifierNameSyntax
-         IdentifierToken <109:112> [8:20:8:23] 'Add'
+         IdentifierToken <101:104> [8:20:8:23] 'Add'
         ParameterListSyntax
-         OpenParenToken <112:113> [8:23:8:24] '('
+         OpenParenToken <104:105> [8:23:8:24] '('
          SyntaxList
           ParameterSyntax
            IdentifierNameSyntax
-            IdentifierToken <123:127> [9:8:9:12] 'self'
+            IdentifierToken <114:118> [9:8:9:12] 'self'
            TypeClauseSyntax
-            ColonToken <127:128> [9:12:9:13] ':'
+            ColonToken <118:119> [9:12:9:13] ':'
             TypeReferenceSyntax
-             AmpersandToken <129:130> [9:14:9:15] '&'
+             AmpersandToken <120:121> [9:14:9:15] '&'
              SyntaxList
-              VarKeyword <130:133> [9:15:9:18] 'var'
+              VarKeyword <121:124> [9:15:9:18] 'var'
              IdentifierNameSyntax
-              IdentifierToken <134:138> [9:19:9:23] 'Self'
-           CommaToken <138:139> [9:23:9:24] ','
+              IdentifierToken <125:129> [9:19:9:23] 'Self'
+           CommaToken <129:130> [9:23:9:24] ','
           ParameterSyntax
            IdentifierNameSyntax
-            IdentifierToken <149:154> [10:8:10:13] 'other'
+            IdentifierToken <139:144> [10:8:10:13] 'other'
            TypeClauseSyntax
-            ColonToken <154:155> [10:13:10:14] ':'
+            ColonToken <144:145> [10:13:10:14] ':'
             TypeReferenceSyntax
-             AmpersandToken <156:157> [10:15:10:16] '&'
+             AmpersandToken <146:147> [10:15:10:16] '&'
              SyntaxList
-              LetKeyword <157:160> [10:16:10:19] 'let'
+              LetKeyword <147:150> [10:16:10:19] 'let'
              IdentifierNameSyntax
-              IdentifierToken <161:165> [10:20:10:24] 'Self'
-         CloseParenToken <171:172> [11:4:11:5] ')'
+              IdentifierToken <151:155> [10:20:10:24] 'Self'
+         CloseParenToken <160:161> [11:4:11:5] ')'
         CodeBlockSyntax
-         OpenBraceToken <178:179> [12:4:12:5] '{'
+         OpenBraceToken <166:167> [12:4:12:5] '{'
          SyntaxList
           CodeBlockItemSyntax
            ExpressionStatementSyntax
             AssignmentExpressionSyntax
              MemberAccessExpressionSyntax
               IdentifierNameSyntax
-               IdentifierToken <189:193> [13:8:13:12] 'self'
-              DotToken <193:194> [13:12:13:13] '.'
+               IdentifierToken <176:180> [13:8:13:12] 'self'
+              DotToken <180:181> [13:12:13:13] '.'
               IdentifierNameSyntax
-               IdentifierToken <194:195> [13:13:13:14] 'X'
-             PlusEqualsToken <196:198> [13:15:13:17] '+='
+               IdentifierToken <181:182> [13:13:13:14] 'X'
+             PlusEqualsToken <183:185> [13:15:13:17] '+='
              MemberAccessExpressionSyntax
               IdentifierNameSyntax
-               IdentifierToken <199:204> [13:18:13:23] 'other'
-              DotToken <204:205> [13:23:13:24] '.'
+               IdentifierToken <186:191> [13:18:13:23] 'other'
+              DotToken <191:192> [13:23:13:24] '.'
               IdentifierNameSyntax
-               IdentifierToken <205:206> [13:24:13:25] 'X'
-           SemicolonToken <206:207> [13:25:13:26] ';'
+               IdentifierToken <192:193> [13:24:13:25] 'X'
+           SemicolonToken <193:194> [13:25:13:26] ';'
           CodeBlockItemSyntax
            ExpressionStatementSyntax
             AssignmentExpressionSyntax
              MemberAccessExpressionSyntax
               IdentifierNameSyntax
-               IdentifierToken <217:221> [14:8:14:12] 'self'
-              DotToken <221:222> [14:12:14:13] '.'
+               IdentifierToken <203:207> [14:8:14:12] 'self'
+              DotToken <207:208> [14:12:14:13] '.'
               IdentifierNameSyntax
-               IdentifierToken <222:223> [14:13:14:14] 'Y'
-             PlusEqualsToken <224:226> [14:15:14:17] '+='
+               IdentifierToken <208:209> [14:13:14:14] 'Y'
+             PlusEqualsToken <210:212> [14:15:14:17] '+='
              MemberAccessExpressionSyntax
               IdentifierNameSyntax
-               IdentifierToken <227:232> [14:18:14:23] 'other'
-              DotToken <232:233> [14:23:14:24] '.'
+               IdentifierToken <213:218> [14:18:14:23] 'other'
+              DotToken <218:219> [14:23:14:24] '.'
               IdentifierNameSyntax
-               IdentifierToken <233:234> [14:24:14:25] 'Y'
-           SemicolonToken <234:235> [14:25:14:26] ';'
-         CloseBraceToken <241:242> [15:4:15:5] '}'
-     CloseBraceToken <244:245> [16:0:16:1] '}'
- EndOfFileToken <247:247> [17:0:17:0] ''
+               IdentifierToken <219:220> [14:24:14:25] 'Y'
+           SemicolonToken <220:221> [14:25:14:26] ';'
+         CloseBraceToken <226:227> [15:4:15:5] '}'
+     CloseBraceToken <228:229> [16:0:16:1] '}'
+ EndOfFileToken <230:230> [17:0:17:0] ''
