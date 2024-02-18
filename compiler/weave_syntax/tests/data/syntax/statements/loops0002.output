@@ -2,8 +2,10 @@ SourceFileSyntax
  SyntaxList
   CodeBlockItemSyntax
    LabeledStatementSyntax
-    IdentifierToken <26:38> [1:0:1:12] 'this_is_loop'
-    ColonToken <38:39> [1:12:1:13] ':'
+    NameColonSyntax
+     IdentifierNameSyntax
+      IdentifierToken <26:38> [1:0:1:12] 'this_is_loop'
+     ColonToken <38:39> [1:12:1:13] ':'
     ExpressionStatementSyntax
      IfExpressionSyntax
       IfKeyword <40:42> [1:14:1:16] 'if'
@@ -34,8 +36,10 @@ SourceFileSyntax
          SemicolonToken <88:89> [4:13:4:14] ';'
         CodeBlockItemSyntax
          LabeledStatementSyntax
-          IdentifierToken <90:104> [5:0:5:14] 'update_counter'
-          ColonToken <104:105> [5:14:5:15] ':'
+          NameColonSyntax
+           IdentifierNameSyntax
+            IdentifierToken <90:104> [5:0:5:14] 'update_counter'
+           ColonToken <104:105> [5:14:5:15] ':'
           ExpressionStatementSyntax
            AssignmentExpressionSyntax
             IdentifierNameSyntax

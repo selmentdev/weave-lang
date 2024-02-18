@@ -2,8 +2,10 @@ SourceFileSyntax
  SyntaxList
   CodeBlockItemSyntax
    LabeledStatementSyntax
-    IdentifierToken <10:19> [1:0:1:9] 'somewhere'
-    ColonToken <19:20> [1:9:1:10] ':'
+    NameColonSyntax
+     IdentifierNameSyntax
+      IdentifierToken <10:19> [1:0:1:9] 'somewhere'
+     ColonToken <19:20> [1:9:1:10] ':'
     WhileStatementSyntax
      SyntaxList
       AttributeListSyntax

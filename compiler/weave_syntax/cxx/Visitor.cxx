@@ -817,7 +817,6 @@ namespace weave::syntax
         this->Dispatch(node->Modifiers.GetNode());
 
         this->Dispatch(node->Name);
-        this->Dispatch(node->Colon);
         this->Dispatch(node->Statement);
 
         --this->Depth;

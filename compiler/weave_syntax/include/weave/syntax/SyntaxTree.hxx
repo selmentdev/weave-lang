@@ -376,6 +376,9 @@ namespace weave::syntax
         SyntaxToken* CloseParenToken{};
     };
 
+    /// attribute
+    ///     : 'name' balanced-token-sequence?
+    ///     ;
     class AttributeSyntax : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(AttributeSyntax);
@@ -393,6 +396,13 @@ namespace weave::syntax
         // TODO: Validate if trailing comma is not present at end of attributes list.
     };
 
+    /// attribute-sequence
+    ///     : attribute (',' attribute)*
+    ///     ;
+    ///
+    /// attribute-list
+    ///     : '#[' attribute-target-specifier? attribute-sequence ']'
+    ///     ;
     class AttributeListSyntax : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(AttributeListSyntax);
@@ -1455,6 +1465,9 @@ namespace weave::syntax
         }
     };
 
+    /// unexpected-nodes
+    ///     : syntax-token*
+    ///     ;
     class UnexpectedNodesSyntax : public SyntaxNode
     {
     public:
@@ -1477,13 +1490,15 @@ namespace weave::syntax
         }
     };
 
+    /// labeled-statement
+    ///     : name-colon? statement
+    ///     ;
     class LabeledStatementSyntax final : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(LabeledStatementSyntax);
 
     public:
-        SyntaxToken* Name{};
-        SyntaxToken* Colon{};
+        NameColonSyntax* Name{};
         StatementSyntax* Statement{};
 
     public:
@@ -1493,6 +1508,9 @@ namespace weave::syntax
         }
     };
 
+    /// tuple-expression
+    ///     : '(' labeled-expression-sequence? ')'
+    ///     ;
     class TupleExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TupleExpressionSyntax);
@@ -1511,6 +1529,9 @@ namespace weave::syntax
         }
     };
 
+    /// struct-expression
+    ///     : name brace-initializer-clause
+    ///     ;
     class StructExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(StructExpressionSyntax);
@@ -1526,6 +1547,9 @@ namespace weave::syntax
         }
     };
 
+    /// bracket-initializer-clause
+    ///     : '[' labeled-expression-sequence? ']'
+    ///     ;
     class BracketInitializerClauseSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(BracketInitializerClauseSyntax);
@@ -1544,6 +1568,9 @@ namespace weave::syntax
         }
     };
 
+    /// brace-initializer-clause
+    ///     : '{' labeled-expression-sequence? '}'
+    ///     ;
     class BraceInitializerClauseSyntax : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(BraceInitializerClauseSyntax);
@@ -1562,6 +1589,13 @@ namespace weave::syntax
         }
     };
 
+    /// labeled-expression
+    ///     : name-colon? expression
+    ///     ;
+    ///
+    /// labeled-expression-sequence
+    ///     : labeled-expression (',' labeled-expression)*
+    ///     ;
     class LabeledExpressionSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(LabeledExpressionSyntax);
@@ -1578,39 +1612,6 @@ namespace weave::syntax
         }
     };
 
-
-    //
-    //  constraint-clause
-    //      : precondition-clause
-    //      | postcondition-clause
-    //      | where-clause
-    //      ;
-    //
-    //  constraint-clause-list
-    //      : constraint-clause (',' constraint-clause)*
-    //      ;
-    //
-    //  precondition-clause
-    //      : 'requires' '(' expression (',' string-literal)? ')'
-    //      ;
-    //
-    //  postcondition-clause
-    //      : 'ensures' '(' expression (',' string-literal)? ')'
-    //      ;
-    //
-    //  invariant-clause
-    //      : 'invariant' '(' expression (',' string-literal)? ')'
-    //      ;
-    //
-    //  generic-constraint
-    //      : name ':' type (',' type)* ','?
-    //      ;
-    //  generic-constraint-list
-    //      : generic-constraint (',' generic-constraint)*
-    //      ;
-    //  where-clause
-    //      : 'where' '(' type-reference ':' (
-    //
     class ConstraintClauseSyntax : public SyntaxNode
     {
     public:
@@ -1619,6 +1620,15 @@ namespace weave::syntax
         {
         }
     };
+
+    /// contract-kind
+    ///     : 'requires' | 'ensures' | 'invariant' | 'assert'
+    ///     ;
+    ///
+    /// contract-clause
+    ///     : contract-kind '(' identifier ':' expression ')'
+    ///     | contract-kind '(' expression ')'
+    ///     ;
 
     class ContractClauseSyntax : public ConstraintClauseSyntax
     {
@@ -1657,6 +1667,18 @@ namespace weave::syntax
         }
     };
 
+    /// where-predicate
+    ///     : type
+    ///     ;
+    ///
+    /// where-predicate-sequence
+    ///     : where-predicate (',' where-predicate)*
+    ///     ;
+    ///
+    /// where-clause
+    ///     : 'where' '(' type ':' where-predicate-sequence ')'
+    ///     ;
+
     class WhereClauseSyntax final : public ConstraintClauseSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(WhereClauseSyntax);
@@ -1684,6 +1706,11 @@ namespace weave::syntax
         }
     };
 
+    /// yield-statement
+    ///     : 'yield' expression
+    ///     | 'yield' 'break'
+    ///     | 'yield' 'return' expression
+    ///     ;
     class YieldStatementSyntax final : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(YieldStatementSyntax);
@@ -1700,6 +1727,9 @@ namespace weave::syntax
         }
     };
 
+    /// eval-expression
+    ///     : 'eval' code-block-item
+    ///     ;
     class EvalExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(EvalExpressionSyntax);
@@ -1783,6 +1813,13 @@ namespace weave::syntax
         }
     };
 
+    /// pattern
+    ///     : wildcard-pattern
+    ///     | literal-pattern
+    ///     | identifier-pattern
+    ///     | slice-pattern
+    ///     | tuple-pattern
+    ///     | struct-pattern
     class PatternSyntax : public SyntaxNode
     {
     public:
@@ -1792,6 +1829,9 @@ namespace weave::syntax
         }
     };
 
+    /// wildcard-pattern
+    ///     : '_'
+    ///     ;
     class WildcardPatternSyntax : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(WildcardPatternSyntax);
@@ -1806,6 +1846,9 @@ namespace weave::syntax
         }
     };
 
+    /// literal-pattern
+    ///     : literal
+    ///     ;
     class LiteralPatternSyntax : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(LiteralPatternSyntax);
@@ -1820,6 +1863,9 @@ namespace weave::syntax
         }
     };
 
+    /// identifier-pattern
+    ///     : name pattern?
+    ///     ;
     class IdentifierPatternSyntax : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(IdentifierPatternSyntax);
@@ -1835,6 +1881,13 @@ namespace weave::syntax
         }
     };
 
+    /// slice-pattern-item
+    ///     : pattern
+    ///     ;
+    ///
+    /// slice-pattern-item-sequence
+    ///     : slice-pattern-item (',' slice-pattern-item)*
+    ///     ;
     class SlicePatternItemSyntax : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(SlicePatternItemSyntax);
@@ -1850,6 +1903,9 @@ namespace weave::syntax
         }
     };
 
+    /// slice-pattern
+    ///     : '[' slice-pattern-item-sequence? ']'
+    ///     ;
     class SlicePatternSyntax : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(SlicePatternSyntax);
@@ -1866,6 +1922,13 @@ namespace weave::syntax
         }
     };
 
+    /// tuple-pattern-item
+    ///     : name-colon? pattern
+    ///     ;
+    ///
+    /// tuple-pattern-item-sequence
+    ///     : tuple-pattern-item (',' tuple-pattern-item)*
+    ///     ;
     class TuplePatternItemSyntax : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(TuplePatternItemSyntax);
@@ -1882,6 +1945,9 @@ namespace weave::syntax
         }
     };
 
+    /// tuple-pattern
+    ///     : '(' tuple-pattern-item-sequence? ')'
+    ///     ;
     class TuplePatternSyntax : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TuplePatternSyntax);
@@ -1900,6 +1966,13 @@ namespace weave::syntax
         }
     };
 
+    /// field-pattern
+    ///     : identifier ':' pattern
+    ///     ;
+    ///
+    /// field-pattern-sequence
+    ///     : field-pattern (',' field-pattern)*
+    ///     ;
     class FieldPatternSyntax : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(FieldPatternSyntax);
@@ -1917,6 +1990,9 @@ namespace weave::syntax
         }
     };
 
+    /// struct-pattern
+    ///     : '{' field-pattern-sequence? '}'
+    ///     ;
     class StructPatternSyntax : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(StructPatternSyntax);
@@ -1937,6 +2013,9 @@ namespace weave::syntax
         }
     };
 
+    /// pattern-binding
+    ///     : pattern type-clause? initializer-clause?
+    ///     ;
     class PatternBindingSyntax : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(PatternBindingSyntax);
@@ -1953,6 +2032,9 @@ namespace weave::syntax
         }
     };
 
+    /// type-inheritance-clause
+    ///     : ':' type
+    ///     ;
     class TypeInheritanceClause : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypeInheritanceClause);
@@ -1968,6 +2050,9 @@ namespace weave::syntax
         }
     };
 
+    /// name-colon
+    ///     : identifier ':'
+    ///     ;
     class NameColonSyntax : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(NameColonSyntax);
@@ -1983,6 +2068,14 @@ namespace weave::syntax
         }
     };
 
+    /// let-expression-binding-specifier
+    ///     : 'let'
+    ///     | 'var'
+    ///     ;
+    ///
+    /// let-expression
+    ///     : let-expression-binding-specifier pattern-binding
+    ///     ;
     class LetExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(LetExpressionSyntax);
@@ -1998,6 +2091,14 @@ namespace weave::syntax
         }
     };
 
+    /// expression-reference-qualifier
+    ///     : 'let'
+    ///     | 'var'
+    ///     ;
+    ///
+    /// expression-reference
+    ///     : '&' expression-reference-qualifier? expression
+    ///     ;
     class ExpressionReferenceSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ExpressionReferenceSyntax);
@@ -2014,6 +2115,9 @@ namespace weave::syntax
         }
     };
 
+    /// for-statement
+    ///     : 'for' '(' expression ';' expression ';' expression ')' code-block
+    ///     ;
     class ForStatementSyntax final : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ForStatementSyntax);
@@ -2042,6 +2146,9 @@ namespace weave::syntax
         }
     };
 
+    /// foreach-statement
+    ///     : 'foreach' '(' variable-declaration 'in' expression ')' code-block
+    ///     ;
     class ForeachStatementSyntax final : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ForeachStatementSyntax);

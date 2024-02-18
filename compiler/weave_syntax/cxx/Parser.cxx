@@ -285,34 +285,35 @@ namespace weave::syntax
         // It wasn't a declaration, so reset parser state and try to parse statement - maybe skipped tokens were part of statement.
         this->Reset(beforeModifiers);
 
-        std::optional<Label> const label = this->ParseOptionalLabel();
+        NameColonSyntax* label = this->ParseOptionalNameColon();
+        StatementSyntax* statement = this->ParseStatement(attributes);
 
-        if (StatementSyntax* statement = this->ParseStatement(attributes))
+        if ((label == nullptr) and (statement == nullptr))
         {
-            CodeBlockItemSyntax* result = this->_factory->CreateNode<CodeBlockItemSyntax>();
-
-            if (label)
-            {
-                LabeledStatementSyntax* wrapper = this->_factory->CreateNode<LabeledStatementSyntax>();
-                wrapper->Name = label->Name;
-                wrapper->Colon = label->Colon;
-                wrapper->Statement = statement;
-
-                result->Item = wrapper;
-            }
-            else
-            {
-                result->Item = statement;
-            }
-
-            result->Semicolon = this->TryMatch(SyntaxKind::SemicolonToken);
-            result->AfterSemicolon = this->ConsumeUnexpected(SyntaxKind::SemicolonToken);
-            return result;
+            // No luck, reset parser to original state and stop.
+            // FIXME: This leaks memory allocated for attributes.
+            this->Reset(started);
+            return nullptr;
         }
 
-        // No luck, reset parser to original state and stop.
-        this->Reset(started);
-        return nullptr;
+        CodeBlockItemSyntax* result = this->_factory->CreateNode<CodeBlockItemSyntax>();
+
+        if (label != nullptr)
+        {
+            LabeledStatementSyntax* wrapper = this->_factory->CreateNode<LabeledStatementSyntax>();
+            wrapper->Name = label;
+            wrapper->Statement = statement;
+
+            result->Item = wrapper;
+        }
+        else
+        {
+            result->Item = statement;
+        }
+
+        result->Semicolon = this->TryMatch(SyntaxKind::SemicolonToken);
+        result->AfterSemicolon = this->ConsumeUnexpected(SyntaxKind::SemicolonToken);
+        return result;
     }
 
     SyntaxListView<AttributeListSyntax> Parser::ParseAttributesList()
@@ -680,17 +681,17 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->YieldKeyword = this->Match(SyntaxKind::YieldKeyword);
 
-        if (this->Current()->Kind == SyntaxKind::ReturnKeyword)
-        {
-            result->KindKeyword = this->Match(SyntaxKind::ReturnKeyword);
-            result->Expression = this->ParseExpression();
-        }
-        else if (this->Current()->Kind == SyntaxKind::BreakKeyword)
+        if (this->Current()->Kind == SyntaxKind::BreakKeyword)
         {
             result->KindKeyword = this->Match(SyntaxKind::BreakKeyword);
         }
         else
         {
+            if (this->Current()->Kind == SyntaxKind::ReturnKeyword)
+            {
+                result->KindKeyword = this->Match(SyntaxKind::ReturnKeyword);
+            }
+
             result->Expression = this->ParseExpression();
         }
 
