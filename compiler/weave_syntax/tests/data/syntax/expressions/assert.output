@@ -1,0 +1,139 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    FunctionKeyword <0:8> [0:0:0:8] 'function'
+    IdentifierNameSyntax
+     IdentifierToken <9:10> [0:9:0:10] 'F'
+    ParameterListSyntax
+     OpenParenToken <10:11> [0:10:0:11] '('
+     SyntaxList
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <11:12> [0:11:0:12] 'x'
+       TypeClauseSyntax
+        ColonToken <12:13> [0:12:0:13] ':'
+        IdentifierNameSyntax
+         IdentifierToken <14:21> [0:14:0:21] 'Float32'
+       CommaToken <21:22> [0:21:0:22] ','
+      ParameterSyntax
+       IdentifierNameSyntax
+        IdentifierToken <23:24> [0:23:0:24] 'y'
+       TypeClauseSyntax
+        ColonToken <24:25> [0:24:0:25] ':'
+        IdentifierNameSyntax
+         IdentifierToken <26:33> [0:26:0:33] 'Float32'
+     CloseParenToken <33:34> [0:33:0:34] ')'
+    ReturnTypeClauseSyntax
+     MinusGreaterThanToken <35:37> [0:35:0:37] '->'
+     NameColonSyntax
+      IdentifierNameSyntax
+       IdentifierToken <38:44> [0:38:0:44] 'result'
+      ColonToken <44:45> [0:44:0:45] ':'
+     IdentifierNameSyntax
+      IdentifierToken <46:53> [0:46:0:53] 'Float32'
+    CodeBlockSyntax
+     OpenBraceToken <54:55> [1:0:1:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        SyntaxList
+         AttributeListSyntax
+          HashOpenBracketToken <60:62> [2:4:2:6] '#['
+          SyntaxList
+           AttributeSyntax
+            IdentifierNameSyntax
+             IdentifierToken <62:68> [2:6:2:12] 'Config'
+            BalancedTokenSequenceSyntax
+             OpenParenToken <68:69> [2:12:2:13] '('
+             SyntaxList
+              StringLiteralToken <69:76> [2:13:2:20] '"DEBUG"'
+             CloseParenToken <76:77> [2:20:2:21] ')'
+          CloseBracketToken <77:78> [2:21:2:22] ']'
+        AssertExpressionSyntax
+         AssertKeyword <84:90> [2:28:2:34] 'assert'
+         OpenParenToken <90:91> [2:34:2:35] '('
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <91:96> [2:35:2:40] 'debug'
+          ColonToken <96:97> [2:40:2:41] ':'
+         BinaryExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <98:99> [2:42:2:43] 'x'
+          GreaterThanEqualsToken <100:102> [2:44:2:46] '>='
+          LiteralExpressionSyntax
+           FloatLiteralToken <103:109> [2:47:2:53] '0.0f32'
+         CloseParenToken <109:110> [2:53:2:54] ')'
+       SemicolonToken <110:111> [2:54:2:55] ';'
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        SyntaxList
+         AttributeListSyntax
+          HashOpenBracketToken <116:118> [3:4:3:6] '#['
+          SyntaxList
+           AttributeSyntax
+            IdentifierNameSyntax
+             IdentifierToken <118:124> [3:6:3:12] 'Config'
+            BalancedTokenSequenceSyntax
+             OpenParenToken <124:125> [3:12:3:13] '('
+             SyntaxList
+              StringLiteralToken <125:134> [3:13:3:22] '"CHECKED"'
+             CloseParenToken <134:135> [3:22:3:23] ')'
+          CloseBracketToken <135:136> [3:23:3:24] ']'
+        AssertExpressionSyntax
+         AssertKeyword <140:146> [3:28:3:34] 'assert'
+         OpenParenToken <146:147> [3:34:3:35] '('
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <147:154> [3:35:3:42] 'release'
+          ColonToken <154:155> [3:42:3:43] ':'
+         BinaryExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <156:157> [3:44:3:45] 'y'
+          GreaterThanEqualsToken <158:160> [3:46:3:48] '>='
+          LiteralExpressionSyntax
+           FloatLiteralToken <161:167> [3:49:3:55] '0.0f32'
+         CloseParenToken <167:168> [3:55:3:56] ')'
+       SemicolonToken <168:169> [3:56:3:57] ';'
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        IdentifierNameSyntax
+         IdentifierToken <175:182> [5:4:5:11] 'Float32'
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        AssignmentExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <183:189> [5:12:5:18] 'result'
+         EqualsToken <190:191> [5:19:5:20] '='
+         BinaryExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <192:193> [5:21:5:22] 'x'
+          PlusToken <194:195> [5:23:5:24] '+'
+          IdentifierNameSyntax
+           IdentifierToken <196:197> [5:25:5:26] 'y'
+       SemicolonToken <197:198> [5:26:5:27] ';'
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        AssertExpressionSyntax
+         AssertKeyword <255:261> [8:4:8:10] 'assert'
+         OpenParenToken <261:262> [8:10:8:11] '('
+         BinaryExpressionSyntax
+          IdentifierNameSyntax
+           IdentifierToken <262:268> [8:11:8:17] 'result'
+          LessThanToken <269:270> [8:18:8:19] '<'
+          LiteralExpressionSyntax
+           FloatLiteralToken <271:279> [8:20:8:28] '21.37f32'
+         UnexpectedNodesSyntax
+          SyntaxList
+           CommaToken <279:280> [8:28:8:29] ','
+           StringLiteralToken <281:302> [8:30:8:51] '"result is too large"'
+         CloseParenToken <302:303> [8:51:8:52] ')'
+       SemicolonToken <303:304> [8:52:8:53] ';'
+      CodeBlockItemSyntax
+       ReturnStatementSyntax
+        ReturnKeyword <310:316> [10:4:10:10] 'return'
+        IdentifierNameSyntax
+         IdentifierToken <317:323> [10:11:10:17] 'result'
+       SemicolonToken <323:324> [10:17:10:18] ';'
+     CloseBraceToken <325:326> [11:0:11:1] '}'
+ EndOfFileToken <327:327> [12:0:12:0] ''

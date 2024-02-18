@@ -1,0 +1,30 @@
+error: Expected 'let'
+        --> <source>:31:10
+         |
+      31 | foreach (;)
+         |          ^
+error: Expected '[token:identifier]'
+        --> <source>:31:10
+         |
+      31 | foreach (;)
+         |          ^
+error: Expected 'in'
+        --> <source>:31:10
+         |
+      31 | foreach (;)
+         |          ^
+error: Expected '[token:identifier]'
+        --> <source>:31:10
+         |
+      31 | foreach (;)
+         |          ^
+error: Unexpected tokens
+        --> <source>:31:10
+         |
+      31 | foreach (;)
+         |          ^
+error: Expected ';'
+        --> <source>:36:7
+         |
+      36 | for (;)
+         |       ^

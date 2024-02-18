@@ -2013,4 +2013,60 @@ namespace weave::syntax
         {
         }
     };
+
+    class ForStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ForStatementSyntax);
+
+    public:
+        SyntaxToken* ForKeyword{};
+
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
+
+        ExpressionSyntax* Initializer{};
+        SyntaxToken* FirstSemicolonToken{};
+        ExpressionSyntax* Condition{};
+        SyntaxToken* SecondSemicolonToken{};
+        ExpressionSyntax* Expression{};
+
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
+
+        CodeBlockSyntax* Body{};
+
+    public:
+        explicit constexpr ForStatementSyntax()
+            : StatementSyntax{SyntaxKind::ForStatementSyntax}
+        {
+        }
+    };
+
+    class ForeachStatementSyntax final : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(ForeachStatementSyntax);
+
+    public:
+        SyntaxToken* ForeachKeyword{};
+
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
+        SyntaxToken* OpenParenToken{};
+
+        VariableDeclarationSyntax* Variable{};
+
+        SyntaxToken* InKeyword{};
+
+        ExpressionSyntax* Expression{};
+
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
+        SyntaxToken* CloseParenToken{};
+
+        CodeBlockSyntax* Body{};
+
+    public:
+        explicit constexpr ForeachStatementSyntax()
+            : StatementSyntax{SyntaxKind::ForeachStatementSyntax}
+        {
+        }
+    };
 }

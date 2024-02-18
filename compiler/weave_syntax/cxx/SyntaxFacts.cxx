@@ -472,10 +472,7 @@ namespace weave::syntax
         case SyntaxKind::ForKeyword:
         case SyntaxKind::SwitchKeyword:
         case SyntaxKind::UsingKeyword:
-        case SyntaxKind::VarKeyword:
         case SyntaxKind::GotoKeyword:
-        // case SyntaxKind::IfKeyword:
-        // case SyntaxKind::ElseKeyword:
         case SyntaxKind::TryKeyword:
             return true;
 

@@ -1528,4 +1528,44 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnForStatementSyntax(ForStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->ForKeyword);
+        this->Dispatch(node->BeforeOpenParenToken);
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Initializer);
+        this->Dispatch(node->FirstSemicolonToken);
+        this->Dispatch(node->Condition);
+        this->Dispatch(node->SecondSemicolonToken);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->BeforeCloseParenToken);
+        this->Dispatch(node->CloseParenToken);
+        this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnForeachStatementSyntax(ForeachStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->ForeachKeyword);
+        this->Dispatch(node->BeforeOpenParenToken);
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Variable);
+        this->Dispatch(node->InKeyword);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->BeforeCloseParenToken);
+        this->Dispatch(node->CloseParenToken);
+        this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
 }

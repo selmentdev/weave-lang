@@ -198,5 +198,7 @@ namespace weave::syntax
         void OnStructExpressionSyntax(StructExpressionSyntax* node) override;
         void OnStructPatternSyntax(StructPatternSyntax* node) override;
         void OnFieldPatternSyntax(FieldPatternSyntax* node) override;
+        void OnForStatementSyntax(ForStatementSyntax* node) override;
+        void OnForeachStatementSyntax(ForeachStatementSyntax* node) override;
     };
 }

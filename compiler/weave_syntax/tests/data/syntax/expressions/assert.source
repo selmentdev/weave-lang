@@ -1,0 +1,12 @@
+function F(x: Float32, y: Float32) -> result: Float32
+{
+    #[Config("DEBUG")]      assert(debug: x >= 0.0f32);
+    #[Config("CHECKED")]    assert(release: y >= 0.0f32);
+
+    Float32 result = x + y;
+
+    // contract expression should support messages
+    assert(result < 21.37f32, "result is too large");
+
+    return result;
+}

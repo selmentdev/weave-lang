@@ -17,3 +17,23 @@ somewhere: while (x != 0)
         }
     }
 }
+
+for (;;)
+{
+    break;
+}
+
+foreach (var item in collection)
+{
+    break;
+}
+
+foreach (;)
+{
+    break;
+}
+
+for (;)
+{
+    break;
+}

@@ -631,6 +631,12 @@ namespace weave::syntax
         case SyntaxKind::LoopKeyword:
             return this->ParseLoopStatement(attributes);
 
+        case SyntaxKind::ForKeyword:
+            return this->ParseForStatement(attributes);
+
+        case SyntaxKind::ForeachKeyword:
+            return this->ParseForeachStatement(attributes);
+
         case SyntaxKind::CheckedKeyword:
             return this->ParseCheckedStatement(attributes);
 
@@ -697,6 +703,54 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->LoopKeyword = this->Match(SyntaxKind::LoopKeyword);
         result->Body = this->ParseCodeBlock();
+        return result;
+    }
+
+    ForStatementSyntax* Parser::ParseForStatement(SyntaxListView<AttributeListSyntax> attributes)
+    {
+        ForStatementSyntax* result = this->_factory->CreateNode<ForStatementSyntax>();
+        result->Attributes = attributes;
+        result->ForKeyword = this->Match(SyntaxKind::ForKeyword);
+
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        result->Initializer = this->ParseOptionalExpression();
+
+        result->FirstSemicolonToken = this->Match(SyntaxKind::SemicolonToken);
+
+        result->Condition = this->ParseOptionalExpression();
+
+        result->SecondSemicolonToken = this->Match(SyntaxKind::SemicolonToken);
+
+        result->Expression = this->ParseOptionalExpression();
+
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        result->Body = this->ParseCodeBlock();
+
+        return result;
+    }
+
+    ForeachStatementSyntax* Parser::ParseForeachStatement(SyntaxListView<AttributeListSyntax> attributes)
+    {
+        ForeachStatementSyntax* result = this->_factory->CreateNode<ForeachStatementSyntax>();
+        result->Attributes = attributes;
+        result->ForeachKeyword = this->Match(SyntaxKind::ForeachKeyword);
+
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
+
+        SyntaxListView<AttributeListSyntax> const variableAttributes = this->ParseAttributesList();
+
+        result->Variable = this->ParseVariableDeclaration(variableAttributes, {});
+
+        result->InKeyword = this->Match(SyntaxKind::InKeyword);
+
+        result->Expression = this->ParseExpression();
+
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        result->Body = this->ParseCodeBlock();
+
         return result;
     }
 
@@ -1527,6 +1581,7 @@ namespace weave::syntax
             return this->ParseAssertExpression();
 
         case SyntaxKind::LetKeyword:
+        case SyntaxKind::VarKeyword:
             return this->ParseLetExpression();
 
         case SyntaxKind::AmpersandToken:
@@ -2165,8 +2220,12 @@ namespace weave::syntax
 
     LetExpressionSyntax* Parser::ParseLetExpression()
     {
+        WEAVE_ASSERT(
+            (this->Current()->Kind == SyntaxKind::LetKeyword) or
+            (this->Current()->Kind == SyntaxKind::VarKeyword));
+
         LetExpressionSyntax* result = this->_factory->CreateNode<LetExpressionSyntax>();
-        result->BindingSpecifier = this->Match(SyntaxKind::LetKeyword);
+        result->BindingSpecifier = this->Next();
         result->Binding = this->ParsePatternBinding();
         return result;
     }

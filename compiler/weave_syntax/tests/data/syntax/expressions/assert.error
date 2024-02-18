@@ -1,0 +1,5 @@
+error: Unexpected tokens
+        --> <source>:9:29
+         |
+       9 |     assert(result < 21.37f32, "result is too large");
+         |                             ^^^^^^^^^^^^^^^^^^^^^^^

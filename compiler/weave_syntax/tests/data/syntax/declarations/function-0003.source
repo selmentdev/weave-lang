@@ -2,3 +2,27 @@ public function MethodOfStruct(in self, other: in Self) -> bool
 {
     return (self.x == other.x) && (self.y == other.y);
 }
+
+public function SomeFunction(
+    x: &let float, // `;` as a separator?
+    y: &var float
+)
+{
+    y = x * 2.0f32;
+}
+
+public function ReadFile(
+    handle: HANDLE,
+    buffer: &var [byte],
+    size: USize
+) -> USize
+{
+    for (var i = 0usize; i < size; ++i) { buffer[i] = byte{}; }
+
+    // foreach with mutable reference 
+    foreach (var n in buffer) { n = byte{}; }
+    // foreach with immutable reference
+    foreach (let n in buffer) { /*...*/; }
+
+    return size;
+}

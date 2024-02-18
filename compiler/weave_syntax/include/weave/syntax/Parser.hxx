@@ -309,6 +309,12 @@ namespace weave::syntax
         LoopStatementSyntax* ParseLoopStatement(
             SyntaxListView<AttributeListSyntax> attributes);
 
+        ForStatementSyntax* ParseForStatement(
+            SyntaxListView<AttributeListSyntax> attributes);
+
+        ForeachStatementSyntax* ParseForeachStatement(
+            SyntaxListView<AttributeListSyntax> attributes);
+
         CheckedStatementSyntax* ParseCheckedStatement(
             SyntaxListView<AttributeListSyntax> attributes);
 
