@@ -1511,13 +1511,19 @@ namespace weave::syntax
         }
     };
 
-    // TODO: Should be this named like this?
     class StructExpressionSyntax final : public ExpressionSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(StructExpressionSyntax);
 
     public:
         NameSyntax* TypeName{};
+        BraceInitializerClauseSyntax* Initializer{};
+
+    public:
+        explicit constexpr StructExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::StructExpressionSyntax}
+        {
+        }
     };
 
     class BracketInitializerClauseSyntax final : public ExpressionSyntax

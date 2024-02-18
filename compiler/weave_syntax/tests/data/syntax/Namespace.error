@@ -1,3 +1,8 @@
+error: Unexpected tokens
+        --> <source>:82:17
+         |
+      82 |                 return self._length;
+         |                 ^^^^^^^^^^^^^^^^^^^^
 error: Expected '[token:identifier]'
         --> <source>:109:13
          |

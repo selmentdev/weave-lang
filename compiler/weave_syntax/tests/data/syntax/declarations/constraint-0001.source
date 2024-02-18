@@ -54,7 +54,7 @@ public function Foo![type T, type U, type V](
     where (U: Concept4, Concept5)
     where (V: Concept6)
 {
-    contracts {
+    contra(); {
         r#requires    (   t > 0       )
         r#requires    (   t < 100     )
         r#ensures     (   u > 21      )

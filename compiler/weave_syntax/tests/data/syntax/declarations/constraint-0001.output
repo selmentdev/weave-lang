@@ -768,8 +768,13 @@ SourceFileSyntax
      SyntaxList
       CodeBlockItemSyntax
        ExpressionStatementSyntax
-        IdentifierNameSyntax
-         IdentifierToken <2110:2119> [56:4:56:13] 'contracts'
+        InvocationExpressionSyntax
+         IdentifierNameSyntax
+          IdentifierToken <2110:2116> [56:4:56:10] 'contra'
+         ArgumentListSyntax
+          OpenParenToken <2116:2117> [56:10:56:11] '('
+          CloseParenToken <2117:2118> [56:11:56:12] ')'
+       SemicolonToken <2118:2119> [56:12:56:13] ';'
       CodeBlockItemSyntax
        BlockStatementSyntax
         CodeBlockSyntax

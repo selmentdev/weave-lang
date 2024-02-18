@@ -195,5 +195,6 @@ namespace weave::syntax
         void OnLetExpressionSyntax(LetExpressionSyntax* node) override;
         void OnExpressionReferenceSyntax(ExpressionReferenceSyntax* node) override;
         void OnTypeReferenceSyntax(TypeReferenceSyntax* node) override;
+        void OnStructExpressionSyntax(StructExpressionSyntax* node) override;
     };
 }

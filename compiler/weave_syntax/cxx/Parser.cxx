@@ -1419,12 +1419,6 @@ namespace weave::syntax
                     continue;
                 }
 
-                // case SyntaxKind::OpenBraceToken:
-                //     {
-                //         expression = this->ParseBraceInitializerClause();
-                //         continue;
-                //     }
-
             case SyntaxKind::DotToken:
                 {
                     MemberAccessExpressionSyntax* result = this->_factory->CreateNode<MemberAccessExpressionSyntax>();
@@ -1504,7 +1498,18 @@ namespace weave::syntax
             return this->ParseCharacterLiteral();
 
         case SyntaxKind::IdentifierToken:
-            return this->ParseQualifiedName();
+            {
+                NameSyntax* name = this->ParseQualifiedName();
+
+                if (this->Current()->Kind == SyntaxKind::OpenBraceToken)
+                {
+                    StructExpressionSyntax* result = this->_factory->CreateNode<StructExpressionSyntax>();
+                    result->TypeName = name;
+                    result->Initializer = this->ParseBraceInitializerClause();
+                    return result;
+                }
+                return name;
+            }
 
         case SyntaxKind::UnreachableKeyword:
             return this->ParseUnreachableExpression();

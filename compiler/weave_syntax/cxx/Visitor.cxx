@@ -1485,4 +1485,16 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnStructExpressionSyntax(StructExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->TypeName);
+        this->Dispatch(node->Initializer);
+
+        --this->Depth;
+    }
 }

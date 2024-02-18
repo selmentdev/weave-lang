@@ -1,0 +1,14 @@
+let x = SomeStruct{ a: 1, b: 2, };
+
+if (x == SomeStruct{ a: 1, b: 2, })
+{
+    success();
+}
+else if (x == SomeStruct{})
+{
+    success();
+}
+else if (x == GenericStruct![Int32,Float32]{ a: 1, b: 3, })
+{
+    success();
+}
