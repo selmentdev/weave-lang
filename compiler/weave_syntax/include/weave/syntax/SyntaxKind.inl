@@ -460,7 +460,7 @@ WEAVE_SYNTAX_NODE(ContinueStatementSyntax,                      "[node:continue-
 WEAVE_SYNTAX_NODE(GotoStatementSyntax,                          "[node:goto-statement]")
 WEAVE_SYNTAX_NODE(UnreachableExpressionSyntax,                  "[node:unreachable-expression]")
 WEAVE_SYNTAX_NODE(UnexpectedNodesSyntax,                        "[node:unexpected-nodes]")
-WEAVE_SYNTAX_NODE(BalancedTokenSequneceSyntax,                  "[node:balanced-token-sequence]")
+WEAVE_SYNTAX_NODE(BalancedTokenSequenceSyntax,                  "[node:balanced-token-sequence]")
 WEAVE_SYNTAX_NODE(SizeOfExpressionSyntax,                       "[node:size-of-expression]")
 WEAVE_SYNTAX_NODE(AlignOfExpressionSyntax,                      "[node:align-of-expression]")
 WEAVE_SYNTAX_NODE(NameOfExpressionSyntax,                       "[node:name-of-expression]")

@@ -18,7 +18,7 @@ SourceFileSyntax
          AttributeSyntax
           IdentifierNameSyntax
            IdentifierToken <33:44> [2:6:2:17] 'Description'
-          BalancedTokenSequneceSyntax
+          BalancedTokenSequenceSyntax
            OpenParenToken <44:45> [2:17:2:18] '('
            SyntaxList
             StringLiteralToken <45:51> [2:18:2:24] '"None"'
@@ -39,7 +39,7 @@ SourceFileSyntax
          AttributeSyntax
           IdentifierNameSyntax
            IdentifierToken <75:86> [5:6:5:17] 'Description'
-          BalancedTokenSequneceSyntax
+          BalancedTokenSequenceSyntax
            OpenParenToken <86:87> [5:17:5:18] '('
            SyntaxList
             StringLiteralToken <87:104> [5:18:5:35] '"Name of element"'
@@ -67,7 +67,7 @@ SourceFileSyntax
          AttributeSyntax
           IdentifierNameSyntax
            IdentifierToken <136:147> [8:6:8:17] 'Description'
-          BalancedTokenSequneceSyntax
+          BalancedTokenSequenceSyntax
            OpenParenToken <147:148> [8:17:8:18] '('
            SyntaxList
             StringLiteralToken <148:164> [8:18:8:34] '"Age of element"'
@@ -95,7 +95,7 @@ SourceFileSyntax
          AttributeSyntax
           IdentifierNameSyntax
            IdentifierToken <194:205> [11:6:11:17] 'Description'
-          BalancedTokenSequneceSyntax
+          BalancedTokenSequenceSyntax
            OpenParenToken <205:206> [11:17:11:18] '('
            SyntaxList
             StringLiteralToken <206:223> [11:18:11:35] '"Date of element"'
@@ -123,7 +123,7 @@ SourceFileSyntax
          AttributeSyntax
           IdentifierNameSyntax
            IdentifierToken <257:268> [14:6:14:17] 'Description'
-          BalancedTokenSequneceSyntax
+          BalancedTokenSequenceSyntax
            OpenParenToken <268:269> [14:17:14:18] '('
            SyntaxList
             StringLiteralToken <269:287> [14:18:14:36] '"List of elements"'

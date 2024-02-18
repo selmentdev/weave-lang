@@ -1346,7 +1346,7 @@ SourceFileSyntax
        AttributeSyntax
         IdentifierNameSyntax
          IdentifierToken <3689:3697> [113:2:113:10] 'Requires'
-        BalancedTokenSequneceSyntax
+        BalancedTokenSequenceSyntax
          OpenParenToken <3697:3698> [113:10:113:11] '('
          SyntaxList
           IdentifierToken <3698:3699> [113:11:113:12] 't'
@@ -1360,7 +1360,7 @@ SourceFileSyntax
        AttributeSyntax
         IdentifierNameSyntax
          IdentifierToken <3708:3715> [114:2:114:9] 'Ensures'
-        BalancedTokenSequneceSyntax
+        BalancedTokenSequenceSyntax
          OpenParenToken <3715:3716> [114:9:114:10] '('
          SyntaxList
           ReturnKeyword <3716:3722> [114:10:114:16] 'return'
@@ -1392,7 +1392,7 @@ SourceFileSyntax
        AttributeSyntax
         IdentifierNameSyntax
          IdentifierToken <3765:3774> [115:2:115:11] 'Invariant'
-        BalancedTokenSequneceSyntax
+        BalancedTokenSequenceSyntax
          OpenParenToken <3774:3775> [115:11:115:12] '('
          SyntaxList
           IdentifierToken <3775:3776> [115:12:115:13] 'v'

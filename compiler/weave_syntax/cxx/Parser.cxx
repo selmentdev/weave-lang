@@ -109,7 +109,7 @@ namespace weave::syntax
     {
         WEAVE_ASSERT(IsContextualKeyword(kind));
 
-        if (syntax::IdentifierSyntaxToken* id = this->Current()->TryCast<syntax::IdentifierSyntaxToken>())
+        if (syntax::IdentifierSyntaxToken* const id = this->Current()->TryCast<syntax::IdentifierSyntaxToken>())
         {
             if (id->ContextualKeyowrd == kind)
             {
@@ -124,7 +124,7 @@ namespace weave::syntax
     {
         WEAVE_ASSERT(IsContextualKeyword(kind));
 
-        if (syntax::IdentifierSyntaxToken* id = this->Current()->TryCast<syntax::IdentifierSyntaxToken>())
+        if (syntax::IdentifierSyntaxToken* const id = this->Current()->TryCast<syntax::IdentifierSyntaxToken>())
         {
             if (id->ContextualKeyowrd == kind)
             {
@@ -261,7 +261,7 @@ namespace weave::syntax
         ResetPoint const started = this->GetResetPoint();
 
         // Declarations, statements and expressions can have attributes.
-        SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
+        SyntaxListView<AttributeListSyntax> const attributes = this->ParseAttributesList();
 
         // Parse modifiers and decide what to do next.
         ResetPoint const beforeModifiers = this->GetResetPoint();
@@ -270,7 +270,7 @@ namespace weave::syntax
 
         if (SyntaxFacts::IsStartOfDeclaration(this->Current()->Kind))
         {
-            SyntaxListView<SyntaxToken> modifiers{this->_factory->CreateList(modifiersList)};
+            SyntaxListView<SyntaxToken> const modifiers{this->_factory->CreateList(modifiersList)};
 
             DeclarationSyntax* declaration = this->ParseDeclaration(attributes, modifiers);
 
@@ -285,7 +285,7 @@ namespace weave::syntax
         // It wasn't a declaration, so reset parser state and try to parse statement - maybe skipped tokens were part of statement.
         this->Reset(beforeModifiers);
 
-        std::optional<Label> label = this->ParseOptionalLabel();
+        std::optional<Label> const label = this->ParseOptionalLabel();
 
         if (StatementSyntax* statement = this->ParseStatement(attributes))
         {
@@ -451,6 +451,8 @@ namespace weave::syntax
 
         result->Parameters = this->ParseParameterList();
         result->ReturnType = this->ParseOptionalReturnTypeClause();
+
+        result->Constraints = this->ParseConstraintClauseSequence();
 
         return result;
     }
@@ -766,8 +768,8 @@ namespace weave::syntax
 
     ParameterSyntax* Parser::ParseParameter()
     {
-        SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
-        SyntaxListView<SyntaxToken> modifiers = this->ParseFunctionParameterModifiersList();
+        SyntaxListView<AttributeListSyntax> const attributes = this->ParseAttributesList();
+        SyntaxListView<SyntaxToken> const modifiers = this->ParseFunctionParameterModifiersList();
 
         NameSyntax* name = this->ParseIdentifierName();
         TypeClauseSyntax* typeClause = this->ParseOptionalTypeClause();
@@ -1096,8 +1098,8 @@ namespace weave::syntax
 
     ArgumentSyntax* Parser::ParseArgument()
     {
-        SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
-        SyntaxListView<SyntaxToken> modifiers = this->ParseFunctionArgumentModifierList();
+        SyntaxListView<AttributeListSyntax> const attributes = this->ParseAttributesList();
+        SyntaxListView<SyntaxToken> const modifiers = this->ParseFunctionArgumentModifierList();
 
         NameColonSyntax* name = this->ParseOptionalNameColon();
 
@@ -1182,8 +1184,8 @@ namespace weave::syntax
 
         do
         {
-            SyntaxToken* tokenDot = this->Peek(0);
-            SyntaxToken* tokenRight = this->Peek(1);
+            SyntaxToken* const tokenDot = this->Peek(0);
+            SyntaxToken* const tokenRight = this->Peek(1);
 
             if ((tokenDot->Kind == SyntaxKind::ColonColonToken) and (tokenRight->Kind == SyntaxKind::IdentifierToken))
             {
@@ -1919,7 +1921,7 @@ namespace weave::syntax
         return nullptr;
     }
 
-    BalancedTokenSequneceSyntax* Parser::ParseBalancedTokenSequence(
+    BalancedTokenSequenceSyntax* Parser::ParseBalancedTokenSequence(
         SyntaxKind open,
         SyntaxKind close)
     {
@@ -1929,7 +1931,7 @@ namespace weave::syntax
             std::vector<SyntaxNode*> unexpected{};
             SyntaxToken* closeToken = this->MatchBalancedTokenSequence(close, tokens, unexpected);
 
-            BalancedTokenSequneceSyntax* result = this->_factory->CreateNode<BalancedTokenSequneceSyntax>();
+            BalancedTokenSequenceSyntax* result = this->_factory->CreateNode<BalancedTokenSequenceSyntax>();
             result->OpenParenToken = openToken;
             result->Tokens = SyntaxListView<SyntaxToken>{this->_factory->CreateList(tokens)};
             result->BeforeCloseParen = this->CreateUnexpectedNodes(unexpected);
@@ -2294,7 +2296,7 @@ namespace weave::syntax
 
     EnumMemberDeclarationSyntax* Parser::ParseEnumMemberDeclaration()
     {
-        SyntaxListView<AttributeListSyntax> attributes = this->ParseAttributesList();
+        SyntaxListView<AttributeListSyntax> const attributes = this->ParseAttributesList();
 
         if ((attributes.GetNode() != nullptr) or this->Current()->Kind == SyntaxKind::IdentifierToken)
         {
@@ -2382,7 +2384,7 @@ namespace weave::syntax
 
     ConstraintClauseSyntax* Parser::ParseConstraintClause()
     {
-        if (IdentifierSyntaxToken* token = this->Current()->TryCast<IdentifierSyntaxToken>())
+        if (IdentifierSyntaxToken* const token = this->Current()->TryCast<IdentifierSyntaxToken>())
         {
             switch (token->ContextualKeyowrd) // NOLINT(clang-diagnostic-switch-enum)
             {
@@ -2590,13 +2592,14 @@ namespace weave::syntax
 {
     class SyntaxValidator : public SyntaxVisitor<void>
     {
-    private:
+    public:
         source::DiagnosticSink* _diagnostic;
 
     public:
         SyntaxValidator(source::DiagnosticSink* diagnostic)
             : _diagnostic(diagnostic)
         {
+            (void)diagnostic;
         }
 
     public:

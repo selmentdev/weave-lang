@@ -132,7 +132,7 @@ namespace weave::syntax
         void OnDelegateDeclarationSyntax(DelegateDeclarationSyntax* node) override;
         void OnToken(SyntaxToken* token) override;
         void OnUnexpectedNodesSyntax(UnexpectedNodesSyntax* node) override;
-        void OnBalancedTokenSequneceSyntax(BalancedTokenSequneceSyntax* node) override;
+        void OnBalancedTokenSequenceSyntax(BalancedTokenSequenceSyntax* node) override;
         void OnAttributeListSyntax(AttributeListSyntax* node) override;
         void OnAttributeSyntax(AttributeSyntax* node) override;
         void OnSourceFileSyntax(SourceFileSyntax* node) override;

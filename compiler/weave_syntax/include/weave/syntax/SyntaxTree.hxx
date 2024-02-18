@@ -190,6 +190,7 @@ namespace weave::syntax
         GenericParametersSyntax* GenericParameters{};
         ParameterListSyntax* Parameters{};
         ReturnTypeClauseSyntax* ReturnType{};
+        SyntaxListView<ConstraintClauseSyntax> Constraints{};
 
     public:
         explicit constexpr DelegateDeclarationSyntax()
@@ -358,13 +359,13 @@ namespace weave::syntax
         SyntaxToken* ColonToken{};
     };
 
-    class BalancedTokenSequneceSyntax final : public SyntaxNode
+    class BalancedTokenSequenceSyntax final : public SyntaxNode
     {
-        WEAVE_DEFINE_SYNTAX_NODE(BalancedTokenSequneceSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(BalancedTokenSequenceSyntax);
 
     public:
-        explicit constexpr BalancedTokenSequneceSyntax()
-            : SyntaxNode{SyntaxKind::BalancedTokenSequneceSyntax}
+        explicit constexpr BalancedTokenSequenceSyntax()
+            : SyntaxNode{SyntaxKind::BalancedTokenSequenceSyntax}
         {
         }
 
@@ -387,7 +388,7 @@ namespace weave::syntax
 
     public:
         NameSyntax* Name{};
-        BalancedTokenSequneceSyntax* Tokens{};
+        BalancedTokenSequenceSyntax* Tokens{};
         SyntaxToken* TrailingComma{};
         // TODO: Validate if trailing comma is not present at end of attributes list.
     };

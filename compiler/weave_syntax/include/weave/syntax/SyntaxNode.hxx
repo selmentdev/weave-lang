@@ -99,6 +99,8 @@ namespace weave::syntax
         SyntaxListView& operator=(SyntaxListView const&) = default;
         SyntaxListView& operator=(SyntaxListView&&) = default;
 
+        ~SyntaxListView() = default;
+
     public:
         [[nodiscard]] constexpr SyntaxList* GetNode() const
         {

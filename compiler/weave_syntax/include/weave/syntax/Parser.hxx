@@ -463,7 +463,7 @@ namespace weave::syntax
 
         UnexpectedNodesSyntax* CreateUnexpectedNodes(std::span<SyntaxNode*> nodes);
 
-        BalancedTokenSequneceSyntax* ParseBalancedTokenSequence(
+        BalancedTokenSequenceSyntax* ParseBalancedTokenSequence(
             SyntaxKind open,
             SyntaxKind close);
 

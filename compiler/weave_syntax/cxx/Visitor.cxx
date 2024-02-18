@@ -610,6 +610,7 @@ namespace weave::syntax
         this->Dispatch(node->GenericParameters);
         this->Dispatch(node->Parameters);
         this->Dispatch(node->ReturnType);
+        this->Dispatch(node->Constraints.GetNode());
 
         --this->Depth;
     }
@@ -640,7 +641,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnBalancedTokenSequneceSyntax(BalancedTokenSequneceSyntax* node)
+    void SyntaxWalker::OnBalancedTokenSequenceSyntax(BalancedTokenSequenceSyntax* node)
     {
         this->OnDefault(node);
 
