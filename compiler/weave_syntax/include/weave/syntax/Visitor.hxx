@@ -94,18 +94,16 @@ namespace weave::syntax
         void OnConceptDeclarationSyntax(ConceptDeclarationSyntax* node) override;
         void OnExtendDeclarationSyntax(ExtendDeclarationSyntax* node) override;
         void OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax* node) override;
-        void OnQualifiedNameSyntax(QualifiedNameSyntax* node) override;
         void OnFunctionDeclarationSyntax(FunctionDeclarationSyntax* node) override;
         void OnUsingDeclarationSyntax(UsingDeclarationSyntax* node) override;
-        void OnIdentifierNameSyntax(IdentifierNameSyntax* node) override;
-        void OnTupleIndexSyntax(TupleIndexSyntax* node) override;
         void OnTupleTypeSyntax(TupleTypeSyntax* node) override;
         void OnTupleTypeElementSyntax(TupleTypeElementSyntax* node) override;
         void OnParameterListSyntax(ParameterListSyntax* node) override;
         void OnParameterSyntax(ParameterSyntax* node) override;
         void OnTypeClauseSyntax(TypeClauseSyntax* node) override;
         void OnConstantDeclarationSyntax(ConstantDeclarationSyntax* node) override;
-        void OnInitializerClauseSyntax(InitializerClauseSyntax* node) override;
+        void OnExpressionInitializerClauseSyntax(ExpressionInitializerClauseSyntax* node) override;
+        void OnTypeInitializerClauseSyntax(TypeInitializerClauseSyntax* node) override;
         void OnLiteralExpressionSyntax(LiteralExpressionSyntax* node) override;
         void OnAssignmentExpressionSyntax(AssignmentExpressionSyntax* node) override;
         void OnBinaryExpressionSyntax(BinaryExpressionSyntax* node) override;
@@ -153,7 +151,6 @@ namespace weave::syntax
         void OnGenericParametersSyntax(GenericParametersSyntax* node) override;
         void OnGenericArgumentSyntax(GenericArgumentSyntax* node) override;
         void OnGenericArgumentsSyntax(GenericArgumentsSyntax* node) override;
-        void OnGenericNameSyntax(GenericNameSyntax* node) override;
         void OnEvalExpressionSyntax(EvalExpressionSyntax* node) override;
         void OnYieldStatementSyntax(YieldStatementSyntax* node) override;
         void OnIfExpressionSyntax(IfExpressionSyntax* node) override;
@@ -199,5 +196,13 @@ namespace weave::syntax
         void OnFieldPatternSyntax(FieldPatternSyntax* node) override;
         void OnForStatementSyntax(ForStatementSyntax* node) override;
         void OnForeachStatementSyntax(ForeachStatementSyntax* node) override;
+
+        //
+        void OnIdentifierSyntax(IdentifierSyntax* node) override;
+        void OnIndexSyntax(IndexSyntax* node) override;
+        void OnPathSegmentSyntax(PathSegmentSyntax* node) override;
+        void OnPathSyntax(PathSyntax* node) override;
+        void OnPathExpressionSyntax(PathExpressionSyntax* node) override;
+        void OnTypePathSyntax(TypePathSyntax* node) override;
     };
 }

@@ -9,20 +9,24 @@ SourceFileSyntax
       LetKeyword <4:7> [0:4:0:7] 'let'
       PatternBindingSyntax
        IdentifierPatternSyntax
-        IdentifierNameSyntax
+        IdentifierSyntax
          IdentifierToken <8:12> [0:8:0:12] 'Some'
         TuplePatternSyntax
          OpenParenToken <12:13> [0:12:0:13] '('
          SyntaxList
           TuplePatternItemSyntax
            IdentifierPatternSyntax
-            IdentifierNameSyntax
+            IdentifierSyntax
              IdentifierToken <13:14> [0:13:0:14] 'x'
          CloseParenToken <14:15> [0:14:0:15] ')'
-       InitializerClauseSyntax
+       ExpressionInitializerClauseSyntax
         EqualsToken <16:17> [0:16:0:17] '='
-        IdentifierNameSyntax
-         IdentifierToken <18:19> [0:18:0:19] 'y'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <18:19> [0:18:0:19] 'y'
      CloseParenToken <19:20> [0:19:0:20] ')'
      CodeBlockSyntax
       OpenBraceToken <21:22> [0:21:0:22] '{'
@@ -30,8 +34,12 @@ SourceFileSyntax
        CodeBlockItemSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <50:57> [1:4:1:11] 'matches'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <50:57> [1:4:1:11] 'matches'
           ArgumentListSyntax
            OpenParenToken <57:58> [1:11:1:12] '('
            CloseParenToken <58:59> [1:12:1:13] ')'

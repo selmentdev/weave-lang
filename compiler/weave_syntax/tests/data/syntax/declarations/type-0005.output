@@ -5,275 +5,375 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     TypeKeyword <7:11> [0:7:0:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <12:14> [0:12:0:14] 'u8'
     EqualsToken <20:21> [0:20:0:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <22:27> [0:22:0:27] 'UInt8'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <22:27> [0:22:0:27] 'UInt8'
    SemicolonToken <27:28> [0:27:0:28] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <29:35> [1:0:1:6] 'public'
     TypeKeyword <36:40> [1:7:1:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <41:44> [1:12:1:15] 'u16'
     EqualsToken <49:50> [1:20:1:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <51:57> [1:22:1:28] 'UInt16'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <51:57> [1:22:1:28] 'UInt16'
    SemicolonToken <57:58> [1:28:1:29] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <59:65> [2:0:2:6] 'public'
     TypeKeyword <66:70> [2:7:2:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <71:74> [2:12:2:15] 'u32'
     EqualsToken <79:80> [2:20:2:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <81:87> [2:22:2:28] 'UInt32'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <81:87> [2:22:2:28] 'UInt32'
    SemicolonToken <87:88> [2:28:2:29] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <89:95> [3:0:3:6] 'public'
     TypeKeyword <96:100> [3:7:3:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <101:104> [3:12:3:15] 'u64'
     EqualsToken <109:110> [3:20:3:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <111:117> [3:22:3:28] 'UInt64'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <111:117> [3:22:3:28] 'UInt64'
    SemicolonToken <117:118> [3:28:3:29] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <119:125> [4:0:4:6] 'public'
     TypeKeyword <126:130> [4:7:4:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <131:135> [4:12:4:16] 'u128'
     EqualsToken <139:140> [4:20:4:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <141:148> [4:22:4:29] 'UInt128'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <141:148> [4:22:4:29] 'UInt128'
    SemicolonToken <148:149> [4:29:4:30] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <150:156> [5:0:5:6] 'public'
     TypeKeyword <157:161> [5:7:5:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <162:166> [5:12:5:16] 'u256'
     EqualsToken <170:171> [5:20:5:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <172:179> [5:22:5:29] 'UInt256'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <172:179> [5:22:5:29] 'UInt256'
    SemicolonToken <179:180> [5:29:5:30] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <181:187> [6:0:6:6] 'public'
     TypeKeyword <188:192> [6:7:6:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <193:197> [6:12:6:16] 'u512'
     EqualsToken <201:202> [6:20:6:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <203:210> [6:22:6:29] 'UInt512'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <203:210> [6:22:6:29] 'UInt512'
    SemicolonToken <210:211> [6:29:6:30] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <212:218> [7:0:7:6] 'public'
     TypeKeyword <219:223> [7:7:7:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <224:229> [7:12:7:17] 'usize'
     EqualsToken <232:233> [7:20:7:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <234:242> [7:22:7:30] 'UIntSize'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <234:242> [7:22:7:30] 'UIntSize'
    SemicolonToken <242:243> [7:30:7:31] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <244:250> [8:0:8:6] 'public'
     TypeKeyword <251:255> [8:7:8:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <256:260> [8:12:8:16] 'uptr'
     EqualsToken <264:265> [8:20:8:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <266:273> [8:22:8:29] 'UIntPtr'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <266:273> [8:22:8:29] 'UIntPtr'
    SemicolonToken <273:274> [8:29:8:30] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <276:282> [10:0:10:6] 'public'
     TypeKeyword <283:287> [10:7:10:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <288:290> [10:12:10:14] 'i8'
     EqualsToken <296:297> [10:20:10:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <298:302> [10:22:10:26] 'Int8'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <298:302> [10:22:10:26] 'Int8'
    SemicolonToken <302:303> [10:26:10:27] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <304:310> [11:0:11:6] 'public'
     TypeKeyword <311:315> [11:7:11:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <316:319> [11:12:11:15] 'i16'
     EqualsToken <324:325> [11:20:11:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <326:331> [11:22:11:27] 'Int16'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <326:331> [11:22:11:27] 'Int16'
    SemicolonToken <331:332> [11:27:11:28] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <333:339> [12:0:12:6] 'public'
     TypeKeyword <340:344> [12:7:12:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <345:348> [12:12:12:15] 'i32'
     EqualsToken <353:354> [12:20:12:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <355:360> [12:22:12:27] 'Int32'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <355:360> [12:22:12:27] 'Int32'
    SemicolonToken <360:361> [12:27:12:28] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <362:368> [13:0:13:6] 'public'
     TypeKeyword <369:373> [13:7:13:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <374:377> [13:12:13:15] 'i64'
     EqualsToken <382:383> [13:20:13:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <384:389> [13:22:13:27] 'Int64'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <384:389> [13:22:13:27] 'Int64'
    SemicolonToken <389:390> [13:27:13:28] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <391:397> [14:0:14:6] 'public'
     TypeKeyword <398:402> [14:7:14:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <403:407> [14:12:14:16] 'i128'
     EqualsToken <411:412> [14:20:14:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <413:419> [14:22:14:28] 'Int128'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <413:419> [14:22:14:28] 'Int128'
    SemicolonToken <419:420> [14:28:14:29] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <421:427> [15:0:15:6] 'public'
     TypeKeyword <428:432> [15:7:15:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <433:437> [15:12:15:16] 'i256'
     EqualsToken <441:442> [15:20:15:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <443:449> [15:22:15:28] 'Int256'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <443:449> [15:22:15:28] 'Int256'
    SemicolonToken <449:450> [15:28:15:29] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <451:457> [16:0:16:6] 'public'
     TypeKeyword <458:462> [16:7:16:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <463:467> [16:12:16:16] 'i512'
     EqualsToken <471:472> [16:20:16:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <473:479> [16:22:16:28] 'Int512'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <473:479> [16:22:16:28] 'Int512'
    SemicolonToken <479:480> [16:28:16:29] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <481:487> [17:0:17:6] 'public'
     TypeKeyword <488:492> [17:7:17:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <493:498> [17:12:17:17] 'isize'
     EqualsToken <501:502> [17:20:17:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <503:510> [17:22:17:29] 'IntSize'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <503:510> [17:22:17:29] 'IntSize'
    SemicolonToken <510:511> [17:29:17:30] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <512:518> [18:0:18:6] 'public'
     TypeKeyword <519:523> [18:7:18:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <524:528> [18:12:18:16] 'iptr'
     EqualsToken <532:533> [18:20:18:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <534:540> [18:22:18:28] 'IntPtr'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <534:540> [18:22:18:28] 'IntPtr'
    SemicolonToken <540:541> [18:28:18:29] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <543:549> [20:0:20:6] 'public'
     TypeKeyword <550:554> [20:7:20:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <555:558> [20:12:20:15] 'f16'
     EqualsToken <563:564> [20:20:20:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <565:572> [20:22:20:29] 'Float16'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <565:572> [20:22:20:29] 'Float16'
    SemicolonToken <572:573> [20:29:20:30] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <574:580> [21:0:21:6] 'public'
     TypeKeyword <581:585> [21:7:21:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <586:589> [21:12:21:15] 'f32'
     EqualsToken <594:595> [21:20:21:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <596:603> [21:22:21:29] 'Float32'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <596:603> [21:22:21:29] 'Float32'
    SemicolonToken <603:604> [21:29:21:30] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <605:611> [22:0:22:6] 'public'
     TypeKeyword <612:616> [22:7:22:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <617:620> [22:12:22:15] 'f64'
     EqualsToken <625:626> [22:20:22:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <627:634> [22:22:22:29] 'Float64'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <627:634> [22:22:22:29] 'Float64'
    SemicolonToken <634:635> [22:29:22:30] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <636:642> [23:0:23:6] 'public'
     TypeKeyword <643:647> [23:7:23:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <648:652> [23:12:23:16] 'f128'
     EqualsToken <656:657> [23:20:23:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <658:666> [23:22:23:30] 'Float128'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <658:666> [23:22:23:30] 'Float128'
    SemicolonToken <666:667> [23:30:23:31] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <669:675> [25:0:25:6] 'public'
     TypeKeyword <676:680> [25:7:25:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <681:685> [25:12:25:16] 'd128'
     EqualsToken <689:690> [25:20:25:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <691:701> [25:22:25:32] 'Decimal128'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <691:701> [25:22:25:32] 'Decimal128'
    SemicolonToken <701:702> [25:32:25:33] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <703:709> [26:0:26:6] 'public'
     TypeKeyword <710:714> [26:7:26:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <715:719> [26:12:26:16] 'd256'
     EqualsToken <723:724> [26:20:26:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <725:735> [26:22:26:32] 'Decimal256'
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <725:735> [26:22:26:32] 'Decimal256'
    SemicolonToken <735:736> [26:32:26:33] ';'
   CodeBlockItemSyntax
    TypeAliasDeclarationSyntax
     SyntaxList
      PublicKeyword <738:744> [28:0:28:6] 'public'
     TypeKeyword <745:749> [28:7:28:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <750:755> [28:12:28:17] 'u8x16'
     EqualsToken <758:759> [28:20:28:21] '='
-    IdentifierNameSyntax
-     IdentifierToken <760:766> [28:22:28:28] missing ''
+    TypePathSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <760:766> [28:22:28:28] missing ''
  UnexpectedNodesSyntax
   SyntaxList
    VectorKeyword <760:766> [28:22:28:28] 'vector'

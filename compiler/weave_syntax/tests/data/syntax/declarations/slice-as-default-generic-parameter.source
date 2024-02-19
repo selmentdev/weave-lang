@@ -1,0 +1,1 @@
+public function Test![type T = [[int: 4]: 4]](x: T) -> T;

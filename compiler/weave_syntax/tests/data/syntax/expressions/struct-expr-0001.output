@@ -5,18 +5,22 @@ SourceFileSyntax
     LetKeyword <0:3> [0:0:0:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <4:5> [0:4:0:5] 'x'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <6:7> [0:6:0:7] '='
       StructExpressionSyntax
-       IdentifierNameSyntax
-        IdentifierToken <8:18> [0:8:0:18] 'SomeStruct'
+       TypePathSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <8:18> [0:8:0:18] 'SomeStruct'
        OpenBraceToken <18:19> [0:18:0:19] '{'
        SyntaxList
         LabeledExpressionSyntax
          NameColonSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <20:21> [0:20:0:21] 'a'
           ColonToken <21:22> [0:21:0:22] ':'
          LiteralExpressionSyntax
@@ -24,7 +28,7 @@ SourceFileSyntax
          CommaToken <24:25> [0:24:0:25] ','
         LabeledExpressionSyntax
          NameColonSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <26:27> [0:26:0:27] 'b'
           ColonToken <27:28> [0:27:0:28] ':'
          LiteralExpressionSyntax
@@ -38,17 +42,25 @@ SourceFileSyntax
      IfKeyword <36:38> [2:0:2:2] 'if'
      OpenParenToken <39:40> [2:3:2:4] '('
      BinaryExpressionSyntax
-      IdentifierNameSyntax
-       IdentifierToken <40:41> [2:4:2:5] 'x'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <40:41> [2:4:2:5] 'x'
       EqualsEqualsToken <42:44> [2:6:2:8] '=='
       StructExpressionSyntax
-       IdentifierNameSyntax
-        IdentifierToken <45:55> [2:9:2:19] 'SomeStruct'
+       TypePathSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <45:55> [2:9:2:19] 'SomeStruct'
        OpenBraceToken <55:56> [2:19:2:20] '{'
        SyntaxList
         LabeledExpressionSyntax
          NameColonSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <57:58> [2:21:2:22] 'a'
           ColonToken <58:59> [2:22:2:23] ':'
          LiteralExpressionSyntax
@@ -56,7 +68,7 @@ SourceFileSyntax
          CommaToken <61:62> [2:25:2:26] ','
         LabeledExpressionSyntax
          NameColonSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <63:64> [2:27:2:28] 'b'
           ColonToken <64:65> [2:28:2:29] ':'
          LiteralExpressionSyntax
@@ -70,8 +82,12 @@ SourceFileSyntax
        CodeBlockItemSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <78:85> [4:4:4:11] 'success'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <78:85> [4:4:4:11] 'success'
           ArgumentListSyntax
            OpenParenToken <85:86> [4:11:4:12] '('
            CloseParenToken <86:87> [4:12:4:13] ')'
@@ -83,12 +99,20 @@ SourceFileSyntax
        IfKeyword <96:98> [6:5:6:7] 'if'
        OpenParenToken <99:100> [6:8:6:9] '('
        BinaryExpressionSyntax
-        IdentifierNameSyntax
-         IdentifierToken <100:101> [6:9:6:10] 'x'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <100:101> [6:9:6:10] 'x'
         EqualsEqualsToken <102:104> [6:11:6:13] '=='
         StructExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <105:115> [6:14:6:24] 'SomeStruct'
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <105:115> [6:14:6:24] 'SomeStruct'
          OpenBraceToken <115:116> [6:24:6:25] '{'
          CloseBraceToken <116:117> [6:25:6:26] '}'
        CloseParenToken <117:118> [6:26:6:27] ')'
@@ -98,8 +122,12 @@ SourceFileSyntax
          CodeBlockItemSyntax
           ExpressionStatementSyntax
            InvocationExpressionSyntax
-            IdentifierNameSyntax
-             IdentifierToken <125:132> [8:4:8:11] 'success'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <125:132> [8:4:8:11] 'success'
             ArgumentListSyntax
              OpenParenToken <132:133> [8:11:8:12] '('
              CloseParenToken <133:134> [8:12:8:13] ')'
@@ -111,28 +139,44 @@ SourceFileSyntax
          IfKeyword <143:145> [10:5:10:7] 'if'
          OpenParenToken <146:147> [10:8:10:9] '('
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <147:148> [10:9:10:10] 'x'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <147:148> [10:9:10:10] 'x'
           EqualsEqualsToken <149:151> [10:11:10:13] '=='
           StructExpressionSyntax
-           GenericNameSyntax
-            IdentifierToken <152:165> [10:14:10:27] 'GenericStruct'
-            GenericArgumentsSyntax
-             ExclamationOpenBracketToken <165:167> [10:27:10:29] '!['
+           TypePathSyntax
+            PathSyntax
              SyntaxList
-              GenericArgumentSyntax
-               IdentifierNameSyntax
-                IdentifierToken <167:172> [10:29:10:34] 'Int32'
-               CommaToken <172:173> [10:34:10:35] ','
-              GenericArgumentSyntax
-               IdentifierNameSyntax
-                IdentifierToken <173:180> [10:35:10:42] 'Float32'
-             CloseBracketToken <180:181> [10:42:10:43] ']'
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <152:165> [10:14:10:27] 'GenericStruct'
+               GenericArgumentsSyntax
+                ExclamationOpenBracketToken <165:167> [10:27:10:29] '!['
+                SyntaxList
+                 GenericArgumentSyntax
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <167:172> [10:29:10:34] 'Int32'
+                  CommaToken <172:173> [10:34:10:35] ','
+                 GenericArgumentSyntax
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <173:180> [10:35:10:42] 'Float32'
+                CloseBracketToken <180:181> [10:42:10:43] ']'
            OpenBraceToken <181:182> [10:43:10:44] '{'
            SyntaxList
             LabeledExpressionSyntax
              NameColonSyntax
-              IdentifierNameSyntax
+              IdentifierSyntax
                IdentifierToken <183:184> [10:45:10:46] 'a'
               ColonToken <184:185> [10:46:10:47] ':'
              LiteralExpressionSyntax
@@ -140,7 +184,7 @@ SourceFileSyntax
              CommaToken <187:188> [10:49:10:50] ','
             LabeledExpressionSyntax
              NameColonSyntax
-              IdentifierNameSyntax
+              IdentifierSyntax
                IdentifierToken <189:190> [10:51:10:52] 'b'
               ColonToken <190:191> [10:52:10:53] ':'
              LiteralExpressionSyntax
@@ -154,8 +198,12 @@ SourceFileSyntax
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              InvocationExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <204:211> [12:4:12:11] 'success'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <204:211> [12:4:12:11] 'success'
               ArgumentListSyntax
                OpenParenToken <211:212> [12:11:12:12] '('
                CloseParenToken <212:213> [12:12:12:13] ')'

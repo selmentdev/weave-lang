@@ -3,16 +3,22 @@ SourceFileSyntax
   CodeBlockItemSyntax
    NamespaceDeclarationSyntax
     NamespaceKeyword <0:9> [0:0:0:9] 'namespace'
-    IdentifierNameSyntax
-     IdentifierToken <10:11> [0:10:0:11] 'Y'
+    PathSyntax
+     SyntaxList
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <10:11> [0:10:0:11] 'Y'
     CodeBlockSyntax
      OpenBraceToken <12:13> [0:12:0:13] missing ''
      CloseBraceToken <12:13> [0:12:0:13] '}'
   CodeBlockItemSyntax
    NamespaceDeclarationSyntax
     NamespaceKeyword <14:23> [1:0:1:9] 'namespace'
-    IdentifierNameSyntax
-     IdentifierToken <24:25> [1:10:1:11] 'X'
+    PathSyntax
+     SyntaxList
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <24:25> [1:10:1:11] 'X'
     CodeBlockSyntax
      OpenBraceToken <26:27> [1:12:1:13] '{'
      CloseBraceToken <28:29> [1:14:1:15] '}'

@@ -482,15 +482,6 @@ int main(int argc, const char* argv[])
                     SyntaxWalker::OnIncompleteDeclarationSyntax(node);
                 }
 
-                void OnIdentifierNameSyntax(syntax::IdentifierNameSyntax* node) override
-                {
-                    syntax::IdentifierSyntaxToken* id = node->Identifier->TryCast<syntax::IdentifierSyntaxToken>();
-
-                    Indent();
-                    fmt::println("{} `{}`", __func__, id->Identifier);
-                    // SyntaxWalker::OnIdentifierNameSyntax(node);
-                }
-
                 //void OnArgumentSyntax(syntax::ArgumentSyntax* node) override
                 //{
                 //    Indent();

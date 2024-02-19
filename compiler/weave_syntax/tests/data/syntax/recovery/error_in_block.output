@@ -5,7 +5,7 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     ExtendKeyword <7:13> [0:7:0:13] 'extend'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <14:17> [0:14:0:17] 'Foo'
     CodeBlockSyntax
      OpenBraceToken <18:19> [1:0:1:1] '{'
@@ -15,7 +15,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <24:30> [2:4:2:10] 'public'
         FunctionKeyword <31:39> [2:11:2:19] 'function'
-        IdentifierNameSyntax
+        IdentifierSyntax
          IdentifierToken <40:49> [2:20:2:29] 'ThisWorks'
         ParameterListSyntax
          OpenParenToken <49:50> [2:29:2:30] '('
@@ -33,7 +33,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <75:81> [6:4:6:10] 'public'
         FunctionKeyword <82:90> [6:11:6:19] 'function'
-        IdentifierNameSyntax
+        IdentifierSyntax
          IdentifierToken <91:100> [6:20:6:29] 'MakeError'
         ParameterListSyntax
          OpenParenToken <100:101> [6:29:6:30] '('
@@ -46,7 +46,7 @@ SourceFileSyntax
             VarKeyword <117:120> [8:8:8:11] 'var'
             PatternBindingSyntax
              IdentifierPatternSyntax
-              IdentifierNameSyntax
+              IdentifierSyntax
                IdentifierToken <121:122> [8:12:8:13] 'a'
          UnexpectedNodesSyntax
           SyntaxList
@@ -63,7 +63,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <144:150> [11:4:11:10] 'public'
         FunctionKeyword <151:159> [11:11:11:19] 'function'
-        IdentifierNameSyntax
+        IdentifierSyntax
          IdentifierToken <160:170> [11:20:11:30] 'ShouldWork'
         ParameterListSyntax
          OpenParenToken <170:171> [11:30:11:31] '('
@@ -77,16 +77,20 @@ SourceFileSyntax
              MemberAccessExpressionSyntax
               MemberAccessExpressionSyntax
                MemberAccessExpressionSyntax
-                IdentifierNameSyntax
-                 IdentifierToken <187:191> [13:8:13:12] 'self'
+                PathExpressionSyntax
+                 PathSyntax
+                  SyntaxList
+                   PathSegmentSyntax
+                    IdentifierSyntax
+                     IdentifierToken <187:191> [13:8:13:12] 'self'
                 DotToken <191:192> [13:12:13:13] '.'
-                IdentifierNameSyntax
+                IdentifierSyntax
                  IdentifierToken <192:193> [13:13:13:14] 'a'
                DotToken <193:194> [13:14:13:15] '.'
-               IdentifierNameSyntax
+               IdentifierSyntax
                 IdentifierToken <194:195> [13:15:13:16] 'b'
               DotToken <195:196> [13:16:13:17] '.'
-              IdentifierNameSyntax
+              IdentifierSyntax
                IdentifierToken <196:197> [13:17:13:18] 'c'
              EqualsToken <198:199> [13:19:13:20] '='
              LiteralExpressionSyntax

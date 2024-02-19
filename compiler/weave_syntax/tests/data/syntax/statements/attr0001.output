@@ -9,13 +9,20 @@ SourceFileSyntax
        HashOpenBracketToken <41:43> [2:3:2:5] '#['
        SyntaxList
         AttributeSyntax
-         IdentifierNameSyntax
-          IdentifierToken <43:49> [2:5:2:11] 'Likely'
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <43:49> [2:5:2:11] 'Likely'
        CloseBracketToken <49:50> [2:11:2:12] ']'
      OpenParenToken <51:52> [2:13:2:14] '('
      BinaryExpressionSyntax
-      IdentifierNameSyntax
-       IdentifierToken <52:53> [2:14:2:15] 'x'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <52:53> [2:14:2:15] 'x'
       EqualsEqualsToken <54:56> [2:16:2:18] '=='
       LiteralExpressionSyntax
        IntegerLiteralToken <57:59> [2:19:2:21] '42'
@@ -26,8 +33,12 @@ SourceFileSyntax
        CodeBlockItemSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <67:68> [4:4:4:5] 'a'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <67:68> [4:4:4:5] 'a'
           ArgumentListSyntax
            OpenParenToken <68:69> [4:5:4:6] '('
            CloseParenToken <69:70> [4:6:4:7] ')'
@@ -42,13 +53,20 @@ SourceFileSyntax
          HashOpenBracketToken <82:84> [6:8:6:10] '#['
          SyntaxList
           AttributeSyntax
-           IdentifierNameSyntax
-            IdentifierToken <84:92> [6:10:6:18] 'Unlikely'
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <84:92> [6:10:6:18] 'Unlikely'
          CloseBracketToken <92:93> [6:18:6:19] ']'
        OpenParenToken <94:95> [6:20:6:21] '('
        BinaryExpressionSyntax
-        IdentifierNameSyntax
-         IdentifierToken <95:96> [6:21:6:22] 'x'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <95:96> [6:21:6:22] 'x'
         EqualsEqualsToken <97:99> [6:23:6:25] '=='
         LiteralExpressionSyntax
          IntegerLiteralToken <100:102> [6:26:6:28] '43'
@@ -59,8 +77,12 @@ SourceFileSyntax
          CodeBlockItemSyntax
           ExpressionStatementSyntax
            InvocationExpressionSyntax
-            IdentifierNameSyntax
-             IdentifierToken <110:111> [8:4:8:5] 'b'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <110:111> [8:4:8:5] 'b'
             ArgumentListSyntax
              OpenParenToken <111:112> [8:5:8:6] '('
              CloseParenToken <112:113> [8:6:8:7] ')'
@@ -74,8 +96,12 @@ SourceFileSyntax
           CodeBlockItemSyntax
            ExpressionStatementSyntax
             InvocationExpressionSyntax
-             IdentifierNameSyntax
-              IdentifierToken <128:129> [12:4:12:5] 'c'
+             PathExpressionSyntax
+              PathSyntax
+               SyntaxList
+                PathSegmentSyntax
+                 IdentifierSyntax
+                  IdentifierToken <128:129> [12:4:12:5] 'c'
              ArgumentListSyntax
               OpenParenToken <129:130> [12:5:12:6] '('
               CloseParenToken <130:131> [12:6:12:7] ')'
@@ -89,13 +115,20 @@ SourceFileSyntax
       HashOpenBracketToken <173:175> [17:6:17:8] '#['
       SyntaxList
        AttributeSyntax
-        IdentifierNameSyntax
-         IdentifierToken <175:181> [17:8:17:14] 'Likely'
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <175:181> [17:8:17:14] 'Likely'
       CloseBracketToken <181:182> [17:14:17:15] ']'
     OpenParenToken <183:184> [17:16:17:17] '('
     BinaryExpressionSyntax
-     IdentifierNameSyntax
-      IdentifierToken <184:185> [17:17:17:18] 'x'
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <184:185> [17:17:17:18] 'x'
      LessThanToken <186:187> [17:19:17:20] '<'
      LiteralExpressionSyntax
       IntegerLiteralToken <188:190> [17:21:17:23] '42'
@@ -106,8 +139,12 @@ SourceFileSyntax
       CodeBlockItemSyntax
        ExpressionStatementSyntax
         InvocationExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <198:199> [19:4:19:5] 'a'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <198:199> [19:4:19:5] 'a'
          ArgumentListSyntax
           OpenParenToken <199:200> [19:5:19:6] '('
           CloseParenToken <200:201> [19:6:19:7] ')'
@@ -116,8 +153,12 @@ SourceFileSyntax
        ExpressionStatementSyntax
         UnaryExpressionSyntax
          PlusPlusToken <207:209> [20:4:20:6] '++'
-         IdentifierNameSyntax
-          IdentifierToken <209:210> [20:6:20:7] 'x'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <209:210> [20:6:20:7] 'x'
        SemicolonToken <210:211> [20:7:20:8] ';'
      CloseBraceToken <212:213> [21:0:21:1] '}'
  EndOfFileToken <214:214> [22:0:22:0] ''

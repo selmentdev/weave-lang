@@ -32,9 +32,22 @@ namespace weave::syntax
         {
             return T::ClassOf(this) ? static_cast<T*>(this) : nullptr;
         }
+
+        template <typename T>
+        [[nodiscard]] T const* As() const
+        {
+            WEAVE_ASSERT(T::ClassOf(this));
+            return static_cast<T const*>(this);
+        }
+
+        template <typename T>
+        [[nodiscard]] T* As()
+        {
+            WEAVE_ASSERT(T::ClassOf(this));
+            return static_cast<T*>(this);
+        }
     };
 
-    
     class SyntaxList : public SyntaxNode
     {
         // Optimization idea: we can store elements in memory after the SyntaxList object

@@ -3,7 +3,7 @@ SourceFileSyntax
   CodeBlockItemSyntax
    LabeledStatementSyntax
     NameColonSyntax
-     IdentifierNameSyntax
+     IdentifierSyntax
       IdentifierToken <26:38> [1:0:1:12] 'this_is_loop'
      ColonToken <38:39> [1:12:1:13] ':'
     ExpressionStatementSyntax
@@ -11,8 +11,12 @@ SourceFileSyntax
       IfKeyword <40:42> [1:14:1:16] 'if'
       OpenParenToken <43:44> [1:17:1:18] '('
       BinaryExpressionSyntax
-       IdentifierNameSyntax
-        IdentifierToken <44:45> [1:18:1:19] 'x'
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <44:45> [1:18:1:19] 'x'
        LessThanToken <46:47> [1:20:1:21] '<'
        LiteralExpressionSyntax
         IntegerLiteralToken <48:50> [1:22:1:24] '10'
@@ -28,8 +32,12 @@ SourceFileSyntax
         CodeBlockItemSyntax
          ExpressionStatementSyntax
           AssignmentExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <79:80> [4:4:4:5] 'x'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <79:80> [4:4:4:5] 'x'
            MinusEqualsToken <81:83> [4:6:4:8] '-='
            LiteralExpressionSyntax
             IntegerLiteralToken <84:88> [4:9:4:13] '2137'
@@ -37,13 +45,17 @@ SourceFileSyntax
         CodeBlockItemSyntax
          LabeledStatementSyntax
           NameColonSyntax
-           IdentifierNameSyntax
+           IdentifierSyntax
             IdentifierToken <90:104> [5:0:5:14] 'update_counter'
            ColonToken <104:105> [5:14:5:15] ':'
           ExpressionStatementSyntax
            AssignmentExpressionSyntax
-            IdentifierNameSyntax
-             IdentifierToken <110:111> [6:4:6:5] 'x'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <110:111> [6:4:6:5] 'x'
             PlusEqualsToken <112:114> [6:6:6:8] '+='
             LiteralExpressionSyntax
              IntegerLiteralToken <115:116> [6:9:6:10] '1'

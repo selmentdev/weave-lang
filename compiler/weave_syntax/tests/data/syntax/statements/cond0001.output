@@ -5,8 +5,12 @@ SourceFileSyntax
     IfExpressionSyntax
      IfKeyword <0:2> [0:0:0:2] 'if'
      OpenParenToken <3:3> [1:0:1:0] missing ''
-     IdentifierNameSyntax
-      IdentifierToken <3:3> [1:0:1:0] missing ''
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <3:3> [1:0:1:0] missing ''
      CloseParenToken <3:3> [1:0:1:0] missing ''
      CodeBlockSyntax
       OpenBraceToken <3:3> [1:0:1:0] missing ''

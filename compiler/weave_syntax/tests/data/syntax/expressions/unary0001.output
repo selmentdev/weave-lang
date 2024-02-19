@@ -5,15 +5,19 @@ SourceFileSyntax
     LetKeyword <0:3> [0:0:0:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <4:5> [0:4:0:5] 'x'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <6:7> [0:6:0:7] '='
       SizeOfExpressionSyntax
        SizeOfKeyword <8:14> [0:8:0:14] 'sizeof'
        OpenParenToken <14:15> [0:14:0:15] '('
-       IdentifierNameSyntax
-        IdentifierToken <15:22> [0:15:0:22] 'UInt128'
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <15:22> [0:15:0:22] 'UInt128'
        CloseParenToken <22:23> [0:22:0:23] ')'
    SemicolonToken <23:24> [0:23:0:24] ';'
   CodeBlockItemSyntax
@@ -21,9 +25,9 @@ SourceFileSyntax
     LetKeyword <25:28> [1:0:1:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <29:30> [1:4:1:5] 'y'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <31:32> [1:6:1:7] '='
       BinaryExpressionSyntax
        BinaryExpressionSyntax
@@ -33,15 +37,23 @@ SourceFileSyntax
         SizeOfExpressionSyntax
          SizeOfKeyword <37:43> [1:12:1:18] 'sizeof'
          OpenParenToken <43:44> [1:18:1:19] '('
-         IdentifierNameSyntax
-          IdentifierToken <44:49> [1:19:1:24] 'Int64'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <44:49> [1:19:1:24] 'Int64'
          CloseParenToken <49:50> [1:24:1:25] ')'
        PlusToken <51:52> [1:26:1:27] '+'
        SizeOfExpressionSyntax
         SizeOfKeyword <53:59> [1:28:1:34] 'sizeof'
         OpenParenToken <59:60> [1:34:1:35] '('
-        IdentifierNameSyntax
-         IdentifierToken <60:65> [1:35:1:40] 'Int32'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <60:65> [1:35:1:40] 'Int32'
         CloseParenToken <65:66> [1:40:1:41] ')'
    SemicolonToken <66:67> [1:41:1:42] ';'
   CodeBlockItemSyntax
@@ -49,96 +61,116 @@ SourceFileSyntax
     LetKeyword <68:71> [2:0:2:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <72:73> [2:4:2:5] 'z'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <74:75> [2:6:2:7] '='
       NameOfExpressionSyntax
        NameOfKeyword <76:82> [2:8:2:14] 'nameof'
        OpenParenToken <82:83> [2:14:2:15] '('
-       MemberAccessExpressionSyntax
-        MemberAccessExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <83:87> [2:15:2:19] 'core'
-         DotToken <87:88> [2:19:2:20] '.'
-         IdentifierNameSyntax
-          IdentifierToken <88:96> [2:20:2:28] 'numerics'
-        DotToken <96:97> [2:28:2:29] '.'
-        IdentifierNameSyntax
-         IdentifierToken <97:104> [2:29:2:36] 'UInt128'
-       CloseParenToken <104:105> [2:36:2:37] ')'
-   SemicolonToken <105:106> [2:37:2:38] ';'
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <83:87> [2:15:2:19] 'core'
+           ColonColonToken <87:89> [2:19:2:21] '::'
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <89:97> [2:21:2:29] 'numerics'
+           ColonColonToken <97:99> [2:29:2:31] '::'
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <99:106> [2:31:2:38] 'UInt128'
+       CloseParenToken <106:107> [2:38:2:39] ')'
+   SemicolonToken <107:108> [2:39:2:40] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
-    LetKeyword <107:110> [3:0:3:3] 'let'
+    LetKeyword <109:112> [3:0:3:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
-       IdentifierToken <111:112> [3:4:3:5] 'w'
-     InitializerClauseSyntax
-      EqualsToken <113:114> [3:6:3:7] '='
+      IdentifierSyntax
+       IdentifierToken <113:114> [3:4:3:5] 'w'
+     ExpressionInitializerClauseSyntax
+      EqualsToken <115:116> [3:6:3:7] '='
       TypeOfExpressionSyntax
-       TypeOfKeyword <115:121> [3:8:3:14] 'typeof'
-       OpenParenToken <121:122> [3:14:3:15] '('
-       MemberAccessExpressionSyntax
-        MemberAccessExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <122:125> [3:15:3:18] 'std'
-         DotToken <125:126> [3:18:3:19] '.'
-         IdentifierNameSyntax
-          IdentifierToken <126:127> [3:19:3:20] 'c'
-        DotToken <127:128> [3:20:3:21] '.'
-        IdentifierNameSyntax
-         IdentifierToken <128:137> [3:21:3:30] 'ulonglong'
-       CloseParenToken <137:138> [3:30:3:31] ')'
-   SemicolonToken <138:139> [3:31:3:32] ';'
+       TypeOfKeyword <117:123> [3:8:3:14] 'typeof'
+       OpenParenToken <123:124> [3:14:3:15] '('
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <124:127> [3:15:3:18] 'std'
+           ColonColonToken <127:129> [3:18:3:20] '::'
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <129:130> [3:20:3:21] 'c'
+           ColonColonToken <130:132> [3:21:3:23] '::'
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <132:141> [3:23:3:32] 'ulonglong'
+       CloseParenToken <141:142> [3:32:3:33] ')'
+   SemicolonToken <142:143> [3:33:3:34] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
-    LetKeyword <140:143> [4:0:4:3] 'let'
+    LetKeyword <144:147> [4:0:4:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
-       IdentifierToken <144:145> [4:4:4:5] 'a'
-     InitializerClauseSyntax
-      EqualsToken <146:147> [4:6:4:7] '='
+      IdentifierSyntax
+       IdentifierToken <148:149> [4:4:4:5] 'a'
+     ExpressionInitializerClauseSyntax
+      EqualsToken <150:151> [4:6:4:7] '='
       AddressOfExpressionSyntax
-       AddressOfKeyword <148:157> [4:8:4:17] 'addressof'
+       AddressOfKeyword <152:161> [4:8:4:17] 'addressof'
        TupleExpressionSyntax
-        OpenParenToken <157:158> [4:17:4:18] '('
+        OpenParenToken <161:162> [4:17:4:18] '('
         SyntaxList
          LabeledExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <158:159> [4:18:4:19] 'w'
-        CloseParenToken <159:160> [4:19:4:20] ')'
-   SemicolonToken <160:161> [4:20:4:21] ';'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <162:163> [4:18:4:19] 'w'
+        CloseParenToken <163:164> [4:19:4:20] ')'
+   SemicolonToken <164:165> [4:20:4:21] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
-    LetKeyword <162:165> [5:0:5:3] 'let'
+    LetKeyword <166:169> [5:0:5:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
-       IdentifierToken <166:167> [5:4:5:5] 'c'
-     InitializerClauseSyntax
-      EqualsToken <168:169> [5:6:5:7] '='
+      IdentifierSyntax
+       IdentifierToken <170:171> [5:4:5:5] 'c'
+     ExpressionInitializerClauseSyntax
+      EqualsToken <172:173> [5:6:5:7] '='
       AlignOfExpressionSyntax
-       AlignOfKeyword <170:177> [5:8:5:15] 'alignof'
-       OpenParenToken <177:178> [5:15:5:16] '('
-       IdentifierNameSyntax
-        IdentifierToken <178:179> [5:16:5:17] 'w'
-       CloseParenToken <179:180> [5:17:5:18] ')'
-   SemicolonToken <180:181> [5:18:5:19] ';'
+       AlignOfKeyword <174:181> [5:8:5:15] 'alignof'
+       OpenParenToken <181:182> [5:15:5:16] '('
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <182:183> [5:16:5:17] 'w'
+       CloseParenToken <183:184> [5:17:5:18] ')'
+   SemicolonToken <184:185> [5:18:5:19] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
-    LetKeyword <182:185> [6:0:6:3] 'let'
+    LetKeyword <186:189> [6:0:6:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
-       IdentifierToken <186:187> [6:4:6:5] 'e'
-     InitializerClauseSyntax
-      EqualsToken <188:189> [6:6:6:7] '='
+      IdentifierSyntax
+       IdentifierToken <190:191> [6:4:6:5] 'e'
+     ExpressionInitializerClauseSyntax
+      EqualsToken <192:193> [6:6:6:7] '='
       ExpressionReferenceSyntax
-       AmpersandToken <190:191> [6:8:6:9] '&'
-       IdentifierNameSyntax
-        IdentifierToken <191:192> [6:9:6:10] 'x'
-   SemicolonToken <192:193> [6:10:6:11] ';'
- EndOfFileToken <194:194> [7:0:7:0] ''
+       AmpersandToken <194:195> [6:8:6:9] '&'
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <195:196> [6:9:6:10] 'x'
+   SemicolonToken <196:197> [6:10:6:11] ';'
+ EndOfFileToken <198:198> [7:0:7:0] ''

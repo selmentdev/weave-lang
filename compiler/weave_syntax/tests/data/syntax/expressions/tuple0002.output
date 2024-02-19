@@ -5,9 +5,9 @@ SourceFileSyntax
     LetKeyword <0:3> [0:0:0:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <4:5> [0:4:0:5] 'v'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <6:7> [0:6:0:7] '='
       TupleExpressionSyntax
        OpenParenToken <8:9> [0:8:0:9] '('
@@ -18,16 +18,20 @@ SourceFileSyntax
     LetKeyword <12:15> [1:0:1:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <16:17> [1:4:1:5] 'v'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <18:19> [1:6:1:7] '='
       TupleExpressionSyntax
        OpenParenToken <20:21> [1:8:1:9] '('
        SyntaxList
         LabeledExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <21:22> [1:9:1:10] 'a'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <21:22> [1:9:1:10] 'a'
        CloseParenToken <22:23> [1:10:1:11] ')'
    SemicolonToken <23:24> [1:11:1:12] ';'
   CodeBlockItemSyntax
@@ -35,16 +39,16 @@ SourceFileSyntax
     LetKeyword <25:28> [2:0:2:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <29:30> [2:4:2:5] 'v'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <31:32> [2:6:2:7] '='
       TupleExpressionSyntax
        OpenParenToken <33:34> [2:8:2:9] '('
        SyntaxList
         LabeledExpressionSyntax
          NameColonSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <34:35> [2:9:2:10] 'a'
           ColonToken <35:36> [2:10:2:11] ':'
        CloseParenToken <36:37> [2:11:2:12] ')'
@@ -54,20 +58,28 @@ SourceFileSyntax
     LetKeyword <39:42> [3:0:3:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <43:44> [3:4:3:5] 'v'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <45:46> [3:6:3:7] '='
       TupleExpressionSyntax
        OpenParenToken <47:48> [3:8:3:9] '('
        SyntaxList
         LabeledExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <48:49> [3:9:3:10] 'a'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <48:49> [3:9:3:10] 'a'
          CommaToken <49:50> [3:10:3:11] ','
         LabeledExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <51:52> [3:12:3:13] 'b'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <51:52> [3:12:3:13] 'b'
        CloseParenToken <52:53> [3:13:3:14] ')'
    SemicolonToken <53:54> [3:14:3:15] ';'
   CodeBlockItemSyntax
@@ -75,16 +87,16 @@ SourceFileSyntax
     LetKeyword <55:58> [4:0:4:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <59:60> [4:4:4:5] 'v'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <61:62> [4:6:4:7] '='
       TupleExpressionSyntax
        OpenParenToken <63:64> [4:8:4:9] '('
        SyntaxList
         LabeledExpressionSyntax
          NameColonSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <64:65> [4:9:4:10] 'a'
           ColonToken <65:66> [4:10:4:11] ':'
          BinaryExpressionSyntax
@@ -100,16 +112,16 @@ SourceFileSyntax
     LetKeyword <75:78> [5:0:5:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <79:80> [5:4:5:5] 'v'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <81:82> [5:6:5:7] '='
       TupleExpressionSyntax
        OpenParenToken <83:84> [5:8:5:9] '('
        SyntaxList
         LabeledExpressionSyntax
          NameColonSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <84:85> [5:9:5:10] 'a'
           ColonToken <85:86> [5:10:5:11] ':'
          TupleExpressionSyntax
@@ -130,16 +142,16 @@ SourceFileSyntax
     LetKeyword <97:100> [6:0:6:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <101:102> [6:4:6:5] 'v'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <103:104> [6:6:6:7] '='
       TupleExpressionSyntax
        OpenParenToken <105:106> [6:8:6:9] '('
        SyntaxList
         LabeledExpressionSyntax
          NameColonSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <106:107> [6:9:6:10] 'a'
           ColonToken <107:108> [6:10:6:11] ':'
          TupleExpressionSyntax
@@ -147,7 +159,7 @@ SourceFileSyntax
           SyntaxList
            LabeledExpressionSyntax
             NameColonSyntax
-             IdentifierNameSyntax
+             IdentifierSyntax
               IdentifierToken <110:111> [6:13:6:14] 'a'
              ColonToken <111:112> [6:14:6:15] ':'
             LiteralExpressionSyntax
@@ -155,7 +167,7 @@ SourceFileSyntax
             CommaToken <114:115> [6:17:6:18] ','
            LabeledExpressionSyntax
             NameColonSyntax
-             IdentifierNameSyntax
+             IdentifierSyntax
               IdentifierToken <116:117> [6:19:6:20] 'b'
              ColonToken <117:118> [6:20:6:21] ':'
             LiteralExpressionSyntax
@@ -164,7 +176,7 @@ SourceFileSyntax
          CommaToken <121:122> [6:24:6:25] ','
         LabeledExpressionSyntax
          NameColonSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <123:124> [6:26:6:27] 'b'
           ColonToken <124:125> [6:27:6:28] ':'
          BinaryExpressionSyntax
@@ -180,9 +192,9 @@ SourceFileSyntax
     LetKeyword <134:137> [7:0:7:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <138:139> [7:4:7:5] 'v'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <140:141> [7:6:7:7] '='
       MemberAccessExpressionSyntax
        TupleExpressionSyntax
@@ -196,14 +208,14 @@ SourceFileSyntax
              SyntaxList
               LabeledExpressionSyntax
                NameColonSyntax
-                IdentifierNameSyntax
+                IdentifierSyntax
                  IdentifierToken <144:145> [7:10:7:11] 'a'
                 ColonToken <145:146> [7:11:7:12] ':'
                LiteralExpressionSyntax
                 IntegerLiteralToken <147:148> [7:13:7:14] '2'
              CloseParenToken <148:149> [7:14:7:15] ')'
             DotToken <149:150> [7:15:7:16] '.'
-            TupleIndexSyntax
+            IndexSyntax
              IntegerLiteralToken <150:151> [7:16:7:17] '0'
            PlusToken <152:153> [7:18:7:19] '+'
            MemberAccessExpressionSyntax
@@ -212,18 +224,18 @@ SourceFileSyntax
              SyntaxList
               LabeledExpressionSyntax
                NameColonSyntax
-                IdentifierNameSyntax
+                IdentifierSyntax
                  IdentifierToken <155:156> [7:21:7:22] 'b'
                 ColonToken <156:157> [7:22:7:23] ':'
                LiteralExpressionSyntax
                 IntegerLiteralToken <158:159> [7:24:7:25] '2'
              CloseParenToken <159:160> [7:25:7:26] ')'
             DotToken <160:161> [7:26:7:27] '.'
-            TupleIndexSyntax
+            IndexSyntax
              IntegerLiteralToken <161:162> [7:27:7:28] '0'
         CloseParenToken <162:163> [7:28:7:29] ')'
        DotToken <163:164> [7:29:7:30] '.'
-       TupleIndexSyntax
+       IndexSyntax
         IntegerLiteralToken <164:165> [7:30:7:31] '0'
    SemicolonToken <165:166> [7:31:7:32] ';'
  EndOfFileToken <167:167> [8:0:8:0] ''

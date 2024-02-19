@@ -345,6 +345,8 @@ namespace weave::syntax
 
         GenericArgumentsSyntax* ParseGenericArguments();
 
+        GenericArgumentsSyntax* ParseOptionalGenericArguments();
+
     public:
         AttributeSyntax* ParseAttribute();
 
@@ -370,9 +372,13 @@ namespace weave::syntax
 
         TypeSyntax* ParseType();
 
-        InitializerClauseSyntax* ParseInitializerClause();
+        ExpressionInitializerClauseSyntax* ParseInitializerClause();
 
-        InitializerClauseSyntax* ParseOptionalInitializerClause();
+        ExpressionInitializerClauseSyntax* ParseOptionalInitializerClause();
+
+        TypeInitializerClauseSyntax* ParseTypeInitializerClause();
+
+        TypeInitializerClauseSyntax* ParseOptionalTypeInitializerClause();
 
         ArgumentSyntax* ParseArgument();
 
@@ -380,13 +386,11 @@ namespace weave::syntax
 
         BracketedArgumentListSyntax* ParseBracketedArgumentList();
 
-        NameSyntax* ParseQualifiedName();
+        IdentifierSyntax* ParseIdentifier();
 
-        SimpleNameSyntax* ParseSimpleName();
+        IndexSyntax* ParseIndex();
 
-        IdentifierNameSyntax* ParseIdentifierName();
-
-        TupleIndexSyntax* ParseTupleIndex();
+        NameSyntax* ParseMemberName();
 
         UnreachableExpressionSyntax* ParseUnreachableExpression();
 
@@ -408,6 +412,8 @@ namespace weave::syntax
             Precedence precedence);
 
         TupleExpressionSyntax* ParseTupleExpression();
+
+        StructExpressionSyntax* ParseStructExpression(PathSyntax* path);
 
         ArrayExpressionSyntax* ParseArrayExpression();
 
@@ -462,8 +468,6 @@ namespace weave::syntax
 
         ExpressionStatementSyntax* ParseExpressionStatement(
             SyntaxListView<AttributeListSyntax> attributes);
-
-        IdentifierNameSyntax* CreateMissingIdentifierName();
 
         UnexpectedNodesSyntax* CreateUnexpectedNodes(std::span<SyntaxNode*> nodes);
 
@@ -527,6 +531,16 @@ namespace weave::syntax
         ConstraintClauseSyntax* ParseConstraintClause();
 
         SyntaxListView<ConstraintClauseSyntax> ParseConstraintClauseSequence();
+
+        PathSegmentSyntax* ParsePathSegment();
+
+        SyntaxListView<PathSegmentSyntax> ParsePathSegmentSequence();
+
+        PathSyntax* ParsePath();
+
+        TypePathSyntax* ParseTypePath();
+
+        PathExpressionSyntax* ParsePathExpression(PathSyntax* path);
 
     public:
         PatternSyntax* ParsePattern();

@@ -3,16 +3,19 @@ SourceFileSyntax
   CodeBlockItemSyntax
    NamespaceDeclarationSyntax
     NamespaceKeyword <9:18> [1:0:1:9] 'namespace'
-    QualifiedNameSyntax
-     QualifiedNameSyntax
-      IdentifierNameSyntax
-       IdentifierToken <19:23> [1:10:1:14] 'Core'
-      ColonColonToken <23:25> [1:14:1:16] '::'
-      IdentifierNameSyntax
-       IdentifierToken <25:31> [1:16:1:22] 'System'
-     ColonColonToken <31:33> [1:22:1:24] '::'
-     IdentifierNameSyntax
-      IdentifierToken <33:40> [1:24:1:31] 'Windows'
+    PathSyntax
+     SyntaxList
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <19:23> [1:10:1:14] 'Core'
+       ColonColonToken <23:25> [1:14:1:16] '::'
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <25:31> [1:16:1:22] 'System'
+       ColonColonToken <31:33> [1:22:1:24] '::'
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <33:40> [1:24:1:31] 'Windows'
     CodeBlockSyntax
      OpenBraceToken <41:42> [2:0:2:1] '{'
      SyntaxList
@@ -21,45 +24,57 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <47:53> [3:4:3:10] 'public'
         TypeKeyword <54:58> [3:11:3:15] 'type'
-        IdentifierNameSyntax
+        IdentifierSyntax
          IdentifierToken <59:64> [3:16:3:21] 'DWORD'
         EqualsToken <71:72> [3:28:3:29] '='
-        QualifiedNameSyntax
-         IdentifierNameSyntax
-          IdentifierToken <73:77> [3:30:3:34] 'Core'
-         ColonColonToken <77:79> [3:34:3:36] '::'
-         IdentifierNameSyntax
-          IdentifierToken <79:85> [3:36:3:42] 'UInt32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <73:77> [3:30:3:34] 'Core'
+            ColonColonToken <77:79> [3:34:3:36] '::'
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <79:85> [3:36:3:42] 'UInt32'
        SemicolonToken <85:86> [3:42:3:43] ';'
       CodeBlockItemSyntax
        TypeAliasDeclarationSyntax
         SyntaxList
          PublicKeyword <91:97> [4:4:4:10] 'public'
         TypeKeyword <98:102> [4:11:4:15] 'type'
-        IdentifierNameSyntax
+        IdentifierSyntax
          IdentifierToken <103:112> [4:16:4:25] 'DWORD_PTR'
         EqualsToken <115:116> [4:28:4:29] '='
-        QualifiedNameSyntax
-         IdentifierNameSyntax
-          IdentifierToken <117:121> [4:30:4:34] 'Core'
-         ColonColonToken <121:123> [4:34:4:36] '::'
-         IdentifierNameSyntax
-          IdentifierToken <123:130> [4:36:4:43] 'UIntPtr'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <117:121> [4:30:4:34] 'Core'
+            ColonColonToken <121:123> [4:34:4:36] '::'
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <123:130> [4:36:4:43] 'UIntPtr'
        SemicolonToken <130:131> [4:43:4:44] ';'
       CodeBlockItemSyntax
        TypeAliasDeclarationSyntax
         SyntaxList
          PublicKeyword <136:142> [5:4:5:10] 'public'
         TypeKeyword <143:147> [5:11:5:15] 'type'
-        IdentifierNameSyntax
+        IdentifierSyntax
          IdentifierToken <148:154> [5:16:5:22] 'HANDLE'
         EqualsToken <160:161> [5:28:5:29] '='
-        QualifiedNameSyntax
-         IdentifierNameSyntax
-          IdentifierToken <162:166> [5:30:5:34] 'Core'
-         ColonColonToken <166:168> [5:34:5:36] '::'
-         IdentifierNameSyntax
-          IdentifierToken <168:174> [5:36:5:42] 'IntPtr'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <162:166> [5:30:5:34] 'Core'
+            ColonColonToken <166:168> [5:34:5:36] '::'
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <168:174> [5:36:5:42] 'IntPtr'
        SemicolonToken <174:175> [5:42:5:43] ';'
      CloseBraceToken <176:177> [6:0:6:1] '}'
   CodeBlockItemSyntax
@@ -67,19 +82,27 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <197:203> [9:0:9:6] 'public'
     TypeKeyword <204:208> [9:7:9:11] 'type'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <209:213> [9:12:9:16] 'Pair'
     EqualsToken <214:215> [9:17:9:18] '='
     TupleTypeSyntax
      OpenParenToken <216:217> [9:19:9:20] '('
      SyntaxList
       TupleTypeElementSyntax
-       IdentifierNameSyntax
-        IdentifierToken <217:221> [9:20:9:24] 'bool'
+       TypePathSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <217:221> [9:20:9:24] 'bool'
        CommaToken <221:222> [9:24:9:25] ','
       TupleTypeElementSyntax
-       IdentifierNameSyntax
-        IdentifierToken <223:229> [9:26:9:32] 'string'
+       TypePathSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <223:229> [9:26:9:32] 'string'
      CloseParenToken <229:230> [9:32:9:33] ')'
    SemicolonToken <230:231> [9:33:9:34] ';'
  EndOfFileToken <232:232> [10:0:10:0] ''

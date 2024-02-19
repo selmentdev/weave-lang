@@ -5,8 +5,12 @@ SourceFileSyntax
     MatchExpressionSyntax
      MatchKeyword <0:5> [0:0:0:5] 'match'
      OpenParenToken <6:7> [0:6:0:7] '('
-     IdentifierNameSyntax
-      IdentifierToken <7:8> [0:7:0:8] 'x'
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <7:8> [0:7:0:8] 'x'
      CloseParenToken <8:9> [0:8:0:9] ')'
      OpenBraceToken <10:11> [1:0:1:1] '{'
      SyntaxList
@@ -27,8 +31,12 @@ SourceFileSyntax
        CodeBlockItemSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <29:38> [2:17:2:26] 'WriteLine'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <29:38> [2:17:2:26] 'WriteLine'
           ArgumentListSyntax
            OpenParenToken <38:39> [2:26:2:27] '('
            SyntaxList
@@ -54,8 +62,12 @@ SourceFileSyntax
        CodeBlockItemSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <65:74> [3:17:3:26] 'WriteLine'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <65:74> [3:17:3:26] 'WriteLine'
           ArgumentListSyntax
            OpenParenToken <74:75> [3:26:3:27] '('
            SyntaxList
@@ -81,8 +93,12 @@ SourceFileSyntax
        CodeBlockItemSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <100:109> [4:17:4:26] 'WriteLine'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <100:109> [4:17:4:26] 'WriteLine'
           ArgumentListSyntax
            OpenParenToken <109:110> [4:26:4:27] '('
            SyntaxList
@@ -97,8 +113,12 @@ SourceFileSyntax
        CodeBlockItemSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <131:140> [5:13:5:22] 'WriteLine'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <131:140> [5:13:5:22] 'WriteLine'
           ArgumentListSyntax
            OpenParenToken <140:141> [5:22:5:23] '('
            SyntaxList
@@ -113,8 +133,12 @@ SourceFileSyntax
     MatchExpressionSyntax
      MatchKeyword <153:158> [8:0:8:5] 'match'
      OpenParenToken <159:160> [8:6:8:7] '('
-     IdentifierNameSyntax
-      IdentifierToken <160:161> [8:7:8:8] 'y'
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <160:161> [8:7:8:8] 'y'
      CloseParenToken <161:162> [8:8:8:9] ')'
      OpenBraceToken <163:164> [9:0:9:1] '{'
      SyntaxList
@@ -156,8 +180,12 @@ SourceFileSyntax
        CodeBlockItemSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <197:206> [10:32:10:41] 'WriteLine'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <197:206> [10:32:10:41] 'WriteLine'
           ArgumentListSyntax
            OpenParenToken <206:207> [10:41:10:42] '('
            SyntaxList
@@ -172,8 +200,12 @@ SourceFileSyntax
        CodeBlockItemSyntax
         ExpressionStatementSyntax
          InvocationExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <232:241> [11:13:11:22] 'WriteLine'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <232:241> [11:13:11:22] 'WriteLine'
           ArgumentListSyntax
            OpenParenToken <241:242> [11:22:11:23] '('
            SyntaxList
@@ -187,8 +219,12 @@ SourceFileSyntax
     MatchExpressionSyntax
      MatchKeyword <261:266> [14:0:14:5] 'match'
      OpenParenToken <267:268> [14:6:14:7] '('
-     IdentifierNameSyntax
-      IdentifierToken <268:269> [14:7:14:8] 'z'
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <268:269> [14:7:14:8] 'z'
      CloseParenToken <269:270> [14:8:14:9] ')'
      OpenBraceToken <271:272> [15:0:15:1] '{'
      SyntaxList
@@ -228,7 +264,7 @@ SourceFileSyntax
              CommaToken <299:300> [16:26:16:27] ','
             SlicePatternItemSyntax
              IdentifierPatternSyntax
-              IdentifierNameSyntax
+              IdentifierSyntax
                IdentifierToken <301:303> [16:28:16:30] 'xx'
            CloseBracketToken <303:304> [16:30:16:31] ']'
           CommaToken <304:305> [16:31:16:32] ','
@@ -246,7 +282,7 @@ SourceFileSyntax
                 CommaToken <309:310> [16:36:16:37] ','
                SlicePatternItemSyntax
                 IdentifierPatternSyntax
-                 IdentifierNameSyntax
+                 IdentifierSyntax
                   IdentifierToken <311:313> [16:38:16:40] 'yy'
               CloseBracketToken <313:314> [16:40:16:41] ']'
              CommaToken <314:315> [16:41:16:42] ','
@@ -256,7 +292,7 @@ SourceFileSyntax
               SyntaxList
                TuplePatternItemSyntax
                 IdentifierPatternSyntax
-                 IdentifierNameSyntax
+                 IdentifierSyntax
                   IdentifierToken <317:319> [16:44:16:46] 'zz'
               CloseParenToken <319:320> [16:46:16:47] ')'
              CommaToken <320:321> [16:47:16:48] ','
@@ -295,8 +331,12 @@ SourceFileSyntax
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              InvocationExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <364:373> [18:12:18:21] 'WriteLine'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <364:373> [18:12:18:21] 'WriteLine'
               ArgumentListSyntax
                OpenParenToken <373:374> [18:21:18:22] '('
                SyntaxList
@@ -317,8 +357,12 @@ SourceFileSyntax
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              InvocationExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <431:440> [22:12:22:21] 'WriteLine'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <431:440> [22:12:22:21] 'WriteLine'
               ArgumentListSyntax
                OpenParenToken <440:441> [22:21:22:22] '('
                SyntaxList
@@ -334,37 +378,41 @@ SourceFileSyntax
     MatchExpressionSyntax
      MatchKeyword <470:475> [26:0:26:5] 'match'
      OpenParenToken <476:477> [26:6:26:7] '('
-     IdentifierNameSyntax
-      IdentifierToken <477:478> [26:7:26:8] 'w'
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <477:478> [26:7:26:8] 'w'
      CloseParenToken <478:479> [26:8:26:9] ')'
      OpenBraceToken <480:481> [27:0:27:1] '{'
      SyntaxList
       MatchCaseClauseSyntax
        CaseKeyword <486:490> [28:4:28:8] 'case'
        IdentifierPatternSyntax
-        IdentifierNameSyntax
+        IdentifierSyntax
          IdentifierToken <491:501> [28:9:28:19] 'SomeStruct'
         StructPatternSyntax
          OpenBraceToken <501:502> [28:19:28:20] '{'
          SyntaxList
           FieldPatternSyntax
-           IdentifierNameSyntax
+           IdentifierSyntax
             IdentifierToken <503:504> [28:21:28:22] 'a'
            ColonToken <504:505> [28:22:28:23] ':'
            IdentifierPatternSyntax
-            IdentifierNameSyntax
+            IdentifierSyntax
              IdentifierToken <506:510> [28:24:28:28] 'Some'
             TuplePatternSyntax
              OpenParenToken <510:511> [28:28:28:29] '('
              SyntaxList
               TuplePatternItemSyntax
                IdentifierPatternSyntax
-                IdentifierNameSyntax
+                IdentifierSyntax
                  IdentifierToken <511:512> [28:29:28:30] 'n'
              CloseParenToken <512:513> [28:30:28:31] ')'
            CommaToken <513:514> [28:31:28:32] ','
           FieldPatternSyntax
-           IdentifierNameSyntax
+           IdentifierSyntax
             IdentifierToken <515:516> [28:33:28:34] 'b'
            ColonToken <516:517> [28:34:28:35] ':'
            SlicePatternSyntax
@@ -396,8 +444,12 @@ SourceFileSyntax
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              InvocationExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <557:564> [30:12:30:19] 'matched'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <557:564> [30:12:30:19] 'matched'
               ArgumentListSyntax
                OpenParenToken <564:565> [30:19:30:20] '('
                CloseParenToken <565:566> [30:20:30:21] ')'
@@ -414,8 +466,12 @@ SourceFileSyntax
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              InvocationExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <605:614> [34:8:34:17] 'unmatched'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <605:614> [34:8:34:17] 'unmatched'
               ArgumentListSyntax
                OpenParenToken <614:615> [34:17:34:18] '('
                CloseParenToken <615:616> [34:18:34:19] ')'

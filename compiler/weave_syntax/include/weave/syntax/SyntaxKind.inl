@@ -401,11 +401,6 @@ WEAVE_SYNTAX_NODE(SyntaxList,                                   "[node:syntax-li
 WEAVE_SYNTAX_NODE(UsingDeclarationSyntax,                       "[node:using-declaration]")
 WEAVE_SYNTAX_NODE(IncompleteDeclarationSyntax,                  "[node:incomplete-declaration]")
 WEAVE_SYNTAX_NODE(NamespaceDeclarationSyntax,                   "[node:namespace-declaration]")
-WEAVE_SYNTAX_NODE(SimpleNameSyntax,                             "[node:simple-name]")
-WEAVE_SYNTAX_NODE(IdentifierNameSyntax,                         "[node:identifier-name]")
-WEAVE_SYNTAX_NODE(TupleIndexSyntax,                             "[node:tuple-index]")
-WEAVE_SYNTAX_NODE(GenericNameSyntax,                            "[node:generic-name]")
-WEAVE_SYNTAX_NODE(QualifiedNameSyntax,                          "[node:qualified-name]")
 WEAVE_SYNTAX_NODE(StructDeclarationSyntax,                      "[node:struct-declaration]")
 WEAVE_SYNTAX_NODE(ConceptDeclarationSyntax,                     "[node:concept-declaration]")
 WEAVE_SYNTAX_NODE(ExtendDeclarationSyntax,                      "[node:extend-declaration]")
@@ -422,6 +417,16 @@ WEAVE_SYNTAX_NODE(ParameterListSyntax,                          "[node:parameter
 WEAVE_SYNTAX_NODE(GenericArgumentSyntax,                        "generic argument")
 WEAVE_SYNTAX_NODE(GenericArgumentsSyntax,                       "generic arguments")
 
+// >> new stuff
+WEAVE_SYNTAX_NODE(IdentifierSyntax,                             "xxx: identifier syntax")
+WEAVE_SYNTAX_NODE(IndexSyntax,                                  "index syntax")
+
+WEAVE_SYNTAX_NODE(PathSyntax,                                   "path")
+WEAVE_SYNTAX_NODE(PathSegmentSyntax,                            "path segment")
+WEAVE_SYNTAX_NODE(PathExpressionSyntax,                         "path expression")
+WEAVE_SYNTAX_NODE(TypePathSyntax,                               "type path")
+// << new stuff
+
 WEAVE_SYNTAX_NODE(YieldStatementSyntax,                         "yield statement")
 
 WEAVE_SYNTAX_NODE(TypeGenericParameterSyntax,                   "type generic parameter")
@@ -436,7 +441,8 @@ WEAVE_SYNTAX_NODE(AssignmentExpressionSyntax,                   "[node:assignmen
 WEAVE_SYNTAX_NODE(LiteralExpressionSyntax,                      "[node:literal-expression]")
 WEAVE_SYNTAX_NODE(UnaryExpressionSyntax,                        "[node:unary-expression]")
 WEAVE_SYNTAX_NODE(BinaryExpressionSyntax,                       "[node:binary-expression]")
-WEAVE_SYNTAX_NODE(InitializerClauseSyntax,                      "initializer clause")
+WEAVE_SYNTAX_NODE(ExpressionInitializerClauseSyntax,            "expression initializer clause")
+WEAVE_SYNTAX_NODE(TypeInitializerClauseSyntax,                  "type initializer clause")
 WEAVE_SYNTAX_NODE(PostfixUnaryExpressionSyntax,                 "[node:postfix-unary-expression]")
 WEAVE_SYNTAX_NODE(InvocationExpressionSyntax,                   "[node:invocation-expression]")
 WEAVE_SYNTAX_NODE(ConditionalExpressionSyntax,                  "[node:conditional-expression]")

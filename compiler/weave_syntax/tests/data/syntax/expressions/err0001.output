@@ -7,15 +7,22 @@ SourceFileSyntax
       HashOpenBracketToken <0:2> [0:0:0:2] '#['
       SyntaxList
        AttributeSyntax
-        IdentifierNameSyntax
-         IdentifierToken <2:5> [0:2:0:5] 'foo'
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <2:5> [0:2:0:5] 'foo'
       CloseBracketToken <5:6> [0:5:0:6] ']'
     IfExpressionSyntax
      IfKeyword <7:9> [0:7:0:9] 'if'
      OpenParenToken <10:11> [0:10:0:11] '('
      BinaryExpressionSyntax
-      IdentifierNameSyntax
-       IdentifierToken <11:12> [0:11:0:12] 'x'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <11:12> [0:11:0:12] 'x'
       EqualsEqualsToken <13:15> [0:13:0:15] '=='
       LiteralExpressionSyntax
        IntegerLiteralToken <16:18> [0:16:0:18] '42'
@@ -29,8 +36,12 @@ SourceFileSyntax
        IfKeyword <29:31> [1:7:1:9] 'if'
        OpenParenToken <32:33> [1:10:1:11] '('
        BinaryExpressionSyntax
-        IdentifierNameSyntax
-         IdentifierToken <33:34> [1:11:1:12] 'y'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <33:34> [1:11:1:12] 'y'
         EqualsEqualsToken <35:37> [1:13:1:15] '=='
         LiteralExpressionSyntax
          IntegerLiteralToken <38:42> [1:16:1:20] '2137'
@@ -44,8 +55,12 @@ SourceFileSyntax
          IfKeyword <53:55> [2:7:2:9] 'if'
          OpenParenToken <56:57> [2:10:2:11] '('
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <57:58> [2:11:2:12] 'z'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <57:58> [2:11:2:12] 'z'
           EqualsEqualsToken <59:61> [2:13:2:15] '=='
           LiteralExpressionSyntax
            IntegerLiteralToken <62:65> [2:16:2:19] '222'

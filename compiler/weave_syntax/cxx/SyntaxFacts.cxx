@@ -413,8 +413,8 @@ namespace weave::syntax
             return Precedence::Expression;
         case SyntaxKind::CharacterLiteralExpression:
         case SyntaxKind::FalseLiteralExpression:
-        case SyntaxKind::GenericNameSyntax:
-        case SyntaxKind::IdentifierNameSyntax:
+        //case SyntaxKind::GenericNameSyntax: // not an expression
+        //case SyntaxKind::IdentifierNameSyntax: // not an expression
         case SyntaxKind::InvocationExpression:
         case SyntaxKind::IntegerLiteralExpression:
         case SyntaxKind::FloatLiteralExpression:
@@ -440,22 +440,6 @@ namespace weave::syntax
         default:
             WEAVE_BUGCHECK("Unexpected precedence value");
         }
-    }
-
-    bool SyntaxFacts::IsName(SyntaxKind kind)
-    {
-        switch (kind) // NOLINT(clang-diagnostic-switch-enum)
-        {
-        case SyntaxKind::IdentifierNameSyntax:
-        case SyntaxKind::GenericNameSyntax:
-        case SyntaxKind::QualifiedNameSyntax:
-            return true;
-
-        default:
-            break;
-        }
-
-        return false;
     }
 
     bool SyntaxFacts::IsInvalidSubexpression(SyntaxKind kind)

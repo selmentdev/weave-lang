@@ -5,7 +5,7 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <38:44> [1:0:1:6] 'public'
     ConstKeyword <45:50> [1:7:1:12] 'const'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <51:52> [1:13:1:14] 'X'
    SemicolonToken <52:53> [1:14:1:15] ';'
   CodeBlockItemSyntax
@@ -13,21 +13,25 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <94:100> [4:0:4:6] 'public'
     ConstKeyword <101:106> [4:7:4:12] 'const'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <107:108> [4:13:4:14] 'Y'
     TypeClauseSyntax
      ColonToken <109:110> [4:15:4:16] ':'
-     IdentifierNameSyntax
-      IdentifierToken <111:116> [4:17:4:22] 'Int32'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <111:116> [4:17:4:22] 'Int32'
    SemicolonToken <116:117> [4:22:4:23] ';'
   CodeBlockItemSyntax
    ConstantDeclarationSyntax
     SyntaxList
      PublicKeyword <162:168> [7:0:7:6] 'public'
     ConstKeyword <169:174> [7:7:7:12] 'const'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <175:176> [7:13:7:14] 'Z'
-    InitializerClauseSyntax
+    ExpressionInitializerClauseSyntax
      EqualsToken <177:178> [7:15:7:16] '='
      LiteralExpressionSyntax
       IntegerLiteralToken <179:181> [7:17:7:19] '42'
@@ -37,13 +41,17 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <219:225> [10:0:10:6] 'public'
     ConstKeyword <226:231> [10:7:10:12] 'const'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <232:233> [10:13:10:14] 'W'
     TypeClauseSyntax
      ColonToken <234:235> [10:15:10:16] ':'
-     IdentifierNameSyntax
-      IdentifierToken <236:241> [10:17:10:22] 'Int32'
-    InitializerClauseSyntax
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <236:241> [10:17:10:22] 'Int32'
+    ExpressionInitializerClauseSyntax
      EqualsToken <242:243> [10:23:10:24] '='
      LiteralExpressionSyntax
       IntegerLiteralToken <244:246> [10:25:10:27] '42'

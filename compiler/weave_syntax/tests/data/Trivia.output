@@ -5,30 +5,38 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <17:23> [1:0:1:6] 'public'
     FunctionKeyword <24:32> [1:7:1:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <33:46> [1:16:1:29] 'TryReadTrivia'
     ParameterListSyntax
      OpenParenToken <46:47> [1:29:1:30] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <52:55> [2:4:2:7] 'oof'
        TypeClauseSyntax
         ColonToken <55:56> [2:7:2:8] ':'
         SyntaxList
          InKeyword <57:59> [2:9:2:11] 'in'
-        IdentifierNameSyntax
-         IdentifierToken <60:65> [2:12:2:17] 'Lexer'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <60:65> [2:12:2:17] 'Lexer'
        CommaToken <65:66> [2:17:2:18] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <115:121> [3:4:3:10] 'trivia'
        TypeClauseSyntax
         ColonToken <121:122> [3:10:3:11] ':'
         SyntaxList
          OutKeyword <123:126> [3:12:3:15] 'out'
-        IdentifierNameSyntax
-         IdentifierToken <127:133> [3:16:3:22] 'Trivia'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <127:133> [3:16:3:22] 'Trivia'
      CloseParenToken <176:177> [4:0:4:1] ')'
     CodeBlockSyntax
      OpenBraceToken <178:179> [5:0:5:1] '{'
@@ -41,24 +49,36 @@ SourceFileSyntax
          BinaryExpressionSyntax
           InvocationExpressionSyntax
            MemberAccessExpressionSyntax
-            IdentifierNameSyntax
-             IdentifierToken <188:192> [6:8:6:12] 'self'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <188:192> [6:8:6:12] 'self'
             DotToken <192:193> [6:12:6:13] '.'
-            IdentifierNameSyntax
+            IdentifierSyntax
              IdentifierToken <193:207> [6:13:6:27] 'TryReadComment'
            ArgumentListSyntax
             OpenParenToken <207:208> [6:27:6:28] '('
             CloseParenToken <208:209> [6:28:6:29] ')'
           IsKeyword <227:229> [6:47:6:49] 'is'
           InvocationExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <257:261> [6:77:6:81] 'Some'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <257:261> [6:77:6:81] 'Some'
            ArgumentListSyntax
             OpenParenToken <261:262> [6:81:6:82] '('
             SyntaxList
              ArgumentSyntax
-              IdentifierNameSyntax
-               IdentifierToken <262:269> [6:82:6:89] 'comment'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <262:269> [6:82:6:89] 'comment'
             CloseParenToken <269:270> [6:89:6:90] ')'
          CloseParenToken <270:271> [6:90:6:91] ')'
          CodeBlockSyntax
@@ -67,22 +87,34 @@ SourceFileSyntax
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              AssignmentExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <282:288> [7:8:7:14] 'trivia'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <282:288> [7:8:7:14] 'trivia'
               EqualsToken <289:290> [7:15:7:16] '='
               InvocationExpressionSyntax
                MemberAccessExpressionSyntax
-                IdentifierNameSyntax
-                 IdentifierToken <291:297> [7:17:7:23] 'Trivia'
+                PathExpressionSyntax
+                 PathSyntax
+                  SyntaxList
+                   PathSegmentSyntax
+                    IdentifierSyntax
+                     IdentifierToken <291:297> [7:17:7:23] 'Trivia'
                 DotToken <297:298> [7:23:7:24] '.'
-                IdentifierNameSyntax
+                IdentifierSyntax
                  IdentifierToken <298:305> [7:24:7:31] 'Comment'
                ArgumentListSyntax
                 OpenParenToken <305:306> [7:31:7:32] '('
                 SyntaxList
                  ArgumentSyntax
-                  IdentifierNameSyntax
-                   IdentifierToken <306:313> [7:32:7:39] 'comment'
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <306:313> [7:32:7:39] 'comment'
                 CloseParenToken <313:314> [7:39:7:40] ')'
             SemicolonToken <314:315> [7:40:7:41] ';'
           CloseBraceToken <320:321> [8:4:8:5] '}'
@@ -94,14 +126,22 @@ SourceFileSyntax
             CodeBlockItemSyntax
              ExpressionStatementSyntax
               AssignmentExpressionSyntax
-               IdentifierNameSyntax
-                IdentifierToken <361:367> [9:32:9:38] 'trivia'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <361:367> [9:32:9:38] 'trivia'
                EqualsToken <368:369> [9:39:9:40] '='
                MemberAccessExpressionSyntax
-                IdentifierNameSyntax
-                 IdentifierToken <370:376> [9:41:9:47] 'Trivia'
+                PathExpressionSyntax
+                 PathSyntax
+                  SyntaxList
+                   PathSegmentSyntax
+                    IdentifierSyntax
+                     IdentifierToken <370:376> [9:41:9:47] 'Trivia'
                 DotToken <376:377> [9:47:9:48] '.'
-                IdentifierNameSyntax
+                IdentifierSyntax
                  IdentifierToken <377:381> [9:48:9:52] 'None'
            CloseBraceToken <409:410> [10:4:10:5] '}'
      CloseBraceToken <437:438> [12:0:12:1] '}'

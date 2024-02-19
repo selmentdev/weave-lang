@@ -410,7 +410,7 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->Modifiers = modifiers;
         result->FunctionKeyword = this->Match(SyntaxKind::FunctionKeyword);
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
 
         result->GenericParameters = this->ParseOptionalGenericParameters();
 
@@ -446,7 +446,7 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->Modifiers = modifiers;
         result->DelegateKeyword = this->Match(SyntaxKind::DelegateKeyword);
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
 
         result->GenericParameters = this->ParseOptionalGenericParameters();
 
@@ -466,7 +466,7 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->Modifiers = modifiers;
         result->NamespaceKeyword = this->Match(SyntaxKind::NamespaceKeyword);
-        result->Name = this->ParseQualifiedName();
+        result->Name = this->ParsePath();
         result->Members = this->ParseCodeBlock();
         return result;
     }
@@ -479,7 +479,7 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->Modifiers = modifiers;
         result->ConceptKeyword = this->Match(SyntaxKind::ConceptKeyword);
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
         result->GenericParameters = this->ParseOptionalGenericParameters();
         result->Constraints = this->ParseConstraintClauseSequence();
         result->Members = this->ParseCodeBlock();
@@ -494,13 +494,13 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->Modifiers = modifiers;
         result->ExtendKeyword = this->Match(SyntaxKind::ExtendKeyword);
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
         result->GenericParameters = this->ParseOptionalGenericParameters();
 
         if (this->Current()->Kind == SyntaxKind::AsKeyword)
         {
             result->AsKeyword = this->Match(SyntaxKind::AsKeyword);
-            result->ConceptType = this->ParseQualifiedName();
+            result->ConceptType = this->ParseTypePath();
         }
 
         result->Constraints = this->ParseConstraintClauseSequence();
@@ -517,7 +517,7 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->Modifiers = modifiers;
         result->StructKeyword = this->Match(SyntaxKind::StructKeyword);
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
         result->GenericParameters = this->ParseOptionalGenericParameters();
         result->Constraints = this->ParseConstraintClauseSequence();
         result->Members = this->ParseCodeBlock();
@@ -527,7 +527,7 @@ namespace weave::syntax
     TypeAliasDeclarationSyntax* Parser::ParseTypeAliasDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
     {
         SyntaxToken* tokenType = this->Match(SyntaxKind::TypeKeyword);
-        NameSyntax* name = this->ParseIdentifierName();
+        IdentifierSyntax* name = this->ParseIdentifier();
         SyntaxToken* tokenEquals = this->Match(SyntaxKind::EqualsToken);
         TypeSyntax* type = this->ParseType();
 
@@ -547,7 +547,7 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->Modifiers = modifiers;
         result->ConstKeyword = this->Match(SyntaxKind::ConstKeyword);
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
         result->Type = this->ParseOptionalTypeClause();
         result->Initializer = this->ParseOptionalInitializerClause();
         return result;
@@ -826,7 +826,7 @@ namespace weave::syntax
         SyntaxListView<AttributeListSyntax> const attributes = this->ParseAttributesList();
         SyntaxListView<SyntaxToken> const modifiers = this->ParseFunctionParameterModifiersList();
 
-        NameSyntax* name = this->ParseIdentifierName();
+        IdentifierSyntax* name = this->ParseIdentifier();
         TypeClauseSyntax* typeClause = this->ParseOptionalTypeClause();
         SyntaxToken* trailingComma = this->TryMatch(SyntaxKind::CommaToken);
 
@@ -884,14 +884,9 @@ namespace weave::syntax
     {
         TypeGenericParameterSyntax* result = this->_factory->CreateNode<TypeGenericParameterSyntax>();
         result->TypeKeyword = this->Match(SyntaxKind::TypeKeyword);
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
 
-        result->EqualsToken = this->TryMatch(SyntaxKind::EqualsToken);
-
-        if (result->EqualsToken)
-        {
-            result->DefaultExpression = this->ParseQualifiedName();
-        }
+        result->Initializer = this->ParseOptionalTypeInitializerClause();
 
         result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
         last = result->TrailingComma == nullptr;
@@ -902,21 +897,10 @@ namespace weave::syntax
     {
         ConstGenericParameterSyntax* result = this->_factory->CreateNode<ConstGenericParameterSyntax>();
         result->ConstKeyword = this->Match(SyntaxKind::ConstKeyword);
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
 
-        result->ColonToken = this->TryMatch(SyntaxKind::ColonToken);
-
-        if (result->ColonToken)
-        {
-            result->Type = this->ParseQualifiedName();
-        }
-
-        result->EqualsToken = this->TryMatch(SyntaxKind::EqualsToken);
-
-        if (result->EqualsToken)
-        {
-            result->DefaultExpression = this->ParseTerm(Precedence::Expression);
-        }
+        result->Type = this->ParseOptionalTypeClause();
+        result->Initializer = this->ParseOptionalInitializerClause();
 
         result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
         last = result->TrailingComma == nullptr;
@@ -975,6 +959,16 @@ namespace weave::syntax
         return result;
     }
 
+    GenericArgumentsSyntax* Parser::ParseOptionalGenericArguments()
+    {
+        if (this->Current()->Kind == SyntaxKind::ExclamationOpenBracketToken)
+        {
+            return this->ParseGenericArguments();
+        }
+
+        return nullptr;
+    }
+
     // *** --------------------------------------------------------------------------------------------------------- ***
 
     AttributeSyntax* Parser::ParseAttribute()
@@ -982,7 +976,7 @@ namespace weave::syntax
         if (this->Current()->Kind == SyntaxKind::IdentifierToken)
         {
             AttributeSyntax* result = this->_factory->CreateNode<AttributeSyntax>();
-            result->Name = this->ParseQualifiedName();
+            result->Name = this->ParsePath();
             result->Tokens = this->ParseBalancedTokenSequence(SyntaxKind::OpenParenToken, SyntaxKind::CloseParenToken);
             result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
             return result;
@@ -1019,7 +1013,7 @@ namespace weave::syntax
     UsingDeclarationSyntax* Parser::ParseUsingDeclaration()
     {
         SyntaxToken* tokenUsing = this->Match(SyntaxKind::UsingKeyword);
-        NameSyntax* name = this->ParseQualifiedName();
+        PathSyntax* name = this->ParsePath();
 
         UsingDeclarationSyntax* result = this->_factory->CreateNode<UsingDeclarationSyntax>();
         result->UsingKeyword = tokenUsing;
@@ -1108,9 +1102,6 @@ namespace weave::syntax
     {
         switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
         {
-        case SyntaxKind::IdentifierToken:
-            return this->ParseQualifiedName();
-
         case SyntaxKind::OpenParenToken:
             return this->ParseTupleType();
 
@@ -1127,25 +1118,43 @@ namespace weave::syntax
             break;
         }
 
-        return this->CreateMissingIdentifierName();
+        return this->ParseTypePath();
     }
 
-    InitializerClauseSyntax* Parser::ParseInitializerClause()
+    ExpressionInitializerClauseSyntax* Parser::ParseInitializerClause()
     {
         SyntaxToken* tokenEquals = this->Match(SyntaxKind::EqualsToken);
         ExpressionSyntax* expression = this->ParseExpression();
 
-        InitializerClauseSyntax* result = this->_factory->CreateNode<InitializerClauseSyntax>();
+        ExpressionInitializerClauseSyntax* result = this->_factory->CreateNode<ExpressionInitializerClauseSyntax>();
         result->EqualsToken = tokenEquals;
         result->Expression = expression;
         return result;
     }
 
-    InitializerClauseSyntax* Parser::ParseOptionalInitializerClause()
+    ExpressionInitializerClauseSyntax* Parser::ParseOptionalInitializerClause()
     {
         if (this->Current()->Kind == SyntaxKind::EqualsToken)
         {
             return this->ParseInitializerClause();
+        }
+
+        return nullptr;
+    }
+
+    TypeInitializerClauseSyntax* Parser::ParseTypeInitializerClause()
+    {
+        TypeInitializerClauseSyntax* result = this->_factory->CreateNode<TypeInitializerClauseSyntax>();
+        result->EqualsToken = this->Match(SyntaxKind::EqualsToken);
+        result->DefaultType = this->ParseType();
+        return result;
+    }
+
+    TypeInitializerClauseSyntax* Parser::ParseOptionalTypeInitializerClause()
+    {
+        if (this->Current()->Kind == SyntaxKind::EqualsToken)
+        {
+            return this->ParseTypeInitializerClause();
         }
 
         return nullptr;
@@ -1231,73 +1240,30 @@ namespace weave::syntax
         return result;
     }
 
-    NameSyntax* Parser::ParseQualifiedName()
+    IdentifierSyntax* Parser::ParseIdentifier()
     {
-        NameSyntax* left = this->ParseSimpleName();
-
-        LoopProgressCondition progress{this->Current()};
-
-        do
-        {
-            SyntaxToken* const tokenDot = this->Peek(0);
-            SyntaxToken* const tokenRight = this->Peek(1);
-
-            if ((tokenDot->Kind == SyntaxKind::ColonColonToken) and (tokenRight->Kind == SyntaxKind::IdentifierToken))
-            {
-                this->Next();
-
-                SimpleNameSyntax* right = this->ParseSimpleName();
-                QualifiedNameSyntax* qualified = this->_factory->CreateNode<QualifiedNameSyntax>();
-                qualified->Left = left;
-                qualified->DotToken = tokenDot;
-                qualified->Right = right;
-
-                left = qualified;
-            }
-            else
-            {
-                break;
-            }
-        } while (progress.Evaluate(this->Current()));
-
-        return left;
+        SyntaxToken* token = this->Match(SyntaxKind::IdentifierToken);
+        IdentifierSyntax* result = this->_factory->CreateNode<IdentifierSyntax>();
+        result->Identifier = token->As<IdentifierSyntaxToken>();
+        return result;
     }
 
-    SimpleNameSyntax* Parser::ParseSimpleName()
+    IndexSyntax* Parser::ParseIndex()
+    {
+        SyntaxToken* token = this->Match(SyntaxKind::IntegerLiteralToken);
+        IndexSyntax* result = this->_factory->CreateNode<IndexSyntax>();
+        result->Index = token->As<IntegerLiteralSyntaxToken>();
+        return result;
+    }
+
+    NameSyntax* Parser::ParseMemberName()
     {
         if (this->Current()->Kind == SyntaxKind::IntegerLiteralToken)
         {
-            return this->ParseTupleIndex();
+            return this->ParseIndex();
         }
 
-        if (this->Current()->Kind == SyntaxKind::IdentifierToken)
-        {
-            if (this->Peek(1)->Kind == SyntaxKind::ExclamationOpenBracketToken)
-            {
-                GenericNameSyntax* result = this->_factory->CreateNode<GenericNameSyntax>();
-                result->Identifier = this->Match(SyntaxKind::IdentifierToken);
-                result->GenericArguments = this->ParseGenericArguments();
-                return result;
-            }
-        }
-
-        return this->ParseIdentifierName();
-    }
-
-    IdentifierNameSyntax* Parser::ParseIdentifierName()
-    {
-        SyntaxToken* identifier = this->Match(SyntaxKind::IdentifierToken);
-        IdentifierNameSyntax* result = this->_factory->CreateNode<IdentifierNameSyntax>();
-        result->Identifier = identifier;
-        return result;
-    }
-
-    TupleIndexSyntax* Parser::ParseTupleIndex()
-    {
-        SyntaxToken* index = this->Match(SyntaxKind::IntegerLiteralToken);
-        TupleIndexSyntax* result = this->_factory->CreateNode<TupleIndexSyntax>();
-        result->Identifier = index;
-        return result;
+        return this->ParseIdentifier();
     }
 
     UnreachableExpressionSyntax* Parser::ParseUnreachableExpression()
@@ -1480,7 +1446,7 @@ namespace weave::syntax
                     result->OperationKind = SyntaxKind::SimpleMemberAccessExpression;
                     result->Expression = expression;
                     result->OperatorToken = this->Next();
-                    result->Name = this->ParseSimpleName();
+                    result->Name = this->ParseMemberName();
                     expression = result;
                     continue;
                 }
@@ -1552,50 +1518,6 @@ namespace weave::syntax
         case SyntaxKind::CharacterLiteralToken:
             return this->ParseCharacterLiteral();
 
-        case SyntaxKind::IdentifierToken:
-            {
-                NameSyntax* name = this->ParseQualifiedName();
-
-                if (this->Current()->Kind == SyntaxKind::OpenBraceToken)
-                {
-                    StructExpressionSyntax* result = this->_factory->CreateNode<StructExpressionSyntax>();
-                    result->TypeName = name;
-
-                    this->MatchUntil(result->OpenBraceToken, result->BeforeOpenBraceToken, SyntaxKind::OpenBraceToken);
-
-                    if (this->Current()->Kind != SyntaxKind::CloseBraceToken)
-                    {
-                        std::vector<LabeledExpressionSyntax*> elements{};
-
-                        LoopProgressCondition progress{this->Current()};
-
-                        do
-                        {
-                            if (this->Current()->Kind == SyntaxKind::CloseBraceToken)
-                            {
-                                break;
-                            }
-
-                            LabeledExpressionSyntax* element = this->ParseLabeledExpression();
-                            elements.push_back(element);
-
-                            if (element->TrailingComma == nullptr)
-                            {
-                                break;
-                            }
-                        } while (progress.Evaluate(this->Current()));
-
-                        result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
-                    }
-
-                    this->MatchUntil(result->CloseBraceToken, result->BeforeCloseBraceToken, SyntaxKind::CloseBraceToken);
-
-                    return result;
-                }
-
-                return name;
-            }
-
         case SyntaxKind::UnreachableKeyword:
             return this->ParseUnreachableExpression();
 
@@ -1622,9 +1544,18 @@ namespace weave::syntax
             return this->ParseArrayExpression();
 
         default:
-            ExpressionSyntax* missing = this->CreateMissingIdentifierName();
-            return missing;
+            break;
         }
+
+        // Default case - try parse as path expression
+        PathSyntax* path = this->ParsePath();
+
+        if (this->Current()->Kind == SyntaxKind::OpenBraceToken)
+        {
+            return this->ParseStructExpression(path);
+        }
+
+        return this->ParsePathExpression(path);
     }
 
     TupleExpressionSyntax* Parser::ParseTupleExpression()
@@ -1653,6 +1584,44 @@ namespace weave::syntax
         result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
 
         this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
+
+        return result;
+    }
+
+    StructExpressionSyntax* Parser::ParseStructExpression(PathSyntax* path)
+    {
+        StructExpressionSyntax* result = this->_factory->CreateNode<StructExpressionSyntax>();
+        result->TypeName = this->_factory->CreateNode<TypePathSyntax>();
+        result->TypeName->Path = path;
+
+        this->MatchUntil(result->OpenBraceToken, result->BeforeOpenBraceToken, SyntaxKind::OpenBraceToken);
+
+        if (this->Current()->Kind != SyntaxKind::CloseBraceToken)
+        {
+            std::vector<LabeledExpressionSyntax*> elements{};
+
+            LoopProgressCondition progress{this->Current()};
+
+            do
+            {
+                if (this->Current()->Kind == SyntaxKind::CloseBraceToken)
+                {
+                    break;
+                }
+
+                LabeledExpressionSyntax* element = this->ParseLabeledExpression();
+                elements.push_back(element);
+
+                if (element->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
+
+            result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
+        }
+
+        this->MatchUntil(result->CloseBraceToken, result->BeforeCloseBraceToken, SyntaxKind::CloseBraceToken);
 
         return result;
     }
@@ -1952,15 +1921,6 @@ namespace weave::syntax
         return nullptr;
     }
 
-    IdentifierNameSyntax* Parser::CreateMissingIdentifierName()
-    {
-        IdentifierNameSyntax* result = this->_factory->CreateNode<IdentifierNameSyntax>();
-        result->Identifier = this->_factory->CreateMissingToken(
-            SyntaxKind::IdentifierToken,
-            this->Current()->Source /*.WithZeroLength()*/);
-        return result;
-    }
-
     UnexpectedNodesSyntax* Parser::CreateUnexpectedNodes(std::span<SyntaxNode*> nodes)
     {
         if (not nodes.empty())
@@ -2142,7 +2102,7 @@ namespace weave::syntax
     NameColonSyntax* Parser::ParseNameColon()
     {
         NameColonSyntax* result = this->_factory->CreateNode<NameColonSyntax>();
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
         result->ColonToken = this->Match(SyntaxKind::ColonToken);
         return result;
     }
@@ -2316,7 +2276,7 @@ namespace weave::syntax
         result->Attributes = attributes;
         result->Modifiers = modifiers;
         result->EnumKeyword = this->Match(SyntaxKind::EnumKeyword);
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
         result->GenericParameters = this->ParseOptionalGenericParameters();
         result->BaseType = this->ParseOptionalTypeInheritanceClause();
 
@@ -2359,7 +2319,7 @@ namespace weave::syntax
             EnumMemberDeclarationSyntax* result = this->_factory->CreateNode<EnumMemberDeclarationSyntax>();
             result->Attributes = attributes;
             result->Modifiers = {};
-            result->Identifier = this->ParseIdentifierName();
+            result->Identifier = this->ParseIdentifier();
             result->Tuple = this->ParseOptionalTupleType();
             result->Discriminator = this->ParseOptionalInitializerClause();
             result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
@@ -2378,7 +2338,7 @@ namespace weave::syntax
 
         this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
 
-        result->Type = this->ParseIdentifierName();
+        result->Type = this->ParseIdentifier();
 
         this->MatchUntil(result->Colon, result->BeforeColon, SyntaxKind::ColonToken);
 
@@ -2417,7 +2377,7 @@ namespace weave::syntax
     WherePredicateSyntax* Parser::ParseWherePredicate()
     {
         WherePredicateSyntax* result = this->_factory->CreateNode<WherePredicateSyntax>();
-        result->Type = this->ParseQualifiedName();
+        result->Type = this->ParseTypePath();
         result->TrailingComma = this->TryMatch(SyntaxKind::CommaToken);
         return result;
     }
@@ -2484,6 +2444,58 @@ namespace weave::syntax
         return SyntaxListView<ConstraintClauseSyntax>{this->_factory->CreateList(constraints)};
     }
 
+    PathSegmentSyntax* Parser::ParsePathSegment()
+    {
+        PathSegmentSyntax* result = this->_factory->CreateNode<PathSegmentSyntax>();
+        result->Identifier = this->ParseIdentifier();
+        result->Arguments = this->ParseOptionalGenericArguments();
+        result->TrailingSeparator = this->TryMatch(SyntaxKind::ColonColonToken);
+        return result;
+    }
+
+    SyntaxListView<PathSegmentSyntax> Parser::ParsePathSegmentSequence()
+    {
+        std::vector<PathSegmentSyntax*> segments{};
+
+        LoopProgressCondition progress{this->Current()};
+
+        do
+        {
+            // Parse at least one segment.
+            PathSegmentSyntax* segment = this->ParsePathSegment();
+            segments.emplace_back(segment);
+
+            if (segment->TrailingSeparator == nullptr)
+            {
+                break;
+            }
+
+        } while (progress.Evaluate(this->Current()));
+
+        return SyntaxListView<PathSegmentSyntax>{this->_factory->CreateList(segments)};
+    }
+
+    PathSyntax* Parser::ParsePath()
+    {
+        PathSyntax* result = this->_factory->CreateNode<PathSyntax>();
+        result->Segments = this->ParsePathSegmentSequence();
+        return result;
+    }
+
+    TypePathSyntax* Parser::ParseTypePath()
+    {
+        TypePathSyntax* result = this->_factory->CreateNode<TypePathSyntax>();
+        result->Path = this->ParsePath();
+        return result;
+    }
+
+    PathExpressionSyntax* Parser::ParsePathExpression(PathSyntax* path)
+    {
+        PathExpressionSyntax* result = this->_factory->CreateNode<PathExpressionSyntax>();
+        result->Path = path;
+        return result;
+    }
+
     PatternSyntax* Parser::ParsePattern()
     {
         switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
@@ -2533,7 +2545,7 @@ namespace weave::syntax
     IdentifierPatternSyntax* Parser::ParseIdentifierPattern()
     {
         IdentifierPatternSyntax* result = this->_factory->CreateNode<IdentifierPatternSyntax>();
-        result->Identifier = this->ParseQualifiedName();
+        result->Identifier = this->ParseIdentifier();
 
         if (this->Current()->Kind == SyntaxKind::OpenParenToken)
         {
@@ -2630,7 +2642,7 @@ namespace weave::syntax
     FieldPatternSyntax* Parser::ParseFieldPattern()
     {
         FieldPatternSyntax* result = this->_factory->CreateNode<FieldPatternSyntax>();
-        result->Name = this->ParseIdentifierName();
+        result->Name = this->ParseIdentifier();
 
         if (this->Current()->Kind == SyntaxKind::ColonToken)
         {
@@ -2678,7 +2690,7 @@ namespace weave::syntax
     {
         PatternSyntax* pattern = this->ParsePattern();
         TypeClauseSyntax* typeClause = this->ParseOptionalTypeClause();
-        InitializerClauseSyntax* initializerClause = this->ParseOptionalInitializerClause();
+        ExpressionInitializerClauseSyntax* initializerClause = this->ParseOptionalInitializerClause();
 
         if (pattern or typeClause or initializerClause)
         {

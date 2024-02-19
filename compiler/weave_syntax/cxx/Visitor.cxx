@@ -103,19 +103,6 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnQualifiedNameSyntax(QualifiedNameSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->Left);
-        this->Dispatch(node->DotToken);
-        this->Dispatch(node->Right);
-
-        --this->Depth;
-    }
-
     void SyntaxWalker::OnFunctionDeclarationSyntax(FunctionDeclarationSyntax* node)
     {
         this->OnDefault(node);
@@ -146,30 +133,6 @@ namespace weave::syntax
 
         this->Dispatch(node->UsingKeyword);
         this->Dispatch(node->Name);
-
-        --this->Depth;
-    }
-
-    void SyntaxWalker::OnIdentifierNameSyntax(IdentifierNameSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->BeforeIdentifier);
-        this->Dispatch(node->Identifier);
-
-        --this->Depth;
-    }
-
-    void SyntaxWalker::OnTupleIndexSyntax(TupleIndexSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->BeforeIdentifier);
-        this->Dispatch(node->Identifier);
 
         --this->Depth;
     }
@@ -263,7 +226,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnInitializerClauseSyntax(InitializerClauseSyntax* node)
+    void SyntaxWalker::OnExpressionInitializerClauseSyntax(ExpressionInitializerClauseSyntax* node)
     {
         this->OnDefault(node);
 
@@ -271,6 +234,18 @@ namespace weave::syntax
 
         this->Dispatch(node->EqualsToken);
         this->Dispatch(node->Expression);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnTypeInitializerClauseSyntax(TypeInitializerClauseSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->EqualsToken);
+        this->Dispatch(node->DefaultType);
 
         --this->Depth;
     }
@@ -878,8 +853,7 @@ namespace weave::syntax
 
         // TODO Constraints
 
-        this->Dispatch(node->EqualsToken);
-        this->Dispatch(node->DefaultExpression);
+        this->Dispatch(node->Initializer);
         this->Dispatch(node->TrailingComma);
 
         --this->Depth;
@@ -893,10 +867,8 @@ namespace weave::syntax
 
         this->Dispatch(node->ConstKeyword);
         this->Dispatch(node->Name);
-        this->Dispatch(node->ColonToken);
         this->Dispatch(node->Type);
-        this->Dispatch(node->EqualsToken);
-        this->Dispatch(node->DefaultExpression);
+        this->Dispatch(node->Initializer);
         this->Dispatch(node->TrailingComma);
 
         --this->Depth;
@@ -940,19 +912,6 @@ namespace weave::syntax
         this->Dispatch(node->Arguments.GetNode());
         this->Dispatch(node->BeforeCloseToken);
         this->Dispatch(node->CloseToken);
-
-        --this->Depth;
-    }
-
-    void SyntaxWalker::OnGenericNameSyntax(GenericNameSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->BeforeIdentifier);
-        this->Dispatch(node->Identifier);
-        this->Dispatch(node->GenericArguments);
 
         --this->Depth;
     }
@@ -1553,6 +1512,74 @@ namespace weave::syntax
         this->Dispatch(node->BeforeCloseParenToken);
         this->Dispatch(node->CloseParenToken);
         this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnIdentifierSyntax(IdentifierSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Identifier);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnIndexSyntax(IndexSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Index);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnPathSyntax(PathSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Segments.GetNode());
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnPathSegmentSyntax(PathSegmentSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Identifier);
+        this->Dispatch(node->Arguments);
+        this->Dispatch(node->TrailingSeparator);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnPathExpressionSyntax(PathExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Path);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnTypePathSyntax(TypePathSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Path);
 
         --this->Depth;
     }

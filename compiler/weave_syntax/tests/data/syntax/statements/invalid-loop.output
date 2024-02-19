@@ -3,7 +3,7 @@ SourceFileSyntax
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <0:8> [0:0:0:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <9:10> [0:9:0:10] 'W'
     ParameterListSyntax
      OpenParenToken <10:11> [0:10:0:11] '('
@@ -14,8 +14,12 @@ SourceFileSyntax
       CodeBlockItemSyntax
        ExpressionStatementSyntax
         AssignmentExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <19:20> [1:4:1:5] 'a'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <19:20> [1:4:1:5] 'a'
          EqualsToken <21:22> [1:6:1:7] '='
          BinaryExpressionSyntax
           LiteralExpressionSyntax

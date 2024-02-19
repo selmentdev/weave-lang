@@ -313,8 +313,12 @@ r"#'
    SemicolonToken <720:721> [66:3:66:4] ';'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <722:723> [67:0:67:1] 'r'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <722:723> [67:0:67:1] 'r'
  UnexpectedNodesSyntax
   SyntaxList
    HashToken <723:724> [67:1:67:2] '#'

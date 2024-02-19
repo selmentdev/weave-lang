@@ -5,13 +5,17 @@ SourceFileSyntax
     VarKeyword <0:3> [0:0:0:3] 'var'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <4:5> [0:4:0:5] 'x'
      TypeClauseSyntax
       ColonToken <6:7> [0:6:0:7] ':'
-      IdentifierNameSyntax
-       IdentifierToken <8:13> [0:8:0:13] 'Int32'
-     InitializerClauseSyntax
+      TypePathSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <8:13> [0:8:0:13] 'Int32'
+     ExpressionInitializerClauseSyntax
       EqualsToken <14:15> [0:14:0:15] '='
       LiteralExpressionSyntax
        IntegerLiteralToken <16:26> [0:16:0:26] '0x2137_u32'
@@ -25,18 +29,22 @@ SourceFileSyntax
       SyntaxList
        SlicePatternItemSyntax
         IdentifierPatternSyntax
-         IdentifierNameSyntax
+         IdentifierSyntax
           IdentifierToken <33:34> [1:5:1:6] 'x'
         CommaToken <34:35> [1:6:1:7] ','
        SlicePatternItemSyntax
         WildcardPatternSyntax
          UnderscoreToken <36:37> [1:8:1:9] '_'
       CloseBracketToken <37:38> [1:9:1:10] ']'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <39:40> [1:11:1:12] '='
       InvocationExpressionSyntax
-       IdentifierNameSyntax
-        IdentifierToken <41:44> [1:13:1:16] 'foo'
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <41:44> [1:13:1:16] 'foo'
        ArgumentListSyntax
         OpenParenToken <44:45> [1:16:1:17] '('
         CloseParenToken <45:46> [1:17:1:18] ')'
@@ -50,7 +58,7 @@ SourceFileSyntax
       SyntaxList
        TuplePatternItemSyntax
         NameColonSyntax
-         IdentifierNameSyntax
+         IdentifierSyntax
           IdentifierToken <54:55> [2:6:2:7] 'x'
          ColonToken <55:56> [2:7:2:8] ':'
         LiteralPatternSyntax
@@ -58,17 +66,21 @@ SourceFileSyntax
         CommaToken <59:60> [2:11:2:12] ','
        TuplePatternItemSyntax
         NameColonSyntax
-         IdentifierNameSyntax
+         IdentifierSyntax
           IdentifierToken <61:62> [2:13:2:14] 'y'
          ColonToken <62:63> [2:14:2:15] ':'
         LiteralPatternSyntax
          IntegerLiteralToken <64:68> [2:16:2:20] '1337'
       CloseParenToken <69:70> [2:21:2:22] ')'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <71:72> [2:23:2:24] '='
       InvocationExpressionSyntax
-       IdentifierNameSyntax
-        IdentifierToken <73:76> [2:25:2:28] 'bar'
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <73:76> [2:25:2:28] 'bar'
        ArgumentListSyntax
         OpenParenToken <76:77> [2:28:2:29] '('
         CloseParenToken <77:78> [2:29:2:30] ')'

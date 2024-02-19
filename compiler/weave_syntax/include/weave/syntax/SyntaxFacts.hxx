@@ -45,8 +45,6 @@ namespace weave::syntax
         static bool IsRightAssociative(SyntaxKind operation);
         static Precedence GetPrecedence(SyntaxKind operation);
 
-        static bool IsName(SyntaxKind kind);
-
         static bool IsInvalidSubexpression(SyntaxKind kind);
 
         static bool IsStartOfStatement(SyntaxKind kind);

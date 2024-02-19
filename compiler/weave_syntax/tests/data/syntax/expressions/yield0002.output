@@ -3,23 +3,31 @@ SourceFileSyntax
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <34:42> [1:0:1:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <43:62> [1:9:1:28] 'YieldInIfExpression'
     ParameterListSyntax
      OpenParenToken <62:63> [1:28:1:29] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <63:64> [1:29:1:30] 'x'
        TypeClauseSyntax
         ColonToken <64:65> [1:30:1:31] ':'
-        IdentifierNameSyntax
-         IdentifierToken <66:71> [1:32:1:37] 'Int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <66:71> [1:32:1:37] 'Int32'
      CloseParenToken <71:72> [1:37:1:38] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <73:75> [1:39:1:41] '->'
-     IdentifierNameSyntax
-      IdentifierToken <76:81> [1:42:1:47] 'Int32'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <76:81> [1:42:1:47] 'Int32'
     CodeBlockSyntax
      OpenBraceToken <82:83> [2:0:2:1] '{'
      SyntaxList
@@ -30,8 +38,12 @@ SourceFileSyntax
          IfKeyword <264:266> [6:11:6:13] 'if'
          OpenParenToken <267:268> [6:14:6:15] '('
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <268:269> [6:15:6:16] 'x'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <268:269> [6:15:6:16] 'x'
           GreaterThanToken <270:271> [6:17:6:18] '>'
           LiteralExpressionSyntax
            IntegerLiteralToken <272:273> [6:19:6:20] '0'
@@ -63,23 +75,31 @@ SourceFileSyntax
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <375:383> [14:0:14:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <384:406> [14:9:14:31] 'YieldInMatchExpression'
     ParameterListSyntax
      OpenParenToken <406:407> [14:31:14:32] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <407:408> [14:32:14:33] 'x'
        TypeClauseSyntax
         ColonToken <408:409> [14:33:14:34] ':'
-        IdentifierNameSyntax
-         IdentifierToken <410:415> [14:35:14:40] 'Int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <410:415> [14:35:14:40] 'Int32'
      CloseParenToken <415:416> [14:40:14:41] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <417:419> [14:42:14:44] '->'
-     IdentifierNameSyntax
-      IdentifierToken <420:425> [14:45:14:50] 'Int32'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <420:425> [14:45:14:50] 'Int32'
     CodeBlockSyntax
      OpenBraceToken <426:427> [15:0:15:1] '{'
      SyntaxList
@@ -89,8 +109,12 @@ SourceFileSyntax
         MatchExpressionSyntax
          MatchKeyword <439:444> [16:11:16:16] 'match'
          OpenParenToken <445:446> [16:17:16:18] '('
-         IdentifierNameSyntax
-          IdentifierToken <446:447> [16:18:16:19] 'x'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <446:447> [16:18:16:19] 'x'
          CloseParenToken <447:448> [16:19:16:20] ')'
          OpenBraceToken <453:454> [17:4:17:5] '{'
          SyntaxList

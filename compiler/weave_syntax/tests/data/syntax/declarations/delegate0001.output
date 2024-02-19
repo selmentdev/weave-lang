@@ -5,34 +5,46 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     DelegateKeyword <7:15> [0:7:0:15] 'delegate'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <16:35> [0:16:0:35] 'PlayerDeathDelegate'
     ParameterListSyntax
      OpenParenToken <35:36> [0:35:0:36] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <41:47> [1:4:1:10] 'player'
        TypeClauseSyntax
         ColonToken <47:48> [1:10:1:11] ':'
-        IdentifierNameSyntax
-         IdentifierToken <49:55> [1:12:1:18] 'Player'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <49:55> [1:12:1:18] 'Player'
        CommaToken <55:56> [1:18:1:19] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <61:67> [2:4:2:10] 'killer'
        TypeClauseSyntax
         ColonToken <67:68> [2:10:2:11] ':'
-        IdentifierNameSyntax
-         IdentifierToken <69:75> [2:12:2:18] 'Player'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <69:75> [2:12:2:18] 'Player'
        CommaToken <75:76> [2:18:2:19] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <81:87> [3:4:3:10] 'weapon'
        TypeClauseSyntax
         ColonToken <87:88> [3:10:3:11] ':'
-        IdentifierNameSyntax
-         IdentifierToken <89:95> [3:12:3:18] 'Weapon'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <89:95> [3:12:3:18] 'Weapon'
      CloseParenToken <96:97> [4:0:4:1] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <98:100> [4:2:4:4] '->'
@@ -45,34 +57,46 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <106:112> [6:0:6:6] 'public'
     FunctionKeyword <113:121> [6:7:6:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <122:126> [6:16:6:20] 'Kill'
     ParameterListSyntax
      OpenParenToken <126:127> [6:20:6:21] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <132:136> [7:4:7:8] 'game'
        TypeClauseSyntax
         ColonToken <136:137> [7:8:7:9] ':'
-        IdentifierNameSyntax
-         IdentifierToken <138:142> [7:10:7:14] 'Game'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <138:142> [7:10:7:14] 'Game'
        CommaToken <142:143> [7:14:7:15] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <148:154> [8:4:8:10] 'player'
        TypeClauseSyntax
         ColonToken <154:155> [8:10:8:11] ':'
-        IdentifierNameSyntax
-         IdentifierToken <156:162> [8:12:8:18] 'Player'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <156:162> [8:12:8:18] 'Player'
        CommaToken <162:163> [8:18:8:19] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <168:173> [9:4:9:9] 'other'
        TypeClauseSyntax
         ColonToken <173:174> [9:9:9:10] ':'
-        IdentifierNameSyntax
-         IdentifierToken <175:181> [9:11:9:17] 'Player'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <175:181> [9:11:9:17] 'Player'
      CloseParenToken <182:183> [10:0:10:1] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <184:186> [10:2:10:4] '->'
@@ -87,43 +111,67 @@ SourceFileSyntax
         LetKeyword <196:199> [12:4:12:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <200:208> [12:8:12:16] 'callback'
          TypeClauseSyntax
           ColonToken <209:210> [12:17:12:18] ':'
-          IdentifierNameSyntax
-           IdentifierToken <211:230> [12:19:12:38] 'PlayerDeathCallback'
-         InitializerClauseSyntax
+          TypePathSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <211:230> [12:19:12:38] 'PlayerDeathCallback'
+         ExpressionInitializerClauseSyntax
           EqualsToken <231:232> [12:39:12:40] '='
           MemberAccessExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <233:237> [12:41:12:45] 'game'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <233:237> [12:41:12:45] 'game'
            DotToken <237:238> [12:45:12:46] '.'
-           IdentifierNameSyntax
+           IdentifierSyntax
             IdentifierToken <238:249> [12:46:12:57] 'PlayerDeath'
        SemicolonToken <249:250> [12:57:12:58] ';'
       CodeBlockItemSyntax
        ExpressionStatementSyntax
         InvocationExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <256:264> [14:4:14:12] 'callback'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <256:264> [14:4:14:12] 'callback'
          ArgumentListSyntax
           OpenParenToken <264:265> [14:12:14:13] '('
           SyntaxList
            ArgumentSyntax
-            IdentifierNameSyntax
-             IdentifierToken <265:271> [14:13:14:19] 'player'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <265:271> [14:13:14:19] 'player'
             CommaToken <271:272> [14:19:14:20] ','
            ArgumentSyntax
-            IdentifierNameSyntax
-             IdentifierToken <273:278> [14:21:14:26] 'other'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <273:278> [14:21:14:26] 'other'
             CommaToken <278:279> [14:26:14:27] ','
            ArgumentSyntax
             MemberAccessExpressionSyntax
-             IdentifierNameSyntax
-              IdentifierToken <280:286> [14:28:14:34] 'player'
+             PathExpressionSyntax
+              PathSyntax
+               SyntaxList
+                PathSegmentSyntax
+                 IdentifierSyntax
+                  IdentifierToken <280:286> [14:28:14:34] 'player'
              DotToken <286:287> [14:34:14:35] '.'
-             IdentifierNameSyntax
+             IdentifierSyntax
               IdentifierToken <287:300> [14:35:14:48] 'CurrentWeapon'
           CloseParenToken <300:301> [14:48:14:49] ')'
        SemicolonToken <301:302> [14:49:14:50] ';'

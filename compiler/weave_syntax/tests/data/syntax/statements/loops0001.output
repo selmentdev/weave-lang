@@ -3,7 +3,7 @@ SourceFileSyntax
   CodeBlockItemSyntax
    LabeledStatementSyntax
     NameColonSyntax
-     IdentifierNameSyntax
+     IdentifierSyntax
       IdentifierToken <10:19> [1:0:1:9] 'somewhere'
      ColonToken <19:20> [1:9:1:10] ':'
     WhileStatementSyntax
@@ -12,14 +12,21 @@ SourceFileSyntax
        HashOpenBracketToken <0:2> [0:0:0:2] '#['
        SyntaxList
         AttributeSyntax
-         IdentifierNameSyntax
-          IdentifierToken <2:8> [0:2:0:8] 'unroll'
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <2:8> [0:2:0:8] 'unroll'
        CloseBracketToken <8:9> [0:8:0:9] ']'
      WhileKeyword <21:26> [1:11:1:16] 'while'
      OpenParenToken <27:28> [1:17:1:18] '('
      BinaryExpressionSyntax
-      IdentifierNameSyntax
-       IdentifierToken <28:29> [1:18:1:19] 'x'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <28:29> [1:18:1:19] 'x'
       ExclamationEqualsToken <30:32> [1:20:1:22] '!='
       LiteralExpressionSyntax
        IntegerLiteralToken <33:34> [1:23:1:24] '0'
@@ -32,8 +39,12 @@ SourceFileSyntax
          WhileKeyword <42:47> [3:4:3:9] 'while'
          OpenParenToken <48:49> [3:10:3:11] '('
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <49:50> [3:11:3:12] 'z'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <49:50> [3:11:3:12] 'z'
           ExclamationEqualsToken <51:53> [3:13:3:15] '!='
           LiteralExpressionSyntax
            IntegerLiteralToken <54:55> [3:16:3:17] '0'
@@ -52,8 +63,12 @@ SourceFileSyntax
                 SyntaxList
                  LabeledExpressionSyntax
                   BinaryExpressionSyntax
-                   IdentifierNameSyntax
-                    IdentifierToken <76:77> [5:13:5:14] 'x'
+                   PathExpressionSyntax
+                    PathSyntax
+                     SyntaxList
+                      PathSegmentSyntax
+                       IdentifierSyntax
+                        IdentifierToken <76:77> [5:13:5:14] 'x'
                    PercentToken <78:79> [5:15:5:16] '%'
                    LiteralExpressionSyntax
                     IntegerLiteralToken <80:81> [5:17:5:18] '4'
@@ -77,8 +92,12 @@ SourceFileSyntax
                 OpenParenToken <144:145> [9:16:9:17] '('
                 BinaryExpressionSyntax
                  BinaryExpressionSyntax
-                  IdentifierNameSyntax
-                   IdentifierToken <145:146> [9:17:9:18] 'x'
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <145:146> [9:17:9:18] 'x'
                   PercentToken <147:148> [9:19:9:20] '%'
                   LiteralExpressionSyntax
                    IntegerLiteralToken <149:150> [9:21:9:22] '3'
@@ -130,11 +149,15 @@ SourceFileSyntax
      VarKeyword <303:306> [25:9:25:12] 'var'
      PatternBindingSyntax
       IdentifierPatternSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <307:311> [25:13:25:17] 'item'
     InKeyword <312:314> [25:18:25:20] 'in'
-    IdentifierNameSyntax
-     IdentifierToken <315:325> [25:21:25:31] 'collection'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <315:325> [25:21:25:31] 'collection'
     CloseParenToken <325:326> [25:31:25:32] ')'
     CodeBlockSyntax
      OpenBraceToken <327:328> [26:0:26:1] '{'
@@ -152,11 +175,15 @@ SourceFileSyntax
      LetKeyword <352:353> [30:9:30:10] missing ''
      PatternBindingSyntax
       IdentifierPatternSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <352:353> [30:9:30:10] missing ''
     InKeyword <352:353> [30:9:30:10] missing ''
-    IdentifierNameSyntax
-     IdentifierToken <352:353> [30:9:30:10] missing ''
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <352:353> [30:9:30:10] missing ''
     UnexpectedNodesSyntax
      SyntaxList
       SemicolonToken <352:353> [30:9:30:10] ';'

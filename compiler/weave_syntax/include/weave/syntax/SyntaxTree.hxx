@@ -60,7 +60,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* UsingKeyword{};
-        NameSyntax* Name{};
+        PathSyntax* Name{};
 
     public:
         explicit constexpr UsingDeclarationSyntax()
@@ -128,7 +128,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* NamespaceKeyword{};
-        NameSyntax* Name{};
+        PathSyntax* Name{};
         CodeBlockSyntax* Members{};
 
     public:
@@ -144,7 +144,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* FunctionKeyword{};
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
         GenericParametersSyntax* GenericParameters{};
         ParameterListSyntax* Parameters{};
         ReturnTypeClauseSyntax* ReturnType{};
@@ -186,7 +186,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* DelegateKeyword{};
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
         GenericParametersSyntax* GenericParameters{};
         ParameterListSyntax* Parameters{};
         ReturnTypeClauseSyntax* ReturnType{};
@@ -223,7 +223,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* StructKeyword{};
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
         GenericParametersSyntax* GenericParameters{};
         SyntaxListView<ConstraintClauseSyntax> Constraints{};
         CodeBlockSyntax* Members{};
@@ -241,7 +241,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ConceptKeyword{};
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
         GenericParametersSyntax* GenericParameters{};
         SyntaxListView<ConstraintClauseSyntax> Constraints{};
         CodeBlockSyntax* Members{};
@@ -259,7 +259,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ExtendKeyword{};
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
         GenericParametersSyntax* GenericParameters{};
         CodeBlockSyntax* Members{};
         SyntaxToken* AsKeyword{};
@@ -279,7 +279,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* TypeKeyword{};
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
         SyntaxToken* EqualsToken{};
         TypeSyntax* Type{};
 
@@ -297,9 +297,9 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ConstKeyword{};
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
         TypeClauseSyntax* Type{};
-        InitializerClauseSyntax* Initializer{};
+        ExpressionInitializerClauseSyntax* Initializer{};
 
     public:
         explicit constexpr ConstantDeclarationSyntax()
@@ -314,7 +314,7 @@ namespace weave::syntax
 
     public:
         SyntaxToken* EnumKeyword{};
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
         GenericParametersSyntax* GenericParameters{};
         TypeInheritanceClause* BaseType{};
 
@@ -338,9 +338,9 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(EnumMemberDeclarationSyntax);
 
     public:
-        NameSyntax* Identifier{};
+        IdentifierSyntax* Identifier{};
         TupleTypeSyntax* Tuple{};
-        InitializerClauseSyntax* Discriminator{};
+        ExpressionInitializerClauseSyntax* Discriminator{};
         SyntaxToken* TrailingComma{};
 
     public:
@@ -411,7 +411,7 @@ namespace weave::syntax
         }
 
     public:
-        NameSyntax* Name{};
+        PathSyntax* Name{};
         BalancedTokenSequenceSyntax* Tokens{};
         SyntaxToken* TrailingComma{};
         // TODO: Validate if trailing comma is not present at end of attributes list.
@@ -504,7 +504,7 @@ namespace weave::syntax
     public:
         SyntaxListView<AttributeListSyntax> Attributes{};
         SyntaxListView<SyntaxToken> Modifiers{};
-        NameSyntax* Identifier{};
+        IdentifierSyntax* Identifier{};
         TypeClauseSyntax* Type{};
         SyntaxToken* TrailingComma{};
 
@@ -586,12 +586,10 @@ namespace weave::syntax
 
     public:
         SyntaxToken* TypeKeyword{};
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
 
-        // TODO Constraints
+        TypeInitializerClauseSyntax* Initializer{};
 
-        SyntaxToken* EqualsToken{};
-        ExpressionSyntax* DefaultExpression{};
         SyntaxToken* TrailingComma{};
 
     public:
@@ -610,11 +608,11 @@ namespace weave::syntax
 
     public:
         SyntaxToken* ConstKeyword{};
-        NameSyntax* Name{};
-        SyntaxToken* ColonToken{};
-        TypeSyntax* Type{};
-        SyntaxToken* EqualsToken{};
-        ExpressionSyntax* DefaultExpression{};
+        IdentifierSyntax* Name{};
+
+        TypeClauseSyntax* Type{};
+        ExpressionInitializerClauseSyntax* Initializer{};
+
         SyntaxToken* TrailingComma{};
 
     public:
@@ -685,7 +683,7 @@ namespace weave::syntax
         SyntaxKind OperationKind{};
         ExpressionSyntax* Expression{};
         SyntaxToken* OperatorToken{};
-        SimpleNameSyntax* Name{};
+        NameSyntax* Name{};
 
     public:
         explicit constexpr MemberAccessExpressionSyntax()
@@ -1085,80 +1083,6 @@ namespace weave::syntax
         }
     };
 
-    class NameSyntax : public TypeSyntax
-    {
-    public:
-        explicit constexpr NameSyntax(SyntaxKind kind)
-            : TypeSyntax{kind}
-        {
-        }
-    };
-
-    class SimpleNameSyntax : public NameSyntax
-    {
-    public:
-        UnexpectedNodesSyntax* BeforeIdentifier{};
-        SyntaxToken* Identifier{};
-
-    public:
-        explicit constexpr SimpleNameSyntax(SyntaxKind kind)
-            : NameSyntax{kind}
-        {
-        }
-    };
-
-    class IdentifierNameSyntax final : public SimpleNameSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(IdentifierNameSyntax);
-
-    public:
-        explicit constexpr IdentifierNameSyntax()
-            : SimpleNameSyntax{SyntaxKind::IdentifierNameSyntax}
-        {
-        }
-    };
-
-    class TupleIndexSyntax final : public SimpleNameSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(TupleIndexSyntax);
-
-    public:
-        explicit constexpr TupleIndexSyntax()
-            : SimpleNameSyntax{SyntaxKind::TupleIndexSyntax}
-        {
-        }
-    };
-
-    class GenericNameSyntax final : public SimpleNameSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(GenericNameSyntax);
-
-    public:
-        GenericArgumentsSyntax* GenericArguments{};
-
-    public:
-        explicit constexpr GenericNameSyntax()
-            : SimpleNameSyntax{SyntaxKind::GenericNameSyntax}
-        {
-        }
-    };
-
-    class QualifiedNameSyntax : public NameSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(QualifiedNameSyntax);
-
-    public:
-        NameSyntax* Left{};
-        SyntaxToken* DotToken{};
-        SimpleNameSyntax* Right{};
-
-    public:
-        explicit constexpr QualifiedNameSyntax()
-            : NameSyntax{SyntaxKind::QualifiedNameSyntax}
-        {
-        }
-    };
-
     class TypeClauseSyntax : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypeClauseSyntax);
@@ -1176,17 +1100,32 @@ namespace weave::syntax
         }
     };
 
-    class InitializerClauseSyntax : public SyntaxNode
+    class ExpressionInitializerClauseSyntax : public SyntaxNode
     {
-        WEAVE_DEFINE_SYNTAX_NODE(InitializerClauseSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(ExpressionInitializerClauseSyntax);
 
     public:
         SyntaxToken* EqualsToken{};
         ExpressionSyntax* Expression{};
 
     public:
-        explicit constexpr InitializerClauseSyntax()
-            : SyntaxNode{SyntaxKind::InitializerClauseSyntax}
+        explicit constexpr ExpressionInitializerClauseSyntax()
+            : SyntaxNode{SyntaxKind::ExpressionInitializerClauseSyntax}
+        {
+        }
+    };
+
+    class TypeInitializerClauseSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TypeInitializerClauseSyntax);
+
+    public:
+        SyntaxToken* EqualsToken{};
+        TypeSyntax* DefaultType{};
+
+    public:
+        explicit constexpr TypeInitializerClauseSyntax()
+            : SyntaxNode{SyntaxKind::TypeInitializerClauseSyntax}
         {
         }
     };
@@ -1558,7 +1497,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(StructExpressionSyntax);
 
     public:
-        NameSyntax* TypeName{};
+        TypePathSyntax* TypeName{};
         UnexpectedNodesSyntax* BeforeOpenBraceToken{};
         SyntaxToken* OpenBraceToken{};
         SyntaxListView<LabeledExpressionSyntax> Elements{};
@@ -1658,7 +1597,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(WherePredicateSyntax);
 
     public:
-        NameSyntax* Type{};
+        TypePathSyntax* Type{};
         SyntaxToken* TrailingComma{};
 
     public:
@@ -1690,7 +1629,7 @@ namespace weave::syntax
         UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
 
-        IdentifierNameSyntax* Type{};
+        IdentifierSyntax* Type{};
 
         UnexpectedNodesSyntax* BeforeColon{};
         SyntaxToken* Colon{};
@@ -1872,7 +1811,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(IdentifierPatternSyntax);
 
     public:
-        NameSyntax* Identifier{};
+        IdentifierSyntax* Identifier{};
         PatternSyntax* Pattern{};
 
     public:
@@ -1979,7 +1918,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(FieldPatternSyntax);
 
     public:
-        NameSyntax* Name{};
+        IdentifierSyntax* Name{};
         SyntaxToken* ColonToken{};
         PatternSyntax* Pattern{};
         SyntaxToken* TrailingComma{};
@@ -2024,7 +1963,7 @@ namespace weave::syntax
     public:
         PatternSyntax* Pattern{};
         TypeClauseSyntax* Type{};
-        InitializerClauseSyntax* Initializer{};
+        ExpressionInitializerClauseSyntax* Initializer{};
 
     public:
         explicit constexpr PatternBindingSyntax()
@@ -2059,7 +1998,7 @@ namespace weave::syntax
         WEAVE_DEFINE_SYNTAX_NODE(NameColonSyntax);
 
     public:
-        IdentifierNameSyntax* Name{};
+        IdentifierSyntax* Name{};
         SyntaxToken* ColonToken{};
 
     public:
@@ -2177,4 +2116,131 @@ namespace weave::syntax
         {
         }
     };
+
+
+    /// type-path
+    ///     : path
+    ///     ;
+    ///
+    /// path
+    ///     : path-segment-sequence
+    ///     ;
+    ///
+    /// path-segment-sequence
+    ///     : path-segment ('::' path-segment)*
+    ///     ;
+    ///
+    /// path-segment
+    ///     : identifier generic-arguments?
+    ///     ;
+    ///
+    /// generic-arguments
+    ///     : '![' generic-argument-sequence ']'
+    ///     ;
+    ///
+    /// generic-argument-sequence
+    ///     : generic-argument (',' generic-argument)*
+    ///     ;
+    ///
+    /// generic-argument
+    ///     : expression
+    ///     ;
+    ///
+    /// path-expression
+    ///     : path
+    ///     ;
+
+    class NameSyntax : public SyntaxNode
+    {
+    public:
+        explicit constexpr NameSyntax(SyntaxKind kind)
+            : SyntaxNode{kind}
+        {
+        }
+    };
+
+    class IdentifierSyntax final : public NameSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(IdentifierSyntax);
+    public:
+        IdentifierSyntaxToken* Identifier{};
+
+    public:
+        explicit constexpr IdentifierSyntax()
+            : NameSyntax{SyntaxKind::IdentifierSyntax}
+        {
+        }
+    };
+
+    class IndexSyntax final : public NameSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(IndexSyntax);
+
+    public:
+        IntegerLiteralSyntaxToken* Index{};
+
+    public:
+        explicit constexpr IndexSyntax()
+            : NameSyntax{SyntaxKind::IndexSyntax}
+        {
+        }
+    };
+
+    class PathSegmentSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(PathSegmentSyntax);
+
+    public:
+        IdentifierSyntax* Identifier{};
+        GenericArgumentsSyntax* Arguments{};
+        SyntaxToken* TrailingSeparator{};
+
+    public:
+        explicit constexpr PathSegmentSyntax()
+            : SyntaxNode{SyntaxKind::PathSegmentSyntax}
+        {
+        }
+    };
+
+    class PathSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(PathSyntax);
+
+    public:
+        SyntaxListView<PathSegmentSyntax> Segments{};
+
+    public:
+        explicit constexpr PathSyntax()
+            : SyntaxNode{SyntaxKind::PathSyntax}
+        {
+        }
+    };
+
+    class TypePathSyntax final : public TypeSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(TypePathSyntax);
+    public:
+        PathSyntax* Path{};
+
+    public:
+        explicit constexpr TypePathSyntax()
+            : TypeSyntax{SyntaxKind::TypePathSyntax}
+        {
+        }
+    };
+
+    class PathExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(PathExpressionSyntax);
+
+    public:
+        PathSyntax* Path{};
+
+    public:
+        explicit constexpr PathExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::PathExpressionSyntax}
+        {
+        }
+    };
+
 }

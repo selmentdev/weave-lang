@@ -2,144 +2,284 @@ SourceFileSyntax
  SyntaxList
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <0:4> [0:0:0:4] 'bool'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <0:4> [0:0:0:4] 'bool'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <5:9> [1:0:1:4] 'char'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <5:9> [1:0:1:4] 'char'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <10:16> [2:0:2:6] 'char16'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <10:16> [2:0:2:6] 'char16'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <17:23> [3:0:3:6] 'char32'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <17:23> [3:0:3:6] 'char32'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <24:29> [4:0:4:5] 'char8'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <24:29> [4:0:4:5] 'char8'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <30:40> [5:0:5:10] 'decimal128'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <30:40> [5:0:5:10] 'decimal128'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <41:50> [6:0:6:9] 'decimal32'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <41:50> [6:0:6:9] 'decimal32'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <51:60> [7:0:7:9] 'decimal64'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <51:60> [7:0:7:9] 'decimal64'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <61:68> [8:0:8:7] 'float16'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <61:68> [8:0:8:7] 'float16'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <69:76> [9:0:9:7] 'float32'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <69:76> [9:0:9:7] 'float32'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <77:84> [10:0:10:7] 'float64'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <77:84> [10:0:10:7] 'float64'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <85:91> [11:0:11:6] 'int128'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <85:91> [11:0:11:6] 'int128'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <92:97> [12:0:12:5] 'int16'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <92:97> [12:0:12:5] 'int16'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <98:104> [13:0:13:6] 'int256'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <98:104> [13:0:13:6] 'int256'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <105:110> [14:0:14:5] 'int32'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <105:110> [14:0:14:5] 'int32'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <111:116> [15:0:15:5] 'int64'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <111:116> [15:0:15:5] 'int64'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <117:121> [16:0:16:4] 'int8'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <117:121> [16:0:16:4] 'int8'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <122:126> [17:0:17:4] 'iptr'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <122:126> [17:0:17:4] 'iptr'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <127:132> [18:0:18:5] 'isize'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <127:132> [18:0:18:5] 'isize'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <133:139> [19:0:19:6] 'object'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <133:139> [19:0:19:6] 'object'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <140:146> [20:0:20:6] 'string'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <140:146> [20:0:20:6] 'string'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <147:154> [21:0:21:7] 'uint128'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <147:154> [21:0:21:7] 'uint128'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <155:161> [22:0:22:6] 'uint16'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <155:161> [22:0:22:6] 'uint16'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <162:169> [23:0:23:7] 'uint256'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <162:169> [23:0:23:7] 'uint256'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <170:176> [24:0:24:6] 'uint32'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <170:176> [24:0:24:6] 'uint32'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <177:183> [25:0:25:6] 'uint64'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <177:183> [25:0:25:6] 'uint64'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <184:189> [26:0:26:5] 'uint8'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <184:189> [26:0:26:5] 'uint8'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <190:194> [27:0:27:4] 'uptr'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <190:194> [27:0:27:4] 'uptr'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <195:200> [28:0:28:5] 'usize'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <195:200> [28:0:28:5] 'usize'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <201:205> [29:0:29:4] 'void'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <201:205> [29:0:29:4] 'void'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
     AssignmentExpressionSyntax
      BinaryExpressionSyntax
-      IdentifierNameSyntax
-       IdentifierToken <206:210> [30:0:30:4] 'byte'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <206:210> [30:0:30:4] 'byte'
       AndKeyword <211:214> [31:0:31:3] 'and'
-      IdentifierNameSyntax
-       IdentifierToken <215:221> [32:0:32:6] missing ''
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <215:221> [32:0:32:6] missing ''
      AndEqualKeyword <215:221> [32:0:32:6] 'and_eq'
      AssignmentExpressionSyntax
       BinaryExpressionSyntax
-       IdentifierNameSyntax
-        IdentifierToken <222:224> [33:0:33:2] missing ''
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <222:224> [33:0:33:2] missing ''
        OrKeyword <222:224> [33:0:33:2] 'or'
-       IdentifierNameSyntax
-        IdentifierToken <225:230> [34:0:34:5] missing ''
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <225:230> [34:0:34:5] missing ''
       OrEqualKeyword <225:230> [34:0:34:5] 'or_eq'
-      IdentifierNameSyntax
-       IdentifierToken <231:234> [35:0:35:3] missing ''
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <231:234> [35:0:35:3] missing ''
  UnexpectedNodesSyntax
   SyntaxList
    XorKeyword <231:234> [35:0:35:3] 'xor'

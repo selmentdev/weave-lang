@@ -5,27 +5,35 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     FunctionKeyword <7:15> [0:7:0:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <16:28> [0:16:0:28] 'RefFunction1'
     ParameterListSyntax
      OpenParenToken <28:29> [0:28:0:29] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <34:35> [1:4:1:5] 'x'
        TypeClauseSyntax
         ColonToken <35:36> [1:5:1:6] ':'
         SyntaxList
          RefKeyword <37:40> [1:7:1:10] 'ref'
-        IdentifierNameSyntax
-         IdentifierToken <41:42> [1:11:1:12] 'X'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <41:42> [1:11:1:12] 'X'
      CloseParenToken <43:44> [2:0:2:1] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <45:47> [2:2:2:4] '->'
      SyntaxList
       RefKeyword <48:51> [2:5:2:8] 'ref'
-     IdentifierNameSyntax
-      IdentifierToken <52:53> [2:9:2:10] 'Z'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <52:53> [2:9:2:10] 'Z'
     CodeBlockSyntax
      OpenBraceToken <54:55> [2:11:2:12] '{'
      SyntaxList
@@ -34,27 +42,35 @@ SourceFileSyntax
         VarKeyword <60:63> [3:4:3:7] 'var'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <64:65> [3:8:3:9] 'z'
          TypeClauseSyntax
           ColonToken <66:67> [3:10:3:11] ':'
           SyntaxList
            RefKeyword <68:71> [3:12:3:15] 'ref'
-          IdentifierNameSyntax
-           IdentifierToken <72:73> [3:16:3:17] 'Z'
-         InitializerClauseSyntax
+          TypePathSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <72:73> [3:16:3:17] 'Z'
+         ExpressionInitializerClauseSyntax
           EqualsToken <74:75> [3:18:3:19] '='
           RefExpressionSyntax
            RefKeyword <76:79> [3:20:3:23] 'ref'
            MemberAccessExpressionSyntax
             MemberAccessExpressionSyntax
-             IdentifierNameSyntax
-              IdentifierToken <80:81> [3:24:3:25] 'x'
+             PathExpressionSyntax
+              PathSyntax
+               SyntaxList
+                PathSegmentSyntax
+                 IdentifierSyntax
+                  IdentifierToken <80:81> [3:24:3:25] 'x'
              DotToken <81:82> [3:25:3:26] '.'
-             IdentifierNameSyntax
+             IdentifierSyntax
               IdentifierToken <82:83> [3:26:3:27] 'y'
             DotToken <83:84> [3:27:3:28] '.'
-            IdentifierNameSyntax
+            IdentifierSyntax
              IdentifierToken <84:85> [3:28:3:29] 'z'
        SemicolonToken <85:86> [3:29:3:30] ';'
       CodeBlockItemSyntax
@@ -62,8 +78,12 @@ SourceFileSyntax
         ReturnKeyword <91:97> [4:4:4:10] 'return'
         RefExpressionSyntax
          RefKeyword <98:101> [4:11:4:14] 'ref'
-         IdentifierNameSyntax
-          IdentifierToken <102:103> [4:15:4:16] 'z'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <102:103> [4:15:4:16] 'z'
        SemicolonToken <103:104> [4:16:4:17] ';'
      CloseBraceToken <105:106> [5:0:5:1] '}'
  EndOfFileToken <107:107> [6:0:6:0] ''

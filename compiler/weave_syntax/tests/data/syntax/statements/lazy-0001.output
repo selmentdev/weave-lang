@@ -5,28 +5,36 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     FunctionKeyword <7:15> [0:7:0:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <16:43> [0:16:0:43] 'LazyArgumentsAndExpressions'
     ParameterListSyntax
      OpenParenToken <43:44> [0:43:0:44] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <49:56> [1:4:1:11] 'process'
        TypeClauseSyntax
         ColonToken <56:57> [1:11:1:12] ':'
-        IdentifierNameSyntax
-         IdentifierToken <58:62> [1:13:1:17] 'bool'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <58:62> [1:13:1:17] 'bool'
        CommaToken <62:63> [1:17:1:18] ','
       ParameterSyntax
        SyntaxList
         LazyKeyword <68:72> [2:4:2:8] 'lazy'
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <73:74> [2:9:2:10] 'x'
        TypeClauseSyntax
         ColonToken <74:75> [2:10:2:11] ':'
-        IdentifierNameSyntax
-         IdentifierToken <76:81> [2:12:2:17] 'Int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <76:81> [2:12:2:17] 'Int32'
      CloseParenToken <82:83> [3:0:3:1] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <84:86> [3:2:3:4] '->'
@@ -41,8 +49,12 @@ SourceFileSyntax
         IfExpressionSyntax
          IfKeyword <96:98> [5:4:5:6] 'if'
          OpenParenToken <99:100> [5:7:5:8] '('
-         IdentifierNameSyntax
-          IdentifierToken <100:107> [5:8:5:15] 'process'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <100:107> [5:8:5:15] 'process'
          CloseParenToken <107:108> [5:15:5:16] ')'
          CodeBlockSyntax
           OpenBraceToken <109:110> [5:17:5:18] '{'
@@ -50,8 +62,12 @@ SourceFileSyntax
            CodeBlockItemSyntax
             ExpressionStatementSyntax
              InvocationExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <119:126> [6:8:6:15] 'Consume'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <119:126> [6:8:6:15] 'Consume'
               ArgumentListSyntax
                OpenParenToken <126:127> [6:15:6:16] '('
                SyntaxList
@@ -60,8 +76,12 @@ SourceFileSyntax
                   EvalKeyword <127:131> [6:16:6:20] 'eval'
                   CodeBlockItemSyntax
                    ExpressionStatementSyntax
-                    IdentifierNameSyntax
-                     IdentifierToken <132:133> [6:21:6:22] 'x'
+                    PathExpressionSyntax
+                     PathSyntax
+                      SyntaxList
+                       PathSegmentSyntax
+                        IdentifierSyntax
+                         IdentifierToken <132:133> [6:21:6:22] 'x'
                CloseParenToken <133:134> [6:22:6:23] ')'
             SemicolonToken <134:135> [6:23:6:24] ';'
           CloseBraceToken <140:141> [7:4:7:5] '}'

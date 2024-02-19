@@ -5,25 +5,29 @@ SourceFileSyntax
     LetKeyword <0:3> [0:0:0:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <4:5> [0:4:0:5] 'a'
      TypeClauseSyntax
       ColonToken <6:7> [0:6:0:7] ':'
-      QualifiedNameSyntax
-       QualifiedNameSyntax
-        QualifiedNameSyntax
-         IdentifierNameSyntax
-          IdentifierToken <8:12> [0:8:0:12] 'core'
-         ColonColonToken <12:14> [0:12:0:14] '::'
-         IdentifierNameSyntax
-          IdentifierToken <14:20> [0:14:0:20] 'system'
-        ColonColonToken <20:22> [0:20:0:22] '::'
-        IdentifierNameSyntax
-         IdentifierToken <22:29> [0:22:0:29] 'Windows'
-       ColonColonToken <29:31> [0:29:0:31] '::'
-       IdentifierNameSyntax
-        IdentifierToken <31:36> [0:31:0:36] 'DWORD'
-     InitializerClauseSyntax
+      TypePathSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <8:12> [0:8:0:12] 'core'
+          ColonColonToken <12:14> [0:12:0:14] '::'
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <14:20> [0:14:0:20] 'system'
+          ColonColonToken <20:22> [0:20:0:22] '::'
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <22:29> [0:22:0:29] 'Windows'
+          ColonColonToken <29:31> [0:29:0:31] '::'
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <31:36> [0:31:0:36] 'DWORD'
+     ExpressionInitializerClauseSyntax
       EqualsToken <37:38> [0:37:0:38] '='
       LiteralExpressionSyntax
        IntegerLiteralToken <39:40> [0:39:0:40] '0'
@@ -33,7 +37,7 @@ SourceFileSyntax
     VarKeyword <42:45> [1:0:1:3] 'var'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <46:47> [1:4:1:5] 'a'
  UnexpectedNodesSyntax
   SyntaxList

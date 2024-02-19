@@ -5,31 +5,43 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     FunctionKeyword <7:15> [0:7:0:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <16:38> [0:16:0:38] 'MatchExpressionExample'
     ParameterListSyntax
      OpenParenToken <38:39> [0:38:0:39] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <39:40> [0:39:0:40] 'x'
        TypeClauseSyntax
         ColonToken <40:41> [0:40:0:41] ':'
-        IdentifierNameSyntax
-         IdentifierToken <42:47> [0:42:0:47] 'Int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <42:47> [0:42:0:47] 'Int32'
        CommaToken <47:48> [0:47:0:48] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <49:50> [0:49:0:50] 'y'
        TypeClauseSyntax
         ColonToken <50:51> [0:50:0:51] ':'
-        IdentifierNameSyntax
-         IdentifierToken <52:57> [0:52:0:57] 'Int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <52:57> [0:52:0:57] 'Int32'
      CloseParenToken <57:58> [0:57:0:58] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <59:61> [0:59:0:61] '->'
-     IdentifierNameSyntax
-      IdentifierToken <62:68> [0:62:0:68] 'String'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <62:68> [0:62:0:68] 'String'
     CodeBlockSyntax
      OpenBraceToken <69:70> [1:0:1:1] '{'
      SyntaxList
@@ -39,8 +51,12 @@ SourceFileSyntax
         MatchExpressionSyntax
          MatchKeyword <82:87> [2:11:2:16] 'match'
          OpenParenToken <88:89> [2:17:2:18] '('
-         IdentifierNameSyntax
-          IdentifierToken <89:90> [2:18:2:19] 'x'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <89:90> [2:18:2:19] 'x'
          CloseParenToken <90:91> [2:19:2:20] ')'
          OpenBraceToken <96:97> [3:4:3:5] '{'
          SyntaxList
@@ -77,8 +93,12 @@ SourceFileSyntax
              MatchExpressionSyntax
               MatchKeyword <190:195> [7:18:7:23] 'match'
               OpenParenToken <196:197> [7:24:7:25] '('
-              IdentifierNameSyntax
-               IdentifierToken <197:198> [7:25:7:26] 'y'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <197:198> [7:25:7:26] 'y'
               CloseParenToken <198:199> [7:26:7:27] ')'
               OpenBraceToken <212:213> [8:12:8:13] '{'
               SyntaxList

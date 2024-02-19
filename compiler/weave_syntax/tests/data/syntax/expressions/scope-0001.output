@@ -5,31 +5,43 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     FunctionKeyword <7:15> [0:7:0:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <16:21> [0:16:0:21] 'Scope'
     ParameterListSyntax
      OpenParenToken <21:22> [0:21:0:22] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <27:28> [1:4:1:5] 'x'
        TypeClauseSyntax
         ColonToken <28:29> [1:5:1:6] ':'
-        IdentifierNameSyntax
-         IdentifierToken <30:37> [1:7:1:14] 'Float32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <30:37> [1:7:1:14] 'Float32'
        CommaToken <37:38> [1:14:1:15] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <43:44> [2:4:2:5] 'y'
        TypeClauseSyntax
         ColonToken <44:45> [2:5:2:6] ':'
-        IdentifierNameSyntax
-         IdentifierToken <46:53> [2:7:2:14] 'Float32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <46:53> [2:7:2:14] 'Float32'
      CloseParenToken <54:55> [3:0:3:1] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <56:58> [3:2:3:4] '->'
-     IdentifierNameSyntax
-      IdentifierToken <59:66> [3:5:3:12] 'Float32'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <59:66> [3:5:3:12] 'Float32'
     CodeBlockSyntax
      OpenBraceToken <67:68> [4:0:4:1] '{'
      SyntaxList
@@ -40,60 +52,88 @@ SourceFileSyntax
          BinaryExpressionSyntax
           BinaryExpressionSyntax
            InvocationExpressionSyntax
-            QualifiedNameSyntax
-             QualifiedNameSyntax
-              IdentifierNameSyntax
-               IdentifierToken <80:84> [5:11:5:15] 'Some'
-              ColonColonToken <84:86> [5:15:5:17] '::'
-              IdentifierNameSyntax
-               IdentifierToken <86:90> [5:17:5:21] 'Type'
-             ColonColonToken <90:92> [5:21:5:23] '::'
-             IdentifierNameSyntax
-              IdentifierToken <92:95> [5:23:5:26] 'Foo'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <80:84> [5:11:5:15] 'Some'
+                ColonColonToken <84:86> [5:15:5:17] '::'
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <86:90> [5:17:5:21] 'Type'
+                ColonColonToken <90:92> [5:21:5:23] '::'
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <92:95> [5:23:5:26] 'Foo'
             ArgumentListSyntax
              OpenParenToken <95:96> [5:26:5:27] '('
              SyntaxList
               ArgumentSyntax
-               IdentifierNameSyntax
-                IdentifierToken <96:97> [5:27:5:28] 'x'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <96:97> [5:27:5:28] 'x'
                CommaToken <97:98> [5:28:5:29] ','
               ArgumentSyntax
-               IdentifierNameSyntax
-                IdentifierToken <99:100> [5:30:5:31] 'y'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <99:100> [5:30:5:31] 'y'
              CloseParenToken <100:101> [5:31:5:32] ')'
            PlusToken <111:112> [6:9:6:10] '+'
            InvocationExpressionSyntax
-            QualifiedNameSyntax
-             QualifiedNameSyntax
-              QualifiedNameSyntax
-               IdentifierNameSyntax
-                IdentifierToken <113:118> [6:11:6:16] 'Other'
-               ColonColonToken <118:120> [6:16:6:18] '::'
-               IdentifierNameSyntax
-                IdentifierToken <120:124> [6:18:6:22] 'Type'
-              ColonColonToken <124:126> [6:22:6:24] '::'
-              GenericNameSyntax
-               IdentifierToken <126:128> [6:24:6:26] 'Bo'
-               GenericArgumentsSyntax
-                ExclamationOpenBracketToken <128:130> [6:26:6:28] '!['
-                SyntaxList
-                 GenericArgumentSyntax
-                  IdentifierNameSyntax
-                   IdentifierToken <130:137> [6:28:6:35] 'Float32'
-                CloseBracketToken <137:138> [6:35:6:36] ']'
-             ColonColonToken <138:140> [6:36:6:38] '::'
-             IdentifierNameSyntax
-              IdentifierToken <140:143> [6:38:6:41] 'Bar'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <113:118> [6:11:6:16] 'Other'
+                ColonColonToken <118:120> [6:16:6:18] '::'
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <120:124> [6:18:6:22] 'Type'
+                ColonColonToken <124:126> [6:22:6:24] '::'
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <126:128> [6:24:6:26] 'Bo'
+                GenericArgumentsSyntax
+                 ExclamationOpenBracketToken <128:130> [6:26:6:28] '!['
+                 SyntaxList
+                  GenericArgumentSyntax
+                   PathExpressionSyntax
+                    PathSyntax
+                     SyntaxList
+                      PathSegmentSyntax
+                       IdentifierSyntax
+                        IdentifierToken <130:137> [6:28:6:35] 'Float32'
+                 CloseBracketToken <137:138> [6:35:6:36] ']'
+                ColonColonToken <138:140> [6:36:6:38] '::'
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <140:143> [6:38:6:41] 'Bar'
             ArgumentListSyntax
              OpenParenToken <143:144> [6:41:6:42] '('
              SyntaxList
               ArgumentSyntax
-               IdentifierNameSyntax
-                IdentifierToken <144:145> [6:42:6:43] 'x'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <144:145> [6:42:6:43] 'x'
                CommaToken <145:146> [6:43:6:44] ','
               ArgumentSyntax
-               IdentifierNameSyntax
-                IdentifierToken <147:148> [6:45:6:46] 'y'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <147:148> [6:45:6:46] 'y'
              CloseParenToken <148:149> [6:46:6:47] ')'
           PlusToken <159:160> [7:9:7:10] '+'
           TupleExpressionSyntax
@@ -102,36 +142,48 @@ SourceFileSyntax
             LabeledExpressionSyntax
              ConditionalExpressionSyntax
               BinaryExpressionSyntax
-               QualifiedNameSyntax
-                QualifiedNameSyntax
-                 IdentifierNameSyntax
-                  IdentifierToken <162:165> [7:12:7:15] 'Yet'
-                 ColonColonToken <165:167> [7:15:7:17] '::'
-                 IdentifierNameSyntax
-                  IdentifierToken <167:174> [7:17:7:24] 'Another'
-                ColonColonToken <174:176> [7:24:7:26] '::'
-                IdentifierNameSyntax
-                 IdentifierToken <176:181> [7:26:7:31] 'Value'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <162:165> [7:12:7:15] 'Yet'
+                   ColonColonToken <165:167> [7:15:7:17] '::'
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <167:174> [7:17:7:24] 'Another'
+                   ColonColonToken <174:176> [7:24:7:26] '::'
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <176:181> [7:26:7:31] 'Value'
                PlusToken <182:183> [7:32:7:33] '+'
                UnaryExpressionSyntax
                 ExclamationToken <184:185> [7:34:7:35] '!'
-                QualifiedNameSyntax
-                 QualifiedNameSyntax
-                  IdentifierNameSyntax
-                   IdentifierToken <185:192> [7:35:7:42] 'Another'
-                  ColonColonToken <192:194> [7:42:7:44] '::'
-                  GenericNameSyntax
-                   IdentifierToken <194:197> [7:44:7:47] 'One'
-                   GenericArgumentsSyntax
-                    ExclamationOpenBracketToken <197:199> [7:47:7:49] '!['
-                    SyntaxList
-                     GenericArgumentSyntax
-                      IdentifierNameSyntax
-                       IdentifierToken <199:206> [7:49:7:56] 'Float32'
-                    CloseBracketToken <206:207> [7:56:7:57] ']'
-                 ColonColonToken <207:209> [7:57:7:59] '::'
-                 IdentifierNameSyntax
-                  IdentifierToken <209:216> [7:59:7:66] 'Boolean'
+                PathExpressionSyntax
+                 PathSyntax
+                  SyntaxList
+                   PathSegmentSyntax
+                    IdentifierSyntax
+                     IdentifierToken <185:192> [7:35:7:42] 'Another'
+                    ColonColonToken <192:194> [7:42:7:44] '::'
+                   PathSegmentSyntax
+                    IdentifierSyntax
+                     IdentifierToken <194:197> [7:44:7:47] 'One'
+                    GenericArgumentsSyntax
+                     ExclamationOpenBracketToken <197:199> [7:47:7:49] '!['
+                     SyntaxList
+                      GenericArgumentSyntax
+                       PathExpressionSyntax
+                        PathSyntax
+                         SyntaxList
+                          PathSegmentSyntax
+                           IdentifierSyntax
+                            IdentifierToken <199:206> [7:49:7:56] 'Float32'
+                     CloseBracketToken <206:207> [7:56:7:57] ']'
+                    ColonColonToken <207:209> [7:57:7:59] '::'
+                   PathSegmentSyntax
+                    IdentifierSyntax
+                     IdentifierToken <209:216> [7:59:7:66] 'Boolean'
               QuestionToken <217:218> [7:67:7:68] '?'
               LiteralExpressionSyntax
                FloatLiteralToken <219:225> [7:69:7:75] '1.0f32'
@@ -147,15 +199,23 @@ SourceFileSyntax
             ConditionalExpressionSyntax
              BinaryExpressionSyntax
               BinaryExpressionSyntax
-               QualifiedNameSyntax
-                IdentifierNameSyntax
-                 IdentifierToken <248:255> [8:12:8:19] 'Float32'
-                ColonColonToken <255:257> [8:19:8:21] '::'
-                IdentifierNameSyntax
-                 IdentifierToken <257:265> [8:21:8:29] 'MaxValue'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <248:255> [8:12:8:19] 'Float32'
+                   ColonColonToken <255:257> [8:19:8:21] '::'
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <257:265> [8:21:8:29] 'MaxValue'
                MinusToken <266:267> [8:30:8:31] '-'
-               IdentifierNameSyntax
-                IdentifierToken <268:269> [8:32:8:33] 'x'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <268:269> [8:32:8:33] 'x'
               PlusToken <270:271> [8:34:8:35] '+'
               UnaryExpressionSyntax
                ExclamationToken <272:273> [8:36:8:37] '!'
@@ -168,15 +228,23 @@ SourceFileSyntax
                   SyntaxList
                    LabeledExpressionSyntax
                     BinaryExpressionSyntax
-                     QualifiedNameSyntax
-                      IdentifierNameSyntax
-                       IdentifierToken <276:283> [8:40:8:47] 'Float32'
-                      ColonColonToken <283:285> [8:47:8:49] '::'
-                      IdentifierNameSyntax
-                       IdentifierToken <285:292> [8:49:8:56] 'Epsilon'
+                     PathExpressionSyntax
+                      PathSyntax
+                       SyntaxList
+                        PathSegmentSyntax
+                         IdentifierSyntax
+                          IdentifierToken <276:283> [8:40:8:47] 'Float32'
+                         ColonColonToken <283:285> [8:47:8:49] '::'
+                        PathSegmentSyntax
+                         IdentifierSyntax
+                          IdentifierToken <285:292> [8:49:8:56] 'Epsilon'
                      LessThanToken <293:294> [8:57:8:58] '<'
-                     IdentifierNameSyntax
-                      IdentifierToken <295:296> [8:59:8:60] 'y'
+                     PathExpressionSyntax
+                      PathSyntax
+                       SyntaxList
+                        PathSegmentSyntax
+                         IdentifierSyntax
+                          IdentifierToken <295:296> [8:59:8:60] 'y'
                   CloseParenToken <296:297> [8:60:8:61] ')'
              QuestionToken <298:299> [8:62:8:63] '?'
              LiteralExpressionSyntax

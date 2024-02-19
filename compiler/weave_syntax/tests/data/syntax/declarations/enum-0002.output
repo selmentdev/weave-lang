@@ -5,7 +5,7 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     EnumKeyword <7:11> [0:7:0:11] 'enum'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <12:17> [0:12:0:17] 'Empty'
     OpenBraceToken <18:19> [1:0:1:1] '{'
     CloseBraceToken <21:22> [3:0:3:1] '}'
@@ -14,43 +14,51 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <24:30> [5:0:5:6] 'public'
     EnumKeyword <31:35> [5:7:5:11] 'enum'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <36:42> [5:12:5:18] 'Result'
     GenericParametersSyntax
      ExclamationOpenBracketToken <42:44> [5:18:5:20] '!['
      SyntaxList
       TypeGenericParameterSyntax
        TypeKeyword <44:48> [5:20:5:24] 'type'
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <49:50> [5:25:5:26] 'T'
        CommaToken <50:51> [5:26:5:27] ','
       TypeGenericParameterSyntax
        TypeKeyword <52:56> [5:28:5:32] 'type'
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <57:58> [5:33:5:34] 'E'
      CloseBracketToken <58:59> [5:34:5:35] ']'
     OpenBraceToken <60:61> [6:0:6:1] '{'
     SyntaxList
      EnumMemberDeclarationSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <66:68> [7:4:7:6] 'Ok'
       TupleTypeSyntax
        OpenParenToken <68:69> [7:6:7:7] '('
        SyntaxList
         TupleTypeElementSyntax
-         IdentifierNameSyntax
-          IdentifierToken <69:70> [7:7:7:8] 'T'
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <69:70> [7:7:7:8] 'T'
        CloseParenToken <70:71> [7:8:7:9] ')'
       CommaToken <71:72> [7:9:7:10] ','
      EnumMemberDeclarationSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <77:82> [8:4:8:9] 'Error'
       TupleTypeSyntax
        OpenParenToken <82:83> [8:9:8:10] '('
        SyntaxList
         TupleTypeElementSyntax
-         IdentifierNameSyntax
-          IdentifierToken <83:84> [8:10:8:11] 'E'
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <83:84> [8:10:8:11] 'E'
        CloseParenToken <84:85> [8:11:8:12] ')'
       CommaToken <85:86> [8:12:8:13] ','
     CloseBraceToken <87:88> [9:0:9:1] '}'
@@ -59,31 +67,35 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <90:96> [11:0:11:6] 'public'
     EnumKeyword <97:101> [11:7:11:11] 'enum'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <102:110> [11:12:11:20] 'Optional'
     GenericParametersSyntax
      ExclamationOpenBracketToken <110:112> [11:20:11:22] '!['
      SyntaxList
       TypeGenericParameterSyntax
        TypeKeyword <112:116> [11:22:11:26] 'type'
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <117:118> [11:27:11:28] 'T'
      CloseBracketToken <118:119> [11:28:11:29] ']'
     OpenBraceToken <120:121> [12:0:12:1] '{'
     SyntaxList
      EnumMemberDeclarationSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <126:130> [13:4:13:8] 'Some'
       TupleTypeSyntax
        OpenParenToken <130:131> [13:8:13:9] '('
        SyntaxList
         TupleTypeElementSyntax
-         IdentifierNameSyntax
-          IdentifierToken <131:132> [13:9:13:10] 'T'
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <131:132> [13:9:13:10] 'T'
        CloseParenToken <132:133> [13:10:13:11] ')'
       CommaToken <133:134> [13:11:13:12] ','
      EnumMemberDeclarationSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <139:143> [14:4:14:8] 'None'
       CommaToken <143:144> [14:8:14:9] ','
     CloseBraceToken <145:146> [15:0:15:1] '}'
@@ -92,15 +104,15 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <148:154> [17:0:17:6] 'public'
     EnumKeyword <155:159> [17:7:17:11] 'enum'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <160:175> [17:12:17:27] 'WithInvalidCase'
     OpenBraceToken <176:177> [18:0:18:1] '{'
     SyntaxList
      EnumMemberDeclarationSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <182:195> [19:4:19:17] 'MissingComma1'
      EnumMemberDeclarationSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <200:213> [20:4:20:17] 'MissingComma2'
     CloseBraceToken <214:215> [21:0:21:1] '}'
   CodeBlockItemSyntax
@@ -108,12 +120,12 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <217:223> [23:0:23:6] 'public'
     EnumKeyword <224:228> [23:7:23:11] 'enum'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <229:252> [23:12:23:35] 'WithFunctionDeclaration'
     OpenBraceToken <253:254> [24:0:24:1] '{'
     SyntaxList
      EnumMemberDeclarationSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <259:265> [25:4:25:10] 'Value1'
       CommaToken <265:266> [25:10:25:11] ','
     UnexpectedNodesSyntax
@@ -132,8 +144,12 @@ SourceFileSyntax
     CloseBraceToken <317:318> [27:49:27:50] '}'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    IdentifierNameSyntax
-     IdentifierToken <445:451> [30:4:30:10] 'Value2'
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <445:451> [30:4:30:10] 'Value2'
  UnexpectedNodesSyntax
   SyntaxList
    CommaToken <451:452> [30:10:30:11] ','

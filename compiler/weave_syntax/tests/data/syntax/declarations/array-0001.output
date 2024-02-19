@@ -5,19 +5,23 @@ SourceFileSyntax
     VarKeyword <27:30> [2:0:2:3] 'var'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <31:38> [2:4:2:11] 'array1D'
      TypeClauseSyntax
       ColonToken <39:40> [2:12:2:13] ':'
       ArrayTypeSyntax
        OpenBracketToken <41:42> [2:14:2:15] '['
-       IdentifierNameSyntax
-        IdentifierToken <42:47> [2:15:2:20] 'Int32'
+       TypePathSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <42:47> [2:15:2:20] 'Int32'
        ColonToken <47:48> [2:20:2:21] ':'
        LiteralExpressionSyntax
         IntegerLiteralToken <49:50> [2:22:2:23] '4'
        CloseBracketToken <50:51> [2:23:2:24] ']'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <52:53> [2:25:2:26] '='
       ArrayExpressionSyntax
        OpenBracketToken <54:55> [2:27:2:28] '['
@@ -45,7 +49,7 @@ SourceFileSyntax
     VarKeyword <76:79> [6:0:6:3] 'var'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <80:87> [6:4:6:11] 'array2D'
      TypeClauseSyntax
       ColonToken <88:89> [6:12:6:13] ':'
@@ -53,8 +57,12 @@ SourceFileSyntax
        OpenBracketToken <90:91> [6:14:6:15] '['
        ArrayTypeSyntax
         OpenBracketToken <91:92> [6:15:6:16] '['
-        IdentifierNameSyntax
-         IdentifierToken <92:97> [6:16:6:21] 'Int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <92:97> [6:16:6:21] 'Int32'
         ColonToken <97:98> [6:21:6:22] ':'
         LiteralExpressionSyntax
          IntegerLiteralToken <99:100> [6:23:6:24] '4'
@@ -63,7 +71,7 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <103:104> [6:27:6:28] '4'
        CloseBracketToken <104:105> [6:28:6:29] ']'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <106:107> [6:30:6:31] '='
       ArrayExpressionSyntax
        OpenBracketToken <108:109> [6:32:6:33] '['
@@ -159,7 +167,7 @@ SourceFileSyntax
     VarKeyword <202:205> [13:0:13:3] 'var'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <206:213> [13:4:13:11] 'array3D'
      TypeClauseSyntax
       ColonToken <214:215> [13:12:13:13] ':'
@@ -169,8 +177,12 @@ SourceFileSyntax
         OpenBracketToken <217:218> [13:15:13:16] '['
         ArrayTypeSyntax
          OpenBracketToken <218:219> [13:16:13:17] '['
-         IdentifierNameSyntax
-          IdentifierToken <219:224> [13:17:13:22] 'Int32'
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <219:224> [13:17:13:22] 'Int32'
          ColonToken <224:225> [13:22:13:23] ':'
          LiteralExpressionSyntax
           IntegerLiteralToken <226:227> [13:24:13:25] '4'
@@ -183,7 +195,7 @@ SourceFileSyntax
        LiteralExpressionSyntax
         IntegerLiteralToken <234:235> [13:32:13:33] '4'
        CloseBracketToken <235:236> [13:33:13:34] ']'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <237:238> [13:35:13:36] '='
       ArrayExpressionSyntax
        OpenBracketToken <239:240> [13:37:13:38] '['
@@ -555,26 +567,34 @@ SourceFileSyntax
     LetKeyword <713:716> [40:0:40:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <717:724> [40:4:40:11] 'slice1D'
      TypeClauseSyntax
       ColonToken <725:726> [40:12:40:13] ':'
       SliceTypeSyntax
        OpenBracketToken <727:728> [40:14:40:15] '['
-       IdentifierNameSyntax
-        IdentifierToken <728:733> [40:15:40:20] 'Int32'
+       TypePathSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <728:733> [40:15:40:20] 'Int32'
        CloseBracketToken <733:734> [40:20:40:21] ']'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <735:736> [40:22:40:23] '='
-      IdentifierNameSyntax
-       IdentifierToken <737:744> [40:24:40:31] 'array1D'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <737:744> [40:24:40:31] 'array1D'
    SemicolonToken <744:745> [40:31:40:32] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <746:749> [41:0:41:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <750:757> [41:4:41:11] 'slice2D'
      TypeClauseSyntax
       ColonToken <758:759> [41:12:41:13] ':'
@@ -582,24 +602,32 @@ SourceFileSyntax
        OpenBracketToken <760:761> [41:14:41:15] '['
        ArrayTypeSyntax
         OpenBracketToken <761:762> [41:15:41:16] '['
-        IdentifierNameSyntax
-         IdentifierToken <762:767> [41:16:41:21] 'Int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <762:767> [41:16:41:21] 'Int32'
         ColonToken <767:768> [41:21:41:22] ':'
         LiteralExpressionSyntax
          IntegerLiteralToken <769:770> [41:23:41:24] '4'
         CloseBracketToken <770:771> [41:24:41:25] ']'
        CloseBracketToken <771:772> [41:25:41:26] ']'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <773:774> [41:27:41:28] '='
-      IdentifierNameSyntax
-       IdentifierToken <775:782> [41:29:41:36] 'array2D'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <775:782> [41:29:41:36] 'array2D'
    SemicolonToken <782:783> [41:36:41:37] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <784:787> [42:0:42:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <788:795> [42:4:42:11] 'slice3D'
      TypeClauseSyntax
       ColonToken <796:797> [42:12:42:13] ':'
@@ -609,8 +637,12 @@ SourceFileSyntax
         OpenBracketToken <799:800> [42:15:42:16] '['
         ArrayTypeSyntax
          OpenBracketToken <800:801> [42:16:42:17] '['
-         IdentifierNameSyntax
-          IdentifierToken <801:806> [42:17:42:22] 'Int32'
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <801:806> [42:17:42:22] 'Int32'
          ColonToken <806:807> [42:22:42:23] ':'
          LiteralExpressionSyntax
           IntegerLiteralToken <808:809> [42:24:42:25] '4'
@@ -620,19 +652,23 @@ SourceFileSyntax
          IntegerLiteralToken <812:813> [42:28:42:29] '4'
         CloseBracketToken <813:814> [42:29:42:30] ']'
        CloseBracketToken <814:815> [42:30:42:31] ']'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <816:817> [42:32:42:33] '='
-      IdentifierNameSyntax
-       IdentifierToken <818:825> [42:34:42:41] 'array3D'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <818:825> [42:34:42:41] 'array3D'
    SemicolonToken <825:826> [42:41:42:42] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <828:831> [44:0:44:3] 'var'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <832:847> [44:4:44:19] 'arrayOutOfOrder'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <848:849> [44:20:44:21] '='
       ArrayExpressionSyntax
        OpenBracketToken <850:851> [44:22:44:23] '['
@@ -643,9 +679,9 @@ SourceFileSyntax
     VarKeyword <1048:1051> [57:0:57:3] 'var'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <1052:1057> [57:4:57:9] 'items'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <1058:1059> [57:10:57:11] '='
       InvocationExpressionSyntax
        MemberAccessExpressionSyntax
@@ -669,7 +705,7 @@ SourceFileSyntax
             IntegerLiteralToken <1070:1071> [57:22:57:23] '7'
          CloseBracketToken <1071:1072> [57:23:57:24] ']'
         DotToken <1072:1073> [57:24:57:25] '.'
-        IdentifierNameSyntax
+        IdentifierSyntax
          IdentifierToken <1073:1079> [57:25:57:31] 'ToList'
        ArgumentListSyntax
         OpenParenToken <1079:1080> [57:31:57:32] '('

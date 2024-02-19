@@ -5,18 +5,22 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     FunctionKeyword <7:15> [0:7:0:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <16:17> [0:16:0:17] 'A'
     ParameterListSyntax
      OpenParenToken <17:18> [0:17:0:18] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <23:24> [1:4:1:5] 'a'
        TypeClauseSyntax
         ColonToken <24:25> [1:5:1:6] ':'
-        IdentifierNameSyntax
-         IdentifierToken <26:29> [1:7:1:10] 'Int'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <26:29> [1:7:1:10] 'Int'
        CommaToken <29:30> [1:10:1:11] ','
       ParameterSyntax
        SyntaxList
@@ -24,23 +28,34 @@ SourceFileSyntax
          HashOpenBracketToken <35:37> [2:4:2:6] '#['
          SyntaxList
           AttributeSyntax
-           IdentifierNameSyntax
-            IdentifierToken <37:43> [2:6:2:12] 'unused'
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <37:43> [2:6:2:12] 'unused'
          CloseBracketToken <43:44> [2:12:2:13] ']'
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <45:46> [2:14:2:15] missing ''
        CommaToken <45:46> [2:14:2:15] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <51:52> [3:4:3:5] 'c'
        TypeClauseSyntax
         ColonToken <52:53> [3:5:3:6] ':'
-        IdentifierNameSyntax
-         IdentifierToken <54:60> [3:7:3:13] 'String'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <54:60> [3:7:3:13] 'String'
      CloseParenToken <61:62> [4:0:4:1] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <63:65> [4:2:4:4] '->'
-     IdentifierNameSyntax
-      IdentifierToken <66:70> [4:5:4:9] 'Void'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <66:70> [4:5:4:9] 'Void'
    SemicolonToken <70:71> [4:9:4:10] ';'
  EndOfFileToken <72:72> [5:0:5:0] ''

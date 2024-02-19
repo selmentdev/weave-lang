@@ -5,23 +5,31 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <0:6> [0:0:0:6] 'public'
     FunctionKeyword <7:15> [0:7:0:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <16:35> [0:16:0:35] 'IfExpressionExample'
     ParameterListSyntax
      OpenParenToken <35:36> [0:35:0:36] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <36:37> [0:36:0:37] 'x'
        TypeClauseSyntax
         ColonToken <37:38> [0:37:0:38] ':'
-        IdentifierNameSyntax
-         IdentifierToken <39:44> [0:39:0:44] 'Int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <39:44> [0:39:0:44] 'Int32'
      CloseParenToken <44:45> [0:44:0:45] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <46:48> [0:46:0:48] '->'
-     IdentifierNameSyntax
-      IdentifierToken <49:54> [0:49:0:54] 'Int32'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <49:54> [0:49:0:54] 'Int32'
     CodeBlockSyntax
      OpenBraceToken <55:56> [1:0:1:1] '{'
      SyntaxList
@@ -32,8 +40,12 @@ SourceFileSyntax
          IfKeyword <68:70> [2:11:2:13] 'if'
          OpenParenToken <71:72> [2:14:2:15] '('
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <72:73> [2:15:2:16] 'x'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <72:73> [2:15:2:16] 'x'
           GreaterThanToken <74:75> [2:17:2:18] '>'
           LiteralExpressionSyntax
            IntegerLiteralToken <76:78> [2:19:2:21] '42'
@@ -56,8 +68,12 @@ SourceFileSyntax
             CodeBlockItemSyntax
              YieldStatementSyntax
               YieldKeyword <121:126> [5:8:5:13] 'yield'
-              IdentifierNameSyntax
-               IdentifierToken <127:128> [5:14:5:15] 'x'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <127:128> [5:14:5:15] 'x'
              SemicolonToken <128:129> [5:15:5:16] ';'
            CloseBraceToken <134:135> [6:4:6:5] '}'
        SemicolonToken <135:136> [6:5:6:6] ';'

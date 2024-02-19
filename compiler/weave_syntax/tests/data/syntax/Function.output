@@ -7,39 +7,53 @@ SourceFileSyntax
       HashOpenBracketToken <20:22> [2:0:2:2] '#['
       SyntaxList
        AttributeSyntax
-        IdentifierNameSyntax
-         IdentifierToken <22:28> [2:2:2:8] 'Inline'
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <22:28> [2:2:2:8] 'Inline'
         CommaToken <28:29> [2:8:2:9] ','
        AttributeSyntax
-        IdentifierNameSyntax
-         IdentifierToken <30:38> [2:10:2:18] 'NoInline'
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <30:38> [2:10:2:18] 'NoInline'
         CommaToken <38:39> [2:18:2:19] ','
       CloseBracketToken <39:40> [2:19:2:20] ']'
     FunctionKeyword <41:49> [2:21:2:29] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <50:56> [2:30:2:36] 'Empty1'
     ParameterListSyntax
      OpenParenToken <56:57> [2:36:2:37] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <57:58> [2:37:2:38] missing ''
        CommaToken <57:58> [2:37:2:38] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <58:59> [2:38:2:39] 'a'
        TypeClauseSyntax
         ColonToken <59:60> [2:39:2:40] ':'
-        IdentifierNameSyntax
-         IdentifierToken <60:61> [2:40:2:41] 'A'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <60:61> [2:40:2:41] 'A'
        CommaToken <61:62> [2:41:2:42] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <63:64> [2:43:2:44] 'b'
        TypeClauseSyntax
         ColonToken <64:65> [2:44:2:45] ':'
-        IdentifierNameSyntax
-         IdentifierToken <65:66> [2:45:2:46] 'B'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <65:66> [2:45:2:46] 'B'
        CommaToken <66:67> [2:46:2:47] ','
       ParameterSyntax
        SyntaxList
@@ -47,14 +61,17 @@ SourceFileSyntax
          HashOpenBracketToken <68:70> [2:48:2:50] '#['
          SyntaxList
           AttributeSyntax
-           IdentifierNameSyntax
-            IdentifierToken <70:73> [2:50:2:53] 'foo'
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <70:73> [2:50:2:53] 'foo'
          CloseBracketToken <73:74> [2:53:2:54] ']'
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <75:76> [2:55:2:56] missing ''
        CommaToken <75:76> [2:55:2:56] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <77:78> [2:57:2:58] missing ''
      UnexpectedNodesSyntax
       SyntaxList
@@ -92,7 +109,7 @@ SourceFileSyntax
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <201:209> [10:0:10:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <210:215> [10:9:10:14] 'Emtpy'
     ParameterListSyntax
      OpenParenToken <215:216> [10:14:10:15] '('
@@ -109,22 +126,26 @@ SourceFileSyntax
     SyntaxList
      ExternKeyword <222:228> [11:0:11:6] 'extern'
     FunctionKeyword <229:237> [11:7:11:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <238:246> [11:16:11:24] 'Declared'
     ParameterListSyntax
      OpenParenToken <246:247> [11:24:11:25] '('
      CloseParenToken <247:248> [11:25:11:26] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <249:251> [11:27:11:29] '->'
-     IdentifierNameSyntax
-      IdentifierToken <252:256> [11:30:11:34] 'void'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <252:256> [11:30:11:34] 'void'
    SemicolonToken <256:257> [11:34:11:35] ';'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     SyntaxList
      InlineKeyword <258:264> [12:0:12:6] 'inline'
     FunctionKeyword <265:273> [12:7:12:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <274:284> [12:16:12:26] 'Expression'
     ParameterListSyntax
      OpenParenToken <284:285> [12:26:12:27] '('
@@ -139,15 +160,19 @@ SourceFileSyntax
     SyntaxList
      ExportKeyword <294:300> [13:0:13:6] 'export'
     FunctionKeyword <301:309> [13:7:13:15] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <310:314> [13:16:13:20] 'Body'
     ParameterListSyntax
      OpenParenToken <314:315> [13:20:13:21] '('
      CloseParenToken <315:316> [13:21:13:22] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <317:319> [13:23:13:25] '->'
-     IdentifierNameSyntax
-      IdentifierToken <320:324> [13:26:13:30] 'void'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <320:324> [13:26:13:30] 'void'
     CodeBlockSyntax
      OpenBraceToken <325:326> [13:31:13:32] '{'
      SyntaxList
@@ -159,55 +184,79 @@ SourceFileSyntax
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <342:350> [17:0:17:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <351:358> [17:9:17:16] 'Select2'
     ParameterListSyntax
      OpenParenToken <358:359> [17:16:17:17] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <359:360> [17:17:17:18] 'a'
        TypeClauseSyntax
         ColonToken <360:361> [17:18:17:19] ':'
-        IdentifierNameSyntax
-         IdentifierToken <362:366> [17:20:17:24] 'bool'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <362:366> [17:20:17:24] 'bool'
        CommaToken <366:367> [17:24:17:25] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <368:369> [17:26:17:27] 'b'
        TypeClauseSyntax
         ColonToken <369:370> [17:27:17:28] ':'
-        IdentifierNameSyntax
-         IdentifierToken <371:376> [17:29:17:34] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <371:376> [17:29:17:34] 'float'
        CommaToken <376:377> [17:34:17:35] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <378:379> [17:36:17:37] 'c'
        TypeClauseSyntax
         ColonToken <379:380> [17:37:17:38] ':'
-        IdentifierNameSyntax
-         IdentifierToken <381:386> [17:39:17:44] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <381:386> [17:39:17:44] 'float'
        CommaToken <386:387> [17:44:17:45] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <388:389> [17:46:17:47] 'd'
        TypeClauseSyntax
         ColonToken <389:390> [17:47:17:48] ':'
-        IdentifierNameSyntax
-         IdentifierToken <391:396> [17:49:17:54] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <391:396> [17:49:17:54] 'float'
        CommaToken <396:397> [17:54:17:55] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <398:399> [17:56:17:57] 'e'
        TypeClauseSyntax
         ColonToken <399:400> [17:57:17:58] ':'
-        IdentifierNameSyntax
-         IdentifierToken <401:406> [17:59:17:64] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <401:406> [17:59:17:64] 'float'
      CloseParenToken <406:407> [17:64:17:65] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <408:410> [17:66:17:68] '->'
-     IdentifierNameSyntax
-      IdentifierToken <411:416> [17:69:17:74] 'float'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <411:416> [17:69:17:74] 'float'
     CodeBlockSyntax
      OpenBraceToken <417:418> [17:75:17:76] '{'
      SyntaxList
@@ -215,68 +264,112 @@ SourceFileSyntax
        ReturnStatementSyntax
         ReturnKeyword <423:429> [18:4:18:10] 'return'
         ConditionalExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <430:431> [18:11:18:12] 'a'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <430:431> [18:11:18:12] 'a'
          QuestionToken <432:433> [18:13:18:14] '?'
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <434:435> [18:15:18:16] 'b'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <434:435> [18:15:18:16] 'b'
           PlusToken <436:437> [18:17:18:18] '+'
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <438:439> [18:19:18:20] 'c'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <438:439> [18:19:18:20] 'c'
            AsteriskToken <440:441> [18:21:18:22] '*'
-           IdentifierNameSyntax
-            IdentifierToken <442:443> [18:23:18:24] 'd'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <442:443> [18:23:18:24] 'd'
          ColonToken <445:446> [18:26:18:27] missing ''
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <445:446> [18:26:18:27] 'd'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <445:446> [18:26:18:27] 'd'
           PlusToken <447:448> [18:28:18:29] '+'
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <449:450> [18:30:18:31] 'e'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <449:450> [18:30:18:31] 'e'
            SlashToken <451:452> [18:32:18:33] '/'
-           IdentifierNameSyntax
-            IdentifierToken <453:454> [18:34:18:35] 'c'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <453:454> [18:34:18:35] 'c'
        SemicolonToken <454:455> [18:35:18:36] ';'
      CloseBraceToken <456:457> [19:0:19:1] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <459:467> [21:0:21:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <468:474> [21:9:21:15] 'Select'
     ParameterListSyntax
      OpenParenToken <474:475> [21:15:21:16] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <475:476> [21:16:21:17] 'a'
        TypeClauseSyntax
         ColonToken <476:477> [21:17:21:18] ':'
-        IdentifierNameSyntax
-         IdentifierToken <478:482> [21:19:21:23] 'bool'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <478:482> [21:19:21:23] 'bool'
        CommaToken <482:483> [21:23:21:24] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <484:485> [21:25:21:26] 'b'
        TypeClauseSyntax
         ColonToken <485:486> [21:26:21:27] ':'
-        IdentifierNameSyntax
-         IdentifierToken <487:492> [21:28:21:33] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <487:492> [21:28:21:33] 'float'
        CommaToken <492:493> [21:33:21:34] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <494:495> [21:35:21:36] 'c'
        TypeClauseSyntax
         ColonToken <495:496> [21:36:21:37] ':'
-        IdentifierNameSyntax
-         IdentifierToken <497:502> [21:38:21:43] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <497:502> [21:38:21:43] 'float'
      CloseParenToken <502:503> [21:43:21:44] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <504:506> [21:45:21:47] '->'
-     IdentifierNameSyntax
-      IdentifierToken <507:512> [21:48:21:53] 'float'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <507:512> [21:48:21:53] 'float'
     CodeBlockSyntax
      OpenBraceToken <513:514> [21:54:21:55] '{'
      SyntaxList
@@ -284,68 +377,104 @@ SourceFileSyntax
        ReturnStatementSyntax
         ReturnKeyword <519:525> [22:4:22:10] 'return'
         ConditionalExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <526:527> [22:11:22:12] 'a'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <526:527> [22:11:22:12] 'a'
          QuestionToken <528:529> [22:13:22:14] '?'
-         IdentifierNameSyntax
-          IdentifierToken <530:531> [22:15:22:16] 'b'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <530:531> [22:15:22:16] 'b'
          ColonToken <532:533> [22:17:22:18] ':'
-         IdentifierNameSyntax
-          IdentifierToken <534:535> [22:19:22:20] 'c'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <534:535> [22:19:22:20] 'c'
        SemicolonToken <535:536> [22:20:22:21] ';'
      CloseBraceToken <537:538> [23:0:23:1] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <540:548> [25:0:25:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <549:556> [25:9:25:16] 'Select2'
     ParameterListSyntax
      OpenParenToken <556:557> [25:16:25:17] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <557:558> [25:17:25:18] 'a'
        TypeClauseSyntax
         ColonToken <558:559> [25:18:25:19] ':'
-        IdentifierNameSyntax
-         IdentifierToken <560:564> [25:20:25:24] 'bool'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <560:564> [25:20:25:24] 'bool'
        CommaToken <564:565> [25:24:25:25] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <566:567> [25:26:25:27] 'b'
        TypeClauseSyntax
         ColonToken <567:568> [25:27:25:28] ':'
-        IdentifierNameSyntax
-         IdentifierToken <569:574> [25:29:25:34] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <569:574> [25:29:25:34] 'float'
        CommaToken <574:575> [25:34:25:35] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <576:577> [25:36:25:37] 'c'
        TypeClauseSyntax
         ColonToken <577:578> [25:37:25:38] ':'
-        IdentifierNameSyntax
-         IdentifierToken <579:584> [25:39:25:44] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <579:584> [25:39:25:44] 'float'
        CommaToken <584:585> [25:44:25:45] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <586:587> [25:46:25:47] 'd'
        TypeClauseSyntax
         ColonToken <587:588> [25:47:25:48] ':'
-        IdentifierNameSyntax
-         IdentifierToken <589:594> [25:49:25:54] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <589:594> [25:49:25:54] 'float'
        CommaToken <594:595> [25:54:25:55] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <596:597> [25:56:25:57] 'e'
        TypeClauseSyntax
         ColonToken <597:598> [25:57:25:58] ':'
-        IdentifierNameSyntax
-         IdentifierToken <599:604> [25:59:25:64] 'float'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <599:604> [25:59:25:64] 'float'
      CloseParenToken <604:605> [25:64:25:65] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <606:608> [25:66:25:68] '->'
-     IdentifierNameSyntax
-      IdentifierToken <609:614> [25:69:25:74] 'float'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <609:614> [25:69:25:74] 'float'
     CodeBlockSyntax
      OpenBraceToken <615:616> [25:75:25:76] '{'
      SyntaxList
@@ -353,131 +482,211 @@ SourceFileSyntax
        ReturnStatementSyntax
         ReturnKeyword <621:627> [26:4:26:10] 'return'
         ConditionalExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <628:629> [26:11:26:12] 'a'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <628:629> [26:11:26:12] 'a'
          QuestionToken <630:631> [26:13:26:14] '?'
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <632:633> [26:15:26:16] 'b'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <632:633> [26:15:26:16] 'b'
           PlusToken <634:635> [26:17:26:18] '+'
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <636:637> [26:19:26:20] 'c'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <636:637> [26:19:26:20] 'c'
            AsteriskToken <638:639> [26:21:26:22] '*'
-           IdentifierNameSyntax
-            IdentifierToken <640:641> [26:23:26:24] 'd'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <640:641> [26:23:26:24] 'd'
          ColonToken <642:643> [26:25:26:26] ':'
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <644:645> [26:27:26:28] 'd'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <644:645> [26:27:26:28] 'd'
           PlusToken <646:647> [26:29:26:30] '+'
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <648:649> [26:31:26:32] 'e'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <648:649> [26:31:26:32] 'e'
            SlashToken <650:651> [26:33:26:34] '/'
-           IdentifierNameSyntax
-            IdentifierToken <652:653> [26:35:26:36] 'c'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <652:653> [26:35:26:36] 'c'
        SemicolonToken <653:654> [26:36:26:37] ';'
      CloseBraceToken <655:656> [27:0:27:1] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <658:666> [29:0:29:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <667:670> [29:9:29:12] 'foo'
     ParameterListSyntax
      OpenParenToken <670:671> [29:12:29:13] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <671:672> [29:13:29:14] 'x'
        TypeClauseSyntax
         ColonToken <672:673> [29:14:29:15] ':'
-        IdentifierNameSyntax
-         IdentifierToken <674:677> [29:16:29:19] 'int'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <674:677> [29:16:29:19] 'int'
        CommaToken <677:678> [29:19:29:20] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <679:680> [29:21:29:22] 'y'
        TypeClauseSyntax
         ColonToken <680:681> [29:22:29:23] ':'
-        IdentifierNameSyntax
-         IdentifierToken <682:685> [29:24:29:27] 'int'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <682:685> [29:24:29:27] 'int'
        CommaToken <685:686> [29:27:29:28] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <687:688> [29:29:29:30] 'z'
        TypeClauseSyntax
         ColonToken <688:689> [29:30:29:31] ':'
-        IdentifierNameSyntax
-         IdentifierToken <690:693> [29:32:29:35] 'int'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <690:693> [29:32:29:35] 'int'
        CommaToken <693:694> [29:35:29:36] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <695:696> [29:37:29:38] 'c'
        TypeClauseSyntax
         ColonToken <696:697> [29:38:29:39] ':'
-        IdentifierNameSyntax
-         IdentifierToken <698:701> [29:40:29:43] 'int'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <698:701> [29:40:29:43] 'int'
        CommaToken <701:702> [29:43:29:44] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <703:704> [29:45:29:46] 'w'
        TypeClauseSyntax
         ColonToken <704:705> [29:46:29:47] ':'
         SyntaxList
          OutKeyword <706:709> [29:48:29:51] 'out'
-        IdentifierNameSyntax
-         IdentifierToken <710:713> [29:52:29:55] 'int'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <710:713> [29:52:29:55] 'int'
      CloseParenToken <713:714> [29:55:29:56] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <715:717> [29:57:29:59] '->'
-     IdentifierNameSyntax
-      IdentifierToken <718:722> [29:60:29:64] 'void'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <718:722> [29:60:29:64] 'void'
     CodeBlockSyntax
      OpenBraceToken <723:724> [29:65:29:66] '{'
      SyntaxList
       CodeBlockItemSyntax
        ExpressionStatementSyntax
         AssignmentExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <729:730> [30:4:30:5] 'w'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <729:730> [30:4:30:5] 'w'
          EqualsToken <731:732> [30:6:30:7] '='
          AssignmentExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <733:734> [30:8:30:9] 'x'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <733:734> [30:8:30:9] 'x'
           EqualsToken <735:736> [30:10:30:11] '='
           AssignmentExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <737:738> [30:12:30:13] 'y'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <737:738> [30:12:30:13] 'y'
            EqualsToken <739:740> [30:14:30:15] '='
            BinaryExpressionSyntax
-            IdentifierNameSyntax
-             IdentifierToken <741:742> [30:16:30:17] 'z'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <741:742> [30:16:30:17] 'z'
             PlusToken <743:744> [30:18:30:19] '+'
-            IdentifierNameSyntax
-             IdentifierToken <745:746> [30:20:30:21] 'c'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <745:746> [30:20:30:21] 'c'
        SemicolonToken <746:747> [30:21:30:22] ';'
      CloseBraceToken <748:749> [31:0:31:1] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <751:759> [33:0:33:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <760:766> [33:9:33:15] 'before'
     ParameterListSyntax
      OpenParenToken <766:767> [33:15:33:16] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <767:768> [33:16:33:17] 'y'
        TypeClauseSyntax
         ColonToken <768:769> [33:17:33:18] ':'
-        IdentifierNameSyntax
-         IdentifierToken <770:774> [33:19:33:23] 'bool'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <770:774> [33:19:33:23] 'bool'
      CloseParenToken <774:775> [33:23:33:24] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <776:778> [33:25:33:27] '->'
-     IdentifierNameSyntax
-      IdentifierToken <779:783> [33:28:33:32] 'void'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <779:783> [33:28:33:32] 'void'
     CodeBlockSyntax
      OpenBraceToken <784:785> [33:33:33:34] '{'
      SyntaxList
@@ -490,20 +699,24 @@ SourceFileSyntax
           LetKeyword <794:797> [34:8:34:11] 'let'
           PatternBindingSyntax
            IdentifierPatternSyntax
-            IdentifierNameSyntax
+            IdentifierSyntax
              IdentifierToken <798:802> [34:12:34:16] 'Some'
             TuplePatternSyntax
              OpenParenToken <802:803> [34:16:34:17] '('
              SyntaxList
               TuplePatternItemSyntax
                IdentifierPatternSyntax
-                IdentifierNameSyntax
+                IdentifierSyntax
                  IdentifierToken <803:804> [34:17:34:18] 'y'
              CloseParenToken <804:805> [34:18:34:19] ')'
-           InitializerClauseSyntax
+           ExpressionInitializerClauseSyntax
             EqualsToken <806:807> [34:20:34:21] '='
-            IdentifierNameSyntax
-             IdentifierToken <808:809> [34:22:34:23] 'y'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <808:809> [34:22:34:23] 'y'
          CloseParenToken <809:810> [34:23:34:24] ')'
          CodeBlockSyntax
           OpenBraceToken <811:812> [34:25:34:26] '{'
@@ -512,10 +725,14 @@ SourceFileSyntax
             ExpressionStatementSyntax
              InvocationExpressionSyntax
               MemberAccessExpressionSyntax
-               IdentifierNameSyntax
-                IdentifierToken <821:828> [35:8:35:15] 'Console'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <821:828> [35:8:35:15] 'Console'
                DotToken <828:829> [35:15:35:16] '.'
-               IdentifierNameSyntax
+               IdentifierSyntax
                 IdentifierToken <829:838> [35:16:35:25] 'WriteLine'
               ArgumentListSyntax
                OpenParenToken <838:839> [35:25:35:26] '('
@@ -535,10 +752,14 @@ SourceFileSyntax
              ExpressionStatementSyntax
               InvocationExpressionSyntax
                MemberAccessExpressionSyntax
-                IdentifierNameSyntax
-                 IdentifierToken <878:885> [37:8:37:15] 'Console'
+                PathExpressionSyntax
+                 PathSyntax
+                  SyntaxList
+                   PathSegmentSyntax
+                    IdentifierSyntax
+                     IdentifierToken <878:885> [37:8:37:15] 'Console'
                 DotToken <885:886> [37:15:37:16] '.'
-                IdentifierNameSyntax
+                IdentifierSyntax
                  IdentifierToken <886:895> [37:16:37:25] 'WriteLine'
                ArgumentListSyntax
                 OpenParenToken <895:896> [37:25:37:26] '('
@@ -561,7 +782,7 @@ SourceFileSyntax
      TransientKeyword <991:1000> [43:38:43:47] 'transient'
      TrustedKeyword <1001:1008> [43:48:43:55] 'trusted'
     FunctionKeyword <1009:1017> [43:56:43:64] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <1018:1026> [43:65:43:73] 'mul_high'
     ParameterListSyntax
      OpenParenToken <1026:1027> [43:73:43:74] '('
@@ -572,37 +793,53 @@ SourceFileSyntax
         RefKeyword <1035:1038> [44:7:44:10] 'ref'
         OutKeyword <1039:1042> [44:11:44:14] 'out'
         MoveKeyword <1043:1047> [44:15:44:19] 'move'
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <1048:1052> [44:20:44:24] 'left'
        TypeClauseSyntax
         ColonToken <1052:1053> [44:24:44:25] ':'
-        IdentifierNameSyntax
-         IdentifierToken <1054:1057> [44:26:44:29] 'u64'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <1054:1057> [44:26:44:29] 'u64'
        CommaToken <1057:1058> [44:29:44:30] ','
       ParameterSyntax
        SyntaxList
         InKeyword <1063:1065> [45:4:45:6] 'in'
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <1066:1071> [45:7:45:12] 'right'
        TypeClauseSyntax
         ColonToken <1071:1072> [45:12:45:13] ':'
-        IdentifierNameSyntax
-         IdentifierToken <1073:1076> [45:14:45:17] 'u64'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <1073:1076> [45:14:45:17] 'u64'
        CommaToken <1076:1077> [45:17:45:18] ','
       ParameterSyntax
        SyntaxList
         OutKeyword <1082:1085> [46:4:46:7] 'out'
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <1086:1091> [46:8:46:13] 'lower'
        TypeClauseSyntax
         ColonToken <1091:1092> [46:13:46:14] ':'
-        IdentifierNameSyntax
-         IdentifierToken <1093:1096> [46:15:46:18] 'u64'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <1093:1096> [46:15:46:18] 'u64'
      CloseParenToken <1096:1097> [46:18:46:19] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <1098:1100> [46:20:46:22] '->'
-     IdentifierNameSyntax
-      IdentifierToken <1101:1104> [46:23:46:26] 'u64'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <1101:1104> [46:23:46:26] 'u64'
     CodeBlockSyntax
      OpenBraceToken <1105:1106> [47:0:47:1] '{'
      SyntaxList
@@ -611,13 +848,17 @@ SourceFileSyntax
         LetKeyword <1111:1114> [48:4:48:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <1115:1117> [48:8:48:10] 'll'
-         InitializerClauseSyntax
+         ExpressionInitializerClauseSyntax
           EqualsToken <1118:1119> [48:11:48:12] '='
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <1120:1124> [48:13:48:17] 'left'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1120:1124> [48:13:48:17] 'left'
            AmpersandToken <1125:1126> [48:18:48:19] '&'
            LiteralExpressionSyntax
             IntegerLiteralToken <1127:1140> [48:20:48:33] '0xFFFFFFFFu64'
@@ -627,13 +868,17 @@ SourceFileSyntax
         LetKeyword <1146:1149> [49:4:49:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <1150:1152> [49:8:49:10] 'lu'
-         InitializerClauseSyntax
+         ExpressionInitializerClauseSyntax
           EqualsToken <1153:1154> [49:11:49:12] '='
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <1155:1159> [49:13:49:17] 'left'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1155:1159> [49:13:49:17] 'left'
            GreaterThanGreaterThanToken <1160:1162> [49:18:49:20] '>>'
            LiteralExpressionSyntax
             IntegerLiteralToken <1163:1168> [49:21:49:26] '32u64'
@@ -643,13 +888,17 @@ SourceFileSyntax
         LetKeyword <1174:1177> [50:4:50:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <1178:1180> [50:8:50:10] 'rl'
-         InitializerClauseSyntax
+         ExpressionInitializerClauseSyntax
           EqualsToken <1181:1182> [50:11:50:12] '='
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <1183:1188> [50:13:50:18] 'right'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1183:1188> [50:13:50:18] 'right'
            AmpersandToken <1189:1190> [50:19:50:20] '&'
            LiteralExpressionSyntax
             IntegerLiteralToken <1191:1204> [50:21:50:34] '0xFFFFFFFFu64'
@@ -659,13 +908,17 @@ SourceFileSyntax
         LetKeyword <1210:1213> [51:4:51:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <1214:1216> [51:8:51:10] 'ru'
-         InitializerClauseSyntax
+         ExpressionInitializerClauseSyntax
           EqualsToken <1217:1218> [51:11:51:12] '='
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <1219:1224> [51:13:51:18] 'right'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1219:1224> [51:13:51:18] 'right'
            GreaterThanGreaterThanToken <1225:1227> [51:19:51:21] '>>'
            LiteralExpressionSyntax
             IntegerLiteralToken <1228:1233> [51:22:51:27] '32u64'
@@ -675,73 +928,105 @@ SourceFileSyntax
         LetKeyword <1239:1242> [52:4:52:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <1243:1248> [52:8:52:13] 'll_rl'
-         InitializerClauseSyntax
+         ExpressionInitializerClauseSyntax
           EqualsToken <1249:1250> [52:14:52:15] '='
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <1251:1253> [52:16:52:18] 'll'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1251:1253> [52:16:52:18] 'll'
            AsteriskToken <1254:1255> [52:19:52:20] '*'
-           IdentifierNameSyntax
-            IdentifierToken <1256:1258> [52:21:52:23] 'rl'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1256:1258> [52:21:52:23] 'rl'
        SemicolonToken <1258:1259> [52:23:52:24] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1264:1267> [53:4:53:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <1268:1273> [53:8:53:13] 'll_ru'
-         InitializerClauseSyntax
+         ExpressionInitializerClauseSyntax
           EqualsToken <1274:1275> [53:14:53:15] '='
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <1276:1278> [53:16:53:18] 'll'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1276:1278> [53:16:53:18] 'll'
            AsteriskToken <1279:1280> [53:19:53:20] '*'
-           IdentifierNameSyntax
-            IdentifierToken <1281:1283> [53:21:53:23] 'ru'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1281:1283> [53:21:53:23] 'ru'
        SemicolonToken <1283:1284> [53:23:53:24] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1289:1292> [54:4:54:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <1293:1298> [54:8:54:13] 'lu_rl'
-         InitializerClauseSyntax
+         ExpressionInitializerClauseSyntax
           EqualsToken <1299:1300> [54:14:54:15] '='
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <1301:1303> [54:16:54:18] 'lu'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1301:1303> [54:16:54:18] 'lu'
            AsteriskToken <1304:1305> [54:19:54:20] '*'
-           IdentifierNameSyntax
-            IdentifierToken <1306:1308> [54:21:54:23] 'rl'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1306:1308> [54:21:54:23] 'rl'
        SemicolonToken <1308:1309> [54:23:54:24] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1314:1317> [55:4:55:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <1318:1323> [55:8:55:13] 'lu_ru'
-         InitializerClauseSyntax
+         ExpressionInitializerClauseSyntax
           EqualsToken <1324:1325> [55:14:55:15] '='
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <1326:1328> [55:16:55:18] 'lu'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1326:1328> [55:16:55:18] 'lu'
            AsteriskToken <1329:1330> [55:19:55:20] '*'
-           IdentifierNameSyntax
-            IdentifierToken <1331:1333> [55:21:55:23] 'ru'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1331:1333> [55:21:55:23] 'ru'
        SemicolonToken <1333:1334> [55:23:55:24] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1339:1342> [56:4:56:7] 'let'
         PatternBindingSyntax
          IdentifierPatternSyntax
-          IdentifierNameSyntax
+          IdentifierSyntax
            IdentifierToken <1343:1344> [56:8:56:9] 'm'
-         InitializerClauseSyntax
+         ExpressionInitializerClauseSyntax
           EqualsToken <1345:1346> [56:10:56:11] '='
           BinaryExpressionSyntax
            BinaryExpressionSyntax
@@ -750,23 +1035,35 @@ SourceFileSyntax
              SyntaxList
               LabeledExpressionSyntax
                BinaryExpressionSyntax
-                IdentifierNameSyntax
-                 IdentifierToken <1348:1353> [56:13:56:18] 'll_rl'
+                PathExpressionSyntax
+                 PathSyntax
+                  SyntaxList
+                   PathSegmentSyntax
+                    IdentifierSyntax
+                     IdentifierToken <1348:1353> [56:13:56:18] 'll_rl'
                 GreaterThanGreaterThanToken <1354:1356> [56:19:56:21] '>>'
                 LiteralExpressionSyntax
                  IntegerLiteralToken <1357:1362> [56:22:56:27] '32u64'
              CloseParenToken <1362:1363> [56:27:56:28] ')'
             PlusToken <1364:1365> [56:29:56:30] '+'
-            IdentifierNameSyntax
-             IdentifierToken <1366:1371> [56:31:56:36] 'll_ru'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <1366:1371> [56:31:56:36] 'll_ru'
            PlusToken <1372:1373> [56:37:56:38] '+'
            TupleExpressionSyntax
             OpenParenToken <1374:1375> [56:39:56:40] '('
             SyntaxList
              LabeledExpressionSyntax
               BinaryExpressionSyntax
-               IdentifierNameSyntax
-                IdentifierToken <1375:1380> [56:40:56:45] 'lu_rl'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <1375:1380> [56:40:56:45] 'lu_rl'
                AmpersandToken <1381:1382> [56:46:56:47] '&'
                LiteralExpressionSyntax
                 IntegerLiteralToken <1383:1396> [56:48:56:61] '0xFFFFFFFFu64'
@@ -775,8 +1072,12 @@ SourceFileSyntax
       CodeBlockItemSyntax
        ExpressionStatementSyntax
         AssignmentExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <1403:1408> [57:4:57:9] 'lower'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <1403:1408> [57:4:57:9] 'lower'
          EqualsToken <1409:1410> [57:10:57:11] '='
          BinaryExpressionSyntax
           TupleExpressionSyntax
@@ -784,8 +1085,12 @@ SourceFileSyntax
            SyntaxList
             LabeledExpressionSyntax
              BinaryExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <1412:1417> [57:13:57:18] 'll_rl'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <1412:1417> [57:13:57:18] 'll_rl'
               AmpersandToken <1418:1419> [57:19:57:20] '&'
               LiteralExpressionSyntax
                IntegerLiteralToken <1420:1433> [57:21:57:34] '0xFFFFFFFFu64'
@@ -796,8 +1101,12 @@ SourceFileSyntax
            SyntaxList
             LabeledExpressionSyntax
              BinaryExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <1438:1439> [57:39:57:40] 'm'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <1438:1439> [57:39:57:40] 'm'
               LessThanLessThanToken <1440:1442> [57:41:57:43] '<<'
               LiteralExpressionSyntax
                IntegerLiteralToken <1443:1448> [57:44:57:49] '32u64'
@@ -813,8 +1122,12 @@ SourceFileSyntax
            SyntaxList
             LabeledExpressionSyntax
              BinaryExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <1463:1464> [58:12:58:13] 'm'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <1463:1464> [58:12:58:13] 'm'
               GreaterThanGreaterThanToken <1465:1467> [58:14:58:16] '>>'
               LiteralExpressionSyntax
                IntegerLiteralToken <1468:1473> [58:17:58:22] '32u64'
@@ -825,60 +1138,84 @@ SourceFileSyntax
            SyntaxList
             LabeledExpressionSyntax
              BinaryExpressionSyntax
-              IdentifierNameSyntax
-               IdentifierToken <1478:1483> [58:27:58:32] 'lu_rl'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <1478:1483> [58:27:58:32] 'lu_rl'
               GreaterThanGreaterThanToken <1484:1486> [58:33:58:35] '>>'
               LiteralExpressionSyntax
                IntegerLiteralToken <1487:1492> [58:36:58:41] '32u64'
            CloseParenToken <1492:1493> [58:41:58:42] ')'
          PlusToken <1494:1495> [58:43:58:44] '+'
-         IdentifierNameSyntax
-          IdentifierToken <1496:1501> [58:45:58:50] 'lu_ru'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <1496:1501> [58:45:58:50] 'lu_ru'
        SemicolonToken <1501:1502> [58:50:58:51] ';'
      CloseBraceToken <1503:1504> [59:0:59:1] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <1506:1514> [61:0:61:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <1515:1520> [61:9:61:14] 'after'
     ParameterListSyntax
      OpenParenToken <1520:1521> [61:14:61:15] '('
      CloseParenToken <1521:1522> [61:15:61:16] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <1523:1525> [61:17:61:19] '->'
-     IdentifierNameSyntax
-      IdentifierToken <1526:1530> [61:20:61:24] 'void'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <1526:1530> [61:20:61:24] 'void'
     CodeBlockSyntax
      OpenBraceToken <1531:1532> [61:25:61:26] '{'
      CloseBraceToken <1532:1533> [61:26:61:27] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <1535:1543> [63:0:63:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <1544:1551> [63:9:63:16] 'Testing'
     ParameterListSyntax
      OpenParenToken <1551:1552> [63:16:63:17] '('
      SyntaxList
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <1552:1553> [63:17:63:18] 'a'
        TypeClauseSyntax
         ColonToken <1553:1554> [63:18:63:19] ':'
-        IdentifierNameSyntax
-         IdentifierToken <1555:1560> [63:20:63:25] 'int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <1555:1560> [63:20:63:25] 'int32'
        CommaToken <1560:1561> [63:25:63:26] ','
       ParameterSyntax
-       IdentifierNameSyntax
+       IdentifierSyntax
         IdentifierToken <1562:1563> [63:27:63:28] 'b'
        TypeClauseSyntax
         ColonToken <1563:1564> [63:28:63:29] ':'
-        IdentifierNameSyntax
-         IdentifierToken <1565:1570> [63:30:63:35] 'int32'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <1565:1570> [63:30:63:35] 'int32'
      CloseParenToken <1570:1571> [63:35:63:36] ')'
     ReturnTypeClauseSyntax
      MinusGreaterThanToken <1572:1574> [63:37:63:39] '->'
-     IdentifierNameSyntax
-      IdentifierToken <1575:1580> [63:40:63:45] 'int32'
+     TypePathSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <1575:1580> [63:40:63:45] 'int32'
     CodeBlockSyntax
      OpenBraceToken <1581:1582> [63:46:63:47] '{'
      SyntaxList
@@ -888,11 +1225,19 @@ SourceFileSyntax
          IfKeyword <1587:1589> [64:4:64:6] 'if'
          OpenParenToken <1590:1591> [64:7:64:8] '('
          BinaryExpressionSyntax
-          IdentifierNameSyntax
-           IdentifierToken <1591:1592> [64:8:64:9] 'a'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1591:1592> [64:8:64:9] 'a'
           LessThanToken <1593:1594> [64:10:64:11] '<'
-          IdentifierNameSyntax
-           IdentifierToken <1595:1596> [64:12:64:13] 'b'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1595:1596> [64:12:64:13] 'b'
          CloseParenToken <1596:1597> [64:13:64:14] ')'
          CodeBlockSyntax
           OpenBraceToken <1598:1599> [64:15:64:16] '{'
@@ -900,8 +1245,12 @@ SourceFileSyntax
            CodeBlockItemSyntax
             ReturnStatementSyntax
              ReturnKeyword <1608:1614> [65:8:65:14] 'return'
-             IdentifierNameSyntax
-              IdentifierToken <1615:1616> [65:15:65:16] 'a'
+             PathExpressionSyntax
+              PathSyntax
+               SyntaxList
+                PathSegmentSyntax
+                 IdentifierSyntax
+                  IdentifierToken <1615:1616> [65:15:65:16] 'a'
             SemicolonToken <1616:1617> [65:16:65:17] ';'
           CloseBraceToken <1622:1623> [66:4:66:5] '}'
          ElseClauseSyntax
@@ -912,15 +1261,19 @@ SourceFileSyntax
             CodeBlockItemSyntax
              ReturnStatementSyntax
               ReturnKeyword <1639:1645> [67:8:67:14] 'return'
-              IdentifierNameSyntax
-               IdentifierToken <1646:1647> [67:15:67:16] 'b'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <1646:1647> [67:15:67:16] 'b'
              SemicolonToken <1647:1648> [67:16:67:17] ';'
            CloseBraceToken <1653:1654> [68:4:68:5] '}'
      CloseBraceToken <1655:1656> [69:0:69:1] '}'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax
     FunctionKeyword <1658:1666> [71:0:71:8] 'function'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <1667:1691> [71:9:71:33] 'EndOfFileDuringStatement'
     ParameterListSyntax
      OpenParenToken <1691:1692> [71:33:71:34] '('
@@ -931,8 +1284,12 @@ SourceFileSyntax
       CodeBlockItemSyntax
        ExpressionStatementSyntax
         AssignmentExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <1696:1697> [71:38:71:39] missing ''
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <1696:1697> [71:38:71:39] missing ''
          EqualsToken <1696:1697> [71:38:71:39] '='
          LiteralExpressionSyntax
           IntegerLiteralToken <1697:1699> [71:39:71:41] '42'
@@ -947,7 +1304,7 @@ SourceFileSyntax
   CodeBlockItemSyntax
    StructDeclarationSyntax
     StructKeyword <1708:1714> [73:0:73:6] 'struct'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <1715:1718> [73:7:73:10] 'Foo'
     CodeBlockSyntax
      OpenBraceToken <1719:1720> [73:11:73:12] '{'
@@ -955,56 +1312,71 @@ SourceFileSyntax
   CodeBlockItemSyntax
    ConstantDeclarationSyntax
     ConstKeyword <1723:1728> [75:0:75:5] 'const'
-    IdentifierNameSyntax
+    IdentifierSyntax
      IdentifierToken <1729:1730> [75:6:75:7] 'x'
-    InitializerClauseSyntax
+    ExpressionInitializerClauseSyntax
      EqualsToken <1731:1732> [75:8:75:9] '='
      LiteralExpressionSyntax
       IntegerLiteralToken <1733:1735> [75:10:75:12] '42'
   CodeBlockItemSyntax
    NamespaceDeclarationSyntax
     NamespaceKeyword <1737:1746> [77:0:77:9] 'namespace'
-    IdentifierNameSyntax
-     IdentifierToken <1747:1756> [77:10:77:19] missing ''
+    PathSyntax
+     SyntaxList
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <1747:1756> [77:10:77:19] missing ''
     CodeBlockSyntax
      OpenBraceToken <1747:1756> [77:10:77:19] missing ''
      SyntaxList
       CodeBlockItemSyntax
        NamespaceDeclarationSyntax
         NamespaceKeyword <1747:1756> [77:10:77:19] 'namespace'
-        IdentifierNameSyntax
-         IdentifierToken <1757:1758> [77:20:77:21] missing ''
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <1757:1758> [77:20:77:21] missing ''
         CodeBlockSyntax
          OpenBraceToken <1757:1758> [77:20:77:21] missing ''
          CloseBraceToken <1757:1758> [77:20:77:21] '}'
       CodeBlockItemSyntax
        NamespaceDeclarationSyntax
         NamespaceKeyword <1760:1769> [79:0:79:9] 'namespace'
-        IdentifierNameSyntax
-         IdentifierToken <1770:1771> [79:10:79:11] 'X'
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <1770:1771> [79:10:79:11] 'X'
         CodeBlockSyntax
          OpenBraceToken <1772:1773> [79:12:79:13] '{'
          SyntaxList
           CodeBlockItemSyntax
            NamespaceDeclarationSyntax
             NamespaceKeyword <1778:1787> [80:4:80:13] 'namespace'
-            IdentifierNameSyntax
-             IdentifierToken <1788:1789> [80:14:80:15] 'Y'
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1788:1789> [80:14:80:15] 'Y'
             CodeBlockSyntax
              OpenBraceToken <1790:1791> [80:16:80:17] '{'
              SyntaxList
               CodeBlockItemSyntax
                NamespaceDeclarationSyntax
                 NamespaceKeyword <1800:1809> [81:8:81:17] 'namespace'
-                IdentifierNameSyntax
-                 IdentifierToken <1810:1811> [81:18:81:19] 'Z'
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <1810:1811> [81:18:81:19] 'Z'
                 CodeBlockSyntax
                  OpenBraceToken <1812:1813> [81:20:81:21] '{'
                  SyntaxList
                   CodeBlockItemSyntax
                    FunctionDeclarationSyntax
                     FunctionKeyword <1826:1834> [82:12:82:20] 'function'
-                    IdentifierNameSyntax
+                    IdentifierSyntax
                      IdentifierToken <1835:1836> [82:21:82:22] 'W'
                     ParameterListSyntax
                      OpenParenToken <1836:1837> [82:22:82:23] '('

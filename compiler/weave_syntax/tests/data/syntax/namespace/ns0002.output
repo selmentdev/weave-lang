@@ -3,8 +3,11 @@ SourceFileSyntax
   CodeBlockItemSyntax
    NamespaceDeclarationSyntax
     NamespaceKeyword <0:9> [0:0:0:9] 'namespace'
-    IdentifierNameSyntax
-     IdentifierToken <11:11> [1:0:1:0] missing ''
+    PathSyntax
+     SyntaxList
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <11:11> [1:0:1:0] missing ''
     CodeBlockSyntax
      OpenBraceToken <11:11> [1:0:1:0] missing ''
      CloseBraceToken <11:11> [1:0:1:0] missing ''

@@ -5,33 +5,49 @@ SourceFileSyntax
     LetKeyword <0:3> [0:0:0:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <4:5> [0:4:0:5] 'x'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <6:7> [0:6:0:7] '='
       BinaryExpressionSyntax
        BinaryExpressionSyntax
         BinaryExpressionSyntax
-         IdentifierNameSyntax
-          IdentifierToken <8:9> [0:8:0:9] 'y'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <8:9> [0:8:0:9] 'y'
          IsKeyword <10:12> [0:10:0:12] 'is'
-         IdentifierNameSyntax
-          IdentifierToken <13:14> [0:13:0:14] 'X'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <13:14> [0:13:0:14] 'X'
         OrKeyword <15:17> [0:15:0:17] 'or'
-        IdentifierNameSyntax
-         IdentifierToken <18:19> [0:18:0:19] 'Y'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <18:19> [0:18:0:19] 'Y'
        OrKeyword <20:22> [0:20:0:22] 'or'
-       IdentifierNameSyntax
-        IdentifierToken <23:24> [0:23:0:24] 'Z'
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <23:24> [0:23:0:24] 'Z'
    SemicolonToken <24:25> [0:24:0:25] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <26:29> [1:0:1:3] 'let'
     PatternBindingSyntax
      IdentifierPatternSyntax
-      IdentifierNameSyntax
+      IdentifierSyntax
        IdentifierToken <30:31> [1:4:1:5] 'x'
-     InitializerClauseSyntax
+     ExpressionInitializerClauseSyntax
       EqualsToken <32:33> [1:6:1:7] '='
       BinaryExpressionSyntax
        BinaryExpressionSyntax
@@ -40,11 +56,19 @@ SourceFileSyntax
          SyntaxList
           LabeledExpressionSyntax
            BinaryExpressionSyntax
-            IdentifierNameSyntax
-             IdentifierToken <35:36> [1:9:1:10] 'y'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <35:36> [1:9:1:10] 'y'
             IsKeyword <37:39> [1:11:1:13] 'is'
-            IdentifierNameSyntax
-             IdentifierToken <40:41> [1:14:1:15] 'X'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <40:41> [1:14:1:15] 'X'
          CloseParenToken <41:42> [1:15:1:16] ')'
         AndKeyword <43:46> [1:17:1:20] 'and'
         TupleExpressionSyntax
@@ -52,11 +76,19 @@ SourceFileSyntax
          SyntaxList
           LabeledExpressionSyntax
            BinaryExpressionSyntax
-            IdentifierNameSyntax
-             IdentifierToken <48:49> [1:22:1:23] 'y'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <48:49> [1:22:1:23] 'y'
             IsKeyword <50:52> [1:24:1:26] 'is'
-            IdentifierNameSyntax
-             IdentifierToken <53:54> [1:27:1:28] 'Y'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <53:54> [1:27:1:28] 'Y'
          CloseParenToken <54:55> [1:28:1:29] ')'
        AndKeyword <56:59> [1:30:1:33] 'and'
        TupleExpressionSyntax
@@ -64,11 +96,19 @@ SourceFileSyntax
         SyntaxList
          LabeledExpressionSyntax
           BinaryExpressionSyntax
-           IdentifierNameSyntax
-            IdentifierToken <61:62> [1:35:1:36] 'y'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <61:62> [1:35:1:36] 'y'
            IsKeyword <63:65> [1:37:1:39] 'is'
-           IdentifierNameSyntax
-            IdentifierToken <66:67> [1:40:1:41] 'Z'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <66:67> [1:40:1:41] 'Z'
         CloseParenToken <67:68> [1:41:1:42] ')'
    SemicolonToken <68:69> [1:42:1:43] ';'
   CodeBlockItemSyntax
@@ -77,19 +117,31 @@ SourceFileSyntax
      IfKeyword <71:73> [3:0:3:2] 'if'
      OpenParenToken <74:75> [3:3:3:4] '('
      BinaryExpressionSyntax
-      IdentifierNameSyntax
-       IdentifierToken <75:76> [3:4:3:5] 'x'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <75:76> [3:4:3:5] 'x'
       IsKeyword <77:79> [3:6:3:8] 'is'
-      IdentifierNameSyntax
-       IdentifierToken <80:81> [3:9:3:10] 'Y'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <80:81> [3:9:3:10] 'Y'
      CloseParenToken <82:83> [3:11:3:12] missing ''
      CodeBlockSyntax
       OpenBraceToken <82:83> [3:11:3:12] missing ''
       SyntaxList
        CodeBlockItemSyntax
         ExpressionStatementSyntax
-         IdentifierNameSyntax
-          IdentifierToken <82:83> [3:11:3:12] 'z'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <82:83> [3:11:3:12] 'z'
       UnexpectedNodesSyntax
        SyntaxList
         CloseParenToken <83:84> [3:12:3:13] ')'
@@ -105,26 +157,46 @@ SourceFileSyntax
   CodeBlockItemSyntax
    ExpressionStatementSyntax
     InvocationExpressionSyntax
-     IdentifierNameSyntax
-      IdentifierToken <108:115> [7:0:7:7] 'consume'
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <108:115> [7:0:7:7] 'consume'
      ArgumentListSyntax
       OpenParenToken <115:116> [7:7:7:8] '('
       SyntaxList
        ArgumentSyntax
-        IdentifierNameSyntax
-         IdentifierToken <116:117> [7:8:7:9] 'a'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <116:117> [7:8:7:9] 'a'
         CommaToken <117:118> [7:9:7:10] ','
        ArgumentSyntax
-        IdentifierNameSyntax
-         IdentifierToken <119:120> [7:11:7:12] 'b'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <119:120> [7:11:7:12] 'b'
         CommaToken <120:121> [7:12:7:13] ','
        ArgumentSyntax
-        IdentifierNameSyntax
-         IdentifierToken <122:123> [7:14:7:15] 'c'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <122:123> [7:14:7:15] 'c'
         CommaToken <123:124> [7:15:7:16] ','
        ArgumentSyntax
-        IdentifierNameSyntax
-         IdentifierToken <124:125> [7:16:7:17] missing ''
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <124:125> [7:16:7:17] missing ''
       CloseParenToken <124:125> [7:16:7:17] ')'
    SemicolonToken <125:126> [7:17:7:18] ';'
  EndOfFileToken <127:127> [8:0:8:0] ''
