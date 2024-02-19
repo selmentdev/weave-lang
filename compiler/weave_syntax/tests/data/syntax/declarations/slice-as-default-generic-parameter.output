@@ -59,4 +59,4 @@ SourceFileSyntax
          IdentifierSyntax
           IdentifierToken <55:56> [0:55:0:56] 'T'
    SemicolonToken <56:57> [0:56:0:57] ';'
- EndOfFileToken <59:59> [1:0:1:0] ''
+ EndOfFileToken <58:58> [1:0:1:0] ''
