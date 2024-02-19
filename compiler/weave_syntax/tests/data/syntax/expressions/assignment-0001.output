@@ -48,7 +48,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <63:66> [2:4:2:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <67:68> [2:8:2:9] 'a'
@@ -60,15 +60,15 @@ SourceFileSyntax
              PathSegmentSyntax
               IdentifierSyntax
                IdentifierToken <71:76> [2:12:2:17] 'Int32'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <77:78> [2:18:2:19] '='
-          LiteralExpressionSyntax
-           IntegerLiteralToken <79:81> [2:20:2:22] '42'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <77:78> [2:18:2:19] '='
+         LiteralExpressionSyntax
+          IntegerLiteralToken <79:81> [2:20:2:22] '42'
        SemicolonToken <81:82> [2:22:2:23] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <87:90> [3:4:3:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <91:92> [3:8:3:9] 'b'
@@ -80,10 +80,10 @@ SourceFileSyntax
              PathSegmentSyntax
               IdentifierSyntax
                IdentifierToken <95:100> [3:12:3:17] 'Int32'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <101:102> [3:18:3:19] '='
-          LiteralExpressionSyntax
-           IntegerLiteralToken <103:107> [3:20:3:24] '2137'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <101:102> [3:18:3:19] '='
+         LiteralExpressionSyntax
+          IntegerLiteralToken <103:107> [3:20:3:24] '2137'
        SemicolonToken <107:108> [3:24:3:25] ';'
       CodeBlockItemSyntax
        ExpressionStatementSyntax

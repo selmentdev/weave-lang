@@ -694,20 +694,19 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <1711:1714> [27:4:27:7] 'var'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1715:1717> [27:8:27:10] 'ww'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1718:1719> [27:11:27:12] '='
-          MoveExpressionSyntax
-           MoveKeyword <1720:1724> [27:13:27:17] 'move'
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1725:1726> [27:18:27:19] 'w'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1715:1717> [27:8:27:10] 'ww'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1718:1719> [27:11:27:12] '='
+         MoveExpressionSyntax
+          MoveKeyword <1720:1724> [27:13:27:17] 'move'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1725:1726> [27:18:27:19] 'w'
        SemicolonToken <1726:1727> [27:19:27:20] ';'
       CodeBlockItemSyntax
        ExpressionStatementSyntax
@@ -756,7 +755,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <1779:1782> [34:4:34:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <1783:1784> [34:8:34:9] 'x'
@@ -772,7 +771,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <1793:1796> [35:4:35:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <1797:1798> [35:8:35:9] 'y'
@@ -788,7 +787,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <1807:1810> [36:4:36:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <1811:1812> [36:8:36:9] 'z'
@@ -804,7 +803,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <1821:1824> [37:4:37:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <1825:1826> [37:8:37:9] 'w'
@@ -1182,6 +1181,15 @@ SourceFileSyntax
                       IdentifierToken <2370:2371> [62:42:62:43] 'v'
                  EqualsEqualsToken <2372:2374> [62:44:62:46] '=='
                  OldExpressionSyntax
+                  OldKeyword <2375:2378> [62:47:62:50] 'old'
+                  OpenParenToken <2378:2379> [62:50:62:51] '('
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <2379:2380> [62:51:62:52] 'v'
+                  CloseParenToken <2380:2381> [62:52:62:53] ')'
               CloseParenToken <2386:2387> [62:58:62:59] ')'
           CodeBlockItemSyntax
            ExpressionStatementSyntax
@@ -1490,6 +1498,15 @@ SourceFileSyntax
             IdentifierToken <3029:3030> [88:32:88:33] 'v'
        EqualsEqualsToken <3031:3033> [88:34:88:36] '=='
        OldExpressionSyntax
+        OldKeyword <3034:3037> [88:37:88:40] 'old'
+        OpenParenToken <3037:3038> [88:40:88:41] '('
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <3038:3039> [88:41:88:42] 'v'
+        CloseParenToken <3039:3040> [88:42:88:43] ')'
       CloseParenToken <3041:3042> [88:44:88:45] ')'
      ContractClauseSyntax
       IdentifierToken <3047:3056> [89:4:89:13] 'invariant'
@@ -1774,6 +1791,15 @@ SourceFileSyntax
              IdentifierToken <3545:3547> [104:66:104:68] 'rv'
         LessThanToken <3548:3549> [104:69:104:70] '<'
         OldExpressionSyntax
+         OldKeyword <3550:3553> [104:71:104:74] 'old'
+         OpenParenToken <3553:3554> [104:74:104:75] '('
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <3554:3555> [104:75:104:76] 'v'
+         CloseParenToken <3555:3556> [104:76:104:77] ')'
       CloseParenToken <3557:3558> [104:78:104:79] ')'
      ContractClauseSyntax
       IdentifierToken <3591:3600> [105:32:105:41] 'invariant'
@@ -2762,7 +2788,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <5487:5493> [213:4:213:10] 'public'
         VarKeyword <5494:5497> [213:11:213:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <5498:5503> [213:15:213:20] 'Value'

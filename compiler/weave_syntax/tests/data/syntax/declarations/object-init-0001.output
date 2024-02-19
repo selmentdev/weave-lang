@@ -23,7 +23,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <37:43> [2:4:2:10] 'public'
         VarKeyword <44:47> [2:11:2:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <48:56> [2:15:2:23] 'Elements'
@@ -41,23 +41,23 @@ SourceFileSyntax
            LiteralExpressionSyntax
             IntegerLiteralToken <62:63> [2:29:2:30] '3'
            CloseBracketToken <63:64> [2:30:2:31] ']'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <65:66> [2:32:2:33] '='
-          ArrayExpressionSyntax
-           OpenBracketToken <67:68> [2:34:2:35] '['
-           SyntaxList
-            LabeledExpressionSyntax
-             LiteralExpressionSyntax
-              IntegerLiteralToken <68:69> [2:35:2:36] '0'
-             CommaToken <69:70> [2:36:2:37] ','
-            LabeledExpressionSyntax
-             LiteralExpressionSyntax
-              IntegerLiteralToken <71:72> [2:38:2:39] '0'
-             CommaToken <72:73> [2:39:2:40] ','
-            LabeledExpressionSyntax
-             LiteralExpressionSyntax
-              IntegerLiteralToken <74:75> [2:41:2:42] '0'
-           CloseBracketToken <75:76> [2:42:2:43] ']'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <65:66> [2:32:2:33] '='
+         ArrayExpressionSyntax
+          OpenBracketToken <67:68> [2:34:2:35] '['
+          SyntaxList
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <68:69> [2:35:2:36] '0'
+            CommaToken <69:70> [2:36:2:37] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <71:72> [2:38:2:39] '0'
+            CommaToken <72:73> [2:39:2:40] ','
+           LabeledExpressionSyntax
+            LiteralExpressionSyntax
+             IntegerLiteralToken <74:75> [2:41:2:42] '0'
+          CloseBracketToken <75:76> [2:42:2:43] ']'
        SemicolonToken <76:77> [2:43:2:44] ';'
      CloseBraceToken <78:79> [3:0:3:1] '}'
   CodeBlockItemSyntax
@@ -225,7 +225,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <312:318> [19:4:19:10] 'public'
         VarKeyword <319:322> [19:11:19:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <323:324> [19:15:19:16] 'X'
@@ -243,7 +243,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <340:346> [20:4:20:10] 'public'
         VarKeyword <347:350> [20:11:20:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <351:352> [20:15:20:16] 'Y'
@@ -261,7 +261,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <368:374> [21:4:21:10] 'public'
         VarKeyword <375:378> [21:11:21:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <379:380> [21:15:21:16] 'Z'
@@ -279,7 +279,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <396:402> [22:4:22:10] 'public'
         VarKeyword <403:406> [22:11:22:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <407:408> [22:15:22:16] 'W'

@@ -58,7 +58,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <110:116> [5:4:5:10] 'public'
         VarKeyword <117:120> [5:11:5:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <121:126> [5:15:5:20] 'First'
@@ -76,7 +76,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <143:149> [6:4:6:10] 'public'
         VarKeyword <150:153> [6:11:6:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <154:160> [6:15:6:21] 'Second'
@@ -185,6 +185,7 @@ SourceFileSyntax
         ArrowExpressionClauseSyntax
          EqualsGreaterThanToken <336:338> [16:55:16:57] '=>'
          UnreachableExpressionSyntax
+          UnreachableKeyword <339:350> [16:58:16:69] 'unreachable'
        SemicolonToken <350:351> [16:69:16:70] ';'
      CloseBraceToken <352:353> [17:0:17:1] '}'
  EndOfFileToken <354:354> [18:0:18:0] ''

@@ -71,49 +71,48 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <107:110> [5:2:5:5] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <111:117> [5:6:5:12] 'result'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <118:119> [5:13:5:14] '='
-          ConditionalExpressionSyntax
-           BinaryExpressionSyntax
-            PathExpressionSyntax
-             PathSyntax
-              SyntaxList
-               PathSegmentSyntax
-                IdentifierSyntax
-                 IdentifierToken <120:124> [5:15:5:19] 'cond'
-            IsKeyword <125:127> [5:20:5:22] 'is'
-            PathExpressionSyntax
-             PathSyntax
-              SyntaxList
-               PathSegmentSyntax
-                IdentifierSyntax
-                 IdentifierToken <128:133> [5:23:5:28] 'Int32'
-           QuestionToken <134:135> [5:29:5:30] '?'
-           TypeOfExpressionSyntax
-            TypeOfKeyword <136:142> [5:31:5:37] 'typeof'
-            OpenParenToken <142:143> [5:37:5:38] '('
-            PathExpressionSyntax
-             PathSyntax
-              SyntaxList
-               PathSegmentSyntax
-                IdentifierSyntax
-                 IdentifierToken <143:148> [5:38:5:43] 'Int32'
-            CloseParenToken <148:149> [5:43:5:44] ')'
-           ColonToken <150:151> [5:45:5:46] ':'
-           TypeOfExpressionSyntax
-            TypeOfKeyword <152:158> [5:47:5:53] 'typeof'
-            OpenParenToken <158:159> [5:53:5:54] '('
-            PathExpressionSyntax
-             PathSyntax
-              SyntaxList
-               PathSegmentSyntax
-                IdentifierSyntax
-                 IdentifierToken <159:164> [5:54:5:59] 'Int64'
-            CloseParenToken <164:165> [5:59:5:60] ')'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <111:117> [5:6:5:12] 'result'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <118:119> [5:13:5:14] '='
+         ConditionalExpressionSyntax
+          BinaryExpressionSyntax
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <120:124> [5:15:5:19] 'cond'
+           IsKeyword <125:127> [5:20:5:22] 'is'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <128:133> [5:23:5:28] 'Int32'
+          QuestionToken <134:135> [5:29:5:30] '?'
+          TypeOfExpressionSyntax
+           TypeOfKeyword <136:142> [5:31:5:37] 'typeof'
+           OpenParenToken <142:143> [5:37:5:38] '('
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <143:148> [5:38:5:43] 'Int32'
+           CloseParenToken <148:149> [5:43:5:44] ')'
+          ColonToken <150:151> [5:45:5:46] ':'
+          TypeOfExpressionSyntax
+           TypeOfKeyword <152:158> [5:47:5:53] 'typeof'
+           OpenParenToken <158:159> [5:53:5:54] '('
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <159:164> [5:54:5:59] 'Int64'
+           CloseParenToken <164:165> [5:59:5:60] ')'
        SemicolonToken <165:166> [5:60:5:61] ';'
      CloseBraceToken <167:168> [5:62:5:63] '}'
  EndOfFileToken <169:169> [6:0:6:0] ''

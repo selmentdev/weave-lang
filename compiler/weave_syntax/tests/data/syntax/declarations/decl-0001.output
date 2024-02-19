@@ -80,7 +80,7 @@ SourceFileSyntax
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <146:149> [6:8:6:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <150:159> [6:12:6:21] 'leftLower'
@@ -92,36 +92,36 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <162:168> [6:24:6:30] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <169:170> [6:31:6:32] '='
-              BinaryExpressionSyntax
-               TupleExpressionSyntax
-                OpenParenToken <171:172> [6:33:6:34] '('
+            ExpressionInitializerClauseSyntax
+             EqualsToken <169:170> [6:31:6:32] '='
+             BinaryExpressionSyntax
+              TupleExpressionSyntax
+               OpenParenToken <171:172> [6:33:6:34] '('
+               SyntaxList
+                LabeledExpressionSyntax
+                 BinaryExpressionSyntax
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <172:176> [6:34:6:38] 'left'
+                  AmpersandToken <177:178> [6:39:6:40] '&'
+                  LiteralExpressionSyntax
+                   IntegerLiteralToken <179:189> [6:41:6:51] '0xFFFFFFFF'
+               CloseParenToken <189:190> [6:51:6:52] ')'
+              AsKeyword <191:193> [6:53:6:55] 'as'
+              PathExpressionSyntax
+               PathSyntax
                 SyntaxList
-                 LabeledExpressionSyntax
-                  BinaryExpressionSyntax
-                   PathExpressionSyntax
-                    PathSyntax
-                     SyntaxList
-                      PathSegmentSyntax
-                       IdentifierSyntax
-                        IdentifierToken <172:176> [6:34:6:38] 'left'
-                   AmpersandToken <177:178> [6:39:6:40] '&'
-                   LiteralExpressionSyntax
-                    IntegerLiteralToken <179:189> [6:41:6:51] '0xFFFFFFFF'
-                CloseParenToken <189:190> [6:51:6:52] ')'
-               AsKeyword <191:193> [6:53:6:55] 'as'
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <194:200> [6:56:6:62] 'UInt64'
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <194:200> [6:56:6:62] 'UInt64'
            SemicolonToken <200:201> [6:62:6:63] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <210:213> [7:8:7:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <214:223> [7:12:7:21] 'leftUpper'
@@ -133,36 +133,36 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <226:232> [7:24:7:30] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <233:234> [7:31:7:32] '='
-              BinaryExpressionSyntax
-               TupleExpressionSyntax
-                OpenParenToken <235:236> [7:33:7:34] '('
+            ExpressionInitializerClauseSyntax
+             EqualsToken <233:234> [7:31:7:32] '='
+             BinaryExpressionSyntax
+              TupleExpressionSyntax
+               OpenParenToken <235:236> [7:33:7:34] '('
+               SyntaxList
+                LabeledExpressionSyntax
+                 BinaryExpressionSyntax
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <236:240> [7:34:7:38] 'left'
+                  GreaterThanGreaterThanToken <241:243> [7:39:7:41] '>>'
+                  LiteralExpressionSyntax
+                   IntegerLiteralToken <244:246> [7:42:7:44] '32'
+               CloseParenToken <246:247> [7:44:7:45] ')'
+              AsKeyword <248:250> [7:46:7:48] 'as'
+              PathExpressionSyntax
+               PathSyntax
                 SyntaxList
-                 LabeledExpressionSyntax
-                  BinaryExpressionSyntax
-                   PathExpressionSyntax
-                    PathSyntax
-                     SyntaxList
-                      PathSegmentSyntax
-                       IdentifierSyntax
-                        IdentifierToken <236:240> [7:34:7:38] 'left'
-                   GreaterThanGreaterThanToken <241:243> [7:39:7:41] '>>'
-                   LiteralExpressionSyntax
-                    IntegerLiteralToken <244:246> [7:42:7:44] '32'
-                CloseParenToken <246:247> [7:44:7:45] ')'
-               AsKeyword <248:250> [7:46:7:48] 'as'
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <251:257> [7:49:7:55] 'UInt64'
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <251:257> [7:49:7:55] 'UInt64'
            SemicolonToken <257:258> [7:55:7:56] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <267:270> [8:8:8:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <271:281> [8:12:8:22] 'rightLower'
@@ -174,36 +174,36 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <284:290> [8:25:8:31] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <291:292> [8:32:8:33] '='
-              BinaryExpressionSyntax
-               TupleExpressionSyntax
-                OpenParenToken <293:294> [8:34:8:35] '('
+            ExpressionInitializerClauseSyntax
+             EqualsToken <291:292> [8:32:8:33] '='
+             BinaryExpressionSyntax
+              TupleExpressionSyntax
+               OpenParenToken <293:294> [8:34:8:35] '('
+               SyntaxList
+                LabeledExpressionSyntax
+                 BinaryExpressionSyntax
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <294:299> [8:35:8:40] 'right'
+                  AmpersandToken <300:301> [8:41:8:42] '&'
+                  LiteralExpressionSyntax
+                   IntegerLiteralToken <302:312> [8:43:8:53] '0xFFFFFFFF'
+               CloseParenToken <312:313> [8:53:8:54] ')'
+              AsKeyword <314:316> [8:55:8:57] 'as'
+              PathExpressionSyntax
+               PathSyntax
                 SyntaxList
-                 LabeledExpressionSyntax
-                  BinaryExpressionSyntax
-                   PathExpressionSyntax
-                    PathSyntax
-                     SyntaxList
-                      PathSegmentSyntax
-                       IdentifierSyntax
-                        IdentifierToken <294:299> [8:35:8:40] 'right'
-                   AmpersandToken <300:301> [8:41:8:42] '&'
-                   LiteralExpressionSyntax
-                    IntegerLiteralToken <302:312> [8:43:8:53] '0xFFFFFFFF'
-                CloseParenToken <312:313> [8:53:8:54] ')'
-               AsKeyword <314:316> [8:55:8:57] 'as'
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <317:323> [8:58:8:64] 'UInt64'
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <317:323> [8:58:8:64] 'UInt64'
            SemicolonToken <323:324> [8:64:8:65] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <333:336> [9:8:9:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <337:347> [9:12:9:22] 'rightUpper'
@@ -215,36 +215,36 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <350:356> [9:25:9:31] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <357:358> [9:32:9:33] '='
-              BinaryExpressionSyntax
-               TupleExpressionSyntax
-                OpenParenToken <359:360> [9:34:9:35] '('
+            ExpressionInitializerClauseSyntax
+             EqualsToken <357:358> [9:32:9:33] '='
+             BinaryExpressionSyntax
+              TupleExpressionSyntax
+               OpenParenToken <359:360> [9:34:9:35] '('
+               SyntaxList
+                LabeledExpressionSyntax
+                 BinaryExpressionSyntax
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <360:365> [9:35:9:40] 'right'
+                  GreaterThanGreaterThanToken <366:368> [9:41:9:43] '>>'
+                  LiteralExpressionSyntax
+                   IntegerLiteralToken <369:371> [9:44:9:46] '32'
+               CloseParenToken <371:372> [9:46:9:47] ')'
+              AsKeyword <373:375> [9:48:9:50] 'as'
+              PathExpressionSyntax
+               PathSyntax
                 SyntaxList
-                 LabeledExpressionSyntax
-                  BinaryExpressionSyntax
-                   PathExpressionSyntax
-                    PathSyntax
-                     SyntaxList
-                      PathSegmentSyntax
-                       IdentifierSyntax
-                        IdentifierToken <360:365> [9:35:9:40] 'right'
-                   GreaterThanGreaterThanToken <366:368> [9:41:9:43] '>>'
-                   LiteralExpressionSyntax
-                    IntegerLiteralToken <369:371> [9:44:9:46] '32'
-                CloseParenToken <371:372> [9:46:9:47] ')'
-               AsKeyword <373:375> [9:48:9:50] 'as'
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <376:382> [9:51:9:57] 'UInt64'
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <376:382> [9:51:9:57] 'UInt64'
            SemicolonToken <382:383> [9:57:9:58] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <408:411> [12:8:12:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <412:424> [12:12:12:24] 'productLower'
@@ -256,27 +256,27 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <427:433> [12:27:12:33] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <434:435> [12:34:12:35] '='
-              BinaryExpressionSyntax
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <436:445> [12:36:12:45] 'leftLower'
-               AsteriskToken <446:447> [12:46:12:47] '*'
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <448:458> [12:48:12:58] 'rightLower'
+            ExpressionInitializerClauseSyntax
+             EqualsToken <434:435> [12:34:12:35] '='
+             BinaryExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <436:445> [12:36:12:45] 'leftLower'
+              AsteriskToken <446:447> [12:46:12:47] '*'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <448:458> [12:48:12:58] 'rightLower'
            SemicolonToken <458:459> [12:58:12:59] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <468:471> [13:8:13:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <472:486> [13:12:13:26] 'productMiddle1'
@@ -288,27 +288,27 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <489:495> [13:29:13:35] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <496:497> [13:36:13:37] '='
-              BinaryExpressionSyntax
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <498:507> [13:38:13:47] 'leftLower'
-               AsteriskToken <508:509> [13:48:13:49] '*'
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <510:520> [13:50:13:60] 'rightUpper'
+            ExpressionInitializerClauseSyntax
+             EqualsToken <496:497> [13:36:13:37] '='
+             BinaryExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <498:507> [13:38:13:47] 'leftLower'
+              AsteriskToken <508:509> [13:48:13:49] '*'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <510:520> [13:50:13:60] 'rightUpper'
            SemicolonToken <520:521> [13:60:13:61] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <530:533> [14:8:14:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <534:548> [14:12:14:26] 'productMiddle2'
@@ -320,27 +320,27 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <551:557> [14:29:14:35] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <558:559> [14:36:14:37] '='
-              BinaryExpressionSyntax
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <560:569> [14:38:14:47] 'leftUpper'
-               AsteriskToken <570:571> [14:48:14:49] '*'
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <572:582> [14:50:14:60] 'rightLower'
+            ExpressionInitializerClauseSyntax
+             EqualsToken <558:559> [14:36:14:37] '='
+             BinaryExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <560:569> [14:38:14:47] 'leftUpper'
+              AsteriskToken <570:571> [14:48:14:49] '*'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <572:582> [14:50:14:60] 'rightLower'
            SemicolonToken <582:583> [14:60:14:61] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <592:595> [15:8:15:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <596:608> [15:12:15:24] 'productUpper'
@@ -352,27 +352,27 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <611:617> [15:27:15:33] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <618:619> [15:34:15:35] '='
-              BinaryExpressionSyntax
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <620:629> [15:36:15:45] 'leftUpper'
-               AsteriskToken <630:631> [15:46:15:47] '*'
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <632:642> [15:48:15:58] 'rightUpper'
+            ExpressionInitializerClauseSyntax
+             EqualsToken <618:619> [15:34:15:35] '='
+             BinaryExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <620:629> [15:36:15:45] 'leftUpper'
+              AsteriskToken <630:631> [15:46:15:47] '*'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <632:642> [15:48:15:58] 'rightUpper'
            SemicolonToken <642:643> [15:58:15:59] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <653:656> [17:8:17:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <657:662> [17:12:17:17] 'carry'
@@ -384,35 +384,12 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <665:671> [17:20:17:26] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <672:673> [17:27:17:28] '='
+            ExpressionInitializerClauseSyntax
+             EqualsToken <672:673> [17:27:17:28] '='
+             BinaryExpressionSyntax
               BinaryExpressionSyntax
-               BinaryExpressionSyntax
-                TupleExpressionSyntax
-                 OpenParenToken <674:675> [17:29:17:30] '('
-                 SyntaxList
-                  LabeledExpressionSyntax
-                   BinaryExpressionSyntax
-                    PathExpressionSyntax
-                     PathSyntax
-                      SyntaxList
-                       PathSegmentSyntax
-                        IdentifierSyntax
-                         IdentifierToken <675:687> [17:30:17:42] 'productLower'
-                    GreaterThanGreaterThanToken <688:690> [17:43:17:45] '>>'
-                    LiteralExpressionSyntax
-                     IntegerLiteralToken <691:693> [17:46:17:48] '32'
-                 CloseParenToken <693:694> [17:48:17:49] ')'
-                PlusToken <695:696> [17:50:17:51] '+'
-                PathExpressionSyntax
-                 PathSyntax
-                  SyntaxList
-                   PathSegmentSyntax
-                    IdentifierSyntax
-                     IdentifierToken <697:711> [17:52:17:66] 'productMiddle1'
-               PlusToken <712:713> [17:67:17:68] '+'
                TupleExpressionSyntax
-                OpenParenToken <714:715> [17:69:17:70] '('
+                OpenParenToken <674:675> [17:29:17:30] '('
                 SyntaxList
                  LabeledExpressionSyntax
                   BinaryExpressionSyntax
@@ -421,16 +398,39 @@ SourceFileSyntax
                      SyntaxList
                       PathSegmentSyntax
                        IdentifierSyntax
-                        IdentifierToken <715:729> [17:70:17:84] 'productMiddle2'
-                   AmpersandToken <730:731> [17:85:17:86] '&'
+                        IdentifierToken <675:687> [17:30:17:42] 'productLower'
+                   GreaterThanGreaterThanToken <688:690> [17:43:17:45] '>>'
                    LiteralExpressionSyntax
-                    IntegerLiteralToken <732:742> [17:87:17:97] '0xFFFFFFFF'
-                CloseParenToken <742:743> [17:97:17:98] ')'
+                    IntegerLiteralToken <691:693> [17:46:17:48] '32'
+                CloseParenToken <693:694> [17:48:17:49] ')'
+               PlusToken <695:696> [17:50:17:51] '+'
+               PathExpressionSyntax
+                PathSyntax
+                 SyntaxList
+                  PathSegmentSyntax
+                   IdentifierSyntax
+                    IdentifierToken <697:711> [17:52:17:66] 'productMiddle1'
+              PlusToken <712:713> [17:67:17:68] '+'
+              TupleExpressionSyntax
+               OpenParenToken <714:715> [17:69:17:70] '('
+               SyntaxList
+                LabeledExpressionSyntax
+                 BinaryExpressionSyntax
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <715:729> [17:70:17:84] 'productMiddle2'
+                  AmpersandToken <730:731> [17:85:17:86] '&'
+                  LiteralExpressionSyntax
+                   IntegerLiteralToken <732:742> [17:87:17:97] '0xFFFFFFFF'
+               CloseParenToken <742:743> [17:97:17:98] ')'
            SemicolonToken <743:744> [17:98:17:99] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <753:756> [18:8:18:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <757:762> [18:12:18:17] 'lower'
@@ -442,45 +442,45 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <765:771> [18:20:18:26] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <772:773> [18:27:18:28] '='
-              BinaryExpressionSyntax
-               TupleExpressionSyntax
-                OpenParenToken <774:775> [18:29:18:30] '('
-                SyntaxList
-                 LabeledExpressionSyntax
-                  BinaryExpressionSyntax
-                   PathExpressionSyntax
-                    PathSyntax
-                     SyntaxList
-                      PathSegmentSyntax
-                       IdentifierSyntax
-                        IdentifierToken <775:787> [18:30:18:42] 'productLower'
-                   AmpersandToken <788:789> [18:43:18:44] '&'
-                   LiteralExpressionSyntax
-                    IntegerLiteralToken <790:800> [18:45:18:55] '0xFFFFFFFF'
-                CloseParenToken <800:801> [18:55:18:56] ')'
-               BarToken <802:803> [18:57:18:58] '|'
-               TupleExpressionSyntax
-                OpenParenToken <804:805> [18:59:18:60] '('
-                SyntaxList
-                 LabeledExpressionSyntax
-                  BinaryExpressionSyntax
-                   PathExpressionSyntax
-                    PathSyntax
-                     SyntaxList
-                      PathSegmentSyntax
-                       IdentifierSyntax
-                        IdentifierToken <805:810> [18:60:18:65] 'carry'
-                   LessThanLessThanToken <811:813> [18:66:18:68] '<<'
-                   LiteralExpressionSyntax
-                    IntegerLiteralToken <814:816> [18:69:18:71] '32'
-                CloseParenToken <816:817> [18:71:18:72] ')'
+            ExpressionInitializerClauseSyntax
+             EqualsToken <772:773> [18:27:18:28] '='
+             BinaryExpressionSyntax
+              TupleExpressionSyntax
+               OpenParenToken <774:775> [18:29:18:30] '('
+               SyntaxList
+                LabeledExpressionSyntax
+                 BinaryExpressionSyntax
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <775:787> [18:30:18:42] 'productLower'
+                  AmpersandToken <788:789> [18:43:18:44] '&'
+                  LiteralExpressionSyntax
+                   IntegerLiteralToken <790:800> [18:45:18:55] '0xFFFFFFFF'
+               CloseParenToken <800:801> [18:55:18:56] ')'
+              BarToken <802:803> [18:57:18:58] '|'
+              TupleExpressionSyntax
+               OpenParenToken <804:805> [18:59:18:60] '('
+               SyntaxList
+                LabeledExpressionSyntax
+                 BinaryExpressionSyntax
+                  PathExpressionSyntax
+                   PathSyntax
+                    SyntaxList
+                     PathSegmentSyntax
+                      IdentifierSyntax
+                       IdentifierToken <805:810> [18:60:18:65] 'carry'
+                  LessThanLessThanToken <811:813> [18:66:18:68] '<<'
+                  LiteralExpressionSyntax
+                   IntegerLiteralToken <814:816> [18:69:18:71] '32'
+               CloseParenToken <816:817> [18:71:18:72] ')'
            SemicolonToken <817:818> [18:72:18:73] ';'
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <827:830> [19:8:19:11] 'let'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <831:836> [19:12:19:17] 'upper'
@@ -492,48 +492,48 @@ SourceFileSyntax
                  PathSegmentSyntax
                   IdentifierSyntax
                    IdentifierToken <839:845> [19:20:19:26] 'UInt64'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <846:847> [19:27:19:28] '='
+            ExpressionInitializerClauseSyntax
+             EqualsToken <846:847> [19:27:19:28] '='
+             BinaryExpressionSyntax
               BinaryExpressionSyntax
-               BinaryExpressionSyntax
-                TupleExpressionSyntax
-                 OpenParenToken <848:849> [19:29:19:30] '('
-                 SyntaxList
-                  LabeledExpressionSyntax
-                   BinaryExpressionSyntax
-                    PathExpressionSyntax
-                     PathSyntax
-                      SyntaxList
-                       PathSegmentSyntax
-                        IdentifierSyntax
-                         IdentifierToken <849:854> [19:30:19:35] 'carry'
-                    GreaterThanGreaterThanToken <855:857> [19:36:19:38] '>>'
-                    LiteralExpressionSyntax
-                     IntegerLiteralToken <858:860> [19:39:19:41] '32'
-                 CloseParenToken <860:861> [19:41:19:42] ')'
-                PlusToken <862:863> [19:43:19:44] '+'
-                TupleExpressionSyntax
-                 OpenParenToken <864:865> [19:45:19:46] '('
-                 SyntaxList
-                  LabeledExpressionSyntax
-                   BinaryExpressionSyntax
-                    PathExpressionSyntax
-                     PathSyntax
-                      SyntaxList
-                       PathSegmentSyntax
-                        IdentifierSyntax
-                         IdentifierToken <865:879> [19:46:19:60] 'productMiddle2'
-                    GreaterThanGreaterThanToken <880:882> [19:61:19:63] '>>'
-                    LiteralExpressionSyntax
-                     IntegerLiteralToken <883:885> [19:64:19:66] '32'
-                 CloseParenToken <885:886> [19:66:19:67] ')'
-               PlusToken <887:888> [19:68:19:69] '+'
-               PathExpressionSyntax
-                PathSyntax
-                 SyntaxList
-                  PathSegmentSyntax
-                   IdentifierSyntax
-                    IdentifierToken <889:901> [19:70:19:82] 'productUpper'
+               TupleExpressionSyntax
+                OpenParenToken <848:849> [19:29:19:30] '('
+                SyntaxList
+                 LabeledExpressionSyntax
+                  BinaryExpressionSyntax
+                   PathExpressionSyntax
+                    PathSyntax
+                     SyntaxList
+                      PathSegmentSyntax
+                       IdentifierSyntax
+                        IdentifierToken <849:854> [19:30:19:35] 'carry'
+                   GreaterThanGreaterThanToken <855:857> [19:36:19:38] '>>'
+                   LiteralExpressionSyntax
+                    IntegerLiteralToken <858:860> [19:39:19:41] '32'
+                CloseParenToken <860:861> [19:41:19:42] ')'
+               PlusToken <862:863> [19:43:19:44] '+'
+               TupleExpressionSyntax
+                OpenParenToken <864:865> [19:45:19:46] '('
+                SyntaxList
+                 LabeledExpressionSyntax
+                  BinaryExpressionSyntax
+                   PathExpressionSyntax
+                    PathSyntax
+                     SyntaxList
+                      PathSegmentSyntax
+                       IdentifierSyntax
+                        IdentifierToken <865:879> [19:46:19:60] 'productMiddle2'
+                   GreaterThanGreaterThanToken <880:882> [19:61:19:63] '>>'
+                   LiteralExpressionSyntax
+                    IntegerLiteralToken <883:885> [19:64:19:66] '32'
+                CloseParenToken <885:886> [19:66:19:67] ')'
+              PlusToken <887:888> [19:68:19:69] '+'
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <889:901> [19:70:19:82] 'productUpper'
            SemicolonToken <901:902> [19:82:19:83] ';'
           CodeBlockItemSyntax
            ReturnStatementSyntax
@@ -788,7 +788,7 @@ SourceFileSyntax
             SyntaxList
              PublicKeyword <1311:1317> [39:8:39:14] 'public'
             VarKeyword <1318:1321> [39:15:39:18] 'var'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <1322:1327> [39:19:39:24] 'Lower'
@@ -820,7 +820,7 @@ SourceFileSyntax
             SyntaxList
              PublicKeyword <1353:1359> [40:8:40:14] 'public'
             VarKeyword <1360:1363> [40:15:40:18] 'var'
-            PatternBindingSyntax
+            TypePatternSyntax
              IdentifierPatternSyntax
               IdentifierSyntax
                IdentifierToken <1364:1369> [40:19:40:24] 'Upper'

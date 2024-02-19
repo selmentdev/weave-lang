@@ -109,7 +109,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <196:199> [12:4:12:7] 'let'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <200:208> [12:8:12:16] 'callback'
@@ -121,18 +121,18 @@ SourceFileSyntax
              PathSegmentSyntax
               IdentifierSyntax
                IdentifierToken <211:230> [12:19:12:38] 'PlayerDeathCallback'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <231:232> [12:39:12:40] '='
-          MemberAccessExpressionSyntax
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <233:237> [12:41:12:45] 'game'
-           DotToken <237:238> [12:45:12:46] '.'
-           IdentifierSyntax
-            IdentifierToken <238:249> [12:46:12:57] 'PlayerDeath'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <231:232> [12:39:12:40] '='
+         MemberAccessExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <233:237> [12:41:12:45] 'game'
+          DotToken <237:238> [12:45:12:46] '.'
+          IdentifierSyntax
+           IdentifierToken <238:249> [12:46:12:57] 'PlayerDeath'
        SemicolonToken <249:250> [12:57:12:58] ';'
       CodeBlockItemSyntax
        ExpressionStatementSyntax

@@ -8,10 +8,9 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <6:9> [1:4:1:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <10:12> [1:8:1:10] missing ''
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <10:12> [1:8:1:10] missing ''
       CodeBlockItemSyntax
        ExpressionStatementSyntax
         IfExpressionSyntax
@@ -39,14 +38,13 @@ SourceFileSyntax
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             LetKeyword <24:27> [4:4:4:7] 'let'
-            PatternBindingSyntax
-             IdentifierPatternSyntax
-              IdentifierSyntax
-               IdentifierToken <28:29> [4:8:4:9] 'y'
-             ExpressionInitializerClauseSyntax
-              EqualsToken <30:31> [4:10:4:11] '='
-              LiteralExpressionSyntax
-               IntegerLiteralToken <32:34> [4:12:4:14] '42'
+            IdentifierPatternSyntax
+             IdentifierSyntax
+              IdentifierToken <28:29> [4:8:4:9] 'y'
+            ExpressionInitializerClauseSyntax
+             EqualsToken <30:31> [4:10:4:11] '='
+             LiteralExpressionSyntax
+              IntegerLiteralToken <32:34> [4:12:4:14] '42'
            SemicolonToken <34:35> [4:14:4:15] ';'
          CloseBraceToken <36:37> [5:0:5:1] '}'
       CodeBlockItemSyntax
@@ -61,22 +59,21 @@ SourceFileSyntax
              OpenParenToken <47:50> [7:7:7:10] missing ''
              LetExpressionSyntax
               LetKeyword <47:50> [7:7:7:10] 'let'
-              PatternBindingSyntax
-               IdentifierPatternSyntax
-                IdentifierSyntax
-                 IdentifierToken <51:52> [7:11:7:12] 'x'
-                TuplePatternSyntax
-                 OpenParenToken <52:53> [7:12:7:13] '('
-                 SyntaxList
-                  TuplePatternItemSyntax
-                   IdentifierPatternSyntax
-                    IdentifierSyntax
-                     IdentifierToken <53:54> [7:13:7:14] 'y'
-                 CloseParenToken <54:55> [7:14:7:15] ')'
-               ExpressionInitializerClauseSyntax
-                EqualsToken <56:57> [7:16:7:17] '='
-                LiteralExpressionSyntax
-                 IntegerLiteralToken <58:60> [7:18:7:20] '42'
+              IdentifierPatternSyntax
+               IdentifierSyntax
+                IdentifierToken <51:52> [7:11:7:12] 'x'
+               TuplePatternSyntax
+                OpenParenToken <52:53> [7:12:7:13] '('
+                SyntaxList
+                 TuplePatternItemSyntax
+                  IdentifierPatternSyntax
+                   IdentifierSyntax
+                    IdentifierToken <53:54> [7:13:7:14] 'y'
+                CloseParenToken <54:55> [7:14:7:15] ')'
+              ExpressionInitializerClauseSyntax
+               EqualsToken <56:57> [7:16:7:17] '='
+               LiteralExpressionSyntax
+                IntegerLiteralToken <58:60> [7:18:7:20] '42'
              CloseParenToken <61:62> [7:21:7:22] missing ''
              CodeBlockSyntax
               OpenBraceToken <61:62> [7:21:7:22] '{'

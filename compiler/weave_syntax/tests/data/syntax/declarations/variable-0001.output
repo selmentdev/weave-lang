@@ -3,7 +3,7 @@ SourceFileSyntax
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <0:3> [0:0:0:3] 'let'
-    PatternBindingSyntax
+    TypePatternSyntax
      IdentifierPatternSyntax
       IdentifierSyntax
        IdentifierToken <8:24> [0:8:0:24] 'immutable_value1'
@@ -15,15 +15,15 @@ SourceFileSyntax
          PathSegmentSyntax
           IdentifierSyntax
            IdentifierToken <32:37> [0:32:0:37] 'Int32'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <38:39> [0:38:0:39] '='
-      LiteralExpressionSyntax
-       IntegerLiteralToken <40:41> [0:40:0:41] '1'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <38:39> [0:38:0:39] '='
+     LiteralExpressionSyntax
+      IntegerLiteralToken <40:41> [0:40:0:41] '1'
    SemicolonToken <41:42> [0:41:0:42] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <43:46> [1:0:1:3] 'let'
-    PatternBindingSyntax
+    TypePatternSyntax
      IdentifierPatternSyntax
       IdentifierSyntax
        IdentifierToken <51:67> [1:8:1:24] 'immutable_value2'
@@ -35,15 +35,15 @@ SourceFileSyntax
          PathSegmentSyntax
           IdentifierSyntax
            IdentifierToken <75:80> [1:32:1:37] 'Int32'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <81:82> [1:38:1:39] '='
-      LiteralExpressionSyntax
-       IntegerLiteralToken <83:84> [1:40:1:41] '2'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <81:82> [1:38:1:39] '='
+     LiteralExpressionSyntax
+      IntegerLiteralToken <83:84> [1:40:1:41] '2'
    SemicolonToken <84:85> [1:41:1:42] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <86:89> [2:0:2:3] 'var'
-    PatternBindingSyntax
+    TypePatternSyntax
      IdentifierPatternSyntax
       IdentifierSyntax
        IdentifierToken <94:108> [2:8:2:22] 'mutable_value1'
@@ -55,15 +55,15 @@ SourceFileSyntax
          PathSegmentSyntax
           IdentifierSyntax
            IdentifierToken <118:123> [2:32:2:37] 'Int32'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <124:125> [2:38:2:39] '='
-      LiteralExpressionSyntax
-       IntegerLiteralToken <126:127> [2:40:2:41] '3'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <124:125> [2:38:2:39] '='
+     LiteralExpressionSyntax
+      IntegerLiteralToken <126:127> [2:40:2:41] '3'
    SemicolonToken <127:128> [2:41:2:42] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <129:132> [3:0:3:3] 'var'
-    PatternBindingSyntax
+    TypePatternSyntax
      IdentifierPatternSyntax
       IdentifierSyntax
        IdentifierToken <137:151> [3:8:3:22] 'mutable_value2'
@@ -75,86 +75,82 @@ SourceFileSyntax
          PathSegmentSyntax
           IdentifierSyntax
            IdentifierToken <161:166> [3:32:3:37] 'Int32'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <167:168> [3:38:3:39] '='
-      LiteralExpressionSyntax
-       IntegerLiteralToken <169:170> [3:40:3:41] '4'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <167:168> [3:38:3:39] '='
+     LiteralExpressionSyntax
+      IntegerLiteralToken <169:170> [3:40:3:41] '4'
    SemicolonToken <170:171> [3:41:3:42] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <173:176> [5:0:5:3] 'let'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <177:226> [5:4:5:53] 'unbindable_immutable_reference_to_immutable_value'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <229:230> [5:56:5:57] '='
-      ExpressionReferenceSyntax
-       AmpersandToken <231:232> [5:58:5:59] '&'
-       LetKeyword <232:235> [5:59:5:62] 'let'
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <236:252> [5:63:5:79] 'immutable_value1'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <177:226> [5:4:5:53] 'unbindable_immutable_reference_to_immutable_value'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <229:230> [5:56:5:57] '='
+     ExpressionReferenceSyntax
+      AmpersandToken <231:232> [5:58:5:59] '&'
+      LetKeyword <232:235> [5:59:5:62] 'let'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <236:252> [5:63:5:79] 'immutable_value1'
    SemicolonToken <252:253> [5:79:5:80] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <282:285> [6:0:6:3] 'let'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <286:333> [6:4:6:51] 'unbindable_immutable_reference_to_mutable_value'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <338:339> [6:56:6:57] '='
-      ExpressionReferenceSyntax
-       AmpersandToken <340:341> [6:58:6:59] '&'
-       LetKeyword <341:344> [6:59:6:62] 'let'
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <345:359> [6:63:6:77] 'mutable_value1'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <286:333> [6:4:6:51] 'unbindable_immutable_reference_to_mutable_value'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <338:339> [6:56:6:57] '='
+     ExpressionReferenceSyntax
+      AmpersandToken <340:341> [6:58:6:59] '&'
+      LetKeyword <341:344> [6:59:6:62] 'let'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <345:359> [6:63:6:77] 'mutable_value1'
    SemicolonToken <359:360> [6:77:6:78] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <389:392> [7:0:7:3] 'let'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <393:440> [7:4:7:51] 'unbindable_mutable_reference_to_immutable_value'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <445:446> [7:56:7:57] '='
-      ExpressionReferenceSyntax
-       AmpersandToken <447:448> [7:58:7:59] '&'
-       VarKeyword <448:451> [7:59:7:62] 'var'
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <452:468> [7:63:7:79] 'immutable_value1'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <393:440> [7:4:7:51] 'unbindable_mutable_reference_to_immutable_value'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <445:446> [7:56:7:57] '='
+     ExpressionReferenceSyntax
+      AmpersandToken <447:448> [7:58:7:59] '&'
+      VarKeyword <448:451> [7:59:7:62] 'var'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <452:468> [7:63:7:79] 'immutable_value1'
    SemicolonToken <468:469> [7:79:7:80] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <498:501> [8:0:8:3] 'let'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <502:547> [8:4:8:49] 'unbindable_mutable_reference_to_mutable_value'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <554:555> [8:56:8:57] '='
-      ExpressionReferenceSyntax
-       AmpersandToken <556:557> [8:58:8:59] '&'
-       VarKeyword <557:560> [8:59:8:62] 'var'
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <561:575> [8:63:8:77] 'mutable_value1'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <502:547> [8:4:8:49] 'unbindable_mutable_reference_to_mutable_value'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <554:555> [8:56:8:57] '='
+     ExpressionReferenceSyntax
+      AmpersandToken <556:557> [8:58:8:59] '&'
+      VarKeyword <557:560> [8:59:8:62] 'var'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <561:575> [8:63:8:77] 'mutable_value1'
    SemicolonToken <575:576> [8:77:8:78] ';'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
@@ -239,78 +235,74 @@ SourceFileSyntax
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <1117:1120> [15:0:15:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <1121:1168> [15:4:15:51] 'bindable_immutable_reference_to_immutable_value'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <1173:1174> [15:56:15:57] '='
-      ExpressionReferenceSyntax
-       AmpersandToken <1175:1176> [15:58:15:59] '&'
-       LetKeyword <1176:1179> [15:59:15:62] 'let'
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <1180:1196> [15:63:15:79] 'immutable_value1'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <1121:1168> [15:4:15:51] 'bindable_immutable_reference_to_immutable_value'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <1173:1174> [15:56:15:57] '='
+     ExpressionReferenceSyntax
+      AmpersandToken <1175:1176> [15:58:15:59] '&'
+      LetKeyword <1176:1179> [15:59:15:62] 'let'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <1180:1196> [15:63:15:79] 'immutable_value1'
    SemicolonToken <1196:1197> [15:79:15:80] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <1226:1229> [16:0:16:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <1230:1275> [16:4:16:49] 'bindable_immutable_reference_to_mutable_value'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <1282:1283> [16:56:16:57] '='
-      ExpressionReferenceSyntax
-       AmpersandToken <1284:1285> [16:58:16:59] '&'
-       LetKeyword <1285:1288> [16:59:16:62] 'let'
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <1289:1303> [16:63:16:77] 'mutable_value1'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <1230:1275> [16:4:16:49] 'bindable_immutable_reference_to_mutable_value'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <1282:1283> [16:56:16:57] '='
+     ExpressionReferenceSyntax
+      AmpersandToken <1284:1285> [16:58:16:59] '&'
+      LetKeyword <1285:1288> [16:59:16:62] 'let'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <1289:1303> [16:63:16:77] 'mutable_value1'
    SemicolonToken <1303:1304> [16:77:16:78] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <1333:1336> [17:0:17:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <1337:1382> [17:4:17:49] 'bindable_mutable_reference_to_immutable_value'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <1389:1390> [17:56:17:57] '='
-      ExpressionReferenceSyntax
-       AmpersandToken <1391:1392> [17:58:17:59] '&'
-       VarKeyword <1392:1395> [17:59:17:62] 'var'
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <1396:1412> [17:63:17:79] 'immutable_value1'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <1337:1382> [17:4:17:49] 'bindable_mutable_reference_to_immutable_value'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <1389:1390> [17:56:17:57] '='
+     ExpressionReferenceSyntax
+      AmpersandToken <1391:1392> [17:58:17:59] '&'
+      VarKeyword <1392:1395> [17:59:17:62] 'var'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <1396:1412> [17:63:17:79] 'immutable_value1'
    SemicolonToken <1412:1413> [17:79:17:80] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <1442:1445> [18:0:18:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <1446:1489> [18:4:18:47] 'bindable_mutable_reference_to_mutable_value'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <1498:1499> [18:56:18:57] '='
-      ExpressionReferenceSyntax
-       AmpersandToken <1500:1501> [18:58:18:59] '&'
-       VarKeyword <1501:1504> [18:59:18:62] 'var'
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <1505:1519> [18:63:18:77] 'mutable_value1'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <1446:1489> [18:4:18:47] 'bindable_mutable_reference_to_mutable_value'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <1498:1499> [18:56:18:57] '='
+     ExpressionReferenceSyntax
+      AmpersandToken <1500:1501> [18:58:18:59] '&'
+      VarKeyword <1501:1504> [18:59:18:62] 'var'
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <1505:1519> [18:63:18:77] 'mutable_value1'
    SemicolonToken <1519:1520> [18:77:18:78] ';'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
@@ -395,74 +387,73 @@ SourceFileSyntax
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <2121:2124> [25:0:25:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <2125:2126> [25:4:25:5] 'q'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <2127:2128> [25:6:25:7] '='
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <2125:2126> [25:4:25:5] 'q'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <2127:2128> [25:6:25:7] '='
+     ConditionalExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <2129:2130> [25:8:25:9] 'a'
+      QuestionToken <2135:2136> [26:4:26:5] '?'
       ConditionalExpressionSyntax
        PathExpressionSyntax
         PathSyntax
          SyntaxList
           PathSegmentSyntax
            IdentifierSyntax
-            IdentifierToken <2129:2130> [25:8:25:9] 'a'
-       QuestionToken <2135:2136> [26:4:26:5] '?'
-       ConditionalExpressionSyntax
+            IdentifierToken <2137:2138> [26:6:26:7] 'b'
+       QuestionToken <2147:2148> [27:8:27:9] '?'
+       ExpressionReferenceSyntax
+        AmpersandToken <2149:2150> [27:10:27:11] '&'
+        VarKeyword <2150:2153> [27:11:27:14] 'var'
         PathExpressionSyntax
          PathSyntax
           SyntaxList
            PathSegmentSyntax
             IdentifierSyntax
-             IdentifierToken <2137:2138> [26:6:26:7] 'b'
-        QuestionToken <2147:2148> [27:8:27:9] '?'
-        ExpressionReferenceSyntax
-         AmpersandToken <2149:2150> [27:10:27:11] '&'
-         VarKeyword <2150:2153> [27:11:27:14] 'var'
-         PathExpressionSyntax
-          PathSyntax
-           SyntaxList
-            PathSegmentSyntax
-             IdentifierSyntax
-              IdentifierToken <2154:2155> [27:15:27:16] 'x'
-        ColonToken <2164:2165> [28:8:28:9] ':'
-        ExpressionReferenceSyntax
-         AmpersandToken <2166:2167> [28:10:28:11] '&'
-         VarKeyword <2167:2170> [28:11:28:14] 'var'
-         PathExpressionSyntax
-          PathSyntax
-           SyntaxList
-            PathSegmentSyntax
-             IdentifierSyntax
-              IdentifierToken <2171:2172> [28:15:28:16] 'y'
-       ColonToken <2177:2178> [29:4:29:5] ':'
-       ConditionalExpressionSyntax
+             IdentifierToken <2154:2155> [27:15:27:16] 'x'
+       ColonToken <2164:2165> [28:8:28:9] ':'
+       ExpressionReferenceSyntax
+        AmpersandToken <2166:2167> [28:10:28:11] '&'
+        VarKeyword <2167:2170> [28:11:28:14] 'var'
         PathExpressionSyntax
          PathSyntax
           SyntaxList
            PathSegmentSyntax
             IdentifierSyntax
-             IdentifierToken <2179:2180> [29:6:29:7] 'c'
-        QuestionToken <2189:2190> [30:8:30:9] '?'
-        ExpressionReferenceSyntax
-         AmpersandToken <2191:2192> [30:10:30:11] '&'
-         VarKeyword <2192:2195> [30:11:30:14] 'var'
-         PathExpressionSyntax
-          PathSyntax
-           SyntaxList
-            PathSegmentSyntax
-             IdentifierSyntax
-              IdentifierToken <2196:2197> [30:15:30:16] 'z'
-        ColonToken <2206:2207> [31:8:31:9] ':'
-        ExpressionReferenceSyntax
-         AmpersandToken <2208:2209> [31:10:31:11] '&'
-         VarKeyword <2209:2212> [31:11:31:14] 'var'
-         PathExpressionSyntax
-          PathSyntax
-           SyntaxList
-            PathSegmentSyntax
-             IdentifierSyntax
-              IdentifierToken <2213:2214> [31:15:31:16] 'w'
+             IdentifierToken <2171:2172> [28:15:28:16] 'y'
+      ColonToken <2177:2178> [29:4:29:5] ':'
+      ConditionalExpressionSyntax
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <2179:2180> [29:6:29:7] 'c'
+       QuestionToken <2189:2190> [30:8:30:9] '?'
+       ExpressionReferenceSyntax
+        AmpersandToken <2191:2192> [30:10:30:11] '&'
+        VarKeyword <2192:2195> [30:11:30:14] 'var'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <2196:2197> [30:15:30:16] 'z'
+       ColonToken <2206:2207> [31:8:31:9] ':'
+       ExpressionReferenceSyntax
+        AmpersandToken <2208:2209> [31:10:31:11] '&'
+        VarKeyword <2209:2212> [31:11:31:14] 'var'
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <2213:2214> [31:15:31:16] 'w'
    SemicolonToken <2214:2215> [31:16:31:17] ';'
  EndOfFileToken <2216:2216> [32:0:32:0] ''

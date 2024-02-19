@@ -875,8 +875,10 @@ namespace weave::syntax
 
     public:
         SyntaxToken* OldKeyword{};
+        UnexpectedNodesSyntax* BeforeOpenParenToken{};
         SyntaxToken* OpenParenToken{};
         ExpressionSyntax* Expression{};
+        UnexpectedNodesSyntax* BeforeCloseParenToken{};
         SyntaxToken* CloseParenToken{};
 
     public:
@@ -1160,7 +1162,8 @@ namespace weave::syntax
 
     public:
         SyntaxToken* BindingSpecifier{};
-        PatternBindingSyntax* Binding{};
+        PatternSyntax* Pattern{};
+        ExpressionInitializerClauseSyntax* Initializer{};
 
     public:
         explicit constexpr VariableDeclarationSyntax()
@@ -1953,21 +1956,17 @@ namespace weave::syntax
         }
     };
 
-    /// pattern-binding
-    ///     : pattern type-clause? initializer-clause?
-    ///     ;
-    class PatternBindingSyntax : public SyntaxNode
+    class TypePatternSyntax final : public PatternSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(PatternBindingSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(TypePatternSyntax);
 
     public:
         PatternSyntax* Pattern{};
         TypeClauseSyntax* Type{};
-        ExpressionInitializerClauseSyntax* Initializer{};
 
     public:
-        explicit constexpr PatternBindingSyntax()
-            : SyntaxNode{SyntaxKind::PatternBindingSyntax}
+        explicit constexpr TypePatternSyntax()
+            : PatternSyntax{SyntaxKind::TypePatternSyntax}
         {
         }
     };
@@ -2022,7 +2021,8 @@ namespace weave::syntax
 
     public:
         SyntaxToken* BindingSpecifier{};
-        PatternBindingSyntax* Binding{};
+        PatternSyntax* Pattern{};
+        ExpressionInitializerClauseSyntax* Initializer{};
 
     public:
         explicit constexpr LetExpressionSyntax()

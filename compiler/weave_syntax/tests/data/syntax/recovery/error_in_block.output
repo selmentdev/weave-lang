@@ -44,10 +44,9 @@ SourceFileSyntax
           CodeBlockItemSyntax
            VariableDeclarationSyntax
             VarKeyword <117:120> [8:8:8:11] 'var'
-            PatternBindingSyntax
-             IdentifierPatternSyntax
-              IdentifierSyntax
-               IdentifierToken <121:122> [8:12:8:13] 'a'
+            IdentifierPatternSyntax
+             IdentifierSyntax
+              IdentifierToken <121:122> [8:12:8:13] 'a'
          UnexpectedNodesSyntax
           SyntaxList
            DotToken <122:123> [8:13:8:14] '.'

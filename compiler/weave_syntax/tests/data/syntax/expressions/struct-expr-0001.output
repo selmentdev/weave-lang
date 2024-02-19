@@ -3,38 +3,37 @@ SourceFileSyntax
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <0:3> [0:0:0:3] 'let'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <4:5> [0:4:0:5] 'x'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <6:7> [0:6:0:7] '='
-      StructExpressionSyntax
-       TypePathSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <8:18> [0:8:0:18] 'SomeStruct'
-       OpenBraceToken <18:19> [0:18:0:19] '{'
-       SyntaxList
-        LabeledExpressionSyntax
-         NameColonSyntax
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <4:5> [0:4:0:5] 'x'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <6:7> [0:6:0:7] '='
+     StructExpressionSyntax
+      TypePathSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
           IdentifierSyntax
-           IdentifierToken <20:21> [0:20:0:21] 'a'
-          ColonToken <21:22> [0:21:0:22] ':'
-         LiteralExpressionSyntax
-          IntegerLiteralToken <23:24> [0:23:0:24] '1'
-         CommaToken <24:25> [0:24:0:25] ','
-        LabeledExpressionSyntax
-         NameColonSyntax
-          IdentifierSyntax
-           IdentifierToken <26:27> [0:26:0:27] 'b'
-          ColonToken <27:28> [0:27:0:28] ':'
-         LiteralExpressionSyntax
-          IntegerLiteralToken <29:30> [0:29:0:30] '2'
-         CommaToken <30:31> [0:30:0:31] ','
-       CloseBraceToken <32:33> [0:32:0:33] '}'
+           IdentifierToken <8:18> [0:8:0:18] 'SomeStruct'
+      OpenBraceToken <18:19> [0:18:0:19] '{'
+      SyntaxList
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <20:21> [0:20:0:21] 'a'
+         ColonToken <21:22> [0:21:0:22] ':'
+        LiteralExpressionSyntax
+         IntegerLiteralToken <23:24> [0:23:0:24] '1'
+        CommaToken <24:25> [0:24:0:25] ','
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <26:27> [0:26:0:27] 'b'
+         ColonToken <27:28> [0:27:0:28] ':'
+        LiteralExpressionSyntax
+         IntegerLiteralToken <29:30> [0:29:0:30] '2'
+        CommaToken <30:31> [0:30:0:31] ','
+      CloseBraceToken <32:33> [0:32:0:33] '}'
    SemicolonToken <33:34> [0:33:0:34] ';'
   CodeBlockItemSyntax
    ExpressionStatementSyntax

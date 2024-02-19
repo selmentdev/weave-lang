@@ -3,236 +3,226 @@ SourceFileSyntax
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <0:3> [0:0:0:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <4:6> [0:4:0:6] 't0'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <7:8> [0:7:0:8] '='
-      TupleExpressionSyntax
-       OpenParenToken <9:10> [0:9:0:10] '('
-       SyntaxList
-        LabeledExpressionSyntax
-         LiteralExpressionSyntax
-          IntegerLiteralToken <10:11> [0:10:0:11] '2'
-         CommaToken <11:12> [0:11:0:12] ','
-        LabeledExpressionSyntax
-         LiteralExpressionSyntax
-          IntegerLiteralToken <13:14> [0:13:0:14] '1'
-         CommaToken <14:15> [0:14:0:15] ','
-        LabeledExpressionSyntax
-         LiteralExpressionSyntax
-          IntegerLiteralToken <16:17> [0:16:0:17] '3'
-         CommaToken <17:18> [0:17:0:18] ','
-        LabeledExpressionSyntax
-         LiteralExpressionSyntax
-          IntegerLiteralToken <19:20> [0:19:0:20] '7'
-       CloseParenToken <20:21> [0:20:0:21] ')'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <4:6> [0:4:0:6] 't0'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <7:8> [0:7:0:8] '='
+     TupleExpressionSyntax
+      OpenParenToken <9:10> [0:9:0:10] '('
+      SyntaxList
+       LabeledExpressionSyntax
+        LiteralExpressionSyntax
+         IntegerLiteralToken <10:11> [0:10:0:11] '2'
+        CommaToken <11:12> [0:11:0:12] ','
+       LabeledExpressionSyntax
+        LiteralExpressionSyntax
+         IntegerLiteralToken <13:14> [0:13:0:14] '1'
+        CommaToken <14:15> [0:14:0:15] ','
+       LabeledExpressionSyntax
+        LiteralExpressionSyntax
+         IntegerLiteralToken <16:17> [0:16:0:17] '3'
+        CommaToken <17:18> [0:17:0:18] ','
+       LabeledExpressionSyntax
+        LiteralExpressionSyntax
+         IntegerLiteralToken <19:20> [0:19:0:20] '7'
+      CloseParenToken <20:21> [0:20:0:21] ')'
    SemicolonToken <21:22> [0:21:0:22] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <23:26> [1:0:1:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <27:29> [1:4:1:6] 't1'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <30:31> [1:7:1:8] '='
-      TupleExpressionSyntax
-       OpenParenToken <32:33> [1:9:1:10] '('
-       SyntaxList
-        LabeledExpressionSyntax
-         NameColonSyntax
-          IdentifierSyntax
-           IdentifierToken <33:34> [1:10:1:11] 'a'
-          ColonToken <34:35> [1:11:1:12] ':'
-         LiteralExpressionSyntax
-          IntegerLiteralToken <36:37> [1:13:1:14] '2'
-         CommaToken <37:38> [1:14:1:15] ','
-        LabeledExpressionSyntax
-         NameColonSyntax
-          IdentifierSyntax
-           IdentifierToken <39:40> [1:16:1:17] 'b'
-          ColonToken <40:41> [1:17:1:18] ':'
-         LiteralExpressionSyntax
-          IntegerLiteralToken <42:43> [1:19:1:20] '1'
-         CommaToken <43:44> [1:20:1:21] ','
-        LabeledExpressionSyntax
-         NameColonSyntax
-          IdentifierSyntax
-           IdentifierToken <45:46> [1:22:1:23] 'c'
-          ColonToken <46:47> [1:23:1:24] ':'
-         LiteralExpressionSyntax
-          IntegerLiteralToken <48:49> [1:25:1:26] '3'
-         CommaToken <49:50> [1:26:1:27] ','
-        LabeledExpressionSyntax
-         NameColonSyntax
-          IdentifierSyntax
-           IdentifierToken <51:52> [1:28:1:29] 'd'
-          ColonToken <52:53> [1:29:1:30] ':'
-         LiteralExpressionSyntax
-          IntegerLiteralToken <54:55> [1:31:1:32] '7'
-       CloseParenToken <55:56> [1:32:1:33] ')'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <27:29> [1:4:1:6] 't1'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <30:31> [1:7:1:8] '='
+     TupleExpressionSyntax
+      OpenParenToken <32:33> [1:9:1:10] '('
+      SyntaxList
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <33:34> [1:10:1:11] 'a'
+         ColonToken <34:35> [1:11:1:12] ':'
+        LiteralExpressionSyntax
+         IntegerLiteralToken <36:37> [1:13:1:14] '2'
+        CommaToken <37:38> [1:14:1:15] ','
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <39:40> [1:16:1:17] 'b'
+         ColonToken <40:41> [1:17:1:18] ':'
+        LiteralExpressionSyntax
+         IntegerLiteralToken <42:43> [1:19:1:20] '1'
+        CommaToken <43:44> [1:20:1:21] ','
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <45:46> [1:22:1:23] 'c'
+         ColonToken <46:47> [1:23:1:24] ':'
+        LiteralExpressionSyntax
+         IntegerLiteralToken <48:49> [1:25:1:26] '3'
+        CommaToken <49:50> [1:26:1:27] ','
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <51:52> [1:28:1:29] 'd'
+         ColonToken <52:53> [1:29:1:30] ':'
+        LiteralExpressionSyntax
+         IntegerLiteralToken <54:55> [1:31:1:32] '7'
+      CloseParenToken <55:56> [1:32:1:33] ')'
    SemicolonToken <56:57> [1:33:1:34] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <59:62> [3:0:3:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <63:67> [3:4:3:8] 't0_0'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <68:69> [3:9:3:10] '='
-      MemberAccessExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <70:72> [3:11:3:13] 't0'
-       DotToken <72:73> [3:13:3:14] '.'
-       IndexSyntax
-        IntegerLiteralToken <73:74> [3:14:3:15] '0'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <63:67> [3:4:3:8] 't0_0'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <68:69> [3:9:3:10] '='
+     MemberAccessExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <70:72> [3:11:3:13] 't0'
+      DotToken <72:73> [3:13:3:14] '.'
+      IndexSyntax
+       IntegerLiteralToken <73:74> [3:14:3:15] '0'
    SemicolonToken <74:75> [3:15:3:16] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <76:79> [4:0:4:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <80:84> [4:4:4:8] 't0_1'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <85:86> [4:9:4:10] '='
-      MemberAccessExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <87:89> [4:11:4:13] 't0'
-       DotToken <89:90> [4:13:4:14] '.'
-       IndexSyntax
-        IntegerLiteralToken <90:91> [4:14:4:15] '1'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <80:84> [4:4:4:8] 't0_1'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <85:86> [4:9:4:10] '='
+     MemberAccessExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <87:89> [4:11:4:13] 't0'
+      DotToken <89:90> [4:13:4:14] '.'
+      IndexSyntax
+       IntegerLiteralToken <90:91> [4:14:4:15] '1'
    SemicolonToken <91:92> [4:15:4:16] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <93:96> [5:0:5:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <97:101> [5:4:5:8] 't0_2'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <102:103> [5:9:5:10] '='
-      MemberAccessExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <104:106> [5:11:5:13] 't0'
-       DotToken <106:107> [5:13:5:14] '.'
-       IndexSyntax
-        IntegerLiteralToken <107:108> [5:14:5:15] '2'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <97:101> [5:4:5:8] 't0_2'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <102:103> [5:9:5:10] '='
+     MemberAccessExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <104:106> [5:11:5:13] 't0'
+      DotToken <106:107> [5:13:5:14] '.'
+      IndexSyntax
+       IntegerLiteralToken <107:108> [5:14:5:15] '2'
    SemicolonToken <108:109> [5:15:5:16] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <110:113> [6:0:6:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <114:118> [6:4:6:8] 't0_3'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <119:120> [6:9:6:10] '='
-      MemberAccessExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <121:123> [6:11:6:13] 't0'
-       DotToken <123:124> [6:13:6:14] '.'
-       IndexSyntax
-        IntegerLiteralToken <124:125> [6:14:6:15] '3'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <114:118> [6:4:6:8] 't0_3'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <119:120> [6:9:6:10] '='
+     MemberAccessExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <121:123> [6:11:6:13] 't0'
+      DotToken <123:124> [6:13:6:14] '.'
+      IndexSyntax
+       IntegerLiteralToken <124:125> [6:14:6:15] '3'
    SemicolonToken <125:126> [6:15:6:16] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <128:131> [8:0:8:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <132:136> [8:4:8:8] 't1_a'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <137:138> [8:9:8:10] '='
+     MemberAccessExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <139:141> [8:11:8:13] 't1'
+      DotToken <141:142> [8:13:8:14] '.'
       IdentifierSyntax
-       IdentifierToken <132:136> [8:4:8:8] 't1_a'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <137:138> [8:9:8:10] '='
-      MemberAccessExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <139:141> [8:11:8:13] 't1'
-       DotToken <141:142> [8:13:8:14] '.'
-       IdentifierSyntax
-        IdentifierToken <142:143> [8:14:8:15] 'a'
+       IdentifierToken <142:143> [8:14:8:15] 'a'
    SemicolonToken <143:144> [8:15:8:16] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <145:148> [9:0:9:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <149:153> [9:4:9:8] 't1_b'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <154:155> [9:9:9:10] '='
+     MemberAccessExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <156:158> [9:11:9:13] 't1'
+      DotToken <158:159> [9:13:9:14] '.'
       IdentifierSyntax
-       IdentifierToken <149:153> [9:4:9:8] 't1_b'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <154:155> [9:9:9:10] '='
-      MemberAccessExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <156:158> [9:11:9:13] 't1'
-       DotToken <158:159> [9:13:9:14] '.'
-       IdentifierSyntax
-        IdentifierToken <159:160> [9:14:9:15] 'b'
+       IdentifierToken <159:160> [9:14:9:15] 'b'
    SemicolonToken <160:161> [9:15:9:16] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <162:165> [10:0:10:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <166:170> [10:4:10:8] 't1_c'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <171:172> [10:9:10:10] '='
+     MemberAccessExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <173:175> [10:11:10:13] 't1'
+      DotToken <175:176> [10:13:10:14] '.'
       IdentifierSyntax
-       IdentifierToken <166:170> [10:4:10:8] 't1_c'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <171:172> [10:9:10:10] '='
-      MemberAccessExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <173:175> [10:11:10:13] 't1'
-       DotToken <175:176> [10:13:10:14] '.'
-       IdentifierSyntax
-        IdentifierToken <176:177> [10:14:10:15] 'c'
+       IdentifierToken <176:177> [10:14:10:15] 'c'
    SemicolonToken <177:178> [10:15:10:16] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <179:182> [11:0:11:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <183:187> [11:4:11:8] 't1_d'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <188:189> [11:9:11:10] '='
+     MemberAccessExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <190:192> [11:11:11:13] 't1'
+      DotToken <192:193> [11:13:11:14] '.'
       IdentifierSyntax
-       IdentifierToken <183:187> [11:4:11:8] 't1_d'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <188:189> [11:9:11:10] '='
-      MemberAccessExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <190:192> [11:11:11:13] 't1'
-       DotToken <192:193> [11:13:11:14] '.'
-       IdentifierSyntax
-        IdentifierToken <193:194> [11:14:11:15] 'd'
+       IdentifierToken <193:194> [11:14:11:15] 'd'
    SemicolonToken <194:195> [11:15:11:16] ';'
   CodeBlockItemSyntax
    FunctionDeclarationSyntax

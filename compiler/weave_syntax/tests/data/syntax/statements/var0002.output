@@ -3,7 +3,7 @@ SourceFileSyntax
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <0:3> [0:0:0:3] 'let'
-    PatternBindingSyntax
+    TypePatternSyntax
      IdentifierPatternSyntax
       IdentifierSyntax
        IdentifierToken <4:5> [0:4:0:5] 'a'
@@ -27,18 +27,17 @@ SourceFileSyntax
          PathSegmentSyntax
           IdentifierSyntax
            IdentifierToken <31:36> [0:31:0:36] 'DWORD'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <37:38> [0:37:0:38] '='
-      LiteralExpressionSyntax
-       IntegerLiteralToken <39:40> [0:39:0:40] '0'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <37:38> [0:37:0:38] '='
+     LiteralExpressionSyntax
+      IntegerLiteralToken <39:40> [0:39:0:40] '0'
    SemicolonToken <40:41> [0:40:0:41] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <42:45> [1:0:1:3] 'var'
-    PatternBindingSyntax
-     IdentifierPatternSyntax
-      IdentifierSyntax
-       IdentifierToken <46:47> [1:4:1:5] 'a'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <46:47> [1:4:1:5] 'a'
  UnexpectedNodesSyntax
   SyntaxList
    DotToken <47:48> [1:5:1:6] '.'

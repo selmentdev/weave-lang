@@ -77,7 +77,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <115:121> [7:4:7:10] 'public'
         VarKeyword <122:125> [7:11:7:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <126:127> [7:15:7:16] 'X'
@@ -95,7 +95,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <143:149> [8:4:8:10] 'public'
         VarKeyword <150:153> [8:11:8:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <154:155> [8:15:8:16] 'Y'
@@ -113,7 +113,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <171:177> [9:4:9:10] 'public'
         VarKeyword <178:181> [9:11:9:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <182:183> [9:15:9:16] 'Z'
@@ -131,7 +131,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <199:205> [10:4:10:10] 'public'
         VarKeyword <206:209> [10:11:10:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <210:211> [10:15:10:16] 'W'

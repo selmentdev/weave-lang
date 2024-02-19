@@ -397,7 +397,15 @@ namespace weave::syntax
         result->Modifiers = modifiers;
 
         result->BindingSpecifier = this->Match(expected);
-        result->Binding = this->ParsePatternBinding();
+        
+        result->Pattern = this->ParsePattern();
+
+        if (this->Current()->Kind == SyntaxKind::ColonToken)
+        {
+            result->Pattern = this->ParseTypePattern(result->Pattern);
+        }
+
+        result->Initializer = this->ParseOptionalInitializerClause();
 
         return result;
     }
@@ -1729,9 +1737,9 @@ namespace weave::syntax
     {
         OldExpressionSyntax* result = this->_factory->CreateNode<OldExpressionSyntax>();
         result->OldKeyword = this->Match(SyntaxKind::OldKeyword);
-        result->OpenParenToken = this->Match(SyntaxKind::OpenParenToken);
+        this->MatchUntil(result->OpenParenToken, result->BeforeOpenParenToken, SyntaxKind::OpenParenToken);
         result->Expression = this->ParseExpression();
-        result->CloseParenToken = this->Match(SyntaxKind::CloseParenToken);
+        this->MatchUntil(result->CloseParenToken, result->BeforeCloseParenToken, SyntaxKind::CloseParenToken);
         return result;
     }
 
@@ -2178,7 +2186,16 @@ namespace weave::syntax
 
         LetExpressionSyntax* result = this->_factory->CreateNode<LetExpressionSyntax>();
         result->BindingSpecifier = this->Next();
-        result->Binding = this->ParsePatternBinding();
+
+        result->Pattern = this->ParsePattern();
+
+        if (this->Current()->Kind == SyntaxKind::ColonToken)
+        {
+            result->Pattern = this->ParseTypePattern(result->Pattern);
+        }
+
+        result->Initializer = this->ParseOptionalInitializerClause();
+
         return result;
     }
 
@@ -2686,22 +2703,12 @@ namespace weave::syntax
         return result;
     }
 
-    PatternBindingSyntax* Parser::ParsePatternBinding()
+    TypePatternSyntax* Parser::ParseTypePattern(PatternSyntax* pattern)
     {
-        PatternSyntax* pattern = this->ParsePattern();
-        TypeClauseSyntax* typeClause = this->ParseOptionalTypeClause();
-        ExpressionInitializerClauseSyntax* initializerClause = this->ParseOptionalInitializerClause();
-
-        if (pattern or typeClause or initializerClause)
-        {
-            PatternBindingSyntax* result = this->_factory->CreateNode<PatternBindingSyntax>();
-            result->Pattern = pattern;
-            result->Type = typeClause;
-            result->Initializer = initializerClause;
-            return result;
-        }
-
-        return nullptr;
+        TypePatternSyntax* result = this->_factory->CreateNode<TypePatternSyntax>();
+        result->Pattern = pattern;
+        result->Type = this->ParseTypeClause();
+        return result;
     }
 }
 

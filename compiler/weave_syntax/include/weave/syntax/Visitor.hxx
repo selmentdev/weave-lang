@@ -172,7 +172,7 @@ namespace weave::syntax
         void OnSlicePatternItemSyntax(SlicePatternItemSyntax* node) override;
         void OnTuplePatternSyntax(TuplePatternSyntax* node) override;
         void OnTuplePatternItemSyntax(TuplePatternItemSyntax* node) override;
-        void OnPatternBindingSyntax(PatternBindingSyntax* node) override;
+        void OnTypePatternSyntax(TypePatternSyntax* node) override;
 
         void OnEnumDeclarationSyntax(EnumDeclarationSyntax* node) override;
         void OnEnumMemberDeclarationSyntax(EnumMemberDeclarationSyntax* node) override;
@@ -196,6 +196,11 @@ namespace weave::syntax
         void OnFieldPatternSyntax(FieldPatternSyntax* node) override;
         void OnForStatementSyntax(ForStatementSyntax* node) override;
         void OnForeachStatementSyntax(ForeachStatementSyntax* node) override;
+        void OnTypeInheritanceClause(TypeInheritanceClause* node) override;
+        void OnLazyStatementSyntax(LazyStatementSyntax* node) override;
+        void OnAttributeTargetSpecifierSyntax(AttributeTargetSpecifierSyntax* node) override;
+        void OnOldExpressionSyntax(OldExpressionSyntax* node) override;
+        void OnUnreachableExpressionSyntax(UnreachableExpressionSyntax* node) override;
 
         //
         void OnIdentifierSyntax(IdentifierSyntax* node) override;

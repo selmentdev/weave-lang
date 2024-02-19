@@ -3,7 +3,7 @@ SourceFileSyntax
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <0:3> [0:0:0:3] 'var'
-    PatternBindingSyntax
+    TypePatternSyntax
      IdentifierPatternSyntax
       IdentifierSyntax
        IdentifierToken <4:5> [0:4:0:5] 'x'
@@ -15,74 +15,189 @@ SourceFileSyntax
          PathSegmentSyntax
           IdentifierSyntax
            IdentifierToken <8:13> [0:8:0:13] 'Int32'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <14:15> [0:14:0:15] '='
-      LiteralExpressionSyntax
-       IntegerLiteralToken <16:26> [0:16:0:26] '0x2137_u32'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <14:15> [0:14:0:15] '='
+     LiteralExpressionSyntax
+      IntegerLiteralToken <16:26> [0:16:0:26] '0x2137_u32'
    SemicolonToken <26:27> [0:26:0:27] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     VarKeyword <28:31> [1:0:1:3] 'var'
-    PatternBindingSyntax
-     SlicePatternSyntax
-      OpenBracketToken <32:33> [1:4:1:5] '['
-      SyntaxList
-       SlicePatternItemSyntax
-        IdentifierPatternSyntax
-         IdentifierSyntax
-          IdentifierToken <33:34> [1:5:1:6] 'x'
-        CommaToken <34:35> [1:6:1:7] ','
-       SlicePatternItemSyntax
-        WildcardPatternSyntax
-         UnderscoreToken <36:37> [1:8:1:9] '_'
-      CloseBracketToken <37:38> [1:9:1:10] ']'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <39:40> [1:11:1:12] '='
-      InvocationExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <41:44> [1:13:1:16] 'foo'
-       ArgumentListSyntax
-        OpenParenToken <44:45> [1:16:1:17] '('
-        CloseParenToken <45:46> [1:17:1:18] ')'
+    SlicePatternSyntax
+     OpenBracketToken <32:33> [1:4:1:5] '['
+     SyntaxList
+      SlicePatternItemSyntax
+       IdentifierPatternSyntax
+        IdentifierSyntax
+         IdentifierToken <33:34> [1:5:1:6] 'x'
+       CommaToken <34:35> [1:6:1:7] ','
+      SlicePatternItemSyntax
+       WildcardPatternSyntax
+        UnderscoreToken <36:37> [1:8:1:9] '_'
+     CloseBracketToken <37:38> [1:9:1:10] ']'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <39:40> [1:11:1:12] '='
+     InvocationExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <41:44> [1:13:1:16] 'foo'
+      ArgumentListSyntax
+       OpenParenToken <44:45> [1:16:1:17] '('
+       CloseParenToken <45:46> [1:17:1:18] ')'
    SemicolonToken <46:47> [1:18:1:19] ';'
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <48:51> [2:0:2:3] 'let'
-    PatternBindingSyntax
+    TuplePatternSyntax
+     OpenParenToken <52:53> [2:4:2:5] '('
+     SyntaxList
+      TuplePatternItemSyntax
+       NameColonSyntax
+        IdentifierSyntax
+         IdentifierToken <54:55> [2:6:2:7] 'x'
+        ColonToken <55:56> [2:7:2:8] ':'
+       LiteralPatternSyntax
+        IntegerLiteralToken <57:59> [2:9:2:11] '42'
+       CommaToken <59:60> [2:11:2:12] ','
+      TuplePatternItemSyntax
+       NameColonSyntax
+        IdentifierSyntax
+         IdentifierToken <61:62> [2:13:2:14] 'y'
+        ColonToken <62:63> [2:14:2:15] ':'
+       LiteralPatternSyntax
+        IntegerLiteralToken <64:68> [2:16:2:20] '1337'
+     CloseParenToken <69:70> [2:21:2:22] ')'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <71:72> [2:23:2:24] '='
+     InvocationExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <73:76> [2:25:2:28] 'bar'
+      ArgumentListSyntax
+       OpenParenToken <76:77> [2:28:2:29] '('
+       CloseParenToken <77:78> [2:29:2:30] ')'
+   SemicolonToken <78:79> [2:30:2:31] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <80:83> [3:0:3:3] 'let'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <84:89> [3:4:3:9] 'Tuple'
      TuplePatternSyntax
-      OpenParenToken <52:53> [2:4:2:5] '('
+      OpenParenToken <89:90> [3:9:3:10] '('
       SyntaxList
        TuplePatternItemSyntax
-        NameColonSyntax
-         IdentifierSyntax
-          IdentifierToken <54:55> [2:6:2:7] 'x'
-         ColonToken <55:56> [2:7:2:8] ':'
-        LiteralPatternSyntax
-         IntegerLiteralToken <57:59> [2:9:2:11] '42'
-        CommaToken <59:60> [2:11:2:12] ','
+        WildcardPatternSyntax
+         UnderscoreToken <90:91> [3:10:3:11] '_'
+        CommaToken <91:92> [3:11:3:12] ','
        TuplePatternItemSyntax
-        NameColonSyntax
-         IdentifierSyntax
-          IdentifierToken <61:62> [2:13:2:14] 'y'
-         ColonToken <62:63> [2:14:2:15] ':'
+        WildcardPatternSyntax
+         UnderscoreToken <93:94> [3:13:3:14] '_'
+      CloseParenToken <94:95> [3:14:3:15] ')'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <96:97> [3:16:3:17] '='
+     InvocationExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <98:101> [3:18:3:21] 'baz'
+      ArgumentListSyntax
+       OpenParenToken <101:102> [3:21:3:22] '('
+       CloseParenToken <102:103> [3:22:3:23] ')'
+   SemicolonToken <103:104> [3:23:3:24] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <105:108> [4:0:4:3] 'let'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <109:115> [4:4:4:10] 'Struct'
+     StructPatternSyntax
+      OpenBraceToken <115:116> [4:10:4:11] '{'
+      SyntaxList
+       FieldPatternSyntax
+        IdentifierSyntax
+         IdentifierToken <117:118> [4:12:4:13] 'y'
+        ColonToken <118:119> [4:13:4:14] ':'
         LiteralPatternSyntax
-         IntegerLiteralToken <64:68> [2:16:2:20] '1337'
-      CloseParenToken <69:70> [2:21:2:22] ')'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <71:72> [2:23:2:24] '='
-      InvocationExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <73:76> [2:25:2:28] 'bar'
-       ArgumentListSyntax
-        OpenParenToken <76:77> [2:28:2:29] '('
-        CloseParenToken <77:78> [2:29:2:30] ')'
-   SemicolonToken <78:79> [2:30:2:31] ';'
- EndOfFileToken <80:80> [3:0:3:0] ''
+         IntegerLiteralToken <120:122> [4:15:4:17] '21'
+        CommaToken <122:123> [4:17:4:18] ','
+       FieldPatternSyntax
+        IdentifierSyntax
+         IdentifierToken <124:125> [4:19:4:20] 'x'
+        ColonToken <125:126> [4:20:4:21] ':'
+        LiteralPatternSyntax
+         IntegerLiteralToken <127:129> [4:22:4:24] '37'
+      CloseBraceToken <130:131> [4:25:4:26] '}'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <132:133> [4:27:4:28] '='
+     InvocationExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <134:137> [4:29:4:32] 'qux'
+      ArgumentListSyntax
+       OpenParenToken <137:138> [4:32:4:33] '('
+       CloseParenToken <138:139> [4:33:4:34] ')'
+   SemicolonToken <139:140> [4:34:4:35] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <141:144> [5:0:5:3] 'let'
+    TypePatternSyntax
+     SlicePatternSyntax
+      OpenBracketToken <145:146> [5:4:5:5] '['
+      SyntaxList
+       SlicePatternItemSyntax
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <146:147> [5:5:5:6] 'x'
+        CommaToken <147:148> [5:6:5:7] ','
+       SlicePatternItemSyntax
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <149:150> [5:8:5:9] 'y'
+      CloseBracketToken <150:151> [5:9:5:10] ']'
+     TypeClauseSyntax
+      ColonToken <152:153> [5:11:5:12] ':'
+      TupleTypeSyntax
+       OpenParenToken <154:155> [5:13:5:14] '('
+       SyntaxList
+        TupleTypeElementSyntax
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <155:158> [5:14:5:17] 'i32'
+         CommaToken <158:159> [5:17:5:18] ','
+        TupleTypeElementSyntax
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <160:163> [5:19:5:22] 'i32'
+       CloseParenToken <163:164> [5:22:5:23] ')'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <165:166> [5:24:5:25] '='
+     InvocationExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <167:170> [5:26:5:29] 'foo'
+      ArgumentListSyntax
+       OpenParenToken <170:171> [5:29:5:30] '('
+       CloseParenToken <171:172> [5:30:5:31] ')'
+   SemicolonToken <172:173> [5:31:5:32] ';'
+ EndOfFileToken <174:174> [6:0:6:0] ''

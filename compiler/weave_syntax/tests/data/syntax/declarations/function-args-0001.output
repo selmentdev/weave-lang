@@ -153,7 +153,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <356:359> [14:4:14:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <360:361> [14:8:14:9] 'x'
@@ -165,15 +165,15 @@ SourceFileSyntax
              PathSegmentSyntax
               IdentifierSyntax
                IdentifierToken <364:367> [14:12:14:15] 'int'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <368:369> [14:16:14:17] '='
-          LiteralExpressionSyntax
-           IntegerLiteralToken <370:372> [14:18:14:20] '42'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <368:369> [14:16:14:17] '='
+         LiteralExpressionSyntax
+          IntegerLiteralToken <370:372> [14:18:14:20] '42'
        SemicolonToken <372:373> [14:20:14:21] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <378:381> [15:4:15:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <382:383> [15:8:15:9] 'y'
@@ -189,22 +189,22 @@ SourceFileSyntax
               PathSegmentSyntax
                IdentifierSyntax
                 IdentifierToken <391:394> [15:17:15:20] 'int'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <395:396> [15:21:15:22] '='
-          ExpressionReferenceSyntax
-           AmpersandToken <397:398> [15:23:15:24] '&'
-           VarKeyword <398:401> [15:24:15:27] 'var'
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <402:403> [15:28:15:29] 'x'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <395:396> [15:21:15:22] '='
+         ExpressionReferenceSyntax
+          AmpersandToken <397:398> [15:23:15:24] '&'
+          VarKeyword <398:401> [15:24:15:27] 'var'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <402:403> [15:28:15:29] 'x'
        SemicolonToken <403:404> [15:29:15:30] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <409:412> [16:4:16:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <413:414> [16:8:16:9] 'z'
@@ -224,17 +224,17 @@ SourceFileSyntax
                PathSegmentSyntax
                 IdentifierSyntax
                  IdentifierToken <427:430> [16:22:16:25] 'int'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <431:432> [16:26:16:27] '='
-          ExpressionReferenceSyntax
-           AmpersandToken <433:434> [16:28:16:29] '&'
-           VarKeyword <434:437> [16:29:16:32] 'var'
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <438:439> [16:33:16:34] 'y'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <431:432> [16:26:16:27] '='
+         ExpressionReferenceSyntax
+          AmpersandToken <433:434> [16:28:16:29] '&'
+          VarKeyword <434:437> [16:29:16:32] 'var'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <438:439> [16:33:16:34] 'y'
        SemicolonToken <439:440> [16:34:16:35] ';'
       CodeBlockItemSyntax
        ExpressionStatementSyntax

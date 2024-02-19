@@ -553,7 +553,7 @@ namespace weave::syntax
         TuplePatternSyntax* ParseTuplePattern();
         FieldPatternSyntax* ParseFieldPattern();
         StructPatternSyntax* ParseStructPattern();
-        PatternBindingSyntax* ParsePatternBinding();
+        TypePatternSyntax* ParseTypePattern(PatternSyntax* pattern);
     };
 
     void Validate(

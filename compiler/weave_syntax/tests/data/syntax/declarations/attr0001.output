@@ -215,7 +215,7 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <479:485> [14:16:14:22] 'public'
     VarKeyword <486:489> [14:23:14:26] 'var'
-    PatternBindingSyntax
+    TypePatternSyntax
      IdentifierPatternSyntax
       IdentifierSyntax
        IdentifierToken <490:498> [14:27:14:35] 'Variable'
@@ -244,7 +244,7 @@ SourceFileSyntax
     SyntaxList
      PublicKeyword <524:530> [16:16:16:22] 'public'
     VarKeyword <531:534> [16:23:16:26] 'var'
-    PatternBindingSyntax
+    TypePatternSyntax
      IdentifierPatternSyntax
       IdentifierSyntax
        IdentifierToken <535:538> [16:27:16:30] 'Let'

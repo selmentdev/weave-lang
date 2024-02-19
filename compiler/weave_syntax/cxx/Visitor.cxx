@@ -522,7 +522,8 @@ namespace weave::syntax
         this->Dispatch(node->Modifiers.GetNode());
 
         this->Dispatch(node->BindingSpecifier);
-        this->Dispatch(node->Binding);
+        this->Dispatch(node->Pattern);
+        this->Dispatch(node->Initializer);
 
         --this->Depth;
     }
@@ -1198,7 +1199,7 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnPatternBindingSyntax(PatternBindingSyntax* node)
+    void SyntaxWalker::OnTypePatternSyntax(TypePatternSyntax* node)
     {
         this->OnDefault(node);
 
@@ -1206,7 +1207,6 @@ namespace weave::syntax
 
         this->Dispatch(node->Pattern);
         this->Dispatch(node->Type);
-        this->Dispatch(node->Initializer);
 
         --this->Depth;
     }
@@ -1385,7 +1385,8 @@ namespace weave::syntax
         ++this->Depth;
 
         this->Dispatch(node->BindingSpecifier);
-        this->Dispatch(node->Binding);
+        this->Dispatch(node->Pattern);
+        this->Dispatch(node->Initializer);
 
         --this->Depth;
     }
@@ -1512,6 +1513,71 @@ namespace weave::syntax
         this->Dispatch(node->BeforeCloseParenToken);
         this->Dispatch(node->CloseParenToken);
         this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnTypeInheritanceClause(TypeInheritanceClause* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->ColonToken);
+        this->Dispatch(node->BaseType);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnLazyStatementSyntax(LazyStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+        this->Dispatch(node->LazyKeyword);
+        this->Dispatch(node->Body);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnAttributeTargetSpecifierSyntax(AttributeTargetSpecifierSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Identifier);
+        this->Dispatch(node->ColonToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnOldExpressionSyntax(OldExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->OldKeyword);
+        this->Dispatch(node->BeforeOpenParenToken);
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->BeforeCloseParenToken);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnUnreachableExpressionSyntax(UnreachableExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->UnreachableKeyword);
 
         --this->Depth;
     }

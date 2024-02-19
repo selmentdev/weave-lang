@@ -40,7 +40,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <60:63> [3:4:3:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <64:65> [3:8:3:9] 'z'
@@ -54,24 +54,24 @@ SourceFileSyntax
              PathSegmentSyntax
               IdentifierSyntax
                IdentifierToken <72:73> [3:16:3:17] 'Z'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <74:75> [3:18:3:19] '='
-          RefExpressionSyntax
-           RefKeyword <76:79> [3:20:3:23] 'ref'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <74:75> [3:18:3:19] '='
+         RefExpressionSyntax
+          RefKeyword <76:79> [3:20:3:23] 'ref'
+          MemberAccessExpressionSyntax
            MemberAccessExpressionSyntax
-            MemberAccessExpressionSyntax
-             PathExpressionSyntax
-              PathSyntax
-               SyntaxList
-                PathSegmentSyntax
-                 IdentifierSyntax
-                  IdentifierToken <80:81> [3:24:3:25] 'x'
-             DotToken <81:82> [3:25:3:26] '.'
-             IdentifierSyntax
-              IdentifierToken <82:83> [3:26:3:27] 'y'
-            DotToken <83:84> [3:27:3:28] '.'
+            PathExpressionSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <80:81> [3:24:3:25] 'x'
+            DotToken <81:82> [3:25:3:26] '.'
             IdentifierSyntax
-             IdentifierToken <84:85> [3:28:3:29] 'z'
+             IdentifierToken <82:83> [3:26:3:27] 'y'
+           DotToken <83:84> [3:27:3:28] '.'
+           IdentifierSyntax
+            IdentifierToken <84:85> [3:28:3:29] 'z'
        SemicolonToken <85:86> [3:29:3:30] ';'
       CodeBlockItemSyntax
        ReturnStatementSyntax

@@ -3,7 +3,7 @@ SourceFileSyntax
   CodeBlockItemSyntax
    VariableDeclarationSyntax
     LetKeyword <0:3> [0:0:0:3] 'let'
-    PatternBindingSyntax
+    TypePatternSyntax
      IdentifierPatternSyntax
       IdentifierSyntax
        IdentifierToken <4:5> [0:4:0:5] 'i'
@@ -15,10 +15,10 @@ SourceFileSyntax
          PathSegmentSyntax
           IdentifierSyntax
            IdentifierToken <7:12> [0:7:0:12] 'Int32'
-     ExpressionInitializerClauseSyntax
-      EqualsToken <13:14> [0:13:0:14] '='
-      LiteralExpressionSyntax
-       IntegerLiteralToken <15:16> [0:15:0:16] '0'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <13:14> [0:13:0:14] '='
+     LiteralExpressionSyntax
+      IntegerLiteralToken <15:16> [0:15:0:16] '0'
    SemicolonToken <16:17> [0:16:0:17] ';'
   CodeBlockItemSyntax
    LoopStatementSyntax

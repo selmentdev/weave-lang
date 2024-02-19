@@ -197,7 +197,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <340:346> [15:4:15:10] 'public'
         VarKeyword <347:350> [15:11:15:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <351:357> [15:15:15:21] 'VTable'
@@ -219,7 +219,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <381:387> [16:4:16:10] 'public'
         VarKeyword <388:391> [16:11:16:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <392:400> [16:15:16:23] 'Instance'
@@ -254,7 +254,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <474:480> [21:4:21:10] 'public'
         VarKeyword <481:484> [21:11:21:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <485:489> [21:15:21:19] 'Data'
@@ -276,7 +276,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <515:521> [22:4:22:10] 'public'
         VarKeyword <522:525> [22:11:22:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <526:532> [22:15:22:21] 'Length'
@@ -315,7 +315,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <603:609> [27:4:27:10] 'public'
         VarKeyword <610:613> [27:11:27:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <614:618> [27:15:27:19] 'Data'
@@ -337,7 +337,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <641:647> [28:4:28:10] 'public'
         VarKeyword <648:651> [28:11:28:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <652:657> [28:15:28:20] 'Count'
@@ -376,7 +376,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <729:735> [33:4:33:10] 'public'
         VarKeyword <736:739> [33:11:33:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <740:744> [33:15:33:19] 'Data'
@@ -398,7 +398,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <767:773> [34:4:34:10] 'public'
         VarKeyword <774:777> [34:11:34:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <778:783> [34:15:34:20] 'Count'

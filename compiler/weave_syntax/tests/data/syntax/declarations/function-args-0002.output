@@ -13,7 +13,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <18:24> [2:4:2:10] 'public'
         VarKeyword <25:28> [2:11:2:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <29:30> [2:15:2:16] 'X'
@@ -31,7 +31,7 @@ SourceFileSyntax
         SyntaxList
          PublicKeyword <43:49> [3:4:3:10] 'public'
         VarKeyword <50:53> [3:11:3:14] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <54:55> [3:15:3:16] 'Y'

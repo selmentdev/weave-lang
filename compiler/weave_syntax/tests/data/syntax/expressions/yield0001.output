@@ -22,7 +22,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <75:78> [3:4:3:7] 'let'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <79:80> [3:8:3:9] 'x'
@@ -34,26 +34,26 @@ SourceFileSyntax
              PathSegmentSyntax
               IdentifierSyntax
                IdentifierToken <83:88> [3:12:3:17] 'Int32'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <89:90> [3:18:3:19] '='
-          EvalExpressionSyntax
-           EvalKeyword <91:95> [3:20:3:24] 'eval'
-           CodeBlockItemSyntax
-            BlockStatementSyntax
-             CodeBlockSyntax
-              OpenBraceToken <96:97> [3:25:3:26] '{'
-              SyntaxList
-               CodeBlockItemSyntax
-                YieldStatementSyntax
-                 YieldKeyword <98:103> [3:27:3:32] 'yield'
-                 LiteralExpressionSyntax
-                  IntegerLiteralToken <104:106> [3:33:3:35] '42'
-                SemicolonToken <106:107> [3:35:3:36] ';'
-              CloseBraceToken <110:111> [3:39:3:40] '}'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <89:90> [3:18:3:19] '='
+         EvalExpressionSyntax
+          EvalKeyword <91:95> [3:20:3:24] 'eval'
+          CodeBlockItemSyntax
+           BlockStatementSyntax
+            CodeBlockSyntax
+             OpenBraceToken <96:97> [3:25:3:26] '{'
+             SyntaxList
+              CodeBlockItemSyntax
+               YieldStatementSyntax
+                YieldKeyword <98:103> [3:27:3:32] 'yield'
+                LiteralExpressionSyntax
+                 IntegerLiteralToken <104:106> [3:33:3:35] '42'
+               SemicolonToken <106:107> [3:35:3:36] ';'
+             CloseBraceToken <110:111> [3:39:3:40] '}'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <116:119> [4:4:4:7] 'let'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <120:121> [4:8:4:9] 'y'
@@ -65,22 +65,22 @@ SourceFileSyntax
              PathSegmentSyntax
               IdentifierSyntax
                IdentifierToken <124:129> [4:12:4:17] 'Int32'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <130:131> [4:18:4:19] '='
-          EvalExpressionSyntax
-           EvalKeyword <132:136> [4:20:4:24] 'eval'
-           CodeBlockItemSyntax
-            BlockStatementSyntax
-             CodeBlockSyntax
-              OpenBraceToken <137:138> [4:25:4:26] '{'
-              SyntaxList
-               CodeBlockItemSyntax
-                YieldStatementSyntax
-                 YieldKeyword <139:144> [4:27:4:32] 'yield'
-                 LiteralExpressionSyntax
-                  IntegerLiteralToken <145:149> [4:33:4:37] '2137'
-                SemicolonToken <149:150> [4:37:4:38] ';'
-              CloseBraceToken <151:152> [4:39:4:40] '}'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <130:131> [4:18:4:19] '='
+         EvalExpressionSyntax
+          EvalKeyword <132:136> [4:20:4:24] 'eval'
+          CodeBlockItemSyntax
+           BlockStatementSyntax
+            CodeBlockSyntax
+             OpenBraceToken <137:138> [4:25:4:26] '{'
+             SyntaxList
+              CodeBlockItemSyntax
+               YieldStatementSyntax
+                YieldKeyword <139:144> [4:27:4:32] 'yield'
+                LiteralExpressionSyntax
+                 IntegerLiteralToken <145:149> [4:33:4:37] '2137'
+               SemicolonToken <149:150> [4:37:4:38] ';'
+             CloseBraceToken <151:152> [4:39:4:40] '}'
       CodeBlockItemSyntax
        ReturnStatementSyntax
         ReturnKeyword <158:164> [6:4:6:10] 'return'
@@ -145,7 +145,7 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         VarKeyword <271:274> [12:4:12:7] 'var'
-        PatternBindingSyntax
+        TypePatternSyntax
          IdentifierPatternSyntax
           IdentifierSyntax
            IdentifierToken <275:276> [12:8:12:9] 'i'
@@ -157,10 +157,10 @@ SourceFileSyntax
              PathSegmentSyntax
               IdentifierSyntax
                IdentifierToken <279:284> [12:12:12:17] 'Int32'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <285:286> [12:18:12:19] '='
-          LiteralExpressionSyntax
-           IntegerLiteralToken <287:288> [12:20:12:21] '0'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <285:286> [12:18:12:19] '='
+         LiteralExpressionSyntax
+          IntegerLiteralToken <287:288> [12:20:12:21] '0'
        SemicolonToken <288:289> [12:21:12:22] ';'
       CodeBlockItemSyntax
        WhileStatementSyntax

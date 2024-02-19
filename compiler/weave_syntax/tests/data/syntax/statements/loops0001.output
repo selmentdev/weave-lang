@@ -147,10 +147,9 @@ SourceFileSyntax
     OpenParenToken <302:303> [25:8:25:9] '('
     VariableDeclarationSyntax
      VarKeyword <303:306> [25:9:25:12] 'var'
-     PatternBindingSyntax
-      IdentifierPatternSyntax
-       IdentifierSyntax
-        IdentifierToken <307:311> [25:13:25:17] 'item'
+     IdentifierPatternSyntax
+      IdentifierSyntax
+       IdentifierToken <307:311> [25:13:25:17] 'item'
     InKeyword <312:314> [25:18:25:20] 'in'
     PathExpressionSyntax
      PathSyntax
@@ -173,10 +172,9 @@ SourceFileSyntax
     OpenParenToken <351:352> [30:8:30:9] '('
     VariableDeclarationSyntax
      LetKeyword <352:353> [30:9:30:10] missing ''
-     PatternBindingSyntax
-      IdentifierPatternSyntax
-       IdentifierSyntax
-        IdentifierToken <352:353> [30:9:30:10] missing ''
+     IdentifierPatternSyntax
+      IdentifierSyntax
+       IdentifierToken <352:353> [30:9:30:10] missing ''
     InKeyword <352:353> [30:9:30:10] missing ''
     PathExpressionSyntax
      PathSyntax

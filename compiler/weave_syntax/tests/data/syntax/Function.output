@@ -697,26 +697,25 @@ SourceFileSyntax
          OpenParenToken <793:794> [34:7:34:8] '('
          LetExpressionSyntax
           LetKeyword <794:797> [34:8:34:11] 'let'
-          PatternBindingSyntax
-           IdentifierPatternSyntax
-            IdentifierSyntax
-             IdentifierToken <798:802> [34:12:34:16] 'Some'
-            TuplePatternSyntax
-             OpenParenToken <802:803> [34:16:34:17] '('
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <798:802> [34:12:34:16] 'Some'
+           TuplePatternSyntax
+            OpenParenToken <802:803> [34:16:34:17] '('
+            SyntaxList
+             TuplePatternItemSyntax
+              IdentifierPatternSyntax
+               IdentifierSyntax
+                IdentifierToken <803:804> [34:17:34:18] 'y'
+            CloseParenToken <804:805> [34:18:34:19] ')'
+          ExpressionInitializerClauseSyntax
+           EqualsToken <806:807> [34:20:34:21] '='
+           PathExpressionSyntax
+            PathSyntax
              SyntaxList
-              TuplePatternItemSyntax
-               IdentifierPatternSyntax
-                IdentifierSyntax
-                 IdentifierToken <803:804> [34:17:34:18] 'y'
-             CloseParenToken <804:805> [34:18:34:19] ')'
-           ExpressionInitializerClauseSyntax
-            EqualsToken <806:807> [34:20:34:21] '='
-            PathExpressionSyntax
-             PathSyntax
-              SyntaxList
-               PathSegmentSyntax
-                IdentifierSyntax
-                 IdentifierToken <808:809> [34:22:34:23] 'y'
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <808:809> [34:22:34:23] 'y'
          CloseParenToken <809:810> [34:23:34:24] ')'
          CodeBlockSyntax
           OpenBraceToken <811:812> [34:25:34:26] '{'
@@ -846,215 +845,183 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1111:1114> [48:4:48:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1115:1117> [48:8:48:10] 'll'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1118:1119> [48:11:48:12] '='
-          BinaryExpressionSyntax
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1120:1124> [48:13:48:17] 'left'
-           AmpersandToken <1125:1126> [48:18:48:19] '&'
-           LiteralExpressionSyntax
-            IntegerLiteralToken <1127:1140> [48:20:48:33] '0xFFFFFFFFu64'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1115:1117> [48:8:48:10] 'll'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1118:1119> [48:11:48:12] '='
+         BinaryExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1120:1124> [48:13:48:17] 'left'
+          AmpersandToken <1125:1126> [48:18:48:19] '&'
+          LiteralExpressionSyntax
+           IntegerLiteralToken <1127:1140> [48:20:48:33] '0xFFFFFFFFu64'
        SemicolonToken <1140:1141> [48:33:48:34] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1146:1149> [49:4:49:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1150:1152> [49:8:49:10] 'lu'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1153:1154> [49:11:49:12] '='
-          BinaryExpressionSyntax
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1155:1159> [49:13:49:17] 'left'
-           GreaterThanGreaterThanToken <1160:1162> [49:18:49:20] '>>'
-           LiteralExpressionSyntax
-            IntegerLiteralToken <1163:1168> [49:21:49:26] '32u64'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1150:1152> [49:8:49:10] 'lu'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1153:1154> [49:11:49:12] '='
+         BinaryExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1155:1159> [49:13:49:17] 'left'
+          GreaterThanGreaterThanToken <1160:1162> [49:18:49:20] '>>'
+          LiteralExpressionSyntax
+           IntegerLiteralToken <1163:1168> [49:21:49:26] '32u64'
        SemicolonToken <1168:1169> [49:26:49:27] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1174:1177> [50:4:50:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1178:1180> [50:8:50:10] 'rl'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1181:1182> [50:11:50:12] '='
-          BinaryExpressionSyntax
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1183:1188> [50:13:50:18] 'right'
-           AmpersandToken <1189:1190> [50:19:50:20] '&'
-           LiteralExpressionSyntax
-            IntegerLiteralToken <1191:1204> [50:21:50:34] '0xFFFFFFFFu64'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1178:1180> [50:8:50:10] 'rl'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1181:1182> [50:11:50:12] '='
+         BinaryExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1183:1188> [50:13:50:18] 'right'
+          AmpersandToken <1189:1190> [50:19:50:20] '&'
+          LiteralExpressionSyntax
+           IntegerLiteralToken <1191:1204> [50:21:50:34] '0xFFFFFFFFu64'
        SemicolonToken <1204:1205> [50:34:50:35] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1210:1213> [51:4:51:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1214:1216> [51:8:51:10] 'ru'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1217:1218> [51:11:51:12] '='
-          BinaryExpressionSyntax
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1219:1224> [51:13:51:18] 'right'
-           GreaterThanGreaterThanToken <1225:1227> [51:19:51:21] '>>'
-           LiteralExpressionSyntax
-            IntegerLiteralToken <1228:1233> [51:22:51:27] '32u64'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1214:1216> [51:8:51:10] 'ru'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1217:1218> [51:11:51:12] '='
+         BinaryExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1219:1224> [51:13:51:18] 'right'
+          GreaterThanGreaterThanToken <1225:1227> [51:19:51:21] '>>'
+          LiteralExpressionSyntax
+           IntegerLiteralToken <1228:1233> [51:22:51:27] '32u64'
        SemicolonToken <1233:1234> [51:27:51:28] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1239:1242> [52:4:52:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1243:1248> [52:8:52:13] 'll_rl'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1249:1250> [52:14:52:15] '='
-          BinaryExpressionSyntax
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1251:1253> [52:16:52:18] 'll'
-           AsteriskToken <1254:1255> [52:19:52:20] '*'
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1256:1258> [52:21:52:23] 'rl'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1243:1248> [52:8:52:13] 'll_rl'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1249:1250> [52:14:52:15] '='
+         BinaryExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1251:1253> [52:16:52:18] 'll'
+          AsteriskToken <1254:1255> [52:19:52:20] '*'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1256:1258> [52:21:52:23] 'rl'
        SemicolonToken <1258:1259> [52:23:52:24] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1264:1267> [53:4:53:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1268:1273> [53:8:53:13] 'll_ru'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1274:1275> [53:14:53:15] '='
-          BinaryExpressionSyntax
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1276:1278> [53:16:53:18] 'll'
-           AsteriskToken <1279:1280> [53:19:53:20] '*'
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1281:1283> [53:21:53:23] 'ru'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1268:1273> [53:8:53:13] 'll_ru'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1274:1275> [53:14:53:15] '='
+         BinaryExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1276:1278> [53:16:53:18] 'll'
+          AsteriskToken <1279:1280> [53:19:53:20] '*'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1281:1283> [53:21:53:23] 'ru'
        SemicolonToken <1283:1284> [53:23:53:24] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1289:1292> [54:4:54:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1293:1298> [54:8:54:13] 'lu_rl'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1299:1300> [54:14:54:15] '='
-          BinaryExpressionSyntax
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1301:1303> [54:16:54:18] 'lu'
-           AsteriskToken <1304:1305> [54:19:54:20] '*'
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1306:1308> [54:21:54:23] 'rl'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1293:1298> [54:8:54:13] 'lu_rl'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1299:1300> [54:14:54:15] '='
+         BinaryExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1301:1303> [54:16:54:18] 'lu'
+          AsteriskToken <1304:1305> [54:19:54:20] '*'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1306:1308> [54:21:54:23] 'rl'
        SemicolonToken <1308:1309> [54:23:54:24] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1314:1317> [55:4:55:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1318:1323> [55:8:55:13] 'lu_ru'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1324:1325> [55:14:55:15] '='
-          BinaryExpressionSyntax
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1326:1328> [55:16:55:18] 'lu'
-           AsteriskToken <1329:1330> [55:19:55:20] '*'
-           PathExpressionSyntax
-            PathSyntax
-             SyntaxList
-              PathSegmentSyntax
-               IdentifierSyntax
-                IdentifierToken <1331:1333> [55:21:55:23] 'ru'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1318:1323> [55:8:55:13] 'lu_ru'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1324:1325> [55:14:55:15] '='
+         BinaryExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1326:1328> [55:16:55:18] 'lu'
+          AsteriskToken <1329:1330> [55:19:55:20] '*'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <1331:1333> [55:21:55:23] 'ru'
        SemicolonToken <1333:1334> [55:23:55:24] ';'
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <1339:1342> [56:4:56:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <1343:1344> [56:8:56:9] 'm'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <1345:1346> [56:10:56:11] '='
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <1343:1344> [56:8:56:9] 'm'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <1345:1346> [56:10:56:11] '='
+         BinaryExpressionSyntax
           BinaryExpressionSyntax
-           BinaryExpressionSyntax
-            TupleExpressionSyntax
-             OpenParenToken <1347:1348> [56:12:56:13] '('
-             SyntaxList
-              LabeledExpressionSyntax
-               BinaryExpressionSyntax
-                PathExpressionSyntax
-                 PathSyntax
-                  SyntaxList
-                   PathSegmentSyntax
-                    IdentifierSyntax
-                     IdentifierToken <1348:1353> [56:13:56:18] 'll_rl'
-                GreaterThanGreaterThanToken <1354:1356> [56:19:56:21] '>>'
-                LiteralExpressionSyntax
-                 IntegerLiteralToken <1357:1362> [56:22:56:27] '32u64'
-             CloseParenToken <1362:1363> [56:27:56:28] ')'
-            PlusToken <1364:1365> [56:29:56:30] '+'
-            PathExpressionSyntax
-             PathSyntax
-              SyntaxList
-               PathSegmentSyntax
-                IdentifierSyntax
-                 IdentifierToken <1366:1371> [56:31:56:36] 'll_ru'
-           PlusToken <1372:1373> [56:37:56:38] '+'
            TupleExpressionSyntax
-            OpenParenToken <1374:1375> [56:39:56:40] '('
+            OpenParenToken <1347:1348> [56:12:56:13] '('
             SyntaxList
              LabeledExpressionSyntax
               BinaryExpressionSyntax
@@ -1063,11 +1030,34 @@ SourceFileSyntax
                  SyntaxList
                   PathSegmentSyntax
                    IdentifierSyntax
-                    IdentifierToken <1375:1380> [56:40:56:45] 'lu_rl'
-               AmpersandToken <1381:1382> [56:46:56:47] '&'
+                    IdentifierToken <1348:1353> [56:13:56:18] 'll_rl'
+               GreaterThanGreaterThanToken <1354:1356> [56:19:56:21] '>>'
                LiteralExpressionSyntax
-                IntegerLiteralToken <1383:1396> [56:48:56:61] '0xFFFFFFFFu64'
-            CloseParenToken <1396:1397> [56:61:56:62] ')'
+                IntegerLiteralToken <1357:1362> [56:22:56:27] '32u64'
+            CloseParenToken <1362:1363> [56:27:56:28] ')'
+           PlusToken <1364:1365> [56:29:56:30] '+'
+           PathExpressionSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <1366:1371> [56:31:56:36] 'll_ru'
+          PlusToken <1372:1373> [56:37:56:38] '+'
+          TupleExpressionSyntax
+           OpenParenToken <1374:1375> [56:39:56:40] '('
+           SyntaxList
+            LabeledExpressionSyntax
+             BinaryExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <1375:1380> [56:40:56:45] 'lu_rl'
+              AmpersandToken <1381:1382> [56:46:56:47] '&'
+              LiteralExpressionSyntax
+               IntegerLiteralToken <1383:1396> [56:48:56:61] '0xFFFFFFFFu64'
+           CloseParenToken <1396:1397> [56:61:56:62] ')'
        SemicolonToken <1397:1398> [56:62:56:63] ';'
       CodeBlockItemSyntax
        ExpressionStatementSyntax

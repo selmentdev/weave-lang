@@ -242,18 +242,17 @@ SourceFileSyntax
       CodeBlockItemSyntax
        VariableDeclarationSyntax
         LetKeyword <337:340> [25:4:25:7] 'let'
-        PatternBindingSyntax
-         IdentifierPatternSyntax
-          IdentifierSyntax
-           IdentifierToken <341:345> [25:8:25:12] 'temp'
-         ExpressionInitializerClauseSyntax
-          EqualsToken <346:347> [25:13:25:14] '='
-          PathExpressionSyntax
-           PathSyntax
-            SyntaxList
-             PathSegmentSyntax
-              IdentifierSyntax
-               IdentifierToken <348:352> [25:15:25:19] 'left'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <341:345> [25:8:25:12] 'temp'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <346:347> [25:13:25:14] '='
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <348:352> [25:15:25:19] 'left'
        SemicolonToken <352:353> [25:19:25:20] ';'
       CodeBlockItemSyntax
        ExpressionStatementSyntax

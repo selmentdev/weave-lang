@@ -495,7 +495,7 @@ WEAVE_SYNTAX_NODE(UncheckedStatementSyntax,                     "unchecked state
 WEAVE_SYNTAX_NODE(UnsafeStatementSyntax,                        "unsafe statement")
 WEAVE_SYNTAX_NODE(LazyStatementSyntax,                          "lazy statement")
 WEAVE_SYNTAX_NODE(StructExpressionSyntax,                       "struct expression")
-WEAVE_SYNTAX_NODE(PatternBindingSyntax,                         "pattern binding")
+WEAVE_SYNTAX_NODE(TypePatternSyntax,                            "type pattern")
 WEAVE_SYNTAX_NODE(WildcardPatternSyntax,                        "wildcard pattern")
 WEAVE_SYNTAX_NODE(LiteralPatternSyntax,                         "literal pattern")
 WEAVE_SYNTAX_NODE(IdentifierPatternSyntax,                      "identifier pattern")
