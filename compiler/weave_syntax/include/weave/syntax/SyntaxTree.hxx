@@ -376,6 +376,27 @@ namespace weave::syntax
         SyntaxToken* CloseParenToken{};
     };
 
+    /// attributes
+    ///     : attribute-section+
+    ///     ;
+    ///
+    /// attribute-section
+    ///     : '#[' attribute-target-specifier? attribute-sequence ','? ']'
+    ///     ;
+    ///
+    /// attribute-sequence
+    ///     : attribute (',' attribute)*
+    ///     ;
+    ///
+    /// attribute-target-specifier
+    ///     : attribute-target ':'
+    ///     ;
+    ///
+    /// attribute-target
+    ///     : identifier
+    ///     | keyword
+    ///     ;
+
     /// attribute
     ///     : 'name' balanced-token-sequence?
     ///     ;
@@ -1538,7 +1559,11 @@ namespace weave::syntax
 
     public:
         NameSyntax* TypeName{};
-        BraceInitializerClauseSyntax* Initializer{};
+        UnexpectedNodesSyntax* BeforeOpenBraceToken{};
+        SyntaxToken* OpenBraceToken{};
+        SyntaxListView<LabeledExpressionSyntax> Elements{};
+        UnexpectedNodesSyntax* BeforeCloseBraceToken{};
+        SyntaxToken* CloseBraceToken{};
 
     public:
         explicit constexpr StructExpressionSyntax()
@@ -1547,12 +1572,9 @@ namespace weave::syntax
         }
     };
 
-    /// bracket-initializer-clause
-    ///     : '[' labeled-expression-sequence? ']'
-    ///     ;
-    class BracketInitializerClauseSyntax final : public ExpressionSyntax
+    class ArrayExpressionSyntax final : public ExpressionSyntax
     {
-        WEAVE_DEFINE_SYNTAX_NODE(BracketInitializerClauseSyntax);
+        WEAVE_DEFINE_SYNTAX_NODE(ArrayExpressionSyntax);
 
     public:
         UnexpectedNodesSyntax* BeforeOpenBracketToken{};
@@ -1562,29 +1584,8 @@ namespace weave::syntax
         SyntaxToken* CloseBracketToken{};
 
     public:
-        explicit constexpr BracketInitializerClauseSyntax()
-            : ExpressionSyntax{SyntaxKind::BracketInitializerClauseSyntax}
-        {
-        }
-    };
-
-    /// brace-initializer-clause
-    ///     : '{' labeled-expression-sequence? '}'
-    ///     ;
-    class BraceInitializerClauseSyntax : public ExpressionSyntax
-    {
-        WEAVE_DEFINE_SYNTAX_NODE(BraceInitializerClauseSyntax);
-
-    public:
-        UnexpectedNodesSyntax* BeforeOpenBraceToken{};
-        SyntaxToken* OpenBraceToken{};
-        SyntaxListView<LabeledExpressionSyntax> Elements{};
-        UnexpectedNodesSyntax* BeforeCloseBraceToken{};
-        SyntaxToken* CloseBraceToken{};
-
-    public:
-        explicit constexpr BraceInitializerClauseSyntax()
-            : ExpressionSyntax{SyntaxKind::BraceInitializerClauseSyntax}
+        explicit constexpr ArrayExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::ArrayExpressionSyntax}
         {
         }
     };

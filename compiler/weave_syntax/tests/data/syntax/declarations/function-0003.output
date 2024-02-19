@@ -217,9 +217,8 @@ SourceFileSyntax
              StructExpressionSyntax
               IdentifierNameSyntax
                IdentifierToken <395:399> [19:54:19:58] 'byte'
-              BraceInitializerClauseSyntax
-               OpenBraceToken <399:400> [19:58:19:59] '{'
-               CloseBraceToken <400:401> [19:59:19:60] '}'
+              OpenBraceToken <399:400> [19:58:19:59] '{'
+              CloseBraceToken <400:401> [19:59:19:60] '}'
            SemicolonToken <401:402> [19:60:19:61] ';'
          CloseBraceToken <403:404> [19:62:19:63] '}'
       CodeBlockItemSyntax
@@ -248,9 +247,8 @@ SourceFileSyntax
              StructExpressionSyntax
               IdentifierNameSyntax
                IdentifierToken <481:485> [22:36:22:40] 'byte'
-              BraceInitializerClauseSyntax
-               OpenBraceToken <485:486> [22:40:22:41] '{'
-               CloseBraceToken <486:487> [22:41:22:42] '}'
+              OpenBraceToken <485:486> [22:40:22:41] '{'
+              CloseBraceToken <486:487> [22:41:22:42] '}'
            SemicolonToken <487:488> [22:42:22:43] ';'
          CloseBraceToken <489:490> [22:44:22:45] '}'
       CodeBlockItemSyntax

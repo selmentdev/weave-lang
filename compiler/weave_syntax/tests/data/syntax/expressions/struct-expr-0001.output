@@ -12,26 +12,25 @@ SourceFileSyntax
       StructExpressionSyntax
        IdentifierNameSyntax
         IdentifierToken <8:18> [0:8:0:18] 'SomeStruct'
-       BraceInitializerClauseSyntax
-        OpenBraceToken <18:19> [0:18:0:19] '{'
-        SyntaxList
-         LabeledExpressionSyntax
-          NameColonSyntax
-           IdentifierNameSyntax
-            IdentifierToken <20:21> [0:20:0:21] 'a'
-           ColonToken <21:22> [0:21:0:22] ':'
-          LiteralExpressionSyntax
-           IntegerLiteralToken <23:24> [0:23:0:24] '1'
-          CommaToken <24:25> [0:24:0:25] ','
-         LabeledExpressionSyntax
-          NameColonSyntax
-           IdentifierNameSyntax
-            IdentifierToken <26:27> [0:26:0:27] 'b'
-           ColonToken <27:28> [0:27:0:28] ':'
-          LiteralExpressionSyntax
-           IntegerLiteralToken <29:30> [0:29:0:30] '2'
-          CommaToken <30:31> [0:30:0:31] ','
-        CloseBraceToken <32:33> [0:32:0:33] '}'
+       OpenBraceToken <18:19> [0:18:0:19] '{'
+       SyntaxList
+        LabeledExpressionSyntax
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <20:21> [0:20:0:21] 'a'
+          ColonToken <21:22> [0:21:0:22] ':'
+         LiteralExpressionSyntax
+          IntegerLiteralToken <23:24> [0:23:0:24] '1'
+         CommaToken <24:25> [0:24:0:25] ','
+        LabeledExpressionSyntax
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <26:27> [0:26:0:27] 'b'
+          ColonToken <27:28> [0:27:0:28] ':'
+         LiteralExpressionSyntax
+          IntegerLiteralToken <29:30> [0:29:0:30] '2'
+         CommaToken <30:31> [0:30:0:31] ','
+       CloseBraceToken <32:33> [0:32:0:33] '}'
    SemicolonToken <33:34> [0:33:0:34] ';'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
@@ -45,26 +44,25 @@ SourceFileSyntax
       StructExpressionSyntax
        IdentifierNameSyntax
         IdentifierToken <45:55> [2:9:2:19] 'SomeStruct'
-       BraceInitializerClauseSyntax
-        OpenBraceToken <55:56> [2:19:2:20] '{'
-        SyntaxList
-         LabeledExpressionSyntax
-          NameColonSyntax
-           IdentifierNameSyntax
-            IdentifierToken <57:58> [2:21:2:22] 'a'
-           ColonToken <58:59> [2:22:2:23] ':'
-          LiteralExpressionSyntax
-           IntegerLiteralToken <60:61> [2:24:2:25] '1'
-          CommaToken <61:62> [2:25:2:26] ','
-         LabeledExpressionSyntax
-          NameColonSyntax
-           IdentifierNameSyntax
-            IdentifierToken <63:64> [2:27:2:28] 'b'
-           ColonToken <64:65> [2:28:2:29] ':'
-          LiteralExpressionSyntax
-           IntegerLiteralToken <66:67> [2:30:2:31] '2'
-          CommaToken <67:68> [2:31:2:32] ','
-        CloseBraceToken <69:70> [2:33:2:34] '}'
+       OpenBraceToken <55:56> [2:19:2:20] '{'
+       SyntaxList
+        LabeledExpressionSyntax
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <57:58> [2:21:2:22] 'a'
+          ColonToken <58:59> [2:22:2:23] ':'
+         LiteralExpressionSyntax
+          IntegerLiteralToken <60:61> [2:24:2:25] '1'
+         CommaToken <61:62> [2:25:2:26] ','
+        LabeledExpressionSyntax
+         NameColonSyntax
+          IdentifierNameSyntax
+           IdentifierToken <63:64> [2:27:2:28] 'b'
+          ColonToken <64:65> [2:28:2:29] ':'
+         LiteralExpressionSyntax
+          IntegerLiteralToken <66:67> [2:30:2:31] '2'
+         CommaToken <67:68> [2:31:2:32] ','
+       CloseBraceToken <69:70> [2:33:2:34] '}'
      CloseParenToken <70:71> [2:34:2:35] ')'
      CodeBlockSyntax
       OpenBraceToken <72:73> [3:0:3:1] '{'
@@ -91,9 +89,8 @@ SourceFileSyntax
         StructExpressionSyntax
          IdentifierNameSyntax
           IdentifierToken <105:115> [6:14:6:24] 'SomeStruct'
-         BraceInitializerClauseSyntax
-          OpenBraceToken <115:116> [6:24:6:25] '{'
-          CloseBraceToken <116:117> [6:25:6:26] '}'
+         OpenBraceToken <115:116> [6:24:6:25] '{'
+         CloseBraceToken <116:117> [6:25:6:26] '}'
        CloseParenToken <117:118> [6:26:6:27] ')'
        CodeBlockSyntax
         OpenBraceToken <119:120> [7:0:7:1] '{'
@@ -131,26 +128,25 @@ SourceFileSyntax
                IdentifierNameSyntax
                 IdentifierToken <173:180> [10:35:10:42] 'Float32'
              CloseBracketToken <180:181> [10:42:10:43] ']'
-           BraceInitializerClauseSyntax
-            OpenBraceToken <181:182> [10:43:10:44] '{'
-            SyntaxList
-             LabeledExpressionSyntax
-              NameColonSyntax
-               IdentifierNameSyntax
-                IdentifierToken <183:184> [10:45:10:46] 'a'
-               ColonToken <184:185> [10:46:10:47] ':'
-              LiteralExpressionSyntax
-               IntegerLiteralToken <186:187> [10:48:10:49] '1'
-              CommaToken <187:188> [10:49:10:50] ','
-             LabeledExpressionSyntax
-              NameColonSyntax
-               IdentifierNameSyntax
-                IdentifierToken <189:190> [10:51:10:52] 'b'
-               ColonToken <190:191> [10:52:10:53] ':'
-              LiteralExpressionSyntax
-               IntegerLiteralToken <192:193> [10:54:10:55] '3'
-              CommaToken <193:194> [10:55:10:56] ','
-            CloseBraceToken <195:196> [10:57:10:58] '}'
+           OpenBraceToken <181:182> [10:43:10:44] '{'
+           SyntaxList
+            LabeledExpressionSyntax
+             NameColonSyntax
+              IdentifierNameSyntax
+               IdentifierToken <183:184> [10:45:10:46] 'a'
+              ColonToken <184:185> [10:46:10:47] ':'
+             LiteralExpressionSyntax
+              IntegerLiteralToken <186:187> [10:48:10:49] '1'
+             CommaToken <187:188> [10:49:10:50] ','
+            LabeledExpressionSyntax
+             NameColonSyntax
+              IdentifierNameSyntax
+               IdentifierToken <189:190> [10:51:10:52] 'b'
+              ColonToken <190:191> [10:52:10:53] ':'
+             LiteralExpressionSyntax
+              IntegerLiteralToken <192:193> [10:54:10:55] '3'
+             CommaToken <193:194> [10:55:10:56] ','
+           CloseBraceToken <195:196> [10:57:10:58] '}'
          CloseParenToken <196:197> [10:58:10:59] ')'
          CodeBlockSyntax
           OpenBraceToken <198:199> [11:0:11:1] '{'

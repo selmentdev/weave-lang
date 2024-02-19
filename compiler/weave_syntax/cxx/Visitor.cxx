@@ -1090,36 +1090,6 @@ namespace weave::syntax
         --this->Depth;
     }
 
-    void SyntaxWalker::OnBracketInitializerClauseSyntax(BracketInitializerClauseSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->BeforeOpenBracketToken);
-        this->Dispatch(node->OpenBracketToken);
-        this->Dispatch(node->Elements.GetNode());
-        this->Dispatch(node->BeforeCloseBracketToken);
-        this->Dispatch(node->CloseBracketToken);
-
-        --this->Depth;
-    }
-
-    void SyntaxWalker::OnBraceInitializerClauseSyntax(BraceInitializerClauseSyntax* node)
-    {
-        this->OnDefault(node);
-
-        ++this->Depth;
-
-        this->Dispatch(node->BeforeOpenBraceToken);
-        this->Dispatch(node->OpenBraceToken);
-        this->Dispatch(node->Elements.GetNode());
-        this->Dispatch(node->BeforeCloseBraceToken);
-        this->Dispatch(node->CloseBraceToken);
-
-        --this->Depth;
-    }
-
     void SyntaxWalker::OnCheckedStatementSyntax(CheckedStatementSyntax* node)
     {
         this->OnDefault(node);
@@ -1494,7 +1464,26 @@ namespace weave::syntax
         ++this->Depth;
 
         this->Dispatch(node->TypeName);
-        this->Dispatch(node->Initializer);
+        this->Dispatch(node->BeforeOpenBraceToken);
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->Elements.GetNode());
+        this->Dispatch(node->BeforeCloseBraceToken);
+        this->Dispatch(node->CloseBraceToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnArrayExpressionSyntax(ArrayExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->BeforeOpenBracketToken);
+        this->Dispatch(node->OpenBracketToken);
+        this->Dispatch(node->Elements.GetNode());
+        this->Dispatch(node->BeforeCloseBracketToken);
+        this->Dispatch(node->CloseBracketToken);
 
         --this->Depth;
     }

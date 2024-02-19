@@ -1560,9 +1560,39 @@ namespace weave::syntax
                 {
                     StructExpressionSyntax* result = this->_factory->CreateNode<StructExpressionSyntax>();
                     result->TypeName = name;
-                    result->Initializer = this->ParseBraceInitializerClause();
+
+                    this->MatchUntil(result->OpenBraceToken, result->BeforeOpenBraceToken, SyntaxKind::OpenBraceToken);
+
+                    if (this->Current()->Kind != SyntaxKind::CloseBraceToken)
+                    {
+                        std::vector<LabeledExpressionSyntax*> elements{};
+
+                        LoopProgressCondition progress{this->Current()};
+
+                        do
+                        {
+                            if (this->Current()->Kind == SyntaxKind::CloseBraceToken)
+                            {
+                                break;
+                            }
+
+                            LabeledExpressionSyntax* element = this->ParseLabeledExpression();
+                            elements.push_back(element);
+
+                            if (element->TrailingComma == nullptr)
+                            {
+                                break;
+                            }
+                        } while (progress.Evaluate(this->Current()));
+
+                        result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
+                    }
+
+                    this->MatchUntil(result->CloseBraceToken, result->BeforeCloseBraceToken, SyntaxKind::CloseBraceToken);
+
                     return result;
                 }
+
                 return name;
             }
 
@@ -1589,11 +1619,7 @@ namespace weave::syntax
             return this->ParseExpressionReference();
 
         case SyntaxKind::OpenBracketToken:
-            return this->ParseBracketInitializerClause();
-
-        case SyntaxKind::OpenBraceToken:
-            WEAVE_BUGCHECK("Object initializer is not supported!");
-            // return this->ParseBraceInitializerClause();
+            return this->ParseArrayExpression();
 
         default:
             ExpressionSyntax* missing = this->CreateMissingIdentifierName();
@@ -1631,11 +1657,11 @@ namespace weave::syntax
         return result;
     }
 
-    BracketInitializerClauseSyntax* Parser::ParseBracketInitializerClause()
+    ArrayExpressionSyntax* Parser::ParseArrayExpression()
     {
         std::vector<LabeledExpressionSyntax*> elements{};
 
-        BracketInitializerClauseSyntax* result = this->_factory->CreateNode<BracketInitializerClauseSyntax>();
+        ArrayExpressionSyntax* result = this->_factory->CreateNode<ArrayExpressionSyntax>();
         this->MatchUntil(result->OpenBracketToken, result->BeforeOpenBracketToken, SyntaxKind::OpenBracketToken);
 
         if (this->Current()->Kind != SyntaxKind::CloseBracketToken)
@@ -1663,41 +1689,6 @@ namespace weave::syntax
         result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
 
         this->MatchUntil(result->CloseBracketToken, result->BeforeCloseBracketToken, SyntaxKind::CloseBracketToken);
-
-        return result;
-    }
-
-    BraceInitializerClauseSyntax* Parser::ParseBraceInitializerClause()
-    {
-        std::vector<LabeledExpressionSyntax*> elements{};
-
-        BraceInitializerClauseSyntax* result = this->_factory->CreateNode<BraceInitializerClauseSyntax>();
-        this->MatchUntil(result->OpenBraceToken, result->BeforeOpenBraceToken, SyntaxKind::OpenBraceToken);
-
-        if (this->Current()->Kind != SyntaxKind::CloseBraceToken)
-        {
-            LoopProgressCondition progress{this->Current()};
-
-            do
-            {
-                if (this->Current()->Kind == SyntaxKind::CloseBraceToken)
-                {
-                    break;
-                }
-
-                LabeledExpressionSyntax* element = this->ParseLabeledExpression();
-                elements.push_back(element);
-
-                if (element->TrailingComma == nullptr)
-                {
-                    break;
-                }
-            } while (progress.Evaluate(this->Current()));
-        }
-
-        result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
-
-        this->MatchUntil(result->CloseBraceToken, result->BeforeCloseBraceToken, SyntaxKind::CloseBraceToken);
 
         return result;
     }

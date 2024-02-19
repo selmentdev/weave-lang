@@ -805,18 +805,17 @@ SourceFileSyntax
                 StructExpressionSyntax
                  IdentifierNameSyntax
                   IdentifierToken <1579:1582> [79:12:79:15] 'get'
-                 BraceInitializerClauseSyntax
-                  OpenBraceToken <1595:1596> [80:12:80:13] '{'
+                 OpenBraceToken <1595:1596> [80:12:80:13] '{'
+                 SyntaxList
+                  LabeledExpressionSyntax
+                 UnexpectedNodesSyntax
                   SyntaxList
-                   LabeledExpressionSyntax
-                  UnexpectedNodesSyntax
-                   SyntaxList
-                    ReturnKeyword <1613:1619> [81:16:81:22] 'return'
-                    IdentifierToken <1620:1624> [81:23:81:27] 'self'
-                    DotToken <1624:1625> [81:27:81:28] '.'
-                    IdentifierToken <1625:1632> [81:28:81:35] '_length'
-                    SemicolonToken <1632:1633> [81:35:81:36] ';'
-                  CloseBraceToken <1646:1647> [82:12:82:13] '}'
+                   ReturnKeyword <1613:1619> [81:16:81:22] 'return'
+                   IdentifierToken <1620:1624> [81:23:81:27] 'self'
+                   DotToken <1624:1625> [81:27:81:28] '.'
+                   IdentifierToken <1625:1632> [81:28:81:35] '_length'
+                   SemicolonToken <1632:1633> [81:35:81:36] ';'
+                 CloseBraceToken <1646:1647> [82:12:82:13] '}'
              CloseBraceToken <1656:1657> [83:8:83:9] '}'
           CodeBlockItemSyntax
            FunctionDeclarationSyntax

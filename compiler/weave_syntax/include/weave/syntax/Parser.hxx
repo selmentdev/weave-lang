@@ -409,9 +409,7 @@ namespace weave::syntax
 
         TupleExpressionSyntax* ParseTupleExpression();
 
-        BracketInitializerClauseSyntax* ParseBracketInitializerClause();
-
-        BraceInitializerClauseSyntax* ParseBraceInitializerClause();
+        ArrayExpressionSyntax* ParseArrayExpression();
 
         LabeledExpressionSyntax* ParseLabeledExpression();
 

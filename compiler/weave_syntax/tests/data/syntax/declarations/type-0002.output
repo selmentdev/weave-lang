@@ -116,9 +116,8 @@ SourceFileSyntax
             StructExpressionSyntax
              IdentifierNameSyntax
               IdentifierToken <266:270> [13:15:13:19] 'Pair'
-             BraceInitializerClauseSyntax
-              OpenBraceToken <270:271> [13:19:13:20] '{'
-              CloseBraceToken <271:272> [13:20:13:21] '}'
+             OpenBraceToken <270:271> [13:19:13:20] '{'
+             CloseBraceToken <271:272> [13:20:13:21] '}'
            SemicolonToken <272:273> [13:21:13:22] ';'
          CloseBraceToken <278:279> [14:4:14:5] '}'
       CodeBlockItemSyntax
