@@ -2,36 +2,79 @@
 
 ## Options
 
-`-c, --codegen` `<name>=<value>` - code generator options
-`-e <options>` - emit options
-`-o output` - specifies output directory; `weavec` emits additional compilation artifacts here, based on `-e` parameters
-`-t <name>=<value>` - specifies target options
-`-x <name>=<value>` - experimental options, usually used for debugging `weavec`
-`-k <name>=<value>` - linter options
+```
+Miscellaneous:
 
-### Code Generator options
+    -help
+    -version
+    -verbose
+    -nologo
 
-| Option | Description |
-|-|-|
-| `-c checked` | Enables overflow checks |
-| `-c define=NAME` | Defines a preprocessor symbol of `NAME` |
-| `-c opt=<level>` | Sets the optimization level to `level` |
-| `-c debug` | Emits debug information |
-| `-c platform=<platform>` | Specifies the platform |
-| `-c target=<target>` | Specifies the target. May be app, library, module |
-| `-c name=<name>` | Specifies the name of the module |
+Output files:
 
-### Emit options
+    -o:output <path>                    Output path
+    -o:immediate <path>                 Output path for immediate files
+    -o:generated <path>                 Output path for generated files
+    -o:target <kind>                    Specifies kind of the target.
+        app                             Application
+        console                         Console Application
+        library                         Library
+        module                          Module
+    -o:name <name>                      Specifies the name of the module.
+    -o:documentation <path>             Output path for documentation files
 
-| Option | Description | Notes |
-|-|-|-|
-| `-e doc` | Generates documentation | |
-| `-e dep` | Generates dependency information | |
-| `-e meta` | Generates type information | Default, needed to link metadata. |
-| `-e asm-header` | Generates assembly header for types and constants | This tool may be experimental. Only some files would require that option (like native assembly sources) |
+Input files:
 
-### Experimental
+    -i:reference <file>                 Adds a reference to the specified module.
 
-| Option | Description |
-|-|-|
-| `-x print=<format>` | Prints input source as desired format. This may be done at various stages of compilation. |
+Code Generation:
+
+    -c:checked                          Enables overflow checks
+    -c:debug                            Emits debug information
+    -c:unsafe                           Allows unsafe code
+    -c:optimize <level>                 Sets the optimization level to <level>
+    -c:define <name>                    Defines a configuration option
+    -c:platform <platform>              Specifies the target platform
+        linux                           Linux
+        windows                         Windows
+        macos                           macOS
+    -c:architecture <architecture>      Specifies the target architecture
+    -c:deterministic                    Generates deterministic output
+    -c:coverage                         Generates coverage information
+    -c:sanitize-address                 Enables AddressSanitizer
+    -c:sanitize-thread                  Enables ThreadSanitizer
+    -c:sanitize-memory                  Enables MemorySanitizer
+    -c:sanitize-undefined               Enables UndefinedBehaviorSanitizer
+
+Errors and warnings:
+
+    -w:level <level>                    Sets the warning level to <level>
+        0                               Turns off all warnings
+        1                               Shows only severe warnings
+        2                               Shows all warnings
+    -w:error                            Treats warnings as errors
+    -w:suppress <warning>               Suppresses a warning
+    -w:enable <warning>                 Enables a warning
+    -w:disable <warning>                Disables a warning
+
+Resources:
+
+    -r:resource <file>                  Adds a resource file to the module.
+
+Analysis:
+
+    -a:analyze                          Analyzes the input source
+
+Emit options:
+
+    -e:documentation                    Generates documentation
+    -e:dependency                       Generates dependency information
+    -e:metadata                         Generates type information
+    -e:assembly-header                  Generates header file with assembly definitions
+
+Experimental Options:
+
+    -x:print-syntax-tree <format>       Prints syntax tree of the input source as desired format.
+    -x:print-semantic-tree <format>     Prints semantic tree of the input source as desired format.
+```
+

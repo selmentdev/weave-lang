@@ -123,7 +123,7 @@ int main(int argc, char** argv)
             std::string executable{exeName.value()};
             std::string args{};
             args += fmt::format("\"{}\"", entry.path().string());
-            args += " -x print=ast";
+            args += " -x:print-syntax-tree";
 
             if (auto ret = weave::system::Execute(executable.c_str(), args.c_str(), wd.string().c_str(), output, error))
             {

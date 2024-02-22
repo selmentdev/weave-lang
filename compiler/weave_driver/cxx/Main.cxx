@@ -4,7 +4,7 @@
 
 #include <charconv>
 #include <cstdlib>
-
+#include <map>
 #include "weave/core/String.hxx"
 #include "weave/CommandLine.hxx"
 #include "weave/filesystem/FileSystem.hxx"
@@ -170,91 +170,725 @@ public:
     }
 };
 
-int main(int argc, const char* argv[])
+namespace xxx2
 {
-    using namespace weave;
+    struct CommandLineGroup;
+    struct CommandLineOption;
 
-    commandline::CommandLineBuilder builder{};
-
-    builder.Multiple(
-        "codegen",
-        "c",
-        "Code generator options",
-        "<name=value>");
-
-    builder.Multiple(
-        "emit",
-        "e",
-        "List of types of output to emit",
-        "items");
-
-    builder.Multiple(
-        "experimental",
-        "x",
-        "Experimental options",
-        "name[=value]");
-
-    builder.Flag(
-        "help",
-        "h",
-        "Prints help");
-
-    builder.Flag(
-        "verbose",
-        "v",
-        "Use verbose output");
-
-    // Skip the first argument - it's the path to executable.
-    if (auto matched = builder.Parse(argc - 1, argv + 1); matched.has_value())
+    struct CommandLineGroup final
     {
-        if (matched->HasFlag("help"))
-        {
-            fmt::println("Usage: {} [OPTIONS]", argv[0]);
-            fmt::println("");
+        std::string_view Name{};
+        bool Hidden = false;
+        std::vector<CommandLineOption> Options{};
 
-            for (auto const& option : builder.GetOptions())
+        // CommandLineGroup(
+        //     std::string_view name,
+        //     std::initializer_list<CommandLineOption> options,
+        //     bool hidden = false)
+        //     : Name{name
+        //     , Options{options}
+        //     , Hidden{hidden}
+        //{
+        // }
+    };
+
+    struct CommandLineOption final
+    {
+        std::string_view Name{};
+        std::string_view Description{};
+        bool Hidden = false;
+
+        std::function<void(std::string_view)> OnValue{};
+        std::function<void()> OnFlag{};
+    };
+
+    std::vector<std::string_view> Parse(std::vector<CommandLineGroup> const& groups, std::span<const char*> args)
+    {
+        auto it = args.begin();
+        ++it; // Skip the first argument - it's the path to executable.
+        auto end = args.end();
+
+        auto consume = [&]() -> std::optional<std::string_view>
+        {
+            if (it != end)
             {
-                fmt::println("{}", commandline::FormatOption(option));
-                fmt::println("    {}", option.Description);
+                std::string_view name{*it};
+                ++it;
+                return name;
+            }
+
+            return {};
+        };
+
+        auto findOption = [&](std::string_view name) -> CommandLineOption const*
+        {
+            for (auto const& group : groups)
+            {
+                for (auto const& option : group.Options)
+                {
+                    if (option.Name == name)
+                    {
+                        return &option;
+                    }
+                }
+            }
+
+            return {};
+        };
+
+        std::vector<std::string_view> result{};
+
+        bool parseOptions = true;
+
+        while (it != end)
+        {
+            if (auto argument = consume())
+            {
+                if (argument->starts_with("-") and parseOptions)
+                {
+                    if (argument == "--")
+                    {
+                        parseOptions = false;
+                        continue;
+                    }
+
+                    if (auto option = findOption(*argument))
+                    {
+                        if (option->OnFlag)
+                        {
+                            option->OnFlag();
+                        }
+                        else if (auto value = consume())
+                        {
+                            option->OnValue(*value);
+                        }
+                        else
+                        {
+                            fmt::println(stderr, "error: missing value for '{}'", *argument);
+                        }
+                    }
+                    else
+                    {
+                        fmt::println(stderr, "error: unknown option '{}'", *argument);
+                    }
+                }
+                else
+                {
+                    result.push_back(*argument);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    void PrintHelp(std::vector<CommandLineGroup> const& groups)
+    {
+        fmt::println("Usage: <executable> [OPTIONS] [FILES]");
+        fmt::println("");
+
+        size_t const longestOptionName = [&]() -> size_t
+        {
+            size_t result = 0;
+            for (auto const& group : groups)
+            {
+                for (auto const& option : group.Options)
+                {
+                    result = (std::max)(result, option.Name.size());
+                }
+            }
+            return result;
+        }();
+
+        for (auto const& group : groups)
+        {
+            if (group.Hidden)
+            {
+                continue;
+            }
+
+            fmt::println("{}", group.Name);
+            for (auto const& option : group.Options)
+            {
+                if (option.Hidden)
+                {
+                    continue;
+                }
+
+                fmt::println("    {:{}} : {}", option.Name, longestOptionName, option.Description);
                 fmt::println("");
             }
 
-            fflush(stdout);
-            fflush(stderr);
+            fmt::println("");
+        }
+    }
+}
+
+#include <weave/commandline/CommandLineParser.hxx>
+
+namespace xxx
+{
+    enum class TargetKind
+    {
+        Application,
+        ConsoleApplication,
+        Library,
+        Module,
+    };
+
+    enum class TargetPlatform
+    {
+        Linux,
+        Windows,
+        MacOS,
+        Android,
+    };
+
+    enum class TargetArchitecture
+    {
+        X64,
+        AArch64,
+        RiscV64,
+    };
+
+    enum class OptimizationLevel
+    {
+        None,
+        Minimal,
+        Default,
+        Full,
+    };
+
+    enum class WarningReport
+    {
+        Disabled,
+        Warning,
+        Error,
+    };
+
+    class CompilerOptions : public weave::commandline::CommandLineParser
+    {
+    public:
+        struct OutputOptions
+        {
+            std::string OutputPath{};
+            std::string ImmediatePath{};
+            std::string GeneratedPath{};
+            TargetKind Target{};
+            std::string Name{};
+            std::string DocumentationPath{};
+        } Output{};
+
+        struct InputOptions
+        {
+            std::vector<std::string> References{};
+            std::vector<std::string> Sources{};
+        } Input{};
+
+        struct CodeGenerationOptions
+        {
+            bool Checked{};
+            bool Debug{};
+            bool Unsafe{};
+            OptimizationLevel OptimizationLevel{};
+            TargetPlatform Platform{};
+            TargetArchitecture Architecture{};
+            bool Deterministic{};
+            bool Coverage{};
+            bool SanitizeAddress{};
+            bool SanitizeThread{};
+            bool SanitizeMemory{};
+            bool SanitizeUndefined{};
+        } CodeGeneration{};
+
+        struct ErrorsAndWarningsOptions
+        {
+            int WarningLevel{};
+            std::map<uint32_t, WarningReport> Warnings{};
+        } ErrorsAndWarnings{};
+
+        struct ResourceOptions
+        {
+            std::vector<std::string> ResourcePaths{};
+        } Resources{};
+
+        struct AnalyzeOptions
+        {
+            bool Analyze{};
+        } Analyze{};
+
+        struct EmitOptions
+        {
+            bool Documentation{};
+            bool Dependency{};
+            bool Metadata{};
+            bool AssemblyHeader{};
+        } Emit{};
+
+        bool Help{};
+        bool Verbose{};
+        bool NoLogo{};
+        bool Version{};
+
+        struct ExperimentalOptions
+        {
+            bool PrintSyntaxTree{};
+            bool PrintSemanticTree{};
+        } Experimental{};
+
+    protected:
+        void OnPrintHelp() const override
+        {
+            fmt::print(R"__(usage: weavec [options] arguments
+
+Miscellaneous options:
+
+    -help       Prints this help message
+    -version    Prints version information
+    -nologo     Suppresses the logo banner
+    -verbose    Use verbose output
+
+Output options:
+
+    -o:output=<path>            The path to the output files
+    -o:immediate=<path>         The path to the immediate files
+    -o:generated=<path>         The path to the generated files
+    -o:target=<value>           The target kind
+    -o:name=<value>             The name of the module
+    -o:documentation            The path to the generated documentation files
+
+Input options:
+
+    -i:reference                The input path to module reference
+
+Code generation options:
+
+    -c:architecture=<value>     The target architecture
+    -c:platform=<value>         The target platform
+    -c:architecture             The target architecture
+    -c:platform                 The target platform
+    -c:checked                  Enable overflow checking
+    -c:debug                    Enable debugging information
+    -c:unsafe                   Allow unsafe code
+    -c:optimize=<level>         Set optimization level
+    -c:deterministic            Produce deterministic output
+    -c:coverage                 Enable code coverage
+    -c:sanitize-address         Enable address sanitizer
+    -c:sanitize-thread          Enable thread sanitizer
+    -c:sanitize-memory          Enable memory sanitizer
+    -c:sanitize-undefined       Enable undefined behavior sanitizer
+
+Diagnostic options:
+    -w:level                    Set warning level
+    -w:error=<id>               Treats a specific warning as an error
+    -w:warn=<id>                Treats a specific warning as a warning
+    -w:disable=<id>             Disables a specific warning
+    -w:default=<id>             Resets a specific warning to its default level
+
+Resource options:
+
+    -r:resource=<path>          The input path to resource file
+
+Analyze options:
+
+    -a:analyze                  Enable static analysis
+
+Emit options:
+
+    -e:documentation            Emit documentation
+    -e:dependency               Emit dependency
+    -e:metadata                 Emit metadata
+    -e:assembly-header          Emit assembly header
+
+Experimental options;
+
+    -x:print-syntax-tree        Print syntax tree
+    -x:print-semantic-tree      Print semantic tree
+
+)__");
+        }
+
+        void OnPositionalArgument(std::string_view value) override
+        {
+            this->Input.Sources.emplace_back(value);
+        }
+
+        bool OnOption(std::string_view name, std::optional<std::string_view> value) override
+        {
+            if (name == "help")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Help = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "verbose")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Verbose = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "version")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Verbose = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "nologo")
+            {
+                auto const parsed = TryParseBool(value);
+                this->NoLogo = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "o:output")
+            {
+                if (auto const parsed = TryParseFilePath(value))
+                {
+                    this->Output.OutputPath = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "o:immediate")
+            {
+                if (auto const parsed = TryParseFilePath(value))
+                {
+                    this->Output.ImmediatePath = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "o:generated")
+            {
+                if (auto const parsed = TryParseFilePath(value))
+                {
+                    this->Output.GeneratedPath = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "o:target")
+            {
+                if (auto const parsed = TryParseTargetKind(value))
+                {
+                    this->Output.Target = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "o:name")
+            {
+                if (auto const parsed = TryParseString(value))
+                {
+                    this->Output.Name = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "o:documentation")
+            {
+                if (auto const parsed = TryParseFilePath(value))
+                {
+                    this->Output.DocumentationPath = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "i:reference")
+            {
+                if (auto const parsed = TryParseFilePath(value))
+                {
+                    this->Input.References.emplace_back(*value);
+                    return true;
+                }
+            }
+            else if (name == "c:architecture")
+            {
+                if (auto const parsed = TryParseTargetArchitecture(value))
+                {
+                    this->CodeGeneration.Architecture = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "c:platform")
+            {
+                if (auto const parsed = TryParseTargetPlatform(value))
+                {
+                    this->CodeGeneration.Platform = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "c:checked")
+            {
+                auto const parsed = TryParseBool(value);
+                this->CodeGeneration.Checked = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "c:debug")
+            {
+                auto const parsed = TryParseBool(value);
+                this->CodeGeneration.Debug = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "c:unsafe")
+            {
+                auto const parsed = TryParseBool(value);
+                this->CodeGeneration.Unsafe = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "c:optimize")
+            {
+                if (auto const parsed = TryParseOptimizationLevel(value))
+                {
+                    this->CodeGeneration.OptimizationLevel = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "c:deterministic")
+            {
+                auto const parsed = TryParseBool(value);
+                this->CodeGeneration.Deterministic = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "c:coverage")
+            {
+                auto const parsed = TryParseBool(value);
+                this->CodeGeneration.Coverage = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "c:sanitize-address")
+            {
+                auto const parsed = TryParseBool(value);
+                this->CodeGeneration.SanitizeAddress = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "c:sanitize-thread")
+            {
+                auto const parsed = TryParseBool(value);
+                this->CodeGeneration.SanitizeThread = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "c:sanitize-memory")
+            {
+                auto const parsed = TryParseBool(value);
+                this->CodeGeneration.SanitizeMemory = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "c:sanitize-undefined")
+            {
+                auto const parsed = TryParseBool(value);
+                this->CodeGeneration.SanitizeUndefined = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "w:level")
+            {
+                if (auto const parsed = TryParseInt32(value))
+                {
+                    this->ErrorsAndWarnings.WarningLevel = *parsed;
+                    return true;
+                }
+            }
+            else if (name == "w:error")
+            {
+                if (auto const parsed = TryParseUInt32(value))
+                {
+                    this->ErrorsAndWarnings.Warnings[*parsed] = WarningReport::Warning;
+                    return true;
+                }
+            }
+            else if (name == "w:warn")
+            {
+                if (auto const parsed = TryParseUInt32(value))
+                {
+                    this->ErrorsAndWarnings.Warnings[*parsed] = WarningReport::Warning;
+                    return true;
+                }
+            }
+            else if (name == "w:disable")
+            {
+                if (auto const parsed = TryParseUInt32(value))
+                {
+                    this->ErrorsAndWarnings.Warnings[*parsed] = WarningReport::Disabled;
+                    return true;
+                }
+            }
+            else if (name == "w:default")
+            {
+                if (auto const parsed = TryParseUInt32(value))
+                {
+                    this->ErrorsAndWarnings.Warnings.erase(*parsed);
+                    return true;
+                }
+            }
+            else if (name == "r:resource")
+            {
+                if (auto const parsed = TryParseFilePath(value))
+                {
+                    this->Resources.ResourcePaths.emplace_back(*parsed);
+                    return true;
+                }
+            }
+            else if (name == "a:analyze")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Analyze.Analyze = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "e:documentation")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Emit.Documentation = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "e:dependency")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Emit.Dependency = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "e:metadata")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Emit.Metadata = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "e:assembly-header")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Emit.AssemblyHeader = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "x:print-syntax-tree")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Experimental.PrintSyntaxTree = parsed.value_or(true);
+                return true;
+            }
+            else if (name == "x:print-semantic-tree")
+            {
+                auto const parsed = TryParseBool(value);
+                this->Experimental.PrintSemanticTree = parsed.value_or(true);
+                return true;
+            }
+
+            return false;
+        }
+
+    private:
+        static std::optional<TargetKind> TryParseTargetKind(std::optional<std::string_view> const& value)
+        {
+            if (value)
+            {
+                if (*value == "application")
+                {
+                    return TargetKind::Application;
+                }
+                else if (*value == "console")
+                {
+                    return TargetKind::ConsoleApplication;
+                }
+                else if (*value == "library")
+                {
+                    return TargetKind::Library;
+                }
+                else if (*value == "module")
+                {
+                    return TargetKind::Module;
+                }
+            }
+
+            return {};
+        }
+
+        static std::optional<TargetArchitecture> TryParseTargetArchitecture(std::optional<std::string_view> const& value)
+        {
+            if (value)
+            {
+                if (*value == "x64")
+                {
+                    return TargetArchitecture::X64;
+                }
+
+                if (*value == "aarch64")
+                {
+                    return TargetArchitecture::AArch64;
+                }
+
+                if (*value == "riscv64")
+                {
+                    return TargetArchitecture::RiscV64;
+                }
+            }
+
+            return {};
+        }
+
+        static std::optional<TargetPlatform> TryParseTargetPlatform(std::optional<std::string_view> const& value)
+        {
+            if (value)
+            {
+                if (*value == "linux")
+                {
+                    return TargetPlatform::Linux;
+                }
+
+                if (*value == "windows")
+                {
+                    return TargetPlatform::Windows;
+                }
+
+                if (*value == "macos")
+                {
+                    return TargetPlatform::MacOS;
+                }
+
+                if (*value == "android")
+                {
+                    return TargetPlatform::Android;
+                }
+            }
+
+            return {};
+        }
+
+        static std ::optional<OptimizationLevel> TryParseOptimizationLevel(std::optional<std::string_view> const& value)
+        {
+            if (value)
+            {
+                if (*value == "none")
+                {
+                    return OptimizationLevel::None;
+                }
+
+                if (*value == "minimal")
+                {
+                    return OptimizationLevel::Minimal;
+                }
+
+                if (*value == "default")
+                {
+                    return OptimizationLevel::Default;
+                }
+
+                if (*value == "full")
+                {
+                    return OptimizationLevel::Full;
+                }
+            }
+
+            return {};
+        }
+    };
+}
+
+int main(int argc, char* argv[])
+{
+    xxx::CompilerOptions options{};
+
+    if (options.Parse(argc, argv))
+    {
+        if (options.Help)
+        {
+            options.PrintHelp();
             return EXIT_SUCCESS;
         }
 
-        errors::Handler handler{};
-        driver::Driver driver{};
-
-        session::ParseOptions(driver.CodeGenerator, handler, matched->GetValues("codegen"));
-        session::ParseOptions(driver.Experimental, handler, matched->GetValues("experimental"));
-        session::ParseOptions(driver.Emit, handler, matched->GetValues("emit"));
-
-        for (auto const& message : handler.GetMessages())
-        {
-            fmt::println(stderr, "{}", message.Value);
-        }
-
-        if (handler.HasErrors())
-        {
-            fmt::println(stderr, "aborting due to previous errors");
-            fflush(stdout);
-            fflush(stderr);
-            return EXIT_FAILURE;
-        }
-
-        if (matched->HasFlag("verbose"))
-        {
-            driver.CodeGenerator.Dump();
-            driver.Experimental.Dump();
-            driver.Emit.Dump();
-        }
-
-
-        auto const& result = matched.value();
-
-        auto const& files = result.GetPositional();
+        using namespace weave;
+    
+        auto const& files = options.Input.Sources;
 
         if (files.empty())
         {
@@ -279,7 +913,7 @@ int main(int argc, const char* argv[])
 
             syntax::Parser parser{&diagnostic, &factory, text};
 
-            if (driver.Experimental.Format == session::PrintFormat::AST)
+            if (options.Experimental.PrintSyntaxTree)
             {
                 auto* root = parser.ParseSourceFile();
                 {
@@ -482,12 +1116,12 @@ int main(int argc, const char* argv[])
                     SyntaxWalker::OnIncompleteDeclarationSyntax(node);
                 }
 
-                //void OnArgumentSyntax(syntax::ArgumentSyntax* node) override
+                // void OnArgumentSyntax(syntax::ArgumentSyntax* node) override
                 //{
-                //    Indent();
-                //    fmt::println("{}", __func__);
-                //    SyntaxWalker::OnArgumentSyntax(node);
-                //}
+                //     Indent();
+                //     fmt::println("{}", __func__);
+                //     SyntaxWalker::OnArgumentSyntax(node);
+                // }
 
                 void OnArrowExpressionClauseSyntax(syntax::ArrowExpressionClauseSyntax* node) override
                 {
@@ -570,7 +1204,6 @@ int main(int argc, const char* argv[])
     }
     else
     {
-        fmt::println(stderr, "{}", matched.error());
         fflush(stdout);
         fflush(stderr);
         return EXIT_FAILURE;

@@ -1,3 +1,4 @@
 target_sources(weave_commandline PRIVATE
-    CommandLine.cxx
+    "CommandLine.cxx"
+    "CommandLineParser.cxx"
 )
