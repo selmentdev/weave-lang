@@ -1,11 +1,11 @@
 public extend ExampleType
 {
-    public function Bar(self: ref Self, other: ref Self) -> Self
+    public function Bar(self: &var Self, other: &var Self) -> Self
     {
         return self + other;
     }
 
-    public unsafe function Baz(left: in *const Self, right: in *const Self) -> *const Self
+    public unsafe function Baz(left: &let *let Self, right: &let *let Self) -> *let Self
     {
         return (left < right) ? left : right;
     }
@@ -13,31 +13,31 @@ public extend ExampleType
 
 public unsafe explicit struct RawObjectPointer
 {
-    public var VTable   : *const   void;
-    public var Instance : *mutable void;
+    public var VTable   : *let void;
+    public var Instance : *var void;
 }
 
 public unsafe explicit struct RawStringPointer
 {
-    public var Data     : *mutable char;
+    public var Data     : *var char;
     public var Length   : UIntPtr;
 }
 
 public unsafe explicit struct RawArray![type T]
 {
-    public var Data     : *mutable T;
+    public var Data     : *var T;
     public var Count    : UIntPtr;
 }
 
 public unsafe explicit struct RawSlice![type T]
 {
-    public var Data     : *mutable T;
+    public var Data     : *var T;
     public var Count    : UIntPtr;
 }
 
 public extend ConvertTo![type T]
 {
-    public function From![type U](value: in U) -> T
+    public function From![type U](value: &let U) -> T
     {
         return value as T;
     }

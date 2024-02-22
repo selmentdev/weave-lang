@@ -1,0 +1,89 @@
+{
+    // int              x = 42;
+    var x : Int32       = 42;       // ok: value initialization
+        x               = 2137;     // ok: reassigning variable with mutable value
+
+    // int const* const y = &x;
+    let y : &let Int32  = &let x;   // ok: taking immutable reference to mutable variable as immutable variable
+        y               = &let x;   // error: cannot reassign immutable variable
+        *y              = 2137;     // error: cannot dereference pointer for assignment
+
+    // int      * const z = &x;
+    let z : &var Int32  = &var x;   // ok: taking mutable reference to mutable variable as immmutable variable
+        z               = &var x;   // error: cannot reassign immutable variable
+        *z              = 2137;     // ok: dereferencing pointer for assignment
+
+    // int const*       w = &x;
+    var w : &let Int32  = &let x;   // ok: taking immutable reference to mutable variable as mutable variable
+        w               = &let x;   // ok: reassigning mutable variable with immutable reference to mutable variable
+        *w              = 2137;     // error: cannot dereference pointer for assignment
+
+    // int      *       v = &x;
+    var v : &var Int32  = &var x;   // ok: taking mutable reference to mutable variable as mutable variable
+        v               = &var x;   // ok: reassigning mutable variable with mutable reference to mutable variable
+        *v              = 2137;     // ok: dereferencing pointer for assignment
+}
+
+{
+    // int              x = 42;
+    let x : Int32       = 42;       // ok: value initialization
+        x               = 2137;     // error: cannot assign value to immutable variable
+
+    // int const* const y = &x;
+    let y : &let Int32  = &let x;   // ok: taking immutable reference to mutable variable as immutable variable
+        y               = &let x;   // error: cannot reassign immutable variable
+        *y              = 2137;     // error: cannot dereference pointer for assignment
+
+    // int      * const z = &x;
+    let z : &var Int32  = &var x;   // error: cannot take mutable reference to immutable variable
+        z               = &var x;   // error: cannot reassign immutable variable
+        *z              = 2137;     // error: cannot dereference pointer for assignment
+
+    // int const*       w = &x;
+    var w : &let Int32  = &let x;   // ok: taking immutable reference to immutable variable as mutable variable
+        w               = &let x;   // ok: reassigning mutable variable with immutable reference to mutable variable
+        *w              = 2137;     // error: cannot dereference pointer for assignment
+
+    // int      *       v = &x;
+    var v : &var Int32  = &var x;   // ok: taking mutable reference to mutable variable as mutable variable
+        v               = &var x;   // ok: reassigning mutable variable with mutable reference to mutable variable
+        *v              = 2137;     // ok: dereferencing pointer for assignment
+}
+
+// Syntax sugar for function arguments
+
+// Both of them are equivalent in terms of ABI, but second one expresses the intent better
+
+
+public function X(
+    x: Int32,
+    y: &let Int32,
+    z: &var Int32,
+    w: &var Int32
+);
+
+var q : Int32 = 42;
+
+X(
+    x: q,          // pass Int32 by value
+    y: &let q,     // pass immutable refererence to Int32
+    z: &var q,     // pass mutable reference to Int32
+    w: &var q      // pass mutable reference to Int32 (output parameter)
+);
+
+
+public function Y(
+    x: Int32,
+    let y: Int32,
+    var z: Int32,
+    out w: Int32
+);
+
+var q : Int32 = 42;
+
+Y(
+    x: q,
+    y: &let q,
+    z: &var q,
+    w: &out q
+);

@@ -1,0 +1,56 @@
+namespace Weave::Unicode
+{
+    public enum ConversionError
+    {
+        TargetExhausted,
+        TargetIllegal,
+        SourceIllegal,
+    }
+
+    public enum ConversionType
+    {
+        None,
+        Strict,
+    }
+
+    private unsafe function Decode(
+        first: &var *const char8,
+        last: *const char8
+    ) -> Result![char32, ConversionError];
+
+    public void Validate(
+        first: *const char8,
+        last: *const char8
+    ) -> bool
+    {
+        while (first < last)
+        {
+            if (let Failure(_) = Decode(&var first, last))
+            {
+                return false;
+            }
+        }
+
+        return first == last;
+    }
+
+    public function Decode(
+        source: &let [char8]
+    ) -> Result![char32, ConversionError]
+    {
+        let first : *const = source.AsPointer();
+        let last : *const = first + source.Length();
+        return Decode(
+            &var first,
+            last
+        );
+    }
+
+    public function Convert(
+        sourceFirst: &var *const char32,
+        sourceLast: *const char32,
+        targetFirst: &var *char8,
+        targetLast: *char8,
+        type: ConversionType
+    ) -> Result![void, ConversionError];
+}
