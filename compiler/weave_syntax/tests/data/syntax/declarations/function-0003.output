@@ -237,21 +237,39 @@ SourceFileSyntax
        ForStatementSyntax
         ForKeyword <345:348> [19:4:19:7] 'for'
         OpenParenToken <349:350> [19:8:19:9] '('
-        SemicolonToken <350:353> [19:9:19:12] missing ''
-        SemicolonToken <350:353> [19:9:19:12] missing ''
-        UnexpectedNodesSyntax
-         SyntaxList
-          VarKeyword <350:353> [19:9:19:12] 'var'
-          IdentifierToken <354:355> [19:13:19:14] 'i'
+        LetExpressionSyntax
+         VarKeyword <350:353> [19:9:19:12] 'var'
+         IdentifierPatternSyntax
+          IdentifierSyntax
+           IdentifierToken <354:355> [19:13:19:14] 'i'
+         ExpressionInitializerClauseSyntax
           EqualsToken <356:357> [19:15:19:16] '='
-          IntegerLiteralToken <358:364> [19:17:19:23] '0usize'
-          SemicolonToken <364:365> [19:23:19:24] ';'
-          IdentifierToken <366:367> [19:25:19:26] 'i'
-          LessThanToken <368:369> [19:27:19:28] '<'
-          IdentifierToken <370:374> [19:29:19:33] 'size'
-          SemicolonToken <374:375> [19:33:19:34] ';'
-          PlusPlusToken <376:378> [19:35:19:37] '++'
-          IdentifierToken <378:379> [19:37:19:38] 'i'
+          LiteralExpressionSyntax
+           IntegerLiteralToken <358:364> [19:17:19:23] '0usize'
+        SemicolonToken <364:365> [19:23:19:24] ';'
+        BinaryExpressionSyntax
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <366:367> [19:25:19:26] 'i'
+         LessThanToken <368:369> [19:27:19:28] '<'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <370:374> [19:29:19:33] 'size'
+        SemicolonToken <374:375> [19:33:19:34] ';'
+        UnaryExpressionSyntax
+         PlusPlusToken <376:378> [19:35:19:37] '++'
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <378:379> [19:37:19:38] 'i'
         CloseParenToken <379:380> [19:38:19:39] ')'
         CodeBlockSyntax
          OpenBraceToken <381:382> [19:40:19:41] '{'
@@ -365,4 +383,76 @@ SourceFileSyntax
              IdentifierToken <586:590> [26:11:26:15] 'size'
        SemicolonToken <590:591> [26:15:26:16] ';'
      CloseBraceToken <592:593> [27:0:27:1] '}'
- EndOfFileToken <594:594> [28:0:28:0] ''
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    SyntaxList
+     PublicKeyword <595:601> [29:0:29:6] 'public'
+    FunctionKeyword <602:610> [29:7:29:15] 'function'
+    IdentifierSyntax
+     IdentifierToken <611:618> [29:16:29:23] 'LogFile'
+    ParameterListSyntax
+     OpenParenToken <618:619> [29:23:29:24] '('
+     SyntaxList
+      ParameterSyntax
+       IdentifierSyntax
+        IdentifierToken <624:630> [30:4:30:10] 'handle'
+       TypeClauseSyntax
+        ColonToken <630:631> [30:10:30:11] ':'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <632:638> [30:12:30:18] 'HANDLE'
+       CommaToken <638:639> [30:18:30:19] ','
+      ParameterSyntax
+       IdentifierSyntax
+        IdentifierToken <644:649> [31:4:31:9] 'level'
+       TypeClauseSyntax
+        ColonToken <649:650> [31:9:31:10] ':'
+        TypePathSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <651:659> [31:11:31:19] 'LogLevel'
+       CommaToken <659:660> [31:19:31:20] ','
+      ParameterSyntax
+       IdentifierSyntax
+        IdentifierToken <665:672> [32:4:32:11] 'message'
+       TypeClauseSyntax
+        ColonToken <672:673> [32:11:32:12] ':'
+        TypeReferenceSyntax
+         AmpersandToken <674:675> [32:13:32:14] '&'
+         SyntaxList
+          LetKeyword <675:678> [32:14:32:17] 'let'
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <679:685> [32:18:32:24] 'string'
+       CommaToken <685:686> [32:24:32:25] ','
+      ParameterSyntax
+       SyntaxList
+        ParamsKeyword <691:697> [33:4:33:10] 'params'
+       IdentifierSyntax
+        IdentifierToken <698:702> [33:11:33:15] 'args'
+       TypeClauseSyntax
+        ColonToken <702:703> [33:15:33:16] ':'
+        TypeReferenceSyntax
+         AmpersandToken <704:705> [33:17:33:18] '&'
+         SyntaxList
+          LetKeyword <705:708> [33:18:33:21] 'let'
+         SliceTypeSyntax
+          OpenBracketToken <709:710> [33:22:33:23] '['
+          TypePathSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <710:724> [33:23:33:37] 'FormatArgument'
+          CloseBracketToken <724:725> [33:37:33:38] ']'
+     CloseParenToken <726:727> [34:0:34:1] ')'
+   SemicolonToken <727:728> [34:1:34:2] ';'
+ EndOfFileToken <729:729> [35:0:35:0] ''

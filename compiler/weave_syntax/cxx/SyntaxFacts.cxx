@@ -534,6 +534,7 @@ namespace weave::syntax
         case SyntaxKind::MatchKeyword:
         case SyntaxKind::AssertKeyword:
         case SyntaxKind::LetKeyword:
+        case SyntaxKind::VarKeyword:
             return true;
 
         default:

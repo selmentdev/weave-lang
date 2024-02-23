@@ -26,3 +26,10 @@ public function ReadFile(
 
     return size;
 }
+
+public function LogFile(
+    handle: HANDLE,
+    level: LogLevel,
+    message: &let string,
+    params args: &let [FormatArgument]
+);
