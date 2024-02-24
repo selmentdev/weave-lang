@@ -195,16 +195,15 @@ namespace weave::filesystem::path
 
     std::string_view GetExtension(std::string_view path)
     {
-        std::string_view::size_type const separator = path.find_last_of(impl::ExtensionSeparatorChar);
+        std::string_view const filename = GetFilename(path);
+        std::string_view::size_type const separator = filename.find_last_of(impl::ExtensionSeparatorChar);
 
         if (separator != std::string_view::npos)
         {
-            return path.substr(separator);
+            return filename.substr(separator);
         }
-        else
-        {
-            return {};
-        }
+
+        return {};
     }
 
     std::string_view GetFilename(std::string_view path)

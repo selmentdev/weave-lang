@@ -283,6 +283,20 @@ TEST_CASE("Path - GetExtension")
 
         REQUIRE(path::GetExtension(path) == ".txt");
     }
+
+    SECTION("Extension from last path segment")
+    {
+        std::string const path = "path/to.some/file.txt";
+
+        REQUIRE(path::GetExtension(path) == ".txt");
+    }
+
+    SECTION("Extension from last path segment")
+    {
+        std::string const path = "path/to.some/file";
+
+        REQUIRE(path::GetExtension(path).empty());
+    }
 }
 
 TEST_CASE("Path - GetFilename")
