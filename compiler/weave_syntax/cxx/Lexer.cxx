@@ -1400,6 +1400,9 @@ namespace weave::syntax
             case U'b':
                 return '\b';
 
+            case U'e':
+                return 0x1B;
+
             case U'f':
                 return '\f';
 
