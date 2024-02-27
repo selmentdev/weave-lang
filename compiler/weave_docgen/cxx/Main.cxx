@@ -1,69 +1,116 @@
 #include "weave/Version.hxx"
-#include "weave/CommandLine.hxx"
+#include "weave/commandline/CommandLineParser.hxx"
 #include "weave/filesystem/DirectoryEnumerator.hxx"
-
+#include "weave/commandline/CommandLineParser.hxx"
+#include "weave/bugcheck/Assert.hxx"
 #include <utility>
 
-struct Options
+
+int main(int argc, char* argv[])
 {
-    std::string SourcePath{};
+    std::string_view const appname = weave::filesystem::path::GetFilenameWithoutExtension(argv[0]);
 
-    static std::expected<Options, weave::commandline::CommandLineErrorResult> Parse(int argc, const char* argv[])
+    weave::commandline::ArgumentEnumerator arguments{argc, argv};
+
+    weave::commandline::ArgumentParser parser{};
+    parser.AddOption("-help", "Display this help message");
+    parser.AddOption("-version", "Display version information");
+    parser.AddOption("-verbose", "Enable verbose output");
+    parser.AddOption("-o:output", "The output directory", "path");
+    parser.AddOption("-o:immediate", "The directory for immediate files", "path");
+    parser.AddOption("-x:print-syntax-tree", "Prints syntax tree");
+    parser.AddOption("-x:print-semantic-tree", "Prints semantic tree");
+    parser.AddOption("-w:disable", "Disables a specific warning", "warning");
+    parser.AddOption("-w:enable", "Enables a specific warning", "warning");
+    parser.AddOption("-w:default", "Restores default for a specific warning", "warning");
+
+    parser.AddCommand("add", "Adds new");
+    parser.AddCommand("remove", "Removes");
+
+    if (auto result = parser.Parse(arguments))
     {
-        Options options;
-        weave::commandline::CommandLineBuilder builder{};
-        builder.RequiredSingle("source", "s", "source path", "SOURCE");
-        builder.Flag("verbose", "v", "Enable verbose mode");
-        builder.Flag("help", "h", "Print this help message");
+        auto command = result->GetCommand();
 
-        auto result = builder.Parse(argc, argv);
-        if (!result)
+        if (command == "add")
         {
-            return std::unexpected(result.error());
-        }
+            weave::commandline::ArgumentParser commandAdd{};
+            commandAdd.AddOption("-help", "ho ho ho this is other help!");
+            commandAdd.AddOption("-version", "this is silly version option");
 
-        options.SourcePath = result->GetValue("source").value_or("");
-
-        return options;
-    }
-};
-
-int main(int argc, const char* argv[])
-{
-    fmt::println("[branch: {}, hash: {}]",
-        WEAVE_PROJECT_BRANCH,
-        WEAVE_PROJECT_HASH);
-
-    fmt::println("weave-docgen");
-
-    if (auto result = Options::Parse(argc, argv))
-    {
-        auto items = weave::filesystem::EnumerateDirectoryRecursive(result->SourcePath, "*.source");
-
-        if (items)
-        {
-            for (auto const& item : *items)
+            if (auto resultAdd = commandAdd.Parse(arguments))
             {
-                fmt::println("{}", item);
+                if (resultAdd->Contains("-help"))
+                {
+                    commandAdd.PrintUsage(appname);
+                    return 0;
+                }
+
+                if (resultAdd->Contains("-version"))
+                {
+                    fmt::println("weave-docgen add");
+                    fmt::println("branch: {}", WEAVE_PROJECT_BRANCH);
+                    fmt::println("hash: {}", WEAVE_PROJECT_HASH);
+                    return 0;
+                }
+
+                for (auto const& value : resultAdd->GetPositional())
+                {
+                    fmt::println("positional: {}", value);
+                }
+
+                if (auto value = resultAdd->GetValue("-o:output"))
+                {
+                    fmt::println("output: {}", *value);
+                }
+
+                if (auto value = resultAdd->GetValue("-o:immediate"))
+                {
+                    fmt::println("immediate: {}", *value);
+                }
+
+                for (auto const& value : resultAdd->GetValues("-w:disable"))
+                {
+                    fmt::println("disable: {}", value);
+                }
+
+                for (auto const& value : resultAdd->GetValues("-w:enable"))
+                {
+                    fmt::println("enable: {}", value);
+                }
+
+                for (auto const& value : resultAdd->GetValues("-w:default"))
+                {
+                    fmt::println("default: {}", value);
+                }
+
+                return 0;
+            }
+            else
+            {
+                fmt::print("Error: {}, Option: {}\n", std::to_underlying(resultAdd.error().Reason), resultAdd.error().Argument);
+                return -1;
             }
         }
-        else
+
+
+        if (result->Contains("-version"))
         {
-            fmt::print("Error: {}\n", std::to_underlying(items.error()));
+            fmt::println("weave-docgen");
+            fmt::println("branch: {}", WEAVE_PROJECT_BRANCH);
+            fmt::println("hash: {}", WEAVE_PROJECT_HASH);
+            return 0;
         }
 
-        // weave::filesystem::DirectoryEnumerator enumerator{result->SourcePath};
-        // while (auto path = enumerator.Next())
-        //{
-        //     (*path)->Type
-        //     std::string fullpath{enumerator.Root()};
-        //     weave::filesystem::path::Push(fullpath, (*path)->Path);
-        //     fmt::println("{}", fullpath);
-        // }
+        if (result->Contains("-help"))
+        {
+            parser.PrintUsage(appname);
+            return 0;
+        }
     }
     else
     {
-        fmt::print("Error: {}\n", result.error().Error);
+        fmt::print("Error: {}, Option: {}\n", std::to_underlying(result.error().Reason), result.error().Argument);
+        return -1;
     }
 
     return 0;
