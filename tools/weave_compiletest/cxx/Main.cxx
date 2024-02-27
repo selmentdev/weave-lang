@@ -1,5 +1,5 @@
 #include "weave/Version.hxx"
-#include "weave/CommandLine.hxx"
+#include "weave/commandline/CommandLineParser.hxx"
 #include "weave/system/Process.hxx"
 #include "weave/filesystem/FileSystem.hxx"
 
@@ -35,72 +35,61 @@ int main(int argc, char** argv)
     }
     fmt::println("--- args-end ---");
 
-    weave::commandline::CommandLineBuilder parser{};
-    parser
-        .Single("exe", "", "Path to executable", "<file>")
-        .Single("working-directory", "W", "Working directory", "<dir>")
-        .Single("", "O", "Output", "<file>")
-        .Multiple("codegen", "C", "Code generator options", "<name>[=<value>]")
-        .Multiple("config", "", "Configuration", "<release|debug|checked>")
-        .Flag("verbose", "v", "Use verbose output")
-        .Flag("version", "V", "Prints version information")
-        .Flag("help", "h", "Prints help");
+    weave::commandline::ArgumentEnumerator enumerator{argc, argv};
 
-    if (auto r = parser.Parse(std::span{const_cast<const char**>(argv + 1), static_cast<size_t>(argc - 1)}); !r.has_value())
+    weave::commandline::ArgumentParser parser{};
+    parser.AddOption("-exe", "Path to executable", "path");
+    parser.AddOption("-working-directory", "Working directory", "path");
+    parser.AddOption("-o", "Output", "path");
+    parser.AddOption("-c", "Code generator options", "name=value");
+    parser.AddOption("-config", "Configuration", "<release|debug|checked>");
+    parser.AddOption("-verbose", "Use verbose output");
+    parser.AddOption("-version", "Prints version information");
+    parser.AddOption("-help", "Prints help");
+
+    if (auto r = parser.Parse(enumerator); not r.has_value())
     {
-        fmt::println(stderr, "{}", r.error());
+        fmt::println(stderr, "{}", r.error().Argument);
         return EXIT_FAILURE;
     }
     else
     {
-        weave::commandline::CommandLineParseResult const& m = *r;
-
-        if (auto v = m.GetValue("exe"))
+        if (auto v = r->GetValue("-exe"))
         {
             fmt::println("exe: {}", *v);
         }
 
-        if (auto v = m.GetValue("working-directory"))
+        if (auto v = r->GetValue("-wworking-directory"))
         {
             fmt::println("dir: {}", *v);
         }
 
-        for (auto v : m.GetValues("codegen"))
+        for (auto v : r->GetValues("-c"))
         {
             fmt::println("codegen: {}", v);
         }
 
-        for (auto v : m.GetPositional())
+        for (auto v : r->GetPositional())
         {
             fmt::println("positional: {}", v);
         }
 
-        if (m.HasFlag("help"))
+        if (r->Contains("-help"))
         {
-            for (auto const& option : parser.GetOptions())
-            {
-                // fmt::println("    {:>2} {} {}", option.ShortName, option.Name, option.Hint);
-
-                fmt::println("    {}", weave::commandline::FormatOption(option));
-
-                if (not option.Description.empty())
-                {
-                    fmt::println("                {}", option.Description);
-                }
-            }
+            parser.PrintUsage("weave-compiletest");
 
             return EXIT_SUCCESS;
         }
 
-        if (m.HasFlag("version"))
+        if (r->Contains("-version"))
         {
             fmt::println(stdout, "weave-compiletest version {}", WEAVE_LANG_VERSION);
             return EXIT_SUCCESS;
         }
 
-        auto exeName = m.GetValue("exe");
-        auto workingDirectory = m.GetValue("working-directory");
-        auto compilerArgs = m.GetValues("codegen");
+        auto exeName = r->GetValue("-exe");
+        auto workingDirectory = r->GetValue("-working-directory");
+        auto compilerArgs = r->GetValues("-c");
 
         // exeName = R"(D:\repos\weave-lang\out\build\x64-Debug\src\Compiler\Frontend\weave-frontend.exe)";
         // workingDirectory = R"(D:\repos\weave-lang\src\Compiler\Syntax\tests)";

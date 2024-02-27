@@ -17,13 +17,13 @@ add_test(
 add_test(
     NAME        weave-compiletest-syntax-tests
     COMMAND     weave_compiletest
-        --exe $<TARGET_FILE:weave_driver>
-        --working-directory ${CMAKE_CURRENT_SOURCE_DIR}
-        -O ${CMAKE_CURRENT_BINARY_DIR}
+        -exe $<TARGET_FILE:weave_driver>
+        -working-directory ${CMAKE_CURRENT_SOURCE_DIR}
+        -o ${CMAKE_CURRENT_BINARY_DIR}
         this is positional parameter
-        -C name=value
-        -C opt=3
-        -C debug=false
+        -c name=value
+        -c opt=3
+        -c debug=false
         --
         --unknown-switch
         positional

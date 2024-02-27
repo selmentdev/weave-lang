@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <map>
 #include "weave/core/String.hxx"
-#include "weave/CommandLine.hxx"
+#include "weave/commandline/CommandLineParser.hxx"
 #include "weave/filesystem/FileSystem.hxx"
 #include "weave/source/Diagnostic.hxx"
 #include "weave/time/Instant.hxx"
@@ -170,160 +170,6 @@ public:
     }
 };
 
-namespace xxx2
-{
-    struct CommandLineGroup;
-    struct CommandLineOption;
-
-    struct CommandLineGroup final
-    {
-        std::string_view Name{};
-        bool Hidden = false;
-        std::vector<CommandLineOption> Options{};
-
-        // CommandLineGroup(
-        //     std::string_view name,
-        //     std::initializer_list<CommandLineOption> options,
-        //     bool hidden = false)
-        //     : Name{name
-        //     , Options{options}
-        //     , Hidden{hidden}
-        //{
-        // }
-    };
-
-    struct CommandLineOption final
-    {
-        std::string_view Name{};
-        std::string_view Description{};
-        bool Hidden = false;
-
-        std::function<void(std::string_view)> OnValue{};
-        std::function<void()> OnFlag{};
-    };
-
-    std::vector<std::string_view> Parse(std::vector<CommandLineGroup> const& groups, std::span<const char*> args)
-    {
-        auto it = args.begin();
-        ++it; // Skip the first argument - it's the path to executable.
-        auto end = args.end();
-
-        auto consume = [&]() -> std::optional<std::string_view>
-        {
-            if (it != end)
-            {
-                std::string_view name{*it};
-                ++it;
-                return name;
-            }
-
-            return {};
-        };
-
-        auto findOption = [&](std::string_view name) -> CommandLineOption const*
-        {
-            for (auto const& group : groups)
-            {
-                for (auto const& option : group.Options)
-                {
-                    if (option.Name == name)
-                    {
-                        return &option;
-                    }
-                }
-            }
-
-            return {};
-        };
-
-        std::vector<std::string_view> result{};
-
-        bool parseOptions = true;
-
-        while (it != end)
-        {
-            if (auto argument = consume())
-            {
-                if (argument->starts_with("-") and parseOptions)
-                {
-                    if (argument == "--")
-                    {
-                        parseOptions = false;
-                        continue;
-                    }
-
-                    if (auto option = findOption(*argument))
-                    {
-                        if (option->OnFlag)
-                        {
-                            option->OnFlag();
-                        }
-                        else if (auto value = consume())
-                        {
-                            option->OnValue(*value);
-                        }
-                        else
-                        {
-                            fmt::println(stderr, "error: missing value for '{}'", *argument);
-                        }
-                    }
-                    else
-                    {
-                        fmt::println(stderr, "error: unknown option '{}'", *argument);
-                    }
-                }
-                else
-                {
-                    result.push_back(*argument);
-                }
-            }
-        }
-
-        return result;
-    }
-
-    void PrintHelp(std::vector<CommandLineGroup> const& groups)
-    {
-        fmt::println("Usage: <executable> [OPTIONS] [FILES]");
-        fmt::println("");
-
-        size_t const longestOptionName = [&]() -> size_t
-        {
-            size_t result = 0;
-            for (auto const& group : groups)
-            {
-                for (auto const& option : group.Options)
-                {
-                    result = (std::max)(result, option.Name.size());
-                }
-            }
-            return result;
-        }();
-
-        for (auto const& group : groups)
-        {
-            if (group.Hidden)
-            {
-                continue;
-            }
-
-            fmt::println("{}", group.Name);
-            for (auto const& option : group.Options)
-            {
-                if (option.Hidden)
-                {
-                    continue;
-                }
-
-                fmt::println("    {:{}} : {}", option.Name, longestOptionName, option.Description);
-                fmt::println("");
-            }
-
-            fmt::println("");
-        }
-    }
-}
-
 #include <weave/commandline/CommandLineParser.hxx>
 
 namespace xxx
@@ -366,7 +212,7 @@ namespace xxx
         Error,
     };
 
-    class CompilerOptions : public weave::commandline::CommandLineParser
+    class CompilerOptions
     {
     public:
         struct OutputOptions
@@ -436,339 +282,112 @@ namespace xxx
             bool PrintSemanticTree{};
         } Experimental{};
 
-    protected:
-        void OnPrintHelp() const override
+        void Apply(weave::commandline::ArgumentParseResult const& arguments)
         {
-            fmt::print(R"__(usage: weavec [options] arguments
+            this->Help = arguments.Contains("-help");
+            this->Verbose = arguments.Contains("-verbose");
+            this->Version = arguments.Contains("-version");
+            this->NoLogo = arguments.Contains("-nologo");
 
-Miscellaneous options:
-
-    -help       Prints this help message
-    -version    Prints version information
-    -nologo     Suppresses the logo banner
-    -verbose    Use verbose output
-
-Output options:
-
-    -o:output=<path>            The path to the output files
-    -o:immediate=<path>         The path to the immediate files
-    -o:generated=<path>         The path to the generated files
-    -o:target=<value>           The target kind
-    -o:name=<value>             The name of the module
-    -o:documentation            The path to the generated documentation files
-
-Input options:
-
-    -i:reference                The input path to module reference
-
-Code generation options:
-
-    -c:architecture=<value>     The target architecture
-    -c:platform=<value>         The target platform
-    -c:architecture             The target architecture
-    -c:platform                 The target platform
-    -c:checked                  Enable overflow checking
-    -c:debug                    Enable debugging information
-    -c:unsafe                   Allow unsafe code
-    -c:optimize=<level>         Set optimization level
-    -c:deterministic            Produce deterministic output
-    -c:coverage                 Enable code coverage
-    -c:sanitize-address         Enable address sanitizer
-    -c:sanitize-thread          Enable thread sanitizer
-    -c:sanitize-memory          Enable memory sanitizer
-    -c:sanitize-undefined       Enable undefined behavior sanitizer
-
-Diagnostic options:
-    -w:level                    Set warning level
-    -w:error=<id>               Treats a specific warning as an error
-    -w:warn=<id>                Treats a specific warning as a warning
-    -w:disable=<id>             Disables a specific warning
-    -w:default=<id>             Resets a specific warning to its default level
-
-Resource options:
-
-    -r:resource=<path>          The input path to resource file
-
-Analyze options:
-
-    -a:analyze                  Enable static analysis
-
-Emit options:
-
-    -e:documentation            Emit documentation
-    -e:dependency               Emit dependency
-    -e:metadata                 Emit metadata
-    -e:assembly-header          Emit assembly header
-
-Experimental options;
-
-    -x:print-syntax-tree        Print syntax tree
-    -x:print-semantic-tree      Print semantic tree
-
-)__");
-        }
-
-        void OnPositionalArgument(std::string_view value) override
-        {
-            this->Input.Sources.emplace_back(value);
-        }
-
-        bool OnOption(std::string_view name, std::optional<std::string_view> value) override
-        {
-            if (name == "help")
+            if (auto const parsed = weave::commandline::TryParseFilePath(arguments.GetValue("-o:output")))
             {
-                auto const parsed = TryParseBool(value);
-                this->Help = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "verbose")
-            {
-                auto const parsed = TryParseBool(value);
-                this->Verbose = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "version")
-            {
-                auto const parsed = TryParseBool(value);
-                this->Verbose = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "nologo")
-            {
-                auto const parsed = TryParseBool(value);
-                this->NoLogo = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "o:output")
-            {
-                if (auto const parsed = TryParseFilePath(value))
-                {
-                    this->Output.OutputPath = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "o:immediate")
-            {
-                if (auto const parsed = TryParseFilePath(value))
-                {
-                    this->Output.ImmediatePath = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "o:generated")
-            {
-                if (auto const parsed = TryParseFilePath(value))
-                {
-                    this->Output.GeneratedPath = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "o:target")
-            {
-                if (auto const parsed = TryParseTargetKind(value))
-                {
-                    this->Output.Target = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "o:name")
-            {
-                if (auto const parsed = TryParseString(value))
-                {
-                    this->Output.Name = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "o:documentation")
-            {
-                if (auto const parsed = TryParseFilePath(value))
-                {
-                    this->Output.DocumentationPath = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "i:reference")
-            {
-                if (auto const parsed = TryParseFilePath(value))
-                {
-                    this->Input.References.emplace_back(*value);
-                    return true;
-                }
-            }
-            else if (name == "c:architecture")
-            {
-                if (auto const parsed = TryParseTargetArchitecture(value))
-                {
-                    this->CodeGeneration.Architecture = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "c:platform")
-            {
-                if (auto const parsed = TryParseTargetPlatform(value))
-                {
-                    this->CodeGeneration.Platform = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "c:checked")
-            {
-                auto const parsed = TryParseBool(value);
-                this->CodeGeneration.Checked = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "c:debug")
-            {
-                auto const parsed = TryParseBool(value);
-                this->CodeGeneration.Debug = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "c:unsafe")
-            {
-                auto const parsed = TryParseBool(value);
-                this->CodeGeneration.Unsafe = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "c:optimize")
-            {
-                if (auto const parsed = TryParseOptimizationLevel(value))
-                {
-                    this->CodeGeneration.OptimizationLevel = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "c:deterministic")
-            {
-                auto const parsed = TryParseBool(value);
-                this->CodeGeneration.Deterministic = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "c:coverage")
-            {
-                auto const parsed = TryParseBool(value);
-                this->CodeGeneration.Coverage = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "c:sanitize-address")
-            {
-                auto const parsed = TryParseBool(value);
-                this->CodeGeneration.SanitizeAddress = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "c:sanitize-thread")
-            {
-                auto const parsed = TryParseBool(value);
-                this->CodeGeneration.SanitizeThread = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "c:sanitize-memory")
-            {
-                auto const parsed = TryParseBool(value);
-                this->CodeGeneration.SanitizeMemory = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "c:sanitize-undefined")
-            {
-                auto const parsed = TryParseBool(value);
-                this->CodeGeneration.SanitizeUndefined = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "w:level")
-            {
-                if (auto const parsed = TryParseInt32(value))
-                {
-                    this->ErrorsAndWarnings.WarningLevel = *parsed;
-                    return true;
-                }
-            }
-            else if (name == "w:error")
-            {
-                if (auto const parsed = TryParseUInt32(value))
-                {
-                    this->ErrorsAndWarnings.Warnings[*parsed] = WarningReport::Warning;
-                    return true;
-                }
-            }
-            else if (name == "w:warn")
-            {
-                if (auto const parsed = TryParseUInt32(value))
-                {
-                    this->ErrorsAndWarnings.Warnings[*parsed] = WarningReport::Warning;
-                    return true;
-                }
-            }
-            else if (name == "w:disable")
-            {
-                if (auto const parsed = TryParseUInt32(value))
-                {
-                    this->ErrorsAndWarnings.Warnings[*parsed] = WarningReport::Disabled;
-                    return true;
-                }
-            }
-            else if (name == "w:default")
-            {
-                if (auto const parsed = TryParseUInt32(value))
-                {
-                    this->ErrorsAndWarnings.Warnings.erase(*parsed);
-                    return true;
-                }
-            }
-            else if (name == "r:resource")
-            {
-                if (auto const parsed = TryParseFilePath(value))
-                {
-                    this->Resources.ResourcePaths.emplace_back(*parsed);
-                    return true;
-                }
-            }
-            else if (name == "a:analyze")
-            {
-                auto const parsed = TryParseBool(value);
-                this->Analyze.Analyze = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "e:documentation")
-            {
-                auto const parsed = TryParseBool(value);
-                this->Emit.Documentation = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "e:dependency")
-            {
-                auto const parsed = TryParseBool(value);
-                this->Emit.Dependency = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "e:metadata")
-            {
-                auto const parsed = TryParseBool(value);
-                this->Emit.Metadata = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "e:assembly-header")
-            {
-                auto const parsed = TryParseBool(value);
-                this->Emit.AssemblyHeader = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "x:print-syntax-tree")
-            {
-                auto const parsed = TryParseBool(value);
-                this->Experimental.PrintSyntaxTree = parsed.value_or(true);
-                return true;
-            }
-            else if (name == "x:print-semantic-tree")
-            {
-                auto const parsed = TryParseBool(value);
-                this->Experimental.PrintSemanticTree = parsed.value_or(true);
-                return true;
+                this->Output.OutputPath = *parsed;
             }
 
-            return false;
+            if (auto const parsed = weave::commandline::TryParseFilePath(arguments.GetValue("-o:immediate")))
+            {
+                this->Output.ImmediatePath = *parsed;
+            }
+
+            if (auto const parsed = weave::commandline::TryParseFilePath(arguments.GetValue("-o:generated")))
+            {
+                this->Output.GeneratedPath = *parsed;
+            }
+
+            if (auto const parsed = TryParseTargetKind(arguments.GetValue("-o:target")))
+            {
+                this->Output.Target = *parsed;
+            }
+
+            if (auto const parsed = arguments.GetValue("-o:name"))
+            {
+                this->Output.Name = *parsed;
+            }
+
+            if (auto const parsed = weave::commandline::TryParseFilePath(arguments.GetValue("-o:documentation")))
+            {
+                this->Output.DocumentationPath = *parsed;
+            }
+
+            if (auto const parsed = weave::commandline::TryParseFilePath(arguments.GetValue("-i:reference")))
+            {
+                this->Input.References.emplace_back(*parsed);
+            }
+
+            if (auto const parsed = TryParseTargetArchitecture(arguments.GetValue("-c:architecture")))
+            {
+                this->CodeGeneration.Architecture = *parsed;
+            }
+
+            if (auto const parsed = TryParseTargetPlatform(arguments.GetValue("-c:platform")))
+            {
+                this->CodeGeneration.Platform = *parsed;
+            }
+
+            this->CodeGeneration.Checked = arguments.Contains("-c:checked");
+            this->CodeGeneration.Debug = arguments.Contains("-c:debug");
+            this->CodeGeneration.Unsafe = arguments.Contains("-c:unsafe");
+            if (auto const parsed = TryParseOptimizationLevel(arguments.GetValue("-c:optimize")))
+            {
+                this->CodeGeneration.OptimizationLevel = *parsed;
+            }
+            this->CodeGeneration.Deterministic = arguments.Contains("-c:deterministic");
+            this->CodeGeneration.Coverage = arguments.Contains("-c:coverage");
+            this->CodeGeneration.SanitizeAddress = arguments.Contains("-c:sanitize-address");
+            this->CodeGeneration.SanitizeThread = arguments.Contains("-c:sanitize-thread");
+            this->CodeGeneration.SanitizeMemory = arguments.Contains("-c:sanitize-memory");
+            this->CodeGeneration.SanitizeUndefined = arguments.Contains("-c:sanitize-undefined");
+            if (auto const parsed = weave::commandline::TryParseInt32(arguments.GetValue("-w:level")))
+            {
+                this->ErrorsAndWarnings.WarningLevel = *parsed;
+            }
+            if (auto const parsed = weave::commandline::TryParseUInt32(arguments.GetValue("-w:error")))
+            {
+                this->ErrorsAndWarnings.Warnings[*parsed] = WarningReport::Warning;
+            }
+            if (auto const parsed = weave::commandline::TryParseUInt32(arguments.GetValue("-w:warning")))
+            {
+                this->ErrorsAndWarnings.Warnings[*parsed] = WarningReport::Warning;
+            }
+            if (auto const parsed = weave::commandline::TryParseUInt32(arguments.GetValue("-w:disable")))
+            {
+                this->ErrorsAndWarnings.Warnings[*parsed] = WarningReport::Disabled;
+            }
+            if (auto const parsed = weave::commandline::TryParseUInt32(arguments.GetValue("-w:default")))
+            {
+                this->ErrorsAndWarnings.Warnings.erase(*parsed);
+            }
+            if (auto const parsed = weave::commandline::TryParseFilePath(arguments.GetValue("-r:resource")))
+            {
+                this->Resources.ResourcePaths.emplace_back(*parsed);
+            }
+            this->Analyze.Analyze = arguments.Contains("-a:analyze");
+            this->Emit.Documentation = arguments.Contains("-e:documentation");
+            this->Emit.Dependency = arguments.Contains("-e:dependency");
+            this->Emit.Metadata = arguments.Contains("-e:metadata");
+            this->Emit.AssemblyHeader = arguments.Contains("-e:assembly-header");
+            this->Experimental.PrintSyntaxTree = arguments.Contains("-x:print-syntax-tree");
+            this->Experimental.PrintSemanticTree = arguments.Contains("-x:print-semantic-tree");
+
+            for (auto const& path : arguments.GetPositional())
+            {
+                this->Input.Sources.emplace_back(path);
+            }
         }
 
     private:
-        static std::optional<TargetKind> TryParseTargetKind(std::optional<std::string_view> const& value)
+        static std::optional<TargetKind>
+        TryParseTargetKind(std::optional<std::string_view> const& value)
         {
             if (value)
             {
@@ -876,18 +495,74 @@ Experimental options;
 
 int main(int argc, char* argv[])
 {
+    std::string_view const appname = weave::filesystem::path::GetFilenameWithoutExtension(argv[0]);
+
+    weave::commandline::ArgumentEnumerator enumerator{argc, argv};
+
+    weave::commandline::ArgumentParser argumentParser{};
+
+    argumentParser.AddOption("-help", "Prints this help message");
+    argumentParser.AddOption("-version", "Prints version information");
+    argumentParser.AddOption("-nologo", "Suppresses the logo banner");
+    argumentParser.AddOption("-verbose", "Use verbose output");
+
+
+    argumentParser.AddOption("-o:output",            "The path to the output files", "path");
+    argumentParser.AddOption("-o:immediate",         "The path to the immediate files", "path");
+    argumentParser.AddOption("-o:generated",         "The path to the generated files", "path");
+    argumentParser.AddOption("-o:target",           "The target kind", "value");
+    argumentParser.AddOption("-o:name",             "The name of the module", "value");
+    argumentParser.AddOption("-o:documentation",            "The path to the generated documentation files");
+
+    argumentParser.AddOption("-i:reference", "The input path to module reference");
+
+    argumentParser.AddOption("-c:architecture",     "The target architecture", "value");
+    argumentParser.AddOption("-c:platform",         "The target platform", "value");
+    argumentParser.AddOption("-c:architecture",             "The target architecture");
+    argumentParser.AddOption("-c:platform",                 "The target platform");
+    argumentParser.AddOption("-c:checked",                  "Enable overflow checking");
+    argumentParser.AddOption("-c:debug",                    "Enable debugging information");
+    argumentParser.AddOption("-c:unsafe",                   "Allow unsafe code");
+    argumentParser.AddOption("-c:optimize",         "Set optimization level", "value");
+    argumentParser.AddOption("-c:deterministic",            "Produce deterministic output");
+    argumentParser.AddOption("-c:coverage",                 "Enable code coverage");
+    argumentParser.AddOption("-c:sanitize-address",         "Enable address sanitizer");
+    argumentParser.AddOption("-c:sanitize-thread",          "Enable thread sanitizer");
+    argumentParser.AddOption("-c:sanitize-memory",          "Enable memory sanitizer");
+    argumentParser.AddOption("-c:sanitize-undefined",       "Enable undefined behavior sanitizer");
+
+    argumentParser.AddOption("-w:level",                    "Set warning level");
+    argumentParser.AddOption("-w:error",               "Treats a specific warning as an error", "id");
+    argumentParser.AddOption("-w:warning",                "Treats a specific warning as a warning", "id");
+    argumentParser.AddOption("-w:disable",             "Disables a specific warning", "id");
+    argumentParser.AddOption("-w:default",             "Resets a specific warning to its default level", "id");
+
+    argumentParser.AddOption("-r:resource",          "The input path to resource file", "path");
+
+    argumentParser.AddOption("-a:analyze",                  "Enable static analysis");
+
+    argumentParser.AddOption("-e:documentation",            "Emit documentation");
+    argumentParser.AddOption("-e:dependency",               "Emit dependency");
+    argumentParser.AddOption("-e:metadata",                 "Emit metadata");
+    argumentParser.AddOption("-e:assembly-header",          "Emit assembly header");
+
+    argumentParser.AddOption("-x:print-syntax-tree",        "Print syntax tree");
+    argumentParser.AddOption("-x:print-semantic-tree",      "Print semantic tree");
+
     xxx::CompilerOptions options{};
 
-    if (options.Parse(argc, argv))
+    if (auto result = argumentParser.Parse(enumerator))
     {
+        options.Apply(result.value());
+
         if (options.Help)
         {
-            options.PrintHelp();
+            argumentParser.PrintUsage(appname);
             return EXIT_SUCCESS;
         }
 
         using namespace weave;
-    
+
         auto const& files = options.Input.Sources;
 
         if (files.empty())

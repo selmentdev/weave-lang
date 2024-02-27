@@ -5,7 +5,7 @@
 #include <span>
 #include <charconv>
 
-#include "weave/CommandLine.hxx"
+#include "weave/commandline/CommandLineParser.hxx"
 #include "weave/errors/Handler.hxx"
 
 namespace weave::session::impl
