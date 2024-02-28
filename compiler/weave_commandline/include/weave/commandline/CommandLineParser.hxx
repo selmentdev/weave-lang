@@ -350,6 +350,8 @@ namespace weave::commandline
 
                     fmt::println("");
                 }
+
+                fmt::println("");
             }
 
             if (not this->_options.empty())
@@ -374,6 +376,8 @@ namespace weave::commandline
 
                     fmt::println("");
                 }
+
+                fmt::println("");
             }
 
             if (not this->_commands.empty())
@@ -391,6 +395,8 @@ namespace weave::commandline
 
                     fmt::println("");
                 }
+
+                fmt::println("");
             }
         }
     };
