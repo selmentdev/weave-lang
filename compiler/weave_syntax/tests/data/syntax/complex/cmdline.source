@@ -1,0 +1,32 @@
+namespace core::commandline
+{
+    public struct Parser { }
+
+    public struct Command
+    {
+    }
+
+
+}
+
+struct RootCommandOptions
+{
+    #[core::commandline::option(
+        name: "verbose",
+        help: "Print verbose output"
+    )]
+    public var Verbose: bool = false;
+
+    #[core::commandline::option(
+        name: "help",
+        help: "Print help"
+    )]
+    public var Help: bool = false;
+}
+
+function Main(
+    args: &let [&str]    // immutable slice of strings
+)
+{
+    let root = core::commandline::Command::create();
+}

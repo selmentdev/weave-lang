@@ -544,6 +544,8 @@ namespace weave::syntax
 
     public:
         PatternSyntax* ParsePattern();
+        PatternOrSyntax* ParseOrSyntax(PatternSyntax* pattern);
+        PatternSyntax* ParsePatternCore();
         WildcardPatternSyntax* ParseWildcardPattern();
         LiteralPatternSyntax* ParseLiteralPattern();
         IdentifierPatternSyntax* ParseIdentifierPattern();

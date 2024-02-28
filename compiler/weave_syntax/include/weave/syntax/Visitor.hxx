@@ -194,6 +194,8 @@ namespace weave::syntax
         void OnArrayExpressionSyntax(ArrayExpressionSyntax* node) override;
         void OnStructPatternSyntax(StructPatternSyntax* node) override;
         void OnFieldPatternSyntax(FieldPatternSyntax* node) override;
+        void OnPatternOrItemSyntax(PatternOrItemSyntax* node) override;
+        void OnPatternOrSyntax(PatternOrSyntax* node) override;
         void OnForStatementSyntax(ForStatementSyntax* node) override;
         void OnForeachStatementSyntax(ForeachStatementSyntax* node) override;
         void OnTypeInheritanceClause(TypeInheritanceClause* node) override;

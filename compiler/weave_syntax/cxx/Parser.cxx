@@ -397,7 +397,7 @@ namespace weave::syntax
         result->Modifiers = modifiers;
 
         result->BindingSpecifier = this->Match(expected);
-        
+
         result->Pattern = this->ParsePattern();
 
         if (this->Current()->Kind == SyntaxKind::ColonToken)
@@ -2514,6 +2514,50 @@ namespace weave::syntax
     }
 
     PatternSyntax* Parser::ParsePattern()
+    {
+        PatternSyntax* first = this->ParsePatternCore();
+
+        if (this->Current()->Kind == SyntaxKind::BarToken)
+        {
+            return this->ParseOrSyntax(first);
+        }
+
+        return first;
+    }
+
+    PatternOrSyntax* Parser::ParseOrSyntax(PatternSyntax* pattern)
+    {
+        std::vector<PatternOrItemSyntax*> items{};
+
+        PatternOrItemSyntax* head = this->_factory->CreateNode<PatternOrItemSyntax>();
+        head->Pattern = pattern;
+        head->TrailingBarToken = this->Match(SyntaxKind::BarToken);
+        items.emplace_back(head);
+
+        LoopProgressCondition progress{this->Current()};
+
+        do
+        {
+            PatternSyntax* next = this->ParsePatternCore();
+
+            PatternOrItemSyntax* item = this->_factory->CreateNode<PatternOrItemSyntax>();
+            item->Pattern = next;
+            item->TrailingBarToken = this->TryMatch(SyntaxKind::BarToken);
+            items.emplace_back(item);
+
+            if (item->TrailingBarToken == nullptr)
+            {
+                break;
+            }
+
+        } while (progress.Evaluate(this->Current()));
+
+        PatternOrSyntax* result = this->_factory->CreateNode<PatternOrSyntax>();
+        result->Items = SyntaxListView<PatternOrItemSyntax>{this->_factory->CreateList(items)};
+        return result;
+    }
+
+    PatternSyntax* Parser::ParsePatternCore()
     {
         switch (this->Current()->Kind) // NOLINT(clang-diagnostic-switch-enum)
         {

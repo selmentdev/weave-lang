@@ -1,0 +1,216 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   NamespaceDeclarationSyntax
+    NamespaceKeyword <0:9> [0:0:0:9] 'namespace'
+    PathSyntax
+     SyntaxList
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <10:14> [0:10:0:14] 'core'
+       ColonColonToken <14:16> [0:14:0:16] '::'
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <16:27> [0:16:0:27] 'commandline'
+    CodeBlockSyntax
+     OpenBraceToken <28:29> [1:0:1:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       StructDeclarationSyntax
+        SyntaxList
+         PublicKeyword <34:40> [2:4:2:10] 'public'
+        StructKeyword <41:47> [2:11:2:17] 'struct'
+        IdentifierSyntax
+         IdentifierToken <48:54> [2:18:2:24] 'Parser'
+        CodeBlockSyntax
+         OpenBraceToken <55:56> [2:25:2:26] '{'
+         CloseBraceToken <57:58> [2:27:2:28] '}'
+      CodeBlockItemSyntax
+       StructDeclarationSyntax
+        SyntaxList
+         PublicKeyword <64:70> [4:4:4:10] 'public'
+        StructKeyword <71:77> [4:11:4:17] 'struct'
+        IdentifierSyntax
+         IdentifierToken <78:85> [4:18:4:25] 'Command'
+        CodeBlockSyntax
+         OpenBraceToken <90:91> [5:4:5:5] '{'
+         CloseBraceToken <96:97> [6:4:6:5] '}'
+     CloseBraceToken <100:101> [9:0:9:1] '}'
+  CodeBlockItemSyntax
+   StructDeclarationSyntax
+    StructKeyword <103:109> [11:0:11:6] 'struct'
+    IdentifierSyntax
+     IdentifierToken <110:128> [11:7:11:25] 'RootCommandOptions'
+    CodeBlockSyntax
+     OpenBraceToken <129:130> [12:0:12:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         AttributeListSyntax
+          HashOpenBracketToken <135:137> [13:4:13:6] '#['
+          SyntaxList
+           AttributeSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <137:141> [13:6:13:10] 'core'
+               ColonColonToken <141:143> [13:10:13:12] '::'
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <143:154> [13:12:13:23] 'commandline'
+               ColonColonToken <154:156> [13:23:13:25] '::'
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <156:162> [13:25:13:31] 'option'
+            BalancedTokenSequenceSyntax
+             OpenParenToken <162:163> [13:31:13:32] '('
+             SyntaxList
+              IdentifierToken <172:176> [14:8:14:12] 'name'
+              ColonToken <176:177> [14:12:14:13] ':'
+              StringLiteralToken <178:187> [14:14:14:23] '"verbose"'
+              CommaToken <187:188> [14:23:14:24] ','
+              IdentifierToken <197:201> [15:8:15:12] 'help'
+              ColonToken <201:202> [15:12:15:13] ':'
+              StringLiteralToken <203:225> [15:14:15:36] '"Print verbose output"'
+             CloseParenToken <230:231> [16:4:16:5] ')'
+          CloseBracketToken <231:232> [16:5:16:6] ']'
+        SyntaxList
+         PublicKeyword <237:243> [17:4:17:10] 'public'
+        VarKeyword <244:247> [17:11:17:14] 'var'
+        TypePatternSyntax
+         IdentifierPatternSyntax
+          IdentifierSyntax
+           IdentifierToken <248:255> [17:15:17:22] 'Verbose'
+         TypeClauseSyntax
+          ColonToken <255:256> [17:22:17:23] ':'
+          TypePathSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <257:261> [17:24:17:28] 'bool'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <262:263> [17:29:17:30] '='
+         LiteralExpressionSyntax
+          FalseKeyword <264:269> [17:31:17:36] 'false'
+       SemicolonToken <269:270> [17:36:17:37] ';'
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         AttributeListSyntax
+          HashOpenBracketToken <276:278> [19:4:19:6] '#['
+          SyntaxList
+           AttributeSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <278:282> [19:6:19:10] 'core'
+               ColonColonToken <282:284> [19:10:19:12] '::'
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <284:295> [19:12:19:23] 'commandline'
+               ColonColonToken <295:297> [19:23:19:25] '::'
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <297:303> [19:25:19:31] 'option'
+            BalancedTokenSequenceSyntax
+             OpenParenToken <303:304> [19:31:19:32] '('
+             SyntaxList
+              IdentifierToken <313:317> [20:8:20:12] 'name'
+              ColonToken <317:318> [20:12:20:13] ':'
+              StringLiteralToken <319:325> [20:14:20:20] '"help"'
+              CommaToken <325:326> [20:20:20:21] ','
+              IdentifierToken <335:339> [21:8:21:12] 'help'
+              ColonToken <339:340> [21:12:21:13] ':'
+              StringLiteralToken <341:353> [21:14:21:26] '"Print help"'
+             CloseParenToken <358:359> [22:4:22:5] ')'
+          CloseBracketToken <359:360> [22:5:22:6] ']'
+        SyntaxList
+         PublicKeyword <365:371> [23:4:23:10] 'public'
+        VarKeyword <372:375> [23:11:23:14] 'var'
+        TypePatternSyntax
+         IdentifierPatternSyntax
+          IdentifierSyntax
+           IdentifierToken <376:380> [23:15:23:19] 'Help'
+         TypeClauseSyntax
+          ColonToken <380:381> [23:19:23:20] ':'
+          TypePathSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <382:386> [23:21:23:25] 'bool'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <387:388> [23:26:23:27] '='
+         LiteralExpressionSyntax
+          FalseKeyword <389:394> [23:28:23:33] 'false'
+       SemicolonToken <394:395> [23:33:23:34] ';'
+     CloseBraceToken <396:397> [24:0:24:1] '}'
+  CodeBlockItemSyntax
+   FunctionDeclarationSyntax
+    FunctionKeyword <399:407> [26:0:26:8] 'function'
+    IdentifierSyntax
+     IdentifierToken <408:412> [26:9:26:13] 'Main'
+    ParameterListSyntax
+     OpenParenToken <412:413> [26:13:26:14] '('
+     SyntaxList
+      ParameterSyntax
+       IdentifierSyntax
+        IdentifierToken <418:422> [27:4:27:8] 'args'
+       TypeClauseSyntax
+        ColonToken <422:423> [27:8:27:9] ':'
+        TypeReferenceSyntax
+         AmpersandToken <424:425> [27:10:27:11] '&'
+         SyntaxList
+          LetKeyword <425:428> [27:11:27:14] 'let'
+         SliceTypeSyntax
+          OpenBracketToken <429:430> [27:15:27:16] '['
+          TypeReferenceSyntax
+           AmpersandToken <430:431> [27:16:27:17] '&'
+           TypePathSyntax
+            PathSyntax
+             SyntaxList
+              PathSegmentSyntax
+               IdentifierSyntax
+                IdentifierToken <431:434> [27:17:27:20] 'str'
+          CloseBracketToken <434:435> [27:20:27:21] ']'
+     CloseParenToken <469:470> [28:0:28:1] ')'
+    CodeBlockSyntax
+     OpenBraceToken <471:472> [29:0:29:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        LetKeyword <477:480> [30:4:30:7] 'let'
+        IdentifierPatternSyntax
+         IdentifierSyntax
+          IdentifierToken <481:485> [30:8:30:12] 'root'
+        ExpressionInitializerClauseSyntax
+         EqualsToken <486:487> [30:13:30:14] '='
+         InvocationExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <488:492> [30:15:30:19] 'core'
+              ColonColonToken <492:494> [30:19:30:21] '::'
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <494:505> [30:21:30:32] 'commandline'
+              ColonColonToken <505:507> [30:32:30:34] '::'
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <507:514> [30:34:30:41] 'Command'
+              ColonColonToken <514:516> [30:41:30:43] '::'
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <516:522> [30:43:30:49] 'create'
+          ArgumentListSyntax
+           OpenParenToken <522:523> [30:49:30:50] '('
+           CloseParenToken <523:524> [30:50:30:51] ')'
+       SemicolonToken <524:525> [30:51:30:52] ';'
+     CloseBraceToken <526:527> [31:0:31:1] '}'
+ EndOfFileToken <528:528> [32:0:32:0] ''

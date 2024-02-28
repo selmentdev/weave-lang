@@ -30,8 +30,22 @@ match (w)
         {
             matched();
         }
+    case A | B | C | D:
+        {
+            matched();
+        }
     default:
-    {
-        unmatched();
-    }
+        {
+            unmatched();
+        }
+}
+
+match (q)
+{
+    case A : { matched(); }
+    case A | : { matched(); }
+    case A | B : { matched(); }
+    case A | B | : { matched(); }
+    case A | B | C : { matched(); }
+    default: { unmatched(); }
 }

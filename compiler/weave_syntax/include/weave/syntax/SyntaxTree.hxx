@@ -1831,7 +1831,7 @@ namespace weave::syntax
     /// slice-pattern-item-sequence
     ///     : slice-pattern-item (',' slice-pattern-item)*
     ///     ;
-    class SlicePatternItemSyntax : public SyntaxNode
+    class SlicePatternItemSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(SlicePatternItemSyntax);
 
@@ -1967,6 +1967,44 @@ namespace weave::syntax
     public:
         explicit constexpr TypePatternSyntax()
             : PatternSyntax{SyntaxKind::TypePatternSyntax}
+        {
+        }
+    };
+
+    class PatternOrItemSyntax final : public SyntaxNode
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(PatternOrItemSyntax);
+
+    public:
+        PatternSyntax* Pattern{};
+        SyntaxToken* TrailingBarToken{};
+
+    public:
+        explicit constexpr PatternOrItemSyntax()
+            : SyntaxNode{SyntaxKind::PatternOrItemSyntax}
+        {
+        }
+    };
+
+    /// ```
+    /// pattern-core
+    ///     :
+    ///     ;
+    ///
+    /// pattern
+    ///     : pattern_core ('|' pattern_core)*
+    ///     ;
+    /// ```
+    class PatternOrSyntax final : public PatternSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(PatternOrSyntax);
+
+    public:
+        SyntaxListView<PatternOrItemSyntax> Items{};
+
+    public:
+        explicit constexpr PatternOrSyntax()
+            : PatternSyntax{SyntaxKind::PatternOrSyntax}
         {
         }
     };
@@ -2162,6 +2200,7 @@ namespace weave::syntax
     class IdentifierSyntax final : public NameSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(IdentifierSyntax);
+
     public:
         IdentifierSyntaxToken* Identifier{};
 
@@ -2219,6 +2258,7 @@ namespace weave::syntax
     class TypePathSyntax final : public TypeSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypePathSyntax);
+
     public:
         PathSyntax* Path{};
 

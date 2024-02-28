@@ -455,13 +455,34 @@ SourceFileSyntax
                CloseParenToken <565:566> [30:20:30:21] ')'
             SemicolonToken <566:567> [30:21:30:22] ';'
           CloseBraceToken <576:577> [31:8:31:9] '}'
-      MatchDefaultClauseSyntax
-       DefaultKeyword <582:589> [32:4:32:11] 'default'
-       ColonToken <589:590> [32:11:32:12] ':'
+      MatchCaseClauseSyntax
+       CaseKeyword <582:586> [32:4:32:8] 'case'
+       PatternOrSyntax
+        SyntaxList
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <587:588> [32:9:32:10] 'A'
+          BarToken <589:590> [32:11:32:12] '|'
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <591:592> [32:13:32:14] 'B'
+          BarToken <593:594> [32:15:32:16] '|'
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <595:596> [32:17:32:18] 'C'
+          BarToken <597:598> [32:19:32:20] '|'
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <599:600> [32:21:32:22] 'D'
+       ColonToken <600:601> [32:22:32:23] ':'
        CodeBlockItemSyntax
         BlockStatementSyntax
          CodeBlockSyntax
-          OpenBraceToken <595:596> [33:4:33:5] '{'
+          OpenBraceToken <610:611> [33:8:33:9] '{'
           SyntaxList
            CodeBlockItemSyntax
             ExpressionStatementSyntax
@@ -471,11 +492,237 @@ SourceFileSyntax
                 SyntaxList
                  PathSegmentSyntax
                   IdentifierSyntax
-                   IdentifierToken <605:614> [34:8:34:17] 'unmatched'
+                   IdentifierToken <624:631> [34:12:34:19] 'matched'
               ArgumentListSyntax
-               OpenParenToken <614:615> [34:17:34:18] '('
-               CloseParenToken <615:616> [34:18:34:19] ')'
-            SemicolonToken <616:617> [34:19:34:20] ';'
-          CloseBraceToken <622:623> [35:4:35:5] '}'
-     CloseBraceToken <624:625> [36:0:36:1] '}'
- EndOfFileToken <626:626> [37:0:37:0] ''
+               OpenParenToken <631:632> [34:19:34:20] '('
+               CloseParenToken <632:633> [34:20:34:21] ')'
+            SemicolonToken <633:634> [34:21:34:22] ';'
+          CloseBraceToken <643:644> [35:8:35:9] '}'
+      MatchDefaultClauseSyntax
+       DefaultKeyword <649:656> [36:4:36:11] 'default'
+       ColonToken <656:657> [36:11:36:12] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <666:667> [37:8:37:9] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <680:689> [38:12:38:21] 'unmatched'
+              ArgumentListSyntax
+               OpenParenToken <689:690> [38:21:38:22] '('
+               CloseParenToken <690:691> [38:22:38:23] ')'
+            SemicolonToken <691:692> [38:23:38:24] ';'
+          CloseBraceToken <701:702> [39:8:39:9] '}'
+     CloseBraceToken <703:704> [40:0:40:1] '}'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    MatchExpressionSyntax
+     MatchKeyword <706:711> [42:0:42:5] 'match'
+     OpenParenToken <712:713> [42:6:42:7] '('
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <713:714> [42:7:42:8] 'q'
+     CloseParenToken <714:715> [42:8:42:9] ')'
+     OpenBraceToken <716:717> [43:0:43:1] '{'
+     SyntaxList
+      MatchCaseClauseSyntax
+       CaseKeyword <722:726> [44:4:44:8] 'case'
+       IdentifierPatternSyntax
+        IdentifierSyntax
+         IdentifierToken <727:728> [44:9:44:10] 'A'
+       ColonToken <729:730> [44:11:44:12] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <731:732> [44:13:44:14] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <733:740> [44:15:44:22] 'matched'
+              ArgumentListSyntax
+               OpenParenToken <740:741> [44:22:44:23] '('
+               CloseParenToken <741:742> [44:23:44:24] ')'
+            SemicolonToken <742:743> [44:24:44:25] ';'
+          CloseBraceToken <744:745> [44:26:44:27] '}'
+      MatchCaseClauseSyntax
+       CaseKeyword <750:754> [45:4:45:8] 'case'
+       PatternOrSyntax
+        SyntaxList
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <755:756> [45:9:45:10] 'A'
+          BarToken <757:758> [45:11:45:12] '|'
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <759:760> [45:13:45:14] missing ''
+       ColonToken <759:760> [45:13:45:14] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <761:762> [45:15:45:16] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <763:770> [45:17:45:24] 'matched'
+              ArgumentListSyntax
+               OpenParenToken <770:771> [45:24:45:25] '('
+               CloseParenToken <771:772> [45:25:45:26] ')'
+            SemicolonToken <772:773> [45:26:45:27] ';'
+          CloseBraceToken <774:775> [45:28:45:29] '}'
+      MatchCaseClauseSyntax
+       CaseKeyword <780:784> [46:4:46:8] 'case'
+       PatternOrSyntax
+        SyntaxList
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <785:786> [46:9:46:10] 'A'
+          BarToken <787:788> [46:11:46:12] '|'
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <789:790> [46:13:46:14] 'B'
+       ColonToken <791:792> [46:15:46:16] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <793:794> [46:17:46:18] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <795:802> [46:19:46:26] 'matched'
+              ArgumentListSyntax
+               OpenParenToken <802:803> [46:26:46:27] '('
+               CloseParenToken <803:804> [46:27:46:28] ')'
+            SemicolonToken <804:805> [46:28:46:29] ';'
+          CloseBraceToken <806:807> [46:30:46:31] '}'
+      MatchCaseClauseSyntax
+       CaseKeyword <812:816> [47:4:47:8] 'case'
+       PatternOrSyntax
+        SyntaxList
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <817:818> [47:9:47:10] 'A'
+          BarToken <819:820> [47:11:47:12] '|'
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <821:822> [47:13:47:14] 'B'
+          BarToken <823:824> [47:15:47:16] '|'
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <825:826> [47:17:47:18] missing ''
+       ColonToken <825:826> [47:17:47:18] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <827:828> [47:19:47:20] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <829:836> [47:21:47:28] 'matched'
+              ArgumentListSyntax
+               OpenParenToken <836:837> [47:28:47:29] '('
+               CloseParenToken <837:838> [47:29:47:30] ')'
+            SemicolonToken <838:839> [47:30:47:31] ';'
+          CloseBraceToken <840:841> [47:32:47:33] '}'
+      MatchCaseClauseSyntax
+       CaseKeyword <846:850> [48:4:48:8] 'case'
+       PatternOrSyntax
+        SyntaxList
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <851:852> [48:9:48:10] 'A'
+          BarToken <853:854> [48:11:48:12] '|'
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <855:856> [48:13:48:14] 'B'
+          BarToken <857:858> [48:15:48:16] '|'
+         PatternOrItemSyntax
+          IdentifierPatternSyntax
+           IdentifierSyntax
+            IdentifierToken <859:860> [48:17:48:18] 'C'
+       ColonToken <861:862> [48:19:48:20] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <863:864> [48:21:48:22] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <865:872> [48:23:48:30] 'matched'
+              ArgumentListSyntax
+               OpenParenToken <872:873> [48:30:48:31] '('
+               CloseParenToken <873:874> [48:31:48:32] ')'
+            SemicolonToken <874:875> [48:32:48:33] ';'
+          CloseBraceToken <876:877> [48:34:48:35] '}'
+      MatchDefaultClauseSyntax
+       DefaultKeyword <882:889> [49:4:49:11] 'default'
+       ColonToken <889:890> [49:11:49:12] ':'
+       CodeBlockItemSyntax
+        BlockStatementSyntax
+         CodeBlockSyntax
+          OpenBraceToken <891:892> [49:13:49:14] '{'
+          SyntaxList
+           CodeBlockItemSyntax
+            ExpressionStatementSyntax
+             InvocationExpressionSyntax
+              PathExpressionSyntax
+               PathSyntax
+                SyntaxList
+                 PathSegmentSyntax
+                  IdentifierSyntax
+                   IdentifierToken <893:902> [49:15:49:24] 'unmatched'
+              ArgumentListSyntax
+               OpenParenToken <902:903> [49:24:49:25] '('
+               CloseParenToken <903:904> [49:25:49:26] ')'
+            SemicolonToken <904:905> [49:26:49:27] ';'
+          CloseBraceToken <906:907> [49:28:49:29] '}'
+     CloseBraceToken <908:909> [50:0:50:1] '}'
+ EndOfFileToken <910:910> [51:0:51:0] ''

@@ -1477,6 +1477,29 @@ namespace weave::syntax
         --this->Depth;
     }
 
+    void SyntaxWalker::OnPatternOrItemSyntax(PatternOrItemSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Pattern);
+        this->Dispatch(node->TrailingBarToken);
+
+        --this->Depth;
+    }
+
+    void SyntaxWalker::OnPatternOrSyntax(PatternOrSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Items.GetNode());
+
+        --this->Depth;
+    }
+
     void SyntaxWalker::OnForStatementSyntax(ForStatementSyntax* node)
     {
         this->OnDefault(node);

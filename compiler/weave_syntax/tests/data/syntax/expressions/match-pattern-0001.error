@@ -1,0 +1,10 @@
+error: Expected '[token:identifier]'
+        --> <source>:46:14
+         |
+      46 |     case A | : { matched(); }
+         |              ^
+error: Expected '[token:identifier]'
+        --> <source>:48:18
+         |
+      48 |     case A | B | : { matched(); }
+         |                  ^
