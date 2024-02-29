@@ -1362,6 +1362,26 @@ namespace weave::syntax
         }
     };
 
+    class RepeatStatementSyntax : public StatementSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(RepeatStatementSyntax);
+
+    public:
+        SyntaxToken* RepeatKeyword{};
+        CodeBlockSyntax* Body{};
+        SyntaxToken* WhileKeyword{};
+        SyntaxListView<AttributeListSyntax> ConditionAttributes{};
+        SyntaxToken* OpenParenToken{};
+        ExpressionSyntax* Condition{};
+        SyntaxToken* CloseParenToken{};
+
+    public:
+        explicit constexpr RepeatStatementSyntax()
+            : StatementSyntax{SyntaxKind::RepeatStatementSyntax}
+        {
+        }
+    };
+
     class CheckedStatementSyntax final : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(CheckedStatementSyntax);

@@ -164,6 +164,7 @@ namespace weave::syntax
         void OnCheckedStatementSyntax(CheckedStatementSyntax* node) override;
         void OnUncheckedStatementSyntax(UncheckedStatementSyntax* node) override;
         void OnLoopStatementSyntax(LoopStatementSyntax* node) override;
+        void OnRepeatStatementSyntax(RepeatStatementSyntax* node) override;
         void OnUnsafeStatementSyntax(UnsafeStatementSyntax* node) override;
 
         void OnWildcardPatternSyntax(WildcardPatternSyntax* node) override;

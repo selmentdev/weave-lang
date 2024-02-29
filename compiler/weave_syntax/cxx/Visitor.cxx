@@ -1113,6 +1113,26 @@ namespace weave::syntax
         --this->Depth;
     }
 
+    void SyntaxWalker::OnRepeatStatementSyntax(RepeatStatementSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+
+        this->Dispatch(node->RepeatKeyword);
+        this->Dispatch(node->Body);
+        this->Dispatch(node->WhileKeyword);
+        this->Dispatch(node->ConditionAttributes.GetNode());
+        this->Dispatch(node->OpenParenToken);
+        this->Dispatch(node->Condition);
+        this->Dispatch(node->CloseParenToken);
+
+        --this->Depth;
+    }
+
     void SyntaxWalker::OnUnsafeStatementSyntax(UnsafeStatementSyntax* node)
     {
         this->OnDefault(node);

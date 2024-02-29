@@ -1,0 +1,61 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    VarKeyword <0:3> [0:0:0:3] 'var'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <4:5> [0:4:0:5] 'i'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <6:7> [0:6:0:7] '='
+     LiteralExpressionSyntax
+      IntegerLiteralToken <8:9> [0:8:0:9] '0'
+   SemicolonToken <9:10> [0:9:0:10] ';'
+  CodeBlockItemSyntax
+   RepeatStatementSyntax
+    RepeatKeyword <12:18> [2:0:2:6] 'repeat'
+    CodeBlockSyntax
+     OpenBraceToken <19:20> [2:7:2:8] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        InvocationExpressionSyntax
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <25:32> [3:4:3:11] 'execute'
+         ArgumentListSyntax
+          OpenParenToken <32:33> [3:11:3:12] '('
+          CloseParenToken <33:34> [3:12:3:13] ')'
+       SemicolonToken <34:35> [3:13:3:14] ';'
+      CodeBlockItemSyntax
+       ExpressionStatementSyntax
+        AssignmentExpressionSyntax
+         PathExpressionSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <40:41> [4:4:4:5] 'i'
+         PlusEqualsToken <42:44> [4:6:4:8] '+='
+         LiteralExpressionSyntax
+          IntegerLiteralToken <45:46> [4:9:4:10] '1'
+       SemicolonToken <46:47> [4:10:4:11] ';'
+     CloseBraceToken <48:49> [5:0:5:1] '}'
+    WhileKeyword <50:55> [5:2:5:7] 'while'
+    OpenParenToken <56:57> [5:8:5:9] '('
+    BinaryExpressionSyntax
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <57:58> [5:9:5:10] 'i'
+     LessThanToken <59:60> [5:11:5:12] '<'
+     LiteralExpressionSyntax
+      IntegerLiteralToken <61:63> [5:13:5:15] '10'
+    CloseParenToken <63:64> [5:15:5:16] ')'
+   SemicolonToken <64:65> [5:16:5:17] ';'
+ EndOfFileToken <66:66> [6:0:6:0] ''

@@ -599,6 +599,9 @@ namespace weave::syntax
         case SyntaxKind::StructKeyword:
             return this->ParseStructDeclaration(attributes, modifiers);
 
+        case SyntaxKind::UnionKeyword:
+            return this->ParseUnionDeclaration(attributes, modifiers);
+
         case SyntaxKind::ConceptKeyword:
             return this->ParseConceptDeclaration(attributes, modifiers);
 
@@ -652,6 +655,9 @@ namespace weave::syntax
 
         case SyntaxKind::LoopKeyword:
             return this->ParseLoopStatement(attributes);
+
+        case SyntaxKind::RepeatKeyword:
+            return this->ParseRepeatStatement(attributes);
 
         case SyntaxKind::ForKeyword:
             return this->ParseForStatement(attributes);
@@ -726,6 +732,21 @@ namespace weave::syntax
         result->LoopKeyword = this->Match(SyntaxKind::LoopKeyword);
         result->Body = this->ParseCodeBlock();
         return result;
+    }
+
+    RepeatStatementSyntax* Parser::ParseRepeatStatement(SyntaxListView<AttributeListSyntax> attributes)
+    {
+        RepeatStatementSyntax* result = this->_factory->CreateNode<RepeatStatementSyntax>();
+        result->Attributes = attributes;
+        result->RepeatKeyword = this->Match(SyntaxKind::RepeatKeyword);
+        result->Body = this->ParseCodeBlock();
+        result->WhileKeyword = this->Match(SyntaxKind::WhileKeyword);
+        result->ConditionAttributes = this->ParseAttributesList();
+        result->OpenParenToken = this->Match(SyntaxKind::OpenParenToken);
+        result->Condition = this->ParseExpression();
+        result->CloseParenToken = this->Match(SyntaxKind::CloseParenToken);
+        return result;
+        
     }
 
     ForStatementSyntax* Parser::ParseForStatement(SyntaxListView<AttributeListSyntax> attributes)

@@ -1,0 +1,6 @@
+var i = 0;
+
+repeat {
+    execute();
+    i += 1;
+} while (i < 10);
