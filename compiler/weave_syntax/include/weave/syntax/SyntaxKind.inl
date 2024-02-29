@@ -402,6 +402,7 @@ WEAVE_SYNTAX_NODE(UsingDeclarationSyntax,                       "[node:using-dec
 WEAVE_SYNTAX_NODE(IncompleteDeclarationSyntax,                  "[node:incomplete-declaration]")
 WEAVE_SYNTAX_NODE(NamespaceDeclarationSyntax,                   "[node:namespace-declaration]")
 WEAVE_SYNTAX_NODE(StructDeclarationSyntax,                      "[node:struct-declaration]")
+WEAVE_SYNTAX_NODE(UnionDeclarationSyntax,                       "[node:union-declaration]")
 WEAVE_SYNTAX_NODE(ConceptDeclarationSyntax,                     "[node:concept-declaration]")
 WEAVE_SYNTAX_NODE(ExtendDeclarationSyntax,                      "[node:extend-declaration]")
 WEAVE_SYNTAX_NODE(TypeAliasDeclarationSyntax,                   "[node:type-alias-declaration]")

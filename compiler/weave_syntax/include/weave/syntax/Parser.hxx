@@ -282,6 +282,10 @@ namespace weave::syntax
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);
 
+        UnionDeclarationSyntax* ParseUnionDeclaration(
+            SyntaxListView<AttributeListSyntax> attributes,
+            SyntaxListView<SyntaxToken> modifiers);
+
         TypeAliasDeclarationSyntax* ParseTypeAliasDeclaration(
             SyntaxListView<AttributeListSyntax> attributes,
             SyntaxListView<SyntaxToken> modifiers);

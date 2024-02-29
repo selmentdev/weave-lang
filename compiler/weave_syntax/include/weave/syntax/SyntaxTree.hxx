@@ -235,6 +235,24 @@ namespace weave::syntax
         }
     };
 
+    class UnionDeclarationSyntax final : public TypeDeclarationSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(UnionDeclarationSyntax);
+
+    public:
+        SyntaxToken* UnionKeyword{};
+        IdentifierSyntax* Name{};
+        GenericParametersSyntax* GenericParameters{};
+        SyntaxListView<ConstraintClauseSyntax> Constraints{};
+        CodeBlockSyntax* Members{};
+
+    public:
+        explicit constexpr UnionDeclarationSyntax()
+            : TypeDeclarationSyntax{SyntaxKind::UnionDeclarationSyntax}
+        {
+        }
+    };
+
     class ConceptDeclarationSyntax : public TypeDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ConceptDeclarationSyntax);

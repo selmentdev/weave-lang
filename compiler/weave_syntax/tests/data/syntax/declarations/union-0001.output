@@ -1,0 +1,50 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   UnionDeclarationSyntax
+    SyntaxList
+     PublicKeyword <0:6> [0:0:0:6] 'public'
+    UnionKeyword <7:12> [0:7:0:12] 'union'
+    IdentifierSyntax
+     IdentifierToken <13:22> [0:13:0:22] 'TestUnion'
+    CodeBlockSyntax
+     OpenBraceToken <23:24> [1:0:1:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <29:35> [2:4:2:10] 'public'
+        VarKeyword <36:39> [2:11:2:14] 'var'
+        TypePatternSyntax
+         IdentifierPatternSyntax
+          IdentifierSyntax
+           IdentifierToken <40:45> [2:15:2:20] 'AsInt'
+         TypeClauseSyntax
+          ColonToken <45:46> [2:20:2:21] ':'
+          TypePathSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <47:52> [2:22:2:27] 'Int32'
+       SemicolonToken <52:53> [2:27:2:28] ';'
+      CodeBlockItemSyntax
+       VariableDeclarationSyntax
+        SyntaxList
+         PublicKeyword <58:64> [3:4:3:10] 'public'
+        VarKeyword <65:68> [3:11:3:14] 'var'
+        TypePatternSyntax
+         IdentifierPatternSyntax
+          IdentifierSyntax
+           IdentifierToken <69:76> [3:15:3:22] 'AsFloat'
+         TypeClauseSyntax
+          ColonToken <76:77> [3:22:3:23] ':'
+          TypePathSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <78:85> [3:24:3:31] 'Float32'
+       SemicolonToken <85:86> [3:31:3:32] ';'
+     CloseBraceToken <87:88> [4:0:4:1] '}'
+ EndOfFileToken <89:89> [5:0:5:0] ''

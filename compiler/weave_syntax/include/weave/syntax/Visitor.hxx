@@ -91,6 +91,7 @@ namespace weave::syntax
         void OnSyntaxList(SyntaxList* node) override;
         void OnNamespaceDeclarationSyntax(NamespaceDeclarationSyntax* node) override;
         void OnStructDeclarationSyntax(StructDeclarationSyntax* node) override;
+        void OnUnionDeclarationSyntax(UnionDeclarationSyntax* node) override;
         void OnConceptDeclarationSyntax(ConceptDeclarationSyntax* node) override;
         void OnExtendDeclarationSyntax(ExtendDeclarationSyntax* node) override;
         void OnIncompleteDeclarationSyntax(IncompleteDeclarationSyntax* node) override;

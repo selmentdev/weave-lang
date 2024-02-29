@@ -53,6 +53,24 @@ namespace weave::syntax
         --this->Depth;
     }
 
+    void SyntaxWalker::OnUnionDeclarationSyntax(UnionDeclarationSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Attributes.GetNode());
+        this->Dispatch(node->Modifiers.GetNode());
+
+        this->Dispatch(node->UnionKeyword);
+        this->Dispatch(node->Name);
+        this->Dispatch(node->GenericParameters);
+        this->Dispatch(node->Constraints.GetNode());
+        this->Dispatch(node->Members);
+
+        --this->Depth;
+    }
+
     void SyntaxWalker::OnConceptDeclarationSyntax(ConceptDeclarationSyntax* node)
     {
         this->OnDefault(node);

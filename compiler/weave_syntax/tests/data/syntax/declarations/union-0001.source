@@ -1,0 +1,5 @@
+public union TestUnion
+{
+    public var AsInt: Int32;
+    public var AsFloat: Float32;
+}

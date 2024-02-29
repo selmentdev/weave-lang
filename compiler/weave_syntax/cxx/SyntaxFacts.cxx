@@ -492,6 +492,7 @@ namespace weave::syntax
         case SyntaxKind::UsingKeyword:
         case SyntaxKind::FunctionKeyword:
         case SyntaxKind::StructKeyword:
+        case SyntaxKind::UnionKeyword:
         case SyntaxKind::ConceptKeyword:
         case SyntaxKind::ExtendKeyword:
         case SyntaxKind::VarKeyword:

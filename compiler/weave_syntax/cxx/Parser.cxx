@@ -532,6 +532,19 @@ namespace weave::syntax
         return result;
     }
 
+    UnionDeclarationSyntax* Parser::ParseUnionDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
+    {
+        UnionDeclarationSyntax* result = this->_factory->CreateNode<UnionDeclarationSyntax>();
+        result->Attributes = attributes;
+        result->Modifiers = modifiers;
+        result->UnionKeyword = this->Match(SyntaxKind::UnionKeyword);
+        result->Name = this->ParseIdentifier();
+        result->GenericParameters = this->ParseOptionalGenericParameters();
+        result->Constraints = this->ParseConstraintClauseSequence();
+        result->Members = this->ParseCodeBlock();
+        return result;
+    }
+
     TypeAliasDeclarationSyntax* Parser::ParseTypeAliasDeclaration(SyntaxListView<AttributeListSyntax> attributes, SyntaxListView<SyntaxToken> modifiers)
     {
         SyntaxToken* tokenType = this->Match(SyntaxKind::TypeKeyword);
