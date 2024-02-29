@@ -2519,13 +2519,13 @@ namespace weave::syntax
 
         if (this->Current()->Kind == SyntaxKind::BarToken)
         {
-            return this->ParseOrSyntax(first);
+            return this->ParseOrPattern(first);
         }
 
         return first;
     }
 
-    PatternOrSyntax* Parser::ParseOrSyntax(PatternSyntax* pattern)
+    PatternOrSyntax* Parser::ParseOrPattern(PatternSyntax* pattern)
     {
         std::vector<PatternOrItemSyntax*> items{};
 
