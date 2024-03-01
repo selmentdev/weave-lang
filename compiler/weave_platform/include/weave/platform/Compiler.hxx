@@ -72,7 +72,7 @@
 
 
 #if defined(__x86_64__) || defined(__aarch64__) || defined(_M_X64) || defined(_M_ARM64)
-#define WEAVE_FEATURE_UNALIGNED_ACCESS 1
+#define WEAVE_FEATURE_UNALIGNED_ACCESS 0
 #endif
 
 #if !defined(WEAVE_FEATURE_UNALIGNED_ACCESS)
