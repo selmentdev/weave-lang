@@ -4,6 +4,7 @@
 #include <string_view>
 #include <optional>
 #include <vector>
+#include <algorithm>
 
 #include <fmt/format.h>
 
@@ -271,7 +272,7 @@ namespace weave::commandline
                         else
                         {
                             // Try to handle argument as command.
-                            if (CommandDescriptor const* command = this->FindCommand(*argument))
+                            if (this->FindCommand(*argument) != nullptr)
                             {
                                 result._command = *argument;
                                 break;

@@ -236,7 +236,7 @@ namespace xxx
             bool Checked{};
             bool Debug{};
             bool Unsafe{};
-            OptimizationLevel OptimizationLevel{};
+            OptimizationLevel Optimization{};
             TargetPlatform Platform{};
             TargetArchitecture Architecture{};
             bool Deterministic{};
@@ -339,7 +339,7 @@ namespace xxx
             this->CodeGeneration.Unsafe = arguments.Contains("-c:unsafe");
             if (auto const parsed = TryParseOptimizationLevel(arguments.GetValue("-c:optimize")))
             {
-                this->CodeGeneration.OptimizationLevel = *parsed;
+                this->CodeGeneration.Optimization = *parsed;
             }
             this->CodeGeneration.Deterministic = arguments.Contains("-c:deterministic");
             this->CodeGeneration.Coverage = arguments.Contains("-c:coverage");
