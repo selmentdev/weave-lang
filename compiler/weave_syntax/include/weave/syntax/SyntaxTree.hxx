@@ -43,7 +43,7 @@ namespace weave::syntax
         }
     };
 
-    class IncompleteDeclarationSyntax : public DeclarationSyntax
+    class IncompleteDeclarationSyntax final : public DeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(IncompleteDeclarationSyntax);
 
@@ -54,7 +54,7 @@ namespace weave::syntax
         }
     };
 
-    class UsingDeclarationSyntax : public DeclarationSyntax
+    class UsingDeclarationSyntax final : public DeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(UsingDeclarationSyntax);
 
@@ -122,7 +122,7 @@ namespace weave::syntax
         }
     };
 
-    class NamespaceDeclarationSyntax : public MemberDeclarationSyntax
+    class NamespaceDeclarationSyntax final : public MemberDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(NamespaceDeclarationSyntax);
 
@@ -138,7 +138,7 @@ namespace weave::syntax
         }
     };
 
-    class FunctionDeclarationSyntax : public MemberDeclarationSyntax
+    class FunctionDeclarationSyntax final : public MemberDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(FunctionDeclarationSyntax);
 
@@ -160,7 +160,7 @@ namespace weave::syntax
         }
     };
 
-    class ReturnTypeClauseSyntax : public SyntaxNode
+    class ReturnTypeClauseSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(ReturnTypeClauseSyntax);
 
@@ -180,7 +180,7 @@ namespace weave::syntax
         }
     };
 
-    class DelegateDeclarationSyntax : public MemberDeclarationSyntax
+    class DelegateDeclarationSyntax final : public MemberDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(DelegateDeclarationSyntax);
 
@@ -217,7 +217,7 @@ namespace weave::syntax
         }
     };
 
-    class StructDeclarationSyntax : public TypeDeclarationSyntax
+    class StructDeclarationSyntax final : public TypeDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(StructDeclarationSyntax);
 
@@ -253,7 +253,7 @@ namespace weave::syntax
         }
     };
 
-    class ConceptDeclarationSyntax : public TypeDeclarationSyntax
+    class ConceptDeclarationSyntax final : public TypeDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ConceptDeclarationSyntax);
 
@@ -271,7 +271,7 @@ namespace weave::syntax
         }
     };
 
-    class ExtendDeclarationSyntax : public TypeDeclarationSyntax
+    class ExtendDeclarationSyntax final : public TypeDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ExtendDeclarationSyntax);
 
@@ -291,7 +291,7 @@ namespace weave::syntax
         }
     };
 
-    class TypeAliasDeclarationSyntax : public TypeDeclarationSyntax
+    class TypeAliasDeclarationSyntax final : public TypeDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypeAliasDeclarationSyntax);
 
@@ -307,9 +307,8 @@ namespace weave::syntax
         {
         }
     };
-    ;
-
-    class ConstantDeclarationSyntax : public MemberDeclarationSyntax
+    
+    class ConstantDeclarationSyntax final : public MemberDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ConstantDeclarationSyntax);
 
@@ -326,7 +325,7 @@ namespace weave::syntax
         }
     };
 
-    class EnumDeclarationSyntax : public TypeDeclarationSyntax
+    class EnumDeclarationSyntax final : public TypeDeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(EnumDeclarationSyntax);
 
@@ -351,7 +350,7 @@ namespace weave::syntax
         }
     };
 
-    class EnumMemberDeclarationSyntax : public DeclarationSyntax
+    class EnumMemberDeclarationSyntax final : public DeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(EnumMemberDeclarationSyntax);
 
@@ -368,7 +367,7 @@ namespace weave::syntax
         }
     };
 
-    class AttributeTargetSpecifierSyntax : public SyntaxNode
+    class AttributeTargetSpecifierSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(AttributeTargetSpecifierSyntax);
 
@@ -418,7 +417,7 @@ namespace weave::syntax
     /// attribute
     ///     : 'name' balanced-token-sequence?
     ///     ;
-    class AttributeSyntax : public SyntaxNode
+    class AttributeSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(AttributeSyntax);
 
@@ -442,7 +441,7 @@ namespace weave::syntax
     /// attribute-list
     ///     : '#[' attribute-target-specifier? attribute-sequence ']'
     ///     ;
-    class AttributeListSyntax : public SyntaxNode
+    class AttributeListSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(AttributeListSyntax);
 
@@ -460,7 +459,7 @@ namespace weave::syntax
         SyntaxToken* CloseAttributeToken{};
     };
 
-    class ArgumentSyntax : public SyntaxNode
+    class ArgumentSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(ArgumentSyntax);
 
@@ -479,7 +478,7 @@ namespace weave::syntax
         }
     };
 
-    class ArgumentListSyntax : public SyntaxNode
+    class ArgumentListSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(ArgumentListSyntax);
 
@@ -515,7 +514,7 @@ namespace weave::syntax
         }
     };
 
-    class ParameterSyntax : public SyntaxNode
+    class ParameterSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(ParameterSyntax);
 
@@ -533,7 +532,7 @@ namespace weave::syntax
         }
     };
 
-    class ParameterListSyntax : public SyntaxNode
+    class ParameterListSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(ParameterListSyntax);
 
@@ -551,7 +550,7 @@ namespace weave::syntax
         }
     };
 
-    class GenericArgumentSyntax : public SyntaxNode
+    class GenericArgumentSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(GenericArgumentSyntax)
 
@@ -566,7 +565,7 @@ namespace weave::syntax
         }
     };
 
-    class GenericArgumentsSyntax : public SyntaxNode
+    class GenericArgumentsSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(GenericArgumentsSyntax);
 
@@ -598,7 +597,7 @@ namespace weave::syntax
     // type-generic-parameter
     //      : `type' name ':' requirements '=' expression
     //      ;
-    class TypeGenericParameterSyntax : public GenericParameterSyntax
+    class TypeGenericParameterSyntax final : public GenericParameterSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypeGenericParameterSyntax);
 
@@ -620,7 +619,7 @@ namespace weave::syntax
     // const-generic-parameter
     //      : 'const' name ':' type '=' expression
     //      ;
-    class ConstGenericParameterSyntax : public GenericParameterSyntax
+    class ConstGenericParameterSyntax final : public GenericParameterSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(ConstGenericParameterSyntax);
 
@@ -995,7 +994,7 @@ namespace weave::syntax
         }
     };
 
-    class TypePointerSyntax : public TypeSyntax
+    class TypePointerSyntax final : public TypeSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypePointerSyntax);
 
@@ -1011,7 +1010,7 @@ namespace weave::syntax
         }
     };
 
-    class TypeReferenceSyntax : public TypeSyntax
+    class TypeReferenceSyntax final : public TypeSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypeReferenceSyntax);
 
@@ -1103,7 +1102,7 @@ namespace weave::syntax
         }
     };
 
-    class TypeClauseSyntax : public SyntaxNode
+    class TypeClauseSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypeClauseSyntax);
 
@@ -1120,7 +1119,7 @@ namespace weave::syntax
         }
     };
 
-    class ExpressionInitializerClauseSyntax : public SyntaxNode
+    class ExpressionInitializerClauseSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(ExpressionInitializerClauseSyntax);
 
@@ -1174,7 +1173,7 @@ namespace weave::syntax
         }
     };
 
-    class VariableDeclarationSyntax : public DeclarationSyntax
+    class VariableDeclarationSyntax final : public DeclarationSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(VariableDeclarationSyntax);
 
@@ -1347,7 +1346,7 @@ namespace weave::syntax
         }
     };
 
-    class LoopStatementSyntax : public StatementSyntax
+    class LoopStatementSyntax final : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(LoopStatementSyntax);
 
@@ -1362,7 +1361,7 @@ namespace weave::syntax
         }
     };
 
-    class RepeatStatementSyntax : public StatementSyntax
+    class RepeatStatementSyntax final : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(RepeatStatementSyntax);
 
@@ -1469,7 +1468,7 @@ namespace weave::syntax
     /// unexpected-nodes
     ///     : syntax-token*
     ///     ;
-    class UnexpectedNodesSyntax : public SyntaxNode
+    class UnexpectedNodesSyntax final : public SyntaxNode
     {
     public:
         static constexpr bool ClassOf(SyntaxKind kind)
@@ -1611,7 +1610,7 @@ namespace weave::syntax
     ///     | contract-kind '(' expression ')'
     ///     ;
 
-    class ContractClauseSyntax : public ConstraintClauseSyntax
+    class ContractClauseSyntax final : public ConstraintClauseSyntax
     {
     public:
         SyntaxToken* Introducer{};
@@ -1813,7 +1812,7 @@ namespace weave::syntax
     /// wildcard-pattern
     ///     : '_'
     ///     ;
-    class WildcardPatternSyntax : public PatternSyntax
+    class WildcardPatternSyntax final : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(WildcardPatternSyntax);
 
@@ -1830,7 +1829,7 @@ namespace weave::syntax
     /// literal-pattern
     ///     : literal
     ///     ;
-    class LiteralPatternSyntax : public PatternSyntax
+    class LiteralPatternSyntax final : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(LiteralPatternSyntax);
 
@@ -1847,7 +1846,7 @@ namespace weave::syntax
     /// identifier-pattern
     ///     : name pattern?
     ///     ;
-    class IdentifierPatternSyntax : public PatternSyntax
+    class IdentifierPatternSyntax final : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(IdentifierPatternSyntax);
 
@@ -1887,7 +1886,7 @@ namespace weave::syntax
     /// slice-pattern
     ///     : '[' slice-pattern-item-sequence? ']'
     ///     ;
-    class SlicePatternSyntax : public PatternSyntax
+    class SlicePatternSyntax final : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(SlicePatternSyntax);
 
@@ -1910,7 +1909,7 @@ namespace weave::syntax
     /// tuple-pattern-item-sequence
     ///     : tuple-pattern-item (',' tuple-pattern-item)*
     ///     ;
-    class TuplePatternItemSyntax : public SyntaxNode
+    class TuplePatternItemSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(TuplePatternItemSyntax);
 
@@ -1929,7 +1928,7 @@ namespace weave::syntax
     /// tuple-pattern
     ///     : '(' tuple-pattern-item-sequence? ')'
     ///     ;
-    class TuplePatternSyntax : public PatternSyntax
+    class TuplePatternSyntax final : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(TuplePatternSyntax);
 
@@ -1954,7 +1953,7 @@ namespace weave::syntax
     /// field-pattern-sequence
     ///     : field-pattern (',' field-pattern)*
     ///     ;
-    class FieldPatternSyntax : public PatternSyntax
+    class FieldPatternSyntax final : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(FieldPatternSyntax);
 
@@ -1974,7 +1973,7 @@ namespace weave::syntax
     /// struct-pattern
     ///     : '{' field-pattern-sequence? '}'
     ///     ;
-    class StructPatternSyntax : public PatternSyntax
+    class StructPatternSyntax final : public PatternSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(StructPatternSyntax);
 
@@ -2050,7 +2049,7 @@ namespace weave::syntax
     /// type-inheritance-clause
     ///     : ':' type
     ///     ;
-    class TypeInheritanceClause : public SyntaxNode
+    class TypeInheritanceClause final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(TypeInheritanceClause);
 
@@ -2068,7 +2067,7 @@ namespace weave::syntax
     /// name-colon
     ///     : identifier ':'
     ///     ;
-    class NameColonSyntax : public SyntaxNode
+    class NameColonSyntax final : public SyntaxNode
     {
         WEAVE_DEFINE_SYNTAX_NODE(NameColonSyntax);
 
