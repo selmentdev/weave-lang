@@ -7,4 +7,4 @@ target_link_libraries(weave_bitwise PUBLIC weave_platform)
 WEAVE_CXX_FORTIFY_CODE(weave_bitwise)
 
 add_subdirectory(cxx)
-#add_subdirectory(tests)
+add_subdirectory(tests)

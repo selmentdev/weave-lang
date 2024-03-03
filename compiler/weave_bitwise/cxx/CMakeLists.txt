@@ -1,3 +1,4 @@
 target_sources(weave_bitwise PRIVATE
-    Bitwise.cxx
+    "Bitwise.cxx"
+    "CompressedInteger.cxx"
 )
