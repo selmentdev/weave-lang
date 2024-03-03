@@ -1,0 +1,62 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    VarKeyword <116:119> [2:0:2:3] 'var'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <120:121> [2:4:2:5] 'x'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <122:123> [2:6:2:7] '='
+     BinaryExpressionSyntax
+      PathExpressionSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <124:125> [2:8:2:9] 'y'
+      AsKeyword <126:128> [2:10:2:12] 'as'
+      InvocationExpressionSyntax
+       PathExpressionSyntax
+        PathSyntax
+         SyntaxList
+          PathSegmentSyntax
+           IdentifierSyntax
+            IdentifierToken <129:130> [2:13:2:14] 'z'
+       ArgumentListSyntax
+        OpenParenToken <130:131> [2:14:2:15] '('
+        CloseParenToken <131:132> [2:15:2:16] ')'
+   SemicolonToken <132:133> [2:16:2:17] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    VarKeyword <134:137> [3:0:3:3] 'var'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <138:139> [3:4:3:5] 'x'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <140:141> [3:6:3:7] '='
+     InvocationExpressionSyntax
+      TupleExpressionSyntax
+       OpenParenToken <142:143> [3:8:3:9] '('
+       SyntaxList
+        LabeledExpressionSyntax
+         BinaryExpressionSyntax
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <143:144> [3:9:3:10] 'y'
+          AsKeyword <145:147> [3:11:3:13] 'as'
+          PathExpressionSyntax
+           PathSyntax
+            SyntaxList
+             PathSegmentSyntax
+              IdentifierSyntax
+               IdentifierToken <148:149> [3:14:3:15] 'z'
+       CloseParenToken <149:150> [3:15:3:16] ')'
+      ArgumentListSyntax
+       OpenParenToken <150:151> [3:16:3:17] '('
+       CloseParenToken <151:152> [3:17:3:18] ')'
+   SemicolonToken <152:153> [3:18:3:19] ';'
+ EndOfFileToken <154:154> [4:0:4:0] ''

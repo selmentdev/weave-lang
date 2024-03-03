@@ -1,0 +1,4 @@
+// error: `z()` is not a type
+// binding phase will report that `as` operator expects a type at the right hand side
+var x = y as z();
+var x = (y as z)();
