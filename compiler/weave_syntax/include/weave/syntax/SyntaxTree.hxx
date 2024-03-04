@@ -1283,6 +1283,27 @@ namespace weave::syntax
         }
     };
 
+    class WithExpressionSyntax final : public ExpressionSyntax
+    {
+        WEAVE_DEFINE_SYNTAX_NODE(WithExpressionSyntax);
+
+    public:
+        ExpressionSyntax* Expression{};
+        SyntaxToken* WithKeyword{};
+
+        UnexpectedNodesSyntax* BeforeOpenBraceToken{};
+        SyntaxToken* OpenBraceToken{};
+        SyntaxListView<LabeledExpressionSyntax> Elements{};
+        UnexpectedNodesSyntax* BeforeCloseBraceToken{};
+        SyntaxToken* CloseBraceToken{};
+
+    public:
+        explicit constexpr WithExpressionSyntax()
+            : ExpressionSyntax{SyntaxKind::WithExpressionSyntax}
+        {
+        }
+    };
+
     class WhileStatementSyntax final : public StatementSyntax
     {
         WEAVE_DEFINE_SYNTAX_NODE(WhileStatementSyntax);

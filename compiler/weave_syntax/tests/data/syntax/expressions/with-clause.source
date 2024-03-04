@@ -1,0 +1,2 @@
+let v1 = Vector3{ x: 1.0, y: 2.0, z: 3.0 };
+let v2 = v1 with { x: 4.0 } with { y: 1.0 } with { z: 2137.0 };

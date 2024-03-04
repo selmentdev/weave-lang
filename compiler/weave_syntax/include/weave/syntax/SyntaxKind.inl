@@ -459,6 +459,7 @@ WEAVE_SYNTAX_NODE(LabeledStatementSyntax,                       "[node:labeled-s
 WEAVE_SYNTAX_NODE(BlockStatementSyntax,                         "[node:block-statement]")
 WEAVE_SYNTAX_NODE(IfExpressionSyntax,                           "if expression")
 WEAVE_SYNTAX_NODE(ElseClauseSyntax,                             "[node:else-clause]")
+WEAVE_SYNTAX_NODE(WithExpressionSyntax,                         "with expression")
 WEAVE_SYNTAX_NODE(TypeInheritanceClause,                        "type inheritance clause")
 WEAVE_SYNTAX_NODE(ReturnStatementSyntax,                        "[node:return-statement]")
 WEAVE_SYNTAX_NODE(EmptyStatementSyntax,                         "[node:empty-statement]")

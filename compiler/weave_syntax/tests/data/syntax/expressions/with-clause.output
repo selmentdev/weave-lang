@@ -1,0 +1,96 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <0:3> [0:0:0:3] 'let'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <4:6> [0:4:0:6] 'v1'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <7:8> [0:7:0:8] '='
+     StructExpressionSyntax
+      TypePathSyntax
+       PathSyntax
+        SyntaxList
+         PathSegmentSyntax
+          IdentifierSyntax
+           IdentifierToken <9:16> [0:9:0:16] 'Vector3'
+      OpenBraceToken <16:17> [0:16:0:17] '{'
+      SyntaxList
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <18:19> [0:18:0:19] 'x'
+         ColonToken <19:20> [0:19:0:20] ':'
+        LiteralExpressionSyntax
+         FloatLiteralToken <21:24> [0:21:0:24] '1.0'
+        CommaToken <24:25> [0:24:0:25] ','
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <26:27> [0:26:0:27] 'y'
+         ColonToken <27:28> [0:27:0:28] ':'
+        LiteralExpressionSyntax
+         FloatLiteralToken <29:32> [0:29:0:32] '2.0'
+        CommaToken <32:33> [0:32:0:33] ','
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <34:35> [0:34:0:35] 'z'
+         ColonToken <35:36> [0:35:0:36] ':'
+        LiteralExpressionSyntax
+         FloatLiteralToken <37:40> [0:37:0:40] '3.0'
+      CloseBraceToken <41:42> [0:41:0:42] '}'
+   SemicolonToken <42:43> [0:42:0:43] ';'
+  CodeBlockItemSyntax
+   VariableDeclarationSyntax
+    LetKeyword <44:47> [1:0:1:3] 'let'
+    IdentifierPatternSyntax
+     IdentifierSyntax
+      IdentifierToken <48:50> [1:4:1:6] 'v2'
+    ExpressionInitializerClauseSyntax
+     EqualsToken <51:52> [1:7:1:8] '='
+     WithExpressionSyntax
+      WithExpressionSyntax
+       WithExpressionSyntax
+        PathExpressionSyntax
+         PathSyntax
+          SyntaxList
+           PathSegmentSyntax
+            IdentifierSyntax
+             IdentifierToken <53:55> [1:9:1:11] 'v1'
+        WithKeyword <56:60> [1:12:1:16] 'with'
+        OpenBraceToken <61:62> [1:17:1:18] '{'
+        SyntaxList
+         LabeledExpressionSyntax
+          NameColonSyntax
+           IdentifierSyntax
+            IdentifierToken <63:64> [1:19:1:20] 'x'
+           ColonToken <64:65> [1:20:1:21] ':'
+          LiteralExpressionSyntax
+           FloatLiteralToken <66:69> [1:22:1:25] '4.0'
+        CloseBraceToken <70:71> [1:26:1:27] '}'
+       WithKeyword <72:76> [1:28:1:32] 'with'
+       OpenBraceToken <77:78> [1:33:1:34] '{'
+       SyntaxList
+        LabeledExpressionSyntax
+         NameColonSyntax
+          IdentifierSyntax
+           IdentifierToken <79:80> [1:35:1:36] 'y'
+          ColonToken <80:81> [1:36:1:37] ':'
+         LiteralExpressionSyntax
+          FloatLiteralToken <82:85> [1:38:1:41] '1.0'
+       CloseBraceToken <86:87> [1:42:1:43] '}'
+      WithKeyword <88:92> [1:44:1:48] 'with'
+      OpenBraceToken <93:94> [1:49:1:50] '{'
+      SyntaxList
+       LabeledExpressionSyntax
+        NameColonSyntax
+         IdentifierSyntax
+          IdentifierToken <95:96> [1:51:1:52] 'z'
+         ColonToken <96:97> [1:52:1:53] ':'
+        LiteralExpressionSyntax
+         FloatLiteralToken <98:104> [1:54:1:60] '2137.0'
+      CloseBraceToken <105:106> [1:61:1:62] '}'
+   SemicolonToken <106:107> [1:62:1:63] ';'
+ EndOfFileToken <108:108> [2:0:2:0] ''

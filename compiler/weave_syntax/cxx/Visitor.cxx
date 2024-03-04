@@ -1710,4 +1710,21 @@ namespace weave::syntax
 
         --this->Depth;
     }
+
+    void SyntaxWalker::OnWithExpressionSyntax(WithExpressionSyntax* node)
+    {
+        this->OnDefault(node);
+
+        ++this->Depth;
+
+        this->Dispatch(node->Expression);
+        this->Dispatch(node->WithKeyword);
+        this->Dispatch(node->BeforeOpenBraceToken);
+        this->Dispatch(node->OpenBraceToken);
+        this->Dispatch(node->Elements.GetNode());
+        this->Dispatch(node->BeforeCloseBraceToken);
+        this->Dispatch(node->CloseBraceToken);
+
+        --this->Depth;
+    }
 }

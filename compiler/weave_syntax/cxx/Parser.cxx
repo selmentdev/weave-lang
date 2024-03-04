@@ -746,7 +746,6 @@ namespace weave::syntax
         result->Condition = this->ParseExpression();
         result->CloseParenToken = this->Match(SyntaxKind::CloseParenToken);
         return result;
-        
     }
 
     ForStatementSyntax* Parser::ParseForStatement(SyntaxListView<AttributeListSyntax> attributes)
@@ -1466,41 +1465,32 @@ namespace weave::syntax
             {
             case SyntaxKind::OpenParenToken:
                 {
-                    InvocationExpressionSyntax* result = this->_factory->CreateNode<InvocationExpressionSyntax>();
-                    result->Expression = expression;
-                    result->ArgumentList = this->ParseArgumentList();
-                    expression = result;
+                    expression = this->ParseInvocationExpression(expression);
                     continue;
                 }
 
             case SyntaxKind::OpenBracketToken:
                 {
-                    ElementAccessExpressionSyntax* result = this->_factory->CreateNode<ElementAccessExpressionSyntax>();
-                    result->Expression = expression;
-                    result->ArgumentList = this->ParseBracketedArgumentList();
-                    expression = result;
+                    expression = this->ParseElementAccessExpression(expression);
                     continue;
                 }
 
             case SyntaxKind::DotToken:
                 {
-                    MemberAccessExpressionSyntax* result = this->_factory->CreateNode<MemberAccessExpressionSyntax>();
-                    result->OperationKind = SyntaxKind::SimpleMemberAccessExpression;
-                    result->Expression = expression;
-                    result->OperatorToken = this->Next();
-                    result->Name = this->ParseMemberName();
-                    expression = result;
+                    expression = this->ParseMemberAccessExpression(expression);
                     continue;
                 }
 
             case SyntaxKind::PlusPlusToken:
             case SyntaxKind::MinusMinusToken:
                 {
-                    PostfixUnaryExpressionSyntax* result = this->_factory->CreateNode<PostfixUnaryExpressionSyntax>();
-                    result->Operation = SyntaxFacts::GetPostfixUnaryExpression(this->Current()->Kind);
-                    result->Operand = expression;
-                    result->OperatorToken = this->Next();
-                    expression = result;
+                    expression = this->ParsePostfixUnaryExpression(expression);
+                    continue;
+                }
+
+            case SyntaxKind::WithKeyword:
+                {
+                    expression = this->ParseWithExpression(expression);
                     continue;
                 }
 
@@ -1598,6 +1588,84 @@ namespace weave::syntax
         }
 
         return this->ParsePathExpression(path);
+    }
+
+    ExpressionSyntax* Parser::ParseInvocationExpression(
+        ExpressionSyntax* expression)
+    {
+        InvocationExpressionSyntax* result = this->_factory->CreateNode<InvocationExpressionSyntax>();
+        result->Expression = expression;
+        result->ArgumentList = this->ParseArgumentList();
+        return result;
+    }
+
+    ExpressionSyntax* Parser::ParseElementAccessExpression(
+        ExpressionSyntax* expression)
+    {
+        ElementAccessExpressionSyntax* result = this->_factory->CreateNode<ElementAccessExpressionSyntax>();
+        result->Expression = expression;
+        result->ArgumentList = this->ParseBracketedArgumentList();
+        return result;
+    }
+
+    ExpressionSyntax* Parser::ParseMemberAccessExpression(
+        ExpressionSyntax* expression)
+    {
+        MemberAccessExpressionSyntax* result = this->_factory->CreateNode<MemberAccessExpressionSyntax>();
+        result->OperationKind = SyntaxKind::SimpleMemberAccessExpression;
+        result->Expression = expression;
+        result->OperatorToken = this->Next();
+        result->Name = this->ParseMemberName();
+        return result;
+    }
+
+    ExpressionSyntax* Parser::ParsePostfixUnaryExpression(
+        ExpressionSyntax* expression)
+    {
+        PostfixUnaryExpressionSyntax* result = this->_factory->CreateNode<PostfixUnaryExpressionSyntax>();
+        result->Operation = SyntaxFacts::GetPostfixUnaryExpression(this->Current()->Kind);
+        result->Operand = expression;
+        result->OperatorToken = this->Next();
+        return result;
+    }
+
+    ExpressionSyntax* Parser::ParseWithExpression(
+        ExpressionSyntax* expression)
+    {
+        WithExpressionSyntax* result = this->_factory->CreateNode<WithExpressionSyntax>();
+        result->Expression = expression;
+        result->WithKeyword = this->Match(SyntaxKind::WithKeyword);
+
+        this->MatchUntil(result->OpenBraceToken, result->BeforeOpenBraceToken, SyntaxKind::OpenBraceToken);
+
+        if (this->Current()->Kind != SyntaxKind::CloseBraceToken)
+        {
+            std::vector<LabeledExpressionSyntax*> elements{};
+
+            LoopProgressCondition progress{this->Current()};
+
+            do
+            {
+                if (this->Current()->Kind == SyntaxKind::CloseBraceToken)
+                {
+                    break;
+                }
+
+                LabeledExpressionSyntax* element = this->ParseLabeledExpression();
+                elements.push_back(element);
+
+                if (element->TrailingComma == nullptr)
+                {
+                    break;
+                }
+            } while (progress.Evaluate(this->Current()));
+
+            result->Elements = SyntaxListView<LabeledExpressionSyntax>{this->_factory->CreateList(elements)};
+        }
+
+        this->MatchUntil(result->CloseBraceToken, result->BeforeCloseBraceToken, SyntaxKind::CloseBraceToken);
+
+        return result;
     }
 
     TupleExpressionSyntax* Parser::ParseTupleExpression()

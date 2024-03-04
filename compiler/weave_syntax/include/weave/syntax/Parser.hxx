@@ -418,6 +418,21 @@ namespace weave::syntax
         ExpressionSyntax* ParseTermWithoutPostfix(
             Precedence precedence);
 
+        ExpressionSyntax* ParseInvocationExpression(
+            ExpressionSyntax* expression);
+
+        ExpressionSyntax* ParseElementAccessExpression(
+            ExpressionSyntax* expression);
+
+        ExpressionSyntax* ParseMemberAccessExpression(
+            ExpressionSyntax* expression);
+
+        ExpressionSyntax* ParsePostfixUnaryExpression(
+            ExpressionSyntax* expression);
+
+        ExpressionSyntax* ParseWithExpression(
+            ExpressionSyntax* expression);
+
         TupleExpressionSyntax* ParseTupleExpression();
 
         StructExpressionSyntax* ParseStructExpression(PathSyntax* path);

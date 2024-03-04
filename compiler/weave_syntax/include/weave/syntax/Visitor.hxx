@@ -213,5 +213,6 @@ namespace weave::syntax
         void OnPathSyntax(PathSyntax* node) override;
         void OnPathExpressionSyntax(PathExpressionSyntax* node) override;
         void OnTypePathSyntax(TypePathSyntax* node) override;
+        void OnWithExpressionSyntax(WithExpressionSyntax* node) override;
     };
 }
