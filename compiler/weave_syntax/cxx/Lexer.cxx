@@ -818,7 +818,7 @@ namespace weave::syntax
             {
                 this->_cursor.Advance();
 
-                if (this->_cursor.First(U'^'))
+                if (this->_cursor.First(U'='))
                 {
                     token.Kind = SyntaxKind::CaretEqualsToken;
                 }

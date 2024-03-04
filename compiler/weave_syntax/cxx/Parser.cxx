@@ -1375,27 +1375,19 @@ namespace weave::syntax
 
         while (true)
         {
-            SyntaxKind const kind = this->Current()->Kind;
+            SyntaxToken* token = this->Current();
 
-            if (SyntaxKind const operation = SyntaxFacts::GetAssignmentExpression(kind); operation != SyntaxKind::None)
+            bool isAssignment = true;
+
+            SyntaxKind operation = SyntaxFacts::GetAssignmentExpression(token->Kind);
+
+            if (operation == SyntaxKind::None)
             {
-                Precedence const precedence = SyntaxFacts::GetPrecedence(operation);
-
-                if (checkPrecedence(precedence, operation))
-                {
-                    break;
-                }
-
-                AssignmentExpressionSyntax* left = this->_factory->CreateNode<AssignmentExpressionSyntax>();
-                left->Operation = operation;
-                left->Left = result;
-                left->OperatorToken = this->Next();
-                left->Right = this->ParseExpression(precedence);
-                result = left;
-                continue;
+                operation = SyntaxFacts::GetBinaryExpression(token->Kind);
+                isAssignment = false;
             }
 
-            if (SyntaxKind const operation = SyntaxFacts::GetBinaryExpression(kind); operation != SyntaxKind::None)
+            if (operation != SyntaxKind::None)
             {
                 Precedence const precedence = SyntaxFacts::GetPrecedence(operation);
 
@@ -1404,21 +1396,25 @@ namespace weave::syntax
                     break;
                 }
 
-                // TODO: Figure out how to detect priority inversion when compared to left operand.
-                //       Need to figure out how to store type of the node separately.
-                //       Syntax tells us about syntactic kind, but later we will need to cast actual node types.
-                //
-                //       For example, we may store an AddAssignmentExpression as AssignmentExpressionSyntax, but
-                //       we can't right now cast it to node type based on syntax kind.
+                if (isAssignment)
+                {
+                    AssignmentExpressionSyntax* left = this->_factory->CreateNode<AssignmentExpressionSyntax>();
+                    left->Operation = operation;
+                    left->Left = result;
+                    left->OperatorToken = this->Next();
+                    left->Right = this->ParseExpression(precedence);
+                    result = left;
+                }
+                else
+                {
+                    BinaryExpressionSyntax* left = this->_factory->CreateNode<BinaryExpressionSyntax>();
+                    left->Operation = operation;
+                    left->Left = result;
+                    left->OperatorToken = this->Next();
+                    left->Right = this->ParseExpression(precedence);
+                    result = left;
+                }
 
-                // if (Precedence leftPrecedence = SyntaxFacts::GetPrecedence(result->))
-
-                BinaryExpressionSyntax* left = this->_factory->CreateNode<BinaryExpressionSyntax>();
-                left->Operation = operation;
-                left->Left = result;
-                left->OperatorToken = this->Next();
-                left->Right = this->ParseExpression(precedence);
-                result = left;
                 continue;
             }
 

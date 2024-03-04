@@ -6,3 +6,47 @@ public function Test(condition: bool, c: Int32) -> Int32
     (condition ? a : b) = c;
     return (not condition ? a : b);
 }
+
+public function AssignmentOperators(
+    x: Int32,
+    y: Int32,
+    z: Int32
+) -> Int32
+{
+    var w = x + y * z;
+    w += x;
+    w -= y;
+    w *= x;
+    w /= y;
+    w %= x;
+    w &= y;
+    w |= x;
+    w ^= y;
+    w <<= x;
+    w >>= y;
+    return w;
+}
+
+public function BinaryOperators(
+    x: Int32,
+    y: Int32,
+    z: Int32
+) -> Int32
+{
+    var w = x + y * z;
+    w = w + x;
+    w = w - y;
+    w = w * x;
+    w = w / y;
+    w = w % x;
+    w = w & y;
+    w = w | x;
+    w = w ^ y;
+    w = w or x;
+    w = w and y;
+    w = w xor x;
+    w = w << x;
+    w = w >> y;
+    w = not w;
+    return x + y;
+}

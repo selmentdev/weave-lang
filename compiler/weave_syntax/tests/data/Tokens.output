@@ -242,7 +242,7 @@ SourceFileSyntax
          IdentifierToken <201:205> [29:0:29:4] 'void'
   CodeBlockItemSyntax
    ExpressionStatementSyntax
-    AssignmentExpressionSyntax
+    BinaryExpressionSyntax
      BinaryExpressionSyntax
       PathExpressionSyntax
        PathSyntax
@@ -256,46 +256,122 @@ SourceFileSyntax
         SyntaxList
          PathSegmentSyntax
           IdentifierSyntax
-           IdentifierToken <215:221> [32:0:32:6] missing ''
-     AndEqualKeyword <215:221> [32:0:32:6] 'and_eq'
-     AssignmentExpressionSyntax
-      BinaryExpressionSyntax
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <222:224> [33:0:33:2] missing ''
-       OrKeyword <222:224> [33:0:33:2] 'or'
-       PathExpressionSyntax
-        PathSyntax
-         SyntaxList
-          PathSegmentSyntax
-           IdentifierSyntax
-            IdentifierToken <225:230> [34:0:34:5] missing ''
-      OrEqualKeyword <225:230> [34:0:34:5] 'or_eq'
-      PathExpressionSyntax
-       PathSyntax
-        SyntaxList
-         PathSegmentSyntax
-          IdentifierSyntax
-           IdentifierToken <231:234> [35:0:35:3] missing ''
+           IdentifierToken <215:221> [32:0:32:6] 'and_eq'
+     OrKeyword <222:224> [33:0:33:2] 'or'
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <225:230> [34:0:34:5] 'or_eq'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <231:234> [35:0:35:3] 'xor'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <235:241> [36:0:36:6] 'xor_eq'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    UnaryExpressionSyntax
+     NotKeyword <242:245> [37:0:37:3] 'not'
+     PathExpressionSyntax
+      PathSyntax
+       SyntaxList
+        PathSegmentSyntax
+         IdentifierSyntax
+          IdentifierToken <246:252> [38:0:38:6] 'not_eq'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <253:260> [39:0:39:7] 'bit_and'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <261:267> [40:0:40:6] 'bit_or'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <268:277> [41:0:41:9] 'bit_compl'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <278:288> [42:0:42:10] '__column__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <289:297> [43:0:43:8] '__file__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <298:310> [44:0:44:12] '__function__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <311:330> [45:0:45:19] '__function_pretty__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <331:339> [46:0:46:8] '__line__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <340:350> [47:0:47:10] '__module__'
+  CodeBlockItemSyntax
+   ExpressionStatementSyntax
+    PathExpressionSyntax
+     PathSyntax
+      SyntaxList
+       PathSegmentSyntax
+        IdentifierSyntax
+         IdentifierToken <351:370> [48:0:48:19] '__source_location__'
  UnexpectedNodesSyntax
   SyntaxList
-   XorKeyword <231:234> [35:0:35:3] 'xor'
-   XorEqualKeyword <235:241> [36:0:36:6] 'xor_eq'
-   NotKeyword <242:245> [37:0:37:3] 'not'
-   NotEqKeyword <246:252> [38:0:38:6] 'not_eq'
-   BitAndKeyword <253:260> [39:0:39:7] 'bit_and'
-   BitOrKeyword <261:267> [40:0:40:6] 'bit_or'
-   BitComplKeyword <268:277> [41:0:41:9] 'bit_compl'
-   IdentifierToken <278:288> [42:0:42:10] '__column__'
-   IdentifierToken <289:297> [43:0:43:8] '__file__'
-   IdentifierToken <298:310> [44:0:44:12] '__function__'
-   IdentifierToken <311:330> [45:0:45:19] '__function_pretty__'
-   IdentifierToken <331:339> [46:0:46:8] '__line__'
-   IdentifierToken <340:350> [47:0:47:10] '__module__'
-   IdentifierToken <351:370> [48:0:48:19] '__source_location__'
    AbstractKeyword <371:379> [49:0:49:8] 'abstract'
    IdentifierToken <380:383> [50:0:50:3] 'add'
    AddressOfKeyword <384:393> [51:0:51:9] 'addressof'
@@ -532,8 +608,7 @@ SourceFileSyntax
    DollarToken <1958:1959> [282:0:282:1] '$'
    PercentEqualsToken <1960:1962> [283:0:283:2] '%='
    PercentToken <1963:1964> [284:0:284:1] '%'
-   CaretToken <1965:1966> [285:0:285:1] '^'
-   EqualsToken <1966:1967> [285:1:285:2] '='
+   CaretEqualsToken <1965:1967> [285:0:285:2] '^='
    CaretToken <1968:1969> [286:0:286:1] '^'
    AmpersandAmpersandToken <1970:1972> [287:0:287:2] '&&'
    AmpersandEqualsToken <1973:1975> [288:0:288:2] '&='

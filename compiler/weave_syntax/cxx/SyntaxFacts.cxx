@@ -121,15 +121,10 @@ namespace weave::syntax
         case SyntaxKind::MinusToken:
             return SyntaxKind::UnaryMinusExpression;
 
-#if ENABLE_KEYWORD_BIT_OPERATORS
-        case SyntaxKind::BitComplKeyword:
-#endif
         case SyntaxKind::TildeToken:
             return SyntaxKind::BitwiseNotExpression;
 
-#if ENABLE_KEYWORD_BIT_OPERATORS
         case SyntaxKind::NotKeyword:
-#endif
         case SyntaxKind::ExclamationToken:
             return SyntaxKind::LogicalNotExpression;
 
@@ -178,22 +173,12 @@ namespace weave::syntax
         case SyntaxKind::AsKeyword:
             return SyntaxKind::AsExpression;
 
-#if ENABLE_KEYWORD_BIT_OPERATORS
-        case SyntaxKind::BitOrKeyword:
-#endif
         case SyntaxKind::BarToken:
             return SyntaxKind::BitwiseOrExpression;
 
-#if ENABLE_KEYWORD_BIT_OPERATORS
-        case SyntaxKind::BitXorKeyword:
-#endif
         case SyntaxKind::CaretToken:
             return SyntaxKind::ExclusiveOrExpression;
 
-
-#if ENABLE_KEYWORD_BIT_OPERATORS
-        case SyntaxKind::BitAndKeyword:
-#endif
         case SyntaxKind::AmpersandToken:
             return SyntaxKind::BitwiseAndExpression;
 
@@ -236,15 +221,11 @@ namespace weave::syntax
         case SyntaxKind::PercentToken:
             return SyntaxKind::ModuloExpression;
 
-#if ENABLE_KEYWORD_BIT_OPERATORS
         case SyntaxKind::AndKeyword:
-#endif
         case SyntaxKind::AmpersandAmpersandToken:
             return SyntaxKind::LogicalAndExpression;
 
-#if ENABLE_KEYWORD_BIT_OPERATORS
         case SyntaxKind::OrKeyword:
-#endif
         case SyntaxKind::BarBarToken:
             return SyntaxKind::LogicalOrExpression;
         default:
@@ -258,21 +239,12 @@ namespace weave::syntax
     {
         switch (token) // NOLINT(clang-diagnostic-switch-enum)
         {
-#if ENABLE_KEYWORD_BIT_OPERATORS
-        case SyntaxKind::OrEqualKeyword:
-#endif
         case SyntaxKind::BarEqualsToken:
             return SyntaxKind::OrAssignmentExpression;
 
-#if ENABLE_KEYWORD_BIT_OPERATORS
-        case SyntaxKind::AndEqualKeyword:
-#endif
         case SyntaxKind::AmpersandEqualsToken:
             return SyntaxKind::AndAssignmentExpression;
 
-#if ENABLE_KEYWORD_BIT_OPERATORS
-        case SyntaxKind::XorEqualKeyword:
-#endif
         case SyntaxKind::CaretEqualsToken:
             return SyntaxKind::ExclusiveOrAssignmentExpression;
 
