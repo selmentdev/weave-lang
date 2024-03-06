@@ -1,0 +1,174 @@
+SourceFileSyntax
+ SyntaxList
+  CodeBlockItemSyntax
+   NamespaceDeclarationSyntax
+    NamespaceKeyword <0:9> [0:0:0:9] 'namespace'
+    PathSyntax
+     SyntaxList
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <10:13> [0:10:0:13] 'foo'
+       ColonColonToken <13:15> [0:13:0:15] '::'
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <15:18> [0:15:0:18] 'bar'
+       ColonColonToken <18:20> [0:18:0:20] '::'
+      PathSegmentSyntax
+       IdentifierSyntax
+        IdentifierToken <20:23> [0:20:0:23] 'baz'
+    CodeBlockSyntax
+     OpenBraceToken <24:25> [1:0:1:1] '{'
+     SyntaxList
+      CodeBlockItemSyntax
+       StructDeclarationSyntax
+        SyntaxList
+         PublicKeyword <30:36> [2:4:2:10] 'public'
+        StructKeyword <37:43> [2:11:2:17] 'struct'
+        IdentifierSyntax
+         IdentifierToken <44:48> [2:18:2:22] 'Pair'
+        CodeBlockSyntax
+         OpenBraceToken <48:49> [2:22:2:23] missing ''
+         SyntaxList
+          CodeBlockItemSyntax
+           ExpressionStatementSyntax
+            BinaryExpressionSyntax
+             PathExpressionSyntax
+              PathSyntax
+               SyntaxList
+                PathSegmentSyntax
+                 IdentifierSyntax
+                  IdentifierToken <48:49> [2:22:2:23] missing ''
+             LessThanToken <48:49> [2:22:2:23] '<'
+             PathExpressionSyntax
+              PathSyntax
+               SyntaxList
+                PathSegmentSyntax
+                 IdentifierSyntax
+                  IdentifierToken <49:53> [2:23:2:27] missing ''
+          CodeBlockItemSyntax
+           TypeAliasDeclarationSyntax
+            TypeKeyword <49:53> [2:23:2:27] 'type'
+            IdentifierSyntax
+             IdentifierToken <54:55> [2:28:2:29] 'T'
+            EqualsToken <55:56> [2:29:2:30] missing ''
+            TypePathSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <55:56> [2:29:2:30] missing ''
+         UnexpectedNodesSyntax
+          SyntaxList
+           CommaToken <55:56> [2:29:2:30] ','
+           TypeKeyword <57:61> [2:31:2:35] 'type'
+           IdentifierToken <62:63> [2:36:2:37] 'U'
+           GreaterThanToken <63:64> [2:37:2:38] '>'
+           OpenBraceToken <69:70> [3:4:3:5] '{'
+           PublicKeyword <79:85> [4:8:4:14] 'public'
+           VarKeyword <86:89> [4:15:4:18] 'var'
+           IdentifierToken <90:95> [4:19:4:24] 'First'
+           ColonToken <95:96> [4:24:4:25] ':'
+           IdentifierToken <97:98> [4:26:4:27] 'T'
+           SemicolonToken <98:99> [4:27:4:28] ';'
+           PublicKeyword <108:114> [5:8:5:14] 'public'
+           VarKeyword <115:118> [5:15:5:18] 'var'
+           IdentifierToken <119:125> [5:19:5:25] 'Second'
+           ColonToken <125:126> [5:25:5:26] ':'
+           IdentifierToken <127:128> [5:27:5:28] 'U'
+           SemicolonToken <128:129> [5:28:5:29] ';'
+         CloseBraceToken <134:135> [6:4:6:5] '}'
+      CodeBlockItemSyntax
+       FunctionDeclarationSyntax
+        SyntaxList
+         PublicKeyword <141:147> [8:4:8:10] 'public'
+        FunctionKeyword <148:156> [8:11:8:19] 'function'
+        IdentifierSyntax
+         IdentifierToken <157:165> [8:20:8:28] 'MakePair'
+        ParameterListSyntax
+         UnexpectedNodesSyntax
+          SyntaxList
+           LessThanToken <165:166> [8:28:8:29] '<'
+           TypeKeyword <166:170> [8:29:8:33] 'type'
+           IdentifierToken <171:172> [8:34:8:35] 'T'
+           CommaToken <172:173> [8:35:8:36] ','
+           TypeKeyword <174:178> [8:37:8:41] 'type'
+           IdentifierToken <179:180> [8:42:8:43] 'U'
+           GreaterThanToken <180:181> [8:43:8:44] '>'
+         OpenParenToken <181:182> [8:44:8:45] '('
+         SyntaxList
+          ParameterSyntax
+           IdentifierSyntax
+            IdentifierToken <182:187> [8:45:8:50] 'first'
+           TypeClauseSyntax
+            ColonToken <187:188> [8:50:8:51] ':'
+            TypePathSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <189:190> [8:52:8:53] 'T'
+           CommaToken <190:191> [8:53:8:54] ','
+          ParameterSyntax
+           IdentifierSyntax
+            IdentifierToken <192:198> [8:55:8:61] 'second'
+           TypeClauseSyntax
+            ColonToken <198:199> [8:61:8:62] ':'
+            TypePathSyntax
+             PathSyntax
+              SyntaxList
+               PathSegmentSyntax
+                IdentifierSyntax
+                 IdentifierToken <200:201> [8:63:8:64] 'U'
+         CloseParenToken <201:202> [8:64:8:65] ')'
+        ReturnTypeClauseSyntax
+         MinusGreaterThanToken <203:205> [8:66:8:68] '->'
+         TypePathSyntax
+          PathSyntax
+           SyntaxList
+            PathSegmentSyntax
+             IdentifierSyntax
+              IdentifierToken <206:210> [8:69:8:73] 'Pair'
+        UnexpectedNodesSyntax
+         SyntaxList
+          LessThanToken <210:211> [8:73:8:74] '<'
+          IdentifierToken <211:212> [8:74:8:75] 'T'
+          CommaToken <212:213> [8:75:8:76] ','
+          IdentifierToken <214:215> [8:77:8:78] 'U'
+          GreaterThanToken <215:216> [8:78:8:79] '>'
+        CodeBlockSyntax
+         OpenBraceToken <221:222> [9:4:9:5] '{'
+         SyntaxList
+          CodeBlockItemSyntax
+           ReturnStatementSyntax
+            ReturnKeyword <231:237> [10:8:10:14] 'return'
+            BinaryExpressionSyntax
+             PathExpressionSyntax
+              PathSyntax
+               SyntaxList
+                PathSegmentSyntax
+                 IdentifierSyntax
+                  IdentifierToken <238:242> [10:15:10:19] 'Pair'
+             LessThanToken <242:243> [10:19:10:20] '<'
+             PathExpressionSyntax
+              PathSyntax
+               SyntaxList
+                PathSegmentSyntax
+                 IdentifierSyntax
+                  IdentifierToken <243:244> [10:20:10:21] 'T'
+         UnexpectedNodesSyntax
+          SyntaxList
+           CommaToken <244:245> [10:21:10:22] ','
+           IdentifierToken <246:247> [10:23:10:24] 'U'
+           GreaterThanToken <247:248> [10:24:10:25] '>'
+           OpenBraceToken <248:249> [10:25:10:26] '{'
+           IdentifierToken <250:255> [10:27:10:32] 'first'
+           CommaToken <255:256> [10:32:10:33] ','
+           IdentifierToken <257:263> [10:34:10:40] 'second'
+           CommaToken <263:264> [10:40:10:41] ','
+         CloseBraceToken <265:266> [10:42:10:43] '}'
+       SemicolonToken <266:267> [10:43:10:44] ';'
+     CloseBraceToken <272:273> [11:4:11:5] '}'
+ UnexpectedNodesSyntax
+  SyntaxList
+   CloseBraceToken <274:275> [12:0:12:1] '}'
+ EndOfFileToken <276:276> [13:0:13:0] ''

@@ -60,6 +60,25 @@ namespace weave::syntax
             this->CreateTriviaList(trailingTrivia));
     }
 
+    SyntaxToken* SyntaxFactory::CreateToken(
+        SyntaxKind kind,
+        source::SourceSpan const& source,
+        SyntaxListView<SyntaxTrivia> leadingTrivia,
+        SyntaxListView<SyntaxTrivia> trailingTrivia)
+    {
+        WEAVE_ASSERT(kind != SyntaxKind::IdentifierToken);
+        WEAVE_ASSERT(kind != SyntaxKind::IntegerLiteralToken);
+        WEAVE_ASSERT(kind != SyntaxKind::FloatLiteralToken);
+        WEAVE_ASSERT(kind != SyntaxKind::StringLiteralToken);
+        WEAVE_ASSERT(kind != SyntaxKind::CharacterLiteralToken);
+
+        return this->TokenAllocator.Emplace(
+            kind,
+            source,
+            leadingTrivia,
+            trailingTrivia);   
+    }
+
     SyntaxToken* SyntaxFactory::CreateMissingToken(
         SyntaxKind kind,
         source::SourceSpan const& source,

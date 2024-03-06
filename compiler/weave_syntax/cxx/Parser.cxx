@@ -896,6 +896,13 @@ namespace weave::syntax
             do
             {
                 GenericParameterSyntax* parameter = this->ParseGenericParameter(last);
+
+                if (parameter == nullptr)
+                {
+                    // Failed to parse anything
+                    break;
+                }
+
                 parameters.emplace_back(parameter);
 
                 if (last)
@@ -1320,6 +1327,11 @@ namespace weave::syntax
         result->EvalKeyword = this->Match(SyntaxKind::EvalKeyword);
         result->Body = this->ParseCodeBlockItem();
         return result;
+    }
+
+    constexpr bool NoTriviaBetween(SyntaxToken const* left, SyntaxToken const* right)
+    {
+        return left->Source.End == right->Source.Start;
     }
 
     ExpressionSyntax* Parser::ParseExpression(Precedence parentPrecedence)

@@ -1,0 +1,13 @@
+namespace foo::bar::baz
+{
+    public struct Pair<type T, type U>
+    {
+        public var First: T;
+        public var Second: U;
+    }
+
+    public function MakePair<type T, type U>(first: T, second: U) -> Pair<T, U>
+    {
+        return Pair<T, U>{ first, second, };
+    }
+}

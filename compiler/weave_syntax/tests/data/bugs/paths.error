@@ -1,0 +1,56 @@
+error: Expected '{'
+        --> <source>:3:23
+         |
+       3 |     public struct Pair<type T, type U>
+         |                       ^
+error: Expected '[token:identifier]'
+        --> <source>:3:23
+         |
+       3 |     public struct Pair<type T, type U>
+         |                       ^
+error: Expected '[token:identifier]'
+        --> <source>:3:24
+         |
+       3 |     public struct Pair<type T, type U>
+         |                        ^^^^
+error: Expected '='
+        --> <source>:3:30
+         |
+       3 |     public struct Pair<type T, type U>
+         |                              ^
+error: Expected '[token:identifier]'
+        --> <source>:3:30
+         |
+       3 |     public struct Pair<type T, type U>
+         |                              ^
+error: Unexpected tokens
+        --> <source>:3:30
+         |
+       3 |     public struct Pair<type T, type U>
+         |                              ^^^^^^^^^
+       4 |     {
+         | ^^^^^
+       5 |         public var First: T;
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       6 |         public var Second: U;
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:9:29
+         |
+       9 |     public function MakePair<type T, type U>(first: T, second: U) -> Pair<T, U>
+         |                             ^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:9:74
+         |
+       9 |     public function MakePair<type T, type U>(first: T, second: U) -> Pair<T, U>
+         |                                                                          ^^^^^^
+error: Unexpected tokens
+        --> <source>:11:22
+         |
+      11 |         return Pair<T, U>{ first, second, };
+         |                      ^^^^^^^^^^^^^^^^^^^^
+error: Unexpected tokens
+        --> <source>:13:1
+         |
+      13 | }
+         | ^

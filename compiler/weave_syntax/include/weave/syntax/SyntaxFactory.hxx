@@ -57,6 +57,12 @@ namespace weave::syntax
             std::span<SyntaxTrivia const> leadingTrivia,
             std::span<SyntaxTrivia const> trailingTrivia);
 
+        SyntaxToken* CreateToken(
+            SyntaxKind kind,
+            source::SourceSpan const& source,
+            SyntaxListView<SyntaxTrivia> leadingTrivia,
+            SyntaxListView<SyntaxTrivia> trailingTrivia);
+
         SyntaxToken* CreateMissingToken(
             SyntaxKind kind,
             source::SourceSpan const& source,

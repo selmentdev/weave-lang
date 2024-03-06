@@ -1,0 +1,15 @@
+{
+    public delegate C(a: Int32, b: Int32) -> Int32;
+
+    var c : C;
+    c = function(a: Int32, b: Int32) -> Int32 {
+        return a + b;
+    };
+}
+{
+    var c : delegate(a: Int32, b: Int32) -> Int32;
+
+    c = delegate(a: Int32, b: Int32) -> Int32 {
+        return a + b;
+    };
+}

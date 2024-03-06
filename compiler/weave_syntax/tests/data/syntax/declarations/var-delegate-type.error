@@ -1,0 +1,30 @@
+error: Expected '[token:identifier]'
+        --> <source>:5:9
+         |
+       5 |     c = function(a: Int32, b: Int32) -> Int32 {
+         |         ^^^^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:5:17
+         |
+       5 |     c = function(a: Int32, b: Int32) -> Int32 {
+         |                 ^
+error: Expected '[token:identifier]'
+        --> <source>:10:13
+         |
+      10 |     var c : delegate(a: Int32, b: Int32) -> Int32;
+         |             ^^^^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:10:21
+         |
+      10 |     var c : delegate(a: Int32, b: Int32) -> Int32;
+         |                     ^
+error: Expected '[token:identifier]'
+        --> <source>:12:9
+         |
+      12 |     c = delegate(a: Int32, b: Int32) -> Int32 {
+         |         ^^^^^^^^
+error: Expected '[token:identifier]'
+        --> <source>:12:17
+         |
+      12 |     c = delegate(a: Int32, b: Int32) -> Int32 {
+         |                 ^
