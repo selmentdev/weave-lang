@@ -1,3 +1,4 @@
 target_sources(weave_hash PRIVATE
-    Sha256.cxx
+    "AES.cxx"
+    "Sha256.cxx"
 )
