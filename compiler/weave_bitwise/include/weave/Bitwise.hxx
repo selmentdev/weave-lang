@@ -195,7 +195,7 @@ namespace weave::bitwise
 namespace weave::bitwise
 {
     template <typename T>
-    constexpr T ToBigEndian(T value)
+    [[nodiscard]] constexpr T ToBigEndian(T value)
         requires(std::is_integral_v<T>)
     {
         if constexpr (std::endian::native == std::endian::little)
@@ -209,7 +209,7 @@ namespace weave::bitwise
     }
 
     template <typename T>
-    constexpr T ToLittleEndian(T value)
+    [[nodiscard]] constexpr T ToLittleEndian(T value)
         requires(std::is_integral_v<T>)
     {
         if constexpr (std::endian::native == std::endian::big)
@@ -226,7 +226,7 @@ namespace weave::bitwise
 namespace weave::bitwise
 {
     template <typename T>
-    T LoadUnaligned(void const* source)
+    [[nodiscard]] constexpr T LoadUnaligned(void const* source)
         requires(std::is_trivially_copyable_v<T>)
     {
         struct Storage
@@ -237,7 +237,7 @@ namespace weave::bitwise
     }
 
     template <typename T>
-    void StoreUnaligned(void* destination, T value)
+    [[nodiscard]] constexpr void StoreUnaligned(void* destination, T value)
         requires(std::is_trivially_copyable_v<T>)
     {
         struct Storage
@@ -253,7 +253,7 @@ namespace weave::bitwise
 namespace weave::bitwise
 {
     template <typename T>
-    T LoadUnalignedLittleEndian(void const* source)
+    [[nodiscard]] constexpr T LoadUnalignedLittleEndian(void const* source)
     {
         if constexpr (std::endian::native == std::endian::little)
         {
@@ -266,7 +266,7 @@ namespace weave::bitwise
     }
 
     template <typename T>
-    void StoreUnalignedLittleEndian(void* destination, T value)
+    constexpr void StoreUnalignedLittleEndian(void* destination, T value)
     {
         if constexpr (std::endian::native == std::endian::little)
         {
@@ -279,7 +279,7 @@ namespace weave::bitwise
     }
 
     template <typename T>
-    T LoadUnalignedBigEndian(void const* source)
+    [[nodiscard]] constexpr T LoadUnalignedBigEndian(void const* source)
     {
         if constexpr (std::endian::native == std::endian::big)
         {
@@ -292,7 +292,7 @@ namespace weave::bitwise
     }
 
     template <typename T>
-    void StoreUnalignedBigEndian(void* destination, T value)
+    constexpr void StoreUnalignedBigEndian(void* destination, T value)
     {
         if constexpr (std::endian::native == std::endian::big)
         {
