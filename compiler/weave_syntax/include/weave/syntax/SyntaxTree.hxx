@@ -2341,4 +2341,36 @@ namespace weave::syntax
         }
     };
 
+    // String interpolation
+    class InterpolatedStringTextToken;
+
+    class InterpolatedFormatClause final : public SyntaxNode
+    {
+        SyntaxToken* ColonToken{};
+        InterpolatedStringTextToken* FormatString{};
+    };
+
+    class InterpolationFragmentSyntax : public SyntaxNode
+    {
+    };
+
+    class InterpolatedStringExpressionSyntax final : public ExpressionSyntax
+    {
+        SyntaxToken* StartToken{};
+        SyntaxListView<InterpolationFragmentSyntax> Fragments{};
+        SyntaxToken* EndToken{};
+    };
+
+    class InterpolatedStringTextFragmentSyntax final : public InterpolationFragmentSyntax
+    {
+        InterpolatedStringTextToken* Text{};
+    };
+
+    class InterpolatedExpressionFragmentSyntax final : public InterpolationFragmentSyntax
+    {
+        SyntaxToken* OpenBraceToken{};
+        ExpressionSyntax* Expression{};
+        InterpolatedFormatClause* FormatClause{};
+        SyntaxToken* CloseBraceToken{};
+    };
 }
