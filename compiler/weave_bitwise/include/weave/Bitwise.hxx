@@ -237,7 +237,7 @@ namespace weave::bitwise
     }
 
     template <typename T>
-    [[nodiscard]] constexpr void StoreUnaligned(void* destination, T value)
+    constexpr void StoreUnaligned(void* destination, T value)
         requires(std::is_trivially_copyable_v<T>)
     {
         struct Storage
