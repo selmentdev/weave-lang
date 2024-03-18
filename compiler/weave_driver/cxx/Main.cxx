@@ -493,6 +493,37 @@ namespace xxx
     };
 }
 
+/*
+
+-h, --help          Prints this help message
+-v, --verbose       Use verbose output
+-V, --version       Prints version information
+-w, --warning       Set warning options
+                    level=4                 Sets predefined warning level
+                    error=N1,N2,N3,...      Sets specific warning as an error
+                    disable=N1,N2,N3,...    Disables specific warning
+                    default=N1,N2,N3,...    Resets specific warning to its default level
+                    warning=N1,N2,N3,...    Sets specific warning as a warning
+                    help                    Prints all known warning options
+-c, --codegen       Set code generation options
+                    architecture=kind       The target architecture
+                    checked                 Enable overflow checking
+                    debug                   Enable debugging information
+                    deterministic           Produce deterministic output
+                    optimize=level          Set optimization level
+                    platform=kind           The target platform
+                    sanitize-address        Enable address sanitizer
+                    sanitize-memory         Enable memory sanitizer
+                    sanitize-thread         Enable thread sanitizer
+                    sanitize-undefined      Enable undefined behavior sanitizer
+                    unsafe                  Allow unsafe code
+                    help                    Prints all known code generation options
+-l, --link          Set linking options
+                    
+                    help                    Prints all known linking options
+
+*/
+
 int main(int argc, char* argv[])
 {
     std::string_view const appname = weave::filesystem::path::GetFilenameWithoutExtension(argv[0]);

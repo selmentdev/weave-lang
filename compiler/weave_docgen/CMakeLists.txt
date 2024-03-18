@@ -18,4 +18,12 @@ WEAVE_CXX_FORTIFY_CODE(weave_docgen)
 
 add_subdirectory(cxx)
 
-install(TARGETS weave_docgen DESTINATION bin)
+#add_custom_target(weave_docgen_copyfiles ALL
+#    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/res ${CMAKE_CURRENT_BINARY_DIR}/res
+#    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/res
+#    COMMENT "Copying weave_docgen resources"
+#)
+#add_dependencies(weave_docgen weave_docgen_copyfiles)
+
+install(TARGETS weave_docgen)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/res/ DESTINATION "share/weave-docgen")

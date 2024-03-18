@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.25)
 
 set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT ProgramDatabase)
-cmake_policy(SET CMP0141 NEW)
+
+if(MSVC)
+list(APPEND CMAKE_EXE_LINKER_FLAGS_RELEASE "-DEBUG")
+list(APPEND CMAKE_SHARED_LINKER_FLAGS_RELEASE "-DEBUG")
+endif()
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
@@ -32,6 +36,7 @@ message(STATUS "Project branch: ${WEAVE_PROJECT_BRANCH}")
 #endif()
 
 enable_testing()
+enable_language(CXX)
 
 project(weave-lang VERSION 1.0.0.0)
 
