@@ -10,4 +10,8 @@ namespace weave::system
         const char* working_directory,
         std::string& output,
         std::string& error);
+
+    std::string_view GetExecutablePath();
+
+    std::string_view GetStartupDirectory();
 }

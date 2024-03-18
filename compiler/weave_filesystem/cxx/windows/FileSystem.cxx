@@ -3,7 +3,7 @@
 #include "weave/filesystem/FileSystem.hxx"
 #include "weave/filesystem/FileHandle.hxx"
 #include "weave/platform/SystemError.hxx"
-
+#include "weave/bugcheck/Assert.hxx"
 #include "weave/platform/windows/PlatformHeaders.hxx"
 
 namespace weave::filesystem
@@ -48,7 +48,7 @@ namespace weave::filesystem
                 case NameCollisionResolve::GenerateUnique:
                     {
                         fail = false;
-                        assert(false); // not implemented
+                        WEAVE_ASSERT(false, "Not implemented");
                         break;
                     }
 
@@ -80,6 +80,63 @@ namespace weave::filesystem
             }
 
             return std::string{destination};
+        }
+
+        return std::unexpected(platform::SystemError::InvalidArgument);
+    }
+
+    std::expected<void, platform::SystemError> File::Remove(
+        std::string_view path)
+    {
+        platform::windows::win32_FilePathW wPath{};
+
+        if (platform::windows::win32_WidenString(wPath, path))
+        {
+            if (DeleteFileW(wPath.data()) == FALSE)
+            {
+                return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
+            }
+
+            return {};
+        }
+
+        return std::unexpected(platform::SystemError::InvalidArgument);
+    }
+}
+
+namespace weave::filesystem
+{
+    std::expected<void, platform::SystemError> Directory::Create(
+        std::string_view path)
+    {
+        platform::windows::win32_FilePathW wPath{};
+
+        if (platform::windows::win32_WidenString(wPath, path))
+        {
+            if (CreateDirectoryW(wPath.data(), nullptr) == FALSE)
+            {
+                return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
+            }
+
+            return {};
+        }
+
+        return std::unexpected(platform::SystemError::InvalidArgument);
+    }
+
+    std::expected<void, platform::SystemError> Directory::Remove(
+        std::string_view path)
+    {
+        platform::windows::win32_FilePathW wPath{};
+
+        if (platform::windows::win32_WidenString(wPath, path))
+        {
+            if (RemoveDirectoryW(wPath.data()) == FALSE)
+            {
+                return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
+            }
+
+            return {};
         }
 
         return std::unexpected(platform::SystemError::InvalidArgument);

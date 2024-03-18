@@ -34,5 +34,18 @@ namespace weave::filesystem
             std::string_view existing,
             std::string_view destination,
             NameCollisionResolve collision);
+
+        static std::expected<void, platform::SystemError> Remove(
+            std::string_view path);
+    };
+
+    class Directory
+    {
+    public:
+        static std::expected<void, platform::SystemError> Create(
+            std::string_view path);
+
+        static std::expected<void, platform::SystemError> Remove(
+            std::string_view path);
     };
 }

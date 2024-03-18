@@ -1,14 +1,16 @@
 #include "weave/Version.hxx"
 #include "weave/commandline/CommandLineParser.hxx"
 #include "weave/filesystem/DirectoryEnumerator.hxx"
-#include "weave/commandline/CommandLineParser.hxx"
 #include "weave/bugcheck/Assert.hxx"
-#include <utility>
+#include "weave/system/Process.hxx"
 
+#include <utility>
 
 int main(int argc, char* argv[])
 {
     std::string_view const appname = weave::filesystem::path::GetFilenameWithoutExtension(argv[0]);
+
+    fmt::println("working-directory: {}", weave::system::GetStartupDirectory());
 
     weave::commandline::ArgumentEnumerator arguments{argc, argv};
 

@@ -4,6 +4,8 @@
 
 #include <fmt/format.h>
 
+#include "weave/bugcheck/BugCheck.hxx"
+#include "weave/platform/windows/Helpers.hxx"
 #include "weave/platform/windows/PlatformHeaders.hxx"
 
 namespace weave::system::impl
@@ -216,5 +218,72 @@ namespace weave::system
         }
 
         return std::nullopt;
+    }
+}
+
+namespace weave::system
+{
+    static const std::string g_ExecutablePath = []() -> std::string
+    {
+        platform::windows::win32_FilePathW buffer{};
+
+        if (not win32_QueryFullProcessImageName(::GetCurrentProcess(), buffer))
+        {
+            WEAVE_BUGCHECK("Failed to get executable path");
+        }
+
+        std::string narrow{};
+
+        if (not platform::windows::win32_NarrowString(narrow, buffer.data()))
+        {
+            WEAVE_BUGCHECK("Failed to get executable path");
+        }
+
+        return narrow;
+    }();
+
+    static const std::string g_StartupPath = []()->std::string
+    {
+        platform::windows::win32_FilePathW buffer{};
+
+        if (not win32_GetCurrentDirectory(buffer))
+        {
+            WEAVE_BUGCHECK("Failed to get current directory");
+        }
+
+        std::string narrow{};
+
+        if (not platform::windows::win32_NarrowString(narrow, buffer.data()))
+        {
+            WEAVE_BUGCHECK("Failed to get current directory");
+        }
+
+        size_t const last_slash = narrow.find_last_of('\\');
+
+        if (last_slash == std::string::npos)
+        {
+            return {};
+        }
+
+        return narrow.substr(0, last_slash);
+    }();
+
+    std::string_view GetExecutablePath()
+    {
+        return g_ExecutablePath;
+    }
+
+    std::string_view GetStartupDirectory()
+    {
+        std::string_view const narrow = g_StartupPath;
+
+        size_t const last_slash = narrow.find_last_of('\\');
+
+        if (last_slash == std::string::npos)
+        {
+            return {};
+        }
+
+        return narrow.substr(0, last_slash);
     }
 }
