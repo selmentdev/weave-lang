@@ -3,11 +3,35 @@
 #include "weave/filesystem/DirectoryEnumerator.hxx"
 #include "weave/bugcheck/Assert.hxx"
 #include "weave/system/Process.hxx"
+#include "weave/memory/PageAllocator.hxx"
 
 #include <utility>
 
 int main(int argc, char* argv[])
 {
+#if defined(_WIN32)
+    {
+        size_t buffer_size = 16u << 20u;
+        void* buffer1 = VirtualAlloc(reinterpret_cast<void*>(0x1000'0000u), buffer_size, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+        void* buffer2 = VirtualAlloc(reinterpret_cast<void*>(0x3000'0000u), buffer_size, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+        void* buffer3 = VirtualAlloc(reinterpret_cast<void*>(0x2000'0000u), buffer_size, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+
+        weave::memory::v2::PageFrameDatabase db{};
+        weave::memory::v2::PageFrameDatabase_Initialize(db);
+        weave::memory::v2::PageFrameDatabase_CreatePageFrame(db, buffer2, buffer_size, nullptr, 0);
+        weave::memory::v2::PageFrameDatabase_CreatePageFrame(db, buffer1, buffer_size, nullptr, 0);
+        weave::memory::v2::PageFrameDatabase_CreatePageFrame(db, buffer3, buffer_size, nullptr, 0);
+
+        void* p1 = weave::memory::v2::PageFrameDatabase_AllocatePages(db, weave::memory::v2::PageFrameGranularity, weave::memory::v2::PageFrameGranularity, nullptr);
+        void* p2 = weave::memory::v2::PageFrameDatabase_AllocatePages(db, weave::memory::v2::PageFrameGranularity, weave::memory::v2::PageFrameGranularity, nullptr);
+        void* p3 = weave::memory::v2::PageFrameDatabase_AllocatePagesExplicit(db, reinterpret_cast<void*>(0x2004'0000u), weave::memory::v2::PageFrameGranularity, nullptr);
+        weave::memory::v2::PageFrameDatabase_DeallocatePages(db, p1);
+        weave::memory::v2::PageFrameDatabase_DeallocatePages(db, p2);
+        weave::memory::v2::PageFrameDatabase_DeallocatePages(db, p3);
+    }
+#endif
+
+
     std::string_view const appname = weave::filesystem::path::GetFilenameWithoutExtension(argv[0]);
 
     fmt::println("working-directory: {}", weave::system::GetStartupDirectory());
