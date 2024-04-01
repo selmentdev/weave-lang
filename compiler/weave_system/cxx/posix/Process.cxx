@@ -8,12 +8,13 @@ WEAVE_EXTERNAL_HEADERS_BEGIN
 #include <spawn.h>
 #include <sys/wait.h>
 #include <poll.h>
+#include <array>
 
 WEAVE_EXTERNAL_HEADERS_END
 
 namespace weave::system
 {
-    std::optional<int> Execute(
+    std::expected<int, platform::SystemError> Execute(
         const char* path,
         const char* args,
         const char* working_directory,
@@ -32,7 +33,7 @@ namespace weave::system
 
         if (exp_result != 0)
         {
-            return {};
+            return std::unexpected(platform::SystemError::InvalidArgument);
         }
 
         int pipeOutput[2]{};
@@ -40,14 +41,14 @@ namespace weave::system
 
         if (pipe(pipeOutput) != 0)
         {
-            return std::nullopt;
+            return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
         }
 
         if (pipe(pipeError) != 0)
         {
             close(pipeOutput[0]);
             close(pipeOutput[1]);
-            return std::nullopt;
+            return std::unexpected(platform::impl::SystemErrorFromErrno(errno));
         }
 
         pid_t process_id{};
@@ -121,5 +122,49 @@ namespace weave::system
         posix_spawn_file_actions_destroy(&files);
 
         return exit_code;
+    }
+}
+
+namespace weave::system
+{
+    static const std::string g_ExecutablePath = []() -> std::string
+    {
+        std::string result{};
+        std::array<char, PATH_MAX> procpath{};
+        std::array<char, PATH_MAX> execpath{};
+
+        pid_t pid = getpid();
+
+        snprintf(std::data(procpath), std::size(procpath), "/proc/%d/exe", pid);
+
+        ssize_t length = readlink(std::data(procpath), std::data(execpath), std::size(execpath));
+        WEAVE_ASSERT(length >= 0);
+
+        length = std::max<ssize_t>(0, length);
+        result.assign(std::data(execpath), static_cast<size_t>(length));
+        return result;
+    }();
+
+    static const std::string g_StartupPath = []()->std::string
+    {
+        std::string result{};
+        std::array<char, PATH_MAX> path{};
+
+        if (getcwd(std::data(path), std::size(path)) != nullptr)
+        {
+            result.assign(std::data(path));
+        }
+
+        return result;
+    }();
+
+    std::string_view GetExecutablePath()
+    {
+        return g_ExecutablePath;
+    }
+
+    std::string_view GetStartupDirectory()
+    {
+        return g_StartupPath;
     }
 }

@@ -11,6 +11,7 @@ int main(int argc, char* argv[])
     std::string_view const appname = weave::filesystem::path::GetFilenameWithoutExtension(argv[0]);
 
     fmt::println("working-directory: {}", weave::system::GetStartupDirectory());
+    fmt::println("executable-path: {}", weave::system::GetExecutablePath());
 
     weave::commandline::ArgumentEnumerator arguments{argc, argv};
 
