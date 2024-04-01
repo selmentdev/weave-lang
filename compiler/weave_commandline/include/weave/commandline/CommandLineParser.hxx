@@ -73,6 +73,26 @@ namespace weave::commandline
 {
     class ArgumentParser;
 
+    struct Option final
+    {
+        std::string_view Name{};
+        std::string_view Description{};
+        std::string_view ValueName{};
+        std::string_view DefaultValue{};
+    };
+
+    struct Command final
+    {
+        std::string_view Name{};
+        std::string_view Description{};
+    };
+
+    struct Argument final
+    {
+        std::string_view Name{};
+        std::string_view Description{};
+    };
+
     class ArgumentParseResult final
     {
         friend class ArgumentParser;
@@ -94,9 +114,27 @@ namespace weave::commandline
             return std::find(_names.cbegin(), _names.cend(), name) != _names.cend();
         }
 
+        [[nodiscard]] bool Contains(Option const& option) const
+        {
+            return std::find(_names.cbegin(), _names.cend(), option.Name) != _names.cend();
+        }
+
         [[nodiscard]] std::optional<std::string_view> GetValue(std::string_view name) const
         {
             auto it = std::find(_names.cbegin(), _names.cend(), name);
+
+            if (it != _names.cend())
+            {
+                auto index = std::distance(_names.cbegin(), it);
+                return _values[index].second;
+            }
+
+            return std::nullopt;
+        }
+
+        [[nodiscard]] std::optional<std::string_view> GetValue(Option const& option) const
+        {
+            auto it = std::find(_names.cbegin(), _names.cend(), option.Name);
 
             if (it != _names.cend())
             {
@@ -114,6 +152,21 @@ namespace weave::commandline
             for (const auto& [index, value] : _values)
             {
                 if (_names[index] == name)
+                {
+                    values.push_back(value);
+                }
+            }
+
+            return values;
+        }
+
+        [[nodiscard]] std::vector<std::string_view> GetValues(Option const& option) const
+        {
+            std::vector<std::string_view> values{};
+
+            for (const auto& [index, value] : _values)
+            {
+                if (_names[index] == option.Name)
                 {
                     values.push_back(value);
                 }
@@ -169,35 +222,14 @@ namespace weave::commandline
         }
 
     private:
-        struct OptionDescriptor final
-        {
-            std::string_view Name{};
-            std::string_view Description{};
-            std::string_view ValueName{};
-            std::string_view DefaultValue{};
-        };
-
-        struct CommandDescriptor final
-        {
-            std::string_view Name{};
-            std::string_view Description{};
-        };
-
-        struct ArgumentDescriptor final
-        {
-            std::string_view Name{};
-            std::string_view Description{};
-        };
+        std::vector<Option> _options{};
+        std::vector<Argument> _arguments{};
+        std::vector<Command> _commands{};
 
     private:
-        std::vector<OptionDescriptor> _options{};
-        std::vector<ArgumentDescriptor> _arguments{};
-        std::vector<CommandDescriptor> _commands{};
-
-    private:
-        [[nodiscard]] OptionDescriptor const* FindOption(std::string_view name) const
+        [[nodiscard]] Option const* FindOption(std::string_view name) const
         {
-            for (OptionDescriptor const& option : this->_options)
+            for (Option const& option : this->_options)
             {
                 if (option.Name == name)
                 {
@@ -208,9 +240,9 @@ namespace weave::commandline
             return nullptr;
         }
 
-        [[nodiscard]] CommandDescriptor const* FindCommand(std::string_view name) const
+        [[nodiscard]] Command const* FindCommand(std::string_view name) const
         {
-            for (CommandDescriptor const& command : this->_commands)
+            for (Command const& command : this->_commands)
             {
                 if (command.Name == name)
                 {
@@ -222,6 +254,11 @@ namespace weave::commandline
         }
 
     public:
+        void AddOption(Option const& option)
+        {
+            this->_options.emplace_back(option);
+        }
+
         void AddOption(std::string_view name, std::string_view description)
         {
             this->_options.emplace_back(name, description);
@@ -237,6 +274,11 @@ namespace weave::commandline
             this->_options.emplace_back(name, description, valueName, defaultValue);
         }
 
+        void AddArgument(Argument const& argument)
+        {
+            this->_arguments.emplace_back(argument);
+        }
+
         void AddArgument(std::string_view name, std::string_view description)
         {
             this->_arguments.emplace_back(name, description);
@@ -245,6 +287,11 @@ namespace weave::commandline
         void AddCommand(std::string_view name, std::string_view description)
         {
             this->_commands.emplace_back(name, description);
+        }
+
+        void AddCommand(Command const& command)
+        {
+            this->_commands.emplace_back(command);
         }
 
         [[nodiscard]] auto Parse(ArgumentEnumerator& enumerator) const -> std::expected<ArgumentParseResult, ArgumentParseError>
@@ -290,7 +337,7 @@ namespace weave::commandline
                 }
                 else
                 {
-                    if (OptionDescriptor const* option = this->FindOption(*argument))
+                    if (Option const* option = this->FindOption(*argument))
                     {
                         if (option->ValueName.empty())
                         {
@@ -340,7 +387,7 @@ namespace weave::commandline
             {
                 fmt::println("Arguments:");
 
-                for (ArgumentDescriptor const& argument : this->_arguments)
+                for (Argument const& argument : this->_arguments)
                 {
                     fmt::print("  {:28}", argument.Name);
 
@@ -359,7 +406,7 @@ namespace weave::commandline
             {
                 fmt::println("Options:");
 
-                for (OptionDescriptor const& option : this->_options)
+                for (Option const& option : this->_options)
                 {
                     if (option.ValueName.empty())
                     {
@@ -385,7 +432,7 @@ namespace weave::commandline
             {
                 fmt::println("Commands:");
 
-                for (CommandDescriptor const& command : this->_commands)
+                for (Command const& command : this->_commands)
                 {
                     fmt::print("  {:28}", command.Name);
 
