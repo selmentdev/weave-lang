@@ -1,0 +1,50 @@
+namespace Core.Hash
+{
+    public function Squirrel3(
+        position: Int32,
+        seed: UInt32
+    ) -> UInt32
+    {
+        const noise1 : UInt32 = 0xB5297A4D;
+        const noise2 : UInt32 = 0x68E31DA4;
+        const noise3 : UInt32 = 0x1B56C4E9;
+
+        var mangled : UInt32 = position as UInt32;
+        mangled *= noise1;
+        mangled += seed;
+        mangled ^= (mangled >> 8);
+        mangled += noise2;
+        mangled ^= (mangled << 8);
+        mangled *= noise3;
+        mangled ^= (mangled >> 8);
+        return mangled;
+    }
+}
+
+namespace Core.Noise
+{
+    public function NoiseUnit1D(
+        x: Int32,
+        seed: UInt32
+    );
+
+    public function NoiseUnit2D(
+        x: Int32,
+        y: Int32,
+        seed: UInt32)
+    {
+        const prime : Int32 = 198491317;
+        return NoiseUnit1D(x + (prime * y), seed);
+    }
+
+    public function NoiseUnit3D(
+        x: Int32,
+        y: Int32,
+        z: Int32,
+        seed: UInt32)
+    {
+        const prime1 : Int32 = 198491317;
+        const prime2 : Int32 = 6542989;
+        return NoiseUnit1D(x + (prime1 * y) + (prime2 * z), seed);
+    }
+}
