@@ -1,10 +1,12 @@
 #pragma once
+#include <expected>
 #include <string>
-#include <optional>
+
+#include "weave/platform/SystemError.hxx"
 
 namespace weave::system
 {
-    std::optional<int> Execute(
+    std::expected<int, platform::SystemError> Execute(
         const char* path,
         const char* args,
         const char* working_directory,

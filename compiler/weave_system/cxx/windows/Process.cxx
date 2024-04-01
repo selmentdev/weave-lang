@@ -76,7 +76,7 @@ namespace weave::system::impl
 
 namespace weave::system
 {
-    std::optional<int> Execute(
+    std::expected<int, platform::SystemError> Execute(
         const char* path,
         const char* args,
         const char* working_directory,
@@ -89,7 +89,7 @@ namespace weave::system
 
         if (not platform::windows::win32_WidenString(wide_path, path))
         {
-            return std::nullopt;
+            return std::unexpected(platform::SystemError::InvalidArgument);
         }
 
         // C runtime expects that first argument is the name of the executable.
@@ -99,12 +99,12 @@ namespace weave::system
 
         if (not platform::windows::win32_WidenString(wide_command_line, command_line))
         {
-            return std::nullopt;
+            return std::unexpected(platform::SystemError::InvalidArgument);
         }
 
         if (not platform::windows::win32_WidenString(wide_working_directory, working_directory ? working_directory : ""))
         {
-            return std::nullopt;
+            return std::unexpected(platform::SystemError::InvalidArgument);
         }
 
         SECURITY_ATTRIBUTES sa{
@@ -120,12 +120,12 @@ namespace weave::system
 
         if (not CreatePipe(&pipe_output_read.Handle, &pipe_output_write.Handle, &sa, 0))
         {
-            return std::nullopt;
+            return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
 
         if (not CreatePipe(&pipe_error_read.Handle, &pipe_error_write.Handle, &sa, 0))
         {
-            return std::nullopt;
+            return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
         }
 
         STARTUPINFOW si{
@@ -217,7 +217,7 @@ namespace weave::system
             return static_cast<int>(dw_exit_code);
         }
 
-        return std::nullopt;
+        return std::unexpected(platform::impl::SystemErrorFromWin32Error(GetLastError()));
     }
 }
 
