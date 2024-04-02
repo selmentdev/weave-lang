@@ -227,7 +227,7 @@ namespace weave::system
     {
         platform::windows::win32_FilePathW buffer{};
 
-        if (not win32_QueryFullProcessImageName(::GetCurrentProcess(), buffer))
+        if (not win32_QueryFullProcessImageName(GetCurrentProcess(), buffer))
         {
             WEAVE_BUGCHECK("Failed to get executable path");
         }
@@ -258,14 +258,7 @@ namespace weave::system
             WEAVE_BUGCHECK("Failed to get current directory");
         }
 
-        size_t const last_slash = narrow.find_last_of('\\');
-
-        if (last_slash == std::string::npos)
-        {
-            return {};
-        }
-
-        return narrow.substr(0, last_slash);
+        return narrow;
     }();
 
     std::string_view GetExecutablePath()
@@ -275,15 +268,6 @@ namespace weave::system
 
     std::string_view GetStartupDirectory()
     {
-        std::string_view const narrow = g_StartupPath;
-
-        size_t const last_slash = narrow.find_last_of('\\');
-
-        if (last_slash == std::string::npos)
-        {
-            return {};
-        }
-
-        return narrow.substr(0, last_slash);
+        return g_StartupPath;
     }
 }

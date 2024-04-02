@@ -13,7 +13,9 @@ namespace weave::system
         std::string& output,
         std::string& error);
 
+    /// \brief Get the path to the executable.
     std::string_view GetExecutablePath();
 
+    //// \brief Get the startup directory.
     std::string_view GetStartupDirectory();
 }
