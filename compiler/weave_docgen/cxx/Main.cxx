@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
     parser.AddOption("-w:disable", "Disables a specific warning", "warning");
     parser.AddOption("-w:enable", "Enables a specific warning", "warning");
     parser.AddOption("-w:default", "Restores default for a specific warning", "warning");
+    parser.AddOption("-c", "Code generator", "option");
 
     parser.AddCommand("add", "Adds new");
     parser.AddCommand("remove", "Removes");
@@ -71,17 +72,17 @@ int main(int argc, char* argv[])
                     fmt::println("immediate: {}", *value);
                 }
 
-                for (auto const& value : resultAdd->GetValues("-w:disable"))
+                for (auto const& value : resultAdd->Multiple("-w:disable"))
                 {
                     fmt::println("disable: {}", value);
                 }
 
-                for (auto const& value : resultAdd->GetValues("-w:enable"))
+                for (auto const& value : resultAdd->Multiple("-w:enable"))
                 {
                     fmt::println("enable: {}", value);
                 }
 
-                for (auto const& value : resultAdd->GetValues("-w:default"))
+                for (auto const& value : resultAdd->Multiple("-w:default"))
                 {
                     fmt::println("default: {}", value);
                 }
@@ -108,6 +109,14 @@ int main(int argc, char* argv[])
         {
             parser.PrintUsage(appname);
             return 0;
+        }
+
+        if (auto cc = result->Multiple("-c"); not cc.empty())
+        {
+            for (auto const& c : cc)
+            {
+                fmt::println("code generator: {}", c);
+            }
         }
     }
     else

@@ -145,7 +145,115 @@ namespace weave::commandline
             return std::nullopt;
         }
 
-        [[nodiscard]] std::vector<std::string_view> GetValues(std::string_view name) const
+        [[nodiscard]] std::optional<std::string_view> First(std::string_view name) const
+        {
+            auto it = std::find(_names.cbegin(), _names.cend(), name);
+
+            if (it != _names.cend())
+            {
+                auto index = std::distance(_names.cbegin(), it);
+                return _values[index].second;
+            }
+
+            return std::nullopt;
+        }
+
+        [[nodiscard]] std::optional<std::string_view> First(Option const& option) const
+        {
+            auto it = std::find(_names.cbegin(), _names.cend(), option.Name);
+
+            if (it != _names.cend())
+            {
+                auto index = std::distance(_names.cbegin(), it);
+                return _values[index].second;
+            }
+
+            return std::nullopt;
+        }
+
+        [[nodiscard]] std::optional<std::string_view> Last(std::string_view name) const
+        {
+            auto it = std::find(_names.crbegin(), _names.crend(), name);
+
+            if (it != _names.crend())
+            {
+                auto index = std::distance(_names.crbegin(), it);
+                return _values[index].second;
+            }
+
+            return std::nullopt;
+        }
+
+        [[nodiscard]] std::optional<std::string_view> Last(Option const& option) const
+        {
+            auto it = std::find(_names.crbegin(), _names.crend(), option.Name);
+
+            if (it != _names.crend())
+            {
+                auto index = std::distance(_names.crbegin(), it);
+                return _values[index].second;
+            }
+
+            return std::nullopt;
+        }
+
+        [[nodiscard]] std::optional<std::string_view> Single(std::string_view name) const
+        {
+            auto it = std::find(_names.cbegin(), _names.cend(), name);
+
+            if (it != _names.cend())
+            {
+                auto nt = std::find(std::next(it), _names.cend(), name);
+
+                if (nt == _names.cend())
+                {
+                    auto index = std::distance(_names.cbegin(), it);
+                    return _values[index].second;
+                }
+            }
+
+            return std::nullopt;
+        }
+
+        [[nodiscard]] std::optional<std::string_view> Single(Option const& option) const
+        {
+            auto it = std::find(_names.cbegin(), _names.cend(), option.Name);
+
+            if (it != _names.cend())
+            {
+                auto nt = std::find(std::next(it), _names.cend(), option.Name);
+
+                if (nt == _names.cend())
+                {
+                    auto index = std::distance(_names.cbegin(), it);
+                    return _values[index].second;
+                }
+            }
+
+            return std::nullopt;
+        }
+
+        [[nodiscard]] std::string_view SingleOrDefault(std::string_view name, std::string_view defaultValue) const
+        {
+            if (auto value = Single(name))
+            {
+                return *value;
+            }
+
+            return defaultValue;
+        }
+
+        [[nodiscard]] std::string_view SingleOrDefault(Option const& option, std::string_view defaultValue) const
+        {
+            if (auto value = Single(option))
+            {
+                return *value;
+            }
+
+            return defaultValue;
+        }
+
+        [[nodiscard]] std::vector<std::string_view> Multiple(std::string_view name) const
         {
             std::vector<std::string_view> values{};
 
@@ -160,7 +268,7 @@ namespace weave::commandline
             return values;
         }
 
-        [[nodiscard]] std::vector<std::string_view> GetValues(Option const& option) const
+        [[nodiscard]] std::vector<std::string_view> Multiple(Option const& option) const
         {
             std::vector<std::string_view> values{};
 

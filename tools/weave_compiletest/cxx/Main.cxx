@@ -64,7 +64,7 @@ int main(int argc, char** argv)
             fmt::println("dir: {}", *v);
         }
 
-        for (auto v : r->GetValues("-c"))
+        for (auto v : r->Multiple("-c"))
         {
             fmt::println("codegen: {}", v);
         }
@@ -89,7 +89,7 @@ int main(int argc, char** argv)
 
         auto exeName = r->GetValue("-exe");
         auto workingDirectory = r->GetValue("-working-directory");
-        auto compilerArgs = r->GetValues("-c");
+        auto compilerArgs = r->Multiple("-c");
 
         // exeName = R"(D:\repos\weave-lang\out\build\x64-Debug\src\Compiler\Frontend\weave-frontend.exe)";
         // workingDirectory = R"(D:\repos\weave-lang\src\Compiler\Syntax\tests)";
