@@ -1,0 +1,115 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "platform",
+            "hidden": true,
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}"
+        },
+        {
+            "name": "build-developer",
+            "inherits": [ "platform" ],
+            "cacheVariables": {
+                "WEAVE_BUILD_DEVELOPER": true
+            }
+        },
+        {
+            "name": "build-shipping",
+            "inherits": [ "platform" ],
+            "cacheVariables": {
+                "WEAVE_BUILD_SHIPPING": false
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "developer-debug",
+            "displayName": "Developer Debug",
+            "configurePreset": "build-developer",
+            "configuration": "Debug"
+        },
+        {
+            "name": "developer-relwithdebinfo",
+            "displayName": "Developer RelWithDebInfo",
+            "configurePreset": "build-developer",
+            "configuration": "RelWithDebInfo"
+        },
+        {
+            "name": "developer-Release",
+            "displayName": "Developer Release",
+            "configurePreset": "build-developer",
+            "configuration": "Release"
+        },
+        {
+            "name": "shipping-debug",
+            "displayName": "Shipping Debug",
+            "configurePreset": "build-shipping",
+            "configuration": "Debug"
+        },
+        {
+            "name": "shipping-relwithdebinfo",
+            "displayName": "Shipping RelWithDebInfo",
+            "configurePreset": "build-shipping",
+            "configuration": "RelWithDebInfo"
+        },
+        {
+            "name": "shipping-release",
+            "displayName": "Shipping Release",
+            "configurePreset": "build-shipping",
+            "configuration": "Release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "base-test",
+            "hidden": true,
+            "output": {
+                "verbosity": "verbose"
+            }
+        },
+        {
+            "name": "developer-debug",
+            "displayName": "Developer Debug",
+            "configurePreset": "build-developer",
+            "configuration": "Debug",
+            "inherits": [ "base-test" ]
+        },
+        {
+            "name": "developer-relwithdebinfo",
+            "displayName": "Developer RelWithDebInfo",
+            "configurePreset": "build-developer",
+            "configuration": "RelWithDebInfo",
+            "inherits": [ "base-test" ]
+        },
+        {
+            "name": "developer-release",
+            "displayName": "Developer Release",
+            "configurePreset": "build-developer",
+            "configuration": "Release",
+            "inherits": [ "base-test" ]
+        },
+        {
+            "name": "shipping-debug",
+            "displayName": "Shipping Debug",
+            "configurePreset": "build-shipping",
+            "configuration": "Debug",
+            "inherits": [ "base-test" ]
+        },
+        {
+            "name": "shipping-relwithdebinfo",
+            "displayName": "Shipping RelWithDebInfo",
+            "configurePreset": "build-shipping",
+            "configuration": "RelWithDebInfo",
+            "inherits": [ "base-test" ]
+        },
+        {
+            "name": "shipping-release",
+            "displayName": "Shipping Release",
+            "configurePreset": "build-shipping",
+            "configuration": "Release",
+            "inherits": [ "base-test" ]
+        }
+    ]
+}

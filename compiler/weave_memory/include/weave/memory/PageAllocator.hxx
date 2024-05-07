@@ -351,6 +351,7 @@ namespace weave::memory::v2
 
     inline void* PageFrameDatabase_AllocatePages(PageFrameDatabase& database, size_t size, size_t alignment, void* user_data)
     {
+        (void)alignment;
         WEAVE_MEMORY_PAGE_FRAME_ALLOCATOR_FUNCTION();
 
         WEAVE_ASSERT(bitwise::IsAligned(size, PageFrameGranularity));
