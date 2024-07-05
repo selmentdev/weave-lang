@@ -31,16 +31,28 @@ execute_process(
 message(STATUS "Project hash: ${WEAVE_PROJECT_HASH}")
 message(STATUS "Project branch: ${WEAVE_PROJECT_BRANCH}")
 
-#if (MSVC)
-#    add_compile_options("$<$<CONFIG:RELWITHDEBINFO>:/GA /GT /Ob3 ?Oi /Gw /Gy /GL /O2 /GS- /sdl- /guart:cf>")
-#endif()
-
 enable_testing()
 enable_language(CXX)
 
 project(weave-lang VERSION 1.0.0.0)
 
 include_directories("${CMAKE_CURRENT_BINARY_DIR}/include")
+
+add_compile_definitions(
+    $<$<BOOL:${WEAVE_BUILD_CHECKED}>:-DWEAVE_BUILD_CHECKED=1>
+    $<$<BOOL:${WEAVE_PLATFORM_WINDOWS}>:-DWEAVE_PLATFORM_WINDOWS=1>
+    $<$<BOOL:${WEAVE_PLATFORM_LINUX}>:-DWEAVE_PLATFORM_LINUX=1>
+    $<$<CONFIG:DEBUG>:-DWEAVE_CONFIG_DEBUG=1>
+    $<$<CONFIG:RELEASE>:-DWEAVE_CONFIG_RELEASE=1>
+    $<$<CONFIG:RELWITHDEBINFO>:-DWEAVE_CONFIG_RELWITHDEBINFO=1>
+    $<$<CONFIG:MINSIZEREL>:-DWEAVE_CONFIG_MINSIZEREL=1>
+)
+
+if (MSVC)
+    add_link_options(/debug)
+else()
+    add_compile_options(-ggdb)
+endif()
 
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Version.hxx.in"

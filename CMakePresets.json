@@ -2,63 +2,200 @@
     "version": 6,
     "configurePresets": [
         {
-            "name": "platform",
+            "name": "base",
             "hidden": true,
-            "generator": "Ninja Multi-Config",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "installDir": "${sourceDir}/out/install/${presetName}"
         },
+
         {
-            "name": "build-developer",
-            "inherits": [ "platform" ],
-            "cacheVariables": {
-                "WEAVE_BUILD_DEVELOPER": true
+            "name": "x64",
+            "hidden": true,
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
             }
         },
         {
-            "name": "build-shipping",
-            "inherits": [ "platform" ],
-            "cacheVariables": {
-                "WEAVE_BUILD_SHIPPING": false
+            "name": "arm64",
+            "hidden": true,
+            "architecture": {
+                "value": "arm64",
+                "strategy": "external"
             }
+        },
+
+        {
+            "name": "msvc",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "cl.exe",
+                "CMAKE_C_COMPILER": "cl.exe"
+            }
+        },
+        {
+            "name": "gcc",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "/bin/g++",
+                "CMAKE_C_COMPILER": "/bin/gcc"
+            }
+        },
+
+        {
+            "name": "windows",
+            "hidden": true,
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            },
+            "cacheVariables": {
+                "WEAVE_PLATFORM_WINDOWS": true
+            }
+        },
+        {
+            "name": "linux",
+            "hidden": true,
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            },
+            "cacheVariables": {
+                "WEAVE_PLATFORM_LINUX": true
+            }
+        },
+
+        {
+            "name": "debug",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "WEAVE_BUILD_CHECKED": true
+            }
+        },
+        {
+            "name": "checked",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "WEAVE_BUILD_CHECKED": true
+            }
+        },
+        {
+            "name": "release",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_OPTIMIZE_DEPENDENCIES": true,
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true,
+                "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "ProgramDatabase"
+            }
+        },
+
+        {
+            "name": "windows-x64-debug",
+            "inherits": [ "base", "windows", "x64", "msvc", "debug" ]
+        },
+        {
+            "name": "windows-x64-checked",
+            "inherits": [ "base", "windows", "x64", "msvc", "checked" ]
+        },
+        {
+            "name": "windows-x64-release",
+            "inherits": [ "base", "windows", "x64", "msvc", "release" ]
+        },
+
+        {
+            "name": "windows-arm64-debug",
+            "inherits": [ "base", "windows", "arm64", "msvc", "debug" ]
+        },
+        {
+            "name": "windows-arm64-checked",
+            "inherits": [ "base", "windows", "arm64", "msvc", "checked" ]
+        },
+        {
+            "name": "windows-arm64-release",
+            "inherits": [ "base", "windows", "arm64", "msvc", "release" ]
+        },
+
+        {
+            "name": "linux-x64-debug",
+            "inherits": [ "base", "linux", "x64", "gcc", "debug" ]
+        },
+        {
+            "name": "linux-x64-checked",
+            "inherits": [ "base", "linux", "x64", "gcc", "checked" ]
+        },
+        {
+            "name": "linux-x64-release",
+            "inherits": [ "base", "linux", "x64", "gcc", "release" ]
+        },
+
+        {
+            "name": "linux-arm64-debug",
+            "inherits": [ "base", "linux", "arm64", "gcc", "debug" ]
+        },
+        {
+            "name": "linux-arm64-checked",
+            "inherits": [ "base", "linux", "arm64", "gcc", "checked" ]
+        },
+        {
+            "name": "linux-arm64-release",
+            "inherits": [ "base", "linux", "arm64", "gcc", "release" ]
         }
     ],
     "buildPresets": [
         {
-            "name": "developer-debug",
-            "displayName": "Developer Debug",
-            "configurePreset": "build-developer",
-            "configuration": "Debug"
+            "name": "windows-x64-debug",
+            "configurePreset": "windows-x64-debug"
         },
         {
-            "name": "developer-relwithdebinfo",
-            "displayName": "Developer RelWithDebInfo",
-            "configurePreset": "build-developer",
-            "configuration": "RelWithDebInfo"
+            "name": "windows-x64-checked",
+            "configurePreset": "windows-x64-checked"
         },
         {
-            "name": "developer-Release",
-            "displayName": "Developer Release",
-            "configurePreset": "build-developer",
-            "configuration": "Release"
+            "name": "windows-x64-release",
+            "configurePreset": "windows-x64-release"
         },
         {
-            "name": "shipping-debug",
-            "displayName": "Shipping Debug",
-            "configurePreset": "build-shipping",
-            "configuration": "Debug"
+            "name": "windows-arm64-debug",
+            "configurePreset": "windows-arm64-debug"
         },
         {
-            "name": "shipping-relwithdebinfo",
-            "displayName": "Shipping RelWithDebInfo",
-            "configurePreset": "build-shipping",
-            "configuration": "RelWithDebInfo"
+            "name": "windows-arm64-checked",
+            "configurePreset": "windows-arm64-checked"
         },
         {
-            "name": "shipping-release",
-            "displayName": "Shipping Release",
-            "configurePreset": "build-shipping",
-            "configuration": "Release"
+            "name": "windows-arm64-release",
+            "configurePreset": "windows-arm64-release"
+        },
+
+        {
+            "name": "linux-x64-debug",
+            "configurePreset": "linux-x64-debug"
+        },
+        {
+            "name": "linux-x64-checked",
+            "configurePreset": "linux-x64-checked"
+        },
+        {
+            "name": "linux-x64-release",
+            "configurePreset": "linux-x64-release"
+        },
+        {
+            "name": "linux-arm64-debug",
+            "configurePreset": "linux-arm64-debug"
+        },
+        {
+            "name": "linux-arm64-checked",
+            "configurePreset": "linux-arm64-checked"
+        },
+        {
+            "name": "linux-arm64-release",
+            "configurePreset": "linux-arm64-release"
         }
     ],
     "testPresets": [
@@ -70,45 +207,8 @@
             }
         },
         {
-            "name": "developer-debug",
-            "displayName": "Developer Debug",
-            "configurePreset": "build-developer",
-            "configuration": "Debug",
-            "inherits": [ "base-test" ]
-        },
-        {
-            "name": "developer-relwithdebinfo",
-            "displayName": "Developer RelWithDebInfo",
-            "configurePreset": "build-developer",
-            "configuration": "RelWithDebInfo",
-            "inherits": [ "base-test" ]
-        },
-        {
-            "name": "developer-release",
-            "displayName": "Developer Release",
-            "configurePreset": "build-developer",
-            "configuration": "Release",
-            "inherits": [ "base-test" ]
-        },
-        {
-            "name": "shipping-debug",
-            "displayName": "Shipping Debug",
-            "configurePreset": "build-shipping",
-            "configuration": "Debug",
-            "inherits": [ "base-test" ]
-        },
-        {
-            "name": "shipping-relwithdebinfo",
-            "displayName": "Shipping RelWithDebInfo",
-            "configurePreset": "build-shipping",
-            "configuration": "RelWithDebInfo",
-            "inherits": [ "base-test" ]
-        },
-        {
-            "name": "shipping-release",
-            "displayName": "Shipping Release",
-            "configurePreset": "build-shipping",
-            "configuration": "Release",
+            "name": "windows-x64-debug",
+            "configurePreset": "windows-x64-debug",
             "inherits": [ "base-test" ]
         }
     ]
